@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>房间导入</title>
+
+<style type="text/css">
+#tagscontent {
+    border-top: none;
+    height: auto;
+    /* font-size: 12px; */
+    color: #1B4670;
+    text-align: left;
+}
+
+#tagscontent tr {
+    line-height: 20px;
+    height: auto;
+    clear: both;
+}
+
+#tagscontent .table_td th, #tagscontent #table th {
+    background: #ebe7dc;
+    text-align: center;
+	font-size:13px
+}
+#tagscontent th {
+    color: #1B4670;
+}
+
+#tagscontent td {
+    font-size: 12px;
+    color: #1B4670;
+    border-bottom: 1px solid #e8eef6;
+}
+.search {
+    text-align: left;
+    background: #fcf9f4;
+    height: 38px;
+    line-height: 38px;
+}
+
+.search_content {
+    margin-top: 5px;
+    color: #666;
+    padding-left: 20px;
+	font-size:12px
+}
+
+
+/* 通用分页 */
+.page-container {
+	text-align: center;
+	padding: 10px 0; 
+	margin-top: 10px;
+	background: #F5F5F5;
+}
+.page-container .num,
+.page-container .prev,
+.page-container .next,
+.page-container .first,
+.page-container .end,
+.page-container .rows,
+.page-container .current
+{
+	padding: 5px;
+	display: inline-block;
+	padding: 5px 9px;
+    background: #d1cfd6;
+	color: #0076cf;
+	font-size: 16px;
+}
+.page-container .current
+{
+    background: #ff6600;
+    color: #fff;
+	font-weight: bold;
+	cursor: pointer;
+}
+.page-container .num:hover,
+.page-container .prev:hover,
+.page-container .next:hover,
+.page-container .first:hover,
+.page-container .end:hover,
+.page-container .rows:hover,
+.page-container .current:hover
+{
+    background: #d08553;
+	color: #FFF;
+}
+
+.button {
+    /* background: url('__IMG__/buttom_bg.gif') right bottom no-repeat; */
+    height: 24px;
+    line-height: 18px;
+    cursor: pointer;
+    text-align: center;
+    padding: 2px 10px;
+    border: 1px solid #c4d9e9;
+    color: #395366;
+    overflow: hidden;
+    margin-left: 20px;
+	font-size:12px;
+}
+.showtop_t {
+    font-weight: bold;
+    text-align: left;
+    color: #0086ae;
+    padding-left: 20px;
+    padding-top: 5px;
+}
+.show_content_m_t2 {
+    width: 1081px;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+    background-color: #fff;
+}
+
+.select_page {
+    width: 400px;
+    margin-left: 20px;
+    float: left;
+}
+a:link {
+    color: #0076cf;
+    text-decoration: none;
+	font-weight:bold;
+}
+
+
+.delurl {
+    background: url('__IMG__/buttom_bg.gif') right bottom no-repeat;
+    line-height: 22px;
+    cursor: pointer;
+    text-align: center;
+    padding: 5px 10px;
+    border: 1px solid #c4d9e9;
+    color: #395366;
+    overflow: hidden;
+    margin-left: 20px;
+    font-size: 14px;
+}
+
+.xzblddiv{
+width: 60px;
+margin-left: 40px;
+color:#FFF;
+border:1px solid #FFF;
+background:rgb(220, 45, 14);
+border-radius:5px;
+padding:2px 0;
+font-weight:bold;
+cursor:pointer;
+line-height:20px
+}
+a{
+cursor:pointer;
+}
+
+.row-fluid
+{
+position:absolute;
+width:260px;
+height:300px;
+background:blue;
+margin-left:400px;
+margin-top:100px;
+}
+
+/* 房间列表 */
+.room-title-project {
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.room-nav-edit {
+	clear: both;
+	margin: 0;
+	padding: 0;
+}
+.room-nav-edit .room-nav-edit-btn {
+	list-style: none;
+	display: inline-block;
+	padding: 0 7px;
+}
+.room-export-btn {
+	width:66px;
+	color:#FFF;
+	font-size: 13px;
+}
+.room-export-btn:link {
+	color:#FFF;
+}
+.room-export-icon-in {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+	display: inline-block;
+	background: url(__IMG__/dr01.png) no-repeat scroll 0 2px/14px 14px;
+	width: 15px;
+	height: 15px;
+}
+.room-export-icon-out {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+	display: inline-block;
+	background: url(__IMG__/dr01.png) no-repeat scroll 0 2px/14px 14px;
+	width: 15px;
+	height: 15px;
+}
+.room-export-icon-refresh {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+	display: inline-block;
+	background: url(__IMG__/sx01.png) no-repeat scroll 0 2px/18px 15px;
+	width: 20px;
+	height: 17px;
+}
+.room-project {
+	padding-top: 10px;
+	margin: 5px 0;
+	background: #f5f5f5;
+	border-left: 2px solid #e4d7c1;
+}
+</style>
+<script src="__COMMON__/js/jquery/jquery-1.11.3.min.js"></script>
+<script src="__COMMON__/js/layer/layer.js"></script>
+<script src="__COMMON__/js/pc/layer.js"></script>
+<script src="__JS__/admin.js"></script>
+
+</head>
+<body>
+
+<div style="background:#2C3B41;width:1081px;line-height:32px;color:#fff;margin-top:-5px;clear:both;padding: 3px 0;">
+	<span style="font-weight:bold">&nbsp;房间列表</span>
+	<if condition="$selectedproj['id'] gt 0">
+		<span class="room-title-project">[<{$selectedproj['compname']}> -- <{$selectedproj['name']}>]</span>
+	</if>
+	
+	<div style="float:right;margin-right:10px;height: 31px;">
+		<ul class="room-nav-edit">
+			<li class="room-nav-edit-btn">
+				<a class="room-export-btn" href="/admin/index/roomimport.html?cz=user&projid=<{$selectedproj['id']}>" >
+					<i class="room-export-icon room-export-icon-in"></i>
+					导入房间
+				</a>
+			</li>
+			<li class="room-nav-edit-btn">
+				<if condition="$selectedproj['id'] gt 0">
+					<a class="room-export-btn" href="<{:U('excel/export', array('projid' => $selectedproj['id']))}>" >
+						<i class="room-export-icon room-export-icon-out"></i>
+						导出模板
+					</a>
+				<else />
+					<a href="javascript:void(0);" class="room-export-btn js-room-export-btn">
+						<i class="room-export-icon room-export-icon-out"></i>
+						导出模板
+					</a>
+				</if>
+			</li>
+			<li class="room-nav-edit-btn">
+				<a href="__SELF__">
+					<i class="room-export-icon room-export-icon-refresh"></i>
+				</a>
+			</li>
+		</ul>
+		
+	</div>
+</div>
+
+<div class="show_content_m_t2">
+ <div style="width:1081px;overflow-x:hidden;overflow-y:hidden"> 
+	
+	<div class="room-project" style="height:30px">
+		<div style="float:left;margin-left:10px">
+			<font style="margin-left:20px;font-weight:bold">选择项目</font>
+			<select id= "projlist" name="projlist" style="width:200px;padding: 1px 10px;" >
+			<if condition="$selectedproj['id'] gt 0">
+				<foreach name="projlist" item="projlist_vo">
+				<if condition="$selectedproj['id'] eq $projlist_vo['id']">
+				  <option value="<{$projlist_vo['id']}>" selected>
+					<{$projlist_vo['compname']}> -- <{$projlist_vo['name']}>
+				  </option>
+				<else />		 
+				  <option value="<{$projlist_vo['id']}>">
+					<{$projlist_vo['compname']}> -- <{$projlist_vo['name']}>
+				  </option>
+				</if>
+				</foreach> 
+			<else />
+				<option value="0" selected></option>
+				 <foreach name="projlist" item="projlist_vo">
+				   <option value="<{$projlist_vo['id']}>">
+					<{$projlist_vo['compname']}> -- <{$projlist_vo['name']}>
+				   </option>
+				</foreach> 
+			</if>
+			</select>
+			
+			 <form method="get" id="selectproj" name="selectproj" action="room?cz=user" style="display:none">
+				<input type="text" id="projid" name="projid" value="">
+				<input type="submit" value="提交查询" class="button">  
+			</form>
+		</div>
+	</div>
+
+	<div class="search">
+		<div class="search_content">	 
+			<form method="get" name="room_search" action="room?cz=user">
+				<input type="hidden" name="projid" value="<{$projid|default=''}>" style="display:none;">
+				
+				<label>
+				   楼栋
+				   <input type="text" name="buildname" value="<{$buildname|default=''}>"> 
+				</label>
+			   
+			   &nbsp;
+				<label>
+					单元
+					<input type="text" name="unit" value="<{$unit|default=''}>"> 
+				</label>
+			   
+				&nbsp;
+				<label>
+					户型
+					<input type="text" name="hx" value="<{$hx|default=''}>">  
+				</label>
+               
+				&nbsp;
+				<label>
+					房号
+					<input type="text" name="room" value="<{$room|default=''}>">    
+				</label>
+				
+				<input type="submit" value="提交查询" class="button room-search-button">  
+			</form>
+		</div>
+	</div>
+	
+    <div class="tags" style="margin-top: -10px;">
+      	<div id="tagstitle"></div>
+        <div id="tagscontent">
+           <div id="con_one_1">
+             <div class="table_td" style="margin-top:10px;">
+              <!--<form method="post" action="">-->
+                  <table border="0" cellspacing="2" cellpadding="4" class="list" name="table" id="table" width="100%">
+                    <thead>
+                      <tr>
+                        <th width="60px"><input type="checkbox" id="chkall" name="chkall" onclick="checkall()"></th> 
+						<th align="center">房间名称</th>
+						<th align="center">户型</th>
+						<th align="center">建筑面积</th>
+                        <th align="center">建筑单价</th>
+						<th align="center">套内面积</th> 
+						<th align="center">套内单价</th>
+						<th align="center">标准总价</th>
+						<th align="center">销售状态</th>
+                        <th align="center" style="width:100px">
+						操作
+						</th>
+                      </tr>
+                    </thead> 
+                     <tbody id="roomlisttb">
+                      <foreach name="roomlist" item="roomlist_vo">
+                      <tr class="s_out" onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="#ffffff"> 
+                        <td align="center" ><input type="checkbox" class="selectuser" name="id[]" value="<{$roomlist_vo['id']}>"></td> 
+						<td align="left">
+							<a href="<{:U('room/edit', array('id' => $roomlist_vo['id']))}>" style="text-decoration: underline;">
+								<{$roomlist_vo['projname']}>-<{$roomlist_vo['buildname']}>-<{$roomlist_vo['unit']}>-<{$roomlist_vo['room']}>
+							</a>
+						</td> 
+                        <td align="left"><{$roomlist_vo['hx']}></td> 
+                        <td align="right"> <{$roomlist_vo['area']}> </td> 
+                        <td align="right"><{$roomlist_vo['price']}></td> 
+						<td align="right"> <{$roomlist_vo['tnarea']}> </td> 
+                        <td align="right"><{$roomlist_vo['tnprice']}></td>
+						<td align="right"><{$roomlist_vo['total']}></td> 
+						<if condition="$roomlist_vo['is_xf'] eq 0">
+						<td align="right">待售</td>	
+						<else/>
+						<td align="right">已售</td>	
+						</if>
+                        <td align="center">
+                        	<!--<a href="/admin/index/edituser.html?id=<{$roomlist_vo['id']}>" ><img src="__IMG__/edit.jpg"></a>-->
+                        	<a href="<{:U('room/edit', array('id' => $roomlist_vo['id']))}>" >
+								<img src="__IMG__/edit.jpg">
+							</a>
+							<a onclick="delroom(<{$roomlist_vo['id']}>,0)"><img src="__IMG__/del.jpg"></a>
+                        </td> 
+                      </tr> 
+                       </foreach> 
+
+                    </tbody> 
+
+                  </table>
+
+                <div class="blank20"></div>                
+             <!--</form>-->
+			 
+				<div class="page_newc">
+					<div class="show_page">
+						<php>$pagecontent = trim($pagecontent);</php>
+						<if condition="!empty($pagecontent)">
+							<div class="page-container" style="margin-top:15px;margin-right:20px">
+							   <{$pagecontent}>
+							</div>
+						</if>
+					</div>
+				</div>
+                <div class="blank20"></div>
+				
+            </div>
+           </div>
+        </div>
+    </div>    
+  </div> 
+</div>
+<script src="__PUBLIC__/xk/js/jquery/jquery-1.11.3.min.js"></script>
+<script src="__PUBLIC__/xk/js/functions.js"></script>
+<script src="__PUBLIC__/xk/js/layer/layer.js"></script>
+<script type="text/javascript">
+$("#projlist").change(function(){
+	$("#projid").val($("#projlist option:selected").val());
+    $("#selectproj").submit();
+  });  
+
+	function delroom($id=0,$type=0)
+	{
+		if ($id==0)
+		{
+			layer_alert("数据异常，请稍后重试");
+			return false;
+		}
+		if ($type==0)
+		{
+			if (!confirm("是否删除此房间？！"))
+				return false;
+		}
+		
+		var project_url = {delroom: '<{:U("index/delroom")}>',}
+				
+		$.ajax({
+			url: project_url.delroom,
+			data: {
+				id: $id ,
+			},
+			type: 'POST',
+			dataType: 'JSON',
+			success: function (data, status) {
+				if (typeof(data.status) == 'undefined') {
+					layer_alert('请求失败，请重试！');
+					return false;
+				} 
+				if (data.status == false) {
+					alert(data.info);
+					return false;
+				}
+				window.location.reload();
+			},
+			error: function (data, status, e) {
+				layer_alert('提交连接失败！');
+			}
+		}); 
+	}
+	
+	
+	function checkall()
+	{ 
+		var $checkinfo = $('#chkall').is(':checked');
+		if($checkinfo ==  true){
+			$("input[name='id[]']").prop("checked",true); 
+		}else{
+			$("input[name='id[]']").prop("checked",false); 
+		} 
+	}
+
+</script>
+
+</body>
+</html>

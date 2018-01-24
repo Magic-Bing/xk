@@ -1,0 +1,71 @@
+<?php
+
+namespace Saler\Controller;
+
+
+/**
+ * 首页
+ *
+ * @create 2016-8-25
+ * @author zlw
+ */
+class Index1Controller extends Base1Controller 
+{
+	
+	/**
+	 * 首页
+	 *
+	 * @create 2016-9-25
+	 * @author jxw
+	 */
+    public function index() 
+	{
+		$user_where['userid'] = $this->get_user_id();
+                $Model = new \Think\Model();
+                $userinfo=$Model->query("SELECT * FROM xk_user WHERE id=". $user_where['userid'] ." limit 1" );
+                if (empty($userinfo) || count($userinfo)<1)
+                    $this->error('用户登录信息异常，请重新登录！', U('logging/index'));
+                //$uty = I('uty', '', 'trim');
+                if ($userinfo[0]['type']<3)
+                {
+                    C('TMPL_ACTION_ERROR', COMMON_PATH.'View/Common/Mobile/error1.html');
+                    $this->error('亲，您暂时无此权限噢！', U('logging1/index'));
+                }
+		$user_project_list = D("Station")->getpProjectListByUserId($user_where['userid']);
+		
+		$project_ids = array();
+		foreach ($user_project_list as $user_project_list_value) {
+			$project_ids[] = $user_project_list_value['proj_id'];
+		}
+		
+		//项目列表
+		if (!empty($project_ids)) {
+			$Project = D('Common/Project');
+			$where['status'] = 1;
+			$where['id'] = array('in', $project_ids);
+			$project_list = $Project->getProjectList($where, 'id ASC');
+		} else {
+			$project_list = array();
+		}
+                if(count($project_list)==1)
+                {
+                    redirect( "../../saler/statistics/index.html?pid=".$project_list[0]['id']);
+                }
+                else
+                {
+                    //if ($userinfo[0]['type']<3){
+                    //    redirect( U('saler/project/index',array('info' => set_search_ids(array('p' => $project_list[0]['id'])))));
+                    //}
+                   // else{
+                    $this->assign('userinfo', $userinfo[0]);
+                    $this->assign('projects', $project_list);
+
+                    $this->set_seo_title("项目列表");
+                    $this->display();
+                   // }
+                }
+
+    }
+	
+	
+}

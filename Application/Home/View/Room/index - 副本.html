@@ -1,0 +1,303 @@
+﻿<extend name="Common/base" />
+
+<block name="content">
+	<div id="base" class="marketing-control-wrapper">
+		<div  id="div-qzxfdhk" >
+			<ul style="width:98%;margin-left:1%;margin-top:10px">
+				<li class="fl qzxf-input-title" >房间</li>
+				<li class="fl wm75" style="padding:5px 0"><input id="roominfo1" type="text" style="border:0;color:#A9A8A8;" readonly /></li>
+				<li class="fl qzxf-input-title" >客户</li>
+				<li class="fl wm75" style="padding:5px 0"><input id="cstname1" type="text" style="border:0"/></li>
+				<li class="fl" style="padding:5px 0;width:100%"><input type="button" class="qzxf-input-btn"  onclick="xfqz()" value="确认选房"/></li>
+			</ul>			
+		</div>
+		<div class="marketing-control">	
+			<div class="marketing-control-content-wrapper">
+				<div class="clearfix marketing-control-content">
+					<div class="fl marketing-control-content-rooms">
+						<div class="marketing-control-content-rooms-box">
+							<div class="clearfix marketing-control-content-rooms-list-wrapper">
+								<div class="clearfix marketing-control-content-rooms-list-info">
+									
+									<volist name="rooms" id="rooms_vo" key="rooms_k">
+										<div class="fl marketing-control-content-rooms-list marketing-control-content-rooms-list-<{$rooms_vo['build_id']}>">
+											<div class="marketing-control-content-rooms-list-box">
+												<div class="marketing-control-content-rooms-box-build">
+													<if condition="isset($builds[$rooms_vo['build_id']])">
+														<{$builds[$rooms_vo['build_id']]['buildname']|default=1}>
+													<else />
+														1栋
+													</if>
+												</div>
+												
+												<div class="marketing-control-content-rooms-box-unit">
+													<div class="marketing-control-content-rooms-box-unit-box">
+														
+														<volist name="rooms_vo['data']" id="units_vo" key="units_k">
+															<div class="fl marketing-control-content-rooms-box-unit-list">
+																<div class="marketing-control-content-rooms-box-unit-title">
+																	<{$units_vo.unit_id|default=1}>单元
+																</div>
+																
+																<div class="div-ztyy marketing-control-content-rooms-box-room">
+																	<div class="marketing-control-content-rooms-box-room-box">
+																		<table>
+																			<volist name="units_vo['floors']" id="build_floors_vo" key="build_floors_k">
+																				<tr>
+																					<if condition="$units_k eq 1">
+																						<td class="marketing-control-content-rooms-box-room-floor">
+																							<{$build_floors_vo.floor|default=1}>F
+																						</td>
+																					</if>
+																					
+																					<if condition="isset($units_vo['data'][$build_floors_vo['floor']])">
+																						<php>$floors_vo = $units_vo['data'][$build_floors_vo['floor']];</php>
+																							
+																						<foreach name="units_vo['floor_rooms']" item="unit_room_item" >
+																							<if condition="isset($floors_vo['data'][$unit_room_item['no']])">
+																								<php>$room_item = $floors_vo['data'][$unit_room_item['no']];</php>
+																								
+																								<if condition="$room_item['is_xf'] eq 1">
+																									<td no="<{$room_item.no|default=1}>" roominfo="<{$builds[$rooms_vo['build_id']]['buildname']|default=1}>-<{$units_vo.unit_id|default=1}>-<{$room_item.floor|default=1}><{$room_item.no|default=1}>" class="marketing-control-content-rooms-box-room-num js-marketing-control-content-rooms-box-room-num marketing-control-content-rooms-box-room-<{$room_item.id}> marketing-control-content-rooms-box-room-selected" data-room-id="<{$room_item.id|default=1}>">
+																										<{$room_item.floor|default=1}><{$room_item.no|default=1}>
+																									    <span id= "spanid_<{$room_item.id|default=1}>" style="dispaly:none" infolist="<{$room_item.hx}>|<{$room_item.is_xf}>|<{$room_item.area}>|<{$room_item.tnarea}>|<{$room_item.price}>|<{$room_item.tnprice}>|<{$room_item.total}>|<{$room_item.cstname}>|<{$room_item.xftime1}>"   ></span>
+																									</td>
+																								<else />
+																									<td no="<{$room_item.no|default=1}>" roominfo="<{$builds[$rooms_vo['build_id']]['buildname']|default=1}>-<{$units_vo.unit_id|default=1}>-<{$room_item.floor|default=1}><{$room_item.no|default=1}>" class="marketing-control-content-rooms-box-room-num js-marketing-control-content-rooms-box-room-num marketing-control-content-rooms-box-room-<{$room_item.id}>" data-room-id="<{$room_item.id|default=1}>">
+																										<{$room_item.floor|default=1}><{$room_item.no|default=1}>
+																										<span id= "spanid_<{$room_item.id|default=1}>" style="dispaly:none" infolist="<{$room_item.hx}>|<{$room_item.is_xf}>|<{$room_item.area}>|<{$room_item.tnarea}>|<{$room_item.price}>|<{$room_item.tnprice}>|<{$room_item.total}>"  ></span>
+																									</td>
+																								</if>
+																							<else />
+																								<td class="marketing-control-content-rooms-box-room-num">
+																									&nbsp;
+																								</td>
+																							</if>
+																						</foreach>
+																					<else />
+																						<foreach name="units_vo['floor_rooms']" item="floor_rooms_item" >
+																							<td class="marketing-control-content-rooms-box-room-num">
+																								&nbsp;
+																							</td>
+																						</foreach>
+																					</if>
+																				</tr>
+																				
+																			</volist>
+																			
+																		</table>
+																	</div>
+																</div>
+															</div>
+														</volist>
+
+														<div class="clearfix"></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</volist>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="fl marketing-control-content-room-info-wrapper">
+						<div class="fl marketing-control-content-room-info-box">
+							<div id="zxproj_bld" class="div-cz-right" style="margin-top:0">
+								<div style="width:100%;height:30px">
+									<div class="fl wm25 tac marketing-control-content-room-box-title">选择项目</div>
+									<select class="fl wm75 marketing-control-select-project-select marketing-control-select-project-id" >
+										<volist name="project" id="project_vo">
+											<if condition="$project_vo['id'] eq $search_project_id">
+												<option value="<{$project_vo.id}>" selected="true"><{$project_vo.name}></option>
+											<else />
+												<option value="<{$project_vo.id}>"><{$project_vo.name}></option>
+											</if>
+										</volist>
+									</select>		
+								</div>
+								<div style="width:100%;height:auto;min-height:30px;margin-top:5px">
+									<div class="fl wm25 tac marketing-control-content-room-box-title">显示楼栋</div>
+									<if condition="!empty($rooms)">
+										<if condition="count($rooms) lt 5">
+											<div class="fl wm75" style="height:auto;">
+												<ul style="width:100%;height:auto;">
+													<volist name="rooms" id="rooms_vo" key="rooms_k">
+														<li class="fl wm25 select-build-list-li-select" data-build-id="<{$rooms_vo['build_id']}>" >
+															<span class="span-build-list-name-selected" id="span_build_id_<{$rooms_vo['build_id']}>">
+																<if condition="isset($builds[$rooms_vo['build_id']])">
+																	<{$builds[$rooms_vo['build_id']]['buildname']|default=1}>
+																<else />
+																	1栋
+																</if>
+															</span>
+														</li>
+													</volist>
+												</ul>
+											</div>
+										<else/>
+											<div class="fl wm75" style="height:auto;">
+												<div id="div-select-bld1" style="line-height:24px;border:1px solid rgba(0, 204, 204, 1);"><span style="text-align:left;font-size:13px;">&nbsp;</span><span style="float:right;text-align:right;font-size:80%;">▼&nbsp;</span></div>
+												<ul id="ul-select-bld" style="position:absolute;z-index:999;width:200px;height:auto; border:1px solid rgba(0, 204, 204, 1);display:none">
+													<volist name="rooms" id="rooms_vo" key="rooms_k">
+													<label>
+														<li  style="background:#FFF;font-size:13px;" class="marketing-control-select-build-list-li marketing-control-select-build-list-li-<{$rooms_vo['build_id']}>" data-build-id="<{$rooms_vo['build_id']}>">
+															
+																<span class="marketing-control-select-build-list-input">
+																	&nbsp;<input id="checkbox_a<{$rooms_vo['build_id']}>" class="chk_1 marketing-control-select-build-list-input-select" data-build-id="<{$rooms_vo['build_id']}>" type="checkbox" value="<{$rooms_vo['build_id']}>" checked>
+																	<label for="checkbox_a<{$rooms_vo['build_id']}>"></label> 
+																</span>
+																
+																<span class="marketing-control-select-build-list-name">
+																	<if condition="isset($builds[$rooms_vo['build_id']])">
+																		<{$builds[$rooms_vo['build_id']]['buildname']|default=1}>
+																	<else />
+																		1栋
+																	</if>
+																</span>
+														</li>
+													</label>
+													</volist>
+												</ul>
+											</div>
+										</if>
+									</if>
+								</div>
+								
+							</div>
+							<div class="marketing-control-content-room-info div-cz-right" id="div_search">
+								<div class="tar marketing-control-search" style="width:100%;height:auto;min-height:30px;">
+									<div class="fl wm25 tac marketing-control-content-room-box-title">搜索房间</div>
+									<span class="fl wm75  marketing-control-search-input-wrapper">
+										<input style="width:100%" class="marketing-control-search-input" type="text" value="" placeholder="输入房号">
+										<ul class="marketing-control-search-room-list"></ul>
+									</span>
+								</div>
+							</div>
+							<div class="marketing-control-content-room-info div-cz-right" id="div_roominfo">
+								<div class="marketing-control-content-room-title" >
+									房间详情
+								</div>
+								<div class="marketing-control-content-room-info-list">
+									<input class="marketing-control-room-info-id" type="hidden" style="display:none;" value="">
+									<input class="marketing-control-room-info-is-sf" type="hidden" style="display:none;" value="0">
+									<div class="clearfix marketing-control-content-room-box">
+										<div class="fl wm25 tac marketing-control-content-room-box-title">
+											房间名称
+										</div>
+										<div class="fl wm75 tac marketing-control-content-room-box-content">
+											<input class="border-sizing marketing-control-content-room-box-input marketing-control-room-info-name" type="text" readonly value="">
+										</div>
+									</div>
+									<div class="clearfix marketing-control-content-room-box">
+										<div class="fl wm50">
+											<div class="fl wm50 tac marketing-control-content-room-box-title">
+												房间户型
+											</div>
+											<div class="fl wm50 marketing-control-content-room-box-content">
+												<input class="border-sizing marketing-control-content-room-box-input marketing-control-room-info-hx" type="text" readonly value="">
+											</div>
+										</div>
+										<div class="fl wm50">
+											<div class="fl wm50 tac marketing-control-content-room-box-title">
+												销售状态
+											</div>
+											<div class="fl wm50 marketing-control-content-room-box-content">
+												<input class="border-sizing marketing-control-content-room-box-input marketing-control-room-info-zt" type="text" readonly value="">
+											</div>
+										</div>
+									</div>
+									<div class="clearfix marketing-control-content-room-box">
+										<div class="fl wm50">
+											<div class="fl wm50 tac marketing-control-content-room-box-title">
+												建筑面积
+											</div>
+											<div class="fl wm50 marketing-control-content-room-box-content">
+												<input class="border-sizing marketing-control-content-room-box-input marketing-control-room-info-area" type="text" readonly value="">
+											</div>
+										</div>
+										<div class="fl wm50">
+											<div class="fl wm50 tac marketing-control-content-room-box-title">
+												套内面积
+											</div>
+											<div class="fl wm50 marketing-control-content-room-box-content">
+												<input class="border-sizing marketing-control-content-room-box-input marketing-control-room-info-tnarea" type="text" readonly value="">
+											</div>
+										</div>
+									</div>
+									<div class="clearfix marketing-control-content-room-box">
+										<div class="fl wm50">
+											<div class="fl wm50 tac marketing-control-content-room-box-title">
+												建筑单价
+											</div>
+											<div class="fl wm50 marketing-control-content-room-box-content">
+												<input class="border-sizing marketing-control-content-room-box-input marketing-control-room-info-price" type="text" readonly value="">
+											</div>
+										</div>
+										<div class="fl wm50">
+											<div class="fl wm50 tac marketing-control-content-room-box-title">
+												套内单价
+											</div>
+											<div class="fl wm50 marketing-control-content-room-box-content">
+												<input class="border-sizing marketing-control-content-room-box-input marketing-control-room-info-tnprice" type="text" readonly value="">
+											</div>
+										</div>
+									</div>
+									<div class="clearfix marketing-control-content-room-box">
+										<div class="fl wm25 tac marketing-control-content-room-box-title">
+											标准总价
+										</div>
+										<div class="fl wm75 marketing-control-content-room-box-content">
+											<input class="border-sizing marketing-control-content-room-box-input marketing-control-room-info-total" type="text" readonly value="">
+										</div>
+									</div>
+									
+								</div>
+							</div>
+							
+							<div  class="div-cz-right" id="div_xfinfo">
+								<div class="marketing-control-content-room-title" >
+									选房信息
+								</div>
+								<div class="clearfix marketing-control-content-room-box">
+									<div class="fl wm25 tac marketing-control-content-room-box-title marketing-control-content-room-user-name">
+										客户姓名
+									</div>
+									<div class="fl wm75 marketing-control-content-room-box-content">
+										<input class="border-sizing marketing-control-content-room-box-input marketing-control-room-info-cstname" style="border-bottom: 1px solid rgb(0, 204, 204);" type="text" value="">
+									</div>
+								</div>
+								<div class="clearfix marketing-control-content-room-box">
+									<div class="fl wm25 tac marketing-control-content-room-box-title">
+										选房时间
+									</div>
+									<div class="fl wm75 marketing-control-content-room-box-content">
+										<input readonly class="border-sizing marketing-control-content-room-box-input marketing-control-room-info-xftime" type="text" value="" placeholder="--:--">
+									</div>
+								</div>
+							</div>
+							<div class="clearfix marketing-control-content-room-info-option">
+								<div class="tac marketing-control-content-room-cancel" style="display:none">
+									<a href="javascript:void(0);" class="marketing-control-content-room-option-btn marketing-control-content-room-cancel-btn">取消选房</a>
+								</div>
+								<div class="tac marketing-control-content-room-confirm" style="display:none">
+									<a href="javascript:void(0);" class="marketing-control-content-room-option-btn marketing-control-content-room-confirm-btn">确认选房</a>
+								</div>
+							</div>
+							<div class="marketing-control-content-rooms-help-box">
+								<span class="marketing-control-sale-icon marketing-control-no-sale" style="border:1px solid #00cccc">未售</span>
+								<span class="marketing-control-sale-icon marketing-control-haved-sale">已售</span>
+								<span class="marketing-control-sale-icon marketing-control-selected-sale">选中</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+	</script>
+</block>	

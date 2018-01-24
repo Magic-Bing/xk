@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+<block name="seo_title">
+	<{$seo_title|default='抢房管理'}>
+</block>
+</title>
+
+<block name="header_common_css">
+<link href="__COMMON__/css/base.css" type="text/css" rel="stylesheet"/>
+</block>
+<block name="header_css">
+<link href="__CSS__/admin.css" type="text/css" rel="stylesheet"/>
+</block>
+<block name="header_css_add"></block>
+
+<block name="header_config">
+<script type="text/javascript">
+var room_url = {
+	index: '<{:U("room/index")}>',
+	attr_save: '<{:U("room/save")}>',
+};
+var game_url = {
+	index: '<{:U("game/index")}>',
+	add: '<{:U("game/add")}>',
+	delete: '<{:U("game/delete")}>',
+	edit: '<{:U("game/edit")}>',
+	search_room: '<{:U("game/search_room")}>',
+	
+	click_delete: '<{:U("game/click_delete")}>',
+	
+	//中奖
+	prize: '<{:U("game/prize")}>',
+	prize_delete: '<{:U("game/prize_delete")}>',
+	prize_edit: '<{:U("game/prize_edit")}>',
+};
+var reward_url = {
+	option: '<{:U("reward/option")}>',
+	option_edit: '<{:U("reward/option_edit")}>',
+	option_add: '<{:U("reward/option_add")}>',
+	option_delete: '<{:U("reward/option_delete")}>',
+	
+	//日志
+	logs: '<{:U("reward/logs")}>',
+	logs_redelete: '<{:U("reward/logs_redelete")}>',
+	logs_resave: '<{:U("reward/logs_resave")}>',
+	logs_delete: '<{:U("reward/logs_delete")}>',
+	
+	//关系
+	users: '<{:U("reward/users")}>',
+	users_delete: '<{:U("reward/users_delete")}>',
+};
+var voucher_url = {
+	index: '<{:U("voucher/index")}>',
+	add: '<{:U("voucher/add")}>',
+	delete: '<{:U("voucher/delete")}>',
+	edit: '<{:U("voucher/edit")}>',
+	
+	//搜索
+	search_room: '<{:U("voucher/search_room")}>',
+};
+var voucher_activity_url = {
+	index: '<{:U("VoucherActivity/index")}>',
+	add: '<{:U("VoucherActivity/add")}>',
+	delete: '<{:U("VoucherActivity/delete")}>',
+	edit: '<{:U("VoucherActivity/edit")}>',
+	get_vouchers: '<{:U("VoucherActivity/get_vouchers")}>',
+};
+var voucher_log_url = {
+	index: '<{:U("VoucherLog/index")}>',
+	delete: '<{:U("VoucherLog/delete")}>',
+	
+	//移除
+	redelete: '<{:U("VoucherLog/redelete")}>',
+	resave: '<{:U("VoucherLog/resave")}>',
+	
+	//使用
+	used: '<{:U("VoucherLog/used")}>',
+	reused: '<{:U("VoucherLog/reused")}>',
+}
+var voucher_tip_url = {
+	index: '<{:U("VoucherTip/index")}>',
+	delete: '<{:U("VoucherTip/delete")}>',
+	tip: '<{:U("VoucherTip/tip")}>',
+	retip: '<{:U("VoucherTip/retip")}>',
+}
+</script>
+</block>
+<block name="header_config_add"></block>
+
+<block name="header_common_js">
+<script src="__COMMON__/js/jquery/jquery-1.11.3.min.js"></script>
+<script src="__COMMON__/js/functions.js"></script>
+<script src="__COMMON__/js/layer/layer.js" type="text/javascript" charset="UTF-8"></script>
+<script src="__COMMON__/js/pc/layer.js"></script>
+</block>
+<block name="header_js">
+<script src="__JS__/admin.js"></script>
+</block>
+<block name="header_js_add"></block>
+
+</head>
+
+<body>
+	<div class="admin">
+		<block name="header"></block>
+		<block name="content"></block>
+		<block name="footer"></block>
+	</div>
+
+	<block name="footer_css"></block>
+	<block name="footer_add_css"></block>
+	<block name="footer_js"></block>
+	<block name="footer_add_js"></block>
+</body>
+</html>

@@ -1,0 +1,120 @@
+﻿<extend name="Common/base" />
+<block name="header">
+	<div class="common-header-wrapper">
+		<div class="clearfix common-header">
+			<div class="fl wm25 arrow-left common-header-return">
+				<span class="common-header-return-box return-btn">
+					<a href="javascript:history.back(-1);" class="common-header-return-btn">返回</a>
+				</span>
+			</div>
+			<div class="fl wm50 common-header-content js-common-header-content">
+				<span class="common-header-content-box-no-arrow">
+					<span class="common-header-content-box-name"><{$seo_title|default='标题'}></span>
+				</span>
+			</div>
+			<div class="fl wm25 common-header-right">
+				<div class="common-header-right-box clearfix">
+					<a href="<{:U('index/index', 'info=p'.$project_id)}>" class="fr common-header-right-btn user-voucher-header-right-btn">
+						<i class="icon-home icon-home-header"></i>
+					</a>
+				</div>			
+			</div>
+		</div>
+	</div>
+</block>
+
+<block name="content">
+<style>
+.user-voucher-list {
+	top: 88px;
+	background:url(../../public/user/img/voucher/qdjj01.jpg) no-repeat scroll 100% 100%/100% 100%;
+}
+.vouchers-yhd
+{
+	text-align:center;line-height: 50px;padding-top: 20px;font-size:13px;font-weight:bold;
+}
+.vouchers-yhd-number
+{
+font-size:18px;color:red;text-decoration: underline;
+}
+</style>
+
+	<div class="user-voucher-base">
+		<div class="user-voucher-content-wrapper">
+			<div class="user-voucher-content">
+				<div class="user-voucher-content-title">
+					<div class="voucher-title">
+						<span class="voucher-title-info">
+							<{$project['name']|default='项目名称'}>
+						</span>
+					</div>
+				</div>
+				
+				<div id="iscroller-wrapper" class="iscroller-style user-voucher-list">
+					<div id="iscroller-scroller" class="iscroller-scroller-style user-voucher-list-box">
+						<div class="vouchers-yhd">
+						已获得代金卷<a class="vouchers-yhd-number" href="<{:U('mine')}>"><{:number_format($my_voucher['gs'], 0)}></a>个，价值<a class="vouchers-yhd-number" href="<{:U('mine')}>"><{:number_format($my_voucher['money'], 0)}></a>元
+						</div>
+					</div>
+					<div class="user-voucher-content-vouchers">
+						<div class="voucher-grab" style="position: absolute;top: 30%;width: 100%;">
+							<!--<div class="voucher-grab-title">
+								抢代金券
+							</div>-->
+							<div class="voucher-grab-time js-voucher-grab-time-box" >
+								即将开始:
+								<span class="js-voucher-grab-time" 
+									data-start-time="<{$activity.start_time|date='Y/m/d H:i:s',###}>"
+									data-run-start-time="<{$activity.end_time|date='Y/m/d H:i:s',###}>"
+								>
+									<span class="voucher-grab-time-hour">00</span>
+									:
+									<span class="voucher-grab-time-minute">00</span>
+									:
+									<span class="voucher-grab-time-second">00</span>
+								</span>
+							</div>
+							<div class="voucher-grab-btns">
+								<a href="javascript:void(0);" class="voucher-grab-jjks js-voucher-grab-btn">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	
+</block>
+
+<block name="footer">
+<include file="footer_tab"/>
+</block>
+
+<block name="footer_js">
+<include file="Common@Common/Mobile/iscroll" iscroller_id="iscroller_voucher_grab" iscroller_select_id="iscroller-wrapper" />
+<script src="__JS__/activity.js"></script>
+<script type="text/javascript">
+$(function() {
+	//倒计时
+	timer.run({
+		endTime: $(".js-voucher-grab-time").attr("data-start-time"),
+		runEndTime: $(".js-voucher-grab-time").attr("data-run-start-time"),
+		callback: function() {
+			$(".voucher-grab-jjks")
+				.addClass('voucher-grab-btn')
+				.addClass('js-voucher-grab-btn');			
+				
+			$(".js-voucher-grab-time-box").text("点击以获得代金卷！");
+		},
+		elements: {
+			day: '',
+			hour: $(".voucher-grab-time-hour"),
+			minute: $(".voucher-grab-time-minute"),
+			second: $(".voucher-grab-time-second"),
+		},
+	});
+});
+</script>
+</block>

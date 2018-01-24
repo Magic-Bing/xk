@@ -1,0 +1,206 @@
+<extend name="Common/base" />
+
+<block name="header">
+        <link rel="stylesheet" href="/Public/common/css/font-awesome-4.7.0/css/font-awesome.css">
+	<div class="common-header-wrapper">
+		<div class="clearfix common-header sales-statistics-header">
+			<div class="fl wm25 arrow-left common-header-return">
+				<span class="common-header-return-box return-btn">
+					<a href="javascript:void(0);" class="common-header-return-btn">返回</a>
+				</span>
+			</div>
+			<div class="fl wm50 common-header-content js-common-header-content">
+				<span class="common-header-content-box-no-arrow">
+					<span class="common-header-content-box-name">已售占比分析(按户型套数)</span>
+				</span>
+			</div>
+			<div class="fl wm25 common-header-right">&nbsp;</div>
+		</div>
+	</div>
+</block>
+
+<block name="content">
+	<div id="iscroller-wrapper" class="iscroller-style common-content sales-saled-content">
+		<div id="iscroller-scroller" class="iscroller-scroller-style saler-saled-content-wrapper">
+		
+			<div class="saler-saled-img">
+				<div class="saler-saled-img-box">
+					<div class="saler-saled-svg-wrapper">
+						<span class="saler-saled-svg"></span>
+					</div>
+				</div>
+			</div>
+			
+			<div class="saler-saled-opened-statistics">
+				<include file="sell_statistics" />
+			</div>
+			
+		</div>
+	</div>
+</block>
+
+<block name="footer_js">
+<include file="Common@Common/Mobile/iscroll" iscroller_id="iscroller_saled_index" iscroller_select_id="iscroller-wrapper" />
+
+<script src="__COMMON__/js/d3/d3.v3.min.js" type="text/javascript" charset="utf-8"></script>  
+<script type="text/javascript"> 
+;(function($) {
+	'use strict';
+	
+	/*
+	var data = [
+		{'unit': 'A1', 'percent': '19%', 'data': '19'},
+	];
+	var dataset = [5,10,20,40,6,25];
+	*/
+
+	var total_saled = '<{$total_saled|default="0"}>';
+	var total_price = '<{$total_price|default="0"|number_format=0}>';
+	var saled_list = '<{$json_saled}>';
+	var data = $.parseJSON(saled_list);
+	
+	var dataset = [];
+	for (var i = 0; i < data.length; i ++) {
+		dataset.push(data[i].data);
+	}
+
+	var pie = d3.layout.pie(dataset);
+
+	var h = 250;
+	var w = 250;
+
+	var outerRadius = w/2;
+
+	var innerRadius = w/5;
+
+	var arc = d3.svg.arc()
+		.outerRadius(outerRadius)
+		.innerRadius(innerRadius);
+
+	var svg = d3.select(".saler-saled-svg")
+			.append("svg")
+			.attr("width", w)
+			.attr("height", h)
+			.attr("class", 'saler-saled-svg-outer');
+
+	var color = d3.scale.category10();
+
+	var arcs = svg.selectAll("g.arc")
+		.data(pie(dataset))
+		.enter()
+		.append("g")
+		.attr("class", "arc")
+		.attr("transform", "translate("+outerRadius+","+outerRadius+")");
+
+	arcs.append("path")
+		.attr("fill", function(d, i){
+			return color(i);
+		})
+		.attr("stroke", "#d9d9d9")
+		.attr("stroke-width","2")
+		.transition()  
+		.duration(100)  
+		.ease("bounce")  
+		.delay(function(d, i) {  
+			return 200*i;  
+		})		
+		.attr("d", arc);
+
+	arcs.append("text")
+		.attr("transform",function(d, i) {
+			return "translate("+arc.centroid(d)+")";
+		})
+		.attr("text-anchor", "middle")
+		.attr("fill", "#FFF")
+		.attr("y", -32)  
+		.selectAll("tspan")  
+		.data(function(d, i) {
+			var strs = [data[i].unit, data[i].percent];
+			return strs;
+		})  
+		.enter()  
+		.append("tspan")  
+		.attr("x", 0)  
+		.attr("dy", "1.5em")  
+		.style("font-size", '14px')
+		.text(function(d){  
+			return '';  
+		})
+		.transition()  
+		.duration(3000)  
+		.ease("bounce")  
+		.delay(function(d,i){  
+			return 200*i;  
+		})		
+		.text(function(d){  
+			return d;  
+		});
+
+	//添加文字
+	var innerTextData = [
+		{'color':'#333', 'size':'14px', 'x':'1', 'dy':'1', 'value': "已售 "}, 
+		{'color':'#F00', 'size':'20px', 'value': total_saled}, 
+		{'color':'#333', 'size':'14px', 'value': " 套"}, 
+		{'color':'#F00', 'size':'20px', 'x':'1', 'dy':'1', 'value': total_price},
+		{'color':'#333', 'size':'14px', 'value': " 万"},
+	];
+
+	//添加文字框
+	var innerText = d3.select(".saler-saled-svg-outer")
+		.append("g")
+		.attr("class", "inner-text")
+		.attr("transform", "translate(" + outerRadius + ", " + outerRadius + ")")
+		.append("text")
+		.attr("text-anchor", "middle")
+		.attr("fill", "#333")
+		.attr("x", 0)
+		.attr("y", -25)
+		.style("font-size", '14px');
+
+	//添加文字
+	innerText.selectAll("tspan")
+		.data(innerTextData)
+		.enter()
+		.append("tspan")
+		.attr("x", function(data, i) {
+			if (data.x != undefined ) {
+				return innerText.attr("x");
+			} 
+			return '';
+		})
+		.attr("dy", function(data, i) {
+			if (data.x != undefined ) {
+				return "1.3em";
+			} 
+			return '';
+		})
+		.attr("fill", function(data, i){//填充颜色
+			if (data.color != undefined ) {
+				return data.color;
+			} 
+			return '#333';
+		})
+		.style("font-size", function(data, i){//字体
+			if (data.size != undefined ) {
+				return data.size;
+			} 
+			return '14px';
+		})
+		.text(function(data){  
+			return '';  
+		})
+		.transition()  
+		.duration(3000)  
+		.ease("bounce")  
+		.delay(function(d, i) {  
+			return 200*i;  
+		})		
+		.text(function(data) {
+			return data.value;
+		});	
+
+})(jQuery);	
+	
+</script>  
+</block>
+

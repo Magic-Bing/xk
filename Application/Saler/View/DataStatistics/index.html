@@ -1,0 +1,397 @@
+<extend name="Common/base" />
+
+<block name="header">
+	<link href="/Public/common/js/jquery/circliful/css/jquery.circliful.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/Public/common/css/font-awesome-4.7.0/css/font-awesome.css">
+	<script src="/Public/common/js/jquery/circliful/js/jquery.circliful.js"></script>
+    <style>
+        .saler-statistics-content-unit-info {
+            padding-top: 20px;
+        }
+        .saler-statistics-content-unit-box {
+            position: relative;
+            height: 130px;
+        }
+        .saler-statistics-content-price-title {
+            padding: 15px 5px 20px 5px;
+            margin-bottom: 10px;
+        }
+		#fd{
+			color: #fff;
+			border-top: 1px solid #fff;
+			margin-left: 5%;
+		}
+		#fd table td{
+			height: 30px;
+		}
+		#gd{
+			padding:5px 0 7px;
+			width: 90%;
+			position: absolute;
+			background-color: #FFF;
+			margin-left: calc(5% - 3px);
+			top:158px;
+			color: black;
+		}
+		#user-info{
+			background-color: #FFF;
+			margin-top: 20px;
+			padding: 10px;
+			font-size: 14px;
+		}
+		#user-info table td{
+			background-color: rgba(255, 188, 23, 0.84);
+			padding-left:15px;
+		}
+		#user-info table{
+			margin-top: 5px;
+		}
+		#user-info table th{
+			background-color: #fff;
+			width: 5px;
+		}
+		#user-info table span{
+			font-weight: bold;
+		}
+		#hx-rank{
+			background-color: #FFF;
+			margin-top: 5px;
+			padding: 10px;
+		}
+		#hx-rank p{
+			font-size: 14px;
+			margin-bottom: 5px;
+		}
+		.saler-saled-content-rate-list1 table td{
+			color: #FFF;
+		}
+		.saler-saled-content-rate-content-title{
+			color: #FFF!important;
+		}
+		.saler-saled-content-rate-list1{
+			background-color: #8f74bb;
+		}
+		.saler-saled-content-rate-list2{
+			background-color: #74bb9e!important;
+		}
+		.saler-saled-content-rate-list2 table td{
+			color: #FFF;
+		}
+		.saler-saled-content-rate-list3{
+			background-color: #bb9b74!important;
+		}
+		.saler-saled-content-rate-list3 table td{
+			color: #FFF;
+		}
+		.saler-saled-content-rate-list4{
+			background-color: #bb7495!important;
+		}
+		.saler-saled-content-rate-list4 table td{
+			color: #FFF;
+		}
+		.saler-saled-content-rate-list5{
+			background-color: #74abbb!important;
+		}
+		.saler-saled-content-rate-list5 table td{
+			color: #FFF;
+		}
+		#gw-rank{
+			background-color: #FFF;
+			margin-top: 5px;
+			padding: 10px;
+		}
+		#gw-rank p{
+			font-size: 14px;
+			margin-bottom: 5px;
+		}
+    </style>
+	<div class="common-header-wrapper">
+		<div class="clearfix common-header sales-statistics-header">
+			<div class="fl wm25 arrow-left common-header-return">
+				<span class="common-header-return-box return-btn">
+					<a href="javascript:void(0);" class="common-header-return-btn">返回</a>
+				</span>
+			</div>
+			<div class="fl wm60 common-header-content js-common-header-content">
+				<span class="common-header-content-box-no-arrow">
+					<span class="common-header-content-box-name"><{$projinfo.pname}></span>
+				</span>
+			</div>
+			<div class="fl wm15 common-header-right" style="text-align: center;padding-top: 3%">
+                                <div class="common-header-reload">
+					<a href="" onclick="window.location.reload()" class="saler-project-header-reload-btn js-saler-project-header-reload-btn saler-project-header-reload-a">
+						<i class="icon-refresh  bigger-230 " style="color: #c1c1c1;font-size: 18px"></i>
+						<!--<img src="/Public/common/img/refresh.png" style="width: 15px;height: 15px">-->
+					</a>
+				</div>
+                        </div>
+		</div>
+	</div>
+</block>
+<block name="content">
+	<div class="common-content sales-statistics-content">
+		<div class="saler-statistics-content-wrapper">
+			<div id="iscroller-wrapper" class="iscroller-style saler-statistics-list-wrapper" style="bottom:45px;">
+				<div id="iscroller-scroller" class="iscroller-scroller-style" >
+					<div class="saler-statistics-list-box" >
+						<!--房源状况-->
+						<div class="clearfix saler-saled-content-rate-list" style="background-color: #2ca3f5;padding:  5px 0 15px 0">
+							<p style="margin-left: 5%;color: #fff"><{$projinfo.ename}></p>
+							<div class="fl wm35 saler-saled-content-rate-img">
+								<div class="rate-state"
+									 data-dimension="100"
+									 data-text="<{$household.percent|default=0}>%"
+									 data-info=""
+									 data-width="10"
+									 data-fontsize="14"
+									 data-fontcolor="#fff"
+									 data-percent="<{$household.percent|default=0}>"
+									 data-bgcolor="#fff"
+									 data-fgcolor="#e46c0a"
+								>
+								</div>
+							</div>
+							<div class="fl wm65 saler-saled-content-rate-content">
+								<div class="saler-saled-content-rate-content-table-wrapper">
+									<table class="saler-saled-content-rate-table" >
+										<tr class="saler-saled-content-rate-tr">
+											<td class="wm20 saler-saled-content-rate-td" style="color: #fff">
+												已售
+											</td>
+											<td class="saler-saled-content-rate-td" style="color: #fff">
+												<{$household.selt|default=0}>套
+											</td>
+
+										</tr>
+										<tr class="saler-saled-content-rate-tr">
+											<td colspan="2" class="wm20 saler-saled-content-rate-td" style="color: #fff;">
+												<span style="font-size: 25px"><{:number_format($saled_hx['sold_price']*1000)}></span>元
+											</td>
+										</tr>
+										<tr class="saler-saled-content-rate-tr">
+											<td class="wm20 saler-saled-content-rate-td" style="color: #fff">
+												面积
+											</td>
+											<td class="saler-saled-content-rate-td" style="color: #fff">
+												<{$household['zmj']}>&nbsp;㎡
+											</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+							<div class="fl wm90" id="fd">
+								<table class="wm100">
+									<tr>
+										<td align="center" colspan="2">房源总数<{$household['zgs']}>套&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;总价值<{:number_format($saled_hx['tatol_price']*1000)}>元</td>
+									</tr>
+								</table>
+							</div>
+							<a href="<{:U('project/index', array('info' => set_search_ids(array('p' => $search_hd_id))))}>" >
+							<div class="fl wm90" id="gd">
+								<table class="wm100">
+									<tr>
+										<td align="center" style="border-right: 1px solid #b8b8b8">剩余房源&nbsp;&nbsp;<{$household['zgs']-$household['selt']}>套</td>
+										<td align="center"><{:number_format($saled_hx['tatol_price']*1000-$saled_hx['sold_price']*1000)}>元</td>
+									</tr>
+								</table>
+							</div>
+							</a>
+						</div>
+						<!--用户选房情况和登录情况-->
+						<div class="clearfix saler-saled-content-rate-list" id="user-info">
+							<p><i class="fa fa-user" aria-hidden="true"></i>&nbsp;客户选房情况</p>
+							<table class="wm100">
+								<tr style="height: 30px;">
+									<td colspan="3" align="center" class="all-user">客户总数<span><{$user_xf.zrs}></span>人，选房转化率<span><{:round($user_xf['yxf']/$user_xf['zrs']*100,2)}></span>%</td>
+								</tr>
+								<tr>
+									<td colspan="3" style="height: 5px;background-color: #fff"></td>
+								</tr>
+								<tr>
+									<td class="not-login">未登录</td>
+									<th></th>
+									<td class="login">已登录</td>
+								</tr>
+								<tr>
+									<td class="not-login"><span><{$user_xf.wdl|default='0'}>人</span></td>
+									<th></th>
+									<td class="login"><span><{$user_xf.ydl|default='0'}>人</span></td>
+								</tr>
+								<tr>
+									<td colspan="3" style="height: 5px;background-color: #fff"></td>
+								</tr>
+								<tr >
+									<td style="padding-top: 10px" class="login-not-xf">已登录未选</td>
+									<th></th>
+									<td style="padding-top: 10px" class="login-xf">已登录已选</td>
+								</tr>
+								<tr>
+									<td class="login-not-xf"><span><{$user_xf.wxf|default='0'}>人</span></td>
+									<th></th>
+									<td class="login-xf"><span><{$user_xf.yxf|default='0'}>人</span></td>
+								</tr>
+							</table>
+						</div>
+						<!--户型销售排名-->
+						<div class="clearfix saler-saled-content-rate-list" id="hx-rank">
+							<p><i class="fa fa-building-o" aria-hidden="true"></i>&nbsp;房间户型销售排名</p>
+
+							<volist name="rates" id="rates_vo" key="rates_k">
+								<div class="clearfix saler-saled-content-rate-list saler-saled-content-rate-list<{$rates_k|default=1}>">
+									<div class="fl wm35 saler-saled-content-rate-img">
+										<div class="rate-state saler-saled-content-rate-state"
+											 data-dimension="100"
+											 data-text="<{$rates_vo.percent|default=100}>%"
+											 data-info=""
+											 data-width="10"
+											 data-fontsize="14"
+											 data-percent="<{$rates_vo.percent|default=100}>"
+											 data-bgcolor="#FFF"
+											 data-fgcolor="#e46c0a"
+										>
+										</div>
+									</div>
+									<div class="fl wm65 saler-saled-content-rate-content">
+										<div class="saler-saled-content-rate-content-title">
+											户型：<{$rates_vo.hx|default='户型'}>
+										</div>
+										<div class="saler-saled-content-rate-content-table-wrapper">
+											<table class="saler-saled-content-rate-table">
+												<tr class="saler-saled-content-rate-tr">
+													<td class="wm20 saler-saled-content-rate-td">
+														已售
+													</td>
+													<td class="saler-saled-content-rate-td">
+														<{$rates_vo.saled_total|default='0'}>套(<{$rates_vo.saled_price|default='0'}>万)
+													</td>
+
+												</tr>
+												<tr class="saler-saled-content-rate-tr">
+													<td class="wm20 saler-saled-content-rate-td">
+														待售
+													</td>
+													<td class="saler-saled-content-rate-td">
+														<{$rates_vo.nosaled_total|default='0'}>套(<{$rates_vo.nosaled_price|default='0'}>万)
+													</td>
+												</tr>
+											</table>
+										</div>
+									</div>
+								</div>
+							</volist>
+
+						</div>
+						<!--置业顾问销售排名，根据权限判断是否显示-->
+						<if condition="$res neq null">
+							<div class="clearfix saler-saled-content-rate-list" id="gw-rank">
+								<p><i class="fa fa fa-id-badge" aria-hidden="true"></i>&nbsp;置业顾问销售排名</p>
+								<volist name="res" id="val" key="prizes_k">
+									<div class="saler-saled-lottery-prizes-list saler-saled-lottery-prizes-list<elt name='prizes_k' value='5'><{$prizes_k}><else/><{$prizes_k-5}></elt>">
+										<div class="saler-saled-lottery-prize">
+											<div class="saler-saled-lottery-prize-title">
+												<div class="saler-saled-lottery-prize-title-box">
+										<span class="saler-saled-lottery-prize-title-square">
+											<span class="saler-saled-lottery-prize-title-square-info"></span>
+										</span>
+													<span class="saler-saled-lottery-prize-title-info">
+										<if condition="$val.czusername eq '()'">
+											其他
+											<else/>
+											<{$val.czusername}>
+										</if>
+
+										</span>
+												</div>
+											</div>
+											<div class="clearfix saler-saled-lottery-prize-content">
+												<div class="fl wm32 saler-saled-lottery-prize-jackpot">
+													<div class="saler-saled-lottery-prize-content-title saler-saled-lottery-prize-jackpot-title">
+														套数
+													</div>
+													<div class="saler-saled-lottery-prize-content-info saler-saled-lottery-prize-jackpot-info">
+														<{$val.cou}>
+													</div>
+												</div>
+												<div class="fl wm36 saler-saled-lottery-prize-send">
+													<div class="saler-saled-lottery-prize-content-title saler-saled-lottery-prize-send-title">
+														金额（万）
+													</div>
+													<div class="saler-saled-lottery-prize-content-info saler-saled-lottery-prize-send-info">
+														<{$val.mon}>
+													</div>
+												</div>
+												<div class="fl wm32 saler-saled-lottery-prize-residual">
+													<div class="saler-saled-lottery-prize-content-title saler-saled-lottery-prize-residual-title">
+														销售占比
+													</div>
+													<div class="saler-saled-lottery-prize-content-info saler-saled-lottery-prize-residual-info">
+														<?php echo round(($val['cou']/$ct)*100,2)."%"; ?>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</volist>
+							</div>
+						</if>
+
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+</block>
+<block name="footer_js">
+<include file="Common@Common/Mobile/iscroll" iscroller_id="iscroller_statistics" iscroller_select_id="iscroller-wrapper" />
+<div class="weui-tabbar1">
+                        <a href="javascript:;" class="weui-tabbar__item1 weui-bar__item_on1">
+                            <span style="display: inline-block;position: relative;">
+                                <i class="fa fa-home weui-tabbar__icon1"></i>
+                            </span>
+                            <p class="weui-tabbar__label1">首页</p>
+                        </a>
+                        <a href="<{:U('ChooseAnalysis/index', array('info' => set_search_ids(array('p' => $search_hd_id))))}>" class="weui-tabbar__item1">
+                            <span style="display: inline-block;position: relative;">
+                                    <i class="fa fa-group weui-tabbar__icon1"></i>
+                            </span>
+                            <p class="weui-tabbar__label1">客户分析</p>
+                        </a>
+						<a href="<{:U('RoomAnalysis/index', array('info' => set_search_ids(array('p' => $search_hd_id))))}>" class="weui-tabbar__item1">
+							<span style="display: inline-block;position: relative;">
+								<i class="fa fa-bar-chart weui-tabbar__icon1"></i>
+							</span>
+							<p class="weui-tabbar__label1">装户分析</p>
+						</a>
+                        <a href="<{:U('MyReport/index', array('info' => set_search_ids(array('p' => $search_hd_id))))}>" class="weui-tabbar__item1">
+                            <span style="display: inline-block;position: relative;">
+                                <i class="fa fa-user-o weui-tabbar__icon1"></i>
+                                <span class="weui-badge weui-badge_dot" style="position: absolute;top: 2px;right: 0px;display:none;"></span>
+                            </span>
+                            <p class="weui-tabbar__label1">我的</p>
+                        </a>
+                    </div>
+<script>
+    $(function() {
+        //圆形统计
+        $('.rate-state').circliful();
+		$(".all-user").on("click",function () {
+			window.location.href="<{:U('/Saler/ChooseAnalysis/index/info/p'.$search_hd_id.'/status/1')}>";
+        });
+        $(".login").on("click",function () {
+            window.location.href="<{:U('/Saler/ChooseAnalysis/index/info/p'.$search_hd_id.'/status/3')}>";
+        });
+        $(".not-login").on("click",function () {
+            window.location.href="<{:U('/Saler/ChooseAnalysis/index/info/p'.$search_hd_id.'/status/2')}>";
+        });
+        $(".login-not-xf").on("click",function () {
+            window.location.href="<{:U('/Saler/ChooseAnalysis/index/info/p'.$search_hd_id.'/status/4')}>";
+        });
+        $(".login-xf").on("click",function () {
+            window.location.href="<{:U('/Saler/ChooseAnalysis/index/info/p'.$search_hd_id.'/status/5')}>";
+        });
+    });
+</script>
+</block>
+

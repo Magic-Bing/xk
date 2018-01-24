@@ -1,0 +1,134 @@
+<extend name="Common/base" />
+
+<block name="header_config_add">
+	<script type="text/javascript">
+		var room = {
+			project_id: '<{$search_project_id}>',
+			build_id: '<{$search_build_id}>',
+			unit_id: '<{$search_unit_id}>',
+			info: '<{:set_search_ids(array('
+			p ' => $search_project_id, '
+			b ' => $search_build_id, '
+			u ' => $search_unit_id))}>',
+		};
+	</script>
+</block>
+
+<block name="header">
+	<link href="__COMMON__/css/font-awesome.min.css" type="text/css" rel="stylesheet" />
+	<div class="common-header-wrapper">
+		<input id="dpproj_id" value="<{$project['id']}>" style="display:none;">
+		<div class="clearfix common-header">
+			<div class="fl wm80 common-header-content js-common-header-content">
+				<div class="fl wm25 saler-project-view-header-return">
+					<span class="saler-project-view-header-return-box return-btn">
+					<span class="common-header-content-box-name"><i class="toue"></i></a>
+				</span>
+				</div>
+				<span class="common-header-content-box-no-arrow">
+					<span class="common-header-content-box-name">个人中心</span>
+				</span>
+			</div>
+		</div>
+	</div>
+</block>
+
+<block name="content">
+	<div class="user-project-view-base">
+		<div class="user-nav-div">
+			<img class="toux-group" src="../../../../Public/account/assets/avatars/profile-pic.jpg" />
+
+			<div class="user-group-name">
+				<span>测试01</span>
+
+			</div>
+			<div class="user-group-upd">
+				<span><i class="icon-list-alt"></i></span>
+
+			</div>
+
+		</div>
+		<div class="user-group-prizes">
+			<div class="user-dai">
+				<i class="icon-foursquare dai-icon"></i>
+				<div style="padding: 35px;    margin-top: -34px;">认购</div>
+			</div>
+			<div class="user-prizes">
+				<i class="icon-gift jiang-icon"></i>
+				<div style="padding: 26px;margin-top: -25px;">我的奖品</div>
+			</div>
+			<div class="user-rengou">
+				<i class="icon-flag ren-icon"></i>
+				<div style="margin-left: 36%;">代金券</div>
+			</div>
+		</div>
+	</div>
+</block>
+
+<block name="footer">
+	<div class="user-project-footer">
+		<div class="user-project-view-content-help-wrapper">
+			<div class="user-project-view-content-help">
+
+				<div class="clearfix user-project-view-content-search">
+					<div class="fl wm25 user-project-view-content-search-rooms">
+						<span onclick="wode(0)" class="user-project-view-content-search-collection-box ">
+							<span>房源</span><i class="icon-home home-icon"></i>
+						</span>
+
+						<div class="user-search-form-choose-option-shadow js-user-search-form-choose-option-shadow"></div>
+					</div>
+
+					<div class="fl wm25 user-project-view-content-search-rooms">
+						<span onclick="wode(1)" class="user-project-view-content-search-collection-box">
+							<span>活动</span><i class="icon-eye-open home-icon"></i>
+						</span>
+					</div>
+
+					<div class="fl wm25 user-project-view-content-search-rooms">
+						<span onclick="wode(2)" class="user-project-view-content-search-collection-box">
+							<span>
+						热度</span><i class="icon-globe home-icon"></i>
+						</span>
+					</div>
+
+					<div class="fl wm25 user-project-view-content-search-rooms">
+						<span  onclick="wode(3)" class="user-project-view-content-search-collection-box fy">
+							<span>我的</span><i class="blue icon-user home-icon"></i>
+						</span>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</block>
+
+<block name="footer_js">
+	<link href="__COMMON__/js//jquery/iscroll/iscroll.css" type="text/css" rel="stylesheet" />
+	<script src="__COMMON__/js/jquery/iscroll/iscroll.js"></script>
+	<script>
+		function wode(v) {
+			//var project_id = '<{$search_project_id}>';
+			//alert(project_id)
+			if(v == 0) {
+				window.location.href = "<{:U('Index/index', array('info' => set_search_ids(array('p' => $search_project_id))))}>";
+
+			} else if(v == 1) {
+				window.location.href = "<{:U('User/index',array('info' => set_search_ids(array('p' => $search_project_id))))}>";
+			} else if(v == 2) {
+				window.location.href = "<{:U('hot/index', array('info' => set_search_ids(array('p' => $search_project_id))))}>";
+			} else {
+
+				window.location.href = "<{:U('User/index',array('info' => set_search_ids(array('p' => $search_project_id))))}>";
+
+			}
+
+			//			document.searchform.href = "<{:U('User/index')}>";
+		}
+		$("#user-group-upd").click(function() {
+			window.location.href = "<{:U('User/upd',array('info' => set_search_ids(array('p' => $search_project_id))))}>";
+		})
+	</script>
+</block>

@@ -1,0 +1,316 @@
+<extend name="Common/base" />
+<block name="header">
+    <script src="/Public/account/assets/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/Public/common/css/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="/Public/account/assets/css/bootstrap.min.css">
+    <style>
+        body{
+            font-size: 13px;
+            overflow: hidden;
+            background-color: #e7f0f9;
+        }
+        #tab1{
+           width: 100%;
+            margin-top: 70px;
+            text-align: left;
+            background-color: #FFF;
+        }
+        #tab1 tr td {
+            border: 1px solid #e2e0e0;
+            width: 33%;
+            padding: 2px;
+            color: gray;
+        }
+        #tab1 p{
+            text-align: center;
+            color: gray;
+            margin: 0;
+        }
+        #tab1 span{
+            padding-left: 10px;
+        }
+        .weui-tabbar{
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            position: absolute;
+            z-index: 500;
+            bottom: 0;
+            width: 100%;
+            background-color: #ffffff;
+            border-top: 1px solid #e6e6e6;
+        }
+        .weui-tabbar__item {
+            display: block;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+            padding: 2px 0 0;
+            font-size: 0;
+            color: #999999;
+            text-align: center;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+        .weui-bar__item_on
+        {
+            color:#09BB07;
+        }
+        .weui-badge {
+            display: inline-block;
+            width: 15px;
+            width: 15px;
+            border-radius: 18px;
+            background-color: #F43530;
+            color: #FFFFFF;
+            line-height: 1.2;
+            text-align: center;
+            font-size: 12px;
+            vertical-align: middle;
+        }
+        .weui-badge_dot {
+            width: 9px;
+            height: 9px;
+        }
+
+        .weui-tabbar__icon {
+            display: inline-block;
+            width: 27px;
+            font-size: 20px;
+            padding: 0 0 0 0;
+        }
+        .weui-tabbar__label {
+            text-align: center;
+            color: #999999;
+            font-size: 10px;
+            line-height: 1.8;
+        }
+        .weui-bar__item_on .weui-tabbar__label
+        {
+            color:#09BB07;
+        }
+        .weui-tabbar p{
+            margin: 0;
+        }
+        #tab2{
+            width: 100%;
+            text-align: center;
+            margin-bottom: 45px;
+            background-color: #FFF;
+         }
+        #tab2 td{
+           width: 33%;
+            padding: 5px;
+            border-bottom: 1px solid #dad4d4;
+        }
+        #td1{
+            text-align: left;
+        }
+        .iscroller-style-one {
+            position:absolute;
+            z-index:1;
+            width: 100%;
+            top: 175px;
+            bottom: 45px;
+            left: 0;
+            right: 0;
+            overflow: hidden;
+        }
+        #tab2>tbody>tr:nth-child(odd)>td{
+        background-color: #f9f9f9;
+        }
+        .modal-body table tr td{
+             padding:5px;
+        }
+        body a:hover{
+            text-decoration: none;
+        }
+        body.modal-open {
+            margin-right: 0px;
+        }
+        .modal {
+            overflow: hidden;
+            overflow-y: hidden;
+        }
+        .bt{
+            width: 50%;
+            display: inline-block;
+            text-align: center;
+            float: left;
+            height: 35px;
+            line-height: 35px;
+            cursor: pointer;
+        }
+        .bk{
+            border-right: 1px solid rgba(184, 184, 184, 0.58);
+            background-color: #09BB07;
+            color: #fff;
+        }
+        #ul-list{
+          height: 50%;
+            margin-top: calc(50% - 25%);
+        }
+        #ul-list li{
+            font-size: 16px;
+            padding: 10px;
+            width: 80%;
+            text-align: center;
+            margin-left: 10%;
+            background-color: #93cc92;
+            color: #FFF;
+            margin-top: 11%;
+            border-radius: 5px;
+        }
+        li a{
+            width: 100%;
+            display: inline-block;
+            color: #FFF;
+        }
+        li a{
+            width: 100%;
+            display: inline-block;
+            color: #FFF;
+        }
+        li i{
+            float: left;
+        }
+    </style>
+    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <form action="" id="update_user">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">修改密码</h4>
+                </div>
+                <div class="modal-body">
+                    <table>
+                        <tr>
+                            <td style="text-align: right"> <label for="in1" style="margin-bottom: 0px;">原密码</label></td>
+                            <td><input type="password" name="old_pwd" required placeholder="请输入原密码" id="in1" style="height:30px"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right"> <label for="in2" style="margin-bottom: 0px;">新密码</label></td>
+                            <td><input type="password" name="new_pwd" required placeholder="请输入新密码" id="in2" style="height:30px"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right"> <label for="in3" style="margin-bottom: 0px;">确认新密码</label></td>
+                            <td><input type="password" required placeholder="请再次输入新密码" id="in3" style="height:30px"></td>
+                        </tr>
+
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary">确认修改</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="saler-project-view-header-wrapper" style="border: 0">
+        <div class="clearfix saler-project-view-header" style="padding: 10px 0 4px 15px;background-color: #93cc92;color: #FFF;font-size: 13px;border: 0">
+            <div class="fl" style="min-width: 50px;height: 50px;border-radius: 50px">
+				<i class="fa fa-user-circle-o" style="font-size: 50px;color: #FFF"></i>
+            </div>
+            <div class="fl wm60 " style="height: 50px;margin-top: 5px;padding-left: 10px;line-height: 100%">
+                <p style="margin: 0 0 13px;"><{$user['name']}></p>
+                <span style="cursor: pointer;padding:2px 0 2px 0;color: #FFF;font-weight: 400;"  >
+                    <{$user['mobile']}>
+                </span>
+            </div>
+            <div class="fl wm20 ">
+                    <!--<button class="fr js-a-logout" style="margin: 0 5px;padding:3px 10px;background-color: #ffffff;color: #03a9f4;border-radius: 5px;cursor: pointer;">注销</button>-->
+                    <span>
+				        <a href="/saler/logging/logout.html" class="a-logout" style="color: #93cc92;">注销</a>
+                    </span>
+            </div>
+        </div>
+    </div>
+
+</block>
+<block name="content">
+    <div id="iscroller-wrapper" class="iscroller-style-one" style="display: block;top:70px;background-color: #d6e9c6">
+        <ul class="wm100" id="ul-list">
+            <li data-toggle="modal" data-target=".bs-example-modal-sm">
+                <i class="fa fa-edit" style="font-size: 20px"></i>账号密码修改
+            </li>
+            <if condition="count($user_project_list) gt 1">
+                <li>
+                    <a href="/Saler/index/index.html">
+                                  <i class="fa fa-reply-all" style="font-size: 20px"></i>项目活动切换
+                    </a>
+                </li>
+            </if>
+            <li>
+                <a href="<{:U('project/index', array('info' => set_search_ids(array('p' => $search_hd_id))))}>" >
+                    <i class="fa fa-search" style="font-size: 20px"></i>房源信息查找
+                </a>
+            </li>
+        </ul>
+    </div>
+</block>
+<block name="footer">
+    <div class="weui-tabbar">
+        <div class="weui-tabbar1">
+            <a href="<{:U('DataStatistics/index', array('info' => set_search_ids(array('p' => $search_hd_id))))}>" class="weui-tabbar__item1">
+                            <span style="display: inline-block;position: relative;">
+                                <i class="fa fa-home weui-tabbar__icon1"></i>
+                            </span>
+                <p class="weui-tabbar__label1">首页</p>
+            </a>
+            <a href="<{:U('ChooseAnalysis/index', array('info' => set_search_ids(array('p' => $search_hd_id))))}>" class="weui-tabbar__item1 ">
+                            <span style="display: inline-block;position: relative;">
+                                    <i class="fa fa-group weui-tabbar__icon1"></i>
+                            </span>
+                <p class="weui-tabbar__label1">客户分析</p>
+            </a>
+            <a href="<{:U('RoomAnalysis/index', array('info' => set_search_ids(array('p' => $search_hd_id))))}>" class="weui-tabbar__item1">
+							<span style="display: inline-block;position: relative;">
+								<i class="fa fa-bar-chart weui-tabbar__icon1"></i>
+							</span>
+                <p class="weui-tabbar__label1">装户分析</p>
+            </a>
+            <a href="<{:U('MyReport/index', array('info' => set_search_ids(array('p' => $search_hd_id))))}>" class="weui-tabbar__item1 weui-bar__item_on1">
+                            <span style="display: inline-block;position: relative;">
+                                <i class="fa fa-user weui-tabbar__icon1"></i>
+                                <span class="weui-badge weui-badge_dot" style="position: absolute;top: 2px;right: 0px;display:none;"></span>
+                            </span>
+                <p class="weui-tabbar__label1">我的</p>
+            </a>
+        </div>
+    </div>
+</block>
+<block name="footer_js">
+    <include file="Common@Common/Mobile/iscroll" iscroller_id="iscroller_hot" iscroller_select_id="iscroller-wrapper" />
+    <script>
+        $(function () {
+            //验证2次密码是否相同
+            $("#in3").on("blur",function () {
+               if($(this).val()!=$('#in2').val()){
+                    layer_alert("2次密码输入不相同，请重新输入！");
+                    $(this).val('');
+               }
+            });
+
+            //密码修改
+            $("#update_user").on("submit",function () {
+                $.ajax({
+                    type:"post",
+                    url:"/Saler/MyReport/update_user",
+                    data:$(this).serialize(),
+                    success:function (data) {
+                        if(data=="false1"){
+                            layer_alert("原密码填写错误，请重新填写！");
+                        }else if(data=="false2"){
+                            layer_alert("密码未改变！");
+                        }else{
+                            layer_tip("密码修改成功，请重新登录.");
+                            window.location.reload();
+                        }
+                    }
+                });
+               return false;
+            });
+        });
+    </script>
+</block>

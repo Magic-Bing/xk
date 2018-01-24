@@ -1,0 +1,221 @@
+<extend name="Common/base" />
+
+<block name="seo_title">
+	<{$seo_title|default='抢房列表'}>
+</block>
+
+<block name="header_js_add">
+<script src="__COMMON__/js/jedate/jedate.js"></script>
+<script type="text/javascript">
+$(function() {
+	//开始时间
+	jeDate({
+		dateCell:".room-add-game-start-time",
+		format:"YYYY-MM-DD hh:mm:ss",
+		isinitVal:true,
+		isTime:true,
+		minDate:"2015-09-19 00:00:00",
+	});
+	
+	//结束时间
+	jeDate({
+		dateCell:".room-add-game-end-time",
+		format:"YYYY-MM-DD hh:mm:ss",
+		isinitVal:false,
+		isTime:true,
+		minDate:"2015-09-19 00:00:00",
+	});
+});
+</script>
+</block>
+
+<block name="content">
+	<div class="room room-game">
+		<div class="room-title room-game-title">
+			<div class="clearfix room-title-box">
+				<span class="room-title-info"><{$seo_title|default='抢房列表'}></span>
+				<span class="room-title-subtitle">
+					<include file="tab" /> 
+				</span>
+				<span class="fr room-title-refresh">
+					<a href="__SELF__" class="room-title-refresh-btn">
+						<img class="room-title-refresh-btn-img" src="__IMG__/sx01.png" />
+					</a>
+				</span>
+			</div>
+		</div>
+
+		<div class="room-attr-content">
+			<div class="room-attr-rooms">
+			
+				<div class="room-edit">
+					<form method="post" name="room-edit-form" action="">
+						<div class="room-edit-content">
+							<table border="0" cellspacing="2" cellpadding="4" class="list" name="table" id="table" width="100%">
+								<tbody>
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											<span class="color-red">*</span> 
+											项目名称：
+										</td>
+										<td class="room-edit-tr-content">
+											<select class="room-edit-select room-edit-auto-select js-xz-project" 
+												name="project_id"
+												data-first-title="请选择项目"
+												data-first-value='0'
+											>
+												<foreach name="project_list" item="project_list_vo">
+													<if condition="$project_id eq $project_list_vo['id']">
+														<option value="<{$project_list_vo['id']}>" selected>
+															<{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
+														</option>
+													<else />		 
+														<option value="<{$project_list_vo['id']}>">
+															<{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
+														</option>
+													</if>
+												</foreach> 
+											</select>
+										</td>
+									</tr>
+									
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											<span class="color-red">*</span> 
+											抢房标题：
+										</td>
+										<td class="room-edit-tr-content">
+											<input type="text" name="title" value="" class="room-edit-input room-edit-largest-input room-add-game-title" > 
+											<span class="room-edit-tip">（标题为必填，请注意）</span>
+										</td>
+									</tr>
+									
+									<tr>
+										<td class="room-edit-tr-title">
+											<span class="color-red">*</span> 
+											房间：
+										</td>
+										<td class="room-edit-tr-content">
+											<div>
+												<input type="text" name="roominfo" value="" class="room-edit-input search-roominfo" id="room_id" data-id=""> 
+												<div  class="search-roomlist-div">
+													<ul class="search-roomlist-ul">
+														<li class="search-roomlist-li"></li>
+													</ul>
+												</div>
+											</div>
+										</td>
+									</tr>
+									
+									<!--<tr class="room-edit-tr" style="display:none">
+										<td class="room-edit-tr-title">
+											<span class="color-red">*</span> 
+											房间ID：
+										</td>
+										<td class="room-edit-tr-content">
+											<input type="text" id="room_id" name="room_id" value="<{$room_id|default=''}>" class="room-edit-input room-add-game-room-id" > 
+											<span class="room-edit-tip">（请填写已存在的房间ID）</span>
+										</td>
+									</tr>-->
+									
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											<span class="color-red">*</span> 
+											开始时间：
+										</td>
+										<td class="room-edit-tr-content">
+											<input type="text" name="start_time" value="" class="room-edit-input room-edit-game-time room-add-game-start-time" > 
+											<span class="room-edit-tip">（请选择开始时间）</span>
+										</td>
+									</tr>
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											结束时间：
+										</td>
+										<td class="room-edit-tr-content">
+											<input type="text" name="end_time" value="" class="room-edit-input room-edit-game-time room-add-game-end-time" > 
+											<span class="room-edit-tip">（请选择结束时间）</span>
+										</td>
+									</tr>
+									
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											<span class="color-red">*</span> 
+											允许循环次数：
+										</td>
+										<td class="room-edit-tr-content">
+											<input type="text" name="allow_num" value="5" class="room-edit-input room-add-game-allow-num" > 
+											<span class="room-edit-tip">（请填写数字）</span>
+										</td>
+									</tr>
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											已用次数：
+										</td>
+										<td class="room-edit-tr-content">
+											<input type="text" name="use_num" value="0" class="room-edit-input room-add-game-use-num" > 
+											<span class="room-edit-tip">（请填写数字。默认为0）</span>
+										</td>
+									</tr>
+									
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											<span class="color-red">*</span>
+											抢房时长：
+										</td>
+										<td class="room-edit-tr-content">
+											<input type="text" name="time_length" value="5" class="room-edit-input room-add-game-time-length" > 
+											<span class="room-edit-tip">（单位：秒。默认5秒）</span>
+										</td>
+									</tr>
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											<span class="color-red">*</span>
+											优惠信息：
+										</td>
+										<td class="room-edit-tr-content">
+											<textarea type="text" name="content" class="room-edit-textarea room-add-game-content"></textarea>
+											<span class="room-edit-tip">（请填写活动相关信息）</span>
+										</td>
+									</tr>
+									
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											<span class="color-red">*</span> 
+											开启：
+										</td>
+										<td class="room-edit-tr-content">
+											<select class="room-edit-select room-add-game-is-open" name="is_open">
+												<option value="1">
+													开启
+												</option>
+												<option value="0">
+													关闭
+												</option>
+											</select>
+											<span class="room-edit-tip">（抢房活动状态设置）</span>
+										</td>
+									</tr>
+								</tbody> 
+							</table>
+						</div>
+						
+						<div class="room-edit-tips">
+							<div class="room-edit-tips-info">
+								<span class="room-edit-tips-bold">提醒：</span>
+								“<span class="color-red">*</span>”为必填项，请务必填写。
+							</div>
+						</div>
+						
+						<div class="room-edit-btns">
+							<a href="javascript:void(0);" class="room-edit-btn room-edit-btn-save js-room-game-save-btn">保 存</a> 
+							<a href="javascript: history.go(-1);" class="room-edit-btn room-edit-btn-return">返 回</a>				  
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+	
+	</div>
+</block>

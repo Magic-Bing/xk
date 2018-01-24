@@ -1,0 +1,264 @@
+﻿<extend name="Common/base" />
+
+<block name="header">
+	<link rel="stylesheet" href="/Public/common/css/font-awesome-4.7.0/css/font-awesome.css">
+	<style>
+		.weui-tabbar{
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			position: absolute;
+			z-index: 500;
+			bottom: 0;
+			width: 100%;
+			background-color: #ffffff;
+			border-top: 1px solid #e6e6e6;
+		}
+		.weui-tabbar__item {
+			display: block;
+			-webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+			padding: 2px 0 0;
+			font-size: 0;
+			color: #999999;
+			text-align: center;
+			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+		}
+		.weui-bar__item_on
+		{
+			color:#09BB07;
+		}
+		.weui-badge {
+			display: inline-block;
+			width: 15px;
+			width: 15px;
+			border-radius: 18px;
+			background-color: #F43530;
+			color: #FFFFFF;
+			line-height: 1.2;
+			text-align: center;
+			font-size: 12px;
+			vertical-align: middle;
+		}
+		.weui-badge_dot {
+			width: 9px;
+			height: 9px;
+		}
+
+		.weui-tabbar__icon {
+			display: inline-block;
+			width: 27px;
+			font-size: 20px;
+			padding: 0 0 0 0;
+		}
+		.weui-tabbar__label {
+			text-align: center;
+			color: #999999;
+			font-size: 10px;
+			line-height: 1.8;
+		}
+		.weui-bar__item_on .weui-tabbar__label
+		{
+			color:#09BB07;
+		}
+	</style>
+	<div class="saler-project-view-header-wrapper">
+		<div class="clearfix saler-project-view-header" style="background:#FFF">
+                        <if condition="$type egt 3">
+                        <div class="fl wm25 arrow-left common-header-return">
+				<span class="common-header-return-box return-btn">
+					<a href="javascript:void(0);" class="common-header-return-btn">返回</a>
+				</span>
+			</div>
+			<div class="fl wm50 saler-project-view-header-content js-saler-project-view-header-content">
+				<span class="saler-project-view-header-content-box-no-arrow">
+					<span class="saler-project-view-header-content-box-name">热销排名</span>
+				</span>
+			</div>
+                        <else />
+                        <div class="fl wm100 saler-project-view-header-content js-saler-project-view-header-content">
+				<span class="saler-project-view-header-content-box-no-arrow">
+					<span class="saler-project-view-header-content-box-name">热销排名</span>
+				</span>
+			</div>
+                        </if>
+		</div>
+	</div>
+</block>
+
+<block name="content">
+	<div class="saler-project-view-base" data-project-id="<{$project['id']|default='1'}>">
+		<div class="saler-project-view-content-wrapper">
+			<div class="saler-project-view-content">
+				<div class="clearfix saler-project-view-content-tabs" style="margin-top: 42px;">
+                    
+				</div>
+                            
+				<div class="saler-project-view-content-sort">
+					<div class="saler-project-view-content-sort-box">
+						<span class="saler-project-view-content-sort-title">
+							<span class="saler-project-view-content-sort-title-info"><{$sub_title|default='收藏次数'}></span>排名
+						</span>
+					</div>
+				</div>
+
+				<div id="iscroller-wrapper" class="iscroller-style saler-project-sort-content-rooms" style="top: 71px;" >
+					<div id="iscroller-scroller" class="iscroller-scroller-style saler-project-sort-content-box">
+						<ul class="saler-project-view-content-sort-ul saler-project-view-content-sort-<{$now_type|default='collection'}>">
+
+							<volist name="attribute_list" id="attribute_list_vo" key="attribute_list_k">
+								<li>
+									<div class="saler-project-view-content-sort-histogram-wrapper">
+										<div class="clearfix saler-project-view-content-sort-histogram">
+											<div class="fl wm30 saler-project-view-content-sort-histogram-title">
+												<a href="<{:U('room/index', array('id' => $room_list[$attribute_list_vo['room_id']]['id']))}>" class="saler-project-view-content-sort-histogram-title-a <if condition=" $room_list[$attribute_list_vo[ 'room_id']][ 'is_xf'] eq 1
+													">saler-project-view-content-sort-histogram-title-select-a</if>">
+													<{$build_list[$room_list[$attribute_list_vo[ 'room_id']][ 'bld_id']][ 'buildname']}>-
+														<{$room_list[$attribute_list_vo[ 'room_id']][ 'unit']}>-
+															<{$room_list[$attribute_list_vo[ 'room_id']][ 'room']}>
+
+												</a>
+											</div>
+											<div class="fl wm70 saler-project-view-content-sort-histogram-content">
+												<div class="saler-project-view-content-sort-histogram-content-box" style="width:80%">
+													<div style="width: <{$attribute_list_vo['precision']}>;" class="saler-project-view-content-sort-histogram-size">
+														<div class="saler-project-view-content-sort-histogram-size-box saler-project-view-content-sort-histogram-size-box<{$attribute_list_k|default=1}>">
+															<span class="saler-project-view-content-sort-histogram-size-tip">
+																<{$attribute_list_vo['now_count']|default=1}>次
+															</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</li>
+							</volist>
+
+						</ul>
+					</div>
+				</div>
+
+				<div class="saler-project-view-content-right-nav" style="bottom: 123px">
+					<div class="saler-project-view-content-right-nav-box">
+						<div class="saler-project-view-content-right-nav-house-type js-saler-project-view-content-right-nav-house-type">
+							<div class="saler-project-view-content-right-nav-house-type-box">
+								<ul>
+									<if condition="empty($now_hxs[0])">
+										<li class="saler-project-view-content-right-nav-house-type-one js-saler-project-view-content-right-nav-house-type-one saler-project-view-content-right-nav-house-type-all saler-project-view-content-right-nav-house-type-one-select">
+											<a href="javascript:void(0);">全部</a>
+										</li>
+										<else />
+										<li class="saler-project-view-content-right-nav-house-type-one js-saler-project-view-content-right-nav-house-type-one saler-project-view-content-right-nav-house-type-all">
+											<a href="javascript:void(0);">全部</a>
+										</li>
+									</if>
+
+									<volist name="hx_list" id="hx_list_vo" key="hx_list_k">
+										<if condition="in_array(strtolower($hx_list_vo['hx']), $now_hxs)">
+											<li class="saler-project-view-content-right-nav-house-type-one js-saler-project-view-content-right-nav-house-type-one">
+												<a href="javascript:void(0);" data-hx="<{$hx_list_vo['hx']}>">
+													<{$hx_list_vo[ 'hx']}>
+												</a>
+											</li>
+											<else />
+											<li class="saler-project-view-content-right-nav-house-type-one js-saler-project-view-content-right-nav-house-type-one">
+												<a href="javascript:void(0);" data-hx="<{$hx_list_vo['hx']}>">
+													<{$hx_list_vo[ 'hx']}>
+												</a>
+											</li>
+										</if>
+									</volist>
+								</ul>
+							</div>
+						</div>
+
+						<div class="saler-project-view-content-right-nav-btn js-saler-project-view-content-right-nav-btn">
+							<span class="saler-project-view-content-right-nav-btn-box">
+								户型筛选
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	
+</block>
+
+<block name="footer">
+	<div class="saler-project-footer" style="margin-bottom: 43px">
+		<div class="saler-project-footer-tabs-wrapper">
+			<div class="saler-project-footer-tabs">
+				<span class="saler-project-footer-tabs-box">
+					<span class="saler-project-footer-tabs-btn js-saler-project-footer-tabs-btn saler-project-footer-tabs-btn1 <if condition="$now_type eq 'collection'">saler-project-footer-tabs-btn-select</if>" data-type="collection">
+						收藏次数
+					</span>
+							<span class="saler-project-footer-tabs-btn js-saler-project-footer-tabs-btn saler-project-footer-tabs-btn2 <if condition=" $now_type eq 'comparison' ">saler-project-footer-tabs-btn-select</if>" data-type="comparison">
+						对比次数
+					</span>
+							<span class="saler-project-footer-tabs-btn js-saler-project-footer-tabs-btn saler-project-footer-tabs-btn3 <if condition=" $now_type eq 'follow' ">saler-project-footer-tabs-btn-select</if>" data-type="follow">
+						关注次数
+					</span>
+							</span>
+						</div>
+					</div>
+				</div>
+        <if condition="$type lt 3">
+        <div class="weui-tabbar">
+		<a href="<{:U('project/index', array('info' => set_search_ids(array('p' => $search_project_id))))}>" class="weui-tabbar__item ">
+							<span style="display: inline-block;position: relative;">
+								<i class="fa fa-list weui-tabbar__icon"></i>
+							</span>
+			<p class="weui-tabbar__label">房源列表</p>
+		</a>
+		<!--<a href="/Saler/project/index/info/p<{$search_project_id}>#tr"  class="weui-tabbar__item js-saler-project-view-content-search-compare-btn">
+                            <span style="display: inline-block;position: relative;">
+                                <i class="fa fa-star-half-full weui-tabbar__icon" ></i>
+                            </span>
+			<p class="weui-tabbar__label">对比</p>
+		</a>-->
+		<a href="javascript:;" class="weui-tabbar__item weui-bar__item_on">
+							<span style="display: inline-block;position: relative;">
+								<i class="fa fa-bar-chart-o weui-tabbar__icon"></i>
+							</span>
+			<p class="weui-tabbar__label">房源热度</p>
+		</a>
+		<a href="<{:U('MyReport/index', array('info' => set_search_ids(array('p' => $search_project_id))))}>" class="weui-tabbar__item">
+							<span style="display: inline-block;position: relative;">
+								<i class="fa fa-tachometer weui-tabbar__icon"></i>
+								<span class="weui-badge weui-badge_dot" style="position: absolute;top: 2px;right: 0px;display:none;"></span>
+							</span>
+			<p class="weui-tabbar__label">我的报表</p>
+		</a>
+	</div>
+        <else />
+        <div class="weui-tabbar1">
+            <a href="<{:U('statistics/index', array('info' => set_search_ids(array('p' => $search_project_id))))}>" class="weui-tabbar__item1 btnsy">
+                <span style="display: inline-block;position: relative;">
+                    <i class="fa fa-home weui-tabbar__icon1"></i>
+                </span>
+                <p class="weui-tabbar__label1">首页</p>
+            </a>
+            <a href="<{:U('project/index', array('info' => set_search_ids(array('p' => $search_project_id))))}>" class="weui-tabbar__item1 btnsec">
+                <span style="display: inline-block;position: relative;">
+                        <i class="fa fa-list weui-tabbar__icon1"></i>
+                </span>
+                <p class="weui-tabbar__label1">房源列表</p>
+            </a>
+            <a href="<{:U('MyReport/index', array('info' => set_search_ids(array('p' => $search_project_id))))}>" class="weui-tabbar__item1 btnthree">
+                <span style="display: inline-block;position: relative;">
+                    <i class="fa fa-user-o weui-tabbar__icon1"></i>
+                    <span class="weui-badge weui-badge_dot" style="position: absolute;top: 2px;right: 0px;display:none;"></span>
+                </span>
+                <p class="weui-tabbar__label1">我的</p>
+            </a>
+        </div>              
+        </if>
+</block>
+
+<block name="footer_js">
+	<include file="Common@Common/Mobile/iscroll" iscroller_id="iscroller_hot" iscroller_select_id="iscroller-wrapper" />
+</block>

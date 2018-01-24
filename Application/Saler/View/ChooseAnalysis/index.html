@@ -1,0 +1,202 @@
+<extend name="Common/base" />
+
+<block name="header">
+    <link rel="stylesheet" href="/Public/common/css/font-awesome-4.7.0/css/font-awesome.css">
+    <style>
+        .saler-statistics-content-unit-info {
+            padding-top: 20px;
+        }
+        .saler-statistics-content-unit-box {
+            position: relative;
+            height: 130px;
+        }
+        .saler-statistics-content-price-title {
+            padding: 15px 5px 20px 5px;
+            margin-bottom: 10px;
+        }
+		.bi{
+			height: 25px;
+			margin: 0 0 0 5px;
+			border-radius: 5px;
+			font-weight: 400;
+			font-style: normal;
+			font-size: 13px;
+			text-decoration: none;
+			color: #999999;
+			text-align: center;
+			border-color: transparent;
+			outline-style: none;
+			background: url('/public/sales/img/project/search.png') no-repeat scroll 2px 2px/18px 18px;
+
+		}
+		#content-tab td{
+			vertical-align: middle;
+			border-bottom: 3px solid rgba(193,193,193,0.3);
+		}
+		.xf-status{
+			border: 1px solid #ff6058;
+			padding: 3px 5px;
+			border-radius: 3px;
+			color: #ff6058;
+		}
+		.call-phone i{
+			color: #00be67;
+			cursor: pointer;
+			font-size: 17px;
+			z-index: 999999;
+			display: inline-block;
+			width: 100%;
+		}
+		#user-type{
+			color: #999999;
+			border-color: #fff
+		}
+    </style>
+	<div class="common-header-wrapper">
+		<div class="clearfix common-header sales-statistics-header">
+			<div class="fl wm25 arrow-left common-header-return">
+				<span class="common-header-return-box return-btn">
+					<a href="javascript:void(0);" class="common-header-return-btn">返回</a>
+				</span>
+			</div>
+			<div class="fl wm60 common-header-content js-common-header-content">
+				<span class="common-header-content-box-no-arrow">
+					<span class="common-header-content-box-name">客户分析</span>
+				</span>
+			</div>
+			<div class="fl wm15 common-header-right" style="text-align: center;padding-top: 3%">
+				<div class="common-header-reload">
+					<a href="" onclick="window.location.reload()" class="saler-project-header-reload-btn js-saler-project-header-reload-btn saler-project-header-reload-a">
+						<i class="icon-refresh  bigger-230 " style="color: #c1c1c1;font-size: 18px"></i>
+						<!--<img src="/Public/common/img/refresh.png" style="width: 15px;height: 15px">-->
+					</a>
+				</div>
+			</div>
+
+		</div>
+		<div class="fl wm100" style="background-color: #FFF">
+			<form action="" method="post" id="condition-form">
+			<div class="fl wm40">
+				<label for="user-type"></label>
+				<select name="status" id="user-type" class="wm100" >
+					<option value="1">全部客户</option>
+					<option value="2">未登录</option>
+					<option value="3">已登录</option>
+					<option value="4">未选房</option>
+					<option value="5">已选房</option>
+				</select>
+			</div>
+				<input type="hidden" name="info" value="<{$search_info}>">
+			<div class="fl wm60">
+				<input class="fl border-sizing bi" type="text" name="search"  id="search-user"  placeholder="输入姓名或者电话搜索" style="width: 96%;display: inline;background-color: rgba(193,193,193,0.16);">
+			</div>
+			</form>
+			<table class="fl wm100" style="color: #999999;text-align: center;font-weight: bold">
+				<tr style="background-color: #f16767;color: #FFF;">
+					<td class="wm55">客户</td>
+					<td class="wm25">状态</td>
+					<td class="wm20">操作</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</block>
+
+<block name="content">
+	<!--用于post提交连接的表单-->
+	<form action="/Saler/ChooseAnalysis/user_detail" id="post-user-detail" method="post">
+		<input type="hidden" name="project" value="<{$project_id}>">
+		<input type="hidden" name="cid"  value="">
+	</form>
+	<div class="common-content sales-statistics-content">
+		<div class="saler-statistics-content-wrapper">
+
+			<div id="iscroller-wrapper" class="iscroller-style saler-statistics-list-wrapper" style="bottom:45px;background-color: #fff;top:48px">
+				<div id="iscroller-scroller" class="iscroller-scroller-style" >
+
+					<div class="saler-statistics-list-box" >
+						<table class="fl wm100" style="color: #999999;text-align: center;" id="content-tab">
+							<if condition="count($user_xf) egt 1">
+								<foreach name="user_xf" item="vo" key="k">
+										<tr data-id="<{$vo.id}>">
+											<td align="left" class="wm55" style="padding-left: 15px">
+												<p><{$vo.customer_name}></p>
+												<p><{:rsa_decode($vo['customer_phone'],getChoosekey())}></p>
+											</td>
+											<td class="wm25"><if condition="($vo.rid neq null) AND ($vo.oid neq null)"><span class="xf-status">已选房</span><else/><span class="xf-status">未选房</span></if></td>
+											<td class="wm20"><span class="call-phone" data-num="<{:rsa_decode($vo['customer_phone'],getChoosekey())}>"><i class="fa fa-phone"></i></span></td>
+										</tr>
+								</foreach>
+								<else/>
+								<tr>
+									<td colspan="3" align="center">暂时没有数据...</td>
+								</tr>
+							</if>
+						</table>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+</block>
+<block name="footer_js">
+<include file="Common@Common/Mobile/iscroll" iscroller_id="iscroller_statistics" iscroller_select_id="iscroller-wrapper" />
+<div class="weui-tabbar1">
+	<a href="<{:U('DataStatistics/index', array('info' => set_search_ids(array('p' => $project_id))))}>" class="weui-tabbar__item1">
+                            <span style="display: inline-block;position: relative;">
+                                <i class="fa fa-home weui-tabbar__icon1"></i>
+                            </span>
+		<p class="weui-tabbar__label1">首页</p>
+	</a>
+	<a href="<{:U('ChooseAnalysis/index', array('info' => set_search_ids(array('p' => $project_id))))}>" class="weui-tabbar__item1 weui-bar__item_on1">
+                            <span style="display: inline-block;position: relative;">
+                                    <i class="fa fa-group weui-tabbar__icon1"></i>
+                            </span>
+		<p class="weui-tabbar__label1">客户分析</p>
+	</a>
+	<a href="<{:U('RoomAnalysis/index', array('info' => set_search_ids(array('p' => $project_id))))}>" class="weui-tabbar__item1">
+							<span style="display: inline-block;position: relative;">
+								<i class="fa fa-bar-chart weui-tabbar__icon1"></i>
+							</span>
+		<p class="weui-tabbar__label1">装户分析</p>
+	</a>
+	<a href="<{:U('MyReport/index', array('info' => set_search_ids(array('p' => $project_id))))}>" class="weui-tabbar__item1">
+                            <span style="display: inline-block;position: relative;">
+                                <i class="fa fa-user-o weui-tabbar__icon1"></i>
+                                <span class="weui-badge weui-badge_dot" style="position: absolute;top: 2px;right: 0px;display:none;"></span>
+                            </span>
+		<p class="weui-tabbar__label1">我的</p>
+	</a>
+                    </div>  
+<script>
+    $(document).ready(function() {
+        var ut=$("#user-type");
+        ut.on("change",function () {
+            $("#search-user").val('');
+            $.post("<{:U('/Saler/ChooseAnalysis/index')}>",$("#condition-form").serialize(),function (data) {
+				$(".saler-statistics-list-box").html(data);
+            });
+//			$("#condition-form").submit();
+        });
+        $("#search-user").on("input",function () {
+                $.post("<{:U('/Saler/ChooseAnalysis/index')}>",$("#condition-form").serialize(),function (data) {
+                    $(".saler-statistics-list-box").html(data);
+                });
+        });
+		$(document).on("click",'.call-phone',function (event) {
+            event.stopPropagation();
+			var phone=$(this).attr("data-num");
+			window.location.href='tel://' + phone;
+        });
+		$(document).on("click","#content-tab tr",function () {
+			var id=$(this).attr('data-id');
+			if(id !=="" && id!==null && id!==undefined)
+			    $("input[name='cid']").val(id);
+			    $("#post-user-detail").submit();
+        });
+    });
+</script>
+</block>
+

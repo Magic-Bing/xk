@@ -1,0 +1,318 @@
+﻿<extend name="Common/base" />
+
+<block name="header">
+    <link rel="stylesheet" href="/Public/common/css/font-awesome-4.7.0/css/font-awesome.css">
+    <style>
+        table>tbody>tr:nth-child(even)>td{
+            background-color: #eee;
+        }
+		#shadow{
+			background-color: rgba(0,0,0,0.5);
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			z-index: 600;
+			display: none;
+		}
+		.saler-search-form-choose-option{
+			z-index: 1000;
+			width: 100%;
+			top:70px;
+		}
+		.saler-search-form-choose-option-box {
+			padding: 20px 0 0 0;
+		}
+		.saler-search-form-choose-option-list {
+			text-align: center;
+		}
+		.saler-search-form-choose-option input {
+			box-sizing: border-box;
+			width: 60px;
+			height: 23px;
+		}
+		.rs{
+			display: inline-block;
+			width: 20%;
+			background-color: #ffb138;
+			float: left;
+			color: #FFF;
+			padding: 5px 0;
+			font-weight: bold;
+		}
+		.qr{
+			display: inline-block;
+			width: 80%;
+			background-color: #03a9f4;
+			float: left;
+			color: #FFF;
+			padding: 5px 0;
+			font-weight: bold;
+		}
+    </style>
+	<div class="saler-project-view-header-wrapper">
+		<div class="clearfix saler-project-view-header" style="background: #FFF;">
+			<div class="fl wm25 saler-project-view-header-return">
+				<span class="saler-project-view-header-return-box return-btn">
+					<a href="javascript:void(0);" class="saler-project-view-header-return-btn">返回</a>
+				</span>
+			</div>
+			<div class="fl wm50 saler-project-view-header-content">
+				<span class="saler-project-view-header-content-box-no-arrow">
+					<span class="saler-project-view-header-content-box-name">房源搜索</span>
+				</span>
+			</div>
+			<div class="fl wm25 saler-project-view-header-right"></div>
+		</div>
+	</div>
+</block>
+
+<block name="content">
+	<div id="shadow"></div>
+	<div class="saler-search-form-choose-option js-saler-search-form-choose-option">
+		<div class="saler-search-form-choose-option-box">
+			<div class="clearfix saler-search-form-choose-option-list saler-search-form-choose-option-list-build">
+				<div class="fl saler-search-form-choose-option-title">
+					选择楼栋：
+				</div>
+				<div class="fl saler-search-form-choose-option-content">
+					<volist name="build_list" id="build_vo" key="build_k">
+						<a href="javascript:void(0);" data-id="<{$build_vo.id|default='0'}>" class="saler-search-form-choose-option-a js-saler-search-form-choose-option-a saler-search-form-choose-option-build">
+							<{$build_vo.buildname|default='1'}>
+						</a>
+					</volist>
+				</div>
+			</div>
+			<div class="clearfix saler-search-form-choose-option-list">
+				<div class="fl saler-search-form-choose-option-title">
+					房间范围：
+				</div>
+				<div class="fl clearfix saler-search-form-choose-option-content">
+					<div class="fl saler-search-form-choose-option-content-start">
+						<input class="saler-search-form-choose-option-room-start" type="number" value="">
+					</div>
+					<div class="fl saler-search-form-choose-option-content-info">
+						到
+					</div>
+					<div class="fl saler-search-form-choose-option-content-end">
+						<input class="saler-search-form-choose-option-room-end" type="number" value="">
+					</div>
+				</div>
+			</div>
+			<div class="clearfix saler-search-form-choose-option-list">
+				<div class="fl saler-search-form-choose-option-title">
+					楼层范围：
+				</div>
+				<div class="fl clearfix saler-search-form-choose-option-content">
+					<div class="fl saler-search-form-choose-option-content-start">
+						<input class="saler-search-form-choose-option-floor-start" type="number" value="">
+					</div>
+					<div class="fl saler-search-form-choose-option-content-info">
+						到
+					</div>
+					<div class="fl saler-search-form-choose-option-content-end">
+						<input class="saler-search-form-choose-option-floor-end" type="number" value="">
+					</div>
+				</div>
+			</div>
+			<div class="clearfix saler-search-form-choose-option-list">
+				<div class="fl saler-search-form-choose-option-title">
+					面积范围：
+				</div>
+				<div class="fl clearfix saler-search-form-choose-option-content">
+					<div class="fl saler-search-form-choose-option-content-start">
+						<input class="saler-search-form-choose-option-area-start" type="number" value="">
+					</div>
+					<div class="fl saler-search-form-choose-option-content-info">
+						到
+					</div>
+					<div class="fl saler-search-form-choose-option-content-end">
+						<input class="saler-search-form-choose-option-area-end" type="number" value="">
+					</div>
+				</div>
+			</div>
+			<div class="clearfix saler-search-form-choose-option-list">
+				<div class="fl saler-search-form-choose-option-title">
+					价格范围(万)：
+				</div>
+				<div class="fl clearfix saler-search-form-choose-option-content">
+					<div class="fl saler-search-form-choose-option-content-start">
+						<input class="saler-search-form-choose-option-price-start" type="number" value="">
+					</div>
+					<div class="fl saler-search-form-choose-option-content-info">
+						到
+					</div>
+					<div class="fl saler-search-form-choose-option-content-end">
+						<input class="saler-search-form-choose-option-price-end" type="number" value="">
+					</div>
+				</div>
+			</div>
+			<div class="clearfix saler-search-form-choose-option-list">
+				<div class="fl saler-search-form-choose-option-title">
+					房间户型：
+				</div>
+				<div class="fl saler-search-form-choose-option-content">
+					<volist name="hx_list" id="hx_vo" key="hx_k">
+						<a href="javascript:void(0);" data-id="<{$hx_vo.hx|default=''}>" class="saler-search-form-choose-option-a js-saler-search-form-choose-option-a saler-search-form-choose-option-hx">
+							<{$hx_vo.hx|default=''}>
+						</a>
+					</volist>
+				</div>
+			</div>
+
+			<div class="saler-search-form-choose-option-footer">
+				<div class="saler-search-form-choose-option-footer-btns">
+						<span class="rs">清空</span>
+						<span class="qr js-saler-search-form-choose-option-footer-btn">查找</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="saler-search-base saler-search-project-id" data-id="<{$project_id|default=0}>" data-hd="<{$search_hd_id}>">
+		<div class="saler-search-wrapper">
+			<div class="saler-search" style="background: #03a9f4;">
+				<div class="clearfix saler-search-form">
+					<div class="fl wm65 saler-search-form-input">
+						<div class="saler-search-form-input-box">
+							<input class="border-sizing saler-search-form-input-box-input js-saler-search-form-input-box-input" type="text" value="" placeholder="搜索户型、楼层、房号">
+						</div>
+					</div>
+					
+					<div class="fl wm35 saler-search-form-choose">
+						<div class="saler-search-form-choose-box">
+							<span class="saler-search-form-choose-btn js-saler-search-form-choose-btn">
+								多条件筛选
+							</span>
+							
+
+						</div>
+					</div>
+				</div>
+				
+				<div class="clearfix saler-search-filter">
+					<div class="fl wm35 saler-search-filter-title">
+						<div class="saler-search-filter-title-box">
+							<span class="saler-search-filter-title-info">
+								房源状态
+							</span>
+						</div>
+					</div>
+					
+					<div class="fl wm65 saler-search-filter-tabs">
+						<div class="saler-search-filter-tabs-box">
+							<div class="saler-search-filter-tabs-labels">
+								<label class="saler-search-filter-tabs-label">
+									<input class="saler-search-filter-sale saler-search-filter-tabs-all" type="radio" value="all" name="saler-search-filter-sale" >所有
+								</label>
+								<label class="saler-search-filter-tabs-label">
+									<input class="saler-search-filter-sale saler-search-filter-tabs-no-sale" type="radio" value="-1" name="saler-search-filter-sale" checked="1">待售
+								</label>
+								<label class="saler-search-filter-tabs-label">
+									<input class="saler-search-filter-sale saler-search-filter-tabs-has-sale" type="radio" value="1" name="saler-search-filter-sale">已售
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+                                <div>
+                                    <table style="width:100%;">
+                                            <tr class="saler-search-filter-table-tr-title">
+                                                    <td class="saler-search-filter-table-td saler-search-filter-table-title">
+                                                            <div class="saler-search-filter-table-title-box">
+                                                                    <span class="saler-search-filter-table-title-info">
+                                                                            楼栋
+                                                                    </span>
+                                                            </div>
+                                                    </td>
+                                                    <td class="saler-search-filter-table-td saler-search-filter-table-title">
+                                                            <div class="saler-search-filter-table-title-box">
+                                                                    <span class="saler-search-filter-table-title-info">
+                                                                            楼层
+                                                                    </span>
+                                                            </div>
+                                                    </td>
+                                                    <td class="saler-search-filter-table-td saler-search-filter-table-title">
+                                                            <div class="saler-search-filter-table-title-box">
+                                                                    <span class="saler-search-filter-table-title-info">
+                                                                            房号
+                                                                    </span>
+                                                            </div>
+                                                    </td>
+                                                    <td class="saler-search-filter-table-td saler-search-filter-table-title">
+                                                            <div class="saler-search-filter-table-title-box">
+                                                                    <span class="saler-search-filter-table-title-info">
+                                                                            户型
+                                                                    </span>
+                                                            </div>
+                                                    </td>
+                                                    <td class="saler-search-filter-table-td saler-search-filter-table-title">
+                                                            <div class="saler-search-filter-table-title-box">
+                                                                    <span class="saler-search-filter-table-title-info">
+                                                                            面积(㎡)
+                                                                    </span>
+                                                            </div>
+                                                    </td>
+                                                    <td class="saler-search-filter-table-td saler-search-filter-table-title">
+                                                            <div class="saler-search-filter-table-title-box">
+                                                                    <span class="saler-search-filter-table-title-info">
+                                                                            总价(元)
+                                                                    </span>
+                                                            </div>
+                                                    </td>
+                                            </tr>
+                                    </table>
+                                </div>
+				
+				<div id="iscroller-wrapper" class="iscroller-style saler-search-filter-rooms-wrapper" style="top: 128px;bottom:46px;">
+					<div id="iscroller-scroller" class="iscroller-scroller-style saler-search-filter-rooms">
+						<table class="saler-search-filter-table saler-search-filter-rooms-list">
+							<tr class="saler-search-filter-table-tr-title" style="display: none;">
+							</tr>
+						</table>
+					</div>
+				</div>				
+				
+			</div>
+		</div>
+	</div>
+</block>
+
+<block name="footer">
+	<div class="weui-tabbar1">
+		<a href="<{:U('DataStatistics/index', array('info' => set_search_ids(array('p' => $search_hd_id))))}>" class="weui-tabbar__item1">
+                            <span style="display: inline-block;position: relative;">
+                                <i class="fa fa-home weui-tabbar__icon1"></i>
+                            </span>
+			<p class="weui-tabbar__label1">首页</p>
+		</a>
+		<a href="<{:U('ChooseAnalysis/index', array('info' => set_search_ids(array('p' => $search_hd_id))))}>" class="weui-tabbar__item1 ">
+                            <span style="display: inline-block;position: relative;">
+                                    <i class="fa fa-group weui-tabbar__icon1"></i>
+                            </span>
+			<p class="weui-tabbar__label1">客户分析</p>
+		</a>
+		<a href="<{:U('RoomAnalysis/index', array('info' => set_search_ids(array('p' => $search_hd_id))))}>" class="weui-tabbar__item1">
+							<span style="display: inline-block;position: relative;">
+								<i class="fa fa-bar-chart weui-tabbar__icon1"></i>
+							</span>
+			<p class="weui-tabbar__label1">装户分析</p>
+		</a>
+		<a href="<{:U('MyReport/index', array('info' => set_search_ids(array('p' => $search_hd_id))))}>" class="weui-tabbar__item1 ">
+                            <span style="display: inline-block;position: relative;">
+                                <i class="fa fa-user-o weui-tabbar__icon1"></i>
+                                <span class="weui-badge weui-badge_dot" style="position: absolute;top: 2px;right: 0px;display:none;"></span>
+                            </span>
+			<p class="weui-tabbar__label1">我的</p>
+		</a>
+	</div>
+</block>
+
+<block name="footer_js">
+<script>
+$(function() {
+	$(".js-saler-search-form-input-box-input").focus();
+
+});
+</script>
+
+<include file="Common@Common/Mobile/iscroll" iscroller_id="iscroller_search" iscroller_select_id="iscroller-wrapper" />
+</block>

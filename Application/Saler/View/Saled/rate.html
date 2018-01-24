@@ -1,0 +1,103 @@
+<extend name="Common/base" />
+
+<block name="header">
+    <link href="__COMMON__/js/jquery/circliful/css/jquery.circliful.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="/Public/common/css/font-awesome-4.7.0/css/font-awesome.css">
+	<div class="common-header-wrapper">
+		<div class="clearfix common-header sales-statistics-header">
+			<div class="fl wm25 arrow-left common-header-return">
+				<span class="common-header-return-box return-btn">
+					<a href="javascript:void(0);" class="common-header-return-btn">返回</a>
+				</span>
+			</div>
+			<div class="fl wm50 common-header-content js-common-header-content">
+				<span class="common-header-content-box-no-arrow">
+					<span class="common-header-content-box-name">户型去化率排名</span>
+				</span>
+			</div>
+			<div class="fl wm25 common-header-right">&nbsp;</div>
+		</div>
+	</div>
+</block>
+
+<block name="content">
+	<div id="iscroller-wrapper" class="iscroller-style common-content sales-saled-content">
+		<div id="iscroller-scroller" class="iscroller-scroller-style saler-saled-content-rate">
+			
+			<volist name="rates" id="rates_vo" key="rates_k">
+				<div class="clearfix saler-saled-content-rate-list saler-saled-content-rate-list<{$rates_k|default=1}>">
+					<div class="fl wm35 saler-saled-content-rate-img">
+						<div class="rate-state saler-saled-content-rate-state" 
+							data-dimension="100" 
+							data-text="<{$rates_vo.percent|default=100}>%" 
+							data-info="" 
+							data-width="10" 
+							data-fontsize="14" 
+							data-percent="<{$rates_vo.percent|default=100}>" 
+							data-bgcolor="#d9d9d9"
+							data-fgcolor="#558ed5" 
+						>
+						</div>
+					</div>
+					<div class="fl wm65 saler-saled-content-rate-content">
+						<div class="saler-saled-content-rate-content-title">
+							户型：<{$rates_vo.hx|default='户型'}>
+						</div>
+						<div class="saler-saled-content-rate-content-table-wrapper">
+							<table class="saler-saled-content-rate-table">
+								<tr class="saler-saled-content-rate-tr">
+									<td class="wm20 saler-saled-content-rate-td">
+										已售
+									</td>
+                                                                        <td class="saler-saled-content-rate-td">
+										<{$rates_vo.saled_total|default='0'}>套(<{$rates_vo.saled_price|default='0'}>万)
+									</td>
+									
+								</tr>
+								<tr class="saler-saled-content-rate-tr">
+									<td class="wm20 saler-saled-content-rate-td">
+										待售
+									</td>
+									<td class="saler-saled-content-rate-td">
+										<{$rates_vo.nosaled_total|default='0'}>套(<{$rates_vo.nosaled_price|default='0'}>万)
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</volist>
+			
+		</div>
+	</div>
+</block>
+
+<block name="footer_js">
+<include file="Common@Common/Mobile/iscroll" iscroller_id="iscroller_rate" iscroller_select_id="iscroller-wrapper" />
+
+<script src="__COMMON__/js/jquery/circliful/js/jquery.circliful.js"></script>
+<script>
+$(function() {
+	var $colors = ['#558ed5', '#e46c0a', '#8064a2', '#00b050', '#c00000'];
+	var $colors_length = $colors.length;
+	
+	//添加颜色
+	$(".saler-saled-content-rate-state").each(function(index) {
+		if (index > $colors_length - 1) {
+			var $random_color = get_random_color();
+			
+			$(this).attr('data-fgcolor', $random_color);
+			
+			$(".saler-saled-content-rate-content-title").eq(index)
+				.css('color', $random_color);
+		} else {
+			$(this).attr('data-fgcolor', $colors[index]);
+		}	
+	});
+
+	//圆形统计
+	$('.rate-state').circliful();
+});
+</script>
+</block>
+

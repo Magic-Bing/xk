@@ -1,0 +1,220 @@
+<extend name="Common/base" />
+
+<block name="header">
+    <link rel="stylesheet" href="/Public/common/css/font-awesome-4.7.0/css/font-awesome.css">
+    <style>
+        .saler-statistics-content-unit-info {
+            padding-top: 20px;
+        }
+        .saler-statistics-content-unit-box {
+            position: relative;
+            height: 130px;
+        }
+        .saler-statistics-content-price-title {
+            padding: 15px 5px 20px 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+	<div class="common-header-wrapper">
+		<div class="clearfix common-header sales-statistics-header">
+			<div class="fl wm25 arrow-left common-header-return">
+				<span class="common-header-return-box return-btn">
+					<a href="javascript:void(0);" class="common-header-return-btn">返回</a>
+				</span>
+			</div>
+			<div class="fl wm60 common-header-content js-common-header-content">
+				<span class="common-header-content-box-no-arrow">
+					<span class="common-header-content-box-name"><{$projinfo.name}></span>
+				</span>
+			</div>
+			<div class="fl wm15 common-header-right" style="text-align: center;padding-top: 3%">
+                                <div class="common-header-reload">
+					<a href="" onclick="window.location.reload()" class="saler-project-header-reload-btn js-saler-project-header-reload-btn saler-project-header-reload-a">
+						<i class="icon-refresh  bigger-230 " style="color: #c1c1c1;font-size: 18px"></i>
+						<!--<img src="/Public/common/img/refresh.png" style="width: 15px;height: 15px">-->
+					</a>
+				</div>
+                        </div>
+		</div>
+	</div>
+</block>
+
+<block name="content">
+	<div class="common-content sales-statistics-content">
+		<div class="saler-statistics-content-wrapper">
+
+			<div id="iscroller-wrapper" class="iscroller-style saler-statistics-list-wrapper" style="bottom:45px;">
+				<div id="iscroller-scroller" class="iscroller-scroller-style" >
+
+					<div class="saler-statistics-list-box">
+						<div class="saler-statistics-content-box-shadow saler-statistics-content-unit">
+							<a href="<{$url.saled_index}>" class="saler-statistics-content-info-a">
+								<div class="saler-statistics-content-unit-box">
+									<div class="clearfix saler-statistics-content-unit-info">
+										<div class="fl wm40 saler-statistics-content-unit-img">
+											<img class="saler-statistics-content-unit-img-info" src="__IMG__/statistics-unit.png">
+										</div>
+										<div class="fl wm60 saler-statistics-content-unit-title">
+											<div class="saler-statistics-content-unit-title1">
+												去化率 <span class="saler-statistics-content-unit-math"><{$household.percent|default=0}></span> %
+											</div>
+											<div class="saler-statistics-content-unit-title2">
+												已售 <span class="saler-statistics-content-unit-math"><{$household.selt|default=0}></span> 套，
+												总 <span class="saler-statistics-content-unit-math"><{$household.zgs|default=0}></span> 套
+											</div>
+										</div>
+									</div>
+									<div class="saler-statistics-content-unit-option">
+										<span class="saler-statistics-content-option-btn saler-statistics-content-unit-option-btn">户型占比</span>
+									</div>
+								</div>
+							</a>
+						</div>
+
+						<div class="mt3 saler-statistics-content-box-shadow saler-statistics-content-price">
+							<a href="<{$url.saled_price}>" class="saler-statistics-content-info-a">
+								<div class="saler-statistics-content-price-box">
+									<div class="saler-statistics-content-price-title">
+										<div class="saler-statistics-content-price-title1">
+											项目总金额 <span class="saler-statistics-content-price-math"><{$saled_hx.tatol_price|default=0|number_format=2}></span> 万元
+										</div>
+										<div class="saler-statistics-content-price-title2">
+											已售 <span class="saler-statistics-content-price-math"><{$saled_hx.sold_price|default=0|number_format=2}></span> 万元，
+											销售占比 <span class="saler-statistics-content-price-math"><{$saled_hx.percent|default=0|number_format=2}></span> %
+										</div>
+									</div>
+									<div class="saler-statistics-content-price-option">
+										<span class="saler-statistics-content-option-btn saler-statistics-content-price-option-btn">展示明细</span>
+									</div>
+								</div>
+							</a>
+						</div>
+
+						<div class="mt3 clearfix saler-statistics-content-box-shadow saler-statistics-content-box1">
+							<div class="fl wm50 saler-statistics-content-sale-box1">
+								<a href="<{$url.hot}>" class="saler-statistics-content-info-a">
+									<div class="saler-statistics-content-sale-box1-wrapper">
+										<div class="clearfix saler-statistics-content-sale-box1-content">
+											<div class="fl wm25 saler-statistics-content-sale-box1-title">
+												<span class="saler-statistics-content-sale-box1-title-info">房源热度</span>
+											</div>
+											<div class="fl wm75 saler-statistics-content-sale-box1-content">
+												<div class="saler-statistics-content-sale-box1-content-list">
+													收藏 <span class="saler-statistics-content-sale-math"><{$room_hot.collection|default=0}></span> 次
+												</div>
+												<div class="saler-statistics-content-sale-box1-content-list">
+													对比 <span class="saler-statistics-content-sale-math"><{$room_hot.comparison|default=0}></span> 次
+												</div>
+												<div class="saler-statistics-content-sale-box1-content-list">
+													关注 <span class="saler-statistics-content-sale-math"><{$room_hot.follow|default=0}></span> 次
+												</div>
+											</div>
+										</div>
+										<div class="saler-statistics-content-sale-box1-option">
+											<span class="saler-statistics-content-option-btn saler-statistics-content-sale-box1-option-btn">查看明细</span>
+										</div>
+									</div>
+								</a>
+							</div>
+
+							<div class="fl wm50 saler-statistics-content-sale-box2">
+								<a href="<{$url.saled_rate}>" class="saler-statistics-content-info-a">
+									<div class="saler-statistics-content-sale-box2-wrapper">
+										<div class="saler-statistics-content-sale-box2-content">
+											<div class="saler-statistics-content-sale-box2-content">
+												<div class="saler-statistics-content-sale-box2-content-list">
+													户型TOP 1
+												</div>
+												<div class="saler-statistics-content-sale-box2-content-list">
+													<span class="saler-statistics-content-sale-math"><{$hx_top.name|default='暂无'}></span>
+													去化率
+													<span class="saler-statistics-content-sale-math"><{$hx_top.percent|default=0}></span> %
+												</div>
+											</div>
+										</div>
+										<div class="saler-statistics-content-sale-box2-option">
+											<span class="saler-statistics-content-option-btn saler-statistics-content-sale-box2-option-btn">查看排名</span>
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
+
+						<div class="mt3 clearfix saler-statistics-content-box2">
+							<div class="fl wm32 saler-statistics-content-box2-content-box saler-statistics-content-box2-content-box1">
+								<a href="<{$url.saled_opened}>" class="saler-statistics-content-info-a">
+									<div class="saler-statistics-content-box2-content-info">
+										<span class="saler-statistics-content-img">
+											<img class="saler-statistics-content-img-info" src="__IMG__/statistics-icon1.png">
+										</span>
+										<span class="saler-statistics-content-title">
+											开盘走势
+										</span>
+									</div>
+								</a>
+							</div>
+
+							<div class="fl wm36 saler-statistics-content-box2-content-box saler-statistics-content-box2-content-box2">
+								<a href="<{$url.saled_prizes}>" class="saler-statistics-content-info-a">
+									<div class="saler-statistics-content-box2-content-info">
+										<span class="saler-statistics-content-img">
+											<img class="saler-statistics-content-img-info" src="__IMG__/statistics-icon2.png">
+										</span>
+										<span class="saler-statistics-content-title">
+											人员销售明细
+										</span>
+									</div>
+								</a>
+							</div>
+
+							<div class="fl wm32 saler-statistics-content-box2-content-box saler-statistics-content-box2-content-box3">
+								<a href="<{$url.search}>" class="saler-statistics-content-info-a">
+									<div class="saler-statistics-content-box2-content-info">
+										<span class="saler-statistics-content-img">
+											<img class="saler-statistics-content-img-info" src="__IMG__/statistics-icon3.png">
+										</span>
+										<span class="saler-statistics-content-title">
+											房源查找
+										</span>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+</block>
+<block name="footer_js">
+<include file="Common@Common/Mobile/iscroll" iscroller_id="iscroller_statistics" iscroller_select_id="iscroller-wrapper" />
+<div class="weui-tabbar1">
+                        <a href="javascript:;" class="weui-tabbar__item1 btnsy">
+                            <span style="display: inline-block;position: relative;">
+                                <i class="fa fa-home weui-tabbar__icon1"></i>
+                            </span>
+                            <p class="weui-tabbar__label1">首页</p>
+                        </a>
+                        <a href="<{:U('project/index', array('info' => set_search_ids(array('p' => $project_id))))}>" class="weui-tabbar__item1 btnsec">
+                            <span style="display: inline-block;position: relative;">
+                                    <i class="fa fa-list weui-tabbar__icon1"></i>
+                            </span>
+                            <p class="weui-tabbar__label1">房源列表</p>
+                        </a>
+                        <a href="<{:U('MyReport/index', array('info' => set_search_ids(array('p' => $project_id))))}>" class="weui-tabbar__item1 btnthree">
+                            <span style="display: inline-block;position: relative;">
+                                <i class="fa fa-user-o weui-tabbar__icon1"></i>
+                                <span class="weui-badge weui-badge_dot" style="position: absolute;top: 2px;right: 0px;display:none;"></span>
+                            </span>
+                            <p class="weui-tabbar__label1">我的</p>
+                        </a>
+                    </div>  
+<script>
+    $(document).ready(function() {
+        $(".btnsy").addClass("weui-bar__item_on1");
+    });
+</script>
+</block>
+

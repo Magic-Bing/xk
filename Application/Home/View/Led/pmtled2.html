@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>平面图显示 - 云销控管理系统</title>
+        <meta name="keywords" content="云销控">
+        <meta name="description" content="平面图显示">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link href="/Public/common/css/base.css" type="text/css" rel="stylesheet">
+        <link href="/Public/xk/css/xk.css" type="text/css" rel="stylesheet">
+        <style>
+            html,body{
+                width:100%;
+                height:100%;
+            }
+            .html-body-overflow{
+                overflow-x: hidden;
+                overflow-y: hidden;
+            }
+            .demo{
+                position:relative; width:100%;height:100%; /*margin:20px;*/ border:1px dotted #d3d3d3; 
+            } 
+            .note{width:27px; height:27px; position:absolute; margin-top:0px;
+                  border-radius: 50%;
+                  text-align: center;
+                  overflow:hidden; font-size:0.7rem; line-height:27px;color:#FFF} 
+            .note span{text-align: center} 
+            .red{background-color:red;border:1px solid red;font-weight:bold;color:#FFF;opacity:0.9;} 
+
+
+        </style>
+        <script src="/Public/common/js/jquery/jquery-2.1.1.min.js"></script>
+        <script src="/Public/common/js/jquery/jquery-ui-1.12.0.custom/jquery-ui.js"></script>
+        <script src="/Public/common/js/layer/layer.js"></script>
+        <script src="/Public/common/js/pc/functions.js"></script>
+        <script type="text/javascript">
+         var $k=0;
+         $(document).ready(function () {  
+		setInterval("showzxrooms()", 3000); //定时刷最新房间信息	
+                
+                 if ($("#roomid_3412").hasClass("red"))
+                {
+                    $("#roomid_8888").addClass("red");
+                }
+                else
+                {
+                    $("#roomid_8888").removeClass("red");
+                } 
+                
+	});
+            
+            
+            
+       //最新购房数据刷新
+	function showzxrooms() 
+	{
+		var rooms_url = {get_gfrooms: '<{:U("led/get_gfrooms")}>',}
+		$.ajax({
+			url: rooms_url.get_gfrooms,
+			data: {
+				info: "showzxrooms",
+				projid: 17,
+                                bldid: 31,
+			},
+			type: 'POST',
+			dataType: 'JSON',
+			success: function (data, status) {
+				if (typeof(data.status) == 'undefined') {
+					//layer_alert('请求失败，请重试！');
+					return false;
+				} 
+				if (data.status == false) {
+					layer_alert(data.info);
+					return false;
+				}
+				var $zxrooms = data.info;
+				if ($zxrooms.length > 0) {
+					for (var $i = 0; $i < $zxrooms.length; $i++) {
+						var $id=$zxrooms[$i].id;
+						if ($zxrooms[$i].is_xf==1)
+						{
+							if (!$('#roomid_' + $id).hasClass("red"))
+							{
+								$('#roomid_' + $id).addClass("red");
+							}
+                                                        if($id==3412)
+                                                        {
+                                                            $("#roomid_8888").addClass("red");
+                                                        }
+						}
+						else
+						{
+							if ($('#roomid_' + $id).hasClass("red")) 
+							{
+								$('#roomid_' + $id).removeClass("red");
+							}
+                                                        if($id==3412)
+                                                        {
+                                                            $("#roomid_8888").removeClass("red");
+                                                        }
+						}
+					}
+				} 
+			},
+			error: function (data, status, e) {
+				//layer_alert('提交连接失败！');
+			}
+		}); 
+	}
+
+        </script>
+    </head>
+    <body class="html-body-overflow">
+    <!--<div style="width: 30px;height: 80px;position: fixed;top: 50%;right: 0;z-index: 3;background-color: rgb(0, 204, 164);text-align: center">
+        <div  class="note red" style="position: relative">
+        </div>
+        <!--<p style="font-weight: bold;font-size: 15px;line-height: 16px">已</p>
+        <p style="font-weight: bold;font-size: 15px;line-height: 16px">出</p>
+        <p style="font-weight: bold;font-size: 15px;line-height: 16px">售</p>
+    </div>-->
+        <div style="">
+            <div id="base" class="demo">
+                <div style="height:3544px;width:5906px;background: url(../../Public/account/img/02.jpg) -0px 0px no-repeat;background-size: 50%"></div>
+                <volist name="rooms" id="rooms_vo" key="rooms_k">
+                    <if condition="empty($rooms_vo['leftpx'])">
+                        <div id="roomid_<{$rooms_vo.id}>"  class="note <if condition="$rooms_vo['is_xf'] eq 1"> red </if>" style="left:90%;top:300px;z-index:3"> 
+                            <span class="data " data-room-id="<{$rooms_vo.id}>"></span>
+                        </div>  
+                    <else />
+                        <div  id="roomid_<{$rooms_vo.id}>" class="note <if condition="$rooms_vo['is_xf'] eq 1"> red </if>" style="left:<{$rooms_vo.leftpx}>px;top:<{$rooms_vo.toppx}>px;z-index:3"> 
+                            <span class="data " data-room-id="<{$rooms_vo.id}>"></span>
+                        </div> 
+                    </if> 
+                </volist>
+                 <div id="roomid_8888"  class="note red" style="left:1719px;top:1310px;z-index:999"> 
+                        <span class="data " data-room-id="3412"></span>
+                 </div>  
+            </div> 
+        </div> 
+    </body> 
+    <script type="text/javascript">
+        var pointerX=0,pointer=0;
+        var displayXYTimer = null;
+        function start (){
+            var body = document.getElementsByTagName("body")[0];
+                body.onmousemove = function(e) {
+                var pointer = getCoordInDocument(e);
+
+                if(pointerX != pointer.x || pointerY != pointer.y){
+                    pointerX = pointer.x;
+                    pointerY = pointer.y;
+
+                    body.className="";
+                                    clearTimeout(displayXYTimer);
+                    displayXYTimer = setTimeout(function() {
+                        body.className='html-body-overflow';
+                    }, 1000*3);
+
+                }
+
+                console.log(pointer.x,pointer.y);
+            }
+        }
+
+        var getCoordInDocument = function(e) {
+            e = e || window.event;
+            var x = e.pageX || (e.clientX +
+            (document.documentElement.scrollLeft
+            || document.body.scrollLeft));
+            var y= e.pageY || (e.clientY +
+            (document.documentElement.scrollTop
+            || document.body.scrollTop));
+            return {'x':x,'y':y};
+        }
+
+        start();
+         
+        
+    </script>
+</html>

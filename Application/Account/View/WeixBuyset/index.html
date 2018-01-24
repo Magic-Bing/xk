@@ -1,0 +1,422 @@
+<extend name="Common/base" />
+
+<block name="breadcrumb_active">
+    <style>
+        form{
+            display: inline;
+        }
+        #hx-img{
+            position: absolute;
+            /*background-color: #ff4334;*/
+            z-index: 100;
+            display: none;
+        }
+        #hx-img img{
+            width: 200px;
+
+        }
+        .gbdiv {
+            position: absolute;
+            right: 1%;
+            top: 3px;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            line-height: 40px;
+            text-align: center;
+            font-size: 22px;
+            cursor: pointer;
+        }
+    </style>
+    <li>
+        <a href="<{:U('WeixBuyset/index')}>"><{$classify_name|default=''}></a>
+    </li>
+
+    <li class="active"><{$seo_title|default=''}></li>
+</block>
+
+<block name="page_content">
+    <div id="hx-img">
+        <img src="" alt="无图片">
+    </div>
+    <div class="row">
+
+        <div class="col-xs-12">
+            <div id="wxaddressdiv" style="width:40%;height:200px;position: absolute;z-index:99999;background: #333333f2;line-height: 75px;text-align: center;top: 50%;left: 50%;transform: translate(-50%, -50%);color:#FFF;display: none;">
+                <span id="address_title">请复制后在微信中打开</span>
+                <input readonly  id="wxaddress" type="text" style="float:left;width:78%;margin-left: 2%;" value=""/>
+                <a id="fzaddress" data-clipboard-text="" style="float:left;width:15%;margin-left: 2%;text-align: center;background: #ffb751;height: 27px;line-height: 27px;color: #FFF;cursor: pointer;">复制</a>
+                <div  class="gbdiv">×</div>
+            </div>
+            <div class="table-header">
+                微信认购设置列表
+            </div>
+
+            <div class="table-responsive dataTables_wrapper">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div id="sample-table-2_length" class="dataTables_length">
+                            <form action="<{:U('/Account/WeixBuyset/index')}>" method="post" id="form-p">
+                                <label>
+                                    项目
+                                    <select name="project_id" class="choose-order_house-project-id js-choose-order_house-project-id" style="width: auto;">
+                                        <if condition="!empty($search_project_id)">
+                                            <option value="0">全部</option>
+                                            <foreach name="project_list" item="project_list_vo">
+                                                <if condition="$search_project_id eq $project_list_vo['id']">
+                                                    <option value="<{$project_list_vo['id']}>" selected>
+                                                        <{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
+                                                    </option>
+                                                    <else />
+                                                    <option value="<{$project_list_vo['id']}>">
+                                                        <{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
+                                                    </option>
+                                                </if>
+                                            </foreach>
+                                            <else />
+                                            <option value="0" selected>全部</option>
+                                            <foreach name="project_list" item="project_list_vo">
+                                                <option value="<{$project_list_vo['id']}>">
+                                                    <{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
+                                                </option>
+                                            </foreach>
+                                        </if>
+                                    </select>
+                                </label>
+                            </form>
+
+                            <form action="<{:U('/Account/WeixBuyset/index')}>" method="post" id="form-b">
+                                <label>							
+                                    批次 
+                                    <select name="batch_id" class="choose-activity-batch-id js-choose-activity-batch-id" style="width: auto;" id="wx_sz">
+                                        <if condition="count($batch_list) neq 1">
+                                            <option value="0">全部</option>
+                                        </if>
+                                        <foreach name="batch_list" item="batch_list_vo">
+                                            <if condition="$bid eq $batch_list_vo['id']">
+                                                <option value="<{$batch_list_vo['id']}>" selected>
+                                                    <{$batch_list_vo['name']}>
+                                                </option>
+                                                <else/>
+                                                <option value="<{$batch_list_vo['id']}>" >
+                                                    <{$batch_list_vo['name']}>
+                                                </option>
+                                            </if>
+                                        </foreach>
+                                    </select> 
+                                </label>
+                                <div class="nav-search" id="sample-table-2_filter" style="top:0;">
+                                    <label class="input-icon">
+                                        <input type="text" name="word" value="<{$search_word|default=''}>" class="nav-search-input js-choose-activity-word" id="sz_ss" placeholder="开盘活动名称">
+                                        <i class="icon-search nav-search-icon" style="cursor: pointer;left:6px;" id="likeUsers"></i>
+                                    </label>
+                                </div>
+                                <input type="hidden" name="project_id" value="<{$search_project_id}>">
+                                <input type="hidden" name="p" value="<{$p|default=1}>">
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+                <table id="sample-table-choose" class="table table-striped table-bordered table-hover dataTable">
+                    <thead>
+                        <tr>
+                            <th class="center hidden-480">
+                                <label>
+                                    <input type="checkbox" class="ace">
+                                    <span class="lbl"></span>
+                                </label>
+                            </th>
+                            <th class="hidden-480">项目</th>
+                            <th class="hidden-480">名称</th>
+                            <!--<th>
+                                    访问次数
+                            </th>
+                            <th>
+                                    参与次数
+                            </th>-->
+                            <th class="hidden-480">
+                                <i class="icon-time bigger-110 hidden-480"></i>
+                                开始时间
+                            </th>
+                            <th class="hidden-480">
+                                <i class="icon-time bigger-110 hidden-480"></i>
+                                结束时间
+                            </th>
+                            <th>图片预览</th>
+                            <th class="hidden-480">
+                                每人允许备选房间
+                            </th>
+                            <!--<th>延时登录</th>-->
+                            <th>是否显示优惠后价格</th>
+                            <th class="hidden-480">状态</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    <notempty name="choose_activity_list">
+                        <volist name="choose_activity_list" id="choose_activity_vo" key="choose_activity_k">
+                            <tr class="choose-activity-item choose-activity-item-<{$choose_activity_vo.id|default='0'}>">
+                                <td class="center hidden-480">
+                                    <label>
+                                        <input type="checkbox" class="ace choose-activity-item-id" data-id="<{$choose_activity_vo.id|default='0'}>">
+                                        <span class="lbl"></span>
+                                    </label>
+                                </td>
+                                <td class="hidden-480">
+                                    <span class="label-sm">
+                                        <{$choose_activity_vo.project_name|default=''}>
+                                    </span>
+
+                            <if condition="!empty($choose_activity_vo['batch_name'])">
+                                <span class="label label-sm label-primary arrowed arrowed-right"><{$choose_activity_vo.batch_name}></span>
+                            </if>
+                            </nobr>
+                            </td>
+                            <td class="hidden-480">
+                                <a href="javascript:;" class="showwxaddress" dataurl="<{:$http_type.$_SERVER['HTTP_HOST']}>/User/OrderHouse/privilege/info/<{:encrypt_url('eventId/'.$choose_activity_vo['id'],getUrlkey())}>" title="查看微信开盘手机登录地址" target="_blank"><{$choose_activity_vo.name|default='无活动名称'}></a>
+                            </td>
+
+                            <!--<td>
+                                    <{$choose_activity_vo.visit_count|default=0}>
+                            </td>
+                            <td>
+                                    <{$choose_activity_vo.use_count|default=0}>
+                            </td>-->
+                            <td class="hidden-480" style="text-align: center;">
+                            <if condition="!empty($choose_activity_vo['start_time'])">
+                                <{$choose_activity_vo.start_time|date="Y-m-d H:i:s",###}>
+                            </if>
+                            </td> 
+                            <td class="hidden-480" style="text-align: center;">
+                            <if condition="!empty($choose_activity_vo['end_time'])">
+                                <{$choose_activity_vo.end_time|date="Y-m-d H:i:s",###}>
+                            </if>
+                            </td>
+                            <td class="center"><a href="javascript:0;" class="show-img" data-url="<{$choose_activity_vo.loginimg}>">预览</a></td>
+                            <td class="hidden-480" style="text-align: center;">
+                            <if condition="!empty($choose_activity_vo['log_time'])">
+                                <{$choose_activity_vo.maxcount}>
+                            </if>
+                            </td>
+                            <!--<td class="center">-->
+                            <!--<eq name="choose_activity_vo['isysdl']" value="1">-->
+                            <!--<span class="label label-sm label-success">开启</span>-->
+                            <!--<else/>-->
+                            <!--<span class="label label-sm label-warning">关闭</span>-->
+                            <!--</eq>-->
+                            <!--</td>-->
+                            <td class="center">
+                                <eq name="choose_activity_vo['is_show_discount']" value="1">
+                                <span class="label label-sm label-success">开启</span>
+                            <else/>
+                            <span class="label label-sm label-warning">关闭</span>
+                            </eq>
+                            </td>
+                            <td class="hidden-480">
+                                <eq name="choose_activity_vo['states']" value="1">
+                                <span class="label label-sm label-success">启用</span>
+                            <else/>
+                            <span class="label label-sm label-warning">关闭</span>
+                            </eq>
+                            </td>
+                            <td style="text-align: center;width:75px">
+                                <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+                                    <!--<a href="<{:U('AnalyticalRoomHot', 'eventId='.$choose_activity_vo['id'])}>" class="btn btn-xs btn-info" title="分析">-->
+                                    <!--<i class="icon-list-alt bigger-120"></i>-->
+                                    <!--</a>-->
+                                    <a href="<{:U('display_edit', 'id='.$choose_activity_vo['id'])}>" class="btn btn-xs btn-info js-choose-activity-edit-btn" title="修改">
+                                        <i class="icon-edit bigger-120"></i>
+                                    </a>
+                                    <button data-id="<{$choose_activity_vo.id}>" class="btn btn-xs btn-danger js-choose-order_house-delete-btn" title="删除">
+                                        <i class="icon-trash bigger-120"></i>
+                                    </button>
+                                </div>
+
+                                <div class="visible-xs visible-sm hidden-md hidden-lg">
+                                    <div class="inline position-relative">
+                                        <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown">
+                                            <i class="icon-cog icon-only bigger-110"></i>
+                                        </button>
+
+                                        <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+                                            <li>
+                                                <a href="<{:U('display_edit', 'id='.$choose_activity_vo['id'])}>"
+                                                   class="tooltip-success js-choose-activity-edit-btn"
+                                                   data-rel="tooltip" 
+                                                   data-original-title="修改"
+                                                   >
+                                                    <span class="green">
+                                                        <i class="icon-edit bigger-120"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="javascript:void(0);" class="tooltip-error js-choose-activity-delete-btn"
+                                                   title=""
+                                                   data-id="<{$choose_activity_vo.id}>"
+                                                   data-rel="tooltip"
+                                                   data-original-title="删除"
+                                                   >
+                                                    <span class="red">
+                                                        <i class="icon-trash bigger-120"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+
+                                    </div>
+                                </div>	
+
+                            </td>
+                            </tr>
+                        </volist>
+                        <else />
+                        <tr>
+                            <td colspan="12" class="no-padding">
+                                <div class="alert alert-warning no-margin-bottom">
+                                    还没有开启活动！
+                                    <br>
+                                </div>
+                            </td>
+                        </tr>
+                    </notempty>
+
+                    <tr>
+                        <td class="center hidden-480">
+                            <div class="action-buttons">
+                                <a class="red btn-sm js-choose-order_house-delete-all-btn" href="javascript:void(0);" title="批量删除">
+                                    <i class="icon-trash bigger-130"></i>
+                                </a>
+                            </div>
+                        </td>
+                        <td colspan="11">
+                            <div class="pull-left">
+                                <a href="<{:U('display_add')}>" class="btn btn-xs btn-pink js-choose-activity-add">
+                                    <i class="icon-file bigger-110"></i>
+                                    <span class="bigger-110 no-text-shadow">添加开盘</span>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+
+                </table>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="dataTables_info" id="sample-table-2_info">
+                            第 <{$p|default=1}> / <{$total_pages|default=1}> 页，共 <{$count|default=1}> 条
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="dataTables_paginate paging_bootstrap">
+                            <{$page_show|default=''}>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.table-responsive -->
+
+        </div><!-- /span -->
+
+    </div>
+</block>
+
+<block name="plugin_js">
+    <script src="__ASSETS__/js/jquery.dataTables.min.js"></script>
+    <script src="__ASSETS__/js/jquery.dataTables.bootstrap.js"></script>
+    <script src="__JS__/cj/clipboard.min.js"></script>
+</block>
+
+<block name="page_js">
+    <script type="text/javascript">
+        var c_num = "<{$p}>";
+        jQuery(function ($) {
+            //图片预览
+            $(document).on("mouseover", ".show-img", function () {
+                var obj = $(this).offset();
+                var img = $("#hx-img");
+                var url = $.trim($(this).attr('data-url'));
+                img.css({'top': (obj.top - 70), 'left': (obj.left - 150)});
+                img.find("img").attr("src", url);
+                img.show();
+            });
+            $(document).on("mouseout", ".show-img", function () {
+                var img = $("#hx-img");
+                img.hide();
+            });
+
+            //分页跳转
+
+            $(".pagination li").on("click", function () {
+                var tx = $(this).attr("data-tx");
+                if (tx !== undefined) {
+                    if (tx === "上一页") {
+                        $("#form-b input[name='p']").val(Number(c_num) - 1);
+                    } else if (tx === "下一页") {
+                        $("#form-b input[name='p']").val(Number(c_num) + 1);
+                    } else if (tx === "首页") {
+                        $("#form-b input[name='p']").val(1);
+                    } else if (tx === "尾页") {
+                        $("#form-b input[name='p']").val("<{$total_pages|default=1}>");
+                    } else {
+                        $("#form-b input[name='p']").val(tx);
+                    }
+                    $("#form-b").submit();
+                }
+            });
+            $('table th input:checkbox').on('click', function () {
+                var that = this;
+                $(this).closest('table').find('tr > td:first-child input:checkbox')
+                        .each(function () {
+                            this.checked = that.checked;
+                            $(this).closest('tr').toggleClass('selected');
+                        });
+            });
+            $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+            function tooltip_placement(context, source) {
+                var $source = $(source);
+                var $parent = $source.closest('table');
+                var off1 = $parent.offset();
+                var w1 = $parent.width();
+                var off2 = $source.offset();
+                var w2 = $source.width();
+                if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2))
+                    return 'right';
+                return 'left';
+            }
+        });
+        
+        $(document).ready(function () {
+            var clipboard3 = new Clipboard('#fzaddress');
+            clipboard3.on('success', function (e) {
+                //console.log(e);
+                //$("#wxaddressdiv").hide();
+                $("#address_title").text("复制成功，请发送到微信中打开！");
+            });
+            clipboard3.on('error', function (e) {
+                //console.log(e);
+                $("#address_title").text("复制失败，请手动复制！");
+            });
+        })
+
+        $(".showwxaddress").click(function () {
+            $("#address_title").text("请复制后在微信中打开");
+            $("#wxaddress").val($(this).attr("dataurl"));
+            $("#fzaddress").attr("data-clipboard-text",$(this).attr("dataurl"));
+            $("#wxaddressdiv").show();
+        });
+        $(".gbdiv").click(function () {
+            $("#wxaddressdiv").hide();
+        });
+
+    </script>
+</block>
+
+<block name="footer_add_js">
+
+</block>

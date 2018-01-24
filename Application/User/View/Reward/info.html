@@ -1,0 +1,136 @@
+﻿<extend name="Common/base" />
+
+<block name="header_config_add"></block>
+
+<block name="header">
+	<div class="common-header-wrapper">
+		<div class="clearfix common-header">
+			<div class="fl wm25 arrow-left common-header-return user-header-return">
+				<span class="common-header-return-box return-btn">
+					<a href="javascript:void(0);" class="common-header-return-btn">返回</a>
+				</span>
+			</div>
+			<div class="fl wm50 common-header-content js-common-header-content">
+				<span class="common-header-content-box-no-arrow">
+					<span class="common-header-content-box-name">奖励明细</span>
+				</span>
+			</div>
+			<div class="fl wm25 common-header-right">
+				<span class="user-reward-use clearfix">
+					<a href="<{:U('index', 'project_id='.$project['id'])}>" class="user-reward-use-btn">
+						<i class="user-reward-use-icon"></i>
+					</a>
+				</span>
+			</div>
+		</div>
+	</div>
+</block>
+
+<block name="content">
+	<div class="user-reward">
+		
+		<div id="iscroller-wrapper" class="iscroller-style user-reward-iscroller user-reward-wrapper-box">
+			<div id="iscroller-scroller" class="iscroller-scroller-style">
+				
+				<div class="user-reward-wrapper">
+					<div class="user-reward-project">
+						<div class="user-reward-project-name">
+							<{$project['name']|default='项目名称'}>
+						</div>
+					</div>
+
+					<div class="user-reward-title">
+						<div class="clearfix user-reward-title-money user-reward-title-total-money">
+							<div class="fl wm50 user-reward-title-info">总金额</div>
+							<div class="fl wm50 user-reward-title-info">已提取</div>
+						</div>
+						<div class="clearfix user-reward-title-money user-reward-title-use-money">
+							<div class="fl wm50 user-reward-title-content"><{:number_format($customerReward['reward'], 2)}></div>
+							<div class="fl wm50 user-reward-title-content"><{:number_format($customerReward['use_reward'], 2)}></div>
+						</div>
+					</div>
+					
+					<div class="user-reward-log">
+						<div class="clearfix user-reward-log-tabs">
+							<div class="fl wm36 user-reward-log-tab <eq name='type' value=''>user-reward-log-tab-active</eq>">
+								<a href="<{:U('info', array('project_id'=>$project['id']))}>" class="user-reward-log-tab-btn">全部</a>
+							</div>
+							<div class="fl wm32 user-reward-log-tab <eq name='type' value='get'>user-reward-log-tab-active</eq>">
+								<a href="<{:U('info', array('project_id'=>$project['id'], 'type'=>'get'))}>" class="user-reward-log-tab-btn">奖励</a>
+							</div>
+							<div class="fl wm32 user-reward-log-tab <eq name='type' value='use'>user-reward-log-tab-active</eq>">
+								<a href="<{:U('info', array('project_id'=>$project['id'], 'type'=>'use'))}>" class="user-reward-log-tab-btn">提取</a>
+							</div>
+						</div>
+						<ul class="user-reward-log-list">
+							<notempty name="customer_reward_log">
+								<volist name="customer_reward_log" id="reward_log_vo" key="reward_log_k">
+									<li class="user-reward-log-item user-reward-log-item-<{$reward_log_vo.id|default=0}>" data-id="<{$reward_log_vo.id|default=0}>">
+										<div class="clearfix user-reward-log-item1">
+											<div class="fl wm50 user-reward-log-reward">
+												<{$reward_log_vo.reward|default=0}>
+											</div>
+											<div class="fl wm50 user-reward-log-status">
+												<eq name='reward_log_vo["action"]' value='2'>
+													<span class="user-reward-log-status-use">提现</span>
+												<else />
+													<span class="user-reward-log-status-get">奖励</span>
+												</eq>
+											</div>
+										</div>
+										
+										<div class="clearfix user-reward-log-item2">
+											<div class="fl wm100 user-reward-log-time">
+												<{$reward_log_vo.add_time|date="Y-m-d H:i:s",###}>
+											</div>
+										</div>									
+										
+										<div class="clearfix user-reward-log-item3">
+											<div class="fl wm100 user-reward-log-customer">
+												<neq name='reward_log_vo["reward_customer_id"]' value='0'>
+													<span class="user-reward-log-customer-own">
+														奖励来自<span class="user-reward-hot">关注</span>项目公众号
+													</span>
+												<else />
+													<span class="user-reward-log-customer-other">
+														奖励来自<span class="user-reward-hot">分享</span>二维码奖励。
+														<notempty name='customers[$reward_log_vo["reward_customer_id"]]["name"]'>
+															来源用户：<{$customers[$reward_log_vo["reward_customer_id"]]['name']|default=''}>
+														</notempty>
+													</span>
+												</neq>
+											</div>
+										</div>									
+									</li>
+								</volist>
+							<else />
+								<div class="user-reward-log-empty">
+									<div class="user-reward-log-empty-info">
+										这里没有东西喔~
+									</div>
+								</div>
+							</notempty>
+						</ul>
+					</div>
+					
+					<div class="clearfix m-page user-reward-log-page">
+						<{$page_show|default=''}>
+					</div>
+
+					<div class="user-reward-tip user-reward-log-tip">
+						<div class="user-reward-tip-box">
+							<span class="user-reward-tip-title">提醒：</span>
+							当前页为获得奖励和提取现金明细。如果有问题，请联系相关工作人员。
+						</div>
+					</div>
+				
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</block>
+
+<block name="footer_js">
+<include file="Common@Common/Mobile/iscroll" iscroller_id="iscroller_reward" iscroller_select_id="iscroller-wrapper" />
+</block>

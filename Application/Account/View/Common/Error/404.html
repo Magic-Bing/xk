@@ -1,0 +1,85 @@
+﻿<?php
+    if(C('LAYOUT_ON')) {
+        echo '{__NOLAYOUT__}';
+    }
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>系统发生错误</title>
+<style type="text/css">
+*{ padding: 0; margin: 0; }
+html{ overflow-y: scroll; }
+body{ background: #fff; font-family: '微软雅黑'; color: #333; font-size: 16px; }
+img{ border: 0; }
+.wrapper{ 
+	padding: 50px 50px; 
+	margin: 0 auto;
+    margin-top: 50px;
+    width: 80%;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+	color: #b94a48;
+    background-color: #f2dede;
+    border-color: #eed3d7;
+}
+.error {
+	padding: 12px 5px;
+}
+.error .face{ font-size: 50px; font-weight: normal; line-height: 60px; margin-bottom: 12px; }
+.error h1{ font-size: 32px; line-height: 48px; }
+.error .content{ padding-top: 10px}
+.error .info{ margin-bottom: 12px; }
+.error .info .title{ margin-bottom: 3px; }
+.error .info .title h3{ color: #000; font-weight: 700; font-size: 16px; }
+.error .info .text{ line-height: 24px; }
+.copyright{ padding: 12px 5px; color: #999; }
+.copyright a{ color: #000; text-decoration: none; }
+.copyright .time { 
+	color: #bf514f;
+	margin-left: 15px;
+}
+</style>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="error">
+			<p class="face">系统错误</p>
+			<h1><?php echo strip_tags($e['message']);?></h1>
+			<div class="content">
+				<?php if(isset($e['file'])) {?>
+					<div class="info">
+						<div class="title">
+							<h3>错误位置</h3>
+						</div>
+						<div class="text">
+							<p>FILE: <?php echo $e['file'] ;?> &#12288;LINE: <?php echo $e['line'];?></p>
+						</div>
+					</div>
+				<?php }?>
+				<?php if(isset($e['trace'])) {?>
+					<div class="info">
+						<div class="title">
+							<h3>TRACE</h3>
+						</div>
+						<div class="text">
+							<p><?php echo nl2br($e['trace']);?></p>
+						</div>
+					</div>
+				<?php }?>
+			</div>
+
+		</div>
+
+		<div class="copyright">
+			<p>
+				<a title="链商科技" href="/">链商科技</a> 
+				<span class="time"><?php echo date('Y-m-d H:i:s'); ?></span>
+			</p>
+		</div>
+	</div>
+</body>
+</html>

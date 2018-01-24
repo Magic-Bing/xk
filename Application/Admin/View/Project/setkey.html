@@ -1,0 +1,81 @@
+<extend name="Common/base" />
+
+<block name="content">
+	<div class="room room-reward">
+		<div class="room-title room-game-title">
+			<div class="clearfix room-title-box">
+				<span class="room-title-info">更改证书</span>
+				<span class="room-title-subtitle">
+					[
+						<a class="href hover" href="<{:U('index/editproject', 'id='.$id)}>">项目设置</a>
+					]
+				</span>
+				<span class="fr room-title-refresh">
+					<a href="__SELF__" class="room-title-refresh-btn">
+						<img class="room-title-refresh-btn-img" src="__IMG__/sx01.png" />
+					</a>
+				</span>
+			</div>
+		</div>
+
+		<div class="room-attr-content">
+			<div class="admin-weixin-key">
+				<form method="post" id="key-form" name="key-form" action="__SELF__" enctype="multipart/form-data" >
+					<input name="id" value="<{$id}>" type="hidden" style="display:none;"/>
+					<div class="admin-weixin-item-list">
+						<div class="admin-weixin-item admin-weixin-public-key">
+							<div class="admin-weixin-item-name admin-weixin-public-key-name">
+								<if condition="!file_exists($key_path.$project['public_key'])">
+									[<span class="color-red">文件不存在</span>]
+								</if>
+								
+								当前支付证书：<{$project['public_key']|default='暂无'}>
+							</div>
+							<div class="admin-weixin-item-title admin-weixin-public-key-title">
+								选择支付证书
+							</div>
+							<div class="admin-weixin-item-content admin-weixin-public-key-content">
+								<input type="file" class="admin-weixin-public-key-input" name="public_key" value="" />
+							</div>
+						</div>
+						<div class="admin-weixin-item admin-weixin-private-key">
+							<div class="admin-weixin-item-name admin-weixin-private-key-name">
+								<if condition="!file_exists($key_path.$project['private_key'])">
+									[<span class="color-red">文件不存在</span>]
+								</if>
+								
+								当前支付证书密钥：<{$project['private_key']|default='暂无'}>
+							</div>
+							<div class="admin-weixin-item-title admin-weixin-private-key-title">
+								选择支付证书密钥
+							</div>
+							<div class="admin-weixin-item-content admin-weixin-private-key-content">
+								<input type="file" class="admin-weixin-private-key-input" name="private_key" value="" />
+							</div>
+						</div>
+						<div class="admin-weixin-item admin-weixin-rootca">
+							<div class="admin-weixin-item-name admin-weixin-rootca-name">
+								<if condition="!file_exists($key_path.$project['rootca'])">
+									[<span class="color-red">文件不存在</span>]
+								</if>
+								
+								当前支付CA证书：<{$project['rootca']|default='暂无'}>
+							</div>
+							<div class="admin-weixin-item-title admin-weixin-rootca-title">
+								选择支付CA证书
+							</div>
+							<div class="admin-weixin-item-content admin-weixin-rootca-content">
+								<input type="file" class="admin-weixin-rootca-input" name="rootca" value=""/>
+							</div>
+						</div>
+					</div>
+					
+					<div class="admin-weixin-submit">
+						<input type="submit" class="admin-weixin-item-btn" value="提交" />
+					</div>
+				</form>
+			</div>
+		</div>
+	
+	</div>
+</block>

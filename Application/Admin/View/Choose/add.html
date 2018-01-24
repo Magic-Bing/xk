@@ -1,0 +1,246 @@
+<extend name="Common/base" />
+
+<block name="header_js_add">
+<script type="text/javascript">
+</script>
+</block>
+
+<block name="content">
+	<div class="room room-choose">
+		<div class="room-title room-game-title">
+			<div class="clearfix room-title-box">
+				<span class="room-title-info">
+					<{$seo_title|default='空白'}>
+				</span>
+				<span class="room-title-subtitle">
+					<include file="tab" /> 
+				</span>
+				<span class="fr room-title-refresh">
+					<a href="__SELF__" class="room-title-refresh-btn">
+						<img class="room-title-refresh-btn-img" src="__IMG__/sx01.png" />
+					</a>
+				</span>
+			</div>
+		</div>
+
+		<div class="room-attr-content">
+			<div class="room-attr-rooms">
+			
+				<div class="room-edit">
+					<form method="post" name="room-edit-form" action="">
+						<div class="room-edit-content js-choose-select-box">
+							<table border="0" cellspacing="2" cellpadding="4" class="list" name="table" id="table" width="100%">
+								<tbody>
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											<span class="color-red">*</span> 
+											项目名称：
+										</td>
+										<td class="room-edit-tr-content">
+											<select class="room-edit-select room-edit-auto-select js-choose-search-project-id js-choose-add-project js-choose-add-project-id" 
+												name="project_id"
+												data-first-title="请选择项目"
+												data-first-value='0'
+											>
+												<foreach name="project_list" item="project_list_vo">
+													<if condition="$project_id eq $project_list_vo['id']">
+														<option value="<{$project_list_vo['id']}>" selected>
+															<{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
+														</option>
+													<else />		 
+														<option value="<{$project_list_vo['id']}>">
+															<{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
+														</option>
+													</if>
+												</foreach> 
+											</select>
+										</td>
+									</tr>
+									
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											项目批次：
+										</td>
+										<td class="room-edit-tr-content">
+											<select class="room-edit-select room-edit-auto-select js-choose-add-batch js-choose-add-batch-id" 
+												name="batch_id"
+												data-first-title="请选择项目批次"
+												data-first-value='0'
+											>
+											</select>
+											<span class="room-edit-tip">（选择代金券项目批次）</span>
+										</td>
+									</tr>
+								
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											<span class="color-red">*</span> 
+											客户姓名：
+										</td>
+										<td class="room-edit-tr-content">
+											<input type="text" name="customer_name" value="" class="room-edit-input js-choose-add-customer-name" > 
+											<span class="room-edit-tip">（填写客户姓名）</span>
+										</td>
+									</tr>
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											<span class="color-red">*</span> 
+											客户手机：
+										</td>
+										<td class="room-edit-tr-content">
+											<input type="text" name="customer_phone" value="" class="room-edit-input js-choose-add-customer-phone" > 
+											<span class="room-edit-tip">（填写客户手机）</span>
+										</td>
+									</tr>
+									
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											排号号码：
+										</td>
+										<td class="room-edit-tr-content">
+											<input type="text" name="row_number" value="" class="room-edit-input js-choose-add-row-number" > 
+											<span class="room-edit-tip">（填写排号号码）</span>
+										</td>
+									</tr> 
+									
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											<span class="color-red">*</span> 
+											诚意金金额：
+										</td>
+										<td class="room-edit-tr-content">
+											<input type="text" name="money" value="" class="room-edit-input js-choose-add-money" > 
+											<span class="room-edit-tip">（填写客户购房诚意金金额）</span>
+										</td>
+									</tr> 
+									
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											意向面积：
+										</td>
+										<td class="room-edit-tr-content">
+											<input type="text" name="area" value="" class="room-edit-input js-choose-add-area" > 
+											<span class="room-edit-tip">（填写客户的意向面积，单位：“平米”）</span>
+										</td>
+									</tr>
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											意向金额：
+										</td>
+										<td class="room-edit-tr-content">
+											<input type="text" name="price" value="" class="room-edit-input js-choose-add-price" > 
+											<span class="room-edit-tip">（填写客户的意向金额，单位：“元”）</span>
+										</td>
+									</tr>
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											意向户型：
+										</td>
+										<td class="room-edit-tr-content">
+											<input type="text" name="house_type" value="" class="room-edit-input js-choose-add-house-type" > 
+											<span class="room-edit-tip">（填写客户的意向户型）</span>
+										</td>
+									</tr>
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											意向楼层：
+										</td>
+										<td class="room-edit-tr-content">
+											<input type="text" name="floor" value="" class="room-edit-input js-choose-add-floor" > 
+											<span class="room-edit-tip">（填写客户的意向楼层）</span>
+										</td>
+									</tr>
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											意向房间：
+										</td>
+										<td class="room-edit-tr-content">
+											<input type="text" name="room" value="" class="room-edit-input js-choose-add-room" > 
+											<span class="room-edit-tip">（填写客户的意向房间）</span>
+										</td>
+									</tr>
+									
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											密码：
+										</td>
+										<td class="room-edit-tr-content">
+											<input type="text" name="password" value="" class="room-edit-input js-choose-add-password" > 
+											<span class="room-edit-tip">（填写相关密码）</span>
+										</td>
+									</tr>
+									
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											<span class="color-red">*</span>
+											状态：
+										</td>
+										<td class="room-edit-tr-content">
+											<select class="room-edit-select js-choose-add-status" name="status">
+												<option value="1" selected>
+													开启
+												</option>
+												<option value="0">
+													关闭
+												</option>
+											</select>
+											<span class="room-edit-tip">（推广的状态设置.默认开启。）</span>
+										</td>
+									</tr>
+									
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											备注：
+										</td>
+										<td class="room-edit-tr-content">
+											<textarea type="text" name="remark" class="room-edit-textarea js-choose-add-remark"></textarea>
+											<span class="room-edit-tip">（填写相关备注）</span>
+										</td>
+									</tr>
+									
+								</tbody> 
+							</table>
+						</div>
+						
+						<div class="room-edit-tips">
+							<div class="room-edit-tips-info">
+								<span class="room-edit-tips-bold">提醒：</span>
+								“<span class="color-red">*</span>”为必填项，请务必填写。
+							</div>
+						</div>
+						
+						<div class="room-edit-btns">
+							<a href="javascript:void(0);" class="room-edit-btn room-edit-btn-save js-choose-add-btn-save">保 存</a> 
+							<a href="javascript:history.back(-1);" class="room-edit-btn room-edit-btn-return">返 回</a>				  
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+	
+	</div>
+</block>
+
+<block name="footer_add_js">
+<script src="__COMMON__/js/jquery/jquery.mousewheel.js"></script>
+<link href="__COMMON__/js/jquery/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet"/>
+<script src="__COMMON__/js/jquery/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+<script src="__COMMON__/js/jquery/jquery.cxSelect-1.4.1/jquery.cxselect.min.js"></script>
+<script type="text/javascript">	
+$(function() {	
+	//多级联动
+	var $project_json = '<{$project_json}>';
+	var $project_json = $.parseJSON($project_json);
+	$('.js-choose-select-box').cxSelect({
+		data: $project_json,                
+		selects: ['js-choose-add-project', 'js-choose-add-batch'],  
+		jsonName: 'n',         
+		jsonValue: 'v',
+		jsonSub: 's',
+		emptyStyle: 'display'
+	});
+});
+</script>
+</block>

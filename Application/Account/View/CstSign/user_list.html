@@ -1,0 +1,106 @@
+<table id="sample-table-choose" class="table table-striped table-bordered table-hover dataTable">
+    <thead>
+    <tr>
+        <th class="center hidden-480" style="min-width: 20px">
+            序号
+        </th>
+        <th>客户姓名</th>
+        <th>
+            <i class="icon-phone bigger-110 hidden-480"></i>
+            客户手机
+        </th>
+        <th>身份证号码</th>
+        <th>诚意金编号</th>
+        <th>置业顾问</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+        <if condition="$count gt 0">
+            <foreach name="res" item="vo" key="k">
+                <tr class="user-tr" data-yp="<{$vo.ywyphone}>" money="<{$vo.money}>" data-id="<{$vo.id}>"  data-is-sign="<{$vo.is_sign}>" data-bid="<{$vo.batch_id}>">
+                    <td class="center"><{$pages*$page_num+$k+1}></td>
+                    <td><{$vo.customer_name}></td>
+                    <td><{:rsa_decode($vo['customer_phone'],getChoosekey())}></td>
+                    <td><{:rsa_decode($vo['cardno'],getChoosekey())}></td>
+                    <td><{$vo.cyjno}></td>
+                    <td><{$vo.ywy}></td>
+                    <td class="center">
+                        <if condition="$vo.is_sign eq 0">
+                            <span class="sign-check" data-id="<{$vo.id}>" title="签到">✔</span>
+                            <else/>
+                            <span class="sign-cancel" data-id="<{$vo.id}>" title="取消"><i class="icon-undo"></i></span>
+                        </if>
+                    </td>
+                </tr>
+            </foreach>
+            <else/>
+            <tr>
+                <td colspan="11" class="center">暂时没有数据...</td>
+            </tr>
+        </if>
+    <tr>
+        <td colspan="11">
+            <button class="btn btn-xs btn-primary" style="float: right" id="check_user1">
+                <i class="icon-cloud-download bigger-110"></i>
+                <if condition="$count gt 0">
+                    <span class="bigger-110 no-text-shadow" id="check-excel">导出客户数据</span>
+                </if>
+            </button>
+        </td>
+    </tr>
+    </tbody>
+
+</table>
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="dataTables_info" id="sample-table-2_info">
+            第 <input id="new_page" type="tel" value="<{$page}>" style="width:30px" class="tzpage"> 页/ <span id="all_page"><{$all_page}></span>
+            页，每页<input
+                id="new_rows" type="tel" value="<{$page_num}>" style="width:30px" class="tzrows"> 条/共 <span id="all_count"><{$count}></span> 条
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="dataTables_paginate paging_bootstrap">
+            <ul class="pagination" id="not-sign">
+                <if condition="$all_page gt 1 ">
+                    <if condition="$page gt 1 ">
+                    <li><a href="#" style="color: #ffb751">«</a></li>
+                    </if>
+
+                <for start="1" end="$all_page+1" name='i'>
+                    <if condition="$i eq $page ">
+                        <li><a href="#" style="background-color: #ffb751;color: #FFF"><{$i}></a></li>
+                    <else/>
+                        <if condition="$all_page gt 7">
+                            <if condition="$page elt 4 ">
+                                <if condition="$i gt 7">
+                                    <php>break;</php>
+                                <else/>
+                                    <li><a href="#" style="color: #ffb751"><{$i}></a></li>
+                                </if>
+                            <elseif condition="($page gt 4) AND ($page lt ($all_page-3))"/>
+                                <if condition="($i egt ($page-3)) AND ($i elt ($page+3))">
+                                    <li><a href="#" style="color: #ffb751"><{$i}></a></li>
+                                </if>
+                            <elseif condition="$page egt ($all_page-3)"/>
+                                <if condition="($i egt $all_page-6)">
+                                    <li><a href="#" style="color: #ffb751"><{$i}></a></li>
+                                </if>
+                            </if>
+                        <else/>
+                            <li><a href="#" style="color: #ffb751"><{$i}></a></li>
+                        </if>
+                    </if>
+                </for>
+                    <if condition="$page lt $all_page ">
+                         <li><a href="#" style="color: #ffb751">»</a></li>
+                    </if>
+                </if>
+            </ul>
+
+        </div>
+    </div>
+</div>
+</div>

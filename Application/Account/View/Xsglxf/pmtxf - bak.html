@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>快速选房 - 云销控管理系统</title>
+        <meta name="keywords" content="云销控">
+        <meta name="description" content="云销控快速选房">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link href="/Public/common/css/base.css" type="text/css" rel="stylesheet">
+        <link href="/Public/xk/css/xk.css" type="text/css" rel="stylesheet">
+        <style>
+            html,body{
+                width:100%;
+                height:100%;
+                overflow: hidden; 
+            }
+            
+            .demo{
+                position:relative; width:100%;height:100%; /*margin:20px;*/ border:1px dotted #d3d3d3; 
+                overflow: auto; 
+            } 
+            .note{width:35px; height:30px; position:absolute; margin-top:0px;
+             /*border-radius: 50%;*/
+             text-align: center;
+             overflow:hidden; cursor:move; font-size:16px; line-height:30px;} 
+            .note span{text-align: center} 
+            .red{background-color:red;border:1px solid red;font-weight:bold;color:#FFF;} 
+            .blue{background-color:#A6E3FC;border:1px solid #75C5E7;} 
+            .green{background-color:#A5F88B;border:1px solid #98E775;} 
+            
+            .marketing-control-content-rooms {
+                width: 77%;
+                height:100%
+            }
+            .marketing-control-content-room-info-wrapper {
+                width: 22%;
+                position: relative;
+                height: 100%;margin-left:1%;
+                
+            }
+            .marketing-control-content-room-info-box {
+                background: #F0F5FB;
+                border: 1px solid #797979;
+                height: 100%;
+            }
+            .marketing-control-content-rooms-help-box {
+                padding: 15px 15px;
+                border-top: 1px solid #797979;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+            }
+            .marketing-control-content-rooms-help-box {
+                padding: 10px 10px;
+                border-top: 1px solid #797979;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+            }
+            .marketing-control-sale-icon {
+                padding: 5px 15px;
+                font-size: 14px;
+                margin-left: 10px;
+                width:15%;
+                text-align:center;
+            }
+           
+        </style>
+        <script src="/Public/common/js/jquery/jquery-1.11.3.min.js"></script>
+        <script src="/Public/common/js/jquery/jquery-ui-1.12.0.custom/jquery-ui.js"></script>
+        <script src="/Public/common/js/layer/layer.js"></script>
+        <script src="/Public/common/js/pc/functions.js"></script>
+        <script src="/Public/xk/js/xk.js"></script>
+        <script src="/Public/common/js/jquery/perfect-scrollbar/perfect-scrollbar.js"></script>
+        <script type="text/javascript">
+            var room_url = {
+                savezb:  '<{:U("xsglxf/savezb")}>',
+                choose_room:'<{:U("home/room/choose_room")}>',
+                not_choose_room: '<{:U("home/room/not_choose_room")}>',
+                search_room: '<{:U("home/room/search_room")}>',
+            };
+            $(function(){ 
+                var tmp; 
+                $('.note').each(function(){ 
+                  tmp = $(this).css('z-index'); 
+                  if(tmp>zIndex) zIndex = tmp; 
+                }); 
+                make_draggable($('.note')); 
+                
+		//选房
+                /*$(".note").click( function(){
+                    //获取页面某一元素的绝对X,Y坐标
+                    var X = $(this).offset().top;
+                    var Y = $(this).offset().left;
+                    //获取相对(父元素)位置:
+                    var Xx = $(this).position().top;
+                    var Yy = $(this).position().left;
+                    alert(Xx);
+                });*/
+          }); 
+		  
+        var zIndex = 0; 
+        function make_draggable(elements){ 
+            elements.draggable({ 
+              opacity: 0.8, 
+              containment:'parent', 
+              start:function(e,ui){ ui.helper.css('z-index',++zIndex); }, 
+              stop:function(e,ui){ 
+                  $x=ui.position.left;
+                  $y=ui.position.top;
+                  $id=parseInt(ui.helper.find('div.data').attr("data-room-id"))
+                  alert($id);
+                  return false;
+                $.ajax({
+                        url: room_url.savezb,
+                        data: {
+                                leftpx: $x,
+                                toppx: $y,
+                                //z: zIndex,
+                                id: $id
+                        },
+                        type: 'POST',
+                        dataType: 'JSON',
+                        success: function (data, status) {
+                                if (typeof(data.status) == 'undefined') {
+                                        alert('系统异常！');
+                                        //return false;
+                                } 
+                                if (data.status == false) {
+                                        alert(data.info);
+                                        //return false;
+                                }
+                            },
+                            error: function (data, status, e) {
+                                alert('提交连接失败！');
+                            }
+                        });
+                    }
+                });
+            }
+        
+           
+        </script>
+    </head>
+    <body>
+    <div style="width:95%;height:95%;margin-left:2%;margin-top: 1%">
+        <div  id="div-qzxfdhk" >
+            <ul style="width:98%;margin-left:1%;margin-top:10px">
+                    <li class="fl qzxf-input-title" >房间</li>
+                    <li class="fl wm75" style="padding:5px 0"><input id="roominfo1" type="text" style="border:0;color:#A9A8A8;" readonly /></li>
+                    <li class="fl qzxf-input-title" >客户</li>
+                    <li class="fl wm75" style="padding:5px 0"><input id="cstname1" type="text" style="border:0"/></li>
+                    <li class="fl" style="padding:5px 0;width:100%"><input type="button" class="qzxf-input-btn"  onclick="xfqz()" value="确认选房"/></li>
+            </ul>			
+	</div>
+        <div class="fl marketing-control-content-rooms " >
+            <div id="base" class="demo marketing-control-content-rooms-list-wrapper">
+                <div style="height:3757px;width:2435px;background: url(../../Public/account/img/222.jpg) -0px -400px no-repeat;"></div>
+                <volist name="rooms" id="rooms_vo" key="rooms_k">
+                    <if condition="empty($rooms_vo['leftpx'])">
+                        <div  class="note <if condition="$rooms_vo['is_xf'] eq 1"> red <else /> blue </if>" style="left:95px;top:150px;z-index:3"> 
+                            <div class="note data marketing-control-content-rooms-box-room-num js-marketing-control-content-rooms-box-room-num marketing-control-content-rooms-box-room-<{$rooms_vo.id}> " roominfo="<{$rooms_vo.buildname}>-<{$rooms_vo.unit|default=1}>-<{$rooms_vo.floor|default=1}><{$rooms_vo.no|default=1}>"  data-room-id="<{$rooms_vo.id}>"><{$rooms_vo.room}>
+                            <span id= "spanid_<{$rooms_vo.id|default=1}>" style="dispaly:none" infolist="<{$rooms_vo.hx}>|<{$rooms_vo.is_xf}>|<{$rooms_vo.area}>|<{$rooms_vo.tnarea}>|<{$rooms_vo.price}>|<{$rooms_vo.tnprice}>|<{$rooms_vo.total}>|<{$rooms_vo.cstname}>|<{$rooms_vo.xftime1}>"   ></span></div>
+                        </div>  
+                    <else />
+                        <div  class="note <if condition="$rooms_vo['is_xf'] eq 1"> red <else /> blue </if>" style="left:<{$rooms_vo.leftpx}>px;top:<{$rooms_vo.toppx}>px;z-index:3"> 
+                            <div class="data marketing-control-content-rooms-box-room-num js-marketing-control-content-rooms-box-room-num marketing-control-content-rooms-box-room-<{$rooms_vo.id}>" roominfo="<{$rooms_vo.buildname}>-<{$rooms_vo.unit|default=1}>-<{$rooms_vo.floor|default=1}><{$rooms_vo.no|default=1}>"  data-room-id="<{$rooms_vo.id}>"><{$rooms_vo.room}>
+                            <span id= "spanid_<{$rooms_vo.id|default=1}>" style="dispaly:none" infolist="<{$rooms_vo.hx}>|<{$rooms_vo.is_xf}>|<{$rooms_vo.area}>|<{$rooms_vo.tnarea}>|<{$rooms_vo.price}>|<{$rooms_vo.tnprice}>|<{$rooms_vo.total}>|<{$rooms_vo.cstname}>|<{$rooms_vo.xftime1}>"   ></span></div>
+                        </div> 
+                    </if> 
+                </volist>
+            </div> 
+        </div>
+        <div class="fl marketing-control-content-room-info-wrapper">
+            <div class="fl marketing-control-content-room-info-box" >
+                <div id="zxproj_bld" class="div-cz-right" style="margin-top: 0px; box-shadow: 0px 0px 0px 0px; border-left-width: 2px; border-left-style: solid; border-left-color: rgb(0, 188, 212);">
+                    <div style="width:100%;height:30px;margin-bottom: 10px;">
+                        <div class="fl wm25 tac marketing-control-content-room-box-title">选择项目</div>
+                        <select class="fl wm75 marketing-control-select-project-select marketing-control-select-project-id">
+                            <option value="4" selected="true">时代大厦</option>
+                            <option value="3">云景府</option>									</select>		
+                    </div>
+
+                    <div class="clearfix" style="width:100%;height:auto;min-height:30px;margin-top:5px">
+                        <div class="fl wm25 tac marketing-control-content-room-box-title">显示楼栋</div>
+                        <div class="fl wm75" style="height:auto;">
+                            <ul class="clearfix" style="width:100%;height:auto;">
+                                <li class="fl wm25 select-build-list-li-select" data-build-id="46">
+                                    <span class="span-build-list-name-selected" id="span_build_id_46">
+                                        1栋																															</span>
+                                </li><li class="fl wm25 select-build-list-li-select" data-build-id="47">
+                                    <span class="span-build-list-name-selected" id="span_build_id_47">
+                                        2栋																															</span>
+                                </li>												</ul>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="marketing-control-content-room-info div-cz-right" id="div_search" style="box-shadow: 0px 0px 0px 0px; border-left-width: 2px; border-left-style: solid; border-left-color: rgb(0, 188, 212);">
+                    <div class="tar marketing-control-search" style="width:100%;height:auto;min-height:30px;">
+                        <div class="fl wm25 tac marketing-control-content-room-box-title">搜索房间</div>
+                        <span class="fl wm75  marketing-control-search-input-wrapper">
+                            <input style="width:100%" class="marketing-control-search-input" type="text" value="" placeholder="输入房号搜索">
+                            <ul class="marketing-control-search-room-list"></ul>
+                        </span>
+                    </div>
+                </div>
+                <div class="marketing-control-content-room-info div-cz-right" id="div_roominfo" style="box-shadow: 0px 0px 0px 0px; border-left-width: 2px; border-left-style: solid; border-left-color: rgb(0, 188, 212);">
+                    <div class="marketing-control-content-room-title">
+                        房间详情
+                    </div>
+                    <div class="marketing-control-content-room-info-list">
+                        <input class="marketing-control-room-info-id" type="hidden" style="display:none;" value="">
+                        <input class="marketing-control-room-info-is-sf" type="hidden" style="display:none;" value="0">
+                        <div class="clearfix marketing-control-content-room-box">
+                            <div class="fl wm25 tac marketing-control-content-room-box-title">
+                                房间名称
+                            </div>
+                            <div class="fl wm75 tac marketing-control-content-room-box-content">
+                                <input class="border-sizing marketing-control-content-room-box-input marketing-control-room-info-name" type="text" readonly="" value="">
+                            </div>
+                        </div>
+                        <div class="clearfix marketing-control-content-room-box">
+                            <div class="fl wm50">
+                                <div class="fl wm50 tac marketing-control-content-room-box-title">
+                                    房间户型
+                                </div>
+                                <div class="fl wm50 marketing-control-content-room-box-content">
+                                    <input class="border-sizing marketing-control-content-room-box-input marketing-control-room-info-hx" type="text" readonly="" value="">
+                                </div>
+                            </div>
+                            <div class="fl wm50">
+                                <div class="fl wm50 tac marketing-control-content-room-box-title">
+                                    销售状态
+                                </div>
+                                <div class="fl wm50 marketing-control-content-room-box-content">
+                                    <input class="border-sizing marketing-control-content-room-box-input marketing-control-room-info-zt" type="text" readonly="" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix marketing-control-content-room-box">
+                            <div class="fl wm50">
+                                <div class="fl wm50 tac marketing-control-content-room-box-title">
+                                    建筑面积
+                                </div>
+                                <div class="fl wm50 marketing-control-content-room-box-content">
+                                    <input class="border-sizing marketing-control-content-room-box-input marketing-control-room-info-area" type="text" readonly="" value="">
+                                </div>
+                            </div>
+                            <div class="fl wm50">
+                                <div class="fl wm50 tac marketing-control-content-room-box-title">
+                                    套内面积
+                                </div>
+                                <div class="fl wm50 marketing-control-content-room-box-content">
+                                    <input class="border-sizing marketing-control-content-room-box-input marketing-control-room-info-tnarea" type="text" readonly="" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix marketing-control-content-room-box">
+                            <div class="fl wm50">
+                                <div class="fl wm50 tac marketing-control-content-room-box-title">
+                                    建筑单价
+                                </div>
+                                <div class="fl wm50 marketing-control-content-room-box-content">
+                                    <input class="border-sizing marketing-control-content-room-box-input marketing-control-room-info-price" type="text" readonly="" value="">
+                                </div>
+                            </div>
+                            <div class="fl wm50">
+                                <div class="fl wm50 tac marketing-control-content-room-box-title">
+                                    套内单价
+                                </div>
+                                <div class="fl wm50 marketing-control-content-room-box-content">
+                                    <input class="border-sizing marketing-control-content-room-box-input marketing-control-room-info-tnprice" type="text" readonly="" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix marketing-control-content-room-box">
+                            <div class="fl wm25 tac marketing-control-content-room-box-title">
+                                标准总价
+                            </div>
+                            <div class="fl wm75 marketing-control-content-room-box-content">
+                                <input class="border-sizing marketing-control-content-room-box-input marketing-control-room-info-total" type="text" readonly="" value="">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="div-cz-right" id="div_xfinfo" style="display:none;">
+                    <div class="marketing-control-content-room-title">
+                        选房信息
+                    </div>
+                    <div class="clearfix marketing-control-content-room-box">
+                        <div class="fl wm25 tac marketing-control-content-room-box-title marketing-control-content-room-user-name">
+                            客户姓名
+                        </div>
+                        <div class="fl wm75 marketing-control-content-room-box-content">
+                            <input class="border-sizing marketing-control-content-room-box-input marketing-control-room-info-cstname" style="border-bottom: 1px solid rgb(0, 204, 204);" type="text" value="">
+                        </div>
+                    </div>
+                    <div class="clearfix marketing-control-content-room-box">
+                        <div class="fl wm25 tac marketing-control-content-room-box-title">
+                            选房时间
+                        </div>
+                        <div class="fl wm75 marketing-control-content-room-box-content">
+                            <input readonly="" class="border-sizing marketing-control-content-room-box-input marketing-control-room-info-xftime" type="text" value="" placeholder="--:--">
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix marketing-control-content-room-info-option">
+                    <div class="tac marketing-control-content-room-cancel" style="display:none">
+                        <a href="javascript:void(0);" class="marketing-control-content-room-option-btn marketing-control-content-room-cancel-btn">取消选房</a>
+                    </div>
+                    <div class="tac marketing-control-content-room-confirm" style="display:none">
+                        <a href="javascript:void(0);" class="marketing-control-content-room-option-btn marketing-control-content-room-confirm-btn">确认选房</a>
+                    </div>
+                </div>
+                <div class="marketing-control-content-rooms-help-box">
+                    <span class="marketing-control-sale-icon marketing-control-no-sale fl" style="border:1px solid #00cccc">未售</span>
+                    <span class="marketing-control-sale-icon marketing-control-haved-sale fl">已售</span>
+                    <span class="marketing-control-sale-icon marketing-control-selected-sale fl">选中</span>
+                </div>
+            </div>
+        </div>
+
+</div>
+</body> 
+</html>

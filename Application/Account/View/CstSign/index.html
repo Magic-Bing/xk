@@ -1,0 +1,269 @@
+<extend name="Common/base"/>
+<block name="breadcrumb">
+    <style>
+        .two-dh {
+            display: inline-block;
+            background-color: #ccc;
+            color: #585858;
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            letter-spacing: 2px;
+            border-radius: 5px;
+            margin-left: calc((100% - 300px) / 4);
+            border-style: none;
+        }
+
+        .a-selected {
+            background-color: #ec5858;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        #user-info label {
+            width: 100%;
+        }
+
+        #user-info input {
+            width: 100%;
+        }
+
+        #user-info tr:nth-child(odd) {
+            display: inline-block;
+            margin-top: 10px;
+        }
+        #user-info th{
+
+        }
+        #button-sign {
+            border-style: none;
+            color: #fff;
+            background-color: rgb(135, 184, 127);
+            font-weight: bold;
+            padding: 5px 15px;
+            margin-top: 10px;
+        }
+        #sign-reset{
+            border-style: none;
+            color: #fff;
+            background-color: rgb(255, 177, 56);
+            font-weight: bold;
+            padding: 5px 15px;
+            margin-top: 10px;
+        }
+        .sign-check{
+            display: inline-block;
+            font-size: 16px;
+            background-color: rgb(135, 184, 127);
+            color: #FFF;
+            padding: 0 5px;
+            cursor: pointer;
+        }
+        .sign-cancel{
+            display: inline-block;
+            font-size: 16px;
+            background-color: rgb(255, 177, 56);
+            color: #FFF;
+            padding: 0 5px;
+            cursor: pointer;
+        }
+        form{
+            display: inline;
+        }
+        .tr-selected{
+            background-color: #abbac3;
+        }
+        .tr-selected td{
+            background-color: rgba(0,0,0,0)!important;
+        }
+    </style>
+    <form action="index" method="post">
+        <input type="hidden" name="zt" value="0">
+        <button  class="two-dh <if condition='$zt eq 0'>a-selected</if>">未签到</button>
+    </form>
+    <form action="index" method="post">
+        <input type="hidden" name="zt" value="1">
+    <button class="two-dh th  <if condition='$zt eq 1'>a-selected</if>">已签到</button>
+    </form>
+    <form action="index" method="post">
+        <input type="hidden" name="zt" value="2">
+    <button class="two-dh th  <if condition='$zt eq 2'>a-selected</if>">全部</button>
+    </form>
+</block>
+<block name="page_content">
+    <span id="sign-zt" style="display: none"><{$zt}></span>
+    <div class="col-sm-8 js-height" style="border: 1px solid #e8eef6;height: auto!important;">
+        <div class="table-header" style="margin-top: 10px"  >
+            客户列表
+        </div>
+        <div class="table-responsive dataTables_wrapper">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="sample-table-2_length" class="dataTables_length">
+                            <label>
+                                项目
+                                <select name="project_id" class="choose-user-project-id" id="project-not-sign"
+                                        style="width: auto;">
+                                    <foreach name="project_list" item="vo" key="k">
+                                        <option value="<{$vo.id}>"><{$vo.company_name}>--<{$vo.name}></option>
+                                    </foreach>
+                                </select>
+                            </label>
+                            <label>
+                                批次
+                                <select name="batch_id" class="choose-user-batch-id" id="batch-one"
+                                        style="width: auto;">
+                                    <option value="">全部</option>
+                                    <foreach name="batch_list" item="vo" key="k">
+                                        <option value="<{$vo.id}>" pid="<{$vo.proj_id}>" style="display: none"><{$vo.name}></option>
+                                    </foreach>
+                                </select>
+                            </label>
+                            <div class="nav-search" id="sample-table-2_filter" style="top:0;">
+                                <label class="input-icon">
+                                    <input type="text" name="word" value="" class="nav-search-input" id="search-one"
+                                           placeholder="姓名、手机、身份证">
+                                    <i class="icon-search nav-search-icon" style="cursor: pointer;left:6px;"
+                                       id="likeUsers"></i>
+                                </label>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12" id="user_list">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4 js-height" style="border: 1px solid #e8eef6;height: auto!important;">
+        <div class="table-header" style="margin-top: 10px">
+            客户签到详情
+        </div>
+        <table class="col-sm-12" id="user-info">
+            <tr>
+                <th>项目名称</th>
+            </tr>
+            <tr>
+                <td>
+                    <label>
+                        <input type="text" id="pname" readonly>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th>项目批次</th>
+            </tr>
+            <tr>
+                <td>
+                    <label>
+                        <input type="text" id="bname" readonly>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th>客户姓名</th>
+            </tr>
+            <tr>
+                <td>
+                    <label>
+                        <input type="text" id="uname" readonly>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th>客户手机</th>
+            </tr>
+            <tr>
+                <td>
+                    <label>
+                        <input type="text" id="uphone" readonly>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th>身份证号码</th>
+            </tr>
+            <tr>
+                <td>
+                    <label>
+                        <input type="text" id="card" readonly>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th>诚意金编号</th>
+            </tr>
+            <tr>
+                <td>
+                    <label>
+                        <input type="text" id="cyjno" readonly>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th>诚意金金额</th>
+            </tr>
+            <tr>
+                <td>
+                    <label>
+                        <input type="text" id="money" readonly>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th>置业顾问</th>
+            </tr>
+            <tr>
+                <td>
+                    <label>
+                        <input type="text" id="ywy" readonly>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th>置业顾问电话</th>
+            </tr>
+            <tr>
+                <td>
+                    <label>
+                        <input type="text" id="yphone" readonly>
+                    </label>
+                </td>
+            </tr>
+            <tr class="col-sm-12">
+                <td class="center" style="display: inline-block;width: 100%">
+                        <button id="button-sign" style="display: none">✔ &nbsp;签到</button>
+                        <button id="sign-reset" style="display: none"><i class="icon-undo"></i> &nbsp;取消</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</block>
+<block name="plugin_js">
+    <script src="/Public/account/js/sign.js"></script>
+</block>
+
+<block name="page_js">
+    <script>
+
+        $(function () {
+            <!--代币获取弹窗-->
+
+            //设置内容框的高度
+            var w = window.innerHeight;//获取浏览器可视窗口高度
+//            console.log(w);
+            $(".js-height").css("min-height", (parseInt(w) - 130) + 'px');
+            window.onresize = function ()//此方法设置内容框大小，随浏览器大小变化高度
+            {
+                //你改变DIV大小的代码
+                var w = window.innerHeight;
+//                console.log(w);
+                $(".js-height").css("min-height", (parseInt(w) - 130) + 'px');
+            }
+
+        });
+    </script>
+</block>

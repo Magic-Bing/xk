@@ -1,0 +1,341 @@
+﻿<extend name="Common/base" />
+
+<block name="header">
+	<link rel="stylesheet" href="/Public/common/css/font-awesome-4.7.0/css/font-awesome.css">
+	<style>
+		.weui-tabbar{
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			position: absolute;
+			z-index: 500;
+			bottom: 0;
+			width: 100%;
+			background-color: #ffffff;
+			border-top: 1px solid #e6e6e6;
+		}
+		.weui-tabbar__item {
+			display: block;
+			-webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+			padding: 2px 0 0;
+			font-size: 0;
+			color: #999999;
+			text-align: center;
+			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+		}
+		.weui-bar__item_on
+		{
+			color:#09BB07;
+		}
+		.weui-badge {
+			display: inline-block;
+			width: 15px;
+			width: 15px;
+			border-radius: 18px;
+			background-color: #F43530;
+			color: #FFFFFF;
+			line-height: 1.2;
+			text-align: center;
+			font-size: 12px;
+			vertical-align: middle;
+		}
+		.weui-badge_dot {
+			width: 9px;
+			height: 9px;
+		}
+
+		.weui-tabbar__icon {
+			display: inline-block;
+			width: 27px;
+			font-size: 20px;
+			padding: 0 0 0 0;
+		}
+		.weui-tabbar__label {
+			text-align: center;
+			color: #999999;
+			font-size: 10px;
+			line-height: 1.8;
+		}
+		.weui-bar__item_on .weui-tabbar__label
+		{
+			color:#09BB07;
+		}
+	</style>
+	<div class="saler-project-view-header-wrapper">
+		<div class="clearfix saler-project-view-header" style="background: #FFF;">
+			<div class="fl wm25 saler-project-view-header-return">
+				<span class="saler-project-view-header-return-box return-btn">
+					<a href="javascript:void(0);" class="saler-project-view-header-return-btn">返回</a>
+				</span>
+			</div>
+			<div class="fl wm50 saler-project-view-header-content js-saler-project-view-header-content">
+				<span class="saler-project-view-header-content-box saler-project-view-header-room-title">
+					<span class="saler-project-view-header-content-box-name">房源对比</span>
+				</span>
+			</div>
+		<!--	<div class="fl wm15 saler-project-view-header-right">
+			
+			</div>-->
+		</div>
+	</div>
+</block>
+
+<block name="content">
+	<div class="saler-project-view-base">			
+		<div class="saler-project-view-content-wrapper">
+			
+			<div id="iscroller-wrapper" class="iscroller-style border-sizing saler-project-room-list" style="margin-bottom: 43px">
+				<div id="iscroller-scroller" class="iscroller-scroller-style border-sizing saler-project-room-list-box">
+					<div class="saler-project-room-list-rooms">
+						<div class="saler-project-room-list-rooms-box">
+							<table class="saler-project-room-list-rooms-table">
+								<!--<tr>
+									<td class="saler-project-room-list-td1-title" colspan="<{$rooms_count+1}>">
+										<div class="saler-project-room-list-title">
+											<div class="saler-project-room-list-title-box">
+												项目名称：<{$projects[$rooms[0]['proj_id']]['name']}>
+											</div>
+										</div>
+									</td>
+								</tr>-->
+								
+								<tr>
+									<td class="saler-project-room-list-td1 saler-project-room-list-td-room-name">
+										<span class="saler-project-room-list-td-title saler-project-room-list-room-name">
+											房间名称
+										</span>
+									</td>
+									
+									<volist name="rooms" id="rooms_vo" key="rooms_k">
+										<td class="saler-project-room-list-td2 saler-project-room-list-td-room-name">
+											<span class="saler-project-room-list-td-content saler-project-room-list-room-name">
+												<{$builds[$rooms_vo['bld_id']]['buildname']}>-<{$rooms_vo.unit}>-<{$rooms_vo.room}>
+											</span>
+										</td>
+									</volist>
+								</tr>
+								<tr>
+									<td class="saler-project-room-list-td1">
+										<span class="saler-project-room-list-td-title">
+											户型
+										</span>
+									</td>
+									
+									<volist name="rooms" id="rooms_vo" key="rooms_k">
+										<td class="saler-project-room-list-td2">
+											<span class="saler-project-room-list-td-content">
+												<{$rooms_vo.hx|default="/"}>
+											</span>
+										</td>
+									</volist>
+								</tr>
+								<tr>
+									<td class="saler-project-room-list-td1">
+										<span class="saler-project-room-list-td-title">
+											标准总价<span class="saler-project-room-list-title-employer">(元)</span>
+										</span>
+									</td>
+									
+									<volist name="rooms" id="rooms_vo" key="rooms_k">
+										<td class="saler-project-room-list-td2">
+											<span class="saler-project-room-list-td-content">
+												<{:number_format($rooms_vo['total'], 2)}>
+											</span>
+										</td>
+									</volist>
+								</tr>
+								<tr>
+									<td class="saler-project-room-list-td1">
+										<span class="saler-project-room-list-td-title">
+											建筑面积<span class="saler-project-room-list-title-employer">(㎡)</span>
+										</span>
+									</td>
+									
+									<volist name="rooms" id="rooms_vo" key="rooms_k">
+										<td class="saler-project-room-list-td2">
+											<span class="saler-project-room-list-td-content">
+												<{:number_format($rooms_vo['area'], 2)}>
+											</span>
+										</td>
+									</volist>
+								</tr>
+								<tr>
+									<td class="saler-project-room-list-td1">
+										<span class="saler-project-room-list-td-title">
+											套内面积<span class="saler-project-room-list-title-employer">(㎡)</span>
+										</span>
+									</td>
+									
+									<volist name="rooms" id="rooms_vo" key="rooms_k">
+										<td class="saler-project-room-list-td2">
+											<span class="saler-project-room-list-td-content">
+												<{:number_format($rooms_vo['tnarea'], 2)}>
+											</span>
+										</td>
+									</volist>
+								</tr>
+								<tr>
+									<td class="saler-project-room-list-td1">
+										<span class="saler-project-room-list-td-title">
+											建筑单价<span class="saler-project-room-list-title-employer">(元)</span>
+										</span>
+									</td>
+									
+									<volist name="rooms" id="rooms_vo" key="rooms_k">
+										<td class="saler-project-room-list-td2">
+											<span class="saler-project-room-list-td-content">
+												<{:number_format($rooms_vo['price'], 2)}>
+											</span>
+										</td>
+									</volist>
+								</tr>
+								<tr>
+									<td class="saler-project-room-list-td1">
+										<span class="saler-project-room-list-td-title">
+											套内单价<span class="saler-project-room-list-title-employer">(元)</span>
+										</span>
+									</td>
+									
+									<volist name="rooms" id="rooms_vo" key="rooms_k">
+										<td class="saler-project-room-list-td2">
+											<span class="saler-project-room-list-td-content">
+												<{:number_format($rooms_vo['tnprice'], 2)}>
+											</span>
+										</td>
+									</volist>
+								</tr>
+								<tr>
+									<td class="saler-project-room-list-td1">
+										<span class="saler-project-room-list-td-title">
+											销售状态
+										</span>
+									</td>
+									
+									<volist name="rooms" id="rooms_vo" key="rooms_k">
+										<td class="saler-project-room-list-td2">
+											<span class="saler-project-room-list-td-content">
+												<if condition="$rooms_vo['is_xf'] eq 1">
+													<span class="color-red saler-project-room-list-td-content-has-sale">已售</b>
+												<else />
+													待售
+												</if>
+											</span>
+										</td>
+									</volist>
+								</tr>
+
+								<tr>
+									<td class="saler-project-room-list-td1-title" colspan="<{$rooms_count+1}>">
+										<div class="saler-project-room-list-title saler-project-room-list-title-hot-sale">
+											<div class="saler-project-room-list-title-box">
+												热销程度
+											</div>
+										</div>
+									</td>
+								</tr>
+
+								<tr>
+									<td class="saler-project-room-list-td1">
+										<span class="saler-project-room-list-td-title">
+											收藏次数
+										</span>
+									</td>
+									
+									<volist name="rooms" id="rooms_vo" key="rooms_k">
+										<td class="saler-project-room-list-td2">
+											<span class="saler-project-room-list-td-content">
+												<{$room_attributes[$rooms_vo['id']]['sccount']|default='0'|intval}>
+											</span>
+										</td>
+									</volist>
+								</tr>
+								<tr>
+									<td class="saler-project-room-list-td1">
+										<span class="saler-project-room-list-td-title">
+											对比次数
+										</span>
+									</td>
+									
+									<volist name="rooms" id="rooms_vo" key="rooms_k">
+										<td class="saler-project-room-list-td2">
+											<span class="saler-project-room-list-td-content">
+												<{$room_attributes[$rooms_vo['id']]['sscount']|default='0'|intval}>
+											</span>
+										</td>
+									</volist>
+								</tr>
+								<tr>
+									<td class="saler-project-room-list-td1">
+										<span class="saler-project-room-list-td-title">
+											关注次数
+										</span>
+									</td>
+									
+									<volist name="rooms" id="rooms_vo" key="rooms_k">
+										<td class="saler-project-room-list-td2">
+											<span class="saler-project-room-list-td-content">
+												<{$room_attributes[$rooms_vo['id']]['djcount']|default='0'|intval}>
+											</span>
+										</td>
+									</volist>
+								</tr>
+								<tr>
+									<td class="saler-project-room-list-td1">
+										<span class="saler-project-room-list-td-title">
+											热力指数
+										</span>
+									</td>
+									
+									<volist name="rooms" id="rooms_vo" key="rooms_k">
+										<td class="saler-project-room-list-td2">
+											<span class="saler-project-room-list-td-content saler-project-room-list-content-star">
+												<for start="0" end="$room_attributes[$rooms_vo['id']]['hot_num']" >★</for><for start="$room_attributes[$rooms_vo['id']]['hot_num']" end="5" >☆</for>
+											</span>
+										</td>
+									</volist>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+     <if condition="$type lt 3">
+	<div class="weui-tabbar">
+		<a href="<{:U('project/index', array('info' => set_search_ids(array('p' => $search_project_id))))}>" class="weui-tabbar__item ">
+							<span style="display: inline-block;position: relative;">
+								<i class="fa fa-list weui-tabbar__icon"></i>
+							</span>
+			<p class="weui-tabbar__label">房源列表</p>
+		</a>
+		<!--<a href="#" class="weui-tabbar__item weui-bar__item_on">
+                            <span style="display: inline-block;position: relative;">
+                                <i class="fa fa-star-half-full weui-tabbar__icon" ></i>
+                            </span>
+			<p class="weui-tabbar__label">对比</p>
+		</a>-->
+		<a href="<{:U('hot/index', array('info' => set_search_ids(array('p' => $search_project_id))))}>" class="weui-tabbar__item">
+							<span style="display: inline-block;position: relative;">
+								<i class="fa fa-bar-chart-o weui-tabbar__icon"></i>
+							</span>
+			<p class="weui-tabbar__label">房源热度</p>
+		</a>
+		<a href="/Saler/MyReport/index/p/<{$search_project_id}>" class="weui-tabbar__item">
+							<span style="display: inline-block;position: relative;">
+								<i class="fa fa-tachometer weui-tabbar__icon"></i>
+								<span class="weui-badge weui-badge_dot" style="position: absolute;top: 2px;right: 0px;display:none;"></span>
+							</span>
+			<p class="weui-tabbar__label">我的报表</p>
+		</a>
+	</div>
+     </if>
+</block>
+<block name="footer"></block>
+<block name="footer_js">
+<include file="Common@Common/Mobile/iscroll" iscroller_id="iscroller_compare" iscroller_select_id="iscroller-wrapper" />
+</block>
+

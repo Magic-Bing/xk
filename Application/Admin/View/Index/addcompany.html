@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新增公司</title>
+<style type="text/css">
+#tagscontent tr {
+    line-height: 36px;
+    height: auto;
+    clear: both;
+}
+#tagscontent #table .left {
+    width: 200px;
+    text-align: right;
+    padding-right: 10px;
+}
+#tagscontent td {
+    font-size: 12px;
+    color: #1B4670;
+    border-bottom: 1px solid #e8eef6;
+}
+#tagscontent input, #tagscontent #table input {
+    font-size: 12px;
+    line-height: 22px;
+    padding: 0px 10px;
+}
+
+.save {
+background: url('../../Public/admin/images/buttom_bg.gif') right bottom no-repeat;
+    line-height: 18px;
+    cursor: pointer;
+    text-align: center;
+    padding: 2px 10px;
+    border: 1px solid #c4d9e9;
+    color: #395366;
+    overflow: hidden;
+    margin-left: 20px;
+	font-size:13px;
+}
+.show_content_m_t2 {
+    width: 1081px;
+	height: 500px;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+    background-color: #fff;
+}
+</style>
+</head>
+<body>
+<div style="background:#2C3B41;width:1081px;line-height:32px;color:#fff;margin-top:-5px">
+	<font style="font-weight:bold">&nbsp;新增公司</font>
+	<div style="float:right;margin-right:16px">
+	<a href=""><img src="../../Public/admin/images/sx01.png" style="width:22px;height:18px;margin-top:6px"></a>
+	</div>
+</div>
+<div class="show_content_m_t2">
+ <div style="width:auto;overflow-x:hidden;overflow-y:hidden"> 
+          <div class="tags"> 
+          <div id="tagscontent">
+            <form method="post" name="form1" action="">
+              <div>
+				<input type="hidden" name="id" id="id" value="" class="skey" style="width:150px;">
+                <table border="0" cellspacing="2" cellpadding="4" class="list" name="table" id="table" width="100%">
+                  <tbody>
+				   <tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="ffffff">
+                      <td class="left">公司名称</td>
+                      <td><input type="text" name="name" id="name" value="" class="skey" style="width:150px;"> </td>
+                    </tr>
+                    <tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="ffffff">
+                      <td class="left">公司地址</td>
+                      <td><input type="text" name="address" id="address" value="" class="skey" style="width:150px;"</td>
+                    </tr>                  
+                    <tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="ffffff">
+                      <td class="left">联系电话</td>
+                      <td><input type="text" name="mobile" id="mobile" value="" class="skey" style="width:150px;"> </td>
+                    </tr>
+                  </tbody> 
+                </table>
+              </div>
+              <div class="blank20"></div>
+              <input type="button" value="保 存" class="save" style="margin-left:220px;margin-top:10px" onclick="savecompany()"> 
+			  <a href="/admin/index/company.html" style="font-size:12px;margin-left:50px;border:1px solid blue;padding:5px 10px;">返回</a>	
+            </form>
+          </div>
+        </div>
+        <div class="blank20"></div> 
+      
+      </div>
+</div>
+<script src="../../Public/xk/js/jquery/jquery-1.11.3.min.js"></script>
+<script src="../../Public/xk/js/functions.js"></script>
+<script src="../../Public/xk/js/layer/layer.js"></script>
+<script type="text/javascript">
+function savecompany()
+{
+	var $name = $("#name").val();
+	var $address = $("#address").val();
+	var $mobile = $("#mobile").val();
+	if ($name=="")
+	{
+		layer_alert("公司名称不能为空");
+		return false;
+	}
+
+	var project_url = {savecompany: '<{:U("index/savecompany")}>',}
+			
+	$.ajax({
+		url: project_url.savecompany,
+		data: {
+			id: "0",
+			name: $name,
+			address: $address,
+			mobile: $mobile,
+		},
+		type: 'POST',
+		dataType: 'JSON',
+		success: function (data, status) {
+			if (typeof(data.status) == 'undefined') {
+				layer_alert('请求失败，请重试！');
+				return false;
+			} 
+			if (data.status == false) {
+				alert(data.info);
+				return false;
+			}
+			layer_alert("保存成功");
+		},
+		error: function (data, status, e) {
+			layer_alert('提交连接失败！');
+		}
+	}); 
+}
+</script>
+
+</body>
+</html>

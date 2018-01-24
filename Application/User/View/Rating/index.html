@@ -1,0 +1,91 @@
+﻿<extend name="Common/base" />
+
+<block name="header_config_add">
+	<script type="text/javascript">
+		var rating_url = {
+			save: '<{:U("rating/save")}>',
+		};
+	</script>
+</block>
+
+<block name="header">
+	<div class="common-header-wrapper">
+		<div class="clearfix common-header">
+			<div class="fl wm25 arrow-left common-header-return user-header-return">
+				<span class="common-header-return-box return-btn">
+					<a href="javascript:void(0);" class="common-header-return-btn">返回</a>
+				</span>
+			</div>
+			<div class="fl wm50 common-header-content js-common-header-content">
+				<span class="common-header-content-box-no-arrow">
+					<span class="common-header-content-box-name">项目评价</span>
+				</span>
+			</div>
+			<div class="fl wm25 user-header-right">&nbsp;</div>
+		</div>
+	</div>
+</block>
+
+<block name="content">
+	<div class="user-rating">
+		<div class="user-rating-wrapper">
+		
+			<div id="box"> 
+				<h4>我对“<span class="user-rating-project-name"><{$project}></span>”的评价</h4> 
+				<div class="content"> 
+					<div id="myPoint">
+						<span><big>5</big><small>.0</small></span> 
+						<div class="rating-big-star rating-big-star5">
+							<i class="rating-big-star-icon"></i>
+							<em>(一般)</em>
+						</div>
+					</div> 
+					<div id="doPoint"> 
+						<p>
+							请点击以下星级进行评分：
+							<br>总分 = (故事 + 更新 + 文笔) / 3
+						</p> 
+						<table cellspacing="0" cellpadding="0" border="0"> 
+							<tbody> 
+								<tr> 
+									<th>故事：</th> 
+									<td><span class="star5 rating-star" id="item1" v="5"><small>1</small><small>2</small><small>3</small><small>4</small><small>5</small><small>6</small><small>7</small><small>8</small><small>9</small><small>10</small></span></td> 
+									<td><strong>5</strong> <em>(一般)</em></td>
+								</tr> 
+								<tr> 
+									<th>更新：</th> 
+									<td><span class="star5 rating-star" id="item2" v="5"><small>1</small><small>2</small><small>3</small><small>4</small><small>5</small><small>6</small><small>7</small><small>8</small><small>9</small><small>10</small></span></td> 
+									<td><strong>5</strong> <em>(一般)</em></td>
+								</tr> 
+								<tr> 
+									<th>文笔：</th> 
+									<td><span class="star5 rating-star" id="item3" v="5"><small>1</small><small>2</small><small>3</small><small>4</small><small>5</small><small>6</small><small>7</small><small>8</small><small>9</small><small>10</small></span></td> 
+									<td><strong>5</strong> <em>(一般)</em></td>
+								</tr>
+							</tbody>
+						</table>
+					</div> 
+					
+					<form class="user-rating-form" name="form" action="" method="POST">
+						<input id="pointTotal" class="user-rating-point-total" type="hidden" value="5.0" name="pointTotal" /> 
+						<input id="pointV1" class="user-rating-point-v1" type="hidden" value="5" name="pointV1" /> 
+						<input id="pointV2" class="user-rating-point-v2" type="hidden" value="5" name="pointV2" /> 
+						<input id="pointV3" class="user-rating-point-v3" type="hidden" value="5" name="pointV3" /> 
+						<label>
+							<div class="user-rating-form-title">评论内容：</div>
+							<textarea class="user-rating-point-content" name="content" rows="5" cols="50"></textarea>
+						</label>
+						<button type="button" class="user-rating-form-btn js-user-rating-form-btn">提交</button> 
+					</form>
+				</div>
+			</div>  
+			
+		</div>
+	</div>
+</block>
+
+
+<block name="footer_js">
+<link media="screen" href="__PUBLIC__/rating/grade.css" type="text/css" rel="stylesheet" /> 
+<script src="__PUBLIC__/rating/grade.js" type="text/javascript"></script> 
+</block>

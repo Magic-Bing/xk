@@ -1,0 +1,101 @@
+<div class="user-voucher-gift">
+	<div class="user-voucher-gift-box">
+		<div class="user-voucher-gift-content">
+			<h1 style="font-size:16px">恭喜!</h1>
+			获得 <span class="voucher-name"><{$voucher.voucher_name|default='--'}></span> 代金券
+			<br/>
+			<a href="<{:U('voucher/mine')}>">点击查看>></a>
+			<span class="user-voucher-gift-btn js-voucher-gift-close-btn">
+				X
+			</span>
+		</div>
+	</div>
+</div>
+<div class="user-voucher-gift-shadow"></div>
+
+<style>
+.voucher-name
+{
+	font-size:18px;
+	font-weight:bold;
+}
+.user-voucher-gift {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 135;
+}
+.user-voucher-gift-shadow {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 130;
+	background: #9a9494;
+	opacity: 0.3;
+}
+.user-voucher-gift-box {
+	position: fixed;
+    top: 230px;
+	left: 8%;
+	right: 8%;
+	text-align: center;
+}
+.user-voucher-gift-content {
+	position: relative;
+	z-index: 25;
+	background: rgba(255,152,0,0.96);
+	background: -webkit-linear-gradient(top, #FF5722 0%, #E91E63 120%);
+    background: -moz-linear-gradient(top, #FF5722 0%, #E91E63 120%);
+    background: -o-linear-gradient(top, #FF5722 0%, #E91E63 120%);
+    background: -ms-linear-gradient(top, #FF5722 0%, #E91E63 120%);
+    background: linear-gradient(top, #FF5722 0%, #E91E63 120%);
+	border-radius: 5px;
+	padding: 10px 5px;
+	line-height: 30px;
+	color:#FFF;
+	font-size:14px;
+}
+.user-voucher-gift-content a {
+	font-size:16px;
+	font-weight:bold;
+}
+.user-voucher-gift-btn {
+    width: 25px;
+    line-height: 25px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-size: 115%;
+    text-align: center;
+    background-color: #FFF;
+    border-radius: 50px;
+    color: #F44336;
+    cursor: pointer;
+    position: absolute;
+    right: -5px;
+    top: -10px;
+    border: 1px solid #F44336;
+	font-size:18px;
+}
+</style>
+<script type="text/javascript">
+$(function() {
+
+	//超过时间关闭
+	setTimeout(function() {
+		$(".user-voucher-gift").fadeOut(1000);
+		$(".user-voucher-gift-shadow").fadeOut(1000);
+	}, 15000);
+
+	//关闭提示框
+	$(document).on('click', '.js-voucher-gift-close-btn', function() {
+		$(".user-voucher-gift").fadeOut(1000);
+		$(".user-voucher-gift-shadow").fadeOut(1000);
+	});
+
+});
+</script>
+

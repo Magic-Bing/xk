@@ -1,0 +1,274 @@
+﻿<extend name="Common/base" />
+
+<block name="header">
+<style>
+.speedbuy-bg
+		{
+			height:100%;width:100%;border-top: 1px solid #03A9F4;
+        }
+		.speedbuy-title
+		{
+			height:60px;width:100%;
+		}
+		.speedbuy-djs
+		{
+			position:absolute;top:3px;left:8%;
+		}
+		.speedbuy-djs .djs-ul
+		{
+			text-align:center;
+			font-size:12px;
+			font-weight:bold;
+			color:#000;
+		}
+		.djs-time
+		{
+			color:#FFF;
+			font-size:23px;
+			background:#000;
+			padding:0 6px 0 6px;
+		}
+		.begin-time
+		{
+			width:100%;height:60px;line-height:60px;margin-left:42%;
+			font-size:18px;
+			font-weight:bold;
+			color: #000;
+		}
+		.remark{
+			position:absolute;top:3px;right:5%;
+			color:#BFBFBF;
+			font-weight: normal;
+		}
+		.speedbuy-content
+		{
+			height:100%;
+			background:#91AEC5;
+			margin-top:1px;
+		}
+		.del-div{
+			margin-left:12px;margin-top:25px;width:25px;line-height:25px;text-align:center;font-size:10px;font-weight:bold;color:red;background:#FFF;border:1px solid red;border-radius:50%;
+			-webkit-box-shadow: 0 0 8px #D20E50;
+			-moz-box-shadow: 0 0 8px #D20E50;
+			box-shadow: 0 0 8px #D20E50;
+		}
+		.buy-span
+		{
+			background:#BFBBBB;
+			color:#FFF;
+			padding:2px 8px 2px 8px;border-radius:5px;
+		}
+		.buy-button
+		{
+			background:red;
+			-webkit-box-shadow: 0 0 8px #D20E50;
+			-moz-box-shadow: 0 0 8px #D20E50;
+			box-shadow: 0 0 8px #D20E50;
+		}
+		.user-voucher-footer-tabs-btn{padding:8px 30px;background:#03a9f4;color:#D6D5D5;}
+		.user-voucher-footer-tabs-btn-select{background:#FFF;color:#03a9f4;font-weight:bold;}
+</style>
+	<div class="common-header-wrapper">
+		<div class="clearfix common-header">
+			<div class="fl wm25 arrow-left common-header-return user-header-return">
+				<span class="common-header-return-box return-btn">
+					<a href="javascript:void(0);" class="common-header-return-btn">返回</a>
+				</span>
+			</div>
+			<div class="fl wm50 common-header-content js-common-header-content">
+				<span class="common-header-content-box-no-arrow">
+					<span class="common-header-content-box-name">备选房源</span>
+				</span>
+			</div>
+			<div class="fl wm25 user-header-right">&nbsp;</div>
+		</div>
+	</div>
+</block>
+
+<block name="content">
+	<div class="user-project-view-base">
+	
+		<div class="user-search-collection-rooms-wrapper">
+			<div id="iscroller-wrapper" class="iscroller-style user-search-collection-rooms-list">
+				<div id="iscroller-scroller" class="iscroller-scroller-style user-search-collection-rooms">
+					
+					<table class="user-search-collection-table user-search-collection-rooms-list user-search-collection-rooms-list-fixed js-user-search-collection-rooms-list-fixed">
+						<tr class="user-search-collection-table-tr-title js-user-search-collection-table-tr-title">
+							<td class="user-search-collection-table-td user-search-collection-table-title user-search-collection-table-title-checkbox">
+								<div class="user-search-collection-table-room-box user-search-collection-table-room-checkboxs">
+									<input class="user-search-collection-table-room-checkbox js-user-collection-room-checkbox-all" type="checkbox">
+								</div>
+							</td>
+							<td class="user-search-collection-table-td user-search-collection-table-title">
+								<div class="user-search-collection-table-title-box">
+									<span class="user-search-collection-table-title-info">
+										楼栋、单元
+									</span>
+								</div>
+							</td>
+							<td class="user-search-collection-table-td user-search-collection-table-title">
+								<div class="user-search-collection-table-title-box">
+									<span class="user-search-collection-table-title-info">
+										楼层
+									</span>
+								</div>
+							</td>
+							<td class="user-search-collection-table-td user-search-collection-table-title">
+								<div class="user-search-collection-table-title-box">
+									<span class="user-search-collection-table-title-info">
+										房号
+									</span>
+								</div>
+							</td>
+							<td class="user-search-collection-table-td user-search-collection-table-title">
+								<div class="user-search-collection-table-title-box">
+									<span class="user-search-collection-table-title-info">
+										户型
+									</span>
+								</div>
+							</td>
+							<td class="user-search-collection-table-td user-search-collection-table-title">
+								<div class="user-search-collection-table-title-box">
+									<span class="user-search-collection-table-title-info">
+										面积(㎡)
+									</span>
+								</div>
+							</td>
+							<td class="user-search-collection-table-td user-search-collection-table-title">
+								<div class="user-search-collection-table-title-box">
+									<span class="user-search-collection-table-title-info">
+										总价(元)
+									</span>
+								</div>
+							</td>
+						</tr>
+					</table>	
+					<div class="speedbuy-content">
+						<ul>
+							<li style="width:100%;height:75px;line-height:75px;">
+								<ul style="height:75px">
+									<li style="float:left;width:14%;height:100%;">
+										<div class="del-div del-button">删</div>
+										<div style="margin-top:-40px;height:55px;border-right:1px solid #FFF;"></div>
+									</li>
+									<li style="float:left;width:68%;height:100%;">
+										<ul style="margin-left:15px;color:#FFF">
+											<li style="height:24px;line-height:24px;padding: 4px 5px 0px 5px;font-size:16px;font-weight:bold;">
+											1栋1单元-1306
+											<span style="font-size:12px;font-weight:400;">&nbsp;&nbsp;&nbsp;户型：A1</span>
+											</li>
+											<li style="height:20px;line-height:20px;padding: 2px 5px 0px 5px;font-size:13px;">
+											面积(㎡)：建筑 118&nbsp;&nbsp;&nbsp;&nbsp;套内 101
+											</li>
+											<li style="height:20px;line-height:20px;padding: 2px 5px 0px 5px;font-size:13px;">
+											标准总价：¥ <span style="font-weight:bold;">1,326,000.00</span>
+											</li>
+										</ul>
+									</li>
+									<li style="float:left;width:17%;height:100%;">
+										<div style="line-height:25px;margin-top:25px;"><span class="buy-span buy-button">认购</span></div>
+									</li>
+								</ul>	
+								<ul style="height:75px">	
+									<li style="float:left;width:14%;height:100%;background:#FFF">
+										<div class="del-div del-button">删</div>
+										<div style="margin-top:-40px;height:55px;border-right:1px solid #2196F3;"></div>
+									</li>
+									<li style="float:left;width:68%;height:100%;background:#FFF">
+										<ul style="margin-left:15px;color:#2196F3">
+											<li style="height:24px;line-height:24px;padding: 4px 5px 0px 5px;font-size:16px;font-weight:bold;">
+											1栋1单元-1306
+											<span style="font-size:12px;font-weight:400;">&nbsp;&nbsp;&nbsp;户型：A1</span>
+											</li>
+											<li style="height:20px;line-height:20px;padding: 2px 5px 0px 5px;font-size:13px;">
+											面积(㎡)：建筑 118&nbsp;&nbsp;&nbsp;&nbsp;套内 101
+											</li>
+											<li style="height:20px;line-height:20px;padding: 2px 5px 0px 5px;font-size:13px;">
+											标准总价：¥ <span style="font-weight:bold;">1,326,000.00</span>
+											</li>
+										</ul>
+									</li>
+									<li style="float:left;width:17%;height:100%;background:#FFF">
+										<div style="line-height:25px;margin-top:25px;"><span class="buy-span buy-button">认购</span></div>
+									</li>
+								<ul>
+							</li>
+						</ul>
+					</div>
+					
+				</div>
+			</div>				
+		
+			<div class="user-search-collection-options">
+				<div class="clearfix user-search-collection-option">
+					<div class="fl wm50 user-search-collection-option-box">
+						<a href="javascript:void(0);" class="user-search-collection-option-a js-user-uncollection-room-list-btn">
+							取消收藏
+						</a>
+					</div>
+					<div class="fl wm50 user-search-collection-option-box">
+						<a href="javascript:void(0);" class="user-search-collection-option-a js-user-collection-compare-btn">
+							对 &nbsp;&nbsp; 比
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>				
+			
+	</div>
+</block>
+
+
+<block name="footer_js">
+<link href="__COMMON__/js//jquery/iscroll/iscroll.css" type="text/css" rel="stylesheet"/>
+<script src="__COMMON__/js/jquery/iscroll/iscroll.js"></script>
+<script>
+var iscroller_collection;
+var top = 0;
+	
+function loaded() {	
+	setTimeout(function() {
+		iscroller_collection = new iScroll("iscroller-wrapper", {
+			bounce: true,
+			checkDOMChanges: true,
+			onBeforeScrollStart: function (e) {
+				var target = e.target;
+				while (target.nodeType != 1) {
+					target = target.parentNode;
+				}
+
+				if (target.tagName != 'SELECT' 
+					&& target.tagName != 'INPUT' 
+					&& target.tagName != 'TEXTAREA'
+				) {
+					e.preventDefault();
+				}
+			},
+			onScrollEnd: function () {
+				top = this.y;
+				if (this.y <= -33) {
+					$(".js-user-search-collection-rooms-list-fixed").show();
+				} else {
+					$(".js-user-search-collection-rooms-list-fixed").hide();
+				}
+			},
+		});
+	}, 100);
+
+	setTimeout(function () { 
+		if (top <= -33) {
+			$(".js-user-search-collection-rooms-list-fixed").show();
+		} else {
+			$(".js-user-search-collection-rooms-list-fixed").hide();
+		}
+	}, 200);
+}
+
+document.addEventListener('touchmove', function (e) { 
+	e.preventDefault(); 
+}, false);
+document.addEventListener('DOMContentLoaded', function () { 
+	setTimeout(loaded, 200); 
+}, false);
+</script>
+</block>

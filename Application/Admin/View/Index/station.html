@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>岗位用户设置</title>
+<style type="text/css">
+#tagscontent {
+    border-top: none;
+    height: auto;
+    /* font-size: 12px; */
+    color: #1B4670;
+    text-align: left;
+}
+
+#tagscontent tr {
+    line-height: 20px;
+    height: auto;
+    clear: both;
+}
+
+#tagscontent .table_td th, #tagscontent #table th {
+    background: #ebe7dc;
+    text-align: center;
+	font-size:13px
+}
+#tagscontent th {
+    color: #1B4670;
+}
+
+#tagscontent td {
+    font-size: 12px;
+    color: #1B4670;
+    border-bottom: 1px solid #e8eef6;
+}
+.search {
+    text-align: left;
+    background: #fcf9f4;
+    height: 38px;
+    line-height: 38px;
+}
+
+.search_content {
+    margin-top: 10px;
+    color: #666;
+    padding-left: 20px;
+	font-size:12px
+}
+
+.show_page {
+    width: 500px;
+    text-align: center;
+    float: right;
+}
+
+#tagscontent .show_page a {
+	padding: 2px 9px;
+	background: #d1cfd6;
+}
+
+
+#tagscontent .show_page a.current {
+	padding: 2px 9px;
+	background:rgb(255, 102, 0);
+    color: #fff;
+}
+
+.button {
+    /* background: url('../images/buttom_bg.gif') right bottom no-repeat; */
+    height: 24px;
+    line-height: 18px;
+    cursor: pointer;
+    text-align: center;
+    padding: 2px 10px;
+    border: 1px solid #c4d9e9;
+    color: #395366;
+    overflow: hidden;
+    margin-left: 20px;
+	font-size:12px;
+}
+.showtop_t {
+    font-weight: bold;
+    text-align: left;
+    color: #0086ae;
+    padding-left: 20px;
+    padding-top: 5px;
+}
+.show_content_m_t2 {
+    width: 1081px;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+    background-color: #fff;
+}
+
+.select_page {
+    width: 400px;
+    margin-left: 20px;
+    float: left;
+}
+a:link {
+    color: #0076cf;
+    text-decoration: none;
+	font-weight:bold;
+}
+
+
+.delurl {
+    background: url('../../Public/admin/images/buttom_bg.gif') right bottom no-repeat;
+    line-height: 22px;
+    cursor: pointer;
+    text-align: center;
+    padding: 5px 10px;
+    border: 1px solid #c4d9e9;
+    color: #395366;
+    overflow: hidden;
+    margin-left: 20px;
+    font-size: 14px;
+}
+.selectpc {
+background:rgba(255, 165, 0, 0.1);
+}
+
+#bldlisttb td
+{
+	font-size:13px;
+}
+
+#bldlisttb tr
+{
+	width:240px;
+}
+.xzblddiv{
+float:left;width:45%;
+color:#FFF;
+border:1px solid #FFF;
+background:rgb(220, 45, 14);
+border-radius:5px;
+padding:2px 0;
+font-weight:bold;
+cursor:pointer;
+line-height:20px
+}
+a{
+cursor:pointer;
+}
+</style>
+
+</head>
+<body>
+<div style="position:absolute;top:80px; left:280px; width:320px;height:460px;background:rgb(225, 220, 220);display:none; overflow-y:auto" id="userlistdiv">
+	<div style="width:100%;height:30px;text-align:center;background:rgba(44, 59, 65, 0.93);color:#FFF;line-height:30px;font-weight:bold">岗位选择用户</div>
+	<table style="width:320px">
+		<thead style="width:240px;background:rgba(158, 158, 158, 0.45)">
+			<tr style="width:240px;">
+				<th style="width:50px"><input type="checkbox"   id="chkall" name="chkall" onclick="checkall()" style="margin-left:25px" ></td>
+				<th style="font-size:13px">用户名称</td>
+				<th style="width:80px;font-size:13px">用户代码</td>
+				<th style="width:100px;font-size:13px">手机</td>
+			</tr>
+		</thead>	
+		<tbody id="userlisttb">
+			
+		</tbody>
+	</table>
+	<div style="margin-left:40px;margin-top:50px;width:280px;"></div>
+	<div style="position:absolute;bottom:0px;width:100%;height:30px;text-align:center;background:rgba(44, 59, 65, 0.93);color:#FFF;line-height:30px">
+		<input  style="float:left;margin-left:80px;margin-top:5px" type="button" value="取消" onclick="ycdiv()"/>
+		<input  id="addqz" style="float:right;margin-right:80px;margin-top:5px" type="button" value="确定" onclick="stationadduser()"/>
+	</div>
+</div>
+
+<div style="height:30px">
+<font style="float:left;margin-left:20px;font-weight:bold">选择公司</font>
+<div style="float:left;margin-left:10px">
+	<select id= "companylist" name="companylist" style="width:200px;padding: 1px 10px;" >
+	<if condition="$selectedcomp['id'] gt 0">
+		<foreach name="companylist" item="companylist_vo">
+		<if condition="$selectedcomp['id'] eq $companylist_vo['id']">
+		  <option value="<{$companylist_vo['id']}>" selected>
+			<{$companylist_vo['name']}>
+		  </option>
+		<else />		 
+		  <option value="<{$companylist_vo['id']}>">
+			<{$companylist_vo['name']}>
+		  </option>
+		</if>
+		</foreach> 
+	<else />
+		<option value="0" selected></option>
+		 <foreach name="companylist" item="companylist_vo">
+		   <option value="<{$companylist_vo['id']}>">
+			<{$companylist_vo['name']}>
+		   </option>
+		</foreach> 
+	</if>
+	</select>
+	
+	 <form method="post" id="selectcomp" name="selectcomp" action="/admin/index/station.html"  target="mainhtml" style="display:none">
+		<input type="text" id="compid" name="compid" value=""> 
+		<input type="submit" value="提交查询" class="button">  
+	</form>
+</div>
+</div>
+<div style="background:#2C3B41;width:1081px;line-height:32px;color:#fff;margin-top:-5px">
+<font style="font-weight:bold">&nbsp;岗位用户列表</font>
+<div style="float:right;margin-right:16px">
+	<a href="/admin/index/station.html?compid=<{$selectedcomp['id']}>"><img src="../../Public/admin/images/sx01.png" style="width:22px;height:18px;margin-top:6px"></a>
+</div>
+</div>
+<div class="show_content_m_t2">
+    <div style="float:left;width:450px;height:600px;overflow-x:hidden;overflow-y:auto">
+        <div class="tags" style="margin-top: -10px;">
+            <div id="tagstitle"></div>
+            <div id="tagscontent">
+                <div id="con_one_1">
+                    <div class="table_td" style="margin-top:12px;">
+                        <table border="0" cellspacing="2" cellpadding="4" class="list" name="pctable" id="pctable" width="100%">
+                            <thead>
+                                <tr>
+                                    <th align="center">岗位名称</th>
+                                    <th align="center" style="width:150px">操作</th>
+                                </tr>
+                            </thead> 
+                            <tbody>
+                            <foreach name="stationlist" item="station_vo" key="i">
+                                <if condition="$i eq 0"> 
+                                    <tr class="tr_c selectpc" onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='#ffffff';" bgcolor="#ffffff" stationid="<{$station_vo['id']}>" data_id="<{$i}>">   
+                                        <td align="center"><{$station_vo['name']}></td> 
+                                        <td align="center" style="height:40px"> 
+                                            <a style="float:left;width:48%" href="/admin/index/editstation.html?id=<{$station_vo['id']}>"  ><img src="../../Public/admin/images/edit.jpg" ></a>
+                                            <div class="xzblddiv"  onclick="xzuser(<{$station_vo['id']}>,<{$station_vo['cp_id']}>)" >选择用户</div>
+                                        </td> 
+                                    </tr>
+                                    <else />
+                                    <tr class="tr_c" onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='#ffffff';" bgcolor="#ffffff" stationid="<{$station_vo['id']}>" data_id="<{$i}>">   
+                                        <td align="center"><{$station_vo['name']}></td> 
+                                        <td align="center" style="height:40px"> 
+                                            <a style="float:left;width:48%" href="/admin/index/editstation.html?id=<{$station_vo['id']}>"  ><img src="../../Public/admin/images/edit.jpg" ></a>
+                                            <div class="xzblddiv"  onclick="xzuser(<{$station_vo['id']}>,<{$station_vo['cp_id']}>)" >选择用户</div>
+                                        </td> 
+                                    </tr>
+                                </if>
+                            </foreach> 
+                            <!--
+                            <if condition="$selectedcomp['id'] gt 0">
+                                    <if condition="count($stationlist) gt 0">
+                                    <tr class="tr_c" onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='#ffffff';" bgcolor="#ffffff" pcid="999" data_id="999">   
+                                          <td align="center" style="font-weight: bold;color: red;">未分配批次楼栋</td> 
+                                          <td align="center"></td>
+                                          <td align="center" style="height:40px"></td> 
+                                    </tr>
+                                    </if>
+                            </if>
+                            -->
+                            </tbody> 
+                        </table>
+
+                        <div class="blank20"></div>  
+                        <if condition="$selectedcomp['id'] gt 0">
+                            <div >
+                                <div style="margin-top:15px;line-height: 18px; float:left;margin-left:20px;">
+                                    <a href="/admin/index/addstation.html?compid=<{$selectedcomp['id']}>" class="delurl" >新增岗位</a>
+                                </div>
+                            </div>
+                    </div>
+                    </if>				
+                    <div class="blank20"></div>
+                </div>
+            </div>
+        </div>
+    </div>    
+ </div>
+ <div style="float:left;width:620px;overflow-x:hidden;overflow-y:hidden;margin-left:10px"> 
+    <div class="tags" style="margin-top: -10px;">
+      	<div id="tagstitle"></div>
+        <div id="tagscontent">
+           <div id="con_one_1">
+             <div class="table_td" style="margin-top:10px;">
+                  <table border="0" cellspacing="2" cellpadding="4" class="list" name="table1" id="table1" width="100%">
+                    <thead>
+                      <tr>
+                        <th width="40px"><input type="checkbox" ></th>
+						<th align="center">用户名称</th>
+                        <th align="center">用户代码</th> 
+						<th align="center">联系电话</th>
+                        <th align="center" style="width:100px">操作</th>
+                      </tr>
+                    </thead> 
+                     <tbody id="bldtb" name="bldtb" >
+						  <foreach name="userlist" item="userinfo_vo">
+						  <tr class="s_out"  bgcolor="#ffffff" id="trid_<{$userinfo_vo['id']}>"> 
+							<td align="center" ><input type="checkbox" ></td> 
+							<td align="center"><{$userinfo_vo['username']}></td> 
+							<td align="center"> <{$userinfo_vo['code']}> </td> 
+							<td align="center"> <{$userinfo_vo['mobile']}> </td>
+							<td align="center">
+								<a onclick="stationdeluser(<{$userinfo_vo['station_id']}>,<{$userinfo_vo['id']}> )" ><img src="../../Public/admin/images/del.jpg" ></a> 
+							</td>
+						  </tr> 
+						  </foreach> 
+                    </tbody> 
+                  </table>
+
+                <div class="blank20"></div> 	
+                <div class="blank20"></div>
+            </div>
+           </div>
+        </div>
+    </div>    
+  </div> 
+</div>
+<script src="../../Public/xk/js/jquery/jquery-1.11.3.min.js"></script>
+<script src="../../Public/xk/js/functions.js"></script>
+<script src="../../Public/xk/js/layer/layer.js"></script>
+<script type="text/javascript">
+$("#companylist").change(function(){
+	$("#compid").val($("#companylist option:selected").val());
+    $("form").submit();
+  });  
+
+ $(".tr_c").click(function(){
+	
+	if($(this).hasClass("selectpc"))
+	{
+		//alert(11);
+	}
+	else{
+		var $trlist=$("#pctable").find("tr");
+		for (var $i=0;$i<$trlist.length;$i++)
+		{
+			$trlist.eq($i).removeClass("selectpc");
+		}
+		$(this).addClass("selectpc");
+		
+		var $compid=$("#companylist option:selected").val();
+		showuserist($(this).attr("stationid"),$compid);
+	}
+	
+  });   
+  
+  function showuserist($stationid,$compid)
+  {
+	$("#bldtb").html("");
+	var project_url = {getuserist: '<{:U("index/getuserist")}>',}		
+	$.ajax({
+		url: project_url.getuserist,
+		data: {
+			station_id: $stationid ,
+			cp_id: $compid ,
+			type: "zj",
+		},
+		type: 'POST',
+		dataType: 'JSON',
+		success: function (data, status) {
+			if (typeof(data.status) == 'undefined') {
+				layer_alert('请求失败，请重试！');
+				return false;
+			} 
+			if (data.status == false) {
+				alert(data.info);
+				return false;
+			}
+			var $userlist = data.info;
+			var $temphtml="";
+			if ($userlist.length > 0) {
+
+					for (var $i = 0; $i < $userlist.length; $i ++) {
+						$temphtml+="<tr class='s_out'  bgcolor='#ffffff' id='trid_"+ $userlist[$i].id +"' >";
+						$temphtml+="<td align='center' ><input type='checkbox' ></td> ";
+						$temphtml+="<td align='center'>" + $userlist[$i].username + "</td> ";
+						$temphtml+="<td align='center'>" + $userlist[$i].code + "</td> ";
+						$temphtml+="<td align='center'>" + $userlist[$i].mobile + "</td> ";
+						$temphtml+="<td align='center'>";
+						$temphtml+="<a onclick='stationdeluser(" + $userlist[$i].station_id + "," +$userlist[$i].id + ")' ><img src='../../Public/admin/images/del.jpg'></a>";
+						$temphtml+="</td></tr> ";
+					}
+					$("#bldtb").html($temphtml);
+			} 
+			
+		},
+		error: function (data, status, e) {
+			layer_alert('提交连接失败！');
+		}
+	}); 
+  }
+ 
+  
+	function stationdeluser($stationid,$id)
+	{
+		if ($id==0||$id=="")
+		{
+			layer_alert("数据异常，请稍后重试");
+			return false;
+		}
+		
+		if (!confirm("是否从岗位中移除此用户？！"))
+				return false;
+
+		var project_url = {stationdeluser: '<{:U("index/stationdeluser")}>',}		
+		$.ajax({
+			url: project_url.stationdeluser,
+			data: {
+				stationid: $stationid ,
+				id: $id ,
+			},
+			type: 'POST',
+			dataType: 'JSON',
+			success: function (data, status) {
+				if (typeof(data.status) == 'undefined') {
+					layer_alert('请求失败，请重试！');
+					return false;
+				} 
+				if (data.status == false) {
+					alert(data.info);
+					return false;
+				}
+				layer_alert("操作成功");
+				$("#trid_"+ $id).remove();
+				//window.location.reload();
+			},
+			error: function (data, status, e) {
+				layer_alert('提交连接失败！');
+			}
+		}); 
+	}
+	
+	
+	function xzuser($station_id,$cp_id)
+	{
+		var project_url = {getuserist: '<{:U("index/getuserist")}>',}		
+		$.ajax({
+			url: project_url.getuserist,
+			data: {
+				station_id: $station_id ,
+				cp_id: $cp_id ,
+				type:"all",
+			},
+			type: 'POST',
+			dataType: 'JSON',
+			success: function (data, status) {
+				if (typeof(data.status) == 'undefined') {
+					layer_alert('请求失败，请重试！');
+					return false;
+				} 
+				if (data.status == false) {
+					alert(data.info);
+					return false;
+				}
+				var $userlist = data.info;
+				var $temphtml="";
+				if ($userlist.length > 0) {
+
+						for (var $i = 0; $i < $userlist.length; $i ++) {
+							$temphtml+="<tr id='userid_"+ $userlist[$i].id +"' >";
+							$temphtml+="<td style='width:50px'><input type='checkbox' style='margin-left:30px' class='selectuser' name='id[]' value='" + $userlist[$i].id + "'></td> ";
+							$temphtml+="<td align='left' style='font-size:12px'>" + $userlist[$i].name + "</td> ";
+							$temphtml+="<td align='left' style='width:80px;font-size:12px'>" + $userlist[$i].code + "</td> ";
+							$temphtml+="<td align='left' style='width:100px;font-size:12px'>" + $userlist[$i].mobile + "</td> ";
+							$temphtml+="</tr> ";
+						}
+						$("#addqz").attr("station_id",$station_id);
+						$("#addqz").attr("cp_id",$cp_id);
+						$("#userlisttb").html("").html($temphtml);
+						$("#userlistdiv").show();
+				}
+				else
+				{
+					layer_alert('无可供选择的用户');
+				}				
+				
+			},
+			error: function (data, status, e) {
+				layer_alert('提交连接失败！');
+			}
+		}); 
+	}
+	
+	
+	function stationadduser()
+	{
+		var $station_id=$("#addqz").attr("station_id");
+		var $cp_id=$("#addqz").attr("cp_id");
+		var $userlist="";
+		var $alluser=$("#userlisttb").find(".selectuser")
+		
+		for(var i=0;i<$alluser.length;i++)
+		{
+			if ($alluser.eq(i).is(':checked'))
+				$userlist+=$alluser.eq(i).val()+"|";
+		}
+		
+		if ($userlist=="")
+		{
+			layer_alert('请选择用户！');
+			return false;
+		}
+		else{
+			$userlist=$userlist.substring(0,$userlist.length-1);
+		}
+		
+		var project_url = {stationadduser: '<{:U("index/stationadduser")}>',}	
+		$.ajax({
+			url: project_url.stationadduser,
+			data: {
+				station_id: $station_id ,
+				userlist:$userlist,
+			},
+			type: 'POST',
+			dataType: 'JSON',
+			success: function (data, status) {
+				if (typeof(data.status) == 'undefined') {
+					layer_alert('请求失败，请重试！');
+					return false;
+				} 
+				if (data.status == false) {
+					alert(data.info);
+					return false;
+				}
+				$("#userlistdiv").hide();
+				layer_alert("操作成功");
+				showuserist($station_id,$cp_id);
+			},
+			error: function (data, status, e) {
+				layer_alert('提交连接失败！');
+			}
+		}); 
+	}
+	
+	function checkall()
+	{ 
+		var $checkinfo = $('#chkall').is(':checked');
+		if($checkinfo ==  true){
+			$("input[name='id[]']").attr("checked",true); 
+		}else{
+			$("input[name='id[]']").attr("checked",false); 
+		} 
+	}
+	
+	function ycdiv()
+	{
+		$("#userlistdiv").hide();
+	}
+
+</script>
+
+</body>
+</html>
