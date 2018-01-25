@@ -1,5 +1,79 @@
-﻿<extend name="Common/base" />
-<block name="header">
+<?php if (!defined('THINK_PATH')) exit();?>﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<title><?php echo ((isset($seo_title) && ($seo_title !== ""))?($seo_title):'置业顾问'); ?></title>
+		<meta name="keywords" content="<?php echo ((isset($seo_keywords) && ($seo_keywords !== ""))?($seo_keywords):'置业顾问'); ?>"/>
+		<meta name="description" content="<?php echo ((isset($seo_description) && ($seo_description !== ""))?($seo_description):'置业顾问'); ?>"/>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+		<meta name="apple-mobile-web-app-capable" content="yes"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<meta name="MobileOptimized" content="320">
+		<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta name="HandheldFriendly" content="true">
+		
+			<link href="/Public/common/css/base.css" type="text/css" rel="stylesheet"/>
+			<link href="/Public/common/css/layout.css" type="text/css" rel="stylesheet"/>
+		
+		
+			<link href="/Public/sales/css/saler.css" type="text/css" rel="stylesheet"/>
+		
+		
+			<link href="/Public/common/css/font-awesome.min.css" type="text/css" rel="stylesheet"/>
+		
+			<script src="/Public/common/js/jquery/jquery-1.11.3.min.js"></script>
+			<!--<script src="/Public/common/js/jquery/jquery-ui-1.12.0.custom/jquery-ui.js"></script>-->
+			<script src="/Public/common/js/jquery/jquery.mousewheel.js"></script>
+			<link href="/Public/common/js/jquery/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet"/>
+			<script src="/Public/common/js/jquery/perfect-scrollbar/perfect-scrollbar.js"></script>
+			<script src="/Public/common/js/functions.js"></script>
+			<script src="/Public/common/js/layer_mobile/layer.js"></script>
+			<script src="/Public/common/js/mobile/layer.js"></script>
+			<script src="/Public/common/js/mobile/functions.js"></script>
+			<script src="/Public/common/js/mobile/common.js"></script>
+		
+		
+			<script src="/Public/sales/js/data.js"></script>
+			<script src="/Public/sales/js/common.js"></script>
+			<script src="/Public/sales/js/saler.js"></script>
+		
+		
+		
+			<script type="text/javascript">
+				var saler_url = {
+					index: '<?php echo U("index/index");?>',
+					room_index: '<?php echo U("room/index");?>',
+					project_room_compare: '<?php echo U("compare/room");?>',
+					search: '<?php echo U("search/index");?>',
+					hot_sale: '<?php echo U("hot/index");?>',
+					login: '<?php echo U("logging/check");?>',
+                                        login1: '<?php echo U("logging1/check");?>',
+					logout: '<?php echo U("logging/logout");?>',
+					project_index: '<?php echo U("project/index");?>',
+                    getNotBuy: '<?php echo U("MyReport/getNotBuy");?>',
+				}
+				var search_url = {
+					room: '<?php echo U("search/room");?>',
+				}
+				var saler_hot = {
+
+				}
+				var saler_event_house ={
+                    room: '<?php echo U("EventOrderHouse/hot");?>'
+					,login : '<?php echo U("EventOrderHouse/check");?>'
+					,logout : '<?php echo U("EventOrderHouse/logout");?>'
+				};
+
+			</script>
+		
+		
+	</head>
+	
+	<body>
+		
     <link rel="stylesheet" href="/Public/common/css/font-awesome-4.7.0/css/font-awesome.css">
     <script src="/Public/sales/js/highcharts.js"></script>
     <script src="/Public/sales/js/exporting.js"></script>
@@ -252,27 +326,19 @@
     <div id="shadow-list">
 
     </div>
-    <if condition="$is_fx eq 0">
-        <div class="fl wm100 hidden-list"  >
-            <volist name="builds" id="builds_vo" key="builds_k">
-                <volist name="new_units[$builds_vo['id']]" id="units_vo" key="units_k">
-                        <if condition="($builds_vo['id'] eq $search_build_id) AND ($units_vo['unit'] eq $search_unit_id)">
-                            <div class="saler-project-view-header-unit-info saler-project-view-header-unit-info-selected fl" style="display: inline-block">
-                                <a class="morea" href="<{:U('RoomAnalysis/index', array('info' => set_search_ids(array('p' => $project_id, 'b' => $builds_vo['id'], 'u' => $units_vo['unit']))))}>">
-                                    <{$builds_vo[ 'buildname']}><if condition="$units_vo['unit'] neq 0"><{$units_vo[ 'unit']}>单元</if>
+    <?php if($is_fx == 0): ?><div class="fl wm100 hidden-list"  >
+            <?php if(is_array($builds)): $builds_k = 0; $__LIST__ = $builds;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$builds_vo): $mod = ($builds_k % 2 );++$builds_k; if(is_array($new_units[$builds_vo['id']])): $units_k = 0; $__LIST__ = $new_units[$builds_vo['id']];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$units_vo): $mod = ($units_k % 2 );++$units_k; if(($builds_vo['id'] == $search_build_id) AND ($units_vo['unit'] == $search_unit_id)): ?><div class="saler-project-view-header-unit-info saler-project-view-header-unit-info-selected fl" style="display: inline-block">
+                                <a class="morea" href="<?php echo U('RoomAnalysis/index', array('info' => set_search_ids(array('p' => $project_id, 'b' => $builds_vo['id'], 'u' => $units_vo['unit']))));?>">
+                                    <?php echo ($builds_vo[ 'buildname']); if($units_vo['unit'] != 0): echo ($units_vo[ 'unit']); ?>单元<?php endif; ?>
                                 </a>
                             </div>
-                            <else />
+                            <?php else: ?>
                             <div class=" saler-project-view-header-unit-info fl" style="display: inline-block">
-                                <a class="morea" href="<{:U('RoomAnalysis/index', array('info' => set_search_ids(array('p' => $project_id, 'b' => $builds_vo['id'], 'u' => $units_vo['unit']))))}>">
-                                    <{$builds_vo[ 'buildname']}><if condition="$units_vo['unit'] neq 0"><{$units_vo[ 'unit']}>单元</if>
+                                <a class="morea" href="<?php echo U('RoomAnalysis/index', array('info' => set_search_ids(array('p' => $project_id, 'b' => $builds_vo['id'], 'u' => $units_vo['unit']))));?>">
+                                    <?php echo ($builds_vo[ 'buildname']); if($units_vo['unit'] != 0): echo ($units_vo[ 'unit']); ?>单元<?php endif; ?>
                                 </a>
-                            </div>
-                        </if>
-                </volist>
-            </volist>
-        </div>
-    </if>
+                            </div><?php endif; endforeach; endif; else: echo "" ;endif; endforeach; endif; else: echo "" ;endif; ?>
+        </div><?php endif; ?>
     <div class="saler-project-view-header-wrapper">
         <div class="clearfix saler-project-view-header" style="background:#FFF">
                 <div>
@@ -283,7 +349,7 @@
                     </div>
                     <div class="fl wm50 saler-project-view-header-content">
                         <span class="saler-project-view-header-content-box-no-arrow">
-                            <span class="saler-project-view-header-content-box-name"><{$projinfo.pname}></span>
+                            <span class="saler-project-view-header-content-box-name"><?php echo ($projinfo["pname"]); ?></span>
                         </span>
                     </div>
                     <div class="fr wm10 saler-project-view-header-right">
@@ -294,78 +360,63 @@
                 </div>
             <div class="fl wm100 "  style="margin-top: 43px;height: 35px;white-space: nowrap;z-index: 100;position: absolute; display: flex;">
                 <div class="fl up-center gy" id="room-xk">
-                    <a href="<{:U('Project/index', array('info' => set_search_ids(array('p' => $project_id))))}>">
+                    <a href="<?php echo U('Project/index', array('info' => set_search_ids(array('p' => $project_id))));?>">
                         <div style="height:25px;margin-top: 4px;line-height: 25px;color: #999999!important;">房源销控</div>
                     </a>
                 </div>
-                <if condition="$is_fx eq 0">
-                <div class="fl up-center bl" id="room-hot">
-                    <a href="<{:U('RoomAnalysis/index', array('info' => set_search_ids(array('p' => $project_id))))}>">
+                <?php if($is_fx == 0): ?><div class="fl up-center bl" id="room-hot">
+                    <a href="<?php echo U('RoomAnalysis/index', array('info' => set_search_ids(array('p' => $project_id))));?>">
                         <div style="height:25px;margin-top: 4px;line-height: 25px;color: #03A9F4">房源热度</div>
                     </a>
                 </div>
                 <div class="fl up-center gy" id="room-img">
-                    <a href="<{:U('RoomAnalysis/index', array('info' => set_search_ids(array('p' => $project_id)),'is_fx' => 1 ))}>">
+                    <a href="<?php echo U('RoomAnalysis/index', array('info' => set_search_ids(array('p' => $project_id)),'is_fx' => 1 ));?>">
                         <div style="height:25px;margin-top: 4px;line-height: 25px;color: #999999">装户统计</div>
                     </a>
                 </div>
-                <else/>
+                <?php else: ?>
                     <div class="fl up-center gy" id="room-hot">
-                        <a href="<{:U('RoomAnalysis/index', array('info' => set_search_ids(array('p' => $project_id))))}>">
+                        <a href="<?php echo U('RoomAnalysis/index', array('info' => set_search_ids(array('p' => $project_id))));?>">
                             <div style="height:25px;margin-top: 4px;line-height: 25px;color: #999999">房源热度</div>
                         </a>
                     </div>
                     <div class="fl up-center bl" id="room-img">
-                        <a href="<{:U('RoomAnalysis/index', array('info' => set_search_ids(array('p' => $project_id)),'is_fx' => 1 ))}>">
+                        <a href="<?php echo U('RoomAnalysis/index', array('info' => set_search_ids(array('p' => $project_id)),'is_fx' => 1 ));?>">
                             <div style="height:25px;margin-top: 4px;line-height: 25px;color: #03A9F4">装户统计</div>
                         </a>
-                    </div>
-                </if>
+                    </div><?php endif; ?>
             </div>
                 <!--开启滚动条添加id="unit_s"-->
-            <if condition="$is_fx eq 0">
-                <div class="fl"  id="unit_s" style="width:calc(100% - 50px);overflow: hidden;margin-top: 78px;white-space: nowrap;padding:4px 0 0 0;z-index: 100;position: absolute;background: #FFF;">
-                        <php>$project_num = 1;</php>
-                        <volist name="builds" id="builds_vo" key="builds_k">
-                            <volist name="new_units[$builds_vo['id']]" id="units_vo" key="units_k">
-                                    <if condition="($builds_vo['id'] eq $search_build_id) AND ($units_vo['unit'] eq $search_unit_id)">
-                                        <div class="saler-project-view-header-unit-info saler-project-view-header-unit-info-selected" style="display: inline-block">
-                                            <a href="<{:U('RoomAnalysis/index', array('info' => set_search_ids(array('p' => $project_id, 'b' => $builds_vo['id'], 'u' => $units_vo['unit']))))}>">
-                                                <{$builds_vo[ 'buildname']}><if condition="$units_vo['unit'] neq 0"><{$units_vo[ 'unit']}>单元</if>
+            <?php if($is_fx == 0): ?><div class="fl"  id="unit_s" style="width:calc(100% - 50px);overflow: hidden;margin-top: 78px;white-space: nowrap;padding:4px 0 0 0;z-index: 100;position: absolute;background: #FFF;">
+                        <?php $project_num = 1; ?>
+                        <?php if(is_array($builds)): $builds_k = 0; $__LIST__ = $builds;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$builds_vo): $mod = ($builds_k % 2 );++$builds_k; if(is_array($new_units[$builds_vo['id']])): $units_k = 0; $__LIST__ = $new_units[$builds_vo['id']];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$units_vo): $mod = ($units_k % 2 );++$units_k; if(($builds_vo['id'] == $search_build_id) AND ($units_vo['unit'] == $search_unit_id)): ?><div class="saler-project-view-header-unit-info saler-project-view-header-unit-info-selected" style="display: inline-block">
+                                            <a href="<?php echo U('RoomAnalysis/index', array('info' => set_search_ids(array('p' => $project_id, 'b' => $builds_vo['id'], 'u' => $units_vo['unit']))));?>">
+                                                <?php echo ($builds_vo[ 'buildname']); if($units_vo['unit'] != 0): echo ($units_vo[ 'unit']); ?>单元<?php endif; ?>
                                             </a>
                                         </div>
-                                        <else />
+                                        <?php else: ?>
                                         <div class=" saler-project-view-header-unit-info" style="display: inline-block">
-                                            <a href="<{:U('RoomAnalysis/index', array('info' => set_search_ids(array('p' => $project_id, 'b' => $builds_vo['id'], 'u' => $units_vo['unit']))))}>">
-                                                <{$builds_vo[ 'buildname']}><if condition="$units_vo['unit'] neq 0"><{$units_vo[ 'unit']}>单元</if>
+                                            <a href="<?php echo U('RoomAnalysis/index', array('info' => set_search_ids(array('p' => $project_id, 'b' => $builds_vo['id'], 'u' => $units_vo['unit']))));?>">
+                                                <?php echo ($builds_vo[ 'buildname']); if($units_vo['unit'] != 0): echo ($units_vo[ 'unit']); ?>单元<?php endif; ?>
                                             </a>
-                                        </div>
-                                    </if>
-                                <php>$project_num++;</php>
-                            </volist>
-                        </volist>
+                                        </div><?php endif; ?>
+                                <?php $project_num++; endforeach; endif; else: echo "" ;endif; endforeach; endif; else: echo "" ;endif; ?>
                 </div>
-                <if condition="$project_num gt 4">
-                    <button id="show-gd" ><i class="fa fa-angle-double-down" aria-hidden="true" style="font-size:15px;"></i></button>
-                </if>
-            </if>
+                <?php if($project_num > 4): ?><button id="show-gd" ><i class="fa fa-angle-double-down" aria-hidden="true" style="font-size:15px;"></i></button><?php endif; endif; ?>
         </div>
     </div>
-</block>
 
-<block name="content">
-    <div class="saler-project-view-base saler-project-id" data-project-id="<{$project['id']|default=0}>" data-build-id="<{$search_build_id|default=0}>" data-unit-id="<{$search_unit_id|default=0}>">
+		
+    <div class="saler-project-view-base saler-project-id" data-project-id="<?php echo ((isset($project['id']) && ($project['id'] !== ""))?($project['id']):0); ?>" data-build-id="<?php echo ((isset($search_build_id) && ($search_build_id !== ""))?($search_build_id):0); ?>" data-unit-id="<?php echo ((isset($search_unit_id) && ($search_unit_id !== ""))?($search_unit_id):0); ?>">
         <div class="saler-project-view-content-wrapper">
             <div class="saler-project-view-content">
 
                     <div class="clearfix saler-project-view-content-tabs" style="margin-top: 95px;">
 
                         </div>
-                <if condition="$is_fx eq 0">
-                <div id="iscroller-wrapper" class="saler-project-view-content-rooms iscroller-rooms iscroller-style"  style="top: 112px;">
-                    <else/>
-                    <div id="iscroller-wrapper" class="saler-project-view-content-rooms iscroller-rooms iscroller-style" style="top: 80px;">
-                </if>
+                <?php if($is_fx == 0): ?><div id="iscroller-wrapper" class="saler-project-view-content-rooms iscroller-rooms iscroller-style"  style="top: 112px;">
+                    <?php else: ?>
+                    <div id="iscroller-wrapper" class="saler-project-view-content-rooms iscroller-rooms iscroller-style" style="top: 80px;"><?php endif; ?>
                                     <div id="iscroller-scroller" class="saler-project-view-content-rooms-box iscroller-rooms-scroller iscroller-scroller-style">
                                         <div id="pullDown" style="display:none;">
                                             <span class="clearfix pull-down-box">
@@ -374,59 +425,52 @@
                                             </span>
                                         </div>
                                         <div class="wm100" id="img-html">
-                                            <if condition="$is_fx eq 0">
-                                            <table class="saler-project-view-content-rooms-table">
-                                                <volist name="floors" id="floors_vo" key="floors_k">
-                                                    <tr>
+                                            <?php if($is_fx == 0): ?><table class="saler-project-view-content-rooms-table">
+                                                <?php if(is_array($floors)): $floors_k = 0; $__LIST__ = $floors;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$floors_vo): $mod = ($floors_k % 2 );++$floors_k;?><tr>
                                                         <td class="saler-project-view-content-rooms-floor">
-                                                            <{$floors_vo.floor|default="1" }>F
+                                                            <?php echo ((isset($floors_vo["floor"]) && ($floors_vo["floor"] !== ""))?($floors_vo["floor"]):"1"); ?>F
                                                         </td>
                                                         <td class="saler-project-view-content-rooms-room" >
                                                             <div class="saler-project-view-content-rooms-list">
                                                                 <ul class="clearfix">
 
-                                                                    <volist name="rooms[$floors_vo['floor']]" id="rooms_vo" key="rooms_k">
-                                                                        <if condition="$rooms_vo.first_count egt 3">
-                                                                            <li class="fl room-li wm25 hot-one">
-                                                                                <elseif condition="$rooms_vo.first_count eq 2"/>
+                                                                    <?php if(is_array($rooms[$floors_vo['floor']])): $rooms_k = 0; $__LIST__ = $rooms[$floors_vo['floor']];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$rooms_vo): $mod = ($rooms_k % 2 );++$rooms_k; if($rooms_vo["first_count"] >= 3): ?><li class="fl room-li wm25 hot-one">
+                                                                                <?php elseif($rooms_vo["first_count"] == 2): ?>
                                                                             <li class="fl room-li wm25 hot-two">
-                                                                                <elseif condition="$rooms_vo.first_count eq 1"/>
+                                                                                <?php elseif($rooms_vo["first_count"] == 1): ?>
                                                                             <li class="fl room-li wm25 hot-three">
-                                                                                <elseif condition="($rooms_vo.first_count eq 0) and ($rooms_vo.sc_count egt 3)"/>
+                                                                                <?php elseif(($rooms_vo["first_count"] == 0) and ($rooms_vo["sc_count"] >= 3)): ?>
                                                                             <li class="fl room-li wm25 hot-four">
-                                                                                <else/>
-                                                                            <li class="fl wm25 room-li hot-five">
-                                                                        </if>
+                                                                                <?php else: ?>
+                                                                            <li class="fl wm25 room-li hot-five"><?php endif; ?>
 
                                                                         <a href="javascript:;" class="saler-project-view-content-rooms-room-a">
                                                                             <div class="saler-project-view-content-rooms-room-box-one ">
                                                                                 <div class="saler-project-view-content-rooms-room-name">
-                                                                                    <{$rooms_vo[ 'room']}>
+                                                                                    <?php echo ($rooms_vo[ 'room']); ?>
                                                                                 </div>
                                                                                 <div class="saler-project-view-content-rooms-room-area">
-                                                                                    <div style="float:left;width:50%"><i class="fa fa-heart-o"></i> <{$rooms_vo[ 'sc_count'] }></div>
-                                                                                    <div style="float:right;width:50%;text-align:right;">① <{$rooms_vo[ 'first_count'] }><div>
+                                                                                    <div style="float:left;width:50%"><i class="fa fa-heart-o"></i> <?php echo ($rooms_vo[ 'sc_count']); ?></div>
+                                                                                    <div style="float:right;width:50%;text-align:right;">① <?php echo ($rooms_vo[ 'first_count']); ?><div>
                                                                                 </div>
                                                                             </div>
                                                                         </a>
 
-                                                                        <div data-room-id="<{$rooms_vo['id']|default='1'}>" class="saler-project-view-content-rooms-room-box-shadow js-saler-project-view-content-rooms-room-box-shadow">
+                                                                        <div data-room-id="<?php echo ((isset($rooms_vo['id']) && ($rooms_vo['id'] !== ""))?($rooms_vo['id']):'1'); ?>" class="saler-project-view-content-rooms-room-box-shadow js-saler-project-view-content-rooms-room-box-shadow">
                                                                             <div class="saler-project-view-content-rooms-room-box-shadow-info">
                                                                                 <span class="saler-project-view-content-rooms-room-box-shadow-info-select">
-                                                                                    <input class="saler-project-view-content-rooms-room-select js-saler-project-view-content-rooms-room-box-shadow saler-project-view-content-rooms-room-select-<{$rooms_vo['id']|default='1'}>" data-room-id="<{$rooms_vo['id']|default='1'}>" type="checkbox" value="1">
+                                                                                    <input class="saler-project-view-content-rooms-room-select js-saler-project-view-content-rooms-room-box-shadow saler-project-view-content-rooms-room-select-<?php echo ((isset($rooms_vo['id']) && ($rooms_vo['id'] !== ""))?($rooms_vo['id']):'1'); ?>" data-room-id="<?php echo ((isset($rooms_vo['id']) && ($rooms_vo['id'] !== ""))?($rooms_vo['id']):'1'); ?>" type="checkbox" value="1">
                                                                                 </span>
                                                                             </div>
                                                                         </div>
-                                                                        </li>
-                                                                    </volist>
+                                                                        </li><?php endforeach; endif; else: echo "" ;endif; ?>
 
                                                                 </ul>
                                                             </div>
                                                         </td>
-                                                    </tr>
-                                                </volist>
+                                                    </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                                             </table>
-                                                <else/>
+                                                <?php else: ?>
 
                                                 <h1 style="font-size: 16px;background-color: #FFF;padding: 5px;letter-spacing: 1px">
                                                     <div style="position: absolute;right: 10px;z-index: 99999;font-size: 12px;font-weight: 400;">
@@ -441,9 +485,7 @@
                                                     户型动态供需单
                                                     <select  id="build-list" class="fr">
                                                         <option value="">全部</option>
-                                                        <volist name="group_room_build" id="vo" key="k">
-                                                            <option value="<{$vo['bld_id']}>"><{$vo['buildname']}></option>
-                                                        </volist>
+                                                        <?php if(is_array($group_room_build)): $k = 0; $__LIST__ = $group_room_build;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k;?><option value="<?php echo ($vo['bld_id']); ?>"><?php echo ($vo['buildname']); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
                                                     </select>
                                                 </h1>
                                                 <div id="container-hx" style="min-width:100%;height:200px;margin-bottom: 10px;"></div>
@@ -457,31 +499,31 @@
                                                                 <td class="wm30">
                                                                     <span class="hot-one-span"></span> 高
                                                                 </td>
-                                                                <td class="wm70"><{$hot_count.hot_one.num}>套 <{$hot_count.hot_one.zb}>%</td>
+                                                                <td class="wm70"><?php echo ($hot_count["hot_one"]["num"]); ?>套 <?php echo ($hot_count["hot_one"]["zb"]); ?>%</td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="wm30">
                                                                     <span class="hot-two-span"></span> 中高
                                                                 </td>
-                                                                <td class="wm70"> <{$hot_count.hot_two.num}>套 <{$hot_count.hot_two.zb}>%</td>
+                                                                <td class="wm70"> <?php echo ($hot_count["hot_two"]["num"]); ?>套 <?php echo ($hot_count["hot_two"]["zb"]); ?>%</td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="wm30">
                                                                     <span class="hot-three-span"></span> 中
                                                                 </td>
-                                                                <td class="wm70"><{$hot_count.hot_three.num}>套 <{$hot_count.hot_three.zb}>%</td>
+                                                                <td class="wm70"><?php echo ($hot_count["hot_three"]["num"]); ?>套 <?php echo ($hot_count["hot_three"]["zb"]); ?>%</td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="wm30">
                                                                     <span class="hot-four-span"></span> 中低
                                                                 </td>
-                                                                <td class="wm70"><{$hot_count.hot_four.num}>套 <{$hot_count.hot_four.zb}>%</td>
+                                                                <td class="wm70"><?php echo ($hot_count["hot_four"]["num"]); ?>套 <?php echo ($hot_count["hot_four"]["zb"]); ?>%</td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="wm30">
                                                                     <span class="hot-five-span"></span> 低
                                                                 </td>
-                                                                <td class="wm70"><{$hot_count.hot_five.num}>套 <{$hot_count.hot_five.zb}>%</td>
+                                                                <td class="wm70"><?php echo ($hot_count["hot_five"]["num"]); ?>套 <?php echo ($hot_count["hot_five"]["zb"]); ?>%</td>
                                                             </tr>
 
                                                         </table>
@@ -549,16 +591,16 @@
                                                                 data: [
                                                                     {
                                                                         name:'高',
-                                                                        y:<{$hot_count["hot_one"]["zb"]}>,
+                                                                        y:<?php echo ($hot_count["hot_one"]["zb"]); ?>,
                                                                     sliced: true,
                                                             selected: true
                                                     },
-                                                        ['中高',<{$hot_count["hot_two"]["zb"]}>],
-                                                        {name: '中', y: <{$hot_count["hot_three"]["zb"]}>},
-                                                        ['中低',    <{$hot_count["hot_four"]["zb"]}>],
+                                                        ['中高',<?php echo ($hot_count["hot_two"]["zb"]); ?>],
+                                                        {name: '中', y: <?php echo ($hot_count["hot_three"]["zb"]); ?>},
+                                                        ['中低',    <?php echo ($hot_count["hot_four"]["zb"]); ?>],
                                                         {
                                                             name:'低',
-                                                                y: <{$hot_count["hot_five"]["zb"]}>
+                                                                y: <?php echo ($hot_count["hot_five"]["zb"]); ?>
                                                         }
                                                         ]
                                                     }]
@@ -585,7 +627,7 @@
                                                                 enabled:false //用来设置是否显示‘打印’,'导出'等功能按钮，不设置时默认为显示
                                                             },
                                                             xAxis: {
-                                                                categories: <{:json_encode($arr_name)}>,
+                                                                categories: <?php echo json_encode($arr_name);?>,
                                                         crosshair: true
                                                     },
                                                         yAxis: {//左侧提示标题
@@ -612,10 +654,10 @@
                                                         },
                                                         series: [{
                                                             name: '房源',
-                                                            data: <{:json_encode($arr_room_count)}>
+                                                            data: <?php echo json_encode($arr_room_count);?>
                                                     }, {
                                                             name: '收藏',
-                                                                data:  <{:json_encode($arr_sc_count)}> //直接放数组是不行的，必须转成json格式
+                                                                data:  <?php echo json_encode($arr_sc_count);?> //直接放数组是不行的，必须转成json格式
                                                         }],
                                                         legend: {
                                                             enabled: false
@@ -637,7 +679,7 @@
                                                                 enabled:false //用来设置是否显示‘打印’,'导出'等功能按钮，不设置时默认为显示
                                                             },
                                                             xAxis: {
-                                                                categories: <{:json_encode($hx_name)}>,
+                                                                categories: <?php echo json_encode($hx_name);?>,
                                                         crosshair: true
                                                     },
                                                         yAxis: {//左侧提示标题
@@ -664,10 +706,10 @@
                                                         },
                                                         series: [{
                                                             name: '房源',
-                                                            data: <{:json_encode($hx_room_count)}>
+                                                            data: <?php echo json_encode($hx_room_count);?>
                                                     }, {
                                                             name: '收藏',
-                                                                data:  <{:json_encode($hx_sc_count)}> //直接放数组是不行的，必须转成json格式
+                                                                data:  <?php echo json_encode($hx_sc_count);?> //直接放数组是不行的，必须转成json格式
                                                         }],
                                                         legend: {
                                                             enabled: false
@@ -675,8 +717,7 @@
                                                     });
                                                     });
 
-                                                </script>
-                                            </if>
+                                                </script><?php endif; ?>
                                         </div>
 
                                         <div class="block60 room-bottom-block" style="display:none;"></div>
@@ -684,13 +725,13 @@
                                 </div>
 
     <div class="weui-tabbar1">
-        <a href="<{:U('DataStatistics/index', array('info' => set_search_ids(array('p' => $project_id))))}>" class="weui-tabbar__item1">
+        <a href="<?php echo U('DataStatistics/index', array('info' => set_search_ids(array('p' => $project_id))));?>" class="weui-tabbar__item1">
                             <span style="display: inline-block;position: relative;">
                                 <i class="fa fa-home weui-tabbar__icon1"></i>
                             </span>
             <p class="weui-tabbar__label1">首页</p>
         </a>
-        <a href="<{:U('ChooseAnalysis/index', array('info' => set_search_ids(array('p' => $project_id))))}>" class="weui-tabbar__item1 ">
+        <a href="<?php echo U('ChooseAnalysis/index', array('info' => set_search_ids(array('p' => $project_id))));?>" class="weui-tabbar__item1 ">
                             <span style="display: inline-block;position: relative;">
                                     <i class="fa fa-group weui-tabbar__icon1"></i>
                             </span>
@@ -702,7 +743,7 @@
 							</span>
             <p class="weui-tabbar__label1">装户分析</p>
         </a>
-        <a href="<{:U('MyReport/index', array('info' => set_search_ids(array('p' => $project_id))))}>" class="weui-tabbar__item1">
+        <a href="<?php echo U('MyReport/index', array('info' => set_search_ids(array('p' => $project_id))));?>" class="weui-tabbar__item1">
                             <span style="display: inline-block;position: relative;">
                                 <i class="fa fa-user-circle-o weui-tabbar__icon1"></i>
                                 <span class="weui-badge weui-badge_dot" style="position: absolute;top: 2px;right: 0px;display:none;"></span>
@@ -713,19 +754,65 @@
     </div>
                     </div>
             </div>
-            </block>
-            <block name="footer"></block>>
-            <block name="footer_js">
+            
+                
+		
+                
+                    <style>
+                        .weui-tabbar1 {
+                            display: -webkit-box;
+                            display: -webkit-flex;
+                            display: flex;
+                            position: absolute;
+                            z-index: 500;
+                            bottom: 0;
+                            width: 100%;
+                            background-color: #ffffff;
+                            border-top: 1px solid #e6e6e6;
+                        }
+                        
+                        .weui-tabbar__item1 {
+                            display: block;
+                            -webkit-box-flex: 1;
+                            -webkit-flex: 1;
+                            flex: 1;
+                            padding: 2px 0 0;
+                            font-size: 0;
+                            color: #999999;
+                            text-align: center;
+                            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+                        }
+                        .weui-tabbar__label1 {
+                            text-align: center;
+                            color: #999999;
+                            font-size: 10px;
+                            line-height: 1.8;
+                        }
+                        .weui-tabbar__icon1 {
+                            display: inline-block;
+                            width: 27px;
+                            font-size: 20px;
+                            padding: 0 0 0 0;
+                        }
+                        .weui-bar__item_on1 {
+                            color: #09BB07;
+                        }
+                        .weui-bar__item_on1 .weui-tabbar__label1 {
+                            color: #09BB07;
+                        }
+                    </style>
+                
+		
 
-                <link href="__COMMON__/js/jquery/iscroll/iscroll.css" type="text/css" rel="stylesheet" />
-                <script src="__PUBLIC__/common/js/jquery/iscroll/iscroll.js"></script>
+                <link href="/Public/common/js/jquery/iscroll/iscroll.css" type="text/css" rel="stylesheet" />
+                <script src="/Public/common/js/jquery/iscroll/iscroll.js"></script>
                 <script>
 
 
                     //下拉框change事件
                     $(document).on('change',"#build-list",function () {
                         var val=$(this).val();
-                        $.post("<{:U('/Saler/RoomAnalysis/getHxCount')}>",{'hd_id':"<{$project_id}>",'vo':val},function (data) {
+                        $.post("<?php echo U('/Saler/RoomAnalysis/getHxCount');?>",{'hd_id':"<?php echo ($project_id); ?>",'vo':val},function (data) {
                             $('#container-hx').highcharts({
                                 colors: "rgba(255,188,23,0.69);rgba(255, 67, 52, 0.69)".split(";"),
                                 credits:{
@@ -783,7 +870,7 @@
 //
 //                    //显示装户统计页面
 //                    $("#room-img").on("click",function () {
-//                        $.post("<{:U('/Saler/RoomAnalysis/imgPage')}>",{'hd_id':"<{$project_id}>"},function (data) {
+//                        $.post("<?php echo U('/Saler/RoomAnalysis/imgPage');?>",{'hd_id':"<?php echo ($project_id); ?>"},function (data) {
 //                            $("#room-hot").removeClass("bl").addClass("gy");
 //                            $("#room-img").removeClass("gy").addClass("bl");
 //                            $("#unit_s").remove();
@@ -815,16 +902,14 @@
                         }
                         //滚动条设置
 //                        $("#unit_s .saler-project-view-header-unit-info-selected").perfectScrollbar('update');
-                        <if condition="$is_fx eq 0">
-                        var uts=$("#unit_s");
+                        <?php if($is_fx == 0): ?>var uts=$("#unit_s");
                         if((parseFloat($("#unit_s .saler-project-view-header-unit-info-selected").offset().left)+parseFloat($("#unit_s .saler-project-view-header-unit-info-selected").width()))>= parseFloat(uts.width())){
                             $("#unit_s").perfectScrollbar();
                             $("#unit_s").scrollLeft(parseFloat($("#unit_s .saler-project-view-header-unit-info-selected").offset().left));
                             $("#unit_s").perfectScrollbar('update');
                         }else{
                             $("#unit_s").perfectScrollbar();
-                        }
-                        </if>
+                        }<?php endif; ?>
                     });
                     var iscroller_project,
                             pullDownEl,
@@ -876,4 +961,7 @@
                     }, false);
                 </script>
 
-            </block>
+            
+	</body>
+	
+</html>

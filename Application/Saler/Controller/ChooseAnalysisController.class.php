@@ -60,6 +60,7 @@ class ChooseAnalysisController extends Base1Controller
         $this->assign("tylelist",$tylelist);
         $this->assign("status",$status);
         $this->assign("user_xf",$user_xf);
+        $this->assign('projinfo', $projinfo);
         $this->assign("search_info",$search_info);
         $this->assign("project_id",$search_hd_id);//此为活动id，不是项目id
         if(IS_AJAX){

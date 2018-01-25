@@ -256,12 +256,14 @@
             var w = window.innerHeight;//获取浏览器可视窗口高度
 //            console.log(w);
             $(".js-height").css("min-height", (parseInt(w) - 130) + 'px');
+//            $(".dataTables_wrapper").css("min-height", (parseInt(w) - 193) + 'px');
             window.onresize = function ()//此方法设置内容框大小，随浏览器大小变化高度
             {
                 //你改变DIV大小的代码
                 var w = window.innerHeight;
 //                console.log(w);
                 $(".js-height").css("min-height", (parseInt(w) - 130) + 'px');
+//                $(".dataTables_wrapper").css("min-height", (parseInt(w) - 193) + 'px');
             }
 
         });

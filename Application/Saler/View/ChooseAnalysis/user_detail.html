@@ -46,14 +46,17 @@
                         float: right;
                         /*margin-right: 5%;*/
 		}
+                .call-phone{
+                    position: fixed;
+                    padding: 10px;
+                    z-index: 999999;
+                    right: 5%;
+                    top: 105px;
+                }
 		.call-phone i{
-			position: fixed;
                         color: #FFF;
                         cursor: pointer;
                         font-size: 17px;
-                        z-index: 999999;
-                        right: 5%;
-                        top: 105px;
                         width: 22px;
                         height: 22px;
                         line-height: 22px;
@@ -186,7 +189,9 @@
 					<div class="saler-statistics-list-box" >
 						<div class="fl wm100" id="content-tab">
 							<div class="fl wm100">
-								<h1><!--<i class="fa fa-user iyellow"> </i>--> <{$user_info.cname}> <if condition="($user_info.rid neq null) AND ($user_info.oid neq null)"><span class="xf-zt">已选房</span><else/><span class="xf-zt">未选房</span></if>  <span class="call-phone" data-num="<{:rsa_decode($user_info['cphone'],getChoosekey())}>"><i class="fa fa-phone"></i></span></h1>
+								<h1><!--<i class="fa fa-user iyellow"> </i>--> <{$user_info.cname}> <if condition="($user_info.rid neq null) AND ($user_info.oid neq null)"><span class="xf-zt">已选房</span><else/><span class="xf-zt">未选房</span></if>  
+                                                                    <a href="tel:<{:rsa_decode($user_info['cphone'],getChoosekey())}>" class="call-phone" data-num="<{:rsa_decode($user_info['cphone'],getChoosekey())}>"><i class="fa fa-phone"></i></a>
+                                                                </h1>
 								<table id="user-info">
 									<tr>
 										<td class="wm20" style="width:60px">手机号码</td>
@@ -303,16 +308,13 @@
         $("#condition-form").on("input",function () {
             $("#condition-form").submit();
         });
-		$(".call-phone").on("click",function (event) {
+        
+	/*$(".call-phone").on("click",function (event) {
             event.stopPropagation();
 			var phone=$(this).attr("data-num");
-			window.location.href='tel://' + phone;
-        });
-		
-        /*$("#content-tab").on("click","tr",function () {
-			var id=$(this).attr('data-id');
-			alert(id);
-        });*/
+			window.location.href='tel:' + phone;
+        });*/	
+      
     });
 </script>
 </block>

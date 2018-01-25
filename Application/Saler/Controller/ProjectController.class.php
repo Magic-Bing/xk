@@ -138,6 +138,7 @@ class ProjectController extends BaseController
         $b_name=M()->table("xk_build")->field("buildname")->where("id=$search_build_id")->find();
 		$this->assign('rooms', $new_room_list);
 		$this->assign("b_name",$b_name);
+		$this->assign("projinfo",$projinfo);
 		if (IS_AJAX) {
 			$room_list = $this->fetch('room');
 			$this->success($room_list, U('index/index'));

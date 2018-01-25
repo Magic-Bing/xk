@@ -59,3 +59,16 @@ INFO: [ app_end ] --START--
 INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.004129s ]
 INFO: [ app_end ] --END-- [ RunTime:0.006941s ]
 
+[ 2018-01-25T12:20:05+08:00 ] 192.168.2.100 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000528s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005664s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002443s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005575s ]
+
+[ 2018-01-25T12:20:06+08:00 ] 192.168.2.100 /favicon.ico
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000493s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003859s ]
+

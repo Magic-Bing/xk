@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-01-25 11:00:19
+Date: 2018-01-25 14:46:57
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -2242,7 +2242,7 @@ INSERT INTO `xk_roomattribute` VALUES ('1251', '15', '1', '2', '0', '0', '0');
 INSERT INTO `xk_roomattribute` VALUES ('1236', '24', '0', '0', '0', '0', '0');
 INSERT INTO `xk_roomattribute` VALUES ('1245', '16', '0', '0', '0', '0', '0');
 INSERT INTO `xk_roomattribute` VALUES ('1242', '3', '0', '0', '0', '0', '0');
-INSERT INTO `xk_roomattribute` VALUES ('1275', '511', '3', '19', '0', '0', '0');
+INSERT INTO `xk_roomattribute` VALUES ('1275', '539', '3', '21', '0', '0', '0');
 INSERT INTO `xk_roomattribute` VALUES ('1021', '1', '0', '0', '0', '0', '0');
 INSERT INTO `xk_roomattribute` VALUES ('1020', '52', '1', '0', '0', '0', '0');
 INSERT INTO `xk_roomattribute` VALUES ('1258', '5', '0', '0', '0', '0', '0');
@@ -2254,7 +2254,7 @@ INSERT INTO `xk_roomattribute` VALUES ('1067', '2', '0', '0', '0', '0', '0');
 INSERT INTO `xk_roomattribute` VALUES ('1099', '2', '0', '0', '0', '0', '0');
 INSERT INTO `xk_roomattribute` VALUES ('1261', '40', '1', '2', '0', '0', '0');
 INSERT INTO `xk_roomattribute` VALUES ('1250', '55', '0', '0', '0', '0', '0');
-INSERT INTO `xk_roomattribute` VALUES ('1267', '131', '0', '1', '0', '0', '0');
+INSERT INTO `xk_roomattribute` VALUES ('1267', '137', '0', '1', '0', '0', '0');
 INSERT INTO `xk_roomattribute` VALUES ('1098', '8', '0', '0', '0', '0', '0');
 INSERT INTO `xk_roomattribute` VALUES ('1243', '17', '1', '0', '0', '0', '0');
 INSERT INTO `xk_roomattribute` VALUES ('1234', '15', '3', '0', '0', '0', '0');
@@ -2277,7 +2277,7 @@ INSERT INTO `xk_roomattribute` VALUES ('1255', '6', '0', '1', '0', '0', '0');
 INSERT INTO `xk_roomattribute` VALUES ('1256', '16', '1', '1', '0', '0', '0');
 INSERT INTO `xk_roomattribute` VALUES ('1285', '4', '0', '0', '0', '0', '0');
 INSERT INTO `xk_roomattribute` VALUES ('1287', '11', '0', '0', '0', '0', '0');
-INSERT INTO `xk_roomattribute` VALUES ('1263', '8', '0', '0', '0', '0', '0');
+INSERT INTO `xk_roomattribute` VALUES ('1263', '18', '0', '0', '0', '0', '0');
 INSERT INTO `xk_roomattribute` VALUES ('1232', '5', '0', '0', '0', '0', '0');
 INSERT INTO `xk_roomattribute` VALUES ('1272', '18', '1', '0', '0', '0', '0');
 INSERT INTO `xk_roomattribute` VALUES ('1264', '12', '0', '1', '0', '0', '0');
