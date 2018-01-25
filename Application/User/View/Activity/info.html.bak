@@ -1,0 +1,152 @@
+﻿<extend name="Common/base" />
+
+<block name="header">
+	<div class="common-header-wrapper">
+		<div class="clearfix common-header">
+			<div class="fl wm25 arrow-left common-header-return user-header-return">
+				<span class="common-header-return-box return-btn">
+					<a href="javascript:void(0);" class="common-header-return-btn">返回</a>
+				</span>
+			</div>
+			<div class="fl wm50 common-header-content js-common-header-content">
+				<span class="common-header-content-box-no-arrow">
+					<span class="common-header-content-box-name">活动详情</span>
+				</span>
+			</div>
+			<div class="fl wm25 common-header-right">
+				<div class="common-header-right-box clearfix">
+					<a href="<{:U('activities')}>" class="common-header-right-btn user-activity-header-right-btn">
+						<i class="icon-home icon-home-header"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</block>
+
+<block name="content">
+<div class="user-project-view-base">
+	<div class="user-project-view-content-wrapper">
+		<div id="iscroller-wrapper" class="iscroller-style user-activity-info">
+			<div id="iscroller-scroller" class="iscroller-scroller-style">
+				<div class="user-activity-box user-activity-id js-user-activity-id" data-activity-id="<{$game['id']|default='0'}>">
+					<div class="user-activity-room">
+						<span class="user-activity-room-info">
+							房间名称：
+							<span class="user-activity-room-name">
+								<{$room['projname']}> 
+								- <{$room['buildname']}> 
+								- <{$room['unit']}> 
+								- <{$room['room']}>
+							</span>
+						</span>
+					</div>
+					<div class="user-activity-start-time js-user-activity-start-time" data-start-time="<{$start_time|date='Y/m/d H:i:s',###}>">
+						抢房时间：
+						<span class="user-activity-buy-start-time">
+							<{$show_start_time|date='H:i:s',###}>
+						</span>
+					</div>
+					<div class="user-activity-surplus-time js-user-activity-run-start-time" data-run-start-time="<{$run_start_time|date='Y/m/d H:i:s',###}>">
+						<span class="user-activity-surplus-time-box">						
+							<i class="user-activity-alarm"></i>
+							结束时间：
+							<span class="user-activity-time-end-time">
+								<{$run_start_time|date='H小时i分s秒',###}>
+							</span>
+						</span>
+					</div>
+					<div class="user-activity-btns">
+						<div class="user-activity-btn-box">
+							<a href="javascript:void(0);" class="user-activity-btn">
+								已结束
+							</a>
+						</div>
+					</div>
+					
+					<div class="user-activity-clear"></div>
+					
+					<div class="user-activity-tip">
+						<div class="user-activity-tip-title">
+							抢房须知：
+						</div>
+						<div class="user-activity-tip-content">
+							<div class="user-activity-tip-content-wrapper">							
+								<{$tip|default='暂无活动，请留意官方相关信息！'}>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="user-activity-prize-info">
+			<div class="clearfix user-activity-prize-info-title">
+				<eq name="customer_id" value="$user_game_prizes['customer_id']">
+					恭喜你购买成功
+				<else />
+					购买详情
+				</eq>
+			</div>
+			
+			<div class="user-activity-prize-info-content">
+				<div class="clearfix user-activity-prize-info-row user-activity-prize-info-time">
+					<div class="fl wm35 user-activity-prize-info-subtitle">
+						<span class="subtitle">抢中时间:</span>
+					</div>
+					<div class="fl wm65">
+						<empty name="user_game_prizes['time']">
+							活动结束
+						<else/>
+							<{$user_game_prizes['time']|date='Y-m-d H:i:s',###}>
+						</empty>
+					</div>				
+				</div>
+				
+				<eq name="customer_id" value="$user_game_prizes['customer_id']">
+					<div class="clearfix user-activity-prize-info-row user-activity-prize-info-phone">
+						<div class="fl wm35 user-activity-prize-info-subtitle">
+							<span class="subtitle">手机号码:</span>
+						</div>
+						<div class="fl wm65">
+							<{$user_game_prizes['phone']|default=''}>
+						</div>				
+					</div>
+					<div class="clearfix user-activity-prize-info-row user-activity-prize-info-code">
+						<div class="fl wm35 user-activity-prize-info-subtitle">
+							<span class="subtitle">验证码:</span>
+						</div>
+						<div class="fl wm65 user-activity-prize-info-code-subvalue">
+							<{$user_game_prizes['code']|default=''}>
+						</div>				
+					</div>
+				</eq>
+				
+				<div class="clearfix user-activity-prize-info-row user-activity-prize-info-buy-time">
+					<div class="fl wm35 user-activity-prize-info-subtitle">
+						<span class="subtitle">购买时间:</span>
+					</div>
+					<div class="fl wm65">
+						<notempty name="user_game_prizes['buy_time']">
+							<{$user_game_prizes['buy_time']|date='Y-m-d H:i:s',###}>
+						</notempty>
+					</div>				
+				</div>
+			</div>
+			
+			<div class="clearfix user-activity-prize-info-row user-activity-prize-info-tip">
+				<span class="user-activity-prize-info-tip-title">提醒：</span>
+				你已经成功购房，记好你的验证码，然后到销售处办理相关手续！
+			</div>
+		</div>
+		
+	</div>
+</div>
+</block>
+
+<block name="header_config"></block>
+
+<block name="footer_js">
+<include file="Common@Common/Mobile/iscroll" iscroller_id="iscroller_activity" iscroller_select_id="iscroller-wrapper" />
+</block>
+

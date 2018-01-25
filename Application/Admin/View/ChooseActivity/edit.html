@@ -1,0 +1,274 @@
+<extend name="Common/base" />
+
+<block name="header_js_add">
+<script src="__COMMON__/js/jedate/jedate.js"></script>
+<script type="text/javascript">
+$(function() {
+	//开始时间
+	jeDate({
+		dateCell:".js-choose-activity-edit-date-start-time",
+		format:"YYYY-MM-DD hh:mm:ss",
+		isinitVal: true,
+		isTime: true,
+		skin: 'jedate',
+		minDate:"2015-09-19 00:00:00",
+	});
+	//结束时间
+	jeDate({
+		dateCell:".js-choose-activity-edit-date-end-time",
+		format:"YYYY-MM-DD hh:mm:ss",
+		isinitVal: false,
+		isTime: true,
+		skin: 'jedate',
+		minDate:"2015-09-19 00:00:00",
+	});
+});
+</script>
+</block>
+
+<block name="content">
+	<div class="room room-choose">
+		<div class="room-title room-game-title">
+			<div class="clearfix room-title-box">
+				<span class="room-title-info">
+					<{$seo_title|default='空白'}>
+				</span>
+				<span class="room-title-subtitle">
+					<include file="Choose/tab" /> 
+				</span>
+				<span class="fr room-title-refresh">
+					<a href="__SELF__" class="room-title-refresh-btn">
+						<img class="room-title-refresh-btn-img" src="__IMG__/sx01.png" />
+					</a>
+				</span>
+			</div>
+		</div>
+
+		<div class="room-attr-content">
+			<div class="room-attr-rooms">
+			
+				<div class="room-edit">
+					<form method="post" name="room-edit-form" action="">
+						<div class="room-edit-content js-choose-activity-select-box">
+							<input type="hidden" name="id" class="js-choose-activity-edit-id" value="<{$id}>" style="display:none;">
+							<table border="0" cellspacing="2" cellpadding="4" class="list" name="table" id="table" width="100%">
+								<tbody>
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											<span class="color-red">*</span> 
+											活动名称：
+										</td>
+										<td class="room-edit-tr-content">
+											<input type="text" name="name" value="<{$choose_activity.name|default=''}>" class="room-edit-input room-edit-largest-input js-choose-activity-edit-name"> 
+											<span class="room-edit-tip">（填写活动名称）</span>
+										</td>
+									</tr>
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											活动描述：
+										</td>
+										<td class="room-edit-tr-content">
+											<textarea type="text" name="description" class="room-edit-textarea js-choose-activity-edit-description"><{$choose_activity.description|default=''}></textarea>
+											<span class="room-edit-tip">（填写活动描述）</span>
+										</td>
+									</tr>
+									
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											<span class="color-red">*</span> 
+											项目名称：
+										</td>
+										<td class="room-edit-tr-content">
+											<select class="room-edit-select room-edit-auto-select js-choose-activity-search-project-id js-choose-activity-edit-project js-choose-activity-edit-project-id" 
+												name="project_id"
+												data-first-title="请选择项目"
+												data-first-value='0'
+											>
+												<foreach name="project_list" item="project_list_vo">
+													<if condition="$choose_activity['project_id'] eq $project_list_vo['id']">
+														<option value="<{$project_list_vo['id']}>" selected>
+															<{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
+														</option>
+													<else />		 
+														<option value="<{$project_list_vo['id']}>">
+															<{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
+														</option>
+													</if>
+												</foreach> 
+											</select>
+										</td>
+									</tr>
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											<span class="color-red">*</span> 
+											项目批次：
+										</td>
+										<td class="room-edit-tr-content">
+											<select class="room-edit-select room-edit-auto-select js-choose-activity-edit-batch js-choose-activity-edit-batch-id" 
+												name="batch_id"
+												data-first-title="请选择项目批次"
+											>
+												<option value="<{$choose_activity.batch_id|default=0}>" selected><{$batch.name|default=''}></option> 
+											</select>
+											<span class="room-edit-tip">（选择代金券项目批次）</span>
+										</td>
+									</tr>
+								
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											轮次：
+										</td>
+										<td class="room-edit-tr-content">
+											<input type="text" name="sort" value="<{$choose_activity.sort|default=''}>" class="room-edit-input js-choose-activity-edit-sort" > 
+											<span class="room-edit-tip">（填写活动轮次。默认为顺延轮次）</span>
+										</td>
+									</tr> 
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											<span class="color-red">*</span> 
+											预定人数：
+										</td>
+										<td class="room-edit-tr-content">
+											<input type="text" name="person_count" value="<{$choose_activity.person_count|default=''}>" class="room-edit-input js-choose-activity-edit-person-count" > 
+											<span class="room-edit-tip">（填写活动预定人数，单位：“人”）</span>
+										</td>
+									</tr> 
+									
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											<span class="color-red">*</span> 
+											开始时间：
+										</td>
+										<td class="room-edit-tr-content">
+											<input type="text" name="start_time" value="<{$choose_activity['start_time']|date='Y-m-d H:i:s', ###}>" class="room-edit-input js-choose-activity-edit-date-start-time js-choose-activity-edit-start-time" > 
+											<span class="room-edit-tip">（填写活动开始时间）</span>
+										</td>
+									</tr>
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											结束时间：
+										</td>
+										<td class="room-edit-tr-content">
+											<input type="text" name="end_time" value="<{$choose_activity['end_time']|date='Y-m-d H:i:s', ###}>" class="room-edit-input js-choose-activity-edit-date-end-time js-choose-activity-edit-end-time" > 
+											<span class="room-edit-tip">（填写活动结束时间，空时以时长为结束时间）</span>
+										</td>
+									</tr>
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											活动时长：
+										</td>
+										<td class="room-edit-tr-content">
+											<input type="text" name="long_time" value="<{$choose_activity.long_time|default=''}>" class="room-edit-input js-choose-activity-edit-long-time" > 
+											<span class="room-edit-tip">（填写活动时长，时长不为空时结束时间已时长为准。单位：“秒”）</span>
+										</td>
+									</tr>
+									
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											<span class="color-red">*</span> 
+											补位规则：
+										</td>
+										<td class="room-edit-tr-content">
+											<span class="room-edit-radio">
+												<label class="room-edit-radio-label selected choose-activity-edit-type-btn js-choose-activity-edit-type-btn">
+													<input type="radio" name="type" value="rand" 
+														class="room-edit-checkbox js-choose-activity-edit-type" checked="checked"
+														<eq name="choose_activity['type']" value="rand">checked="checked"</eq>
+													> 
+													随机
+												</label>
+												<label class="room-edit-radio-label choose-activity-edit-type-btn js-choose-activity-edit-type-btn">
+													<input type="radio" name="type" value="order" 
+														class="room-edit-checkbox js-choose-activity-edit-type"
+														<eq name="choose_activity['type']" value="order">checked="checked"</eq>
+													> 
+													顺序
+												</label>
+											</span>
+											<span class="room-edit-tip">（填写活动补位规则，【单选】【随机rand，顺序order】）</span>
+										</td>
+									</tr>
+
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											<span class="color-red">*</span>
+											状态：
+										</td>
+										<td class="room-edit-tr-content">
+											<select class="room-edit-select js-choose-activity-edit-status" name="status">
+												<eq name="choose_activity['status']" value="1">
+													<option value="1" selected>
+														开启
+													</option>
+													<option value="0">
+														关闭
+													</option>
+												<else/>
+													<option value="1">
+														开启
+													</option>
+													<option value="0" selected>
+														关闭
+													</option>
+												</eq>
+											</select>
+											<span class="room-edit-tip">（推广的状态设置.默认开启。）</span>
+										</td>
+									</tr>
+									
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											备注：
+										</td>
+										<td class="room-edit-tr-content">
+											<textarea type="text" name="remark" class="room-edit-textarea js-choose-activity-edit-remark"><{$choose_activity.remark|default=''}></textarea>
+											<span class="room-edit-tip">（填写相关备注）</span>
+										</td>
+									</tr>
+									
+								</tbody> 
+							</table>
+						</div>
+						
+						<div class="room-edit-tips">
+							<div class="room-edit-tips-info">
+								<span class="room-edit-tips-bold">提醒：</span>
+								“<span class="color-red">*</span>”为必填项，请务必填写。
+							</div>
+						</div>
+						
+						<div class="room-edit-btns">
+							<a href="javascript:void(0);" class="room-edit-btn room-edit-btn-save js-choose-activity-edit-btn-save">保 存</a> 
+							<a href="javascript:history.back(-1);" class="room-edit-btn room-edit-btn-return">返 回</a>				  
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+	
+	</div>
+</block>
+
+<block name="footer_add_js">
+<script src="__COMMON__/js/jquery/jquery.mousewheel.js"></script>
+<link href="__COMMON__/js/jquery/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet"/>
+<script src="__COMMON__/js/jquery/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+<script src="__COMMON__/js/jquery/jquery.cxSelect-1.4.1/jquery.cxselect.min.js"></script>
+<script type="text/javascript">	
+$(function() {	
+	//多级联动
+	var $project_json = '<{$project_json}>';
+	var $project_json = $.parseJSON($project_json);
+	$('.js-choose-activity-select-box').cxSelect({
+		data: $project_json,                
+		selects: ['js-choose-activity-edit-project', 'js-choose-activity-edit-batch'],  
+		jsonName: 'n',         
+		jsonValue: 'v',
+		jsonSub: 's',
+		emptyStyle: 'display'
+	});
+});
+</script>
+</block>

@@ -1,0 +1,247 @@
+/* 中奖显示 */
+.prizes .prizes-title {
+	position: fixed;
+    left: 15px;
+    bottom: 10px;
+    z-index: 935;
+    padding-left: 36px;
+    background: url(../img/prizes-btn-bg.png)  no-repeat scroll 0px -2px/38px 42px;
+	background-color: rgba(255, 111, 59, 0.25);
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(233, 30, 99, 0.27);
+    border-radius: 5px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    cursor: pointer;
+    width: 110px;
+    line-height: 25px;
+    display:none;
+}
+.prizes .prizes-title-info {
+	font-family: 'Arial Negreta', 'Arial Normal', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 90%;
+    color: #FF0000;
+	padding: 6px 3px;
+}
+.prizes-title-count {
+	position:absolute;
+	top: -9px;
+	right: -9px;
+	line-height:18px;
+	width:18px;
+	background: #F44336;
+	color: #FFF;
+	border-radius: 50%;
+	font-size:80%;
+	text-align: center;
+}
+
+.prizes .prizes-show {
+	position: fixed;
+	margin:auto;
+	top: 150px;
+	width: 100%;
+	z-index: 1000;
+}
+.prizes .prizes-show-box {
+	position: relative;
+	width: 300px;
+	margin: 0 auto;
+	transform: rotateX(-90deg);
+	transition: .5s transform;
+}
+.prizes .prizes-show-transform .prizes-show-box {
+	transform:rotateX(0deg);
+}
+/* 小屏 */
+@media screen and (min-width: 320px) and (max-width: 335px) {
+	.prizes .prizes-show-box {
+		width: 300px;
+		height: 248px;
+	}
+}
+@media screen and (min-width: 335px) {
+	.prizes .prizes-show-box {
+		width: 320px;
+		height: 248px;
+	}
+}
+
+.prizes .prizes-show-box-shadow {
+	position: absolute;
+	z-index: 135;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: #ffffff;
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #797979;
+    border-radius: 10px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+	opacity: 0.85;
+}
+.prizes .prizes-show-img {
+	position: relative;
+	width: 225px;
+	margin: 0 auto;
+	padding: 105px 25px 25px 25px;
+	z-index: 150;
+}
+.prizes .prizes-show-img-pic {
+	position: absolute;
+	z-index: 150;
+	top: 5px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+    background: url(../img/prizes-bg1.png) no-repeat scroll 0px -5px/275px 205px;
+}
+.prizes .prizes-show-img-shadow {
+	position: absolute;
+	z-index: 135;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: #ffffff;
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #797979;
+    border-radius: 10px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+	opacity: 0.85;
+}
+.prizes .prizes-show-img-box {
+	margin-left: 68px;
+	width: 122px;
+	position: relative;
+	z-index: 155;
+	margin-top:5px
+}
+.prizes .prizes-show-shadow {
+	position: fixed;
+    left: 0px;
+    top: 0px;
+	bottom: 0;
+	right: 0;
+    background-color: #2f4f4f;
+    opacity: 0.607843;
+    z-index: 950;
+}
+.prizes .prizes-show-img-grades {
+	text-align: left;
+}
+.prizes .prizes-show-img-grades-info {
+	font-family: 'Arial Negreta', 'Arial Normal', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 20px;
+    color: #FF0000;
+}
+.prizes .prizes-show-img-name {
+	text-align: center;
+}
+.prizes .prizes-show-img-name-info {
+	font-family: 'Arial Negreta', 'Arial Normal', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 90%;
+}
+.prizes .prizes-show-img-tip {
+    text-align: center;
+}
+.prizes .prizes-show-img-tip-info {
+	font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12px;
+    color: #333333;
+}
+.prizes .prizes-show-btns {
+	position: relative;
+    z-index: 150;
+}
+.prizes .prizes-show-btn {
+	text-align: center;
+	padding: 3px 0 15px 0;
+}
+.prizes .prizes-show-btn-info {
+	font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 80%;
+    color: #03A9F4;
+    text-align: center;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #03a9f4;
+    border-radius: 5px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #03A9F4;
+    padding: 4px 20px;
+    cursor: pointer;
+    margin-left: 11%;
+    width: 100px;
+    float: left;
+}
+.prizes .span_close_btn{
+	width: 25px;
+    line-height: 25px;
+    position: absolute;
+	font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-size: 115%;
+    text-align: center;
+    background-color: #F44336;
+    border-radius: 50px;
+    color: #FFF;
+    cursor: pointer;
+    left: 93%;
+    bottom: 210px;
+}
+
+/* 用户奖品显示 */
+.prizes-user {
+	
+}
+.prizes-user .prizes-title {
+    width: 35px;
+    height: 35px;
+    top: 5px;
+    right: 5px;
+    left: inherit;
+    bottom: inherit;
+    background: url(../img/prizes-btn-bg.png) no-repeat scroll 5px 0px/30px 30px;
+	line-height: 13px;
+	border: 0;
+}
+.prizes-user .prizes-title .prizes-title-count {
+	top: 0px;
+    right: 31px;
+}
+
+
+
+
+
+
+
+
+

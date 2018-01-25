@@ -1,0 +1,178 @@
+<extend name="Common/base" />
+
+<block name="seo_title">
+	<{$seo_title|default='抢房列表'}>
+</block>
+
+<block name="header_js_add">
+<script src="__COMMON__/js/jedate/jedate.js"></script>
+<script type="text/javascript">
+$(function() {
+	//开始时间
+	jeDate({
+		dateCell:".js-room-search-start-time",
+		format:"YYYY-MM-DD hh:mm:ss",
+		isinitVal: false,
+		isTime: true,
+		skin: 'jedate',
+		minDate:"2015-09-19 00:00:00",
+	});
+});
+</script>
+</block>
+
+<block name="content">
+	<div class="room room-game">
+		<div class="room-title room-game-title">
+			<div class="clearfix room-title-box">
+				<span class="room-title-info">活动列表</span>
+				<span class="room-title-subtitle">
+					<include file="tab" /> 
+				</span>
+				<span class="fr room-title-refresh">
+					<a href="__SELF__" class="room-title-refresh-btn">
+						<img class="room-title-refresh-btn-img" src="__IMG__/sx01.png" />
+					</a>
+				</span>
+			</div>
+		</div>
+
+		<div class="room-search">
+			<div class="room-search-content">	 
+				<form method="get" name="room_search" action="__SELF__">
+					<label class="room-search-row">
+					   标题
+					   <input class="room-search-input" type="text" name="title" value="<{$title|default=''}>"> 
+					</label>
+				   
+				    &nbsp;
+					<label class="room-search-row">
+					   房号
+					   <input class="room-search-input" type="text" name="room_id" value="<{$room_id|default=''}>"> 
+					</label>
+				   
+				    &nbsp;
+					<label class="room-search-row">
+						开始时间
+						<input class="room-search-input room-search-start-time js-room-search-start-time" type="text" name="start_time" value="<{$start_time|default=''}>"> 
+					</label>
+					
+					<input type="submit" value="提交查询" class="button room-search-button">  
+				</form>
+			</div>
+		</div>
+
+		<div class="room-attr-content">
+			<div class="room-attr-rooms">
+				<table class="room-attr-rooms-table">
+                    <thead>
+						<tr>
+							<th width="35">
+								ID
+							</th>
+							<th class="room-attr-rooms-table-room-name">
+								标题
+							</th>
+							<th>
+								项目
+							</th>
+							<th>
+								房间
+							</th>
+							<th>
+								开始时间
+							</th>
+							<th>
+								循环次数
+							</th>
+							<th>
+								时长
+							</th>
+							<th class="room-game-table-content-title">
+								优惠信息
+							</th>
+							<th>
+								创建时间
+							</th>
+							<th>
+								创建人ID
+							</th>
+							<th>
+								状态
+							</th>
+							<th class="room-attr-rooms-table-option">
+								操作
+							</th>
+						</tr>
+                    </thead> 
+					<tbody>
+						<volist name="game_list" id="game_vo" key="game_k">
+							<tr class="room-attr-rooms-table-list room-game-table-list-<{$game_vo.id}>">
+								<td>
+									<{$game_vo.id}>
+								</td> 
+								<td class="room-attr-rooms-table-list-title">
+									<eq name="game_vo['is_end']" value="1">
+										<span class="color-red">[已结束]</span>
+										<span class="color-red"><{$game_vo.title}></span>
+									<else/>	
+										<{$game_vo.title}>
+									</eq>
+									<eq name="game_vo['id']" value="$id">
+										<span class="color-red">[已更改]</span>
+									</eq>
+								</td> 
+								<td>
+									<{$game_vo.projname}>
+								</td> 
+								<td>
+									<{$game_vo.buildname}>
+									-<{$game_vo.room_unit}>单元
+									-<{$game_vo.room_floor}>层
+									-<{$game_vo.room_name}>
+								</td> 
+								<td>
+									<{$game_vo.start_time|date="Y-m-d H:i:s",###}>
+								</td> 
+								<td>
+									<{$game_vo.allow_num|default=0}>
+								</td> 
+								<td>
+									<{$game_vo.time_length|default=0}>
+								</td> 
+								<td class="room-game-table-content" title="<{$game_vo.content|default=''}>">
+									<{$game_vo.content|default=''}>
+								</td> 
+								<td>
+									<{$game_vo.create_time|date="Y-m-d H:i:s",###}>
+								</td> 
+								<td>
+									<{$game_vo.create_user_id|default=0}>
+								</td> 
+								<td>
+									<eq name="game_vo['is_open']" value="1">
+										已开启
+									<else/>
+										<span class="color-red">已关闭</span>
+									</eq>
+								</td> 
+								<td class="btns">
+									<a href="javascript:void(0);" data-id="<{$game_vo.id}>" class="btn btn-radius5 room-game-delete-btn js-room-game-delete-btn">删除</a>
+									<a href="<{:U('edit', array('id' => $game_vo['id']))}>" data-id="<{$game_vo.id}>" class="btn btn-radius5 ml5 room-game-edit-btn">更改</a>
+								</td> 
+							</tr>
+						</volist>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	
+		<php>$page = trim($page_show);</php>
+		<if condition="!empty($page)">
+			<div class="room-attr-page page-container">
+				<{$page|default=''}>
+			</div>
+		</if>
+	
+	</div>
+</block>

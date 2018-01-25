@@ -1,0 +1,63 @@
+<!-- # 奖品 # -->
+
+<link href="__PUBLIC__/prizes/css/prizes.css" type="text/css" rel="stylesheet"/>
+<script src="__PUBLIC__/prizes/js/prizes.js"></script>
+<div class="prizes prizes-user" style="display:none;">
+	<input id="in_prize_count" value="<{$prizecount|default=1}>" style="display:none"/>
+	<input id="in_is_show" value="<{$is_show}>" style="display:none"/>
+	
+	<div class="prizes-title prizes-see-btn js-prizes-see-btn"  >
+		<div class="prizes-title-info">
+			&nbsp;
+		</div>
+	</div>
+	
+	<div class="prizes-show js-prizes-show" style="display:none;">
+		<div class="prizes-show-box js-prizes-show-box">
+			<div class="prizes-show-img">
+				<div class="prizes-show-img-box ">
+					<div class="prizes-show-img-grades">
+						<span class="prizes-show-img-grades-info">
+							<{$prize[0]['rank']|default='奖项'}>
+						</span>
+					</div>
+					<div class="prizes-show-img-name">
+						<span class="prizes-show-img-name-info">
+							<{$prize[0]['name']|default='奖品'}>
+						</span>
+					</div>
+					<div class="prizes-show-img-tip">
+						<span class="prizes-show-img-tip-info">
+							请到领奖台领取
+						</span>
+					</div>
+				</div>
+				<div class="prizes-show-img-pic"></div>
+			</div>
+			
+			<div class="prizes-user-prizes" style="display:none;">
+				<volist name="prize" id="prize_vo" key="prize_k">
+					<input class="prize-grades-input prize-grades-<{$prize_k|default=1}>" type="hidden" value="<{$prize_vo.rank|default=0}>" style="display:none"/>
+					<input class="prize-name-input prize-name-<{$prize_k|default=1}>" type="hidden" value="<{$prize_vo.name|default=0}>" style="display:none"/>
+				</volist>
+			</div>
+			
+			<div class="prizes-show-btns">
+				<div class="prizes-show-btn">
+					<span class="prizes-show-btn-info js-prizes-show-last-btn" style="display:none">
+						上一个
+					</span>
+					<span class="span_close_btn js-prizes-show-close-btn">
+						X
+					</span>
+					<span class="prizes-show-btn-info js-prizes-show-next-btn" style="display:none">
+						下一个
+					</span>
+				</div>
+			</div>
+			<div class="prizes-show-box-shadow"></div>
+		</div>
+	</div>
+	<div class="prizes-show-shadow js-prizes-show-shadow" style="display: none;"></div>
+</div>
+

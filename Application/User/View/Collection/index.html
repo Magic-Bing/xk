@@ -1,0 +1,259 @@
+﻿<extend name="Common/base" />
+
+<block name="header">
+	<div class="common-header-wrapper">
+		<div class="clearfix common-header">
+			<div class="fl wm25 arrow-left common-header-return user-header-return">
+				<span class="common-header-return-box return-btn">
+					<a href="javascript:void(0);" class="common-header-return-btn">返回</a>
+				</span>
+			</div>
+			<div class="fl wm50 common-header-content js-common-header-content">
+				<span class="common-header-content-box-no-arrow">
+					<span class="common-header-content-box-name">我的收藏</span>
+				</span>
+			</div>
+			<div class="fl wm25 user-header-right">&nbsp;</div>
+		</div>
+	</div>
+</block>
+
+<block name="content">
+	<div class="user-project-view-base">
+	
+		<div class="user-search-collection-rooms-wrapper">
+			<div id="iscroller-wrapper" class="iscroller-style user-search-collection-rooms-list">
+				<div id="iscroller-scroller" class="iscroller-scroller-style user-search-collection-rooms">
+					
+					<table class="user-search-collection-table user-search-collection-rooms-list user-search-collection-rooms-list-fixed js-user-search-collection-rooms-list-fixed">
+						<tr class="user-search-collection-table-tr-title js-user-search-collection-table-tr-title">
+							<td class="user-search-collection-table-td user-search-collection-table-title user-search-collection-table-title-checkbox">
+								<div class="user-search-collection-table-room-box user-search-collection-table-room-checkboxs">
+									<input class="user-search-collection-table-room-checkbox js-user-collection-room-checkbox-all" type="checkbox">
+								</div>
+							</td>
+							<td class="user-search-collection-table-td user-search-collection-table-title">
+								<div class="user-search-collection-table-title-box">
+									<span class="user-search-collection-table-title-info">
+										楼栋、单元
+									</span>
+								</div>
+							</td>
+							<td class="user-search-collection-table-td user-search-collection-table-title">
+								<div class="user-search-collection-table-title-box">
+									<span class="user-search-collection-table-title-info">
+										楼层
+									</span>
+								</div>
+							</td>
+							<td class="user-search-collection-table-td user-search-collection-table-title">
+								<div class="user-search-collection-table-title-box">
+									<span class="user-search-collection-table-title-info">
+										房号
+									</span>
+								</div>
+							</td>
+							<td class="user-search-collection-table-td user-search-collection-table-title">
+								<div class="user-search-collection-table-title-box">
+									<span class="user-search-collection-table-title-info">
+										户型
+									</span>
+								</div>
+							</td>
+							<td class="user-search-collection-table-td user-search-collection-table-title">
+								<div class="user-search-collection-table-title-box">
+									<span class="user-search-collection-table-title-info">
+										面积(㎡)
+									</span>
+								</div>
+							</td>
+							<td class="user-search-collection-table-td user-search-collection-table-title">
+								<div class="user-search-collection-table-title-box">
+									<span class="user-search-collection-table-title-info">
+										总价(元)
+									</span>
+								</div>
+							</td>
+						</tr>
+					</table>	
+				
+					<table class="user-search-collection-table user-search-collection-rooms-list">
+						<tr class="user-search-collection-table-tr-title js-user-search-collection-table-tr-title">
+							<td class="user-search-collection-table-td user-search-collection-table-title user-search-collection-table-title-checkbox">
+								<div class="user-search-collection-table-room-box user-search-collection-table-room-checkboxs">
+									<input class="user-search-collection-table-room-checkbox js-user-collection-room-checkbox-all" type="checkbox">
+								</div>
+							</td>
+							<td class="user-search-collection-table-td user-search-collection-table-title">
+								<div class="user-search-collection-table-title-box">
+									<span class="user-search-collection-table-title-info">
+										楼栋、单元
+									</span>
+								</div>
+							</td>
+							<td class="user-search-collection-table-td user-search-collection-table-title">
+								<div class="user-search-collection-table-title-box">
+									<span class="user-search-collection-table-title-info">
+										楼层
+									</span>
+								</div>
+							</td>
+							<td class="user-search-collection-table-td user-search-collection-table-title">
+								<div class="user-search-collection-table-title-box">
+									<span class="user-search-collection-table-title-info">
+										房号
+									</span>
+								</div>
+							</td>
+							<td class="user-search-collection-table-td user-search-collection-table-title">
+								<div class="user-search-collection-table-title-box">
+									<span class="user-search-collection-table-title-info">
+										户型
+									</span>
+								</div>
+							</td>
+							<td class="user-search-collection-table-td user-search-collection-table-title">
+								<div class="user-search-collection-table-title-box">
+									<span class="user-search-collection-table-title-info">
+										面积(㎡)
+									</span>
+								</div>
+							</td>
+							<td class="user-search-collection-table-td user-search-collection-table-title">
+								<div class="user-search-collection-table-title-box">
+									<span class="user-search-collection-table-title-info">
+										总价(元)
+									</span>
+								</div>
+							</td>
+						</tr>
+						
+						<volist name="rooms" id="rooms_vo" key="rooms_k">
+							<tr data-id="<{$rooms_vo.room_id|default='0'}>" class="user-search-collection-table-tr user-search-collection-table-tr-<{$rooms_vo.room_id|default='0'}> js-user-search-collection-table-tr <if condition="$rooms_vo['room_is_xf'] eq 1">user-search-collection-table-sale</if>">
+								<td class="user-search-collection-table-td user-search-collection-table-room">
+									<div class="user-search-collection-table-room-box user-search-collection-table-room-checkboxs">
+										<input class="user-search-collection-table-room-checkbox user-search-collection-table-room-checkbox-<{$rooms_vo.room_id|default='0'}> js-user-collection-room-checkbox" type="checkbox" data-room-id="<{$rooms_vo.room_id}>" value="<{$rooms_vo.room_id}>">
+									</div>
+								</td>
+								<td data-id="<{$rooms_vo.room_id|default='0'}>" class="user-search-collection-table-td js-user-collection-room-table-td-checkbox user-search-collection-table-room">
+									<div class="user-search-collection-table-room-box">
+										<span class="user-search-collection-table-room-info">
+											<{$rooms_vo.room_name}>
+										</span>
+									</div>
+								</td>
+								<td data-id="<{$rooms_vo.room_id|default='0'}>" class="user-search-collection-table-td js-user-collection-room-table-td-checkbox user-search-collection-table-room">
+									<div class="user-search-collection-table-room-box">
+										<span class="user-search-collection-table-room-info">
+											<{$rooms_vo.room_floor}>
+										</span>
+									</div>
+								</td>
+								<td data-id="<{$rooms_vo.room_id|default='0'}>" class="user-search-collection-table-td js-user-search-collection-table-td user-search-collection-table-room-room">
+									<div class="user-search-collection-table-room-box">
+										<span class="user-search-collection-table-room-info">
+											<{$rooms_vo.room_number}>
+										</span>
+									</div>
+								</td>
+								<td data-id="<{$rooms_vo.room_id|default='0'}>" class="user-search-collection-table-td js-user-collection-room-table-td-checkbox user-search-collection-table-room user-search-collection-table-room-hx">
+									<div class="user-search-collection-table-room-box">
+										<span class="user-search-collection-table-room-info">
+											<{$rooms_vo.room_hx}>
+										</span>
+									</div>
+								</td>
+								<td data-id="<{$rooms_vo.room_id|default='0'}>" class="user-search-collection-table-td js-user-collection-room-table-td-checkbox user-search-collection-table-room user-search-collection-table-room-area">
+									<div class="user-search-collection-table-room-box">
+										<span class="user-search-collection-table-room-info">
+											<{$rooms_vo.room_area}>
+										</span>
+									</div>
+								</td>
+								<td data-id="<{$rooms_vo.room_id|default='0'}>" class="user-search-collection-table-td js-user-collection-room-table-td-checkbox user-search-collection-table-room user-search-collection-table-room-total">
+									<div class="user-search-collection-table-room-box">
+										<span class="user-search-collection-table-room-info">
+											<{$rooms_vo.room_total}>
+										</span>
+									</div>
+								</td>
+							</tr>
+						</volist>
+						
+					</table>
+				</div>
+			</div>				
+		
+			<div class="user-search-collection-options">
+				<div class="clearfix user-search-collection-option">
+					<div class="fl wm50 user-search-collection-option-box">
+						<a href="javascript:void(0);" class="user-search-collection-option-a js-user-uncollection-room-list-btn">
+							取消收藏
+						</a>
+					</div>
+					<div class="fl wm50 user-search-collection-option-box">
+						<a href="javascript:void(0);" class="user-search-collection-option-a js-user-collection-compare-btn">
+							对 &nbsp;&nbsp; 比
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>				
+			
+	</div>
+</block>
+
+
+<block name="footer_js">
+<link href="__COMMON__/js//jquery/iscroll/iscroll.css" type="text/css" rel="stylesheet"/>
+<script src="__COMMON__/js/jquery/iscroll/iscroll.js"></script>
+<script>
+var iscroller_collection;
+var top = 0;
+	
+function loaded() {	
+	setTimeout(function() {
+		iscroller_collection = new iScroll("iscroller-wrapper", {
+			bounce: true,
+			checkDOMChanges: true,
+			onBeforeScrollStart: function (e) {
+				var target = e.target;
+				while (target.nodeType != 1) {
+					target = target.parentNode;
+				}
+
+				if (target.tagName != 'SELECT' 
+					&& target.tagName != 'INPUT' 
+					&& target.tagName != 'TEXTAREA'
+				) {
+					e.preventDefault();
+				}
+			},
+			onScrollEnd: function () {
+				top = this.y;
+				if (this.y <= -33) {
+					$(".js-user-search-collection-rooms-list-fixed").show();
+				} else {
+					$(".js-user-search-collection-rooms-list-fixed").hide();
+				}
+			},
+		});
+	}, 100);
+
+	setTimeout(function () { 
+		if (top <= -33) {
+			$(".js-user-search-collection-rooms-list-fixed").show();
+		} else {
+			$(".js-user-search-collection-rooms-list-fixed").hide();
+		}
+	}, 200);
+}
+
+document.addEventListener('touchmove', function (e) { 
+	e.preventDefault(); 
+}, false);
+document.addEventListener('DOMContentLoaded', function () { 
+	setTimeout(loaded, 200); 
+}, false);
+</script>
+</block>

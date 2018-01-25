@@ -1,0 +1,45 @@
+<notempty name="project_voucher">
+	<ul class="voucher-activity-list">
+		<volist name="project_voucher" id="project_voucher_vo" key="project_voucher_k">
+			<li class="voucher-activity-item js-voucher-activity-item <if condition='isset($activity_vouchers[$project_voucher_vo["id"]])'>selected</if>" data-voucher-id='<{$project_voucher_vo.id|default=0}>' vtype='<{$project_voucher_vo.type}>'>
+				<span class="voucher-activity-item-cate">
+					[<switch name="project_voucher_vo.type">
+							<case value="gift">满减</case>
+							<case value="common">通用</case>
+							<case value="directional">定向</case>
+							<default />通用
+						</switch>]
+				</span>
+				<{$project_voucher_vo.name}>
+				
+				<eq name="project_voucher_vo.type" value="gift">
+					(满<{$project_voucher_vo.min_money|default=0}>元减)
+				</eq>
+				
+				<eq name="project_voucher_vo.type" value="directional">
+					(<switch name="project_voucher_vo.directional_type">
+						<case value="house_type">户型：<{$project_voucher_vo.house_type|default='<空>'}></case>
+						<case value="room_id">房间：<{$project_voucher_vo.room_name|default='<空>'}></case>
+					</switch>)
+				</eq>
+				
+				<div class="voucher-activity-item-num-box">
+					<input type="text" name="item_num" 
+						title="剩余<{$project_voucher_vo['quantity']-$project_voucher_vo['open_quantity']}>张" 
+						value="<{$activity_vouchers[$project_voucher_vo['id']]['quantity']|default=''}>" 
+						class="voucher-activity-item-num js-voucher-activity-item-num js-voucher-activity-item-num-<{$project_voucher_k|default=1}>" 
+						data-key="<{$project_voucher_k|default=1}>"
+						data-quantity="<{$project_voucher_vo['quantity']}>"
+						data-open-quantity="<{$project_voucher_vo['open_quantity']}>"
+					/>
+				</div>
+			</li>
+		</volist>
+	</ul>
+<else />
+	<div class="voucher-activity-empty">
+		<div class="lookey-alert lookey-alert-warning voucher-activity-empty-info">
+			<strong>没有设置代金券</strong>
+		</div>
+	</div>
+</notempty>

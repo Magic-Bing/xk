@@ -1,0 +1,213 @@
+<extend name="Common/base" />
+
+<block name="header_js_add">
+<script src="__COMMON__/js/jquery/jquery.form.js"></script>
+</block>
+
+<block name="content">
+	<div class="room room-choose">
+		<div class="room-title room-choose-title">
+			<div class="clearfix room-title-box">
+				<span class="room-title-info">
+					<{$seo_title|default='空白'}>
+				</span>
+				<span class="room-title-subtitle">
+					<include file="tab" /> 
+				</span>
+				<span class="fr room-title-refresh">
+					<a href="__SELF__" class="room-title-refresh-btn">
+						<img class="room-title-refresh-btn-img" src="__IMG__/sx01.png" />
+					</a>
+				</span>
+			</div>
+		</div>
+
+		<div class="clearfix room-attr-search">
+			<div class="room-attr-search-box">
+				<span class="room-attr-search-title">选择项目</span>
+				<select name="project-id" class="room-attr-search-select js-choose-project-search-select">
+					<if condition="!empty($search_project_id)">
+						<option value="0">全部</option>
+						<foreach name="project_list" item="project_list_vo">
+							<if condition="$search_project_id eq $project_list_vo['id']">
+								<option value="<{$project_list_vo['id']}>" selected>
+									<{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
+								</option>
+							<else />		 
+								<option value="<{$project_list_vo['id']}>">
+									<{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
+								</option>
+							</if>
+						</foreach> 
+					<else />
+						<option value="0" selected>全部</option>
+						<foreach name="project_list" item="project_list_vo">
+							<option value="<{$project_list_vo['id']}>">
+								<{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
+							</option>
+						</foreach> 
+					</if>
+				</select>
+				
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<span class="room-attr-search-title">选择项目批次</span>
+				<select class="room-attr-search-select js-choose-batch-search-select" name="batch-id">
+					<option value="0">全部</option>
+					<foreach name="batch_list" item="batch_list_vo">
+						<option value="<{$batch_list_vo['id']}>">
+							<{$batch_list_vo['name']}>
+						</option>
+					</foreach> 
+				</select>
+			</div>
+			
+			<div class="fr choose-excel">
+				<ul class="clearfix choose-excel-options">
+					<li class="fl choose-excel-option choose-excel-option-export">
+						<a href="javascript:void(0);" 
+							data-project-id="<{$search_project_id|default=0}>" 
+							class="choose-excel-btn choose-excel-export js-choose-excel-export"
+						>
+							<i class="choose-export-icon choose-export-icon-out"></i>
+							导出模板
+						</a>
+					</li>
+					<li class="fl choose-excel-option choose-excel-option-import">
+						<a href="javascript:void(0);" 
+							data-project-id="<{$search_project_id|default=0}>" 
+							class="choose-excel-btn choose-excel-import js-choose-excel-import"
+						>
+							<i class="choose-export-icon choose-export-icon-in"></i>
+							导入数据
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="room-attr-content">
+			<div class="room-attr-rooms">
+				<table class="room-attr-rooms-table">
+                    <thead>
+						<tr>
+							<th style="width: 55px;" class="room-attr-rooms-table-room-name">
+								ID
+							</th>
+							<th>
+								客户
+							</th>
+							<th>
+								客户电话
+							</th>
+							<th>
+								项目
+							</th>
+							<th>
+								排号号码
+							</th>
+							<th>
+								诚意金金额(元)
+							</th>
+							<th>
+								添加时间
+							</th>
+							<th>
+								状态
+							</th>
+							<th class="room-attr-rooms-table-option">
+								操作
+							</th>
+						</tr>
+                    </thead> 
+					<tbody>
+						<volist name="choose_list" id="choose_vo" key="choose_k">
+							<tr class="room-attr-rooms-table-list choose-table-list-<{$choose_vo.id}>">
+								<td>
+									<{$choose_vo.id}>
+								</td> 
+								<td class="room-attr-rooms-table-list-title">
+									<{$choose_vo['customer_name']|default='客户'}>
+								</td> 
+								<td class="room-attr-rooms-table-list-title">
+									<{$choose_vo['customer_phone']|default=''}>
+								</td> 
+								<td>
+									<{$choose_vo.project_name|default=''}>
+									
+									<notempty name="choose_vo.batch_name">
+										<span class="choose-batch-name">
+											[<{$choose_vo.batch_name}>]
+										</span>
+									</notempty>
+								</td> 
+								<td>
+									<{$choose_vo.row_number|default=0}>
+								</td> 
+								<td>
+									<{$choose_vo.money|default=0}>
+								</td> 
+								<td>
+									<if condition="!empty($choose_vo['add_time'])">
+										<{$choose_vo.add_time|date="Y-m-d H:i:s",###}>
+									</if>
+								</td> 
+								<td>
+									<neq name="choose_vo['status']" value="1">
+										<span class="color-red">关闭</span>
+									<else/>
+										启用
+									</neq>
+								</td> 
+								<td class="btns">
+									<a href="javascript:void(0);" data-id="<{$choose_vo.id}>" class="btn btn-radius5 mr5 room-attr-rooms-save-btn js-choose-delete-btn">删除</a>
+									<a href="<{:U('edit', 'id='.$choose_vo['id'])}>" class="btn btn-radius5 room-attr-rooms-save-btn js-choose-save-btn">修改</a>
+								</td> 
+							</tr>
+						</volist>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	
+		<php>$page = trim($page_show);</php>
+		<if condition="!empty($page)">
+			<div class="room-attr-page page-container">
+				<{$page|default=''}>
+			</div>
+		</if>
+	
+	</div>
+	
+	<div class="js-choose-excel-export-tpl" style="display:none;">
+		<div class="choose-excel-export-tpl">
+			<div class="choose-excel-export-tpl-title">
+				你确认要导出该项目模板吗？
+			</div>
+			<div class="choose-excel-export-tpl-btns">
+				<a href="javascript:void(0);" class="choose-excel-export-tpl-btn js-choose-excel-export-tpl-btn">
+					导出模板
+				</a>
+			</div>
+		</div>
+	</div>
+	
+	<div class="js-choose-excel-import-tpl" style="display:none;">
+		<form method="post" id="choose-excel-import-tpl-form" class="choose-excel-import-tpl-form" name="import-form" action="<{:U('import')}>" enctype="multipart/form-data" >
+			<div class="choose-excel-import-tpl">
+				<div class="choose-excel-import-tpl-title">
+					提交客户信息文件
+				</div>
+				<div class="choose-excel-import-tpl-input">
+					<input type="file" class="choose-excel-import-tpl-file upload" name="excel" value="" />
+				</div>
+				<div class="choose-excel-import-tpl-btns">
+					<input type="submit" class="choose-excel-import-tpl-btn js-choose-excel-import-tpl-btn" value="导入数据" />
+				</div>
+			</div>
+		</form>
+	</div>
+</block>
+
+
+
+

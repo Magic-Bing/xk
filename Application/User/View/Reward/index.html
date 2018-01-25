@@ -1,0 +1,72 @@
+﻿<extend name="Common/base" />
+
+<block name="header_config_add"></block>
+
+<block name="header">
+	<div class="common-header-wrapper">
+		<div class="clearfix common-header">
+			<div class="fl wm25 arrow-left common-header-return user-header-return">
+				<span class="common-header-return-box return-btn">
+					<a href="javascript:void(0);" class="common-header-return-btn">返回</a>
+				</span>
+			</div>
+			<div class="fl wm50 common-header-content js-common-header-content">
+				<span class="common-header-content-box-no-arrow">
+					<span class="common-header-content-box-name">提现金额</span>
+				</span>
+			</div>
+			<div class="fl wm25 common-header-right">
+				<span class="user-reward-use clearfix">
+					<a href="<{:U('info', 'project_id='.$project['id'])}>" class="user-reward-use-btn">
+						<i class="user-reward-use-icon"></i>
+					</a>
+				</span>
+			</div>
+		</div>
+	</div>
+</block>
+
+<block name="content">
+	<div class="user-reward">
+	
+		<div id="iscroller-wrapper" class="iscroller-style user-reward-iscroller">
+			<div id="iscroller-scroller" class="iscroller-scroller-style">
+	
+				<div class="user-reward-wrapper">
+					<div class="user-reward-project user-reward-project-box">
+						<div class="user-reward-project-name">
+							<{$project['name']|default='项目名称'}>
+						</div>
+						
+						<div class="user-reward-project-money">
+							<div class="user-reward-project-money-box">
+								<span class="user-reward-project-money-info">
+									<div class="reward-money"><{:number_format($customerReward['reward']-$customerReward['use_reward'], 2)}></div>
+									<div>元</div>
+								</span>
+							</div>
+						</div>
+
+						<div class="user-reward-btns">
+							<a href="javascript:void(0);" class="user-reward-btns-btn js-user-reward-btns-btn" data-code="<{$code|default=''}>">
+								提取
+							</a>
+						</div>
+					</div>
+
+					<div class="user-reward-tip">
+						<div class="user-reward-tip-box">
+							<span class="user-reward-tip-title">提醒：</span>提取现金将以红包的形式发送到你的微信，请注意查收！
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+	</div>
+</block>
+
+<block name="footer_js">
+<include file="Common@Common/Mobile/iscroll" iscroller_id="iscroller_reward_index" iscroller_select_id="iscroller-wrapper" />
+</block>

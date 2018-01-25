@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>个人中心</title>
+		<meta name="keywords" content="个人中心" />
+		<meta name="description" content="个人中心" />
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="MobileOptimized" content="320">
+		<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta name="HandheldFriendly" content="true">
+
+		<link href="/Yundb/Public/common/css/base.css" type="text/css" rel="stylesheet" />
+
+		<link href="/Yundb/Public/user/css/user.css" type="text/css" rel="stylesheet" />
+
+		<script src="/Yundb/Public/common/js/jquery/jquery-1.11.3.min.js"></script>
+		<!--<script src="/Yundb/Public/common/js/jquery/jquery-ui-1.12.0.custom/jquery-ui.js"></script>
+			<script src="/Yundb/Public/common/js/jquery/jquery.mousewheel.js"></script>
+			<link href="/Yundb/Public/common/js/jquery/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet"/>
+			<script src="/Yundb/Public/common/js/jquery/perfect-scrollbar/perfect-scrollbar.js"></script>-->
+		<script src="/Yundb/Public/common/js/functions.js"></script>
+		<script src="/Yundb/Public/common/js/layer_mobile/layer.js"></script>
+		<script src="/Yundb/Public/common/js/mobile/layer.js"></script>
+		<script src="/Yundb/Public/common/js/mobile/functions.js"></script>
+		<script src="/Yundb/Public/common/js/mobile/common.js"></script>
+
+		<script src="/Yundb/Public/user/js/common.js"></script>
+		<script src="/Yundb/Public/user/js/data.js"></script>
+		<script src="/Yundb/Public/user/js/user.js"></script>
+
+		<script type="text/javascript">
+			$(function() {
+				//登录
+				$(".login-button").click(function() {
+					var $phone = $("#logPhoneorname").val();
+					var $pwd = $("#pwd").val();
+					var $newp = $("#newp").val();
+					if ($phone == "") {
+						layer_alert("请输入原密码");
+						return false;
+					}
+					if ($pwd == "" && $pwd.length<6) {
+						layer_alert("请输人新密码");
+						return false;
+					}
+					if ($newp == "") {
+						layer_alert("请确认新密码");
+						return false;
+					}
+					if ($newp != $pwd) {
+						layer_alert("两次密码不一致");
+						return false;
+					}
+				});
+			});
+		</script>
+
+	</head>
+
+	<body>
+
+		<style>
+			.signininput {
+				background-color: #F6F6F6;
+				margin-top: 2px;
+				border-top: 1px solid #cccccc;
+			}
+			
+			.signininput ul li {
+				border-bottom: 1px solid #cccccc;
+				line-height: 49px;
+				padding: 0 10px;
+			}
+			
+			.signininput ul li i {
+				margin-left: 10px;
+				display: inline-block;
+				width: 16px;
+				height: 19px;
+				vertical-align: -3px;
+				background-repeat: no-repeat;
+				background-size: 100%;
+			}
+			
+			.signininput ul li .signinuser {
+				background-image: url(__PUBLIC__/user/img/login/001.png);
+			}
+			
+			.signininput ul li .signinpassw {
+				background-image: url(__PUBLIC__/user/img/login/002.png);
+			}
+			
+			.signininput ul li input {
+				margin-left: 10px;
+				font-size: 14px;
+				border: 1px solid #F6F6F6;
+				border-radius: 5px;
+				width: 60%;
+				height: 28px;
+				padding: 2px;
+			}
+			
+			.intexchabutt {
+				width: 94.4444%;
+				margin: 0 auto;
+				margin-top: 10px;
+			}
+			
+			.intexchabutt .intexbg1 {
+				background-color: #ff6e6e;
+				width: 100%;
+				line-height: 35px;
+				color: #fff;
+				border-radius: 5px;
+				font-size: 15px;
+				border: 1px solid #ff6e6e;
+			}
+			
+			.getpwd-div {
+				display: inline-block;
+				line-height: 30px;
+				padding: 0 3px 0 3px;
+				border-radius: 5px;
+				font-size: 12px;
+				text-align: center;
+				width: 20%;
+				background: #E1DADA;
+			}
+			
+			.getpwd-button {
+				background: #ff6e6e;
+				color: #FFF;
+			}
+		</style>
+		<div id="zz01" class="div-zz"></div>
+		<div class="common-header-wrapper">
+			<div class="clearfix common-header">
+				<div class="fl wm25 arrow-left common-header-return user-header-return">
+					<span class="common-header-return-box return-btn">
+                    <a href="javascript:void(0);" class="common-header-return-btn">返回</a>
+                </span>
+				</div>
+				<div class="fl wm50 common-header-content js-common-header-content">
+					<span class="common-header-content-box-no-arrow">
+                    <span class="common-header-content-box-name">个人中心</span>
+					</span>
+				</div>
+				<!--<div class="fl wm25 common-header-right">
+					<div class="common-header-right-box clearfix">
+						<a href="/yundb/user/login/activities.html" class="common-header-right-btn user-activity-header-right-btn">
+							<i class="icon-home icon-home-header"></i>
+						</a>
+					</div>
+				</div>-->
+			</div>
+		</div>
+
+		<div class="user-project-view-base" style="background:#FFF">
+			<div class="user-project-view-content-wrapper">
+				<div id="iscroller-wrapper" class="iscroller-style user-activity">
+					<div style="height:100%" id="iscroller-scroller" class="iscroller-scroller-style">
+
+						<form action="" method="post">
+							<div style="height:100%;width:100%;background: #F6F6F6;" id="logindiv" data_type="speedbuy">
+
+								<div class="signininput">
+									<ul>
+										<li><i class="signinuser"></i><input type="text" id="logPhoneorname" placeholder="请输入原密码"></li>
+										<li><i class="signinpassw"></i> <input type="password" id="pwd" placeholder="请输入新密码"></li>
+										<li><i class="signinpassw"></i><input type="password" id="newp" placeholder="请确认新密码"></li>
+									</ul>
+								</div>
+								<div class="intexchabutt">
+									<input type="submit" value="提交" class="intexbg1 login-button">
+									<div style="margin-top:5px;font-size:10px">
+										<p>
+											* 原密码请输入注册时的密码<br/>
+										</p>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="/Yundb/Public/common/js/jquery/iscroll/iscroll.js"></script>
+
+	</body>
+
+</html>

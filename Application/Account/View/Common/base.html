@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="keywords" content="<block name='seo_keywords'><{$seo_keywords|default='销控管理系统'}></block>"/>
+		<meta name="description" content="<block name='seo_description'><{$seo_description|default='销控管理系统'}></block>"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+		<meta name="apple-mobile-web-app-capable" content="yes"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>
+			<block name="seo_title"><{$seo_title|default='销控管理'}></block>
+			<block name="website">
+				<notempty name="website">
+					- <{$website|default='销控管理系统'}>
+				</notempty>
+			</block>
+		</title>
+		<!-- basic styles -->
+		<block name="basic_styles">
+			<link href="__ASSETS__/css/bootstrap.min.css" rel="stylesheet" />
+			<link href="__ASSETS__/css/font-awesome.min.css" rel="stylesheet" />
+			<!--[if IE 7]>
+				<link href="__ASSETS__/css/font-awesome-ie7.min.css" rel="stylesheet" />
+			<![endif]-->
+		</block>
+		<!-- page specific plugin styles -->
+		<block name="page_base_plugin_styles">
+			<link rel="stylesheet" href="__ASSETS__/css/jquery.gritter.css" />
+		</block>
+		<block name="page_plugin_styles"></block>
+		<!-- ace styles -->
+		<block name="ace_styles">
+			<link href="__ASSETS__/css/ace.min.css" rel="stylesheet" />
+			<link href="__ASSETS__/css/ace-rtl.min.css" rel="stylesheet" />
+			<link href="__ASSETS__/css/ace-skins.min.css" rel="stylesheet" />
+			<!--[if lte IE 8]>
+				<link rel="stylesheet" href="__ASSETS__/css/ace-ie.min.css" />
+			<![endif]-->
+			<link href="__CSS__/theme.css" type="text/css" rel="stylesheet"/>
+			<link href="__CSS__/account.css" type="text/css" rel="stylesheet"/>
+		</block>
+		<block name="header_css_add"></block>
+		<!-- inline styles related to this page -->
+		<!-- ace settings handler -->
+		<block name="header_common_js">
+			<script src="__ASSETS__/js/ace-extra.min.js"></script>
+			<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+			<!--[if lt IE 9]>
+				<script src="__ASSETS__/js/html5shiv.js"></script>
+				<script src="__ASSETS__/js/respond.min.js"></script>
+			<![endif]-->
+		</block>
+		<block name="header_js"></block>
+		<block name="header_js_add"></block>
+		<block name="header_config">
+			<include file="Common/config" />
+		</block>
+		<block name="header_config_add"></block>
+
+	</head>
+	<!--左边的菜单栏固定-->
+	<block name="body">
+		<body class="breadcrumbs-fixed navbar-fixed">
+		<!--密码修改模态框-->
+		<div class="modal fade" tabindex="-1" role="dialog" id="update-model"  aria-labelledby="myModalLabel" >
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myModalLabel">账号密码修改</h4>
+					</div>
+					<form action="" id="update-password">
+						<div class="modal-body">
+							<input type="hidden" name="user_id" value="<{$user_info['id']}>">
+							<div class="form-group" style="height: 30px">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-p1"  style="text-align: right"> 用户名： </label>
+								<div class="col-sm-9">
+									<input type="text" readonly="" id="form-field-p1" value=" <{$user_info['name']}>" placeholder="请输入用户名" required="" disabled name="username" class="col-xs-10 col-sm-5" style="width: 80%">
+								</div>
+							</div>
+							<div class="form-group" style="height: 30px">
+								<label class="col-sm-3 control-label no-padding-right" for="oldpwd"  style="text-align: right"> 原密码： </label>
+								<div class="col-sm-9">
+									<input type="password" id="oldpwd" placeholder="请输原密码" autocomplete="off" name="oldpwd" required class="col-xs-10 col-sm-5" style="width: 80%">
+								</div>
+							</div>
+							<div class="form-group" style="height: 30px">
+								<label class="col-sm-3 control-label no-padding-right" for="newpwd-1"  style="text-align: right"> 新密码： </label>
+								<div class="col-sm-9">
+									<input type="password" id="newpwd-1" placeholder="请输入新密码" autocomplete="off" required class="col-xs-10 col-sm-5" style="-webkit-appearance: none;width: 80%">
+								</div>
+							</div>
+							<div class="form-group" style="height: 30px">
+								<label class="col-sm-3 control-label no-padding-right" for="newpwd" style="text-align: right"> 重复新密码： </label>
+								<div class="col-sm-9">
+									<input type="password" id="newpwd" placeholder="请再次输入新密码" autocomplete="off" required name="newpwd" class="col-xs-10 col-sm-5" style="-webkit-appearance: none;width: 80%">
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+							<button  class="btn btn-primary">提交</button>
+						</div>
+					</form>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+		<block name="header">
+				<include file="Common/navbar" />
+			</block>
+			<block name="content">
+                                <div id="zz_div" style="width: 100%;height: 100%;background: rgba(0, 0, 0, 0.3);position: absolute;top: 0px;left: 0px;z-index: 998;display: none;"></div>
+				<div class="main-container" id="main-container">
+					<script type="text/javascript">
+						try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+					</script>
+
+					<div class="main-container-inner">
+
+						<a class="menu-toggler" id="menu-toggler" href="#">
+							<span class="menu-text"></span>
+						</a>
+
+						<block name="sidebar">
+							<div class="sidebar sidebar-fixed" id="sidebar">
+								<script type="text/javascript">
+                                    try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+								</script>
+
+								<div class="sidebar-shortcuts" id="sidebar-shortcuts">
+									<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+										<button class="btn btn-info">
+											专
+										</button>
+										<button class="btn btn-success">
+											注
+										</button>
+										<button class="btn btn-warning">
+											开
+										</button>
+
+										<button class="btn btn-danger">
+											盘
+										</button>
+									</div>
+
+									<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+										<span class="btn btn-success"></span>
+										<span class="btn btn-info"></span>
+										<span class="btn btn-warning"></span>
+										<span class="btn btn-danger"></span>
+									</div>
+								</div><!-- #sidebar-shortcuts -->
+
+								<ul class="nav nav-list">
+									<li>
+									<a href="<{:U('index/index')}>">
+										<i class="icon-dashboard"></i>
+										<span class="menu-text"> 桌面 </span>
+									</a>
+									</li>
+									<foreach name="fun" item="vo"  key="k">
+										<if condition="($vo.parent_id eq 0) AND ($vo.is_enable eq 1)">
+											<li fid="<{$vo.id}>">
+												<a href="/Account/<{$vo.url}>">
+													<i class="<{$vo.icon}>"></i>
+													<span class="menu-text"> <{$vo.name}></span>
+												</a>
+											</li>
+											<elseif  condition="($vo.parent_id eq 0) AND ($vo.is_enable eq 0)"/>
+											<li>
+												<a href="javascript:;" class="dropdown-toggle">
+													<i class="<{$vo.icon}>"></i>
+													<span class="menu-text"> <{$vo.name}></span>
+													<b class="arrow icon-angle-down"></b>
+												</a>
+												<ul class="submenu">
+													<foreach name="fun" item="val"  key="kv">
+														<if condition="$val.parent_id eq $fun[$k]['id']">
+															<li fid="<{$val.id}>" pid="<{$val.parent_id}>">
+																<a href="/Account/<{$val.url}>" <if condition="$val.id eq 31">target="view_window"</if>>
+																	<i class="icon-double-angle-right"></i>
+																	<{$val.name}>
+																</a>
+															</li>
+														</if>
+													</foreach>
+												</ul>
+											</li>
+										</if>
+									</foreach>
+
+								</ul><!-- /.nav-list -->
+
+								<div class="sidebar-collapse" id="sidebar-collapse">
+									<i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+
+								</div>
+
+								<script type="text/javascript">
+                                    try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+								</script>
+							</div>
+
+						</block>
+
+						<div class="main-content">
+							<!-- 面包屑固定 -->
+							<div class="breadcrumbs breadcrumbs-fixed" id="breadcrumbs">
+								<script type="text/javascript">
+									try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+								</script>
+
+								<!-- 面包屑导航 -->
+								<block name="breadcrumb">
+									<include file="Common/breadcrumb" />
+								</block>
+								
+								<!-- 导航搜索 -->
+							</div>
+
+							<div class="page-content">
+
+								<!-- .page-header -->
+								<!-- /.page-header -->
+						
+								<div class="row">
+									<div class="col-xs-12">
+										<!-- PAGE CONTENT BEGINS -->
+										
+										<!-- .page-content -->
+										<block name="page_alert_success">
+											<{/*
+												<include file="Common/alert-success" />
+											*/}>
+										</block>
+
+										<!-- .page-content -->
+										<block name="page_content"></block>
+										
+										<!-- PAGE CONTENT ENDS -->
+									</div><!-- /.col -->
+								</div><!-- /.row -->
+								
+								<block name="copyright">
+									<{/*
+										<include file="Common/copyright" />
+									*/}>
+								</block>
+								
+							</div><!-- /.page-content -->
+						</div><!-- /.main-content -->
+
+						
+					</div><!-- /.main-container-inner -->
+
+					<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+						<i class="icon-double-angle-up icon-only bigger-110"></i>
+					</a>
+				</div><!-- /.main-container -->
+			</block>
+			<block name="footer"></block>
+			
+			<!-- basic scripts -->
+			<block name="basic_js">
+				<!--[if !IE]> -->
+					<!--<script src="__ASSETS__/js/jquery-2.1.1.min.js"></script>-->
+				<!-- <![endif]-->
+				<!--[if IE]>
+					<!--<script src="__ASSETS__/js/jquery-1.10.2.min.js"></script>-->
+				<!--<![endif]&ndash;&gt;-->
+
+				<!--[if !IE]> -->
+					<!--<script type="text/javascript">-->
+						<!--window.jQuery || document.write("<script src='__ASSETS__/js/jquery-2.1.1.min.js'>"+"<"+"script>");-->
+					<!--</script>-->
+				<!-- <![endif]-->
+				<!--[if IE]>
+					<!--<script type="text/javascript">-->
+						<!--window.jQuery || document.write("<script src='__ASSETS__/js/jquery-1.10.2.min.js'>"+"<"+"script>");-->
+					<!--</script>-->
+				<!--<![endif]&ndash;&gt;-->
+
+				<script type="text/javascript">
+					if("ontouchend" in document) document.write("<script src='__ASSETS__/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
+				</script>
+				<script src="__ASSETS__/js/bootstrap.min.js"></script>
+				<script src="__ASSETS__/js/typeahead-bs2.min.js"></script>
+			</block>
+			
+			<!-- page specific plugin scripts -->
+			<block name="plugin_js"></block>
+
+			<!-- ace scripts -->
+			<block name="ace_js">
+				<script src="__ASSETS__/js/ace-elements.min.js"></script>
+				<script src="__ASSETS__/js/ace.min.js"></script>
+			</block>
+			<block name="ace_add_js"></block>
+			
+			<!-- inline scripts related to this page -->
+			<block name="page_js"></block>
+
+			<block name="footer_js">
+				<script src="__ASSETS__/js/jquery.gritter.min.js"></script>
+				<script src="__JS__/layer/layer.js"></script>
+				<script src="__JS__/pc/layer.js"></script>
+				<script src="__JS__/pc/functions.js"></script>
+				<script src="__JS__/functions.js"></script>
+				<script src="__JS__/account.js"></script>
+			</block>
+			<block name="footer_add_js"></block>
+		</body>
+	</block>
+	
+</html>
+<script>
+        //控制一级模块选中后的样式
+        var nav_li=$('.nav-list>li');
+        var o_count=0;
+        for(var i=0;i<nav_li.length;i++){
+            var tx=$.trim(nav_li.eq(i).find('a').find("span").text());
+            if( tx==='<{$classify_name}>'){
+//		    alert();
+                if(tx==='客户信息'){
+                    nav_li.eq(i).addClass("active");
+                    break;
+                }else if(tx==='客户签到'){
+                    nav_li.eq(i).addClass("active");
+                    break;
+                }else if(tx==='交易管理'){
+                    nav_li.eq(i).addClass("active");
+                    break;
+                }
+                else{
+                    nav_li.eq(i).addClass("open active");
+                    break;
+                }
+            }else{
+                if('<{$classify_name}>'==='控制台'){
+                    nav_li.eq(0).addClass("active");
+                    break;
+                }else if('<{$classify_name}>'==='客户信息'){
+                    if(o_count===(nav_li.length-1)){
+                        window.location.href="<{:U('/Account/Base/error_page')}>";
+                    }
+                }else if('<{$classify_name}>'==='客户签到'){
+                    if(o_count===(nav_li.length-1)){
+                        window.location.href="<{:U('/Account/Base/error_page')}>";
+                    }
+                }else if('<{$classify_name}>'==='交易管理'){
+                    if(o_count===(nav_li.length-1)){
+                        window.location.href="<{:U('/Account/Base/error_page')}>";
+                    }
+                }
+                o_count++;
+            }
+        }
+    //控制二级模块选中后的样式
+        if('<{$classify_name}>' !=="客户信息" && '<{$classify_name}>' !=="控制台" && '<{$classify_name}>' !=="客户签到" && '<{$classify_name}>' !=="交易管理" && '<{$classify_name}>' !==""){
+        var two_nav_li=$('.nav-list>li>ul>li');
+        var m_count=0;
+        for(var i=0;i<two_nav_li.length;i++){
+            var tx=$.trim(two_nav_li.eq(i).find('a').text());
+            if( tx==='<{$seo_title}>'){
+                two_nav_li.eq(i).addClass("active");
+                break;
+            }else{
+                                if(m_count===(two_nav_li.length-1)){
+                        window.location.href="<{:U('/Account/Base/error_page')}>";
+                                }
+                m_count++;
+            }
+        }
+        }
+
+</script>

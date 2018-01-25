@@ -1,0 +1,49 @@
+﻿<extend name="Common/base" />
+
+<block name="header">
+	<div class="saler-project-header-wrapper" style="background: #03a9f4">
+                <div class="fl wm25 arrow-left-white common-header-return">
+				<span class="common-header-return-box return-btn">
+					<a href="javascript:void(0);" class="common-header-return-btn" style="color:#FFF">返回</a>
+				</span>
+		</div>
+		<span class="saler-project-header" style="width:75%;border:0px;">
+			选择项目
+		</span>
+		<span>
+				<a href="/saler/logging/logout.html" class="a-logout" style="">注销</a>
+		</span>
+	</div>
+</block>
+
+<block name="content">
+	<div class="base">
+		<div class="saler-project-content-wrapper">
+			<div class="saler-project-content">
+				<ul class="saler-project-content-list">
+				
+					<volist name="projects" id="projects_vo" key="projects_k">
+						<li class="saler-project-content-li">
+                                                    <!--<if condition="$userinfo['type'] lt 3 ">
+							<a href="<{:U('saler/project/index', array('info' => set_search_ids(array('p' => $projects_vo['id']))))}>" class="saler-project-content-a">
+								<{$projects_vo.name|default="项目"}>
+								<input style="float:right;margin-right:5px" type="radio" name="xzproj" class="js_xzproj_radio"/>
+							</a>
+                                                    <else/>
+                                                    <a href="../../saler/statistics/index.html?pid=<{$projects_vo.id}>" class="saler-project-content-a">
+								<{$projects_vo.name|default="项目"}>
+								<input style="float:right;margin-right:5px" type="radio" name="xzproj" class="js_xzproj_radio"/>
+							</a>
+                                                    </if>-->
+                                                    <a href="../../saler/DataStatistics/index/info/p<{$projects_vo.id}>" class="saler-project-content-a">
+                                                            <{$projects_vo.name|default="项目"}>
+                                                            <input style="float:right;margin-right:5px" type="radio" name="xzproj" class="js_xzproj_radio"/>
+                                                    </a>
+						</li>
+					</volist>
+				</ul>
+			</div>
+		</div>
+	<div>
+</block>
+<block name="footer"></block>

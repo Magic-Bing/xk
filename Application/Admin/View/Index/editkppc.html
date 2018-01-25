@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>修改批次信息</title>
+<style type="text/css">
+#tagscontent tr {
+    line-height: 36px;
+    height: auto;
+    clear: both;
+}
+#tagscontent #table .left {
+    width: 200px;
+    text-align: right;
+    padding-right: 10px;
+	font-weight:bold;
+}
+#tagscontent td {
+    font-size: 12px;
+    color: #1B4670;
+    border-bottom: 1px solid #e8eef6;
+}
+#tagscontent input, #tagscontent #table input {
+    font-size: 12px;
+    line-height: 22px;
+    padding: 0px 10px;
+}
+
+.save {
+background: url('../../Public/admin/images/buttom_bg.gif') right bottom no-repeat;
+    line-height: 18px;
+    cursor: pointer;
+    text-align: center;
+    padding: 2px 10px;
+    border: 1px solid #c4d9e9;
+    color: #395366;
+    overflow: hidden;
+    margin-left: 20px;
+	font-size:13px;
+}
+.show_content_m_t2 {
+    width: 1081px;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+    background-color: #fff;
+}
+</style>
+</head>
+<body>
+<div style="background:#2C3B41;width:1081px;line-height:32px;color:#fff;margin-top:-5px">
+	<font style="font-weight:bold">&nbsp;修改批次</font>
+	<div style="float:right;margin-right:16px">
+	<a href=""><img src="../../Public/admin/images/sx01.png" style="width:22px;height:18px;margin-top:6px"></a>
+	</div>
+</div>
+<div class="show_content_m_t2">
+ <div style="width:auto;overflow-x:hidden;overflow-y:auto"> 
+          <div class="tags"> 
+          <div id="tagscontent">
+            <form method="post" name="form1" action="">
+              <div>
+				<input type="hidden" name="proj_id" id="proj_id" value="<{$pcinfo[0]['proj_id']}>" class="skey" style="width:150px;">
+				<input type="hidden" name="id" id="id" value="<{$pcinfo[0]['id']}>" class="skey" style="width:150px;">
+                <table border="0" cellspacing="2" cellpadding="4" class="list" name="table" id="table" width="100%">
+                  <tbody>
+				   <tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="ffffff">
+                      <td class="left">批次名称</td>
+                      <td><input type="text" name="name" id="name" value="<{$pcinfo[0]['name']}>" class="skey" style="width:150px;"> </td>
+                    </tr>
+                    <tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="ffffff">
+                      <td class="left">房间数量</td>
+                      <td><input type="number" name="roomscount" id="roomscount" value="<{$pcinfo[0]['roomscount']}>" class="skey" style="width:150px;"</td>
+                    </tr>
+					<tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="ffffff">
+                      <td class="left">开盘时间</td>
+                      <td><input type="text" name="kptime" id="kptime" value="<{$pcinfo[0]['kptime']}>" class="skey" style="width:150px;"</td>
+                    </tr>
+					<tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="ffffff">
+                      <td class="left">led展示地址</td>
+                      <td><input type="text" name="ledurl" id="ledurl" value="<{$pcinfo[0]['ledurl']}>" class="skey" style="width:150px;"</td>
+                    </tr>
+					<tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="ffffff">
+                      <td class="left">当前批次</td>
+                      <td>
+					  <if condition="$pcinfo[0]['is_dq'] eq 1"> 
+					  是<input type="radio" name="is_dq"  value="1" class="skey" checked>&nbsp;&nbsp;&nbsp;&nbsp;
+					  否<input type="radio" name="is_dq"  value="0" class="skey" >
+					  <else />
+					  是<input type="radio" name="is_dq"  value="1" class="skey" >&nbsp;&nbsp;&nbsp;&nbsp;
+					  否<input type="radio" name="is_dq"  value="0" class="skey" checked>
+					  </if>
+					  </td>
+                    </tr>
+                    <tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="ffffff">
+                      <td class="left">是否启用</td>
+                      <td>
+					  <if condition="$pcinfo[0]['is_yx'] eq 1"> 
+					  是<input type="radio" name="is_yx"  value="1" class="skey" checked>&nbsp;&nbsp;&nbsp;&nbsp;
+					  否<input type="radio" name="is_yx"  value="0" class="skey" >
+					  <else />
+					  是<input type="radio" name="is_yx"  value="1" class="skey" >&nbsp;&nbsp;&nbsp;&nbsp;
+					  否<input type="radio" name="is_yx"  value="0" class="skey" checked>
+					  </if>
+					  </td>
+                    </tr>
+					<tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="ffffff">
+                      <td class="left">所属项目</td>
+                      <td><div id="projname" name="projname" ><{$pcinfo[0]['projname']}></div></td>
+                    </tr>
+                  </tbody> 
+                </table>
+              </div>
+              <div class="blank20"></div>
+              <input type="button" value="保存" class="save" style="margin-left:220px;margin-top:10px" onclick="saveproject()"> 
+			  <a href="/admin/index/pcbuild.html?projid=<{$pcinfo[0]['proj_id']}>" style="font-size:12px;margin-left:50px;border:1px solid blue;padding:5px 10px;">返回</a>			  
+            </form>
+          </div>
+        </div>
+        <div class="blank20"></div> 
+      
+      </div>
+</div>
+<script src="../../Public/xk/js/jquery/jquery-1.11.3.min.js"></script>
+<script src="../../Public/xk/js/functions.js"></script>
+<script src="../../Public/xk/js/layer/layer.js"></script>
+<script type="text/javascript">
+function saveproject()
+{
+	var $proj_id = $("#proj_id").val();
+	var $id=$("#id").val();
+	var $name = $("#name").val();
+	var $roomscount = $("#roomscount").val();
+	var $is_yx = $('input[name="is_yx"]:checked').val();
+	var $is_dq = $('input[name="is_dq"]:checked').val();
+	var $ledurl = $("#ledurl").val();
+	var $kptime = $("#kptime").val();
+	
+	if ($proj_id==0)
+	{
+		
+		layer_alert("数据异常，请重试");
+		return false;
+	}
+
+	var kppc_url = {savekppc: '<{:U("index/savekppc")}>',}
+			
+	$.ajax({
+		url: kppc_url.savekppc,
+		data: {
+			id: $id ,
+			proj_id: $proj_id,
+			name: $name,
+			roomscount: $roomscount,
+			is_yx: $is_yx,
+			is_dq: $is_dq,
+			kptime: $kptime,
+			ledurl: $ledurl,
+		},
+		type: 'POST',
+		dataType: 'JSON',
+		success: function (data, status) {
+			if (typeof(data.status) == 'undefined') {
+				layer_alert('请求失败，请重试！');
+				return false;
+			} 
+			if (data.status == false) {
+				alert(data.info);
+				return false;
+			}
+			layer_alert("保存成功");
+		},
+		error: function (data, status, e) {
+			layer_alert('提交连接失败！');
+		}
+	}); 
+}
+</script>
+
+</body>
+</html>

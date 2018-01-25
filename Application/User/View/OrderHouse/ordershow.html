@@ -1,0 +1,170 @@
+﻿<extend name="Common/base" />
+
+<block name="header_config_add">
+<script type="text/javascript">
+var condition = {
+    event_id : '<{: isset($eventId)?$eventId:0 }>',
+	build_id: '<{$buildings[0][2]}>',
+	unit_id: '<{$units[0][0][1]}>',
+	level : [0,0],
+	area : [0,0],
+	total : [0,0],
+	hx : []
+};
+</script>
+</block>
+
+<block name="header">
+<style>
+    .header-bg{
+        margin-top:0px;color:#000;font-size:12px;font-weight:400;
+    }
+    .userinfo{
+        width:90%;
+        margin:auto;
+    }
+    .userinfo-div{
+        height:38px;background: #FFF;
+        padding:10px 0;
+        border-bottom: 1px solid #eae9e9;
+        line-height: 20px;
+    }
+    .userinfo-name{
+        font-size:15px;
+        font-weight: 700;
+    }  
+
+    .userinfo-ul{
+        background: #FFF;
+        padding:10px 0;
+        border-bottom: 1px solid #eae9e9;
+        line-height: 20px;
+    }
+    .userinfo-ul:last-child{
+        border-bottom: 0;
+    }
+    .user-project-view-content-rooms {
+        top: 0px;
+        bottom: 55px;
+    }
+    .orderlist{
+        background: #FFF;
+    }
+    .orderlist-title{
+        width:90%;
+        margin:auto;
+        border-bottom: 1px solid #eae9e9;
+        font-size: 15px;
+        font-weight: 700;
+        padding: 10px 0 5px;
+    }
+     .orderlist .orderlist_ul{
+        width:90%;
+        margin:auto;
+    }
+     .orderlist .orderlist_ul li ul li{
+        padding:5px 0;
+        line-height: 20px;
+        height:20px;
+    }
+    .orderlist_ul a {
+        color:#000;
+    }
+</style>
+</block>
+<block name="content">
+        <div class="user-project-view-content" style="margin-top: 0px;">			
+                <div id="iscroller-wrapper" class="user-project-view-content-rooms iscroller-rooms iscroller-style" style="">
+                        <div id="iscroller-scroller" class="user-project-view-content-rooms-box iscroller-rooms-scroller iscroller-scroller-style">	
+                            <div style="width:95%;margin:5px auto;border:1px solid #ebe8e8;line-height:28px;">
+                                <div style="height:140px;background:#E91E63;color: #FFF;padding:0px 10px;">
+                                    <div style="position: absolute;right:4.5%;margin-top:10px;width: 120px;height:120px;"><img style="border-radius: 10px;width:100%;height:100%" src="<{$hxinfo.imgurl}>"  alt="户型图"></div>
+                                    <div style="padding:5px 0 0 0;">[<{$projinfo.address}>]<{$room.project_name}></div>
+                                    <div style="font-size:19px;width:55%;"><{$room.buildname}>-<{$room.unit}>单元<br><{$room.floor}>层-<{$room.room}></div>
+                                    <div style="position:absolute;top:110px;font-size:18px;"> ¥ <{:number_format($room['total'], 2)}></div>
+                                </div>
+                                <div style=""> 
+                                    <p style="width:85%;margin:10px auto;line-height:20px;font-size:12px;">
+                                        <{$event.mark}>
+                                    </p>
+                                </div>
+                                <div style="border-top:1px solid #eae9e9;">  
+                                    <ul  style="width:85%;margin:8px auto;">
+                                        <li>签约号：<span style="color:red;">&nbsp;&nbsp;&nbsp;<{$orderedRoom.code}></span></li>
+                                        <!--<li>订单号：<{$orderedRoom.code}></li>-->
+                                        <li>选房时间：<{$orderedRoom.log_time|date="Y-m-d H:i:s",###}></li>
+                                    </ul>
+                                </div>
+                                <div style="border-top:1px solid #eae9e9;">  
+                                    <ul  style="width:85%;margin:8px auto;">
+                                        <li>户型结构：(<{$room['hx']}>) <{$hxinfo.hxmx}></li>
+                                        <li>建筑面积：<{$room.area}></li>
+                                        <li>套内面积：<{$room.tnarea}></li>
+                                    </ul>
+                                </div>
+                                <div style="border-top:1px solid #eae9e9;">  
+                                    <ul  style="width:85%;margin:8px auto;">
+                                        <li>客户姓名：<{$userinfo['customer_name']}></li>
+                                        <li>联系电话：<{$userinfo['customer_phone']}></li>
+                                        <li>证件号码：<{$userinfo['cardno']}></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+        </div>
+</block>
+<block name="footer">
+    <div class="weui-tabbar">
+        <a href="/User/OrderHouse/index/info/<{$eventId}>" class="weui-tabbar__item ">
+            <span style="display: inline-block;position: relative;">
+                <i class="fa fa-list weui-tabbar__icon" ></i>
+            </span>
+            <p class="weui-tabbar__label">房源列表</p>
+        </a>
+        <a href="/User/OrderHouse/collectedroom/info/<{$eventId}>" class="weui-tabbar__item">
+            <span style="display: inline-block;position: relative;">
+                <i class="fa fa-heart-o weui-tabbar__icon" ></i>
+                <span class="weui-badge user-project-view-content-gwc-num" style="position: absolute;top: 2px;right: -10px;display:none;">0</span>
+            </span>
+            <p class="weui-tabbar__label">备选房源</p>
+        </a>
+        <a href="/User/OrderHouse/myorder/info/<{$eventId}>" class="weui-tabbar__item">
+            <span style="display: inline-block;position: relative;">
+                <i class="fa fa-user weui-tabbar__icon" ></i>
+                 <if condition="!empty($orderedRoom)">
+                    <span class="weui-badge weui-badge_dot" style="position: absolute;top: 2px;right: 0px;"></span>
+                </if>
+            </span>
+            <p class="weui-tabbar__label">我的订单</p>
+        </a>
+    </div>
+</block>
+<block name="footer_js">
+<include file="Common@Common/Mobile/iscroll" iscroller_id="iscroller_room" iscroller_select_id="iscroller-wrapper" />
+<link href="__COMMON__/js//jquery/iscroll/iscroll.css" type="text/css" rel="stylesheet"/>
+<script src="__COMMON__/js/jquery/iscroll/iscroll.js"></script>
+<script>
+var iscroller_index,
+	pullDownEl, 
+	pullDownOffset,
+	loadingStep = 0;//加载状态0默认，1显示加载状态，2执行加载数据，只有当为0时才能再次加载，这是防止过快拉动刷新
+
+var eventId = "<{$eventId}>";
+
+var collection = <{$roomCollected}>;
+var orderedRoom = <{$orderedRoom}>;
+
+$(document).ready(function() {	
+        if (collection.length>0)
+        {
+            $('.user-project-view-content-gwc-num').html(collection.length).show();
+        }
+        else
+        {
+            $('.user-project-view-content-gwc-num').hide();
+        }
+});
+
+</script>
+</block>

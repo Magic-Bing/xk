@@ -1,0 +1,44 @@
+
+<thead>
+	<tr>
+             <th style="width:50px;">序号</th>
+		<th width="220px">项目</th>
+		<th >房号</th>
+		<th width="180px">房源状态</th>
+		<th width="200px">认购客户</th>
+		<th width="200px">认购时间</th>
+	</tr>
+</thead>
+
+<tbody>
+	<if condition="count($rooms) gt 0">
+			<volist name="rooms" id="room" key="k">
+			<tr class="choose-activity-item">
+                            <td style="text-align: center;">
+                           <{$k}>
+                       </td>
+				<td>
+					<{$room.project_name}>-<{$room.batch_name}>
+				</td>
+				<td>
+					<{$room.buildname}>-<{$room.unit}>单元-<{$room.floor}>层-<{$room.room}>
+				</td>
+				<td>
+					<{$room.hx}>
+				</td>
+				<td>
+                                    <{$room.belong_real_name|default=''}><if condition="!empty($room['belong_phone'])">(<{$room.belong_phone}>)</if>
+				</td>
+				<td>
+					<{$room.order_time|default=''}>
+				</td>
+			</tr>
+		</volist>
+		<else/>
+		<tr>
+			<td colspan="10" style="text-align: center;color: red">暂时没有数据</td>
+		</tr>
+	</if>
+
+</tbody>
+

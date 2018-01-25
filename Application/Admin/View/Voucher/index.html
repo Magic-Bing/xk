@@ -1,0 +1,174 @@
+<extend name="Common/base" />
+
+<block name="content">
+	<div class="room room-voucher">
+		<div class="room-title room-voucher-title">
+			<div class="clearfix room-title-box">
+				<span class="room-title-info">
+					<{$seo_title|default='空白'}>
+				</span>
+				<span class="room-title-subtitle">
+					<include file="tab" /> 
+				</span>
+				<span class="fr room-title-refresh">
+					<a href="__SELF__" class="room-title-refresh-btn">
+						<img class="room-title-refresh-btn-img" src="__IMG__/sx01.png" />
+					</a>
+				</span>
+			</div>
+		</div>
+
+		<div class="room-attr-search">
+			<div class="room-attr-search-box">
+				<span class="room-attr-search-title">选择项目</span>
+				<select name="project-id" class="room-attr-search-select js-voucher-project-search-select">
+					<if condition="!empty($search_project_id)">
+						<option value="0">全部</option>
+						<foreach name="project_list" item="project_list_vo">
+							<if condition="$search_project_id eq $project_list_vo['id']">
+								<option value="<{$project_list_vo['id']}>" selected>
+									<{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
+								</option>
+							<else />		 
+								<option value="<{$project_list_vo['id']}>">
+									<{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
+								</option>
+							</if>
+						</foreach> 
+					<else />
+						<option value="0" selected>全部</option>
+						<foreach name="project_list" item="project_list_vo">
+							<option value="<{$project_list_vo['id']}>">
+								<{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
+							</option>
+						</foreach> 
+					</if>
+				</select>
+			</div>
+		</div>
+
+		<div class="room-attr-content">
+			<div class="room-attr-rooms">
+				<table class="room-attr-rooms-table">
+                    <thead>
+						<tr>
+							<th class="room-attr-rooms-table-room-name">
+								ID
+							</th>
+							<th>
+								名称
+							</th>
+							<th>
+								项目
+							</th>
+							<th>
+								类型
+							</th>
+							<th>
+								金额(元)
+							</th>
+							<th>
+								总数量
+							</th>
+							<th>
+								已启用数量
+							</th>
+							<th>
+								已使用数量
+							</th>
+							<th>
+								结束时间
+							</th>
+							<th>
+								添加时间
+							</th>
+							<th>
+								状态
+							</th>
+							<th class="room-attr-rooms-table-option">
+								操作
+							</th>
+						</tr>
+                    </thead> 
+					<tbody>
+						<volist name="voucher_list" id="voucher_vo" key="voucher_k">
+							<tr class="room-attr-rooms-table-list voucher-table-list-<{$voucher_vo.id}>">
+								<td>
+									<{$voucher_vo.id}>
+								</td> 
+								<td class="room-attr-rooms-table-list-title">
+									<{$voucher_vo['name']|default='代金券'}>
+								</td> 
+								<td>
+									<{$voucher_vo.project_name|default=''}>
+									
+									<notempty name="voucher_vo.batch_name">
+										<div class="voucher-batch-name">
+											[<{$voucher_vo.batch_name}>]
+										</div>
+									</notempty>
+								</td> 
+								<td>
+									<switch name="voucher_vo.type">
+										<case value="gift">满减</case>
+										<case value="common">通用</case>
+										<case value="directional">
+											定向
+											<eq name="voucher_vo.directional_type" value="room_id">
+												[房间]
+											<else />
+												[户型]
+											</eq>
+										</case>
+										<default />通用
+									</switch>
+								</td> 
+								<td>
+									<{$voucher_vo.money|default=0}>
+								</td> 
+								<td>
+									<{$voucher_vo.quantity|default=0}>
+								</td> 
+								<td>
+									<{$voucher_vo.open_quantity|default=0}>
+								</td> 
+								<td>
+									<{$voucher_vo.use_quantity|default=0}>
+								</td> 
+								<td>
+									<if condition="!empty($voucher_vo['end_time'])">
+										<{$voucher_vo.end_time|date="Y-m-d H:i:s",###}>
+									</if>
+								</td> 
+								<td>
+									<if condition="!empty($voucher_vo['add_time'])">
+										<{$voucher_vo.add_time|date="Y-m-d H:i:s",###}>
+									</if>
+								</td> 
+								<td>
+									<neq name="voucher_vo['status']" value="1">
+										<span class="color-red">关闭</span>
+									<else/>
+										启用
+									</neq>
+								</td> 
+								<td class="btns">
+									<a href="javascript:void(0);" data-id="<{$voucher_vo.id}>" class="btn btn-radius5 mr5 room-attr-rooms-save-btn js-voucher-delete-btn">删除</a>
+									<a href="<{:U('edit', 'id='.$voucher_vo['id'])}>" class="btn btn-radius5 room-attr-rooms-save-btn js-voucher-save-btn">修改</a>
+								</td> 
+							</tr>
+						</volist>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	
+		<php>$page = trim($page_show);</php>
+		<if condition="!empty($page)">
+			<div class="room-attr-page page-container">
+				<{$page|default=''}>
+			</div>
+		</if>
+	
+	</div>
+</block>

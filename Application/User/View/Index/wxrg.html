@@ -1,0 +1,720 @@
+﻿<extend name="Common/base" />
+
+<block name="header_config_add">
+<script type="text/javascript">
+var room = {
+	project_id: '<{$search_project_id}>',
+	build_id: '<{$search_build_id}>',
+	unit_id: '<{$search_unit_id}>',
+	info: '<{:set_search_ids(array('p' => $search_project_id, 'b' => $search_build_id, 'u' => $search_unit_id))}>',
+};
+</script>
+</block>
+
+<block name="header">
+<style>
+        .speedbuy-bg
+		{
+			height:100%;width:100%;border-top: 1px solid #03A9F4;
+        }
+		.speedbuy-title
+		{
+			height:60px;width:100%;
+		}
+		.speedbuy-djs
+		{
+			position:absolute;top:3px;left:8%;
+		}
+		.speedbuy-djs .djs-ul
+		{
+			text-align:center;
+			font-size:12px;
+			font-weight:bold;
+			color:#000;
+		}
+		.djs-time
+		{
+			color:#FFF;
+			font-size:23px;
+			background:#000;
+			padding:0 6px 0 6px;
+		}
+		.begin-time
+		{
+			width: 100%;
+			height: 60px;
+			/* line-height: 60px; */
+			margin-left: 42%;
+			font-size: 18px;
+			font-weight: bold;
+			color: #000;
+			margin-top: 10px;
+		}
+		.remark{
+			position:absolute;top:3px;right:5%;
+			color:#BFBFBF;
+			font-weight: normal;
+		}
+		.speedbuy-content
+		{
+			height:100%;
+			/*background:#91AEC5;*/
+			margin-top:1px;
+			display:none;
+		}
+		.del-div{
+			margin-left:12px;margin-top:25px;width:25px;line-height:25px;text-align:center;font-size:13px;font-weight:bold;color:red;background:#FFF;border:1px solid red;border-radius:50%;
+			-webkit-box-shadow: 0 0 8px #D20E50;
+			-moz-box-shadow: 0 0 8px #D20E50;
+			box-shadow: 0 0 8px #D20E50;
+		}
+		.buy-span
+		{
+			background:#BFBBBB;
+			color:#FFF;
+			padding:4px 10px 4px 10px;border-radius:5px;
+		}
+		.wxrgbuy-button
+		{
+			background:red;
+			-webkit-box-shadow: 0 0 8px #D20E50;
+			-moz-box-shadow: 0 0 8px #D20E50;
+			box-shadow: 0 0 8px #D20E50;
+		}
+		.user-voucher-footer-tabs-btn{padding:8px 30px;background:#03a9f4;color:#D6D5D5;}
+		.user-voucher-footer-tabs-btn-select{background:#FFF;color:#03a9f4;font-weight:bold;}
+		.user-project-view-content-rooms {
+			top: 105px;
+			bottom: 43px;
+		}
+		.ycwxrg
+		{
+			position:absolute;top:35px;right:1%;width:10%;text-align:center;
+		}
+		
+		.user-project-view-content-gwc-wrapper {
+			position: absolute;
+			bottom: 45px;
+			left: 4%;
+			width: auto;
+			z-index: 25;
+		}
+		
+		.user-project-view-content-gwc-num-wrapper {
+			position: absolute;
+			top: 5px;
+			left: 5px;
+		}
+		.user-project-view-content-gwc-num {
+			display: block;
+			width: 20px;
+			height: 20px;
+			background-color: rgba(255, 0, 0, 1);
+			border: none;
+			-moz-border-radius: 50%;
+			-webkit-border-radius: 50%;
+			border-radius: 50%;
+			-moz-box-shadow: none;
+			-webkit-box-shadow: none;
+			box-shadow: none;
+			font-family: 'Arial Negreta', 'Arial Normal', 'Arial';
+			font-weight: 700;
+			font-style: normal;
+			font-size: 15px;
+			color: #FFFFFF;
+			text-align: center;
+		}
+		
+		.speedbuy-content-li {
+			width:100%;height:75px;line-height:75px;
+		}
+		.speedbuy-content-li ul {
+			height:75px;
+			margin-top:1px;
+		}
+		.bxf-ds{background:#91AEC5;color:#FFF;}
+		.bxf-ss{background:#FFF;color:#2196F3;}
+		.buy-suc{    
+			background: #009688;
+			-webkit-box-shadow: 0 0 8px #0F3935;
+			-moz-box-shadow: 0 0 8px #0F3935;
+			box-shadow: 0 0 8px #0F3935;
+		}
+		.div-zz{
+			background: rgba(22, 22, 22, 0.8);
+			z-index: 99999;
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			display:none;
+		}
+		.show-suc-div {
+			    margin-left: 12px;
+			margin-top: 25px;
+			width: 25px;
+			line-height: 25px;
+			text-align: center;
+			font-size: 13px;
+			font-weight: bold;
+			color: white;
+			background: #009688;
+			border-radius: 50%;
+			-webkit-box-shadow: 0 0 8px #0A332F;
+			-moz-box-shadow: 0 0 8px #0A332F;
+			box-shadow: 0 0 8px #0A332F;
+		}
+		.room_ys{
+		    background: #c00000;
+			color: #FFF;
+			border-color: #C00000;
+		}
+		.room_cggm{
+		    background: #009688;
+			color: #FFF;
+			border-color: #009688;
+		}
+    </style>
+	<div id="zz01" class="div-zz" ></div>
+	<div id="showsuccess" class="div-success" >
+		<div class="div-success-content">
+			<ul>
+				<li><span class="div-success-no"></span></li>
+				<li class="div-success-area"></li>
+				<li >标准总价：¥<span class="div-success-total"></span></li>
+			</ul>
+			<div>
+				<div class="div-success-rgm">认购码：<{$wxrg['sjm']}></div>
+				<div class="div-success-sm">请于1小时内签订认购书，过期作废！</div>
+				<div class="div-success-remark">认购信息会以短信形式发送到您的手机，请注意查收！</div>
+			</div>
+		</div>
+		<div class="div-success-btn">确 定</div>
+	</div>
+	<div class="common-header-wrapper">
+		<input id="dpproj_id" value="<{$project['id']}>" style="display:none;">
+		<div class="clearfix common-header js-wxrg-djs">			
+			<div class="speedbuy-title">
+				<div style="position:absolute;color:#FFF;z-index=-1;">
+					<span class="a" id="djstemp"></span>秒<span class="b"></span>
+				</div>
+				<div class="speedbuy-djs">
+					<ul class="djs-ul">
+						<li id="djs-type-title">结束倒计时(秒)</li>
+						<li>
+							<span class="bw djs-time" >0</span>
+							<span class="sw djs-time" >0</span>
+							<span class="gw djs-time" >0</span>
+						</li>
+					</ul>
+				</div>
+				<div class="begin-time" >
+				<div style="text-align: center;position: absolute;"><{$project['name']}><div style="font-size:12px;">微信认购抢购中</div></div>
+				
+				</div>
+				<div class="remark" ><u>说明</u> </div>
+				<!--<div class="ycwxrg">︽</div>-->
+			</div>
+		</div>
+		<div class="common-header-unit-wrapper js-common-header-unit-wrapper" style="z-index:9998;display:block;">
+			<div class="clearfix common-header-unit">
+				<php>$project_num = 1;</php>
+				<volist name="builds" id="builds_vo" key="builds_k">
+					<volist name="new_units[$builds_vo['id']]" id="units_vo" key="units_k">
+						<if condition="($builds_vo['id'] eq $search_build_id) AND ($units_vo['unit'] eq $search_unit_id)">
+							<div class="fl common-header-unit-info common-header-unit-info-selected" >
+								<a href="<{:U('index/wxrg', array('info' => set_search_ids(array('p' => $search_project_id, 'b' => $builds_vo['id'], 'u' => $units_vo['unit']))))}>"><{$builds_vo['buildname']}><if condition="$units_vo['unit'] neq 0"><{$units_vo['unit']}>单元</if></a>
+							</div>
+						<else />
+							<div class="fl common-header-unit-info" >
+								<a href="<{:U('index/wxrg', array('info' => set_search_ids(array('p' => $search_project_id, 'b' => $builds_vo['id'], 'u' => $units_vo['unit']))))}>"><{$builds_vo['buildname']}><if condition="$units_vo['unit'] neq 0"><{$units_vo['unit']}>单元</if></a>
+								<!--<a href=""><{$builds_vo['buildname']}><if condition="$units_vo['unit'] neq 0"><{$units_vo['unit']}>单元</if></a>-->
+							</div>
+						</if>
+						<!--<if condition="$project_num%3==0">
+							<div class="clearfix saler-project-list<{$project_num}>"></div>
+						</if>-->
+						<php>$project_num++;</php>
+					</volist>
+				</volist>
+				<!--<div class="fl common-header-unit-info" style="width:15%;font-size:10px;"><a>︾</a></div>-->
+			</div>
+		</div>
+	</div>
+</block>
+
+<block name="content">
+	<div class="user-project-view-base">
+
+		<div class="user-project-view-content-wrapper">
+			<div class="user-project-view-content">
+				<div class="clearfix user-project-view-content-tabs">
+					<div class="fl wm50 user-project-view-content-tab user-project-view-content-tab-selected">
+						<a href="__SELF__" class="user-project-view-content-tab-info">
+							房源信息
+							<i class="rooms-sx"></i>
+						</a>
+					</div>
+					<div class="fl wm50 user-project-view-content-tab" style="background: #fff;">
+						<a href="<{:U('hot/index', array('info' => set_search_ids(array('p' => $search_project_id))))}>" class="user-project-view-content-tab-info user-project-view-content-tab-hot">
+							热度排名
+						</a>
+					</div>
+				</div>
+				
+				<div id="iscroller-wrapper" class="user-project-view-content-rooms iscroller-rooms iscroller-style">
+					<div id="iscroller-scroller" class="user-project-view-content-rooms-box iscroller-rooms-scroller iscroller-scroller-style">
+						<div id="pullDown" style="display:none;">
+							<span class="clearfix pull-down-box">
+								<span class="pullDownIcon"></span>
+								<span class="pullDownLabel">下拉刷新...</span>
+							</span>
+						</div>
+		
+						<table class="user-project-view-content-rooms-table">
+							<volist name="floors" id="floors_vo" key="floors_k">
+								<tr>
+									<td class="user-project-view-content-rooms-floor" data-floor-id="<{$floors_vo.floor|default="1"}>">
+										<{$floors_vo.floor|default="1"}>F
+									</td>
+									<td class="user-project-view-content-rooms-room" data-floor-id="<{$floors_vo.floor|default="1"}>">
+										<div class="user-project-view-content-rooms-list">
+											<ul class="clearfix">
+											
+												<volist name="rooms[$floors_vo['floor']]" id="rooms_vo" key="rooms_k">
+													<li class="fl wm25">
+														<a href="<{:U('room/showroom', array('id' => $rooms_vo['id']))}>" class="user-project-view-content-rooms-room-a">
+															<if condition="!empty($rooms_vo['djcount'])">
+															<i class="saler-project-hot"></i>
+                                                            </if>
+															<if condition="$rooms_vo['id'] eq $wxrg['room_id']">
+																<div class="user-project-view-content-rooms-room-box room_cggm" >
+															<else/>
+																<if condition="in_array($rooms_vo['id'], $collection_room_ids)">
+																<div class="user-project-view-content-rooms-room-box user-project-view-content-rooms-room-box-selected">
+																<else/>
+																	<if condition="$rooms_vo['is_xf'] eq 1">
+																<div class="user-project-view-content-rooms-room-box room_ys" >
+																	<else/>
+																<div class="user-project-view-content-rooms-room-box">
+																	</if>
+																</if>
+															</if>
+																<div class="user-project-view-content-rooms-room-name">
+																	<{$rooms_vo.room|default="1"}>
+																</div>
+																<div class="user-project-view-content-rooms-room-area">
+																	<{$rooms_vo['area']|default='0'}>㎡
+																</div>
+																<div class="user-project-view-content-rooms-room-cost">
+																	¥<{$rooms_vo['total']|default='0'|intval}>
+																</div>
+															</div>
+														</a>
+															
+														<div data-room-id="<{$rooms_vo['id']|default='1'}>" class="user-project-view-content-rooms-room-box-shadow js-user-project-view-content-rooms-room-box-shadow">
+															<div class="user-project-view-content-rooms-room-box-shadow-info">
+																<span class="user-project-view-content-rooms-room-box-shadow-info-select">
+																	<input class="user-project-view-content-rooms-room-select js-user-project-view-content-rooms-room-box-shadow user-project-view-content-rooms-room-select-<{$rooms_vo['id']|default='1'}>" data-room-id="<{$rooms_vo['id']|default='1'}>" type="checkbox" value="1">
+																</span>
+															</div>
+														</div>
+													</li>
+												</volist>
+
+											</ul>
+										</div>
+									</td>
+								</tr>
+							</volist>
+						</table>
+						<div class="speedbuy-content">
+							<ul>
+								<li class="speedbuy-content-li">
+									<php>$bxgs = 1;</php>
+									<volist name="bxrooms" id="rooms_vo" key="rooms_k">
+									<if condition="$bxgs%2==0">
+										<ul class="bxf-ul bxf-ss" data-room-id="<{$rooms_vo.room_id}>">
+									<else />
+										<ul class="bxf-ul bxf-ds" data-room-id="<{$rooms_vo.room_id}>">
+									</if>
+										<if condition="$rooms_vo['cst_id'] eq $cstid">
+										<li class="show-suc-btn" style="float:left;width:14%;height:100%;">
+											<div class="show-suc-div">查</div>
+											<div style="margin-top:-40px;height:55px;border-right:1px solid #2196F3;"></div>
+										</li>
+										<else/>
+										<li class="sc-bxfy-btn" style="float:left;width:14%;height:100%;">
+											<div class="del-div">删</div>
+											<div style="margin-top:-40px;height:55px;border-right:1px solid #2196F3;"></div>
+										</li>
+										</if>
+										<li style="float:left;width:70%;height:100%;">
+											<ul style="margin-left:15px;">
+												<li  class="roominfo" style="height:24px;line-height:24px;padding: 4px 5px 0px 5px;font-size:13px;font-weight:bold;">
+												<{$rooms_vo.room_name}>-<{$rooms_vo.room_number}>
+												<span class="roomhx" style="font-size:12px;font-weight:400;">&nbsp;&nbsp;户型：<{$rooms_vo.room_hx}></span>
+												</li>
+												<li class="roomarea" style="height:20px;line-height:20px;padding: 2px 5px 0px 5px;font-size:12px;">
+												面积(㎡)：建筑 <{$rooms_vo.room_area}>&nbsp;&nbsp;套内 <{$rooms_vo.room_tnarea}>
+												</li>
+												<li style="height:20px;line-height:20px;padding: 2px 5px 0px 5px;font-size:12px;">
+												标准总价：¥ <span class="roomtotal"  style="font-weight:bold;"><{:number_format($rooms_vo['room_total'], 2)}></span>
+												</li>
+											</ul>
+										</li>
+										<li style="float:left;width:15%;height:100%;">
+										    <if condition="$rooms_vo['room_is_xf'] eq 1">
+												<if condition="$rooms_vo['cst_id'] eq $cstid">
+													<div style="line-height:25px;margin-top:25px;"><span class="buy-span buy-suc">成功</span></div>
+												<else/>
+													<div style="line-height:25px;margin-top:25px;"><span class="buy-span">已售</span></div>
+												</if>
+											<else/>
+												 <div style="line-height:25px;margin-top:25px;"><span class="buy-span wxrgbuy-button">认购</span></div>
+                                            </if>		 
+											
+										</li>
+									</ul>
+									<php>$bxgs++;</php>	
+									</volist>
+								</li>
+							</ul>
+						</div>
+						<div class="block60 room-bottom-block" style="display:none;"></div>
+					</div>
+				</div>
+				
+				<div class="user-project-view-content-selected-wrapper js-user-project-view-content-selected-wrapper">
+					<div class="user-project-view-content-selected">
+						<div class="user-project-view-content-selected-info">
+							<div class="user-project-view-content-selected-num-wrapper">
+								<span class="user-project-view-content-selected-num">
+									0
+								</span>
+							</div>
+							<div class="user-project-view-content-selected-contrasts-wrapper">
+								<div class="user-project-view-content-selected-contrasts js-user-project-view-content-selected-compare">
+									<span class="user-project-view-content-selected-contrasts-btn">
+										开始对比
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
+				
+				<div class="user-project-view-content-gwc-wrapper ">
+					<div >
+						<div>
+							<div class="user-project-view-content-gwc-num-wrapper">
+								<span class="user-project-view-content-gwc-num">
+									<{$scgs}>
+								</span>
+							</div>
+							<div >
+								<div style="background-color: rgba(0, 150, 136, 0.3);border: 1px solid #4CAF50;border-radius: 50%;">
+									<div href="" class="user-project-view-content-gwc-contrasts-btn">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</block>
+<block name="footer">
+	<div class="user-project-footer">
+		<div class="user-project-view-content-help-wrapper">
+			<div class="user-project-view-content-help">
+				
+				<div class="clearfix user-project-view-content-search">
+					<div class="fl wm32 user-project-view-content-search-rooms">
+						<span class="border-sizing user-project-view-content-search-btns user-project-view-content-search-btn js-user-search-form-choose-btn">房源筛选</span>
+							
+						<div class="user-search-form-choose-option js-user-search-form-choose-option">
+							<div class="user-search-form-choose-option-box">
+								<!--
+								<div class="clearfix user-search-form-choose-option-list user-search-form-choose-option-list-build">
+									<div class="fl user-search-form-choose-option-title">
+										选择楼栋：
+									</div>
+									<div class="fl user-search-form-choose-option-content">
+										<volist name="builds" id="build_vo" key="build_k">
+											<a href="javascript:void(0);" data-id="<{$build_vo.id|default='0'}>" class="user-search-form-choose-option-a js-user-search-form-choose-option-a user-search-form-choose-option-build">
+												<{$build_vo.buildname|default='1'}>栋
+											</a>
+										</volist>
+									</div>
+								</div>
+								-->
+								<div class="clearfix user-search-form-choose-option-list">
+									<div class="fl user-search-form-choose-option-title">
+										楼层范围：
+									</div>
+									<div class="fl clearfix user-search-form-choose-option-content">
+										<div class="fl user-search-form-choose-option-content-start">
+											<input class="user-search-form-choose-option-floor-start" type="number" value="">
+										</div>
+										<div class="fl user-search-form-choose-option-content-info">
+											到
+										</div>
+										<div class="fl user-search-form-choose-option-content-end">
+											<input class="user-search-form-choose-option-floor-end" type="number" value="">
+										</div>
+									</div>
+								</div>
+								<div class="clearfix user-search-form-choose-option-list">
+									<div class="fl user-search-form-choose-option-title">
+										面积范围：
+									</div>
+									<div class="fl clearfix user-search-form-choose-option-content">
+										<div class="fl user-search-form-choose-option-content-start">
+											<input class="user-search-form-choose-option-area-start" type="number" value="">
+										</div>
+										<div class="fl user-search-form-choose-option-content-info">
+											到
+										</div>
+										<div class="fl user-search-form-choose-option-content-end">
+											<input class="user-search-form-choose-option-area-end" type="number" value="">
+										</div>
+									</div>
+								</div>
+								<div class="clearfix user-search-form-choose-option-list">
+									<div class="fl user-search-form-choose-option-title">
+										价格范围(万)：
+									</div>
+									<div class="fl clearfix user-search-form-choose-option-content">
+										<div class="fl user-search-form-choose-option-content-start">
+											<input class="user-search-form-choose-option-price-start" type="number" value="">
+										</div>
+										<div class="fl user-search-form-choose-option-content-info">
+											到
+										</div>
+										<div class="fl user-search-form-choose-option-content-end">
+											<input class="user-search-form-choose-option-price-end" type="number" value="">
+										</div>
+									</div>
+								</div>
+								<div class="clearfix user-search-form-choose-option-list">
+									<div class="fl user-search-form-choose-option-title">
+										房间户型：
+									</div>
+									<div class="fl user-search-form-choose-option-content">
+										<volist name="hx_list" id="hx_vo" key="hx_k">
+											<a href="javascript:void(0);" data-id="<{$hx_vo.hx|default=''}>" class="user-search-form-choose-option-a js-user-search-form-choose-option-a user-search-form-choose-option-hx">
+												<{$hx_vo.hx|default=''}>
+											</a>
+										</volist>
+									</div>
+								</div>
+								
+								<div class="user-search-form-choose-option-footer">
+									<div class="user-search-form-choose-option-footer-btns">
+										<span class="user-search-form-choose-option-footer-btn js-user-search-form-choose-option-footer-btn">
+											确定
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="user-search-form-choose-option-shadow js-user-search-form-choose-option-shadow"></div>
+					</div>
+
+					<div class="fl wm32 user-project-view-content-search-collection">
+						<span class="user-project-view-content-search-collection-box">
+							<span class="user-project-view-content-search-btns user-project-view-content-search-collection-btn js-user-project-view-content-bxfy-btn">备选房源</span>
+						</span>
+					</div>
+					
+					<div class="fl wm36 user-project-view-content-search-compare">
+						<span class="user-project-view-content-search-compare-box js-user-project-view-content-search-compare-btn">
+							<span class="user-project-view-content-search-btns user-project-view-content-search-compare-btn">房源对比</span>
+						</span>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</block>
+
+<block name="footer_js">
+<link href="__COMMON__/js//jquery/iscroll/iscroll.css" type="text/css" rel="stylesheet"/>
+<script src="__COMMON__/js/jquery/iscroll/iscroll.js"></script>
+<script>
+var iscroller_index,
+	pullDownEl, 
+	pullDownOffset,
+	loadingStep = 0;//加载状态0默认，1显示加载状态，2执行加载数据，只有当为0时才能再次加载，这是防止过快拉动刷新  
+	
+function loaded() {
+    pullDownEl = document.getElementById('pullDown');
+    pullDownOffset = pullDownEl.offsetHeight;
+	
+	setTimeout(function() {
+		iscroller_index = new iScroll("iscroller-wrapper", {
+			bounce: true,
+			checkDOMChanges: true,
+			onBeforeScrollStart: function (e) {
+				var target = e.target;
+				while (target.nodeType != 1) {
+					target = target.parentNode;
+				}
+
+				if (target.tagName != 'SELECT' 
+					&& target.tagName != 'INPUT' 
+					&& target.tagName != 'TEXTAREA'
+				) {
+					e.preventDefault();
+				}
+			},
+			topOffset: pullDownOffset,
+			onRefresh: function () {
+				if (pullDownEl.className.match('loading')) {
+					//pullDownEl.className = '';
+					//pullDownEl.querySelector('.pullDownLabel').innerHTML = '下拉刷新...';
+				}
+				
+			},
+			onScrollMove: function () {
+				if (this.y > 5 && !pullDownEl.className.match('flip')) {
+					pullDownEl.style.display = '';
+					pullDownEl.className = 'flip';
+					pullDownEl.querySelector('.pullDownLabel').innerHTML = '松手开始更新...';
+					this.minScrollY = 0;
+				} else if (this.y < 5 && pullDownEl.className.match('flip')) {
+					//pullDownEl.style.display = '';
+					//pullDownEl.className = '';
+					//pullDownEl.querySelector('.pullDownLabel').innerHTML = '下拉刷新...';
+					//this.minScrollY = -pullDownOffset;
+				}
+				
+				loadingStep = 1;
+			},
+			onScrollEnd: function () {
+				if (loadingStep == 1) { 
+					if (pullDownEl.className.match('flip')) {
+						pullDownEl.className = 'loading';
+						pullDownEl.querySelector('.pullDownLabel').innerHTML = '加载中...';               
+						pullDownAction();
+					}
+					if (this.y < (this.maxScrollY + 50)){
+						pullDownEl.style.display = 'none';
+					}
+					
+					loadingStep = 2;
+				}
+			},
+		});
+	}, 100);
+
+	setTimeout(function () { 
+		document.getElementById('iscroller-wrapper').style.left = '0'; 
+		pullDownEl.style.display = 'none'; 
+	}, 200);
+}
+
+/**
+ * 下拉刷新 （自定义实现此方法）
+ * iscroller_index.refresh();      
+ * // 数据加载完成后，调用界面更新方法
+ */
+function pullDownAction () {
+    setTimeout(function () {    
+		get_user_room_list(user_url.room);
+		
+		pullDownEl.style.display = 'none';
+		
+        iscroller_index.refresh();
+		
+		loadingStep = 0;
+    }, 1000);  
+}
+
+document.addEventListener('touchmove', function (e) { 
+	e.preventDefault(); 
+}, false);
+document.addEventListener('DOMContentLoaded', function () { 
+	setTimeout(loaded, 200); 
+}, false);
+
+$(document).ready(function() {
+			var $ishavehd=1;
+			if ($ishavehd==1)
+			{
+				var $djs=$("#djstemp").text();
+				//var times=$djs*100;
+				var times=999*100;
+				countTime = setInterval(function() {
+					times = --times < 0 ? 0 : times;
+					var ms = Math.floor(times / 100).toString();
+					if(ms.length <= 1) {
+						ms = "0" + ms;
+					}
+					var hm = Math.floor(times % 100).toString();
+					if(hm.length <= 1) {
+						hm = "0" + hm;
+					}
+					if(times == 0) {
+						clearInterval(countTime);	
+						/*$(".begin-time").text("抢购进行中...");
+						$("#djs-type-title").text("剩余时限");
+						$(".buy-span").addClass("wxrgbuy-button");
+						//showjsdjs();*/
+						
+						$(".begin-time").text("微信认购已结束...");
+						$("#djs-type-title").text("微信认购已结束");
+						$(".buy-span").removeClass("wxrgbuy-button");
+					}
+					// 获取分钟、毫秒数
+					$(".a").html(ms);
+					$(".b").html(hm);
+					
+					var gw = Math.floor(ms%10);//个位
+					var sw = Math.floor((ms%100)/10); //十位
+					var bw = Math.floor(ms/100);//百位
+					$(".bw").text(bw);
+					$(".sw").text(sw);
+					$(".gw").text(gw);
+				}, 10);
+			}
+		});
+		
+		function showjsdjs()
+		{
+			var times=8*100;
+			countTime = setInterval(function() {
+				times = --times < 0 ? 0 : times;
+				var ms = Math.floor(times / 100).toString();
+				if(ms.length <= 1) {
+					ms = "0" + ms;
+				}
+				var hm = Math.floor(times % 100).toString();
+				if(hm.length <= 1) {
+					hm = "0" + hm;
+				}
+				if(times == 0) {
+					clearInterval(countTime);	
+					$(".begin-time").text("微信认购已结束...");
+					$("#djs-type-title").text("微信认购已结束");
+					$(".buy-span").removeClass("wxrgbuy-button");
+				}
+				// 获取分钟、毫秒数
+				$(".a").html(ms);
+				$(".b").html(hm);
+				
+				var gw = Math.floor(ms%10);//个位
+				var sw = Math.floor((ms%100)/10); //十位
+				var bw = Math.floor(ms/100);//百位
+				$(".bw").text(bw);
+				$(".sw").text(sw);
+				$(".gw").text(gw);
+			}, 10);
+		}
+</script>
+</block>

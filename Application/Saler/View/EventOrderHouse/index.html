@@ -1,0 +1,371 @@
+﻿<extend name="Common/base" />
+
+<block name="header">
+	<div class="saler-project-view-header-wrapper">
+		<div class="clearfix saler-project-view-header">
+			<div class="fl wm25 saler-project-view-header-return">
+				<span class="saler-project-view-header-return-box return-btn">
+					<a href="javascript:void(0);" class="saler-project-view-header-return-btn">返回</a>
+				</span>
+			</div>
+			<div class="fl wm60 saler-project-view-header-content js-saler-project-view-header-content">
+				<span class="saler-project-view-header-content-box">
+					<span class="saler-project-view-header-content-box-name"><{$event['name']}></span>
+					<span class="saler-project-view-header-content-box-build"> <{$findBuilding.buildname}></span>
+					<span class="saler-project-view-header-content-box-unit"><{$findUnit}>单元</span>
+				</span>
+				<i class="saler-project-view-header-content-arrow-bottom"></i>
+			</div>
+			<div class="fl wm15 saler-project-view-header-right">
+				<div class="saler-project-header-reload">
+					<!--<a href="__SELF__" class="saler-project-header-reload-btn js-saler-project-header-reload-btn saler-project-header-reload-a">
+						<i class="saler-project-qh"></i>
+					</a>-->
+					<a href="/Saler/index/index.html" class="saler-project-header-reload-btn js-saler-project-header-reload-btn saler-project-header-reload-a">
+						<i class="saler-project-qh"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="saler-project-view-header-unit-wrapper js-saler-project-view-header-unit-wrapper">
+			<div class="clearfix saler-project-view-header-unit">
+				<foreach name="buildings" item="building">
+					<foreach name="buildingUnits[$building['id']]" item="buildingUnit">
+						<div class="fl saler-project-view-header-unit-info <if condition='$building["id"]==$findBuilding["id"] &&  $buildingUnit == $findUnit '>saler-project-view-header-unit-info-selected</if>  ">
+							<a href="<{:U('index',['eventId'=>$eventId,'buildingId'=>$building['id'],'unit'=>$buildingUnit ])}>"><{$building['buildname']}>-<{$buildingUnit}>单元</a>
+						</div>
+					</foreach>
+				</foreach>
+			</div>
+		</div>
+	</div>
+</block>
+
+<block name="content">
+	<div class="saler-project-view-base saler-project-id" 
+		data-project-id="<{$project['id']|default=0}>"
+		data-build-id="<{$search_build_id|default=0}>"
+		data-unit-id="<{$search_unit_id|default=0}>"
+	>
+		<div class="saler-project-view-content-wrapper">
+			<div class="saler-project-view-content">
+				<div class="clearfix saler-project-view-content-tabs">
+					<!--<div class="fl wm50 saler-project-view-content-tab saler-project-view-content-tab-selected">-->
+						<!--<a href="<{:U('index', array('eventId' => $eventId))}>" class="saler-project-view-content-tab-info">-->
+							<!--房源信息-->
+						<!--</a>-->
+					<!--</div>-->
+					<!--<div class="fl wm50 saler-project-view-content-tab" style="background: #fff;">-->
+						<!--<a href="<{:U('hot', array('eventId' => $eventId))}>" class="saler-project-view-content-tab-info saler-project-view-content-tab-hot">-->
+							<!--热度排名-->
+						<!--</a>-->
+					<!--</div>-->
+				</div>
+				
+				<div class="clearfix saler-project-view-content-search">
+					<div class="fl wm50 saler-project-view-content-search-box">
+						<input class="border-sizing saler-project-view-content-search-input" type="text" value="" placeholder="搜索">
+					</div>
+					<!--<div class="fl wm50 saler-project-view-content-search-compare">-->
+						<!--<span class="saler-project-view-content-search-compare-box js-saler-project-view-content-search-compare-btn">-->
+							<!--<span class="saler-project-view-content-search-compare-btn">房源对比</span>-->
+							<!--<span class="saler-project-view-content-search-compare-img"></span>-->
+						<!--</span>-->
+					<!--</div>-->
+				</div>
+				
+				<div id="iscroller-wrapper" class="saler-project-view-content-rooms iscroller-rooms iscroller-style">
+					<div id="iscroller-scroller" class="saler-project-view-content-rooms-box iscroller-rooms-scroller iscroller-scroller-style">
+						<div id="pullDown" style="display:none;">
+							<span class="clearfix pull-down-box">
+								<span class="pullDownIcon"></span>
+								<span class="pullDownLabel">下拉刷新...</span>
+							</span>
+						</div>
+		
+						<table class="saler-project-view-content-rooms-table">
+							<tbody></tbody>
+						</table>
+						
+						<div class="block60 room-bottom-block" style="display:none;"></div>
+					</div>
+				</div>
+				
+				<div class="saler-project-view-content-selected-wrapper js-saler-project-view-content-selected-wrapper">
+					<div class="saler-project-view-content-selected">
+						<div class="saler-project-view-content-selected-info">
+							<div class="saler-project-view-content-selected-num-wrapper">
+								<span class="saler-project-view-content-selected-num">
+									0
+								</span>
+							</div>
+							<div class="saler-project-view-content-selected-contrasts-wrapper">
+								<div class="saler-project-view-content-selected-contrasts js-saler-project-view-content-selected-compare">
+									<span class="saler-project-view-content-selected-contrasts-btn">
+										开始对比
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="saler-project-view-content-help-wrapper">
+					<div class="saler-project-view-content-help">
+						<div class="fl wm50 saler-project-view-content-tab saler-project-view-content-tab-selected dibu">
+
+							<a href="<{:U('index', array('eventId' => $eventId))}>" class="saler-project-view-content-tab-info">
+
+								<i class="icon-home home-icon"></i>房源
+							</a>
+
+						</div>
+						<div class="fl wm50 saler-project-view-content-search-compare">
+							<span class="saler-project-view-content-search-compare-box js-saler-project-view-content-search-compare-btn">
+							<i class="icon-exchange"></i>
+							<a href="#" class="saler-project-view-content-tab-info">
+							对比
+						</a>
+								<!--<span class="saler-project-view-content-search-compare-btn">对比</span>
+                                <span class="saler-project-view-content-search-compare-img"></span>-->
+							</span>
+						</div>
+
+						<div class="fl wm50 saler-project-view-content-tab dibu">
+
+							<a href="<{:U('hot', array('eventId' => $eventId))}>" class="saler-project-view-content-tab-info saler-project-view-content-tab-hot">
+								<i class="icon-fire"></i>热度
+							</a>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</block>
+
+<block name="footer_js">
+<link href="__COMMON__/js//jquery/iscroll/iscroll.css" type="text/css" rel="stylesheet"/>
+<script src="__COMMON__/js/jquery/iscroll/iscroll.js"></script>
+<script>
+var iscroller_project,
+	pullDownEl, 
+	pullDownOffset,
+	loadingStep = 0;
+
+var eventId = <{$eventId}>;
+
+var rooms = <{$rooms}>;
+var orderedRooms = <{$orderedRooms}>;
+var hotRooms = <{$hotRooms}>;
+
+$(document).ready(function () {
+	renderRoom(rooms);
+});
+
+function renderRoom(rooms) {
+    var table = $('.saler-project-view-content-rooms-table>tbody');
+    table.html('');
+    var tr = null;
+    var td = null;
+    var ul = null;
+    var div = null;
+
+    var floorMark = null;
+    var tempFloorMark = null;
+
+    var li = null;
+
+    var isOrdered = '';
+    var isHot = '';
+
+    for(var i = rooms.length-1; i >= 0; i--){
+
+        orderedRooms.forEach(function (x) {
+            if (rooms[i].id==x)
+                isOrdered = 'saler-project-view-content-rooms-room-box-selected';
+        });
+
+        hotRooms.forEach(function (x) {
+            if (rooms[i].id==x)
+                isHot = '<i class="saler-project-hot"></i>';
+        });
+
+        li = `<li class="fl wm25">
+				<a href="/Saler/room/index/id/${rooms[i].id}.html" class="saler-project-view-content-rooms-room-a">
+				${isHot}
+					<div class="saler-project-view-content-rooms-room-box ${isOrdered} ">
+
+						<div class="saler-project-view-content-rooms-room-name">
+							${rooms[i].floor}${rooms[i].no}								</div>
+						<div class="saler-project-view-content-rooms-room-area">
+							${rooms[i].area}㎡
+						</div>
+						<div class="saler-project-view-content-rooms-room-cost">
+							¥${rooms[i].total}									</div>
+					</div>
+				</a>
+
+				<div data-room-id="${rooms[i].id}" class="saler-project-view-content-rooms-room-box-shadow js-saler-project-view-content-rooms-room-box-shadow">
+					<div class="saler-project-view-content-rooms-room-box-shadow-info">
+						<span class="saler-project-view-content-rooms-room-box-shadow-info-select">
+							<input class="saler-project-view-content-rooms-room-select js-saler-project-view-content-rooms-room-box-shadow saler-project-view-content-rooms-room-select-${rooms[i].id}" data-room-id="${rooms[i].id}" type="checkbox" value="1">
+						</span>
+					</div>
+				</div>
+			</li>`;
+
+        tempUlMark = rooms[i].floor;
+
+        tempFloorMark = rooms[i].floor;
+
+        if(floorMark!=tempFloorMark){
+
+            if(ul!=null){
+                div.append(ul);
+                td.eq(1).append(div);
+                tr.append(td);
+                table.append(tr);
+            }
+
+            floorMark = tempFloorMark;
+
+            div = $('<div class="saler-project-view-content-rooms-list"></div>');
+
+            ul = $('<ul class="clearfix"></ul>');
+
+            td = $(`<td class="saler-project-view-content-rooms-floor" data-floor-id="${floorMark}">${floorMark}F</td><td class="saler-project-view-content-rooms-room" data-floor-id="${floorMark}"></td>`);
+
+            tr = $(`<tr></tr>`);
+
+        }
+
+        ul.append(li);
+
+        isOrdered='';
+        isHot = '';
+    }
+
+    if (ul!==null){
+        div.append(ul);
+        td.eq(1).append(div);
+        tr.append(td);
+        table.append(tr);
+    }
+
+
+}
+
+function loaded() {
+    pullDownEl = document.getElementById('pullDown');
+    pullDownOffset = pullDownEl.offsetHeight;
+	
+	setTimeout(function() {
+		iscroller_project = new iScroll("iscroller-wrapper", {
+			bounce: true,
+			checkDOMChanges: true,
+			onBeforeScrollStart: function (e) {
+				var target = e.target;
+				while (target.nodeType != 1) {
+					target = target.parentNode;
+				}
+
+				if (target.tagName != 'SELECT' 
+					&& target.tagName != 'INPUT' 
+					&& target.tagName != 'TEXTAREA'
+				) {
+					e.preventDefault();
+				}
+			},
+			topOffset: pullDownOffset,
+			onRefresh: function () {
+				if (pullDownEl.className.match('loading')) {
+					//pullDownEl.className = '';
+					//pullDownEl.querySelector('.pullDownLabel').innerHTML = '下拉刷新...';
+				}
+				
+			},
+			onScrollMove: function () {
+				if (this.y > 5 && !pullDownEl.className.match('flip')) {
+					pullDownEl.style.display = '';
+					pullDownEl.className = 'flip';
+					pullDownEl.querySelector('.pullDownLabel').innerHTML = '松手开始更新...';
+					this.minScrollY = 0;
+				} else if (this.y < 5 && pullDownEl.className.match('flip')) {
+					//pullDownEl.style.display = '';
+					//pullDownEl.className = '';
+					//pullDownEl.querySelector('.pullDownLabel').innerHTML = '下拉刷新...';
+					//this.minScrollY = -pullDownOffset;
+				}
+				
+				loadingStep = 1;
+			},
+			onScrollEnd: function () {
+				if (loadingStep == 1) { 
+					if (pullDownEl.className.match('flip')) {
+						pullDownEl.className = 'loading';
+						pullDownEl.querySelector('.pullDownLabel').innerHTML = '加载中...';               
+						pullDownAction();
+					}
+					if (this.y < (this.maxScrollY + 50)){
+						pullDownEl.style.display = 'none';
+					}
+					
+					loadingStep = 2;
+				}
+			},
+		});
+	}, 100);
+
+	setTimeout(function () { 
+		document.getElementById('iscroller-wrapper').style.left = '0'; 
+		pullDownEl.style.display = 'none';
+	}, 200);
+}
+
+/**
+ * 下拉刷新 （自定义实现此方法）
+ * iscroller_project.refresh();      
+ * // 数据加载完成后，调用界面更新方法
+ */
+function pullDownAction () {
+    setTimeout(function () {    
+		//get_project_room_list(saler_url.project_index);
+
+        $.ajax({
+            url: '<{:U("room")}>',
+            data: {
+				eventId: '<{$eventId}>'
+				,buildingId: '<{$findBuilding["id"]}>'
+				,unit: '<{$findUnit}>'
+            },
+            type: 'POST',
+            dataType: 'JSON',
+            success: (data, status) => {
+				orderedRooms = data.orderedRooms;
+				hotRooms = data.hotRooms;
+                renderRoom(data.rooms);
+            },
+            error: (data, status, e) => {
+                layer_alert('提交连接失败！');
+            }
+        });
+
+        pullDownEl.style.display = 'none';
+		
+        iscroller_project.refresh();
+		
+		loadingStep = 0;
+    }, 1000);  
+}
+
+document.addEventListener('touchmove', function (e) { 
+	e.preventDefault(); 
+}, false);
+document.addEventListener('DOMContentLoaded', function () { 
+	setTimeout(loaded, 200); 
+}, false);
+</script>
+</block>

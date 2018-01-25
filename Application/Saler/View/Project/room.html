@@ -1,0 +1,43 @@
+﻿<volist name="floors" id="floors_vo" key="floors_k">
+	<tr>
+		<td class="saler-project-view-content-rooms-floor" data-floor-id="<{$floors_vo.floor|default="1"}>">
+			<{$floors_vo.floor|default="1"}>F
+		</td>
+		<td class="saler-project-view-content-rooms-room" data-floor-id="<{$floors_vo.floor|default="1"}>">
+			<div class="saler-project-view-content-rooms-list">
+				<ul class="clearfix">
+				
+					<volist name="rooms[$floors_vo['floor']]" id="rooms_vo" key="rooms_k">
+						<li class="fl wm25">
+							<a href="<{:U('room/index', array('id' => $rooms_vo['id'],'hid' => $search_hd_id))}>" class="saler-project-view-content-rooms-room-a">
+								<if condition="!empty($rooms_vo['djcount'])">
+									<i class="saler-project-hot"></i>
+								</if>
+								<div class="saler-project-view-content-rooms-room-box <if condition="$rooms_vo['is_xf'] eq 1">saler-project-view-content-rooms-room-box-selected</if>">
+									<div class="saler-project-view-content-rooms-room-name">
+										<{$rooms_vo['room']}>
+									</div>
+									<div class="saler-project-view-content-rooms-room-area">
+										<{$rooms_vo['area']|default='0'}>㎡
+									</div>
+									<div class="saler-project-view-content-rooms-room-cost">
+										¥<{$rooms_vo['total']|default='0'|intval}>
+									</div>
+								</div>
+							</a>
+								
+							<div data-room-id="<{$rooms_vo['id']|default='1'}>" class="saler-project-view-content-rooms-room-box-shadow js-saler-project-view-content-rooms-room-box-shadow">
+								<div class="saler-project-view-content-rooms-room-box-shadow-info">
+									<span class="saler-project-view-content-rooms-room-box-shadow-info-select">
+										<input class="saler-project-view-content-rooms-room-select js-saler-project-view-content-rooms-room-box-shadow saler-project-view-content-rooms-room-select-<{$rooms_vo['id']|default='1'}>" data-room-id="<{$rooms_vo['id']|default='1'}>" type="checkbox" value="1">
+									</span>
+								</div>
+							</div>
+						</li>
+					</volist>
+
+				</ul>
+			</div>
+		</td>
+	</tr>
+</volist>

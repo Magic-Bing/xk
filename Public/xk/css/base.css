@@ -1,0 +1,142 @@
+*{
+	padding: 0px;
+	margin: 0px;
+	font-size: 16px;
+	font-family: "Microsoft YaHei";
+}
+body, button, input, select, textarea a{	 
+	font: 14px/1.5 "微软雅黑",tahoma,arial,'宋体',sans-serif;
+}
+body, div, dl, dt, dd, ul, ol, li,h1, h2, h3, h4, h5, h6, pre, code,form, fieldset, legend, input, iframe, button, textarea, p, blockquote, th, td, img{ 
+	margin: 0;  
+	padding: 0;
+}
+html {
+	color:#333;
+}
+fieldset, img, iframe, button { 
+	border:0; 
+	text-decoration:none;
+}
+*:focus { 
+	outline: 0;
+}
+ol, ul { 
+	list-style: none;
+}
+table { 
+	border-collapse:collapse; 
+	border-spacing: 0;
+}
+caption, th { 
+	text-align: left;
+}
+header, footer, article, section, nav{
+	display: block;
+}
+a {
+	outline: none; /* for Forefox */ 
+	cursor:pointer; 
+	text-decoration: none; 
+}
+a { /* for Ie*/ }
+input{ 
+	outline:none; 
+}
+em{ 
+	font-style:normal;
+}
+input,select,img{ 
+	vertical-align:middle;
+}
+textarea{ 
+	outline: none; 
+	resize:none;
+}
+h1,h2,h3,h4,h5,h6,.fs14 {  
+	font-size: 14px;  
+} 
+a img{
+	border: none;
+}
+i{ 
+	font-style:normal;
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+.clearfix {
+	zoom:1;
+}
+
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
+.mr5 {
+	margin-right: 5px;
+}
+.mr10 {
+	margin-right: 10px;
+}
+.mr15 {
+	margin-right: 15px;
+}
+.tac {
+	text-align: center;
+}
+.tar {
+	text-align: right;
+}
+.tal {
+	text-align: left;
+}
+.wm23 {
+	width: 23%;
+}
+.wm25 {
+	width: 25%;
+}
+.wm30 {
+	width: 30%;
+}
+.wm35 {
+	width: 35%;
+}
+.wm45 {
+	width: 45%;
+}
+.wm50 {
+	width: 50%;
+}
+.wm55 {
+	width: 55%;
+}
+.wm65 {
+	width: 65%;
+}
+.wm70 {
+	width: 70%;
+}
+.wm75 {
+	width: 75%;
+}
+.wm77 {
+	width: 77%;
+}
+.color-red {
+	color: #f00;
+}
+.border-sizing {
+	box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+

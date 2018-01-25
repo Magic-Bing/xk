@@ -1,0 +1,319 @@
+<extend name="Common/base" />
+
+<block name="header">
+    <link rel="stylesheet" href="/Public/common/css/font-awesome-4.7.0/css/font-awesome.css">
+    <style>
+        .saler-statistics-content-unit-info {
+            padding-top: 20px;
+        }
+        .saler-statistics-content-unit-box {
+            position: relative;
+            height: 130px;
+        }
+        .saler-statistics-content-price-title {
+            padding: 15px 5px 20px 5px;
+            margin-bottom: 10px;
+        }
+		#content-tab{
+			padding: 0 10px;
+		}
+		h1{
+			    padding: 10px 0 5px 0;
+                            font-size: 16px;
+                            font-weight: bold;
+                            margin-top: 10px;
+                            margin-bottom: 5px;
+                            border-bottom: 1px solid #f4f4f4;
+                            border-top: 4px solid #ececec;
+                            width: 95%;
+		}
+                .saler-statistics-list-box h1:first-child{
+                     padding: 5px 0 5px 0;
+                     border-top: 0px;
+                }
+		h2{
+			font-size: 15px;
+			font-weight: bold;
+			margin-top: 5px;
+		}
+		h1 .xf-zt{
+			border: 1px solid #ff6058;
+			padding: 1px 3px;
+			border-radius: 3px;
+			color: #ff6058;
+			font-weight: normal;
+			font-size: 12px;
+                        float: right;
+                        /*margin-right: 5%;*/
+		}
+		.call-phone i{
+			position: fixed;
+                        color: #FFF;
+                        cursor: pointer;
+                        font-size: 17px;
+                        z-index: 999999;
+                        right: 5%;
+                        top: 105px;
+                        width: 22px;
+                        height: 22px;
+                        line-height: 22px;
+                        text-align: center;
+                        background: #09bb07;
+                        border-radius: 50%;
+		}
+		#user-info{
+			width: 95%;
+			margin-top: 5px;
+			margin-bottom: 5px;
+		}
+		#room-tab{
+			 width: 95%;
+			 margin-top: 10px;
+			 margin-bottom: 10px;
+		 }
+		#room-tab tr{
+			margin-bottom:10px;
+		}
+		#user-info td{
+			text-align: left;
+			font-weight: bold;
+                        font-size:13px;
+		}
+		#user-info i{
+			color: #999999;
+		}
+		.hs{
+			color: #999999;
+			padding-left: 5px;
+			font-weight: normal!important;
+		}
+		hr{
+			width: 95%;
+			background-color: rgba(193,193,193,0.3);
+			border-color: rgba(193,193,193,0.3);
+			margin-top: 5px;
+		}
+		.font-hs{
+			color: #999999;
+			font-size: 12px;
+		}
+		.sm-font{
+			font-size: 12px;
+		}
+		.hot-one{
+			display: inline-block;
+			width: 8px;
+			height: 8px;
+			background-color: rgba(255, 67, 52, 0.69);
+		}
+		.hot-two{
+			display: inline-block;
+			width: 8px;
+			height: 8px;
+			background-color: rgba(255, 159, 98, 0.69);
+		}
+		.hot-three{
+			display: inline-block;
+			width: 8px;
+			height: 8px;
+			background-color: rgba(255, 188, 23, 0.69);
+		}
+		.hot-four{
+			display: inline-block;
+			width: 8px;
+			height: 8px;
+			background-color: rgba(45, 202, 94, 0.53);
+		}
+		.hot-five{
+			display: inline-block;
+			width: 8px;
+			height: 8px;
+			background-color: rgba(56, 156, 13, 0.73);
+		}
+		.ft{
+
+		}
+                .endtr{
+                    margin-bottom: 10px;
+                }
+                .scgs{
+                    float:right;margin-right: 2px;
+                }
+                .ired{
+                    color:#ff6058;
+                }
+                .iyellow{
+                    color:#f8a659;
+                }
+                .igreen{
+                    color:#0ba1b4;
+                }
+                html{
+                    color:#999999;
+                }
+    </style>
+	<div class="common-header-wrapper">
+		<div class="clearfix common-header sales-statistics-header">
+			<div class="fl wm25 arrow-left common-header-return">
+				<span class="common-header-return-box return-btn">
+					<a href="javascript:void(0);" class="common-header-return-btn">返回</a>
+				</span>
+			</div>
+			<div class="fl wm50 common-header-content js-common-header-content">
+				<span class="common-header-content-box-no-arrow">
+					<span class="common-header-content-box-name">客户详情</span>
+				</span>
+			</div>
+			<div class="fr wm10 common-header-right" style="padding-top: 3%">
+				<div class="common-header-reload">
+					<a href="" onclick="window.location.reload()" class="saler-project-header-reload-btn js-saler-project-header-reload-btn saler-project-header-reload-a">
+						<i class="icon-refresh  bigger-230 " style="color: #c1c1c1;font-size: 18px"></i>
+						<!--<img src="/Public/common/img/refresh.png" style="width: 15px;height: 15px">-->
+					</a>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</block>
+
+<block name="content">
+	<div class="common-content sales-statistics-content">
+		<div class="saler-statistics-content-wrapper">
+			<div id="iscroller-wrapper" class="iscroller-style saler-statistics-list-wrapper" style="bottom:43px;background-color: #fff;">
+				<div id="iscroller-scroller" class="iscroller-scroller-style" >
+					<div class="saler-statistics-list-box" >
+						<div class="fl wm100" id="content-tab">
+							<div class="fl wm100">
+								<h1><!--<i class="fa fa-user iyellow"> </i>--> <{$user_info.cname}> <if condition="($user_info.rid neq null) AND ($user_info.oid neq null)"><span class="xf-zt">已选房</span><else/><span class="xf-zt">未选房</span></if>  <span class="call-phone" data-num="<{:rsa_decode($user_info['cphone'],getChoosekey())}>"><i class="fa fa-phone"></i></span></h1>
+								<table id="user-info">
+									<tr>
+										<td class="wm20" style="width:60px">手机号码</td>
+										<td class="hs"><{:rsa_decode($user_info['cphone'],getChoosekey())}></td>
+									</tr>
+									<tr>
+										<td>证件号码</td>
+										<td class="hs"><{:rsa_decode($user_info['cardno'],getChoosekey())}></td>
+									</tr>
+									<tr>
+										<td>认筹单号</td>
+										<td class="hs"><{$user_info['cyjno']}></td>
+									</tr>
+									<tr>
+										<td>置业顾问</td>
+										<td class="hs"><{$user_info['ywy']?$user_info['ywy']:'无'}></td>
+									</tr>
+									<tr>
+										<td>登录时间</td>
+										<td class="hs"><{$user_info['logintime']?date('Y-m-d h:i:s',$user_info['logintime']):'未登录'}></td>
+									</tr>
+								</table>
+								<h1><i class="fa fa-envelope-open-o ired"> </i> 所选房间</h1>
+								<if condition="($user_info.rid neq null) AND ($user_info.oid neq null)">
+                                                                    <a href="<{:U('room/index', array('id' =>$user_info['rid'],'hid'=> $project_id))}>" style="color:#999999">
+                                                                        <h2><{$user_info.bname}>-<{$user_info.unit}>单元-<{$user_info.room}></h2>
+                                                                        <p  class="font-hs" >房间信息：￥<{:number_format($user_info['total'],2)}>元  &nbsp;&nbsp;&nbsp;      <if condition="$user_info['hx'] neq null">(<{$user_info.hx}>)</if><{$user_info.area}>㎡</p>
+                                                                        <p class="font-hs" >选房时间：<{:date('Y-m-d h:i:s',$user_info['log_time'])}></p>
+                                                                    </a>
+								<else/>
+                                                                    <p style="font-size: 14px;color: #ff6058;margin: 5px 0;">还没有选择房间...</p>
+								</if>
+								
+								<h1><i class="fa fa-list-ol igreen"> </i> 收藏房源(<php>echo count($sc_room);</php>)</h1>
+								<table id="room-tab">
+									<if condition="count($sc_room) gt 0">
+									<foreach name="sc_room" item="vo" key="k">
+										<tr>
+											<td>
+                                                                                              <a href="<{:U('room/index', array('id' =>$vo['id'],'hid'=> $project_id))}>" style="color:#999999">
+												<p class="fl wm100 sm-font">
+													<if condition="$vo.first_count egt 3">
+														<span class="hot-one"></span> 热度：高
+														<elseif condition="$vo.first_count eq 2"/>
+														<span class="hot-two"></span> 热度：中高
+														<elseif condition="$vo.first_count eq 1"/>
+														<span class="hot-three"></span> 热度：中
+														<elseif condition="($vo.first_count gt 0) AND ($vo.sc_count egt 3)"/>
+														<span class="hot-four"></span> 热度：中低
+														<else/>
+														<span class="hot-five"></span> 热度：低
+													</if>
+													<span class="fr">第<{$k+1}>意向</span>
+												</p>
+												<h2><{$vo.bname}>-<{$vo.unit}>单元-<{$vo.room}></h2>
+												<p class="font-hs endtr"><{$vo.hxmx}> / <{$vo.area}>㎡ / <{:number_format($vo['total'])}> 元  <span class="scgs"> <i class="fa fa-heart-o"></i> <{$vo.sc_count}> &nbsp;<span class="ft">①</span> <{$vo.first_count}></span></p>
+                                                                                              </a>
+											</td>
+										</tr>
+									</foreach>
+										<else/>
+										<tr>
+											<td align="center" style="color: red">
+												没有收藏房间...
+											</td>
+										</tr>
+									</if>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</block>
+<block name="footer_js">
+<include file="Common@Common/Mobile/iscroll" iscroller_id="iscroller_statistics" iscroller_select_id="iscroller-wrapper" />
+<div class="weui-tabbar1">
+	<a href="<{:U('DataStatistics/index', array('info' => set_search_ids(array('p' => $project_id))))}>" class="weui-tabbar__item1">
+                            <span style="display: inline-block;position: relative;">
+                                <i class="fa fa-home weui-tabbar__icon1"></i>
+                            </span>
+		<p class="weui-tabbar__label1">首页</p>
+	</a>
+	<a href="<{:U('ChooseAnalysis/index', array('info' => set_search_ids(array('p' => $project_id))))}>" class="weui-tabbar__item1 weui-bar__item_on1">
+                            <span style="display: inline-block;position: relative;">
+                                    <i class="fa fa-group weui-tabbar__icon1"></i>
+                            </span>
+		<p class="weui-tabbar__label1">客户分析</p>
+	</a>
+	<a href="<{:U('RoomAnalysis/index', array('info' => set_search_ids(array('p' => $project_id))))}>" class="weui-tabbar__item1">
+							<span style="display: inline-block;position: relative;">
+								<i class="fa fa-bar-chart weui-tabbar__icon1"></i>
+							</span>
+		<p class="weui-tabbar__label1">装户分析</p>
+	</a>
+	<a href="<{:U('MyReport/index', array('info' => set_search_ids(array('p' => $project_id))))}>" class="weui-tabbar__item1">
+                            <span style="display: inline-block;position: relative;">
+                                <i class="fa fa-user-circle-o weui-tabbar__icon1"></i>
+                                <span class="weui-badge weui-badge_dot" style="position: absolute;top: 2px;right: 0px;display:none;"></span>
+                            </span>
+		<p class="weui-tabbar__label1">我的</p>
+	</a>
+                    </div>  
+<script>
+    $(document).ready(function() {
+        var ut=$("#user-type");
+        ut.val("<{$status}>");
+        ut.on("change",function () {
+			$("#search-user").val('');
+			$("#condition-form").submit();
+        });
+        $("#condition-form").on("input",function () {
+            $("#condition-form").submit();
+        });
+		$(".call-phone").on("click",function (event) {
+            event.stopPropagation();
+			var phone=$(this).attr("data-num");
+			window.location.href='tel://' + phone;
+        });
+		
+        /*$("#content-tab").on("click","tr",function () {
+			var id=$(this).attr('data-id');
+			alert(id);
+        });*/
+    });
+</script>
+</block>
+

@@ -1,0 +1,233 @@
+<extend name="Common/base" />
+
+<block name="seo_title">
+	<{$seo_title|default='抢房列表'}>
+</block>
+
+<block name="header_js_add">
+<script src="__COMMON__/js/jedate/jedate.js"></script>
+<script type="text/javascript">
+$(function() {
+	//中奖时间
+	jeDate({
+		dateCell:".room-date-game-prize-time",
+		format:"YYYY-MM-DD hh:mm:ss",
+		isinitVal:false,
+		isTime:true,
+		minDate:"2015-09-19 00:00:00",
+	});
+	
+	//购买时间
+	jeDate({
+		dateCell:".room-edit-game-prize-buy-time",
+		format:"YYYY-MM-DD hh:mm:ss",
+		isinitVal:false,
+		isTime:true,
+		minDate:"2015-09-19 00:00:00",
+	});
+});
+</script>
+</block>
+
+<block name="content">
+	<div class="room room-game">
+		<div class="room-title room-game-title">
+			<div class="clearfix room-title-box">
+				<span class="room-title-info"><{$seo_title|default='抢房活动'}></span>
+				<span class="room-title-subtitle">
+					<include file="tab" /> 
+				</span>
+				<span class="fr room-title-refresh">
+					<a href="__SELF__" class="room-title-refresh-btn">
+						<img class="room-title-refresh-btn-img" src="__IMG__/sx01.png" />
+					</a>
+				</span>
+			</div>
+		</div>
+
+		<div class="room-attr-content">
+			<div class="room-attr-rooms">
+			
+				<div class="room-edit">
+					<form method="post" name="room-edit-form" action="">
+						<div class="room-edit-content">
+							<input type="hidden" name="id" class="room-edit-game-prize-id" value="<{$prize['id']}>" style="display:none;">
+							<table border="0" cellspacing="2" cellpadding="4" class="list" name="table" id="table" width="100%">
+								<tbody>
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											活动ID：
+										</td>
+										<td class="room-edit-tr-content">
+											<input type="text" name="room_id" value="<{$prize['game_id']}>" class="room-edit-input room-edit-game-id" disabled> 
+											<span class="room-edit-tip">（该次中奖活动的ID）</span>
+										</td>
+									</tr>									
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											活动标题：
+										</td>
+										<td class="room-edit-tr-content room-attr-rooms-table-bold">
+											<span class="room-edit-game-prize-title" ><{$prize['game_title']}></span> 
+										</td>
+									</tr>
+									
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											房间ID：
+										</td>
+										<td class="room-edit-tr-content">
+											<input type="text" name="room_id" value="<{$room['id']}>" class="room-edit-input room-edit-game-room-id" disabled> 
+											<span class="room-edit-tip">（中奖的房间ID）</span>
+										</td>
+									</tr>									
+									<if condition="!empty($room)">
+										<tr class="room-edit-tr">
+											<td class="room-edit-tr-title">房间名称：</td>
+											<td class="room-edit-tr-content room-attr-rooms-table-bold">
+												<{$room['projname']}> - <{$room['buildname']}> - <{$room['unit']}> - <{$room['room']}>
+											</td>
+										</tr>
+									</if>
+									
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											中奖人：
+										</td>
+										<td class="room-edit-tr-content">
+											<span class="room-edit-game-prize-title" ><{$prize['customer_name']}></span> 
+										</td>
+									</tr>
+									
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											中奖人微信ID：
+										</td>
+										<td class="room-edit-tr-content">
+											<span class="room-edit-game-prize-title" ><{$prize['customer_openid']}></span> 
+										</td>
+									</tr>
+									
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											中奖时间：
+										</td>
+										<td class="room-edit-tr-content">
+											<input type="text" name="time" value="<notempty name='prize.time'><{$prize.time|date='Y-m-d H:i:s',###}></notempty>" class="room-edit-input room-edit-game-prize-time room-date-game-prize-time" > 
+											<span class="room-edit-tip">（请选择中奖时间）</span>
+										</td>
+									</tr>
+									
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											<span class="color-red">*</span> 
+											是否购买：
+										</td>
+										<td class="room-edit-tr-content">
+											<select class="room-edit-select room-edit-game-prize-is-buy" name="is_buy">
+												<eq name="prize['is_buy']" value="1">
+													<option value="1" selected>
+														是
+													</option>
+													<option value="0">
+														否
+													</option>
+												<else/>
+													<option value="1">
+														是
+													</option>
+													<option value="0" selected>
+														否
+													</option>
+												</eq>
+											</select>
+											<span class="room-edit-tip">（中奖用户是否购买）</span>
+										</td>
+									</tr>
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											用户电话号码：
+										</td>
+										<td class="room-edit-tr-content">
+											<input type="text" name="phone" value="<{$prize['phone']|default=''}>" class="room-edit-input room-edit-game-prize-phone" > 
+											<span class="room-edit-tip">（中奖用户电话号码）</span>
+										</td>
+									</tr>
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											购买时间：
+										</td>
+										<td class="room-edit-tr-content">
+											<input type="text" name="buy_time" value="<notempty name='prize.buy_time'><{$prize.buy_time|date='Y-m-d H:i:s',###}></notempty>" class="room-edit-input room-edit-game-prize-buy-time room-date-game-prize-buy-time" > 
+											<span class="room-edit-tip">（中奖用户购买时间）</span>
+										</td>
+									</tr>
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											验证码：
+										</td>
+										<td class="room-edit-tr-content">
+											<input type="text" name="code" value="<{$prize['code']|default=''}>" class="room-edit-input room-edit-game-prize-code" > 
+											<span class="room-edit-tip">（中奖成功验证码，用于中奖信息确认）</span>
+										</td>
+									</tr>
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											<span class="color-red">*</span> 
+											是否无效：
+										</td>
+										<td class="room-edit-tr-content">
+											<select class="room-edit-select room-edit-game-prize-is-delete" name="is_delete">
+												<neq name="prize['is_delete']" value="1">
+													<option value="0" selected>
+														是
+													</option>
+													<option value="1">
+														否
+													</option>
+												<else/>
+													<option value="0">
+														是
+													</option>
+													<option value="1" selected>
+														否
+													</option>
+												</neq>
+											</select>
+											<span class="room-edit-tip">（设置该中奖是否无效）</span>
+										</td>
+									</tr>
+									
+									<tr class="room-edit-tr">
+										<td class="room-edit-tr-title">
+											备注：
+										</td>
+										<td class="room-edit-tr-content">
+											<textarea type="text" name="remark" class="room-edit-textarea room-edit-game-prize-remark"><{$prize['remark']|default=''}></textarea>
+											<span class="room-edit-tip">（填写相关备注）</span>
+										</td>
+									</tr>
+									
+								</tbody> 
+							</table>
+						</div>
+						
+						<div class="room-edit-tips">
+							<div class="room-edit-tips-info">
+								<span class="room-edit-tips-bold">提醒：</span>
+								“<span class="color-red">*</span>”为必填项，请务必填写。
+							</div>
+						</div>
+						
+						<div class="room-edit-btns">
+							<a href="javascript:void(0);" class="room-edit-btn room-edit-btn-save js-room-game-prize-edit-btn">保 存</a> 
+							<a href="javascript: history.go(-1);" class="room-edit-btn room-edit-btn-return">返 回</a>				  
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+	
+	</div>
+</block>

@@ -1,0 +1,216 @@
+ ﻿<extend name="Common/base" />
+
+<block name="header">
+    <style>
+		.signininput {
+			background-color: #F6F6F6;
+			margin-top: 2px;
+			border-top: 1px solid #cccccc;
+		}
+		.signininput ul li {
+			border-bottom: 1px solid #cccccc;
+			line-height: 49px;
+			padding: 0 10px;
+		}
+		.signininput ul li i
+		{
+			margin-left:10px;
+			display: inline-block;
+			width: 16px;
+			height: 19px;
+			vertical-align: -3px;
+			background-repeat: no-repeat;
+			background-size: 100%;
+		}
+		.signininput ul li .signinuser {
+			
+			background-image: url(../../../Public/user/img/login/001.png);
+		}
+		.signininput ul li .signinpassw {
+			background-image: url(../../../Public/user/img/login/002.png);
+		}
+		.signininput ul li input {
+			margin-left: 10px;
+			font-size: 14px;
+			border:1px solid #F6F6F6;
+			border-radius: 5px;
+			width:60%;height:28px;
+			padding:2px;
+			
+		}
+		.intexchabutt {
+			width: 94.4444%;
+			margin: 0 auto;
+			margin-top: 10px;
+		}
+		.intexchabutt .intexbg1 {
+			background-color: #ff6e6e;
+			width: 100%;
+			line-height: 35px;
+			color: #fff;
+			border-radius: 5px;
+			font-size: 15px;
+			border: 1px solid #ff6e6e;
+		}
+		.getpwd-div{
+			display: inline-block;
+			line-height: 30px;
+			padding: 0 3px 0 3px;
+			border-radius: 5px;
+			font-size: 12px;
+			text-align: center;
+			width: 20%;
+			background: #E1DADA;
+		}
+		.getpwd-button
+		{
+			background: #ff6e6e;
+			color: #FFF;
+		}
+    </style>
+    <div id="zz01" class="div-zz" ></div>
+    <div class="common-header-wrapper">
+        <div class="clearfix common-header">
+            <div class="fl wm25 arrow-left common-header-return user-header-return">
+                <span class="common-header-return-box return-btn">
+                    <a href="javascript:void(0);" class="common-header-return-btn">返回</a>
+                </span>
+            </div>
+            <div class="fl wm50 common-header-content js-common-header-content">
+                <span class="common-header-content-box-no-arrow">
+                    <span class="common-header-content-box-name">快速登录</span>
+                </span>
+            </div>
+            <div class="fl wm25 common-header-right">
+                <div class="common-header-right-box clearfix">
+                    <a href="<{:U('activities')}>" class="common-header-right-btn user-activity-header-right-btn">
+                        <i class="icon-home icon-home-header"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+
+<block name="content">
+    <div class="user-project-view-base" style="background:#FFF">
+        <div class="user-project-view-content-wrapper">
+            <div id="iscroller-wrapper" class="iscroller-style user-activity">
+                <div style="height:100%" id="iscroller-scroller" class="iscroller-scroller-style">
+                    <div style="height:100%;width:100%;background: #F6F6F6;" id ="logindiv" data_type="<{$logintype}>">
+						<div class="signininput">
+						 <ul>
+						  <li><i class="signinuser"></i><input type="number" id="logPhoneorname" placeholder="请输入手机号" ></li>
+						  <li>
+						  <i class="signinpassw"></i>
+						  <input type="password" id="logPassword" placeholder="请输入密码" >
+						  <div class="getpwd-div getpwd-button">获取密码</div>
+						  </li>
+						 </ul>
+						</div>
+						<div class="intexchabutt">
+							<input type="button" value="登录" class="intexbg1 login-button">
+							<div style="margin-top:5px;font-size:10px">
+								<p>
+								1、手机号请录入排号时使用的手机号<br/>
+								2、点击"获取密码"系统自动发送密码到手机短信
+								</p>
+							</div>
+						</div>
+					</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+
+<block name="header_config">
+    <script type="text/javascript">
+        var login_url = {
+            getpwd:'<{:U("login/getpwd")}>',
+            logining:'<{:U("login/logining")}>',
+        };
+		
+        function showpwddjs()
+        {
+                var times = 90 * 100; 
+                countTime = setInterval(function() {
+                        times = --times < 0 ? 0 : times;
+                        var ms = Math.floor(times / 100).toString();
+
+                        if(ms.length <= 1) {
+                                ms = "0" + ms;
+                        }
+                        if(times == 0) {
+                                        clearInterval(countTime);
+                                        $(".getpwd-div").text("获取密码").addClass("getpwd-button");
+                        }
+                        else
+                        {
+                                // 获取秒数
+                                $(".getpwd-div").text("等待"+ ms +" s");
+                        }
+                }, 10);
+        }
+    $(function() {
+        
+        //获取密码
+	$(".getpwd-button").click(function() {
+		var $phone=$("#logPhoneorname").val();
+		if ($phone=="")
+		{
+			layer_alert("请先输入手机号码");
+			return false;
+		}
+		var $data = {
+			phone: $phone,
+		};
+		var $url = login_url.getpwd;
+		ajax_post_callback($url, $data, function(data) {
+			if (data['status'] != 1) {
+				layer_alert(data['info']);
+				return false;
+			}
+			$(".getpwd-div").removeClass("getpwd-button");
+			showpwddjs();
+			return true;
+		});
+	});
+        //登录
+	$(".login-button").click(function() {
+		var $phone=$("#logPhoneorname").val();
+		var $pwd=$("#logPassword").val();
+                var $type=$("#logindiv").attr("data_type");
+		if ($phone=="")
+		{
+			layer_alert("请输入手机号码");
+			return false;
+		}
+		if ($pwd=="")
+		{
+			layer_alert("请输入密码");
+			return false;
+		}
+		var $data = {
+			phone: $phone,
+			pwd: $pwd,
+                        type: $type,
+		};
+		var $url = login_url.logining;
+		ajax_post_callback($url, $data, function(data) {
+			if (data['status'] != 1) {
+				layer_alert(data['info']);
+				return false;
+			}
+			window.location.href=data['info'];
+			return true;
+		});
+	});
+    });
+    </script>
+</block>
+
+<block name="footer_js">
+    <include file="Common@Common/Mobile/iscroll" iscroller_id="iscroller_activity" iscroller_select_id="iscroller-wrapper" />
+</block>
+

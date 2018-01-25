@@ -1,0 +1,68 @@
+<?php
+
+namespace Common\Model;
+//use Think\Model;
+
+/**
+ * 用户表
+ *
+ * @create 2016-9-9
+ * @author zlw
+ */
+class UserModel extends BaseModel 
+{
+	
+	/**
+	 * 获取房间
+	 *
+	 * @create 2016-9-9
+	 * @author zlw
+	 */
+	public function getOneById($id)
+	{
+		$where = array(
+			'id' => $id
+		);
+		return $this->where($where)->find();
+	}
+	
+	/**
+	 * 获取房间
+	 *
+	 * @create 2016-9-9
+	 * @author zlw
+	 */
+	public function getOneByName($name)
+	{
+		$where = array(
+			'name' => $name
+		);
+		return $this->where($where)->find();
+	}
+	
+
+	/**
+	 * 获取房间
+	 *
+	 * @create 2016-9-9
+	 * @author zlw
+	 */
+	public function getOneByCodeOrMobile($code, $mobile)
+	{
+		$map['code']  	= $code;
+		$map['mobile']  = $mobile;
+		$map['_logic'] 	= 'or';
+		$where['_complex'] = $map;
+		
+		return $this->where($where)->find();
+	}
+	
+} 
+
+
+
+
+
+
+
+

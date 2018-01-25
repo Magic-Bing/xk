@@ -1,0 +1,114 @@
+/** 数据JS ***/
+
+/**
+ * 获取热销房间
+ *
+ * @create 2016-9-1
+ * @author zlw
+ */
+function get_hot_sale($data, $url) {
+	$.ajax({
+		url: $url || saler_url.hot_sale,
+		data: $data,
+		type: 'POST',
+		dataType: 'HTML',
+		success: function (data, status) {
+			if (data.length <= 0) {
+				return false;
+			}
+	
+			$(".saler-project-sort-content-box").html(data);
+		},
+		error: function (data, status, e) {
+			layer_alert('提交连接失败！');
+			return false;
+		}
+	}); 
+}
+
+
+/**
+ * 房间搜索
+ *
+ * @create 2016-9-5
+ * @author zlw
+ */
+function get_search_room_list($url,$type) {
+	var $input_str = $(".js-saler-search-form-input-box-input").val();
+	if ($type=="ptss")
+	{
+		if ($input_str == '' || $input_str.length<2) {
+			$(".saler-search-filter-table-tr").remove();
+			return false;
+		}
+	}
+	else
+	{
+		$(".js-saler-search-form-input-box-input").val("");
+	}
+	var $is_xf = $(".saler-search-filter-sale:checked").val();
+	
+	var $build_ids = [];
+	var $build_list = $(".saler-search-form-choose-option-build.saler-search-form-choose-option-a-select");
+	for (var $i = 0; $i < $build_list.length; $i ++) {
+		$build_ids.push($($build_list[$i]).attr("data-id"));
+	}
+	
+	var $project_id = $(".saler-search-project-id").attr("data-id");
+	
+	var $floor_start = $(".saler-search-form-choose-option-floor-start").val();
+	var $floor_end = $(".saler-search-form-choose-option-floor-end").val();
+	
+	var $area_start = $(".saler-search-form-choose-option-area-start").val();
+	var $area_end = $(".saler-search-form-choose-option-area-end").val();
+	
+	var $price_start = $(".saler-search-form-choose-option-price-start").val();
+	var $price_end = $(".saler-search-form-choose-option-price-end").val();
+	
+	var $hx_ids = [];
+	var $hx_list = $(".saler-search-form-choose-option-hx.saler-search-form-choose-option-a-select");
+	for (var $i = 0; $i < $hx_list.length; $i ++) {
+		$hx_ids.push($($hx_list[$i]).attr("data-id"));
+	}
+	if ($type=="dtj1")
+	{
+		if ($build_ids=="" && $floor_start=="" && $floor_end=="" && $area_start=="" && $area_end==""&& $price_start=="" &&$price_end=="" &&$hx_ids=="")
+			return false;
+	}
+	$.ajax({
+		url: $url || search_url.room,
+		data: {
+			type:$type,
+			info: $input_str,
+			project_id: $project_id,
+			is_xf: $is_xf,
+			build_ids: $build_ids.join(','),
+			floor_start: $floor_start,
+			floor_end: $floor_end,
+			area_start: $area_start,
+			area_end: $area_end,
+			price_start: $price_start,
+			price_end: $price_end,
+			hx_ids: $hx_ids.join(','),
+		},
+		type: 'POST',
+		dataType: 'JSON',
+		success: function (data, status) {
+			if (data['status'] != 1) {
+				layer_alert(data['info']);
+				return false;
+			} 
+			
+			var $rooms = data.info;
+			
+			$(".saler-search-filter-table-tr").remove();
+			$(".saler-search-filter-table-tr-title").after($rooms.trim());
+		},
+		error: function (data, status, e) {
+			layer_alert('提交连接失败！');
+		}
+	}); 
+}
+
+
+

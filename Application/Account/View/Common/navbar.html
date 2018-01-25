@@ -1,0 +1,159 @@
+<div class="navbar navbar-default navbar-fixed-top" id="navbar"><!--头部固定-->
+
+	<script src="/Public/common/js/jquery/jquery-2.1.1.min.js"></script>
+	<script src="/Public/common/js/jquery/jquery-ui-1.12.0.custom/jquery-ui.js"></script>
+	<script src="/Public/common/js/layer/layer.js"></script>
+
+	<script type="text/javascript">
+            try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+          
+            $(function() {
+                $(document).on("click",".light-blue",function () {
+                    var pd=$(this).attr("on");
+                    if(Number(pd)==0){
+                        $("#sh").show();
+                       $(this).attr("on","1");
+					}else{
+                        $("#sh").hide();
+                        $(this).attr("on","0");
+					}
+
+                });
+				//验证2次密码是否相同
+				$(document).on("blur","#newpwd",function () {
+					if($(this).val() !== $("#newpwd-1").val()){
+					    layer_alert("2次密码输入不一致，请重新输入！");
+                        $(this).val("");
+                        return false;
+					}
+                });
+				//修改密码
+                $("#update-password").on("submit",function(){
+                    $.ajax({
+						url:'<{:U("index/editpwd")}>',
+						data: $(this).serialize(),
+						type: 'POST',
+						dataType: 'JSON',
+						success: function (data, status) {
+						    console.log(data);
+							if (data.status===0) {
+								layer_alert(data.info);
+								return false;
+							}else{
+                                layer_msg(data.info);
+                                setTimeout(function () {
+									window.location.reload();
+                                },2000);
+							}
+
+
+						},
+						error: function (data, status, e) {
+								layer_alert('提交连接失败！');
+						}
+					});
+                    return false;
+				});
+
+			});
+	</script>
+
+
+	<div class="navbar-container" id="navbar-container">
+		<div class="navbar-header pull-left">
+			<a href="#" class="navbar-brand">
+				<small>
+					<i class="icon-leaf"></i>
+					云销控管理系统
+				</small>
+			</a><!-- /.brand -->
+		</div><!-- /.navbar-header -->
+
+		<div class="navbar-header pull-right" role="navigation">
+			<ul class="nav ace-nav">
+				
+				<block name="navigation_msg">
+					<li class="purple">
+						<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+							<i class="icon-bell-alt icon-animated-bell"></i>
+							<span class="badge badge-important">
+								<{$log_noread_count|default=0}>
+							</span>
+						</a>
+
+						<ul class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
+							<if condition="$log_noread_count gt 0">
+								<li class="dropdown-header">
+									<i class="icon-warning-sign"></i>
+									<{$log_noread_count|default=0}> 
+									条信息
+								</li>
+
+								<!--<li>
+									<a href="<{:U('ChooseLog/index')}>">
+										<div class="clearfix">
+											<span class="pull-left">
+												<i class="btn btn-xs no-hover btn-pink icon-comment"></i>
+												新增竞价记录
+											</span>
+											<span class="pull-right badge badge-info">+<{$log_noread_count|default=0}></span>
+										</div>
+									</a>
+								</li>-->
+
+								<li>
+									<a href="<{:U('ChooseLog/index')}>">
+										查看所有记录
+										<i class="icon-arrow-right"></i>
+									</a>
+								</li>
+							<else />
+								<li class="dropdown-header">
+									<i class="icon-warning-sign"></i>
+									没有信息记录
+								</li>
+							</if>
+						</ul>
+					</li>
+				</block>
+
+				<block name="breadcrumb_user">
+                                    <li class="light-blue" on="0">
+                                        <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                                            <i class="icon-user" style="font-size: 28px;border: 1px solid white;border-radius: 50%;width: 35px;height: 35px;line-height: 35px;margin-top: 5px;"></i>
+                                            <!--<img class="nav-user-photo" src="__ASSETS__/avatars/user.jpg" alt="Jason's Photo" />-->
+                                            <span class="user-info" title="<{$user_info['name']|default='销控管理员'|strip_tags}>">
+                                                <small>欢迎你</small>
+                                                <{$user_info['name']|default='销控管理员'}>
+                                            </span>
+
+                                            <i class="icon-caret-down"></i>
+                                        </a>
+
+                                        <ul class="user-menu pull-right dropdown-menu showmenu dropdown-caret dropdown-close" id="sh">
+                                            <li style="margin-top: 10px;" data-toggle="modal" data-target="#update-model">
+                                                 <a href="javascript:void(0);" class="open_pwd_edit" style="background: #fff;color: #000;">
+                                                    <i class="icon-cog"></i>
+                                                    修改密码
+                                                </a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li>
+                                                <a href="<{:U('login/logout')}>" style="background: #fff;color: #000;">
+                                                    <i class="icon-off"></i>
+                                                    退出
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        
+                                    </li>
+                                    
+				</block>
+
+			</ul><!-- /.ace-nav -->
+
+		</div><!-- /.navbar-header -->
+
+	</div><!-- /.container -->
+
+</div>

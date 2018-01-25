@@ -1,0 +1,278 @@
+﻿<extend name="Common/base" />
+
+
+
+<block name="header">
+<style>
+        .speedbuy-bg
+	{
+            height:100%;width:100%;border-top: 1px solid #03A9F4;
+        }
+		.speedbuy-title
+		{
+			height:60px;width:100%;
+		}
+		.speedbuy-djs
+		{
+			position:absolute;top:10px;left:4%;
+		}
+		.speedbuy-djs .djs-ul
+		{
+			text-align:center;
+			font-size:12px;
+			font-weight:bold;
+			color:#000;
+		}
+		.djs-time
+		{
+			color:#FFF;
+			font-size:16px;
+			background:#000;
+			padding:0 6px 0 6px;
+		}
+		.begin-time
+		{
+			width: 100%;
+			height: 60px;
+			/* line-height: 60px; */
+			margin-left: 42%;
+			font-size: 18px;
+			font-weight: bold;
+			color: #000;
+			margin-top: 10px;
+		}
+		.remark{
+			position:absolute;
+                        top:15px;right:5%;
+                        font-size: 18px;
+			color:#BFBFBF;
+			font-weight: normal;
+		}
+		.speedbuy-content
+		{
+			height:100%;
+                        width:99%;
+                        margin:auto;
+			/*background:#91AEC5;*/
+			margin-top:1px;
+			display:block;
+		}
+		.del-div{
+			margin-left:12px;margin-top:25px;width:25px;line-height:25px;text-align:center;font-size:20px;
+                        /*font-weight:bold;*/
+                        color:#c6c3c3;
+                        background:#FFF;
+                        /*border:1px solid red;*/
+                        border-radius:50%;
+			-webkit-box-shadow: 0 0 8px #7d7a7b;
+			-moz-box-shadow: 0 0 8px #7d7a7b;
+			box-shadow: 0 0 8px #7d7a7b;
+		}
+		.buy-span
+		{
+			background:#BFBBBB;
+			color:#FFF;
+			padding:6px 9px 6px 9px;border-radius:5px;
+		}
+		.wxrgbuy-button
+		{
+			background:#eb3045;
+			-webkit-box-shadow: 0 0 8px #D20E50;
+			-moz-box-shadow: 0 0 8px #D20E50;
+			box-shadow: 0 0 8px #D20E50;
+		}
+		.user-voucher-footer-tabs-btn{padding:8px 30px;background:#03a9f4;color:#D6D5D5;}
+		.user-voucher-footer-tabs-btn-select{background:#FFF;color:#03a9f4;font-weight:bold;}
+		.user-project-view-content-rooms {
+			top: 60px;
+			bottom: 55px;
+		}
+		.ycwxrg
+		{
+			position:absolute;top:35px;right:1%;width:10%;text-align:center;
+		}
+
+		.user-project-view-content-gwc-wrapper {
+			position: absolute;
+			bottom: 45px;
+			left: 4%;
+			width: auto;
+			z-index: 25;
+		}
+
+		.user-project-view-content-gwc-num-wrapper {
+			position: absolute;
+			top: 5px;
+			left: 5px;
+		}
+
+		.speedbuy-content-li {
+			
+		}
+		.speedbuy-content-li ul {
+			height:75px;
+		}
+                .bxf-ul {
+			margin-top:5px;
+                        border:1px solid #cecfd1;
+		}
+		.bxf-ds{background:#FFF;color:#2196F3;}
+		.bxf-ss{background:#FFF;color:#2196F3;}
+                 .bxf-ds a{
+                    color:#2196F3;
+                }
+                .bxf-ss a{
+                    color:#2196F3;
+                }
+		.buy-suc{
+			background: #f39900;
+			-webkit-box-shadow: 0 0 8px #FF9800;
+			-moz-box-shadow: 0 0 8px #FF9800;
+			box-shadow: 0 0 8px #FF9800;
+		}
+		.div-zz{
+			background: rgba(22, 22, 22, 0.8);
+			z-index: 99999;
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			display:none;
+		}
+		.show-suc-div {
+			    margin-left: 12px;
+			margin-top: 25px;
+			width: 25px;
+			line-height: 25px;
+			text-align: center;
+			font-size: 13px;
+			font-weight: bold;
+			color: white;
+			background: #f39900;
+			border-radius: 50%;
+			-webkit-box-shadow: 0 0 8px #FF9800;
+			-moz-box-shadow: 0 0 8px #FF9800;
+			box-shadow: 0 0 8px #FF9800;
+		}
+		.room_ys{
+		    background: #c00000;
+			color: #FFF;
+			border-color: #C00000;
+		}
+		.room_cggm{
+		    background: #009688;
+			color: #FFF;
+			border-color: #009688;
+		}
+                .jxz{
+                    color:red;
+                }
+                .yks{background:red;}
+                
+                .qrddbtn{
+                    position: absolute;width:100%;height:45px;
+                    bottom:0px;text-align:center;line-height:45px;
+                    color:#FFF;font-size: 16px;
+                    background:#bdbcbd;
+                }
+                .tyyd{
+                    background:#eb3045;
+                }
+                .tzjt{
+                    padding:5px 8px;
+                    font-size:18px;
+                }
+                .roominfo{
+                    color: red;
+                }
+                
+    </style>
+    <span style="display: none" id="xmid"><{$id}></span>
+	<div style="width: 100%;padding: 10px">
+        <h2 class="fl" style="color: grey;font-size: 15px;line-height: 17px;margin-top: 5px;"><i class="fa fa-heart" aria-hidden="true" style="color: #09BB07;"></i>&nbsp;您已选择<span id="num"><{:count($res)}></span>套备选房源<br><span style="color: rgba(165,165,165,0.45);font-size: 10px;line-height: 10px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过上、下箭头可调整意向房源顺序</span></h2>
+    </div>
+    <div class="remark"><a href="#" onclick="window.location.reload()"><i class="fa fa-refresh" style="font-size: 18px;color:#b9b9b9;"></i></a></div>
+</block>
+
+<block name="content">
+    <div id="iscroller-wrapper" class="user-project-view-content-rooms iscroller-rooms iscroller-style" style="overflow: hidden;background-color: #e7f0f9">
+        <div id="iscroller-scroller" class="user-project-view-content-rooms-box iscroller-rooms-scroller iscroller-scroller-style" style="transform-origin: 0px 0px 0px; position: absolute; top: 0; left: 0;">
+            <div class="speedbuy-content speedbuy-content-li">
+    <if condition="count($res) gt 0 ">
+
+                <foreach name="res" item="vo" key="k">
+                    <ul class="bxf-ul bxf-ds">
+                        <li class="show-suc-btn1" style="float:left;width:14%;height:100%;">
+                            <a href="javascript:;">
+                                <div class="del-div" cid="<{$vo.id}>">×</div>
+                                <div style="margin-top:-40px;height:55px;border-right:1px solid #2196F3;"></div>
+                            </a>
+                        </li>
+                        <li style="float:left;width:70%;height:100%;">
+                        <a href="<{:U('room/index', array('id' => $vo['rid']))}>">
+                        <ul style="margin-left:15px;">
+                            <li class="roominfo" style="height:24px;line-height:24px;padding: 4px 5px 0px 5px;font-size:13px;font-weight:bold;">
+                            <{$vo.bname}>-<{$vo.unit}>单元-<{$vo.floor}>层-<{$vo.room}>
+                            </li>
+                            <li class="roomarea" style="height:20px;line-height:20px;padding: 2px 5px 0px 5px;font-size:12px;">
+                            <span class="roomhx" style="font-size:12px;font-weight:400;">户型：(<{$vo.hx}>)<{$vo.hxmx}></span>
+                            &nbsp;&nbsp;<{$vo.area}> ㎡
+                            </li>
+                            <li style="height:20px;line-height:20px;padding: 2px 5px 0px 5px;font-size:12px;">
+                                售价：¥ <span class="roomtotal" style="font-weight:bold;"><php>echo  number_format($vo['total'],2);</php></span>
+                            </li>
+                        </ul>
+                        </a>
+                        </li>
+                        <li style="float:left;width:15%;height:100%;color: #333333;text-align: center" >
+                            <!--<div style="position: absolute;background-color: black;color: #FFF;width: 20px;height: 20px;margin-top: 30px"><{$k+1}></div>-->
+                        <if condition="$k gt 0">
+                            <if condition="$k lt count($res)-1">
+                                <p style="margin-top: 0px;"><i class="fa fa-angle-double-up tzjt" aria-hidden="true" cid="<{$vo.id}>" apx="<{$vo.px}>" style="cursor: pointer"></i></p>
+                                <p style="margin-top: 20px;"><i class="fa fa-angle-double-down tzjt" aria-hidden="true" cid="<{$vo.id}>" apx="<{$vo.px}>" style="cursor: pointer"></i></p>
+                            <else/>
+                                <p style="margin-top: 0px;"><i class="fa fa-angle-double-up tzjt" aria-hidden="true" cid="<{$vo.id}>" apx="<{$vo.px}>" style="cursor: pointer"></i></p>
+                                <p style="margin-top: 20px;display:none"><i class="fa fa-angle-double-down tzjt" aria-hidden="true" cid="<{$vo.id}>" apx="<{$vo.px}>" style="cursor: pointer"></i></p>
+                            </if>
+                        <else/>
+                            <p style="margin-top: 0px;display:none"><i class="fa fa-angle-double-up tzjt" aria-hidden="true" cid="<{$vo.id}>" apx="<{$vo.px}>" style="cursor: pointer"></i></p>
+                            <p style="margin-top: 45px;"><i class="fa fa-angle-double-down tzjt" aria-hidden="true" cid="<{$vo.id}>" apx="<{$vo.px}>" style="cursor: pointer"></i></p>
+                        </if>
+                        </li>
+                    </ul>
+                </foreach>
+        <else/>
+        <p style="text-align: center;color: red;margin-top:50%;width: 100%">暂时没有备选房源</p>
+    </if>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="footer">
+    <div class="weui-tabbar">
+        <a href="/User/index/index/info/p<{$id}>.html" class="weui-tabbar__item ">
+            <span style="display: inline-block;position: relative;">
+                <i class="fa fa-list weui-tabbar__icon" ></i>
+            </span>
+            <p class="weui-tabbar__label">房源列表</p>
+        </a>
+        <a href="#" onclick="window.location.reload();" class="weui-tabbar__item weui-bar__item_on">
+            <span style="display: inline-block;position: relative;">
+                <i class="fa fa-heart weui-tabbar__icon" ></i>
+                <span class="weui-badge user-project-view-content-gwc-num" style="position: absolute;top: 2px;right: -10px"><{:count($res)}></span>
+            </span>
+            <p class="weui-tabbar__label">备选房源</p>
+        </a>
+
+        <a id="rd" onclick="document.getElementById('rd').style.color=document.getElementById('rd').style.color=='peru' ? '':'peru';" href="/user/hot/index/info/p<{$id}>.html" class="weui-tabbar__item">
+                <span style="display: inline-block;position: relative;">
+                <i class="fa fa-bar-chart-o weui-tabbar__icon" ></i>
+            </span>
+            <p class="weui-tabbar__label">房源热度</p>
+        </a>
+    </div>
+</block>
+<block name="footer_js">
+<include file="Common@Common/Mobile/iscroll" iscroller_id="iscroller_room" iscroller_select_id="iscroller-wrapper" />
+<link href="__COMMON__/js//jquery/iscroll/iscroll.css" type="text/css" rel="stylesheet"/>
+<script src="__COMMON__/js/jquery/iscroll/iscroll.js"></script>
+</block>

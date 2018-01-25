@@ -1,0 +1,139 @@
+<extend name="Common/base" />
+
+<block name="header_config_add">
+</block>
+
+<block name="content">
+    <style>
+        input[type="button"], input[type="submit"], input[type="reset"] {
+        -webkit-appearance: none;
+        }
+        textarea {  -webkit-appearance: none;} 
+        body{
+            background: #f7fcf5;
+        }
+        input{
+            width:100%;
+            padding:5px 5px;
+            border: 1px solid #009688;
+        }
+        .btn {
+            background: #4CAF50;
+            color: white;
+            border: 0;
+            padding:7px 0;
+            border-radius: 5px;
+        }
+        .sendSms{
+            background: #4CAF50;
+        }
+        .yfsSms{
+            background: #b0b1b0;
+        }
+    </style>
+	<div style="width:100%;height:100%;background-size:100%;">
+            <div style="width:100%">
+                <img src="/Public/user/img/xmbg1.jpg" original="/Public/user/img/xmbg.jpg" style="width:110%;height:auto;margin-left: -1px;margin-top: -1px;" >
+            </div>
+            <div style="position: absolute; margin-top: 25px;width: 100%;height: 50%;z-index:111;background: #f7fcf5;">
+                <div style="width:100%;text-align: center;font-weight: bold;color: #4caf50; font-size: 15px;"><{$projname}>在线选房</div>
+                <div style="position: absolute;left:15%;width: 70%;line-height: 80px">
+                    <input type="tel" placeholder="请输入手机号码" value="" data-selector="phone" style="width:96%;" />
+                    <input id="yzm" name="yzm" type="number" placeholder="请输入验证码" value="" data-selector="code" style="float: left;width:55%;"/>
+                    <input type="button" value="获取验证码" id="fsyzm" data-selector="sendSms" class="btn sendSms" style="float: right;width:35%;"/>
+                    <input type="button" value="登录" data-selector="check" class="btn"/>
+                </div>
+            </div>
+            <div id="hdxz" style="position: absolute;background: rgba(8, 8, 8, 0.6);height:100%;width:100%;top:0px;z-index: 112;display:none;">
+                <div style="position: absolute;background:#FFF;height:65%;width:100%;bottom:0px;overflow-y: scroll;">
+                    <div style="position: fixed;background: #FFF;text-align:center;width:100%;padding:15px 0;border-bottom:1px solid #f7f7f7;font-size:16px;font-weight:bold;">活动须知</div>
+                    <!--<div id="closehdxz" style="position: absolute;right:3%;top:6px;height:40px;width:40px;border-radius:50%;line-height:40px;text-align:center;font-size: 22px;">×</div>-->
+                    <div style="width:88%;margin: 10px auto;line-height: 30px;white-space:pre-line;margin-top:40px;margin-bottom: 55px;text-align: justify;text-justify: inter-ideograph;" id="desc">
+                        <{$desc}>
+                    </div>
+                    <div style="position: fixed;bottom:0px;height:50px;line-height: 50px;width:100%;border-top: 1px solid #e6e6e6;background: #FFF;">
+                        <a href="/User/OrderHouse/logout/id/<{$eventId}>"><div style="float:left;width:50%;text-align:center;color:#000;">不同意</div></a><div id="tyhdxz" style="float:left;width:50%;text-align:center;background: #df3b3e;color: #FFF;cursor:pointer;">同意</div>
+                    </div>
+                </div>
+            </div>
+	</div>
+        <div style="position: absolute;bottom: 2%;width: 100%;text-align: center;color:#9E9E9E;font-size: 11px;z-index:110;">Powered by 云销控</div>
+</block>
+
+<block name="footer_js">
+<script>
+    var $iszcfs=true;
+    $("body").on("click", ".sendSms", function () {
+            var data = {};
+            data.phone = $.trim($("input[data-selector='phone']").val());
+            data.eventId = '<{$eventId}>';
+
+            ajax_post_callback('<{:U("send_sms_code")}>', data, function(data) {
+
+                if (data.status == 0) {
+                    layer_alert(data['info']);
+                }else if (data.status==1){
+                    //$("#yzm").val(data['info']);
+                    layer_tip(data['info']);
+                    $('#fsyzm').attr('time', 90);
+                    setTimeout("btntime();", 1000);
+                }     
+            });
+	});
+        
+    function  btntime() {
+        var nowtime = Number($('#fsyzm').attr('time'));
+        if (nowtime > 0) {
+            $('#fsyzm').removeClass("sendSms").addClass("yfsSms");
+            var c = Number(nowtime) - 1;
+            $('#fsyzm').attr('time', c);
+            var mx = 120 - (120 - Number(c));
+            $('#fsyzm').val(mx + '秒');
+            $iszcfs = false;
+            setTimeout("btntime();", 1000);
+        } else {
+            $('#fsyzm').removeClass("yfsSms").addClass("sendSms");
+            $('#fsyzm').val('重新获取');
+            $iszcfs = true;
+        }
+    } 
+        
+    $("input[data-selector='check']").click(function () {
+        var data = {};
+        data.phone = $.trim($("input[data-selector='phone']").val());
+        data.code = $.trim($("input[data-selector='code']").val());
+        data.eventId = '<{$eventId}>';
+        ajax_post_callback('<{:U("check")}>', data, function(data) {
+            if (data.status == 0) {
+                layer_alert(data['info']);
+            } else if(data.status == 1) {
+                $("#tyhdxz").attr('url',data.url);
+                $("#hdxz").show();
+                //layer_tip(data.info);
+                //setTimeout(function () {
+                //    window.location=data.url;
+                //},2000)
+            }
+        });     
+    });
+
+    $("#tyhdxz").click(function () {
+        if (!$("#tyhdxz").attr('url') || $("#tyhdxz").attr('url')==="")
+        {
+             $("#hdxz").hide();
+             return false;
+        }   
+        window.location=$("#tyhdxz").attr('url');
+    });
+        
+/*
+    $('input').on('click', function () {
+       var target = this;
+      // 使用定时器是为了让输入框上滑时更加自然
+       setTimeout(function(){
+       target.scrollIntoView(true);
+       },100);
+    });
+ */   
+</script>
+</block>

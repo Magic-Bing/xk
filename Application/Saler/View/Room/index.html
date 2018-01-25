@@ -1,0 +1,365 @@
+﻿<extend name="Common/base" />
+<block name="header">
+	<link rel="stylesheet" href="/Public/common/css/font-awesome-4.7.0/css/font-awesome.css">
+	<style>
+		.weui-tabbar{
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			position: absolute;
+			z-index: 500;
+			bottom: 0;
+			width: 100%;
+			background-color: #ffffff;
+			border-top: 1px solid #e6e6e6;
+		}
+		.weui-tabbar__item {
+			display: block;
+			-webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+			padding: 2px 0 0;
+			font-size: 0;
+			color: #999999;
+			text-align: center;
+			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+		}
+		.weui-bar__item_on
+		{
+			color:#09BB07;
+		}
+		.weui-badge {
+			display: inline-block;
+			width: 15px;
+			width: 15px;
+			border-radius: 18px;
+			background-color: #F43530;
+			color: #FFFFFF;
+			line-height: 1.2;
+			text-align: center;
+			font-size: 12px;
+			vertical-align: middle;
+		}
+		.weui-badge_dot {
+			width: 9px;
+			height: 9px;
+		}
+
+		.weui-tabbar__icon {
+			display: inline-block;
+			width: 27px;
+			font-size: 20px;
+			padding: 0 0 0 0;
+		}
+		.weui-tabbar__label {
+			text-align: center;
+			color: #999999;
+			font-size: 10px;
+			line-height: 1.8;
+		}
+		.weui-bar__item_on .weui-tabbar__label
+		{
+			color:#09BB07;
+		}
+                .czbtn{
+                    position: absolute;
+                    top: 305px;
+                    width: 98%;
+                    height: 45px;
+                    /* border-radius: 10px; */
+                    color: #FFF;
+                    text-align: center;
+                    line-height: 45px;
+                    background-color: #51c6fa;
+                    cursor: pointer;
+                    font-weight: bold;
+                    font-size: 16px;
+                    letter-spacing: 5px;
+                    margin-left: 1%;
+                }
+	</style>
+</block>
+
+<block name="content">
+	<div class="saler-project-view-base">
+		<div class="saler-project-view-header-wrapper">
+			<div class="clearfix saler-project-view-header" style="background: #FFF;">
+                                <div class="fl wm25 saler-project-view-header-return">
+					<span class="saler-project-view-header-return-box return-btn">
+						<a href="javascript:void(0);" class="saler-project-view-header-return-btn">返回</a>
+					</span>
+				</div>
+				<div class="fl wm50 saler-project-view-header-content js-saler-project-view-header-content">
+					<span class="saler-project-view-header-content-box saler-project-view-header-room-title">
+						<span class="saler-project-view-header-content-box-name">房间详情</span>
+					</span>
+				</div>
+
+			</div>
+		</div>
+		
+		<div id="iscroller-wrapper" class="saler-project-view-content-wrapper saler-project-room-wrapper iscroller-style">
+			<div id="iscroller-scroller" class="saler-project-room-box iscroller-scroller-style">
+				<div class="saler-project-room">
+					<div class="saler-project-room-border saler-project-room-name">
+						<div class="saler-project-room-name-box">
+							房间名称：<{$build.buildname}>-<{$room.unit}>单元-<{$room.floor}>层-<{$room.room}>
+						</div>
+					</div>
+					
+					<div class="saler-project-room-info">
+						<table>
+                                                        <tr>
+								<td class="saler-project-room-info-td1">
+									<span class="saler-project-room-info-title">
+										房间状态
+									</span>
+								</td>
+								<td class="saler-project-room-info-td2"  colspan="3">
+									<span class="saler-project-room-info-content">
+										<if condition="$room['is_xf'] eq 1">
+											<b class="color-red">已售</b>
+										<else />
+											待售
+										</if>
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="saler-project-room-info-td1">
+									<span class="saler-project-room-info-title">
+										户型
+									</span>
+								</td>
+								<td class="saler-project-room-info-td2"  colspan="3">
+									<span class="saler-project-room-info-content">
+										(<{$room['hx']}>) <{$hxinfo.hxmx}>
+									</span>
+								</td>
+							</tr>
+                                                         <tr>
+								<td class="saler-project-room-info-td1">
+									<span class="saler-project-room-info-title">
+										房间售价
+									</span>
+								</td>
+								<td class="saler-project-room-info-td2"  colspan="3">
+									<span class="saler-project-room-info-content">
+                                                                            <{:number_format($room['total'], 2)}>元
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="saler-project-room-info-td1">
+									<span class="saler-project-room-info-title">
+										建筑面积
+									</span>
+								</td>
+								<td class="saler-project-room-info-td2">
+									<span class="saler-project-room-info-content">
+										<{$room.area|intval}>
+									</span>
+								</td>
+								<td class="saler-project-room-info-td3">
+									<span class="saler-project-room-info-title">
+										建筑单价
+									</span>
+								</td>
+								<td class="saler-project-room-info-td4">
+									<span class="saler-project-room-info-content">
+										<{:number_format($room['price'], 2)}>元/㎡
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="saler-project-room-info-td1">
+									<span class="saler-project-room-info-title">
+										套内面积
+									</span>
+								</td>
+								<td class="saler-project-room-info-td2">
+									<span class="saler-project-room-info-content">
+										<{$room.tnarea|intval}>
+									</span>
+								</td>
+								<td class="saler-project-room-info-td3">
+									<span class="saler-project-room-info-title">
+										套内单价
+									</span>
+								</td>
+								<td class="saler-project-room-info-td4">
+									<span class="saler-project-room-info-content">
+										<{:number_format($room['tnprice'], 2)}>元/㎡
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="saler-project-room-info-td5">
+									<span class="saler-project-room-info-title">
+										选房时间
+									</span>
+								</td>
+								<td class="saler-project-room-info-td6" colspan='3'>
+									<span class="saler-project-room-info-content">
+										<if condition="empty($room['xftime'])">
+											<b class=""></b>
+										<else />
+											<{$room['xftime']|date="Y-m-d H:i:s",###}>
+										</if>
+									</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				
+				<div class="saler-project-room-attribute">
+					<div class="saler-project-room-attribute-box" style="margin-top: 2px;">
+					
+						<table>
+							<tr>
+								<td class="saler-project-room-attribute-td1">
+									<span class="saler-project-room-info-title">
+										收藏
+									</span>
+								</td>
+								<td class="saler-project-room-attribute-td2">
+									<span class="saler-project-room-info-content">
+										<{$room_attribute.sccount|default='0'|intval}>次
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="saler-project-room-attribute-td1">
+									<span class="saler-project-room-info-title">
+										对比
+									</span>
+								</td>
+								<td class="saler-project-room-attribute-td2">
+									<span class="saler-project-room-info-content">
+										<{$room_attribute.sscount|default='0'}>次
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="saler-project-room-attribute-td1">
+									<span class="saler-project-room-info-title">
+										关注
+									</span>
+								</td>
+								<td class="saler-project-room-attribute-td2">
+									<span class="saler-project-room-info-content">
+										<{$room_attribute.djcount|default='0'|intval}>次
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="saler-project-room-attribute-td1">
+									<span class="saler-project-room-info-title">
+										热力指数
+									</span>
+								</td>
+								<td class="saler-project-room-attribute-td2">
+									<span class="saler-project-room-info-content saler-project-room-info-content-star">
+										<for start="0" end="$hot_num" >★</for><for start="$hot_num" end="5" >☆</for>
+									</span>
+								</td>
+							</tr>
+						</table>
+						
+					</div>
+				</div>
+			
+			</div>
+
+                            <if condition="$room['is_xf'] eq 1">
+								<if condition="count($reset_xk) gt 0">
+									<if condition="$room['cstid'] eq 0">
+										<div class="czbtn" rid="<{$room_id}>" id="gl_xk" on="1">
+											取消销控
+										</div>
+									<else />
+										<eq name="iswx" value="0">
+											<div class="czbtn" rid="<{$room_id}>" id="gl_xk" on="2">
+												取消选房
+											</div>
+										</eq>
+									</if>
+								</if>
+                                <else />
+								<if condition="count($on_xk) gt 0">
+									<div class="czbtn" rid="<{$room_id}>" id="gl_xk" on="0">
+										销控
+									</div>
+								</if>
+                            </if>
+
+		</div>
+	</div>
+	
+
+</block>
+<block name="footer">
+	<div class="weui-tabbar1">
+		<a href="<{:U('DataStatistics/index', array('info' => set_search_ids(array('p' => $search_hd_id))))}>" class="weui-tabbar__item1">
+                            <span style="display: inline-block;position: relative;">
+                                <i class="fa fa-home weui-tabbar__icon1"></i>
+                            </span>
+			<p class="weui-tabbar__label1">首页</p>
+		</a>
+		<a href="<{:U('ChooseAnalysis/index', array('info' => set_search_ids(array('p' => $search_hd_id))))}>" class="weui-tabbar__item1 ">
+                            <span style="display: inline-block;position: relative;">
+                                    <i class="fa fa-group weui-tabbar__icon1"></i>
+                            </span>
+			<p class="weui-tabbar__label1">客户分析</p>
+		</a>
+		<a href="<{:U('RoomAnalysis/index', array('info' => set_search_ids(array('p' => $search_hd_id))))}>" class="weui-tabbar__item1">
+                        <span style="display: inline-block;position: relative;">
+                                <i class="fa fa-bar-chart weui-tabbar__icon1"></i>
+                        </span>
+			<p class="weui-tabbar__label1">装户分析</p>
+		</a>
+		<a href="<{:U('MyReport/index', array('info' => set_search_ids(array('p' => $search_hd_id))))}>" class="weui-tabbar__item1 ">
+                            <span style="display: inline-block;position: relative;">
+                                <i class="fa fa-user-circle-o weui-tabbar__icon1"></i>
+                                <span class="weui-badge weui-badge_dot" style="position: absolute;top: 2px;right: 0px;display:none;"></span>
+                            </span>
+			<p class="weui-tabbar__label1">我的</p>
+		</a>
+	</div>
+</block>
+<block name="footer_js">
+<include file="Common@Common/Mobile/iscroll" iscroller_id="iscroller_room" iscroller_select_id="iscroller-wrapper" />
+<script>
+    $(function () {
+        $("#gl_xk").on("click",function () {
+            var rid=$(this).attr("rid");
+            var pd=$(this).attr("on");
+            layer_footer_confirm1('确认操作？', function(){
+                $.ajax({
+                    type:"post",
+                    url:"/Saler/room/xk_room",
+                    data:{rid:rid,pd:pd},
+                    success:function (data) {
+                        if(data=="true"){
+                            if(Number(pd)==0){
+                                layer_tip("销控成功");
+                                window.location.reload();
+                            }else if(Number(pd)==2){
+                                layer_tip("取消选房成功");
+                                window.location.reload();
+                            } else {
+                                layer_tip("取消销控成功");
+                                window.location.reload();
+                            }
+                        }else{
+                            layer_alert(data);
+                        }
+                    }
+                });
+            }, function(){}
+            );
+        })
+    });
+</script>
+</block>

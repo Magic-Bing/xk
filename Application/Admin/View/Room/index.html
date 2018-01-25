@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><{$seo_title|default='房间管理'}></title>
+<link href="__COMMON__/css/base.css" type="text/css" rel="stylesheet"/>
+<link href="__CSS__/admin.css" type="text/css" rel="stylesheet"/>
+<script src="__COMMON__/js/jquery/jquery-1.11.3.min.js"></script>
+<script src="__COMMON__/js/functions.js"></script>
+<script src="__COMMON__/js/layer/layer.js"></script>
+<script src="__COMMON__/js/pc/layer.js"></script>
+<script src="__JS__/admin.js"></script>
+<script type="text/javascript">
+var room_url = {
+	index: '<{:U("room/index")}>',
+	attr_save: '<{:U("room/save")}>',
+}
+</script>
+</head>
+
+<body>
+	<div class="room-attr">
+		<div class="room-attr-title">
+			<div class="clearfix room-attr-title-box">
+				<span class="room-attr-title-info">项目调整</span>
+				<span class="room-attr-title-project">[<{$company.name|default='公司'}> - <{$project.name|default='项目'}>]</span>
+				<span class="fr room-attr-title-refresh">
+					<a href="__SELF__" class="room-attr-title-refresh-btn">
+						<img class="room-attr-title-refresh-btn-img" src="__IMG__/sx01.png" />
+					</a>
+				</span>
+			</div>
+		</div>
+
+		<div class="room-attr-search">
+			<div class="room-attr-search-box">
+				<span class="room-attr-search-title">选择项目</span>
+				<select name="project-id" class="room-attr-search-select js-room-attr-search-select">
+					<if condition="!empty($search_project_id)">
+						<foreach name="project_list" item="project_list_vo">
+							<if condition="$search_project_id eq $project_list_vo['id']">
+								<option value="<{$project_list_vo['id']}>" selected>
+									<{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
+								</option>
+							<else />		 
+								<option value="<{$project_list_vo['id']}>">
+									<{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
+								</option>
+							</if>
+						</foreach> 
+					<else />
+						<option value="0" selected></option>
+						<foreach name="project_list" item="project_list_vo">
+							<option value="<{$project_list_vo['id']}>">
+								<{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
+							</option>
+						</foreach> 
+					</if>
+				</select>
+			</div>
+		</div>
+
+		<div class="room-attr-content">
+			<div class="room-attr-rooms">
+				<table class="room-attr-rooms-table">
+                    <thead>
+						<tr>
+							<th class="room-attr-rooms-table-room-name">
+								房间
+							</th>
+							<th>
+								收藏数
+							</th>
+							<th>
+								对比数
+							</th>
+							<th>
+								关注数
+							</th>
+							<th>
+								自定义收藏数
+							</th>
+							<th>
+								自定义对比数
+							</th>
+							<th>
+								自定义关注数
+							</th>
+							<th class="room-attr-rooms-table-option">
+								操作
+							</th>
+						</tr>
+                    </thead> 
+					<tbody>
+						<volist name="rooms" id="rooms_vo" key="rooms_k">
+							<tr class="room-attr-rooms-table-list room-attr-rooms-table-list-<{$rooms_vo.id}>">
+								<td class="room-attr-rooms-table-list-title">
+									<{$rooms_vo.buildname}>-<{$rooms_vo.floor}>-<{$rooms_vo.room}>
+								</td> 
+								<td>
+									<{$collection_list[$rooms_vo['id']]['sccount']|default=0}>
+								</td> 
+								<td>
+									<{$collection_list[$rooms_vo['id']]['sscount']|default=0}>
+								</td> 
+								<td>
+									<{$collection_list[$rooms_vo['id']]['djcount']|default=0}>
+								</td> 
+								<td>
+									<input type="text" class="room-attr-rooms-input room-attr-rooms-collection" name="user-collection" value="<{$collection_list[$rooms_vo['id']]['mock_sccount']|default=0}>" />
+								</td> 
+								<td>
+									<input type="text" class="room-attr-rooms-input room-attr-rooms-comparison" name="user-collection" value="<{$collection_list[$rooms_vo['id']]['mock_sscount']|default=0}>" />
+								</td> 
+								<td>
+									<input type="text" class="room-attr-rooms-input room-attr-rooms-follow" name="user-collection" value="<{$collection_list[$rooms_vo['id']]['mock_djcount']|default=0}>" />
+								</td> 
+								<td class="btns">
+									<a href="javascript:void(0);" data-id="<{$rooms_vo.id}>" class="room-attr-rooms-save-btn js-room-attr-rooms-save-btn btn btn-radius5">保存</a>
+								</td> 
+							</tr>
+						</volist>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	
+		<php>$page = trim($page);</php>
+		<if condition="!empty($page)">
+			<div class="room-attr-page page-container">
+				<{$page|default=''}>
+			</div>
+		</if>
+	
+	</div>
+</body>
+</html>
