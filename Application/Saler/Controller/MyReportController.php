@@ -39,7 +39,14 @@ class MyReportController extends BaseController
             $user = M()->table("xk_user")->where("id=$uid")->find();
             $user_where['userid']=$uid;
             $user_project_list = D("Station")->getpProjectListByUserId($user_where['userid']);
-            $this->assign('user_project_list', $user_project_list);
+            $project_ids = array();
+            foreach ($user_project_list as $user_project_list_value) {
+                $project_ids[] = $user_project_list_value['proj_id'];
+            }
+            $arr_string=implode(",",$project_ids);
+            //获取有权限查看的活动
+            $activity=M()->table("xk_station2pc sp")->field("e.id,e.name")->join("xk_event_order_house e ON e.project_id=sp.proj_id AND e.batch_id=sp.pc_id")->where("sp.proj_id in({$arr_string})")->group("e.id")->select();
+            $this->assign('user_project_list', $activity);
             $this->assign('user', $user);
             $this->assign('search_hd_id', $hid);
             $this->display();

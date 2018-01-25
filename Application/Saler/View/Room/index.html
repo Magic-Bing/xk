@@ -331,6 +331,7 @@
 <block name="footer_js">
 <include file="Common@Common/Mobile/iscroll" iscroller_id="iscroller_room" iscroller_select_id="iscroller-wrapper" />
 <script>
+
     $(function () {
         $("#gl_xk").on("click",function () {
             var rid=$(this).attr("rid");
@@ -352,6 +353,7 @@
                                 layer_tip("取消销控成功");
                                 window.location.reload();
                             }
+                            window.name = "bencalie";
                         }else{
                             layer_alert(data);
                         }

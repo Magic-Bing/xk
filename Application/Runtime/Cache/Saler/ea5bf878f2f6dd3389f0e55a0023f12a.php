@@ -454,15 +454,9 @@
                                                                                     <div style="float:right;width:50%;text-align:right;">① <?php echo ($rooms_vo[ 'first_count']); ?><div>
                                                                                 </div>
                                                                             </div>
-                                                                        </a>
-
-                                                                        <div data-room-id="<?php echo ((isset($rooms_vo['id']) && ($rooms_vo['id'] !== ""))?($rooms_vo['id']):'1'); ?>" class="saler-project-view-content-rooms-room-box-shadow js-saler-project-view-content-rooms-room-box-shadow">
-                                                                            <div class="saler-project-view-content-rooms-room-box-shadow-info">
-                                                                                <span class="saler-project-view-content-rooms-room-box-shadow-info-select">
-                                                                                    <input class="saler-project-view-content-rooms-room-select js-saler-project-view-content-rooms-room-box-shadow saler-project-view-content-rooms-room-select-<?php echo ((isset($rooms_vo['id']) && ($rooms_vo['id'] !== ""))?($rooms_vo['id']):'1'); ?>" data-room-id="<?php echo ((isset($rooms_vo['id']) && ($rooms_vo['id'] !== ""))?($rooms_vo['id']):'1'); ?>" type="checkbox" value="1">
-                                                                                </span>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
+                                                                        </a>
                                                                         </li><?php endforeach; endif; else: echo "" ;endif; ?>
 
                                                                 </ul>
@@ -863,23 +857,6 @@
                         });
                         },'json');
                     });
-//                    //显示房源热度页面
-//                    $("#room-hot").on("click",function () {
-//                       window.location.reload();
-//                    });
-//
-//                    //显示装户统计页面
-//                    $("#room-img").on("click",function () {
-//                        $.post("<?php echo U('/Saler/RoomAnalysis/imgPage');?>",{'hd_id':"<?php echo ($project_id); ?>"},function (data) {
-//                            $("#room-hot").removeClass("bl").addClass("gy");
-//                            $("#room-img").removeClass("gy").addClass("bl");
-//                            $("#unit_s").remove();
-//                            $("#show-gd").remove();
-//                            $("#iscroller-wrapper").css("top","80px");
-//                            $("#img-html").html(data);
-//                        });
-//                    });
-//                    $("#room-img").trigger('click');
                     //显示更多楼栋
                     $("#show-gd").on("click",function () {
                         $("#shadow-list").show();
@@ -890,12 +867,6 @@
                         $("#shadow-list").hide();
                         $(".hidden-list").hide();
                     });
-                    /*if (window.name != "bencalie") {
-                        location.reload();
-                        window.name = "bencalie";
-                    } else {
-                        window.name = "";
-                    }*/
                     $(function () {
                         if (window.location.hash.length > 1) {
                             $(".js-saler-project-view-content-search-compare-btn").trigger("click");
@@ -946,10 +917,7 @@
                      */
                     function pullDownAction() {
                         setTimeout(function () {
-//                            get_project_room_list(saler_url.project_index);
-//                            pullDownEl.style.display = 'none';
-//                            iscroller_project.refresh();
-//                            loadingStep = 0;
+
                             window.location.reload();
                         }, 1000);
                     }

@@ -36,9 +36,10 @@ class IndexController extends BaseController {
         $arr_string=implode(",",$project_ids);
 		//获取有权限查看的活动
 		$activity=$Model->table("xk_station2pc sp")->field("e.id,e.name")->join("xk_event_order_house e ON e.project_id=sp.proj_id AND e.batch_id=sp.pc_id")->where("sp.proj_id in({$arr_string})")->group("e.id")->select();
+//		echo json_encode($activity);exit;
         if(count($activity)==1)
         {
-            //只有一个活动时，直接千万首页
+            //只有一个活动时，直接前往首页
             redirect( U('saler/DataStatistics/index',array('info' => set_search_ids(array('p' => $activity[0]['id'])))));
         }
         else

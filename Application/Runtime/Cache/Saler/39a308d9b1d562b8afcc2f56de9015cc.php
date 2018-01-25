@@ -405,7 +405,7 @@
                             </span>
                     <p class="weui-tabbar__label1">客户分析</p>
                 </a>
-                <a href="<?php echo U('RoomAnalysis/index', array('info' => set_search_ids(array('p' => $search_hd_id))));?>" class="weui-tabbar__item1">
+                <a href="<?php echo U('RoomAnalysis/index', array('info' => set_search_ids(array('p' => $search_hd_id))));?>" class="weui-tabbar__item1 weui-bar__item_on1">
 							<span style="display: inline-block;position: relative;">
 								<i class="fa fa-bar-chart weui-tabbar__icon1"></i>
 							</span>
@@ -485,12 +485,13 @@
                         $("#shadow-list").hide();
                         $(".hidden-list").hide();
                     });
-                    if (window.name != "bencalie") {
+                    if (window.name == "bencalie") {
                         location.reload();
-                        window.name = "bencalie";
-                    } else {
                         window.name = "";
+                    } else {
+                        
                     }
+//                    console.log(window.name);
                     $(function () {
                         if (window.location.hash.length > 1) {
                             $(".js-saler-project-view-content-search-compare-btn").trigger("click");
