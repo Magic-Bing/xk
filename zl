@@ -1,0 +1,41 @@
+[33mcommit b17e344b0dc33fdb127eb7fcf562f0ae20d6279d[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: qzb <409498212@qq.com>
+Date:   Fri Jan 26 10:47:34 2018 +0800
+
+    修改导入和导出头部信息部分加密和解密，批次管理图片上传取消强控
+
+[33mcommit e9167ffc4e134c988d389b029a1f00f8b6726209[m
+Author: qzb <409498212@qq.com>
+Date:   Thu Jan 25 17:05:13 2018 +0800
+
+    手机端saler小调整
+
+[33mcommit 694b37ddb126c2f567e0b5524dd753ea7aa7d2db[m
+Author: qzb <409498212@qq.com>
+Date:   Thu Jan 25 15:57:26 2018 +0800
+
+    装户分析合并房源销控
+
+[33mcommit 1eead12c05cee309c1babfb9c68ad6adab1a859e[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: qzb <409498212@qq.com>
+Date:   Thu Jan 25 11:27:06 2018 +0800
+
+    更新1-25
+
+[33mcommit d5a2ae7ba28b4bb0a223178b29a2642cb475a2f0[m
+Author: qzb <409498212@qq.com>
+Date:   Wed Jan 24 16:05:34 2018 +0800
+
+    删除所有建立新的远程库
+
+[33mcommit 25176d73379345740ab5deb4efe01706dfd2e93a[m
+Author: qzb <409498212@qq.com>
+Date:   Wed Jan 24 15:32:10 2018 +0800
+
+    更换了sql文件
+
+[33mcommit 70160c960253088d5c8da3c8bc749b8d978571da[m
+Author: qzb <409498212@qq.com>
+Date:   Wed Jan 24 15:13:36 2018 +0800
+
+    删除了runtime文件

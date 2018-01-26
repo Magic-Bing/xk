@@ -37,14 +37,12 @@
 			margin-top: 5px;
 		}
 		h1 .xf-zt{
-			border: 1px solid #ff6058;
 			padding: 1px 3px;
 			border-radius: 3px;
-			color: #ff6058;
 			font-weight: normal;
 			font-size: 12px;
                         float: right;
-                        /*margin-right: 5%;*/
+                        margin-right: 10px;
 		}
                 .call-phone{
                     position: fixed;
@@ -68,6 +66,7 @@
 			width: 95%;
 			margin-top: 5px;
 			margin-bottom: 5px;
+                        line-height:22px;
 		}
 		#room-tab{
 			 width: 95%;
@@ -154,6 +153,23 @@
                 html{
                     color:#999999;
                 }
+                .yxf{
+                    color: #ff6058;
+                    border: 1px solid #ff6058;
+                }
+                
+                .ydl{
+                    color: #ff6058;
+                    border: 1px solid #ff6058;
+                }
+                .wxf{
+                    color:#ffc534;
+                    border: 1px solid #ffc534;
+                }
+                .wdl{
+                    color:#33ccff;
+                    border: 1px solid #33ccff;
+                }
     </style>
 	<div class="common-header-wrapper">
 		<div class="clearfix common-header sales-statistics-header">
@@ -189,7 +205,11 @@
 					<div class="saler-statistics-list-box" >
 						<div class="fl wm100" id="content-tab">
 							<div class="fl wm100">
-								<h1><!--<i class="fa fa-user iyellow"> </i>--> <{$user_info.cname}> <if condition="($user_info.rid neq null) AND ($user_info.oid neq null)"><span class="xf-zt">已选房</span><else/><span class="xf-zt">未选房</span></if>  
+								<h1><!--<i class="fa fa-user iyellow"> </i>--> 
+                                                                    <{$user_info.cname}>
+                                                                    <if condition="($user_info.rid neq null) AND ($user_info.oid neq null)"><span class="xf-zt yxf">已选房</span><else/><span class="xf-zt wxf">未选房</span></if>  
+                                                                    <if condition="($user_info.oid neq null)"><span class="xf-zt ydl">已登录</span><else/><span class="xf-zt wdl">未登录</span></if> 
+                                                                    
                                                                     <a href="tel:<{:rsa_decode($user_info['cphone'],getChoosekey())}>" class="call-phone" data-num="<{:rsa_decode($user_info['cphone'],getChoosekey())}>"><i class="fa fa-phone"></i></a>
                                                                 </h1>
 								<table id="user-info">
@@ -202,7 +222,7 @@
 										<td class="hs"><{:rsa_decode($user_info['cardno'],getChoosekey())}></td>
 									</tr>
 									<tr>
-										<td>认筹单号</td>
+										<td>诚意单号</td>
 										<td class="hs"><{$user_info['cyjno']}></td>
 									</tr>
 									<tr>
@@ -254,8 +274,8 @@
 									</foreach>
 										<else/>
 										<tr>
-											<td align="center" style="color: red">
-												没有收藏房间...
+											<td align="left" style="color: #ff6058">
+												还没有收藏房间...
 											</td>
 										</tr>
 									</if>

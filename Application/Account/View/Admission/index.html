@@ -1,0 +1,251 @@
+<extend name="Common/base"/>
+<block name="breadcrumb">
+    <style>
+        .two-dh {
+            display: inline-block;
+            background-color: #ccc;
+            color: #585858;
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            letter-spacing: 2px;
+            border-radius: 5px;
+            margin-left: calc((100% - 300px) / 4);
+            border-style: none;
+        }
+
+        .a-selected {
+            background-color: #ec5858;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        #user-info label {
+            width: 100%;
+        }
+
+        #user-info input {
+            width: 100%;
+        }
+
+        #user-info tr:nth-child(odd) {
+            display: inline-block;
+            margin-top: 10px;
+        }
+        #user-info th{
+
+        }
+
+        .sign-check{
+            display: inline-block;
+            font-size: 16px;
+            background-color: rgb(135, 184, 127);
+            color: #FFF;
+            padding: 0 5px;
+            cursor: pointer;
+        }
+
+        .sign-cancel{
+            display: inline-block;
+            font-size: 16px;
+            background-color: rgb(255, 177, 56);
+            color: #FFF;
+            padding: 0 5px;
+            cursor: pointer;
+        }
+
+        form{
+            display: inline;
+        }
+
+        .tr-selected{
+            background-color: #abbac3;
+        }
+
+        .tr-selected td{
+            background-color: rgba(0,0,0,0)!important;
+        }
+
+        #button-sign {
+            border-style: none;
+            color: #fff;
+            background-color: rgb(135, 184, 127);
+            font-weight: bold;
+            padding: 5px 15px;
+            margin-top: 10px;
+        }
+
+        #sign-reset{
+            border-style: none;
+            color: #fff;
+            background-color: rgb(255, 177, 56);
+            font-weight: bold;
+            padding: 5px 15px;
+            margin-top: 10px;
+        }
+        #shadow{
+            position: fixed;
+            top:0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            z-index: 1040;
+            background-color: rgba(0,0,0,0.5);
+        }
+        #admission{
+            position: fixed;
+            top:50%;
+            left: 50%;
+            width: 500px;
+            height: 280px;
+            background-color: #fff;
+            z-index: 1050;
+            margin-top: -140px;
+            margin-left: -250px;
+        }
+        #admission-head{
+            background-color: #ff9f62;
+            padding: 5px 10px;
+            color: #FFF;
+        }
+        #admission-button{
+            position: absolute;
+            bottom: 0;
+            background-color: #ff9f62;
+            padding: 10px;
+            text-align: center;
+            color: #FFF;
+            width: 100%;
+        }
+        #admission-button button{
+            width: 120px;
+            border-style: none;
+            letter-spacing: 2px;
+            padding: 5px 0;
+            background-color: #fff;
+        }
+        #admission-content{
+            width: 100%;
+            height: 202px;
+        }
+        #admission-img,#admission-group{
+            width: 25%;
+            height: 100%;
+            float: left;
+        }
+        #admission-txt{
+            width: 50%;
+            height: 100%;
+            background-color: #ff6058;
+            float: left;
+        }
+    </style>
+    <form action="index" method="post">
+        <input type="hidden" name="zt" value="0">
+        <button  class="two-dh <if condition='$zt eq 0'>a-selected</if>">未入场</button>
+    </form>
+    <form action="index" method="post">
+        <input type="hidden" name="zt" value="1">
+    <button class="two-dh th  <if condition='$zt eq 1'>a-selected</if>">已入场</button>
+    </form>
+    <form action="index" method="post">
+        <input type="hidden" name="zt" value="2">
+    <button class="two-dh th  <if condition='$zt eq 2'>a-selected</if>">全部</button>
+    </form>
+</block>
+<block name="page_content">
+    <span id="sign-zt" style="display: none"><{$zt}></span>
+    <div id="shadow">
+    </div>
+    <div id="admission">
+        <div id="admission-head">
+            入场核验
+        </div>
+        <div id="admission-content">
+            <div id="admission-img">
+                <i class="icon-user" style="font-size: 90px;border: 5px solid rgba(32,140,238,0.88);color: #208cee;border-radius: 50%;width: 80%;height: 100px;line-height: 100px;margin-top: 50px;margin-left: 10%"></i>
+            </div>
+            <div id="admission-txt">
+
+            </div>
+            <div id="admission-group">
+
+            </div>
+        </div>
+        <div id="admission-button">
+            <button>取消</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button>通过&打印</button>
+        </div>
+    </div>
+    <div class="col-sm-12 js-height" style="border: 1px solid #e8eef6;height: auto!important;">
+        <div class="table-header" style="margin-top: 10px"  >
+            客户列表
+        </div>
+        <div class="table-responsive dataTables_wrapper">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="sample-table-2_length" class="dataTables_length">
+                            <label>
+                                项目
+                                <select name="project_id" class="choose-user-project-id" id="project-not-sign"
+                                        style="width: auto;">
+                                    <foreach name="project_list" item="vo" key="k">
+                                        <option value="<{$vo.id}>"><{$vo.company_name}>--<{$vo.name}></option>
+                                    </foreach>
+                                </select>
+                            </label>
+                            <label>
+                                批次
+                                <select name="batch_id" class="choose-user-batch-id" id="batch-one"
+                                        style="width: auto;">
+                                    <option value="">全部</option>
+                                    <foreach name="batch_list" item="vo" key="k">
+                                        <option value="<{$vo.id}>" pid="<{$vo.proj_id}>" style="display: none"><{$vo.name}></option>
+                                    </foreach>
+                                </select>
+                            </label>
+                            <div class="nav-search" id="sample-table-2_filter" style="top:0;">
+                                <label class="input-icon">
+                                    <input type="text" name="word" value="" class="nav-search-input" id="search-one"
+                                           placeholder="姓名、手机、身份证">
+                                    <i class="icon-search nav-search-icon" style="cursor: pointer;left:6px;"
+                                       id="likeUsers"></i>
+                                </label>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12" id="user_list">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</block>
+<block name="plugin_js">
+    <script src="/Public/account/js/admission.js"></script>
+</block>
+
+<block name="page_js">
+    <script>
+        $(function () {
+            //设置内容框的高度
+            var w = window.innerHeight;//获取浏览器可视窗口高度
+//            console.log(w);
+            $(".js-height").css("min-height", (parseInt(w) - 130) + 'px');
+//            $(".dataTables_wrapper").css("min-height", (parseInt(w) - 193) + 'px');
+            window.onresize = function ()//此方法设置内容框大小，随浏览器大小变化高度
+            {
+                //你改变DIV大小的代码
+                var w = window.innerHeight;
+//                console.log(w);
+                $(".js-height").css("min-height", (parseInt(w) - 130) + 'px');
+//                $(".dataTables_wrapper").css("min-height", (parseInt(w) - 193) + 'px');
+            }
+
+        });
+    </script>
+</block>

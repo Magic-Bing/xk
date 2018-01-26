@@ -43,3 +43,23 @@ INFO: [ app_begin ] --END-- [ RunTime:0.004274s ]
 SQL: SELECT * FROM xk_user WHERE code='admin' or mobile='admin' limit 1 [ RunTime:0.0008s ]
 NOTIC: [8] Undefined index: type D:\project\yun_xk\Application\Home\Controller\LoginController.class.php 第 75 行.
 
+[ 2018-01-26T16:15:01+08:00 ] 127.0.0.1 /index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000479s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003804s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002340s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005953s ]
+SQL: SELECT * FROM xk_user WHERE code='1' or mobile='1' and type in(1,2,3) limit 1 [ RunTime:0.0349s ]
+NOTIC: [8] Undefined offset: 0 D:\project\yun_xk\Application\Home\Controller\BaseController.class.php 第 70 行.
+
+[ 2018-01-26T16:15:14+08:00 ] 127.0.0.1 /index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000498s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005025s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.007496s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.012695s ]
+SQL: SELECT * FROM xk_user WHERE code='1' or mobile='1' and type in(1,2,3) limit 1 [ RunTime:0.0011s ]
+NOTIC: [8] Undefined offset: 0 D:\project\yun_xk\Application\Home\Controller\BaseController.class.php 第 70 行.
+

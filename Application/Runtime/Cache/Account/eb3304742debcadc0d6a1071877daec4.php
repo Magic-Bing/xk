@@ -127,16 +127,22 @@ var sign={
     sign:'<?php echo U("/Account/CstSign/sign");?>',
     check_excel:'<?php echo U("/Account/CstSign/check_excel");?>'
 }
+var admission={
+    user_list:'<?php echo U("/Account/Admission/user_list");?>',
+    admission:'<?php echo U("/Account/Admission/sign");?>',
+    check_excel:'<?php echo U("/Account/Admission/check_excel");?>'
+}
 
 </script>
 
 		
 		
-
 	</head>
 	<!--左边的菜单栏固定-->
 	
+
 		<body class="breadcrumbs-fixed navbar-fixed">
+
 		<!--密码修改模态框-->
 		<div class="modal fade" tabindex="-1" role="dialog" id="update-model"  aria-labelledby="myModalLabel" >
 			<div class="modal-dialog" role="document">

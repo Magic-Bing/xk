@@ -2,15 +2,13 @@
 /**
  * Created by PhpStorm.
  * User: Administrator
- * Date: 2018/1/19 0019
- * Time: 16:23
+ * Date: 2018/1/26 0026
+ * Time: 15:45
  */
 
 namespace Account\Controller;
 
-
-
-class CstSignController extends BaseController
+class AdmissionController extends BaseController
 {
     /**
      * 系统构造函数
@@ -22,8 +20,7 @@ class CstSignController extends BaseController
         parent::_initialize();
 
         //分类名称
-        $this->assign('classify_name', '客户签到');
-        $this->set_current_action('choose_sign', '999');
+        $this->assign('classify_name', '电子开盘');
     }
 
     //页面
@@ -48,9 +45,9 @@ class CstSignController extends BaseController
         $batch_list = D('Batch')->getList($user_batch_where, '*','id ASC');
         $this->assign('batch_list', $batch_list);
         $this->assign('zt', $zt);
+        $this->set_seo_title('入场审核');
         $this->display();
     }
-
 
     //获取客户列表
     public  function user_list(){
@@ -67,22 +64,22 @@ class CstSignController extends BaseController
         $b='';
         $s='';
         if($pid !== 0){
-            $p="AND project_id =$pid";
+            $p="AND c.project_id =$pid";
         }
         if($bid !== 0){
-            $b="AND batch_id =$bid";
+            $b="AND c.batch_id =$bid";
         }
         if($search !== ''){
-            $s="AND (customer_name like '%$search%' OR like_p like '%".strencode($search)."%' OR like_c like '%".strencode($search)."%' )";
+            $s="AND (c.customer_name like '%$search%' OR c.like_p like '%".strencode($search)."%' OR c.like_c like '%".strencode($search)."%' )";
         }
         if($zt<2){
-            $z="AND is_sign=$zt";
+            $z="AND c.is_admission=$zt";
         }else{
             $z='';
         }
-        $count=M()->table("xk_choose")->where("1 = 1 $z $p $b $s")->count();
+        $count=M()->table("xk_choose c")->join("xk_yaohresult y ON y.cstid=c.id")->where("1 = 1 $z $p $b $s")->count();
         $all_page=ceil($count/$page_num);
-        $res=M()->table("xk_choose")->where("1 = 1 $z $p $b $s")->limit($page*$page_num,$page_num)->select();
+        $res=M()->table("xk_choose c")->field("c.*,y.group,y.no,y.createdtime")->join("xk_yaohresult y ON y.cstid=c.id")->where("y.is_yx = 1 $z $p $b $s")->limit($page*$page_num,$page_num)->select();
         $this->assign('page_num', $page_num);
         $this->assign('page', $page+1);
         $this->assign('pages', $page);
@@ -92,7 +89,7 @@ class CstSignController extends BaseController
         echo $this->fetch();
     }
 
-    //签到和取消签到
+    //入场和取消入场
     public  function sign(){
         if(!IS_AJAX){
             $this->error("非法操作",U("index/index"));
@@ -101,17 +98,19 @@ class CstSignController extends BaseController
         M()->startTrans();//开启事务
         $id=I("id",0,'intval');
         $zt=I("zt",1,'intval');
+
         if($zt===0){
-            $data['log_type']='取消签到';
+            $data['log_type']='取消入场';
         }else{
-            $data['log_type']='签到';
+            $data['log_type']='入场';
         }
         $data['choose_id']=$id;
         $data['user_id']=$this->get_user_id();
         $data['log_time']=time();
         $data['log_ip']=$this->getIP();
         try{
-            M()->table('xk_choose')->where("id=$id")->save(['is_sign'=>$zt,'sign_time' => time()]);
+            M()->table('xk_choose')->where("id=$id")->save(['is_admission'=>$zt,'admission_time' => time()]);
+            M()->table('xk_yaohresult')->where("cstid=$id")->save(['status'=>$zt]);
             M()->table("xk_choose2user_log")->add($data);
             M()->commit();
             echo 'true';
@@ -131,20 +130,20 @@ class CstSignController extends BaseController
         $b='';
         $s='';
         if($pid !== 0){
-            $p="AND project_id =$pid";
+            $p="AND c.project_id =$pid";
         }
         if($bid !== 0){
-            $b="AND batch_id =$bid";
+            $b="AND c.batch_id =$bid";
         }
         if($search !== ''){
-            $s="AND (customer_name like '%$search%' OR like_p like '%".strencode($search)."%' OR like_c like '%".strencode($search)."%' )";
+            $s="AND (c.customer_name like '%$search%' OR c.like_p like '%".strencode($search)."%' OR c.like_c like '%".strencode($search)."%' )";
         }
         if($zt<2){
-            $z="AND is_sign=$zt";
+            $z="AND c.is_sign=$zt";
         }else{
             $z='';
         }
-        $res=M()->table("xk_choose")->field("customer_name,customer_phone,cardno,cyjno,ywy,is_sign")->where("1 = 1 $z $p $b $s")->select();
+        $res=M()->table("xk_choose c")->field("c.customer_name,c.customer_phone,c.cardno,c.cyjno,c.ywy,c.is_admission,y.group,y.no,y.createdtime")->join("xk_yaohresult y ON y.cstid=c.id")->where("y.is_yx = 1 $z $p $b $s")->select();
         import("Org.Util.PHPExcel");
         import("Org.Util.PHPExcel.Writer.Excel5");
         import("Org.Util.PHPExcel.IOFactory.php");
@@ -152,9 +151,9 @@ class CstSignController extends BaseController
         //创建PHPExcel对象，注意，不能少了\
         $objPHPExcel = new \PHPExcel();
         if ($zt === 1) {
-            $filename = '客户数据-已签到-' . time() . ".xls";
+            $filename = '客户数据-已入场-' . time() . ".xls";
         } elseif ($zt ===0){
-            $filename = '客户数据-未签到-' . time() . ".xls";
+            $filename = '客户数据-未入场-' . time() . ".xls";
         }else{
             $filename = '客户数据-全部-' . time() . ".xls";
         }
@@ -164,24 +163,33 @@ class CstSignController extends BaseController
         $objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(15);
         $objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(15);
         $objPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(15);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth(15);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('H')->setWidth(20);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(15);
         $objPHPExcel->getActiveSheet()->getStyle("A")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
         $objPHPExcel->getActiveSheet()->getStyle("B")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
         $objPHPExcel->getActiveSheet()->getStyle("C")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
         $objPHPExcel->getActiveSheet()->getStyle("D")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
         $objPHPExcel->getActiveSheet()->getStyle("E")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
         $objPHPExcel->getActiveSheet()->getStyle("F")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $objPHPExcel->getActiveSheet()->getStyle("G")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $objPHPExcel->getActiveSheet()->getStyle("H")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $objPHPExcel->getActiveSheet()->getStyle("I")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
         $objPHPExcel->getActiveSheet()->getStyle()->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
         $objPHPExcel->getActiveSheet()->setCellValue('A1', '客户名称');
         $objPHPExcel->getActiveSheet()->setCellValue('B1', '手机号码');
         $objPHPExcel->getActiveSheet()->setCellValue('C1', '身份证号码');
         $objPHPExcel->getActiveSheet()->setCellValue('D1', '诚意金编号');
         $objPHPExcel->getActiveSheet()->setCellValue('E1', '置业顾问');
-        $objPHPExcel->getActiveSheet()->setCellValue('F1', '签到状态');
+        $objPHPExcel->getActiveSheet()->setCellValue('F1', '分组');
+        $objPHPExcel->getActiveSheet()->setCellValue('G1', '入场序号');
+        $objPHPExcel->getActiveSheet()->setCellValue('H1', '生成时间');
+        $objPHPExcel->getActiveSheet()->setCellValue('I1', '状态');
         for ($k = 0; $k < count($res); $k++) {
-            if($res[$k]['is_sign'] == 0){
-                $p="未签到";
+            if($res[$k]['is_admission'] == 0){
+                $p="未入场";
             }else{
-                $p="已签到";
+                $p="已入场";
             }
 //            $objActSheet->setCellValue($j.$column, $value, \PHPExcel_Cell_DataType::TYPE_STRING);
             $objPHPExcel->getActiveSheet()->setCellValue('A' . ($k + 2), $res[$k]['customer_name']);
@@ -189,7 +197,10 @@ class CstSignController extends BaseController
             $objPHPExcel->getActiveSheet()->setCellValueExplicit('C' . ($k + 2), rsa_decode($res[$k]['cardno'], getChoosekey()), \PHPExcel_Cell_DataType::TYPE_STRING);
             $objPHPExcel->getActiveSheet()->setCellValue('D' . ($k + 2), $res[$k]['cyjno']);
             $objPHPExcel->getActiveSheet()->setCellValue('E' . ($k + 2), $res[$k]['ywy']);
-            $objPHPExcel->getActiveSheet()->setCellValue('F' . ($k + 2), $p);
+            $objPHPExcel->getActiveSheet()->setCellValue('F' . ($k + 2), $res[$k]['group']);
+            $objPHPExcel->getActiveSheet()->setCellValue('G' . ($k + 2), $res[$k]['no']);
+            $objPHPExcel->getActiveSheet()->setCellValue('H' . ($k + 2), date('Y-m-d h:i:s',$res[$k]['createdtime']));
+            $objPHPExcel->getActiveSheet()->setCellValue('I' . ($k + 2), $p);
         }
 
         $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');

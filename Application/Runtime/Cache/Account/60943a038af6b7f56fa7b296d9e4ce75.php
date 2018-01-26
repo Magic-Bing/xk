@@ -12,22 +12,29 @@
         <th>身份证号码</th>
         <th>诚意金编号</th>
         <th>置业顾问</th>
+        <th>分组</th>
+        <th>入场序号</th>
+        <th>生成时间</th>
         <th>操作</th>
     </tr>
     </thead>
     <tbody>
-        <?php if($count > 0): if(is_array($res)): foreach($res as $k=>$vo): ?><tr class="user-tr" data-yp="<?php echo ($vo["ywyphone"]); ?>" money="<?php echo ($vo["money"]); ?>" data-id="<?php echo ($vo["id"]); ?>"  data-is-sign="<?php echo ($vo["is_sign"]); ?>" data-bid="<?php echo ($vo["batch_id"]); ?>">
+        <?php if($count > 0): if(is_array($res)): foreach($res as $k=>$vo): ?><tr class="user-tr" data-yp="<?php echo ($vo["ywyphone"]); ?>" money="<?php echo ($vo["money"]); ?>" data-id="<?php echo ($vo["id"]); ?>"  data-is-sign="<?php echo ($vo["is_admission"]); ?>" data-bid="<?php echo ($vo["batch_id"]); ?>">
                     <td class="center"><?php echo ($pages*$page_num+$k+1); ?></td>
                     <td><?php echo ($vo["customer_name"]); ?></td>
                     <td><?php echo rsa_decode($vo['customer_phone'],getChoosekey());?></td>
                     <td><?php echo rsa_decode($vo['cardno'],getChoosekey());?></td>
                     <td><?php echo ($vo["cyjno"]); ?></td>
                     <td><?php echo ($vo["ywy"]); ?></td>
+                    <td>第<?php echo ($vo["group"]); ?>组</td>
+                    <td><?php echo ($vo["no"]); ?></td>
+                    <td><?php echo date('Y-m-d h:i:s',$vo['createdtime']);?></td>
                     <td class="center">
-                        <?php if($vo["is_sign"] == 0): ?><span class="sign-check" data-id="<?php echo ($vo["id"]); ?>" title="签到">✔</span>
+                        <?php if($vo["is_admission"] == 0): ?><span class="sign-check" data-id="<?php echo ($vo["id"]); ?>" title="入场">✔</span>
                             <?php else: ?>
                             <span class="sign-cancel" data-id="<?php echo ($vo["id"]); ?>" title="取消"><i class="icon-undo"></i></span><?php endif; ?>
                     </td>
+
                 </tr><?php endforeach; endif; ?>
             <?php else: ?>
             <tr>
@@ -58,7 +65,7 @@
             <ul class="pagination" id="not-sign">
                 <?php if($all_page > 1 ): if($page > 1 ): ?><li><a href="#" style="color: #ffb751">«</a></li><?php endif; ?>
 
-                <?php $__FOR_START_3668__=1;$__FOR_END_3668__=$all_page+1;for($i=$__FOR_START_3668__;$i < $__FOR_END_3668__;$i+=1){ if($i == $page ): ?><li><a href="#" style="background-color: #ffb751;color: #FFF"><?php echo ($i); ?></a></li>
+                <?php $__FOR_START_2437__=1;$__FOR_END_2437__=$all_page+1;for($i=$__FOR_START_2437__;$i < $__FOR_END_2437__;$i+=1){ if($i == $page ): ?><li><a href="#" style="background-color: #ffb751;color: #FFF"><?php echo ($i); ?></a></li>
                     <?php else: ?>
                         <?php if($all_page > 7): if($page <= 4 ): if($i > 7): break; ?>
                                 <?php else: ?>

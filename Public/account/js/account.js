@@ -830,7 +830,6 @@ $(function() {
             // 告诉jQuery不要去设置Content-Type请求头
             contentType : false,
             success: function (data) {
-                console.log(data);
                 if (data['status'] != 1) {
                     layer_alert(data['info']);
                     return false;
@@ -2175,7 +2174,7 @@ $(function() {
 				}, 500);
 			}			
 		});
-		
+
 		return false;
 	});
 });

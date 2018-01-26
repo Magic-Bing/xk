@@ -481,22 +481,7 @@ var admission={
         #user-info th{
 
         }
-        #button-sign {
-            border-style: none;
-            color: #fff;
-            background-color: rgb(135, 184, 127);
-            font-weight: bold;
-            padding: 5px 15px;
-            margin-top: 10px;
-        }
-        #sign-reset{
-            border-style: none;
-            color: #fff;
-            background-color: rgb(255, 177, 56);
-            font-weight: bold;
-            padding: 5px 15px;
-            margin-top: 10px;
-        }
+
         .sign-check{
             display: inline-block;
             font-size: 16px;
@@ -505,6 +490,7 @@ var admission={
             padding: 0 5px;
             cursor: pointer;
         }
+
         .sign-cancel{
             display: inline-block;
             font-size: 16px;
@@ -513,23 +499,100 @@ var admission={
             padding: 0 5px;
             cursor: pointer;
         }
+
         form{
             display: inline;
         }
+
         .tr-selected{
             background-color: #abbac3;
         }
+
         .tr-selected td{
             background-color: rgba(0,0,0,0)!important;
+        }
+
+        #button-sign {
+            border-style: none;
+            color: #fff;
+            background-color: rgb(135, 184, 127);
+            font-weight: bold;
+            padding: 5px 15px;
+            margin-top: 10px;
+        }
+
+        #sign-reset{
+            border-style: none;
+            color: #fff;
+            background-color: rgb(255, 177, 56);
+            font-weight: bold;
+            padding: 5px 15px;
+            margin-top: 10px;
+        }
+        #shadow{
+            position: fixed;
+            top:0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            z-index: 1040;
+            background-color: rgba(0,0,0,0.5);
+        }
+        #admission{
+            position: fixed;
+            top:50%;
+            left: 50%;
+            width: 500px;
+            height: 280px;
+            background-color: #fff;
+            z-index: 1050;
+            margin-top: -140px;
+            margin-left: -250px;
+        }
+        #admission-head{
+            background-color: #ff9f62;
+            padding: 5px 10px;
+            color: #FFF;
+        }
+        #admission-button{
+            position: absolute;
+            bottom: 0;
+            background-color: #ff9f62;
+            padding: 10px;
+            text-align: center;
+            color: #FFF;
+            width: 100%;
+        }
+        #admission-button button{
+            width: 120px;
+            border-style: none;
+            letter-spacing: 2px;
+            padding: 5px 0;
+            background-color: #fff;
+        }
+        #admission-content{
+            width: 100%;
+            height: 202px;
+        }
+        #admission-img,#admission-group{
+            width: 25%;
+            height: 100%;
+            float: left;
+        }
+        #admission-txt{
+            width: 50%;
+            height: 100%;
+            background-color: #ff6058;
+            float: left;
         }
     </style>
     <form action="index" method="post">
         <input type="hidden" name="zt" value="0">
-        <button  class="two-dh <?php if($zt == 0): ?>a-selected<?php endif; ?>">未签到</button>
+        <button  class="two-dh <?php if($zt == 0): ?>a-selected<?php endif; ?>">未入场</button>
     </form>
     <form action="index" method="post">
         <input type="hidden" name="zt" value="1">
-    <button class="two-dh th  <?php if($zt == 1): ?>a-selected<?php endif; ?>">已签到</button>
+    <button class="two-dh th  <?php if($zt == 1): ?>a-selected<?php endif; ?>">已入场</button>
     </form>
     <form action="index" method="post">
         <input type="hidden" name="zt" value="2">
@@ -557,7 +620,29 @@ var admission={
 										<!-- .page-content -->
 										
     <span id="sign-zt" style="display: none"><?php echo ($zt); ?></span>
-    <div class="col-sm-8 js-height" style="border: 1px solid #e8eef6;height: auto!important;">
+    <div id="shadow">
+    </div>
+    <div id="admission">
+        <div id="admission-head">
+            入场核验
+        </div>
+        <div id="admission-content">
+            <div id="admission-img">
+                <i class="icon-user" style="font-size: 90px;border: 5px solid rgba(32,140,238,0.88);color: #208cee;border-radius: 50%;width: 80%;height: 100px;line-height: 100px;margin-top: 50px;margin-left: 10%"></i>
+            </div>
+            <div id="admission-txt">
+
+            </div>
+            <div id="admission-group">
+
+            </div>
+        </div>
+        <div id="admission-button">
+            <button>取消</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button>通过&打印</button>
+        </div>
+    </div>
+    <div class="col-sm-12 js-height" style="border: 1px solid #e8eef6;height: auto!important;">
         <div class="table-header" style="margin-top: 10px"  >
             客户列表
         </div>
@@ -598,109 +683,7 @@ var admission={
             </div>
         </div>
     </div>
-    <div class="col-sm-4 js-height" style="border: 1px solid #e8eef6;height: auto!important;">
-        <div class="table-header" style="margin-top: 10px">
-            客户签到详情
-        </div>
-        <table class="col-sm-12" id="user-info">
-            <tr>
-                <th>项目名称</th>
-            </tr>
-            <tr>
-                <td>
-                    <label>
-                        <input type="text" id="pname" readonly>
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <th>项目批次</th>
-            </tr>
-            <tr>
-                <td>
-                    <label>
-                        <input type="text" id="bname" readonly>
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <th>客户姓名</th>
-            </tr>
-            <tr>
-                <td>
-                    <label>
-                        <input type="text" id="uname" readonly>
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <th>客户手机</th>
-            </tr>
-            <tr>
-                <td>
-                    <label>
-                        <input type="text" id="uphone" readonly>
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <th>身份证号码</th>
-            </tr>
-            <tr>
-                <td>
-                    <label>
-                        <input type="text" id="card" readonly>
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <th>诚意金编号</th>
-            </tr>
-            <tr>
-                <td>
-                    <label>
-                        <input type="text" id="cyjno" readonly>
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <th>诚意金金额</th>
-            </tr>
-            <tr>
-                <td>
-                    <label>
-                        <input type="text" id="money" readonly>
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <th>置业顾问</th>
-            </tr>
-            <tr>
-                <td>
-                    <label>
-                        <input type="text" id="ywy" readonly>
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <th>置业顾问电话</th>
-            </tr>
-            <tr>
-                <td>
-                    <label>
-                        <input type="text" id="yphone" readonly>
-                    </label>
-                </td>
-            </tr>
-            <tr class="col-sm-12">
-                <td class="center" style="display: inline-block;width: 100%">
-                        <button id="button-sign" style="display: none">✔ &nbsp;签到</button>
-                        <button id="sign-reset" style="display: none"><i class="icon-undo"></i> &nbsp;取消</button>
-                </td>
-            </tr>
-        </table>
-    </div>
+
 
 										
 										<!-- PAGE CONTENT ENDS -->
@@ -753,7 +736,7 @@ var admission={
 			
 			<!-- page specific plugin scripts -->
 			
-    <script src="/Public/account/js/sign.js"></script>
+    <script src="/Public/account/js/admission.js"></script>
 
 
 			<!-- ace scripts -->
@@ -766,10 +749,7 @@ var admission={
 			<!-- inline scripts related to this page -->
 			
     <script>
-
         $(function () {
-            <!--代币获取弹窗-->
-
             //设置内容框的高度
             var w = window.innerHeight;//获取浏览器可视窗口高度
 //            console.log(w);

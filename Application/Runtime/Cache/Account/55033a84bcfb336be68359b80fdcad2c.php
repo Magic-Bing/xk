@@ -127,22 +127,16 @@ var sign={
     sign:'<?php echo U("/Account/CstSign/sign");?>',
     check_excel:'<?php echo U("/Account/CstSign/check_excel");?>'
 }
-var admission={
-    user_list:'<?php echo U("/Account/Admission/user_list");?>',
-    admission:'<?php echo U("/Account/Admission/sign");?>',
-    check_excel:'<?php echo U("/Account/Admission/check_excel");?>'
-}
 
 </script>
 
 		
 		
+
 	</head>
 	<!--左边的菜单栏固定-->
 	
-
 		<body class="breadcrumbs-fixed navbar-fixed">
-
 		<!--密码修改模态框-->
 		<div class="modal fade" tabindex="-1" role="dialog" id="update-model"  aria-labelledby="myModalLabel" >
 			<div class="modal-dialog" role="document">
@@ -445,97 +439,22 @@ var admission={
 
 								<!-- 面包屑导航 -->
 								
-    <style>
-        .two-dh {
-            display: inline-block;
-            background-color: #ccc;
-            color: #585858;
-            width: 100px;
-            height: 30px;
-            line-height: 30px;
-            text-align: center;
-            letter-spacing: 2px;
-            border-radius: 5px;
-            margin-left: calc((100% - 300px) / 4);
-            border-style: none;
-        }
+									<ul class="breadcrumb">
+	<li>
+		<i class="icon-home home-icon"></i>
+		<a href="<?php echo U('index/index');?>">首页</a>
+	</li>
 
-        .a-selected {
-            background-color: #ec5858;
-            color: #fff;
-            font-weight: bold;
-        }
+	
+    <li>
+        <a href="<?php echo U('Xsglled/index');?>"><?php echo ((isset($classify_name) && ($classify_name !== ""))?($classify_name):''); ?></a>
+    </li>
+    <li class="active"><?php echo ((isset($seo_title) && ($seo_title !== ""))?($seo_title):''); ?></li>
 
-        #user-info label {
-            width: 100%;
-        }
+	
+</ul><!-- .breadcrumb -->
 
-        #user-info input {
-            width: 100%;
-        }
-
-        #user-info tr:nth-child(odd) {
-            display: inline-block;
-            margin-top: 10px;
-        }
-        #user-info th{
-
-        }
-        #button-sign {
-            border-style: none;
-            color: #fff;
-            background-color: rgb(135, 184, 127);
-            font-weight: bold;
-            padding: 5px 15px;
-            margin-top: 10px;
-        }
-        #sign-reset{
-            border-style: none;
-            color: #fff;
-            background-color: rgb(255, 177, 56);
-            font-weight: bold;
-            padding: 5px 15px;
-            margin-top: 10px;
-        }
-        .sign-check{
-            display: inline-block;
-            font-size: 16px;
-            background-color: rgb(135, 184, 127);
-            color: #FFF;
-            padding: 0 5px;
-            cursor: pointer;
-        }
-        .sign-cancel{
-            display: inline-block;
-            font-size: 16px;
-            background-color: rgb(255, 177, 56);
-            color: #FFF;
-            padding: 0 5px;
-            cursor: pointer;
-        }
-        form{
-            display: inline;
-        }
-        .tr-selected{
-            background-color: #abbac3;
-        }
-        .tr-selected td{
-            background-color: rgba(0,0,0,0)!important;
-        }
-    </style>
-    <form action="index" method="post">
-        <input type="hidden" name="zt" value="0">
-        <button  class="two-dh <?php if($zt == 0): ?>a-selected<?php endif; ?>">未签到</button>
-    </form>
-    <form action="index" method="post">
-        <input type="hidden" name="zt" value="1">
-    <button class="two-dh th  <?php if($zt == 1): ?>a-selected<?php endif; ?>">已签到</button>
-    </form>
-    <form action="index" method="post">
-        <input type="hidden" name="zt" value="2">
-    <button class="two-dh th  <?php if($zt == 2): ?>a-selected<?php endif; ?>">全部</button>
-    </form>
-
+								
 								
 								<!-- 导航搜索 -->
 							</div>
@@ -556,151 +475,82 @@ var admission={
 
 										<!-- .page-content -->
 										
-    <span id="sign-zt" style="display: none"><?php echo ($zt); ?></span>
-    <div class="col-sm-8 js-height" style="border: 1px solid #e8eef6;height: auto!important;">
-        <div class="table-header" style="margin-top: 10px"  >
-            客户列表
-        </div>
-        <div class="table-responsive dataTables_wrapper">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div id="sample-table-2_length" class="dataTables_length">
+    <style type="text/css">
+        .qpxs {
+            position: absolute;
+            top:260px;left:40%;
+            width:300px;
+            height:50px;
+            transform: translate(-10%, -10%);
+        }
+        .qpxs a{
+            padding: 10px 20px;
+            text-align: center;
+            background: red;
+            color: #FFF;
+            margin-left: 50px;
+        }
+        form{
+            display: inline;
+        }
+    </style>
+    <div class="row">
+        <div class="col-xs-12">
+
+            <div class="table-header">
+                销控LED显示列表
+            </div>
+            <div class="table-responsive dataTables_wrapper">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div id="sample-table-2_length" class="dataTables_length">
+                            <form action="<?php echo U('/Account/Xsglled/index');?>" method="post" id="form-p">
                             <label>
-                                项目
-                                <select name="project_id" class="choose-user-project-id" id="project-not-sign"
-                                        style="width: auto;">
-                                    <?php if(is_array($project_list)): foreach($project_list as $k=>$vo): ?><option value="<?php echo ($vo["id"]); ?>"><?php echo ($vo["company_name"]); ?>--<?php echo ($vo["name"]); ?></option><?php endforeach; endif; ?>
-                                </select>
+                                项目 
+                                <select name="project_id" class="xkled-project-id" style="width: auto;">
+                                    <?php if(!empty($search_project_id)): ?><option value="0">全部</option>
+                                        <?php if(is_array($project_list)): foreach($project_list as $key=>$project_list_vo): if($search_project_id == $project_list_vo['id']): ?><option value="<?php echo ($project_list_vo['id']); ?>" selected>
+                                                    <?php echo ($project_list_vo['company_name']); ?> -- <?php echo ($project_list_vo['name']); ?>
+                                                </option>
+                                                <?php else: ?>		 
+                                                <option value="<?php echo ($project_list_vo['id']); ?>">
+                                                    <?php echo ($project_list_vo['company_name']); ?> -- <?php echo ($project_list_vo['name']); ?>
+                                                </option><?php endif; endforeach; endif; ?> 
+                                        <?php else: ?>
+                                        <option value="0" selected>全部</option>
+                                        <?php if(is_array($project_list)): foreach($project_list as $key=>$project_list_vo): ?><option value="<?php echo ($project_list_vo['id']); ?>">
+                                                <?php echo ($project_list_vo['company_name']); ?> -- <?php echo ($project_list_vo['name']); ?>
+                                            </option><?php endforeach; endif; endif; ?>
+                                </select> 
                             </label>
-                            <label>
-                                批次
-                                <select name="batch_id" class="choose-user-batch-id" id="batch-one"
-                                        style="width: auto;">
-                                    <option value="">全部</option>
-                                    <?php if(is_array($batch_list)): foreach($batch_list as $k=>$vo): ?><option value="<?php echo ($vo["id"]); ?>" pid="<?php echo ($vo["proj_id"]); ?>" style="display: none"><?php echo ($vo["name"]); ?></option><?php endforeach; endif; ?>
-                                </select>
+                            </form>
+                            <form action="<?php echo U('/Account/Xsglled/index');?>" method="post" id="form-b">
+                            <label>							
+                                批次 
+                                <select name="batch_id" class="xkled-batch-id" style="width: auto;">
+                                    <?php if(count($batch_list) != 1): ?><option value="0">全部</option><?php endif; ?>
+                                    <?php if(is_array($batch_list)): foreach($batch_list as $key=>$batch_list_vo): if($bid == $batch_list_vo['id']): ?><option value="<?php echo ($batch_list_vo['id']); ?>" selected>
+                                                <?php echo ($batch_list_vo['name']); ?>
+                                            </option>
+                                            <?php else: ?>
+                                            <option value="<?php echo ($batch_list_vo['id']); ?>" >
+                                                <?php echo ($batch_list_vo['name']); ?>
+                                            </option><?php endif; endforeach; endif; ?>
+                                </select> 
                             </label>
-                            <div class="nav-search" id="sample-table-2_filter" style="top:0;">
-                                <label class="input-icon">
-                                    <input type="text" name="word" value="" class="nav-search-input" id="search-one"
-                                           placeholder="姓名、手机、身份证">
-                                    <i class="icon-search nav-search-icon" style="cursor: pointer;left:6px;"
-                                       id="likeUsers"></i>
-                                </label>
-                            </div>
+                                <input type="hidden" name="project_id" value="<?php echo ($search_project_id); ?>">
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-12" id="user_list">
+        </div>
+    </div>
+    <div class="qpxs">
+        <a href="<?php echo U('../led/pmtled1');?>" target="_blank">负一层</a>
+        <a href="<?php echo U('../led/pmtled2');?>" target="_blank">负二层</a>
+    </div>
 
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4 js-height" style="border: 1px solid #e8eef6;height: auto!important;">
-        <div class="table-header" style="margin-top: 10px">
-            客户签到详情
-        </div>
-        <table class="col-sm-12" id="user-info">
-            <tr>
-                <th>项目名称</th>
-            </tr>
-            <tr>
-                <td>
-                    <label>
-                        <input type="text" id="pname" readonly>
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <th>项目批次</th>
-            </tr>
-            <tr>
-                <td>
-                    <label>
-                        <input type="text" id="bname" readonly>
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <th>客户姓名</th>
-            </tr>
-            <tr>
-                <td>
-                    <label>
-                        <input type="text" id="uname" readonly>
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <th>客户手机</th>
-            </tr>
-            <tr>
-                <td>
-                    <label>
-                        <input type="text" id="uphone" readonly>
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <th>身份证号码</th>
-            </tr>
-            <tr>
-                <td>
-                    <label>
-                        <input type="text" id="card" readonly>
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <th>诚意金编号</th>
-            </tr>
-            <tr>
-                <td>
-                    <label>
-                        <input type="text" id="cyjno" readonly>
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <th>诚意金金额</th>
-            </tr>
-            <tr>
-                <td>
-                    <label>
-                        <input type="text" id="money" readonly>
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <th>置业顾问</th>
-            </tr>
-            <tr>
-                <td>
-                    <label>
-                        <input type="text" id="ywy" readonly>
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <th>置业顾问电话</th>
-            </tr>
-            <tr>
-                <td>
-                    <label>
-                        <input type="text" id="yphone" readonly>
-                    </label>
-                </td>
-            </tr>
-            <tr class="col-sm-12">
-                <td class="center" style="display: inline-block;width: 100%">
-                        <button id="button-sign" style="display: none">✔ &nbsp;签到</button>
-                        <button id="sign-reset" style="display: none"><i class="icon-undo"></i> &nbsp;取消</button>
-                </td>
-            </tr>
-        </table>
-    </div>
 
 										
 										<!-- PAGE CONTENT ENDS -->
@@ -753,8 +603,6 @@ var admission={
 			
 			<!-- page specific plugin scripts -->
 			
-    <script src="/Public/account/js/sign.js"></script>
-
 
 			<!-- ace scripts -->
 			
@@ -765,28 +613,6 @@ var admission={
 			
 			<!-- inline scripts related to this page -->
 			
-    <script>
-
-        $(function () {
-            <!--代币获取弹窗-->
-
-            //设置内容框的高度
-            var w = window.innerHeight;//获取浏览器可视窗口高度
-//            console.log(w);
-            $(".js-height").css("min-height", (parseInt(w) - 130) + 'px');
-//            $(".dataTables_wrapper").css("min-height", (parseInt(w) - 193) + 'px');
-            window.onresize = function ()//此方法设置内容框大小，随浏览器大小变化高度
-            {
-                //你改变DIV大小的代码
-                var w = window.innerHeight;
-//                console.log(w);
-                $(".js-height").css("min-height", (parseInt(w) - 130) + 'px');
-//                $(".dataTables_wrapper").css("min-height", (parseInt(w) - 193) + 'px');
-            }
-
-        });
-    </script>
-
 
 			
 				<script src="/Public/account/assets/js/jquery.gritter.min.js"></script>
@@ -797,6 +623,8 @@ var admission={
 				<script src="/Public/account/js/account.js"></script>
 			
 			
+
+
 		</body>
 	
 	

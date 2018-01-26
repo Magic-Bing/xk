@@ -51,7 +51,7 @@ $(function () {
             $("#batch-one option").eq(0).show();
             $("#batch-one").val('');
         }
-        $.post(sign.user_list,{pid:id,num:row,zt:zt},function (data) {
+        $.post(admission.user_list,{pid:id,num:row,zt:zt},function (data) {
             $("#user_list").html(data);
             user_ajax();
         });
@@ -64,7 +64,7 @@ $(function () {
         num=1;
         var row=$('#new_rows').val();
         $("#search-one").val('');
-        $.post(sign.user_list,{pid:pid,bid:bid,num:row,zt:zt},function (data) {
+        $.post(admission.user_list,{pid:pid,bid:bid,num:row,zt:zt},function (data) {
             $("#user_list").html(data);
             user_ajax();
         });
@@ -78,7 +78,7 @@ $(function () {
         num=1;
         var row=$('#new_rows').val();
         if(event.keyCode === 13){
-            $.post(sign.user_list,{pid:pid,bid:bid,search:search,num:row,zt:zt},function (data) {
+            $.post(admission.user_list,{pid:pid,bid:bid,search:search,num:row,zt:zt},function (data) {
                 $("#user_list").html(data);
                 user_ajax();
             });
@@ -110,7 +110,7 @@ $(function () {
         $('#new_page').val(1);
         num=1;
         if(event.keyCode === 13){
-            $.post(sign.user_list,{pid:pid,bid:bid,search:search,page:(num-1),num:row,zt:zt},function (data) {
+            $.post(admission.user_list,{pid:pid,bid:bid,search:search,page:(num-1),num:row,zt:zt},function (data) {
                 $("#user_list").html(data);
                 user_ajax();
             });
@@ -140,7 +140,7 @@ $(function () {
             return false;
         }
         if(event.keyCode === 13){
-            $.post(sign.user_list,{pid:pid,bid:bid,search:search,page:(num-1),num:row,zt:zt},function (data) {
+            $.post(admission.user_list,{pid:pid,bid:bid,search:search,page:(num-1),num:row,zt:zt},function (data) {
                 $("#user_list").html(data);
                 user_ajax();
             });
@@ -156,7 +156,7 @@ $(function () {
         var tx=$(this).text();
         num=pageNum(tx,num);
         console.log(num);
-        $.post(sign.user_list,{pid:pid,bid:bid,search:search,page:(num-1),num:row,zt:zt},function (data) {
+        $.post(admission.user_list,{pid:pid,bid:bid,search:search,page:(num-1),num:row,zt:zt},function (data) {
             $("#user_list").html(data);
             user_ajax();
         });
@@ -197,12 +197,12 @@ $(function () {
             $("#button-sign").hide();
         }
     });
-    //签到
+    //入场
     $(document).on("click",'.sign-check,#button-sign',function () {
         var id=$(this).attr('data-id');
-        $.post(sign.sign,{id:id,zt:1},function (data) {
+        $.post(admission.admission,{id:id,zt:1},function (data) {
             if(data === "true"){
-                layer_msg("签到成功！");
+                layer_msg("入场成功！");
                 $("#batch-one").trigger("change");
                 $("#sign-reset").show().attr('data-id',$("#button-sign").attr('data-id'));
                 $("#button-sign").hide();
@@ -214,12 +214,12 @@ $(function () {
             }
         });
     });
-    //取消签到
+    //取消入场
     $(document).on("click",'.sign-cancel,#sign-reset',function () {
         var id=$(this).attr('data-id');
-        $.post(sign.sign,{id:id,zt:0},function (data) {
+        $.post(admission.admission,{id:id,zt:0},function (data) {
             if(data === "true"){
-                layer_msg("取消签到成功！");
+                layer_msg("取消入场成功！");
                 $("#batch-one").trigger("change");
                 $("#sign-reset").hide();
                 $("#button-sign").show().attr('data-id',$("#sign-reset").attr('data-id'));;
@@ -235,7 +235,7 @@ $(function () {
         var search=$("#search-one").val();
         var pid=$('#project-not-sign').val();
         var bid=$('#batch-one').val();
-        window.location.href=sign.check_excel+"?pid="+pid+"&bid="+bid+"&search="+search+"&zt="+zt;
+        window.location.href=admission.check_excel+"?pid="+pid+"&bid="+bid+"&search="+search+"&zt="+zt;
     });
     /*====================END=====================*/
 });
