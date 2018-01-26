@@ -224,7 +224,7 @@
             width: 50px;
             position: fixed;
             z-index: 101;
-            height: 31px;
+            height: 32px;
             top:79px;
             left: calc(100% - 50px);
             font-size:12px;

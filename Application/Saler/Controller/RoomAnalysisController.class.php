@@ -101,7 +101,7 @@ class RoomAnalysisController extends Base1Controller
             $this->assign('builds', $build_new_list);
 
             //房间
-            $room_list=M()->table("xk_roomlist r")->field('SUM(CASE WHEN cr.px=1 THEN 1 ELSE 0 END) first_count,SUM(CASE WHEN cr.id IS NOT NULL  THEN 1 ELSE 0 END) sc_count,r.room,r.floor')->join("LEFT JOIN xk_cst2rooms cr ON cr.room_id=r.id")->where("r.proj_id=$search_project_id AND pc_id=$bid AND r.bld_id=$search_build_id AND r.unit=$search_unit_id")->order("floor DESC, no ASC")->group('r.id')->select();
+            $room_list=M()->table("xk_roomlist r")->field('SUM(CASE WHEN cr.px=1 THEN 1 ELSE 0 END) first_count,SUM(CASE WHEN cr.id IS NOT NULL  THEN 1 ELSE 0 END) sc_count,r.room,r.floor,r.id')->join("LEFT JOIN xk_cst2rooms cr ON cr.room_id=r.id")->where("r.proj_id=$search_project_id AND pc_id=$bid AND r.bld_id=$search_build_id AND r.unit=$search_unit_id")->order("floor DESC, no ASC")->group('r.id')->select();
 //        echo json_encode($room_list);exit;
             $new_room_list = array();
             foreach ($room_list as $room_list_key => $room_list_value) {
@@ -154,7 +154,7 @@ class RoomAnalysisController extends Base1Controller
             $hx_room_count=[];
             $hx_sc_count=[];
             for($i=0;$i<count($hx_list);$i++){
-                $hx_name[]="户型:".$hx_list[$i]['hx'];
+                $hx_name[]="".$hx_list[$i]['hx'];
                 $hx_room_count[]=(int)$hx_list[$i]['all_count'];
                 $hx_sc_count[]=(int)$hx_list[$i]['sc_count'];
             }

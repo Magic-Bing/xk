@@ -98,6 +98,10 @@ class RoomController extends BaseController
 		$hot_num = $this -> roomrlzs($room_attribute,$project_id);
 		$this->assign('hot_num', $hot_num);
 		$this->assign('type', session("type"));
+                
+                //第一意向
+                $first_count=M()->table('xk_cst2rooms cr')->where("cr.room_id=$id")->group("cr.room_id")->count();
+                $this->assign('first_count', $first_count);
 
 		//更改点击
 		D("Common/Roomattribute")->incAttributeDjcountByRoomId(2, $id);

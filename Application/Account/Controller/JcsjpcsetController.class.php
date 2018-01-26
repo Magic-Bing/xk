@@ -170,20 +170,23 @@ class JcsjpcsetController extends BaseController {
 			$this->error('请求错误，请确认后重试！', U('admin/index'));
 		}
 //		echo json_encode(I('post.'));exit;
-        $config = array(
-            "rootPath" => 'Uploads',
-            "savePath" => "/img/jcsjpcset/",
-            'maxSize' => 3145728,
-            'saveName' => 'time',
-            'exts' => array('jpeg', 'png','jpg'),
-            'autoSub' => true
-        );
-        $upload = new \Think\Upload($config);// 实例化上传类
-        $info = $upload->uploadOne($_FILES['plan']);
-        if (!$info) {// 上传错误提示错误信息
-            $this->error($upload->getError());
+        if(!empty($_FILES['plan']['size'])){
+            $config = array(
+                "rootPath" => 'Uploads',
+                "savePath" => "/img/jcsjpcset/",
+                'maxSize' => 3145728,
+                'saveName' => 'time',
+                'exts' => array('jpeg', 'png','jpg'),
+                'autoSub' => true
+            );
+            $upload = new \Think\Upload($config);// 实例化上传类
+            $info = $upload->uploadOne($_FILES['plan']);
+            if (!$info) {// 上传错误提示错误信息
+                $this->error($upload->getError());
+            }
+            $data['plan']="/Uploads".$info['savepath'].$info['savename'];
         }
-        $data['plan']="/Uploads".$info['savepath'].$info['savename'];
+
         $id = I('id', '', 'trim');
         $proj_id = I('proj_id', '', 'trim');
         $name = I('name', '', 'trim');

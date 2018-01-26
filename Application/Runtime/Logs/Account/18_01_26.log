@@ -1,0 +1,1738 @@
+[ 2018-01-26T09:16:44+08:00 ] 127.0.0.1 /account/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000487s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003849s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002841s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.007372s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0103s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0068s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0346s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0015s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.003673s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.006470s ]
+NOTIC: [8] Undefined variable: log_noread_count D:\project\yun_xk\Application\Runtime\Cache\Account\35420556f4867021384eed9b5f9f21f3.php 第 270 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.887899s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.890623s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.029887s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.032568s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.079703s ]
+INFO: [ app_end ] --END-- [ RunTime:0.086365s ]
+
+[ 2018-01-26T09:17:02+08:00 ] 127.0.0.1 /Account/Jcsjpcset/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000488s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004101s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002294s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005090s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0082s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0064s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0065s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0055s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0474s ]
+SQL: SELECT `id` FROM `xk_project`  [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.1239s ]
+SQL: SELECT `id` FROM `xk_kppc`  [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0088s ]
+SQL: SHOW COLUMNS FROM `xk_company` [ RunTime:0.0541s ]
+SQL: SELECT Project.id AS id,Project.name AS name,Project.cp_id AS cp_id,Project.address AS address,Project.mobile AS mobile,Project.projfzr AS projfzr,Project.createdate AS createdate,Project.status AS status,Project.wx_avatar AS wx_avatar,Project.poster_path AS poster_path,Project.app_id AS app_id,Project.app_secret AS app_secret,Project.mch_id AS mch_id,Project.api_password AS api_password,Project.wishing AS wishing,Project.act_name AS act_name,Project.remark AS remark,Project.public_key AS public_key,Project.private_key AS private_key,Project.rootca AS rootca,Company.id AS company_id,Company.name AS company_name FROM xk_project Project LEFT JOIN xk_company Company ON Project.cp_id = Company.id WHERE Project.id IN ('1','2','3') ORDER BY Company.id DESC,Project.id DESC LIMIT 50   [ RunTime:0.0090s ]
+SQL: SELECT a.*,b.name as compname FROM xk_project a left join xk_company b on a.cp_id=b.id where a.status=1 and a.id= 3 and 1=1 order by b.id asc,a.id asc [ RunTime:0.0009s ]
+SQL: SELECT a.*,case when is_yx=1 then '开启' else '关闭' end as zt,a.plan  FROM xk_kppc a where a.proj_id=3  order by is_yx desc,a.id asc [ RunTime:0.0008s ]
+SQL: SELECT a.*  FROM xk_build a where a.proj_id=3 and 3=3 order by a.proj_id asc,a.pc_id asc,a.id asc [ RunTime:0.0330s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.003319s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.006338s ]
+NOTIC: [8] Undefined variable: log_noread_count D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 270 行.
+NOTIC: [8] Undefined offset: 0 D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 891 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 925 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 929 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 934 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 948 行.
+NOTIC: [8] Undefined variable: bldinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 983 行.
+NOTIC: [8] Undefined variable: bldinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 987 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 992 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.877367s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.880259s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002583s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.005381s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002758s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005927s ]
+
+[ 2018-01-26T09:17:06+08:00 ] 127.0.0.1 /Account/Jcsjpcset/editkppc.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000491s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003704s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001867s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004202s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0058s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0069s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0010s ]
+SQL: SELECT a.id,a.proj_id,a.name,a.is_dq,a.is_yx,a.roomscount,a.ledurl,FROM_UNIXTIME( kptime,'%Y-%m-%d') as kptime,b.name as projname FROM xk_kppc a left join xk_project b on a.proj_id=b.id where a.id = 3 and 889=889  [ RunTime:0.0009s ]
+
+[ 2018-01-26T09:17:46+08:00 ] 127.0.0.1 /Account/Jcsjroom/room
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000553s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005373s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002359s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005259s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0085s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0057s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0073s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0056s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0071s ]
+SQL: SELECT `id` FROM `xk_project`  [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.0066s ]
+SQL: SELECT `id` FROM `xk_kppc`  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0057s ]
+SQL: SHOW COLUMNS FROM `xk_company` [ RunTime:0.0068s ]
+SQL: SELECT Project.id AS id,Project.name AS name,Project.cp_id AS cp_id,Project.address AS address,Project.mobile AS mobile,Project.projfzr AS projfzr,Project.createdate AS createdate,Project.status AS status,Project.wx_avatar AS wx_avatar,Project.poster_path AS poster_path,Project.app_id AS app_id,Project.app_secret AS app_secret,Project.mch_id AS mch_id,Project.api_password AS api_password,Project.wishing AS wishing,Project.act_name AS act_name,Project.remark AS remark,Project.public_key AS public_key,Project.private_key AS private_key,Project.rootca AS rootca,Company.id AS company_id,Company.name AS company_name FROM xk_project Project LEFT JOIN xk_company Company ON Project.cp_id = Company.id WHERE Project.id IN ('1','2','3') ORDER BY Company.id DESC,Project.id DESC LIMIT 50   [ RunTime:0.0078s ]
+SQL: SELECT a.*,b.name as compname FROM xk_project a left join xk_company b on a.cp_id=b.id where a.id=3 and 2=2 order by b.id asc,a.id asc [ RunTime:0.0010s ]
+SQL: SELECT a.* FROM xk_room a left join xk_build b on a.bld_id=b.id left join xk_project c on a.proj_id=c.id  where 66=66  and  a.proj_id=3 [ RunTime:0.0602s ]
+SQL: SELECT a.*,b.buildname,c.name as projname FROM xk_room a left join xk_build b on a.bld_id=b.id left join xk_project c on a.proj_id=c.id  where 66=66 and  a.proj_id=3  order by a.id asc limit 0,10 [ RunTime:0.0108s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.002812s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.006653s ]
+NOTIC: [8] Undefined variable: log_noread_count D:\project\yun_xk\Application\Runtime\Cache\Account\4862f1b01b593bbf1d71d93e04122c37.php 第 270 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.797746s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.801388s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002405s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.005091s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003359s ]
+INFO: [ app_end ] --END-- [ RunTime:0.007921s ]
+
+[ 2018-01-26T09:18:39+08:00 ] 127.0.0.1 /Account/ChooseUser/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000479s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003855s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003335s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.009469s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0058s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0069s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0062s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0079s ]
+SQL: SELECT `id` FROM `xk_project`  [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.0094s ]
+SQL: SELECT `id` FROM `xk_kppc`  [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0068s ]
+SQL: SELECT * FROM `xk_project` WHERE `id` = '' LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0066s ]
+SQL: SHOW COLUMNS FROM `xk_company` [ RunTime:0.0068s ]
+SQL: SELECT Project.id AS id,Project.name AS name,Project.cp_id AS cp_id,Project.address AS address,Project.mobile AS mobile,Project.projfzr AS projfzr,Project.createdate AS createdate,Project.status AS status,Project.wx_avatar AS wx_avatar,Project.poster_path AS poster_path,Project.app_id AS app_id,Project.app_secret AS app_secret,Project.mch_id AS mch_id,Project.api_password AS api_password,Project.wishing AS wishing,Project.act_name AS act_name,Project.remark AS remark,Project.public_key AS public_key,Project.private_key AS private_key,Project.rootca AS rootca,Company.id AS company_id,Company.name AS company_name FROM xk_project Project LEFT JOIN xk_company Company ON Project.cp_id = Company.id WHERE Project.status = 1 AND Project.id IN ('1','2','3') ORDER BY Company.id DESC,Project.id DESC LIMIT 50   [ RunTime:0.0092s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0056s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0059s ]
+SQL: SELECT `id` FROM `xk_project`  [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.0073s ]
+SQL: SELECT `id` FROM `xk_kppc`  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.0064s ]
+SQL: SELECT * FROM `xk_kppc` WHERE `id` IN ('1','2','3','4') AND `proj_id` = '' ORDER BY id DESC  [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `xk_choose` [ RunTime:0.0585s ]
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.0072s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0257s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0063s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0077s ]
+SQL: SELECT COUNT(*) AS tp_count FROM xk_choose Choose LEFT JOIN xk_project Project ON Choose.project_id = Project.id LEFT JOIN xk_kppc Kppc ON Choose.batch_id = Kppc.id LEFT JOIN xk_roomlist rm1 ON rm1.cstid = Choose.id LEFT JOIN xk_roomlist  rm2 ON rm2.id = Choose.room LEFT JOIN xk_user us ON us.name = Choose.ywy WHERE ( Choose.project_id IN ('1','2','3')  ) AND Choose.batch_id IN ('1','2','3','4') LIMIT 1   [ RunTime:0.0065s ]
+SQL: SELECT Choose.id AS id,Choose.project_id AS project_id,Choose.batch_id AS batch_id,Choose.customer_name AS customer_name,Choose.customer_phone AS customer_phone,Choose.cardno AS cardno,Choose.cyjno AS cyjno,Choose.row_number AS row_number,Choose.money AS money,Choose.area AS area,Choose.price AS price,Choose.house_type AS house_type,Choose.floor AS floor,Choose.room AS room,Choose.password AS password,Choose.status AS status,Choose.add_time AS add_time,Choose.add_ip AS add_ip,Choose.ywy AS ywy,Choose.ywyphone AS ywyphone,Project.id AS project_id,Project.name AS project_name,Project.cp_id AS project_cp_id,Project.address AS project_address,Project.mobile AS project_mobile,Project.projfzr AS project_projfzr,Project.createdate AS project_createdate,Project.status AS project_status,Kppc.id AS batch_id,Kppc.proj_id AS batch_project_id,Kppc.name AS batch_name,Kppc.kptime AS batch_open_time,Kppc.roomscount AS batch_rooms_count,rm1.id AS room_id,rm1.buildname AS buildname,rm1.unit AS unit,rm1.floor AS floor,rm1.room AS rm,rm2.buildname AS buildname_one,rm2.unit AS unit_one,rm2.floor AS floor_one,rm2.room AS rm_one,us.id AS us_id FROM xk_choose Choose LEFT JOIN xk_project Project ON Choose.project_id = Project.id LEFT JOIN xk_kppc Kppc ON Choose.batch_id = Kppc.id LEFT JOIN xk_roomlist rm1 ON rm1.cstid = Choose.id LEFT JOIN xk_roomlist  rm2 ON rm2.id = Choose.room LEFT JOIN xk_user us ON us.name = Choose.ywy WHERE ( Choose.project_id IN ('1','2','3')  ) AND Choose.batch_id IN ('1','2','3','4') ORDER BY Choose.project_id desc,Choose.batch_id desc,Choose.status desc,Choose.id ASC LIMIT 0,10   [ RunTime:0.0039s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.003483s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.006247s ]
+NOTIC: [8] Undefined variable: log_noread_count D:\project\yun_xk\Application\Runtime\Cache\Account\eb3304742debcadc0d6a1071877daec4.php 第 270 行.
+NOTIC: [8] Undefined offset: 4 D:\project\yun_xk\Application\Common\Common\functions.php 第 117 行.
+NOTIC: [8] Undefined offset: 4 D:\project\yun_xk\Application\Common\Common\functions.php 第 117 行.
+NOTIC: [8] Uninitialized string offset: 1 D:\project\yun_xk\Application\Common\Common\functions.php 第 117 行.
+NOTIC: [8] Undefined offset: 6 D:\project\yun_xk\Application\Common\Common\functions.php 第 117 行.
+NOTIC: [8] Undefined offset: 9 D:\project\yun_xk\Application\Common\Common\functions.php 第 117 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:1.266037s ]
+INFO: [ view_parse ] --END-- [ RunTime:1.269746s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002188s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.005221s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002730s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005825s ]
+
+[ 2018-01-26T09:18:52+08:00 ] 127.0.0.1 /Account/ChooseUser/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000535s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004756s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001973s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005162s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0085s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0054s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0088s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0063s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0091s ]
+SQL: SELECT `id` FROM `xk_project`  [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.0074s ]
+SQL: SELECT `id` FROM `xk_kppc`  [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0069s ]
+SQL: SELECT * FROM `xk_project` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0058s ]
+SQL: SHOW COLUMNS FROM `xk_company` [ RunTime:0.0078s ]
+SQL: SELECT Project.id AS id,Project.name AS name,Project.cp_id AS cp_id,Project.address AS address,Project.mobile AS mobile,Project.projfzr AS projfzr,Project.createdate AS createdate,Project.status AS status,Project.wx_avatar AS wx_avatar,Project.poster_path AS poster_path,Project.app_id AS app_id,Project.app_secret AS app_secret,Project.mch_id AS mch_id,Project.api_password AS api_password,Project.wishing AS wishing,Project.act_name AS act_name,Project.remark AS remark,Project.public_key AS public_key,Project.private_key AS private_key,Project.rootca AS rootca,Company.id AS company_id,Company.name AS company_name FROM xk_project Project LEFT JOIN xk_company Company ON Project.cp_id = Company.id WHERE Project.status = 1 AND Project.id IN ('1','2','3') ORDER BY Company.id DESC,Project.id DESC LIMIT 50   [ RunTime:0.0083s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0054s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0064s ]
+SQL: SELECT `id` FROM `xk_project`  [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.0061s ]
+SQL: SELECT `id` FROM `xk_kppc`  [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.0089s ]
+SQL: SELECT * FROM `xk_kppc` WHERE `id` IN ('1','2','3','4') AND `proj_id` = 2 ORDER BY id DESC  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_choose` [ RunTime:0.0109s ]
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.0058s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0095s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0088s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0079s ]
+SQL: SELECT COUNT(*) AS tp_count FROM xk_choose Choose LEFT JOIN xk_project Project ON Choose.project_id = Project.id LEFT JOIN xk_kppc Kppc ON Choose.batch_id = Kppc.id LEFT JOIN xk_roomlist rm1 ON rm1.cstid = Choose.id LEFT JOIN xk_roomlist  rm2 ON rm2.id = Choose.room LEFT JOIN xk_user us ON us.name = Choose.ywy WHERE ( Choose.project_id = 2  ) AND Choose.batch_id IN ('1','2','3','4') LIMIT 1   [ RunTime:0.0023s ]
+SQL: SELECT Choose.id AS id,Choose.project_id AS project_id,Choose.batch_id AS batch_id,Choose.customer_name AS customer_name,Choose.customer_phone AS customer_phone,Choose.cardno AS cardno,Choose.cyjno AS cyjno,Choose.row_number AS row_number,Choose.money AS money,Choose.area AS area,Choose.price AS price,Choose.house_type AS house_type,Choose.floor AS floor,Choose.room AS room,Choose.password AS password,Choose.status AS status,Choose.add_time AS add_time,Choose.add_ip AS add_ip,Choose.ywy AS ywy,Choose.ywyphone AS ywyphone,Project.id AS project_id,Project.name AS project_name,Project.cp_id AS project_cp_id,Project.address AS project_address,Project.mobile AS project_mobile,Project.projfzr AS project_projfzr,Project.createdate AS project_createdate,Project.status AS project_status,Kppc.id AS batch_id,Kppc.proj_id AS batch_project_id,Kppc.name AS batch_name,Kppc.kptime AS batch_open_time,Kppc.roomscount AS batch_rooms_count,rm1.id AS room_id,rm1.buildname AS buildname,rm1.unit AS unit,rm1.floor AS floor,rm1.room AS rm,rm2.buildname AS buildname_one,rm2.unit AS unit_one,rm2.floor AS floor_one,rm2.room AS rm_one,us.id AS us_id FROM xk_choose Choose LEFT JOIN xk_project Project ON Choose.project_id = Project.id LEFT JOIN xk_kppc Kppc ON Choose.batch_id = Kppc.id LEFT JOIN xk_roomlist rm1 ON rm1.cstid = Choose.id LEFT JOIN xk_roomlist  rm2 ON rm2.id = Choose.room LEFT JOIN xk_user us ON us.name = Choose.ywy WHERE ( Choose.project_id = 2  ) AND Choose.batch_id IN ('1','2','3','4') ORDER BY Choose.project_id desc,Choose.batch_id desc,Choose.status desc,Choose.id ASC LIMIT 0,10   [ RunTime:0.0034s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.002968s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.006054s ]
+NOTIC: [8] Undefined variable: log_noread_count D:\project\yun_xk\Application\Runtime\Cache\Account\eb3304742debcadc0d6a1071877daec4.php 第 270 行.
+NOTIC: [8] Undefined offset: 4 D:\project\yun_xk\Application\Common\Common\functions.php 第 117 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:1.392802s ]
+INFO: [ view_parse ] --END-- [ RunTime:1.395963s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.003345s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.008015s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002571s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005716s ]
+
+[ 2018-01-26T09:19:00+08:00 ] 127.0.0.1 /Account/ChooseUser/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000479s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003952s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002084s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004905s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0128s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0067s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0079s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0063s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0080s ]
+SQL: SELECT `id` FROM `xk_project`  [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.0088s ]
+SQL: SELECT `id` FROM `xk_kppc`  [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0060s ]
+SQL: SELECT * FROM `xk_project` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0059s ]
+SQL: SHOW COLUMNS FROM `xk_company` [ RunTime:0.0076s ]
+SQL: SELECT Project.id AS id,Project.name AS name,Project.cp_id AS cp_id,Project.address AS address,Project.mobile AS mobile,Project.projfzr AS projfzr,Project.createdate AS createdate,Project.status AS status,Project.wx_avatar AS wx_avatar,Project.poster_path AS poster_path,Project.app_id AS app_id,Project.app_secret AS app_secret,Project.mch_id AS mch_id,Project.api_password AS api_password,Project.wishing AS wishing,Project.act_name AS act_name,Project.remark AS remark,Project.public_key AS public_key,Project.private_key AS private_key,Project.rootca AS rootca,Company.id AS company_id,Company.name AS company_name FROM xk_project Project LEFT JOIN xk_company Company ON Project.cp_id = Company.id WHERE Project.status = 1 AND Project.id IN ('1','2','3') ORDER BY Company.id DESC,Project.id DESC LIMIT 50   [ RunTime:0.0085s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0056s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0056s ]
+SQL: SELECT `id` FROM `xk_project`  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.0088s ]
+SQL: SELECT `id` FROM `xk_kppc`  [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.0057s ]
+SQL: SELECT * FROM `xk_kppc` WHERE `id` IN ('1','2','3','4') AND `proj_id` = 2 ORDER BY id DESC  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_choose` [ RunTime:0.0078s ]
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.0056s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0077s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0069s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0073s ]
+SQL: SELECT COUNT(*) AS tp_count FROM xk_choose Choose LEFT JOIN xk_project Project ON Choose.project_id = Project.id LEFT JOIN xk_kppc Kppc ON Choose.batch_id = Kppc.id LEFT JOIN xk_roomlist rm1 ON rm1.cstid = Choose.id LEFT JOIN xk_roomlist  rm2 ON rm2.id = Choose.room LEFT JOIN xk_user us ON us.name = Choose.ywy WHERE ( Choose.project_id = 2  ) AND ( Choose.batch_id = 2  ) LIMIT 1   [ RunTime:0.0023s ]
+SQL: SELECT Choose.id AS id,Choose.project_id AS project_id,Choose.batch_id AS batch_id,Choose.customer_name AS customer_name,Choose.customer_phone AS customer_phone,Choose.cardno AS cardno,Choose.cyjno AS cyjno,Choose.row_number AS row_number,Choose.money AS money,Choose.area AS area,Choose.price AS price,Choose.house_type AS house_type,Choose.floor AS floor,Choose.room AS room,Choose.password AS password,Choose.status AS status,Choose.add_time AS add_time,Choose.add_ip AS add_ip,Choose.ywy AS ywy,Choose.ywyphone AS ywyphone,Project.id AS project_id,Project.name AS project_name,Project.cp_id AS project_cp_id,Project.address AS project_address,Project.mobile AS project_mobile,Project.projfzr AS project_projfzr,Project.createdate AS project_createdate,Project.status AS project_status,Kppc.id AS batch_id,Kppc.proj_id AS batch_project_id,Kppc.name AS batch_name,Kppc.kptime AS batch_open_time,Kppc.roomscount AS batch_rooms_count,rm1.id AS room_id,rm1.buildname AS buildname,rm1.unit AS unit,rm1.floor AS floor,rm1.room AS rm,rm2.buildname AS buildname_one,rm2.unit AS unit_one,rm2.floor AS floor_one,rm2.room AS rm_one,us.id AS us_id FROM xk_choose Choose LEFT JOIN xk_project Project ON Choose.project_id = Project.id LEFT JOIN xk_kppc Kppc ON Choose.batch_id = Kppc.id LEFT JOIN xk_roomlist rm1 ON rm1.cstid = Choose.id LEFT JOIN xk_roomlist  rm2 ON rm2.id = Choose.room LEFT JOIN xk_user us ON us.name = Choose.ywy WHERE ( Choose.project_id = 2  ) AND ( Choose.batch_id = 2  ) ORDER BY Choose.project_id desc,Choose.batch_id desc,Choose.status desc,Choose.id ASC LIMIT 0,10   [ RunTime:0.0059s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.003359s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.006308s ]
+NOTIC: [8] Undefined variable: log_noread_count D:\project\yun_xk\Application\Runtime\Cache\Account\eb3304742debcadc0d6a1071877daec4.php 第 270 行.
+NOTIC: [8] Undefined offset: 4 D:\project\yun_xk\Application\Common\Common\functions.php 第 117 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:1.221169s ]
+INFO: [ view_parse ] --END-- [ RunTime:1.224982s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002546s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.006542s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003124s ]
+INFO: [ app_end ] --END-- [ RunTime:0.006271s ]
+
+[ 2018-01-26T09:19:07+08:00 ] 127.0.0.1 /Account/ChooseUser/export.html?project_id=2&batch_id=2
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000478s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003730s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003554s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.006516s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0089s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0055s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0072s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0088s ]
+SQL: SELECT * FROM `xk_project` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.0078s ]
+SQL: SELECT * FROM `xk_kppc` WHERE `id` = 2 ORDER BY id DESC LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0067s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0064s ]
+SQL: SELECT `id` FROM `xk_project`  [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.0075s ]
+SQL: SELECT `id` FROM `xk_kppc`  [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0054s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0057s ]
+SQL: SELECT `id` FROM `xk_project`  [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.0055s ]
+SQL: SELECT `id` FROM `xk_kppc`  [ RunTime:0.0009s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002513s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005166s ]
+
+[ 2018-01-26T09:39:52+08:00 ] 127.0.0.1 /Account/Jcsjpcset/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000558s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005390s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003623s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.006941s ]
+
+[ 2018-01-26T09:40:10+08:00 ] 127.0.0.1 /account/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000482s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003769s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002384s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005702s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0147s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0115s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0087s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0013s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.002182s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.005043s ]
+NOTIC: [8] Undefined variable: log_noread_count D:\project\yun_xk\Application\Runtime\Cache\Account\35420556f4867021384eed9b5f9f21f3.php 第 270 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.587872s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.591674s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002124s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004949s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002296s ]
+INFO: [ app_end ] --END-- [ RunTime:0.004973s ]
+
+[ 2018-01-26T09:40:15+08:00 ] 127.0.0.1 /Account/Jcsjpcset/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000486s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004174s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003893s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.007181s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0237s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0134s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0124s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0114s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0090s ]
+SQL: SELECT `id` FROM `xk_project`  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.0096s ]
+SQL: SELECT `id` FROM `xk_kppc`  [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0076s ]
+SQL: SHOW COLUMNS FROM `xk_company` [ RunTime:0.0117s ]
+SQL: SELECT Project.id AS id,Project.name AS name,Project.cp_id AS cp_id,Project.address AS address,Project.mobile AS mobile,Project.projfzr AS projfzr,Project.createdate AS createdate,Project.status AS status,Project.wx_avatar AS wx_avatar,Project.poster_path AS poster_path,Project.app_id AS app_id,Project.app_secret AS app_secret,Project.mch_id AS mch_id,Project.api_password AS api_password,Project.wishing AS wishing,Project.act_name AS act_name,Project.remark AS remark,Project.public_key AS public_key,Project.private_key AS private_key,Project.rootca AS rootca,Company.id AS company_id,Company.name AS company_name FROM xk_project Project LEFT JOIN xk_company Company ON Project.cp_id = Company.id WHERE Project.id IN ('1','2','3') ORDER BY Company.id DESC,Project.id DESC LIMIT 50   [ RunTime:0.0130s ]
+SQL: SELECT a.*,b.name as compname FROM xk_project a left join xk_company b on a.cp_id=b.id where a.status=1 and a.id= 3 and 1=1 order by b.id asc,a.id asc [ RunTime:0.0012s ]
+SQL: SELECT a.*,case when is_yx=1 then '开启' else '关闭' end as zt,a.plan  FROM xk_kppc a where a.proj_id=3  order by is_yx desc,a.id asc [ RunTime:0.0009s ]
+SQL: SELECT a.*  FROM xk_build a where a.proj_id=3 and 3=3 order by a.proj_id asc,a.pc_id asc,a.id asc [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.003411s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.006202s ]
+NOTIC: [8] Undefined variable: log_noread_count D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 270 行.
+NOTIC: [8] Undefined offset: 0 D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 891 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 925 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 929 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 934 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 948 行.
+NOTIC: [8] Undefined variable: bldinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 983 行.
+NOTIC: [8] Undefined variable: bldinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 987 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 992 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.881939s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.884621s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002087s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004744s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002673s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005778s ]
+
+[ 2018-01-26T09:42:57+08:00 ] 127.0.0.1 /Account/Jcsjpcset/editkppc.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000509s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004493s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003054s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005201s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0103s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0075s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0225s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0011s ]
+SQL: SELECT a.id,a.proj_id,a.name,a.is_dq,a.is_yx,a.roomscount,a.ledurl,FROM_UNIXTIME( kptime,'%Y-%m-%d') as kptime,b.name as projname FROM xk_kppc a left join xk_project b on a.proj_id=b.id where a.id = 3 and 889=889  [ RunTime:0.0019s ]
+
+[ 2018-01-26T09:46:24+08:00 ] 127.0.0.1 /Account/Jcsjpcset/getbldlist.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000764s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005802s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002087s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004728s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0130s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0093s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0091s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0011s ]
+SQL: SELECT a.* FROM xk_build a WHERE a.pc_id=0 and a.proj_id= 3  ORDER BY  a.buildcode,a.id [ RunTime:0.0014s ]
+
+[ 2018-01-26T09:46:25+08:00 ] 127.0.0.1 /Account/Jcsjpcset/getbldlist.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000482s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004286s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002392s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004500s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0110s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0087s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0179s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0012s ]
+SQL: SELECT a.* FROM xk_build a WHERE a.pc_id=3 and a.proj_id= 3  ORDER BY  a.buildcode,a.id [ RunTime:0.0011s ]
+
+[ 2018-01-26T09:46:27+08:00 ] 127.0.0.1 /Account/Jcsjpcset/getbldlist.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000613s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005815s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002089s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004563s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0098s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0074s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0010s ]
+SQL: SELECT a.* FROM xk_build a WHERE a.pc_id=0 and a.proj_id= 3  ORDER BY  a.buildcode,a.id [ RunTime:0.0009s ]
+
+[ 2018-01-26T09:46:28+08:00 ] 127.0.0.1 /Account/Jcsjpcset/getbldlist.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000490s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005676s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002156s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004440s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0265s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0073s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0135s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0013s ]
+SQL: SELECT a.* FROM xk_build a WHERE a.pc_id=3 and a.proj_id= 3  ORDER BY  a.buildcode,a.id [ RunTime:0.0010s ]
+
+[ 2018-01-26T09:46:28+08:00 ] 127.0.0.1 /Account/Jcsjpcset/getbldlist.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000487s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005008s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002377s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004611s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0070s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0073s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0087s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0014s ]
+SQL: SELECT a.* FROM xk_build a WHERE a.pc_id=0 and a.proj_id= 3  ORDER BY  a.buildcode,a.id [ RunTime:0.0008s ]
+
+[ 2018-01-26T09:46:29+08:00 ] 127.0.0.1 /Account/Jcsjpcset/getbldlist.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000963s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004819s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002129s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004299s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0109s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0075s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0091s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0011s ]
+SQL: SELECT a.* FROM xk_build a WHERE a.pc_id=3 and a.proj_id= 3  ORDER BY  a.buildcode,a.id [ RunTime:0.0010s ]
+
+[ 2018-01-26T09:46:54+08:00 ] 127.0.0.1 /Account/Jcsjpcset/getbldlist.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000512s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004193s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003124s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005310s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0105s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0070s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0236s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0011s ]
+SQL: SELECT a.* FROM xk_build a WHERE a.pc_id=0 and a.proj_id= 3  ORDER BY  a.buildcode,a.id [ RunTime:0.0008s ]
+
+[ 2018-01-26T09:52:42+08:00 ] 127.0.0.1 /Account/Jcsjpcset/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000552s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004216s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003013s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.006574s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0884s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0021s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0232s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0033s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0342s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0028s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0508s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0267s ]
+SQL: SELECT `id` FROM `xk_project`  [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.0213s ]
+SQL: SELECT `id` FROM `xk_kppc`  [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0407s ]
+SQL: SHOW COLUMNS FROM `xk_company` [ RunTime:0.0148s ]
+SQL: SELECT Project.id AS id,Project.name AS name,Project.cp_id AS cp_id,Project.address AS address,Project.mobile AS mobile,Project.projfzr AS projfzr,Project.createdate AS createdate,Project.status AS status,Project.wx_avatar AS wx_avatar,Project.poster_path AS poster_path,Project.app_id AS app_id,Project.app_secret AS app_secret,Project.mch_id AS mch_id,Project.api_password AS api_password,Project.wishing AS wishing,Project.act_name AS act_name,Project.remark AS remark,Project.public_key AS public_key,Project.private_key AS private_key,Project.rootca AS rootca,Company.id AS company_id,Company.name AS company_name FROM xk_project Project LEFT JOIN xk_company Company ON Project.cp_id = Company.id WHERE Project.id IN ('1','2','3') ORDER BY Company.id DESC,Project.id DESC LIMIT 50   [ RunTime:0.0210s ]
+SQL: SELECT a.*,b.name as compname FROM xk_project a left join xk_company b on a.cp_id=b.id where a.status=1 and a.id= 3 and 1=1 order by b.id asc,a.id asc [ RunTime:0.0012s ]
+SQL: SELECT a.*,case when is_yx=1 then '开启' else '关闭' end as zt,a.plan  FROM xk_kppc a where a.proj_id=3  order by is_yx desc,a.id asc [ RunTime:0.0010s ]
+SQL: SELECT a.*  FROM xk_build a where a.proj_id=3 and 3=3 order by a.proj_id asc,a.pc_id asc,a.id asc [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.007842s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.012989s ]
+NOTIC: [8] Undefined variable: log_noread_count D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 270 行.
+NOTIC: [8] Undefined offset: 0 D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 892 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 926 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 930 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 935 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 949 行.
+NOTIC: [8] Undefined variable: bldinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 984 行.
+NOTIC: [8] Undefined variable: bldinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 988 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 993 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:1.682225s ]
+INFO: [ view_parse ] --END-- [ RunTime:1.685052s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002475s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.005861s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.007290s ]
+INFO: [ app_end ] --END-- [ RunTime:0.010227s ]
+
+[ 2018-01-26T09:52:44+08:00 ] 127.0.0.1 /Account/Jcsjpcset/editkppc.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000494s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003912s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002650s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005651s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0304s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0375s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0296s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0011s ]
+SQL: SELECT a.id,a.proj_id,a.name,a.is_dq,a.is_yx,a.roomscount,a.ledurl,FROM_UNIXTIME( kptime,'%Y-%m-%d') as kptime,b.name as projname FROM xk_kppc a left join xk_project b on a.proj_id=b.id where a.id = 3 and 889=889  [ RunTime:0.0015s ]
+
+[ 2018-01-26T09:52:48+08:00 ] 127.0.0.1 /Account/Jcsjpcset/editkppc.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000525s ]
+INFO: [ app_init ] --END-- [ RunTime:0.010051s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002476s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004674s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0232s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0078s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0121s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0014s ]
+SQL: SELECT a.id,a.proj_id,a.name,a.is_dq,a.is_yx,a.roomscount,a.ledurl,FROM_UNIXTIME( kptime,'%Y-%m-%d') as kptime,b.name as projname FROM xk_kppc a left join xk_project b on a.proj_id=b.id where a.id = 3 and 889=889  [ RunTime:0.0010s ]
+
+[ 2018-01-26T09:53:09+08:00 ] 127.0.0.1 /Account/Jcsjpcset/editkppc.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000491s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004345s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002630s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004743s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0099s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0072s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0087s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0012s ]
+SQL: SELECT a.id,a.proj_id,a.name,a.is_dq,a.is_yx,a.roomscount,a.ledurl,FROM_UNIXTIME( kptime,'%Y-%m-%d') as kptime,b.name as projname FROM xk_kppc a left join xk_project b on a.proj_id=b.id where a.id = 3 and 889=889  [ RunTime:0.0010s ]
+
+[ 2018-01-26T09:53:17+08:00 ] 127.0.0.1 /Account/Jcsjpcset/savekppc.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000482s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003842s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002016s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004253s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0099s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0067s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0083s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0010s ]
+
+[ 2018-01-26T09:53:29+08:00 ] 127.0.0.1 /Account/Jcsjpcset/editkppc.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000482s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003875s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002411s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004514s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0142s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0081s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0094s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0012s ]
+SQL: SELECT a.id,a.proj_id,a.name,a.is_dq,a.is_yx,a.roomscount,a.ledurl,FROM_UNIXTIME( kptime,'%Y-%m-%d') as kptime,b.name as projname FROM xk_kppc a left join xk_project b on a.proj_id=b.id where a.id = 3 and 889=889  [ RunTime:0.0011s ]
+
+[ 2018-01-26T09:53:33+08:00 ] 127.0.0.1 /Account/Jcsjpcset/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000650s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004547s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.008971s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.012028s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0224s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0210s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0101s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0171s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0185s ]
+SQL: SELECT `id` FROM `xk_project`  [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.0166s ]
+SQL: SELECT `id` FROM `xk_kppc`  [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0081s ]
+SQL: SHOW COLUMNS FROM `xk_company` [ RunTime:0.0189s ]
+SQL: SELECT Project.id AS id,Project.name AS name,Project.cp_id AS cp_id,Project.address AS address,Project.mobile AS mobile,Project.projfzr AS projfzr,Project.createdate AS createdate,Project.status AS status,Project.wx_avatar AS wx_avatar,Project.poster_path AS poster_path,Project.app_id AS app_id,Project.app_secret AS app_secret,Project.mch_id AS mch_id,Project.api_password AS api_password,Project.wishing AS wishing,Project.act_name AS act_name,Project.remark AS remark,Project.public_key AS public_key,Project.private_key AS private_key,Project.rootca AS rootca,Company.id AS company_id,Company.name AS company_name FROM xk_project Project LEFT JOIN xk_company Company ON Project.cp_id = Company.id WHERE Project.id IN ('1','2','3') ORDER BY Company.id DESC,Project.id DESC LIMIT 50   [ RunTime:0.0163s ]
+SQL: SELECT a.*,b.name as compname FROM xk_project a left join xk_company b on a.cp_id=b.id where a.status=1 and a.id= 3 and 1=1 order by b.id asc,a.id asc [ RunTime:0.0011s ]
+SQL: SELECT a.*,case when is_yx=1 then '开启' else '关闭' end as zt,a.plan  FROM xk_kppc a where a.proj_id=3  order by is_yx desc,a.id asc [ RunTime:0.0009s ]
+SQL: SELECT a.*  FROM xk_build a where a.proj_id=3 and 3=3 order by a.proj_id asc,a.pc_id asc,a.id asc [ RunTime:0.0008s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.003838s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.006703s ]
+NOTIC: [8] Undefined variable: log_noread_count D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 270 行.
+NOTIC: [8] Undefined offset: 0 D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 892 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 926 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 930 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 935 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 949 行.
+NOTIC: [8] Undefined variable: bldinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 984 行.
+NOTIC: [8] Undefined variable: bldinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 988 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 993 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.957874s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.960638s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.009320s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.012935s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.004099s ]
+INFO: [ app_end ] --END-- [ RunTime:0.007839s ]
+
+[ 2018-01-26T09:55:11+08:00 ] 127.0.0.1 /Account/Jcsjpcset/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000486s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004240s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.014322s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.017376s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0604s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0687s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0122s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0107s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0166s ]
+SQL: SELECT `id` FROM `xk_project`  [ RunTime:0.0033s ]
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.0229s ]
+SQL: SELECT `id` FROM `xk_kppc`  [ RunTime:0.0034s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0167s ]
+SQL: SHOW COLUMNS FROM `xk_company` [ RunTime:0.0243s ]
+SQL: SELECT Project.id AS id,Project.name AS name,Project.cp_id AS cp_id,Project.address AS address,Project.mobile AS mobile,Project.projfzr AS projfzr,Project.createdate AS createdate,Project.status AS status,Project.wx_avatar AS wx_avatar,Project.poster_path AS poster_path,Project.app_id AS app_id,Project.app_secret AS app_secret,Project.mch_id AS mch_id,Project.api_password AS api_password,Project.wishing AS wishing,Project.act_name AS act_name,Project.remark AS remark,Project.public_key AS public_key,Project.private_key AS private_key,Project.rootca AS rootca,Company.id AS company_id,Company.name AS company_name FROM xk_project Project LEFT JOIN xk_company Company ON Project.cp_id = Company.id WHERE Project.id IN ('1','2','3') ORDER BY Company.id DESC,Project.id DESC LIMIT 50   [ RunTime:0.0236s ]
+SQL: SELECT a.*,b.name as compname FROM xk_project a left join xk_company b on a.cp_id=b.id where a.status=1 and a.id= 3 and 1=1 order by b.id asc,a.id asc [ RunTime:0.0039s ]
+SQL: SELECT a.*,case when is_yx=1 then '开启' else '关闭' end as zt,a.plan  FROM xk_kppc a where a.proj_id=3  order by is_yx desc,a.id asc [ RunTime:0.0015s ]
+SQL: SELECT a.*  FROM xk_build a where a.proj_id=3 and 3=3 order by a.proj_id asc,a.pc_id asc,a.id asc [ RunTime:0.0039s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.003979s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.007110s ]
+NOTIC: [8] Undefined variable: log_noread_count D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 270 行.
+NOTIC: [8] Undefined offset: 0 D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 892 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 926 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 930 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 935 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 949 行.
+NOTIC: [8] Undefined variable: bldinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 984 行.
+NOTIC: [8] Undefined variable: bldinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 988 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 993 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.966768s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.969892s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.003340s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.006945s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002902s ]
+INFO: [ app_end ] --END-- [ RunTime:0.007156s ]
+
+[ 2018-01-26T09:55:13+08:00 ] 127.0.0.1 /Account/Jcsjpcset/editkppc.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000656s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004905s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002174s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005588s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0189s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0341s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0938s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0015s ]
+SQL: SELECT a.id,a.proj_id,a.name,a.is_dq,a.is_yx,a.roomscount,a.ledurl,FROM_UNIXTIME( kptime,'%Y-%m-%d') as kptime,b.name as projname FROM xk_kppc a left join xk_project b on a.proj_id=b.id where a.id = 3 and 889=889  [ RunTime:0.0010s ]
+
+[ 2018-01-26T09:55:21+08:00 ] 127.0.0.1 /Account/Jcsjpcset/savekppc.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001242s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005613s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002777s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005554s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0120s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0084s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0098s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0010s ]
+
+[ 2018-01-26T09:56:06+08:00 ] 127.0.0.1 /Account/Jcsjpcset/savekppc.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000481s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003748s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002101s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004173s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0254s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0102s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0082s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0011s ]
+
+[ 2018-01-26T09:56:09+08:00 ] 127.0.0.1 /Account/Jcsjpcset/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000487s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004169s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002744s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005623s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0144s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0082s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0089s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0150s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0102s ]
+SQL: SELECT `id` FROM `xk_project`  [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.0125s ]
+SQL: SELECT `id` FROM `xk_kppc`  [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0073s ]
+SQL: SHOW COLUMNS FROM `xk_company` [ RunTime:0.0105s ]
+SQL: SELECT Project.id AS id,Project.name AS name,Project.cp_id AS cp_id,Project.address AS address,Project.mobile AS mobile,Project.projfzr AS projfzr,Project.createdate AS createdate,Project.status AS status,Project.wx_avatar AS wx_avatar,Project.poster_path AS poster_path,Project.app_id AS app_id,Project.app_secret AS app_secret,Project.mch_id AS mch_id,Project.api_password AS api_password,Project.wishing AS wishing,Project.act_name AS act_name,Project.remark AS remark,Project.public_key AS public_key,Project.private_key AS private_key,Project.rootca AS rootca,Company.id AS company_id,Company.name AS company_name FROM xk_project Project LEFT JOIN xk_company Company ON Project.cp_id = Company.id WHERE Project.id IN ('1','2','3') ORDER BY Company.id DESC,Project.id DESC LIMIT 50   [ RunTime:0.0118s ]
+SQL: SELECT a.*,b.name as compname FROM xk_project a left join xk_company b on a.cp_id=b.id where a.status=1 and a.id= 3 and 1=1 order by b.id asc,a.id asc [ RunTime:0.0013s ]
+SQL: SELECT a.*,case when is_yx=1 then '开启' else '关闭' end as zt,a.plan  FROM xk_kppc a where a.proj_id=3  order by is_yx desc,a.id asc [ RunTime:0.0013s ]
+SQL: SELECT a.*  FROM xk_build a where a.proj_id=3 and 3=3 order by a.proj_id asc,a.pc_id asc,a.id asc [ RunTime:0.0009s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.007480s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.010312s ]
+NOTIC: [8] Undefined variable: log_noread_count D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 270 行.
+NOTIC: [8] Undefined offset: 0 D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 892 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 926 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 930 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 935 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 949 行.
+NOTIC: [8] Undefined variable: bldinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 984 行.
+NOTIC: [8] Undefined variable: bldinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 988 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 993 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.897958s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.900643s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002244s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.005198s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002830s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005924s ]
+
+[ 2018-01-26T09:56:11+08:00 ] 127.0.0.1 /Account/Jcsjpcset/editkppc.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000489s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004019s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002673s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004773s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0258s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0128s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0117s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0011s ]
+SQL: SELECT a.id,a.proj_id,a.name,a.is_dq,a.is_yx,a.roomscount,a.ledurl,FROM_UNIXTIME( kptime,'%Y-%m-%d') as kptime,b.name as projname FROM xk_kppc a left join xk_project b on a.proj_id=b.id where a.id = 3 and 889=889  [ RunTime:0.0010s ]
+
+[ 2018-01-26T09:56:14+08:00 ] 127.0.0.1 /Account/Jcsjpcset/savekppc.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000496s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003793s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002096s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004180s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0101s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0077s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0088s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0010s ]
+
+[ 2018-01-26T09:57:47+08:00 ] 127.0.0.1 /Account/Jcsjpcset/savekppc.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000482s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004152s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002103s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005071s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0098s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0073s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0181s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0010s ]
+
+[ 2018-01-26T09:58:58+08:00 ] 127.0.0.1 /Account/Jcsjpcset/savekppc.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000482s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003853s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002094s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004277s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0103s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0075s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0084s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0011s ]
+
+[ 2018-01-26T10:00:49+08:00 ] 127.0.0.1 /Account/Jcsjpcset/savekppc.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000520s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005028s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002111s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.006425s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0173s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0156s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0169s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0011s ]
+
+[ 2018-01-26T10:01:14+08:00 ] 127.0.0.1 /Account/Jcsjpcset/savekppc.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000491s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004334s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002180s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004272s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0321s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0153s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0296s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0016s ]
+
+[ 2018-01-26T10:01:32+08:00 ] 127.0.0.1 /Account/Jcsjpcset/savekppc.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000755s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004123s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001945s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004108s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0110s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0075s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0207s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0011s ]
+
+[ 2018-01-26T10:02:13+08:00 ] 127.0.0.1 /Account/Jcsjpcset/savekppc.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000475s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003744s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001968s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004071s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0263s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0071s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0083s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0011s ]
+
+[ 2018-01-26T10:02:23+08:00 ] 127.0.0.1 /Account/Jcsjpcset/savekppc.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000594s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004165s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002270s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004435s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0139s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0117s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0138s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0011s ]
+
+[ 2018-01-26T10:02:40+08:00 ] 127.0.0.1 /Account/Jcsjpcset/savekppc.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000473s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003782s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001934s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003988s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0096s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0075s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0086s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.0084s ]
+SQL: UPDATE `xk_kppc` SET `is_dq`='0' WHERE ( proj_id=3 ) [ RunTime:0.0334s ]
+SQL: UPDATE `xk_kppc` SET `proj_id`='3',`name`='一批次1',`kptime`='-28800',`is_yx`='1',`is_dq`='1' WHERE ( id=3 ) [ RunTime:0.0015s ]
+
+[ 2018-01-26T10:02:42+08:00 ] 127.0.0.1 /Account/Jcsjpcset/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000493s ]
+INFO: [ app_init ] --END-- [ RunTime:0.009247s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003137s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.011545s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0110s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0078s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0125s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0083s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0096s ]
+SQL: SELECT `id` FROM `xk_project`  [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.0077s ]
+SQL: SELECT `id` FROM `xk_kppc`  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0372s ]
+SQL: SHOW COLUMNS FROM `xk_company` [ RunTime:0.0094s ]
+SQL: SELECT Project.id AS id,Project.name AS name,Project.cp_id AS cp_id,Project.address AS address,Project.mobile AS mobile,Project.projfzr AS projfzr,Project.createdate AS createdate,Project.status AS status,Project.wx_avatar AS wx_avatar,Project.poster_path AS poster_path,Project.app_id AS app_id,Project.app_secret AS app_secret,Project.mch_id AS mch_id,Project.api_password AS api_password,Project.wishing AS wishing,Project.act_name AS act_name,Project.remark AS remark,Project.public_key AS public_key,Project.private_key AS private_key,Project.rootca AS rootca,Company.id AS company_id,Company.name AS company_name FROM xk_project Project LEFT JOIN xk_company Company ON Project.cp_id = Company.id WHERE Project.id IN ('1','2','3') ORDER BY Company.id DESC,Project.id DESC LIMIT 50   [ RunTime:0.0270s ]
+SQL: SELECT a.*,b.name as compname FROM xk_project a left join xk_company b on a.cp_id=b.id where a.status=1 and a.id= 3 and 1=1 order by b.id asc,a.id asc [ RunTime:0.0010s ]
+SQL: SELECT a.*,case when is_yx=1 then '开启' else '关闭' end as zt,a.plan  FROM xk_kppc a where a.proj_id=3  order by is_yx desc,a.id asc [ RunTime:0.0009s ]
+SQL: SELECT a.*  FROM xk_build a where a.proj_id=3 and 3=3 order by a.proj_id asc,a.pc_id asc,a.id asc [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.003373s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.008669s ]
+NOTIC: [8] Undefined variable: log_noread_count D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 270 行.
+NOTIC: [8] Undefined offset: 0 D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 892 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 926 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 930 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 935 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 949 行.
+NOTIC: [8] Undefined variable: bldinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 984 行.
+NOTIC: [8] Undefined variable: bldinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 988 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 993 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:1.007902s ]
+INFO: [ view_parse ] --END-- [ RunTime:1.010586s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002263s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.005101s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.053376s ]
+INFO: [ app_end ] --END-- [ RunTime:0.061694s ]
+
+[ 2018-01-26T10:02:45+08:00 ] 127.0.0.1 /Account/Jcsjpcset/editkppc.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000479s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003989s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001956s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004047s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0093s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0084s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0099s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0011s ]
+SQL: SELECT a.id,a.proj_id,a.name,a.is_dq,a.is_yx,a.roomscount,a.ledurl,FROM_UNIXTIME( kptime,'%Y-%m-%d') as kptime,b.name as projname FROM xk_kppc a left join xk_project b on a.proj_id=b.id where a.id = 3 and 889=889  [ RunTime:0.0009s ]
+
+[ 2018-01-26T10:02:52+08:00 ] 127.0.0.1 /Account/Jcsjpcset/savekppc.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000476s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003833s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002372s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004472s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0368s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0385s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0095s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0018s ]
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.0178s ]
+SQL: UPDATE `xk_kppc` SET `is_dq`='0' WHERE ( proj_id=3 ) [ RunTime:0.0010s ]
+SQL: UPDATE `xk_kppc` SET `proj_id`='3',`name`='一批次',`kptime`='0',`is_yx`='1',`is_dq`='1' WHERE ( id=3 ) [ RunTime:0.0022s ]
+
+[ 2018-01-26T10:02:54+08:00 ] 127.0.0.1 /Account/Jcsjpcset/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000659s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005853s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.024242s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.026918s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0148s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0070s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0088s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0124s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0117s ]
+SQL: SELECT `id` FROM `xk_project`  [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.0168s ]
+SQL: SELECT `id` FROM `xk_kppc`  [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0177s ]
+SQL: SHOW COLUMNS FROM `xk_company` [ RunTime:0.0170s ]
+SQL: SELECT Project.id AS id,Project.name AS name,Project.cp_id AS cp_id,Project.address AS address,Project.mobile AS mobile,Project.projfzr AS projfzr,Project.createdate AS createdate,Project.status AS status,Project.wx_avatar AS wx_avatar,Project.poster_path AS poster_path,Project.app_id AS app_id,Project.app_secret AS app_secret,Project.mch_id AS mch_id,Project.api_password AS api_password,Project.wishing AS wishing,Project.act_name AS act_name,Project.remark AS remark,Project.public_key AS public_key,Project.private_key AS private_key,Project.rootca AS rootca,Company.id AS company_id,Company.name AS company_name FROM xk_project Project LEFT JOIN xk_company Company ON Project.cp_id = Company.id WHERE Project.id IN ('1','2','3') ORDER BY Company.id DESC,Project.id DESC LIMIT 50   [ RunTime:0.0148s ]
+SQL: SELECT a.*,b.name as compname FROM xk_project a left join xk_company b on a.cp_id=b.id where a.status=1 and a.id= 3 and 1=1 order by b.id asc,a.id asc [ RunTime:0.0010s ]
+SQL: SELECT a.*,case when is_yx=1 then '开启' else '关闭' end as zt,a.plan  FROM xk_kppc a where a.proj_id=3  order by is_yx desc,a.id asc [ RunTime:0.0011s ]
+SQL: SELECT a.*  FROM xk_build a where a.proj_id=3 and 3=3 order by a.proj_id asc,a.pc_id asc,a.id asc [ RunTime:0.0009s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.003798s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.008101s ]
+NOTIC: [8] Undefined variable: log_noread_count D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 270 行.
+NOTIC: [8] Undefined offset: 0 D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 892 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 926 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 930 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 935 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 949 行.
+NOTIC: [8] Undefined variable: bldinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 984 行.
+NOTIC: [8] Undefined variable: bldinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 988 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 993 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:1.098492s ]
+INFO: [ view_parse ] --END-- [ RunTime:1.101390s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002296s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.005010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002633s ]
+INFO: [ app_end ] --END-- [ RunTime:0.006184s ]
+
+[ 2018-01-26T10:02:55+08:00 ] 127.0.0.1 /Account/Jcsjpcset/editkppc.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000483s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004049s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001983s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004773s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0121s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0085s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0092s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0012s ]
+SQL: SELECT a.id,a.proj_id,a.name,a.is_dq,a.is_yx,a.roomscount,a.ledurl,FROM_UNIXTIME( kptime,'%Y-%m-%d') as kptime,b.name as projname FROM xk_kppc a left join xk_project b on a.proj_id=b.id where a.id = 3 and 889=889  [ RunTime:0.0009s ]
+
+[ 2018-01-26T10:03:32+08:00 ] 127.0.0.1 /Account/Jcsjpcset/savekppc.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000500s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004277s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002693s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004876s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0272s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0075s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0099s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0011s ]
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given D:\project\yun_xk\ThinkPHP\Library\Think\Upload.class.php 第 170 行.
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.0134s ]
+SQL: UPDATE `xk_kppc` SET `is_dq`='0' WHERE ( proj_id=3 ) [ RunTime:0.0014s ]
+SQL: UPDATE `xk_kppc` SET `plan`='/Uploads/img/jcsjpcset/2018-01-26/1516932212.jpg',`proj_id`='3',`name`='一批次',`kptime`='-28800',`is_yx`='1',`is_dq`='1' WHERE ( id=3 ) [ RunTime:0.0020s ]
+
+[ 2018-01-26T10:03:34+08:00 ] 127.0.0.1 /Account/Jcsjpcset/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000481s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003874s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.004211s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.009187s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0086s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0071s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0142s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0105s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0099s ]
+SQL: SELECT `id` FROM `xk_project`  [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.0217s ]
+SQL: SELECT `id` FROM `xk_kppc`  [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0085s ]
+SQL: SHOW COLUMNS FROM `xk_company` [ RunTime:0.0181s ]
+SQL: SELECT Project.id AS id,Project.name AS name,Project.cp_id AS cp_id,Project.address AS address,Project.mobile AS mobile,Project.projfzr AS projfzr,Project.createdate AS createdate,Project.status AS status,Project.wx_avatar AS wx_avatar,Project.poster_path AS poster_path,Project.app_id AS app_id,Project.app_secret AS app_secret,Project.mch_id AS mch_id,Project.api_password AS api_password,Project.wishing AS wishing,Project.act_name AS act_name,Project.remark AS remark,Project.public_key AS public_key,Project.private_key AS private_key,Project.rootca AS rootca,Company.id AS company_id,Company.name AS company_name FROM xk_project Project LEFT JOIN xk_company Company ON Project.cp_id = Company.id WHERE Project.id IN ('1','2','3') ORDER BY Company.id DESC,Project.id DESC LIMIT 50   [ RunTime:0.0155s ]
+SQL: SELECT a.*,b.name as compname FROM xk_project a left join xk_company b on a.cp_id=b.id where a.status=1 and a.id= 3 and 1=1 order by b.id asc,a.id asc [ RunTime:0.0012s ]
+SQL: SELECT a.*,case when is_yx=1 then '开启' else '关闭' end as zt,a.plan  FROM xk_kppc a where a.proj_id=3  order by is_yx desc,a.id asc [ RunTime:0.0011s ]
+SQL: SELECT a.*  FROM xk_build a where a.proj_id=3 and 3=3 order by a.proj_id asc,a.pc_id asc,a.id asc [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.003312s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.009536s ]
+NOTIC: [8] Undefined variable: log_noread_count D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 270 行.
+NOTIC: [8] Undefined offset: 0 D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 892 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 926 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 930 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 935 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 949 行.
+NOTIC: [8] Undefined variable: bldinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 984 行.
+NOTIC: [8] Undefined variable: bldinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 988 行.
+NOTIC: [8] Undefined variable: pcinfo D:\project\yun_xk\Application\Runtime\Cache\Account\6306909a6de538b575b534bec7db4e02.php 第 993 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.991438s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.994723s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.003481s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.008259s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003331s ]
+INFO: [ app_end ] --END-- [ RunTime:0.007182s ]
+
+[ 2018-01-26T10:03:39+08:00 ] 127.0.0.1 /Account/Jcsjpcset/editkppc.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000483s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004035s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002035s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004131s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0073s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0085s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0010s ]
+SQL: SELECT a.id,a.proj_id,a.name,a.is_dq,a.is_yx,a.roomscount,a.ledurl,FROM_UNIXTIME( kptime,'%Y-%m-%d') as kptime,b.name as projname FROM xk_kppc a left join xk_project b on a.proj_id=b.id where a.id = 3 and 889=889  [ RunTime:0.0009s ]
+
+[ 2018-01-26T10:07:01+08:00 ] 127.0.0.1 /Account/Jcsjroom/room
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000497s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005251s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003034s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005937s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0120s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0077s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0084s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0094s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0101s ]
+SQL: SELECT `id` FROM `xk_project`  [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.0295s ]
+SQL: SELECT `id` FROM `xk_kppc`  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0102s ]
+SQL: SHOW COLUMNS FROM `xk_company` [ RunTime:0.0084s ]
+SQL: SELECT Project.id AS id,Project.name AS name,Project.cp_id AS cp_id,Project.address AS address,Project.mobile AS mobile,Project.projfzr AS projfzr,Project.createdate AS createdate,Project.status AS status,Project.wx_avatar AS wx_avatar,Project.poster_path AS poster_path,Project.app_id AS app_id,Project.app_secret AS app_secret,Project.mch_id AS mch_id,Project.api_password AS api_password,Project.wishing AS wishing,Project.act_name AS act_name,Project.remark AS remark,Project.public_key AS public_key,Project.private_key AS private_key,Project.rootca AS rootca,Company.id AS company_id,Company.name AS company_name FROM xk_project Project LEFT JOIN xk_company Company ON Project.cp_id = Company.id WHERE Project.id IN ('1','2','3') ORDER BY Company.id DESC,Project.id DESC LIMIT 50   [ RunTime:0.0122s ]
+SQL: SELECT a.*,b.name as compname FROM xk_project a left join xk_company b on a.cp_id=b.id where a.id=3 and 2=2 order by b.id asc,a.id asc [ RunTime:0.0010s ]
+SQL: SELECT a.* FROM xk_room a left join xk_build b on a.bld_id=b.id left join xk_project c on a.proj_id=c.id  where 66=66  and  a.proj_id=3 [ RunTime:0.0020s ]
+SQL: SELECT a.*,b.buildname,c.name as projname FROM xk_room a left join xk_build b on a.bld_id=b.id left join xk_project c on a.proj_id=c.id  where 66=66 and  a.proj_id=3  order by a.id asc limit 0,10 [ RunTime:0.0105s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.003118s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.007158s ]
+NOTIC: [8] Undefined variable: log_noread_count D:\project\yun_xk\Application\Runtime\Cache\Account\4862f1b01b593bbf1d71d93e04122c37.php 第 270 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.807619s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.810736s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002260s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004910s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002778s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005610s ]
+
+[ 2018-01-26T10:07:11+08:00 ] 127.0.0.1 /Account/Jcsjroom/exportfj/projid/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000478s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003816s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002365s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005040s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0103s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0077s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0095s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0096s ]
+SQL: SELECT * FROM `xk_project` WHERE `id` = 3 LIMIT 1   [ RunTime:0.0013s ]
+
+[ 2018-01-26T10:07:44+08:00 ] 127.0.0.1 /Account/Jcsjroom/exportcw/projid/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000865s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004720s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002421s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005726s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0098s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0019s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0088s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0084s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0129s ]
+SQL: SELECT * FROM `xk_project` WHERE `id` = 3 LIMIT 1   [ RunTime:0.0009s ]
+NOTIC: [2] Missing argument 4 for Account\Controller\JcsjroomController::exportExcel(), called in D:\project\yun_xk\Application\Account\Controller\JcsjroomController.class.php on line 322 and defined D:\project\yun_xk\Application\Account\Controller\JcsjroomController.class.php 第 338 行.
+NOTIC: [8] Undefined variable: pd D:\project\yun_xk\Application\Account\Controller\JcsjroomController.class.php 第 357 行.
+
+[ 2018-01-26T10:21:59+08:00 ] 127.0.0.1 /Account/Jcsjroom/room
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001120s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004966s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002424s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.006875s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0137s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0090s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0127s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0088s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0306s ]
+SQL: SELECT `id` FROM `xk_project`  [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.0117s ]
+SQL: SELECT `id` FROM `xk_kppc`  [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0088s ]
+SQL: SHOW COLUMNS FROM `xk_company` [ RunTime:0.0125s ]
+SQL: SELECT Project.id AS id,Project.name AS name,Project.cp_id AS cp_id,Project.address AS address,Project.mobile AS mobile,Project.projfzr AS projfzr,Project.createdate AS createdate,Project.status AS status,Project.wx_avatar AS wx_avatar,Project.poster_path AS poster_path,Project.app_id AS app_id,Project.app_secret AS app_secret,Project.mch_id AS mch_id,Project.api_password AS api_password,Project.wishing AS wishing,Project.act_name AS act_name,Project.remark AS remark,Project.public_key AS public_key,Project.private_key AS private_key,Project.rootca AS rootca,Company.id AS company_id,Company.name AS company_name FROM xk_project Project LEFT JOIN xk_company Company ON Project.cp_id = Company.id WHERE Project.id IN ('1','2','3') ORDER BY Company.id DESC,Project.id DESC LIMIT 50   [ RunTime:0.0129s ]
+SQL: SELECT a.*,b.name as compname FROM xk_project a left join xk_company b on a.cp_id=b.id where a.id=3 and 2=2 order by b.id asc,a.id asc [ RunTime:0.0013s ]
+SQL: SELECT a.* FROM xk_room a left join xk_build b on a.bld_id=b.id left join xk_project c on a.proj_id=c.id  where 66=66  and  a.proj_id=3 [ RunTime:0.0027s ]
+SQL: SELECT a.*,b.buildname,c.name as projname FROM xk_room a left join xk_build b on a.bld_id=b.id left join xk_project c on a.proj_id=c.id  where 66=66 and  a.proj_id=3  order by a.id asc limit 0,10 [ RunTime:0.0106s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.002880s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.005690s ]
+NOTIC: [8] Undefined variable: log_noread_count D:\project\yun_xk\Application\Runtime\Cache\Account\4862f1b01b593bbf1d71d93e04122c37.php 第 270 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.876780s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.879527s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002562s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.005927s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002960s ]
+INFO: [ app_end ] --END-- [ RunTime:0.006472s ]
+
+[ 2018-01-26T10:22:02+08:00 ] 127.0.0.1 /Account/Jcsjroom/room
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000489s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004213s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001987s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004654s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0238s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0082s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0089s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0091s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0091s ]
+SQL: SELECT `id` FROM `xk_project`  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.0093s ]
+SQL: SELECT `id` FROM `xk_kppc`  [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `xk_company` [ RunTime:0.0085s ]
+SQL: SELECT Project.id AS id,Project.name AS name,Project.cp_id AS cp_id,Project.address AS address,Project.mobile AS mobile,Project.projfzr AS projfzr,Project.createdate AS createdate,Project.status AS status,Project.wx_avatar AS wx_avatar,Project.poster_path AS poster_path,Project.app_id AS app_id,Project.app_secret AS app_secret,Project.mch_id AS mch_id,Project.api_password AS api_password,Project.wishing AS wishing,Project.act_name AS act_name,Project.remark AS remark,Project.public_key AS public_key,Project.private_key AS private_key,Project.rootca AS rootca,Company.id AS company_id,Company.name AS company_name FROM xk_project Project LEFT JOIN xk_company Company ON Project.cp_id = Company.id WHERE Project.id IN ('1','2','3') ORDER BY Company.id DESC,Project.id DESC LIMIT 50   [ RunTime:0.0121s ]
+SQL: SELECT a.*,b.name as compname FROM xk_project a left join xk_company b on a.cp_id=b.id where a.id=2 and 2=2 order by b.id asc,a.id asc [ RunTime:0.0010s ]
+SQL: SELECT a.* FROM xk_room a left join xk_build b on a.bld_id=b.id left join xk_project c on a.proj_id=c.id  where 66=66  and  a.proj_id=2 [ RunTime:0.0037s ]
+SQL: SELECT a.*,b.buildname,c.name as projname FROM xk_room a left join xk_build b on a.bld_id=b.id left join xk_project c on a.proj_id=c.id  where 66=66 and  a.proj_id=2  order by a.id asc limit 0,10 [ RunTime:0.0090s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.002840s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.005549s ]
+NOTIC: [8] Undefined variable: log_noread_count D:\project\yun_xk\Application\Runtime\Cache\Account\4862f1b01b593bbf1d71d93e04122c37.php 第 270 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:1.002261s ]
+INFO: [ view_parse ] --END-- [ RunTime:1.005167s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002078s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004761s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003750s ]
+INFO: [ app_end ] --END-- [ RunTime:0.006685s ]
+
+[ 2018-01-26T10:22:14+08:00 ] 127.0.0.1 /Account/Jcsjroom/exportfj/projid/2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000999s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004240s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002303s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005355s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0100s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0110s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0095s ]
+SQL: SELECT * FROM `xk_project` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0009s ]
+NOTIC: [8] Undefined variable: scill D:\project\yun_xk\Application\Common\Common\functions.php 第 565 行.
+
+[ 2018-01-26T10:22:22+08:00 ] 127.0.0.1 /Account/Jcsjroom/exportcw/projid/2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000520s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005796s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002518s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.006091s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0218s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0086s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0122s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0120s ]
+SQL: SELECT * FROM `xk_project` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0009s ]
+NOTIC: [8] Undefined variable: scill D:\project\yun_xk\Application\Common\Common\functions.php 第 565 行.
+NOTIC: [2] Missing argument 4 for Account\Controller\JcsjroomController::exportExcel(), called in D:\project\yun_xk\Application\Account\Controller\JcsjroomController.class.php on line 322 and defined D:\project\yun_xk\Application\Account\Controller\JcsjroomController.class.php 第 338 行.
+NOTIC: [8] Undefined variable: pd D:\project\yun_xk\Application\Account\Controller\JcsjroomController.class.php 第 357 行.
+
+[ 2018-01-26T10:24:34+08:00 ] 127.0.0.1 /Account/Jcsjroom/exportfj/projid/2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000484s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004724s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002997s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.007204s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0137s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0073s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0104s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0099s ]
+SQL: SELECT * FROM `xk_project` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0009s ]
+
+[ 2018-01-26T10:24:40+08:00 ] 127.0.0.1 /Account/Jcsjroom/exportcw/projid/2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000508s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004313s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002759s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.006124s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0135s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0126s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0122s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0111s ]
+SQL: SELECT * FROM `xk_project` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0012s ]
+NOTIC: [2] Missing argument 4 for Account\Controller\JcsjroomController::exportExcel(), called in D:\project\yun_xk\Application\Account\Controller\JcsjroomController.class.php on line 322 and defined D:\project\yun_xk\Application\Account\Controller\JcsjroomController.class.php 第 338 行.
+NOTIC: [8] Undefined variable: pd D:\project\yun_xk\Application\Account\Controller\JcsjroomController.class.php 第 357 行.
+
+[ 2018-01-26T10:28:36+08:00 ] 127.0.0.1 /Account/Jcsjroom/exportfj/projid/2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000505s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004229s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002354s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005224s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0202s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0090s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.1194s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0119s ]
+SQL: SELECT * FROM `xk_project` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0009s ]
+
+[ 2018-01-26T10:29:02+08:00 ] 127.0.0.1 /Account/Jcsjroom/upload.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000486s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004539s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002190s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004281s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0101s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0071s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0092s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0011s ]
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given D:\project\yun_xk\ThinkPHP\Library\Think\Upload.class.php 第 170 行.
+NOTIC: [8] Uninitialized string offset: 1 D:\project\yun_xk\Application\Common\Common\functions.php 第 117 行.
+NOTIC: [8] Undefined offset: 4 D:\project\yun_xk\Application\Common\Common\functions.php 第 117 行.
+
+[ 2018-01-26T10:32:05+08:00 ] 127.0.0.1 /Account/Jcsjroom/room
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000487s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004922s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002640s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005513s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0247s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0036s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0220s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0028s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0218s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0119s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0092s ]
+SQL: SELECT `id` FROM `xk_project`  [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `xk_kppc` [ RunTime:0.0129s ]
+SQL: SELECT `id` FROM `xk_kppc`  [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0092s ]
+SQL: SHOW COLUMNS FROM `xk_company` [ RunTime:0.0217s ]
+SQL: SELECT Project.id AS id,Project.name AS name,Project.cp_id AS cp_id,Project.address AS address,Project.mobile AS mobile,Project.projfzr AS projfzr,Project.createdate AS createdate,Project.status AS status,Project.wx_avatar AS wx_avatar,Project.poster_path AS poster_path,Project.app_id AS app_id,Project.app_secret AS app_secret,Project.mch_id AS mch_id,Project.api_password AS api_password,Project.wishing AS wishing,Project.act_name AS act_name,Project.remark AS remark,Project.public_key AS public_key,Project.private_key AS private_key,Project.rootca AS rootca,Company.id AS company_id,Company.name AS company_name FROM xk_project Project LEFT JOIN xk_company Company ON Project.cp_id = Company.id WHERE Project.id IN ('1','2','3') ORDER BY Company.id DESC,Project.id DESC LIMIT 50   [ RunTime:0.0236s ]
+SQL: SELECT a.*,b.name as compname FROM xk_project a left join xk_company b on a.cp_id=b.id where a.id=2 and 2=2 order by b.id asc,a.id asc [ RunTime:0.0010s ]
+SQL: SELECT a.* FROM xk_room a left join xk_build b on a.bld_id=b.id left join xk_project c on a.proj_id=c.id  where 66=66  and  a.proj_id=2 [ RunTime:0.0039s ]
+SQL: SELECT a.*,b.buildname,c.name as projname FROM xk_room a left join xk_build b on a.bld_id=b.id left join xk_project c on a.proj_id=c.id  where 66=66 and  a.proj_id=2  order by a.id asc limit 0,10 [ RunTime:0.0101s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.003704s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.006554s ]
+NOTIC: [8] Undefined variable: log_noread_count D:\project\yun_xk\Application\Runtime\Cache\Account\4862f1b01b593bbf1d71d93e04122c37.php 第 270 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:1.326828s ]
+INFO: [ view_parse ] --END-- [ RunTime:1.333484s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002394s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.005180s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003150s ]
+INFO: [ app_end ] --END-- [ RunTime:0.007300s ]
+
+[ 2018-01-26T10:32:15+08:00 ] 127.0.0.1 /Account/Jcsjroom/upload.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000581s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004035s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002227s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004855s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0223s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0070s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0011s ]
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given D:\project\yun_xk\ThinkPHP\Library\Think\Upload.class.php 第 170 行.
+NOTIC: [8] Uninitialized string offset: 1 D:\project\yun_xk\Application\Common\Common\functions.php 第 117 行.
+NOTIC: [8] Undefined offset: 4 D:\project\yun_xk\Application\Common\Common\functions.php 第 117 行.
+
+[ 2018-01-26T10:33:00+08:00 ] 127.0.0.1 /Account/Jcsjroom/upload.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000494s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003849s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002063s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004147s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0239s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0072s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0097s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0010s ]
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given D:\project\yun_xk\ThinkPHP\Library\Think\Upload.class.php 第 170 行.
+NOTIC: [8] Uninitialized string offset: 1 D:\project\yun_xk\Application\Common\Common\functions.php 第 117 行.
+NOTIC: [8] Undefined offset: 4 D:\project\yun_xk\Application\Common\Common\functions.php 第 117 行.
+
+[ 2018-01-26T10:34:09+08:00 ] 127.0.0.1 /Account/Jcsjroom/upload.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000490s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003721s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002088s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004219s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0099s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0073s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0092s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0010s ]
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given D:\project\yun_xk\ThinkPHP\Library\Think\Upload.class.php 第 170 行.
+
+[ 2018-01-26T10:34:20+08:00 ] 127.0.0.1 /Account/Jcsjroom/upload.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000527s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003852s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002213s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004339s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0103s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0090s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0092s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0011s ]
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given D:\project\yun_xk\ThinkPHP\Library\Think\Upload.class.php 第 170 行.
+NOTIC: [8] Uninitialized string offset: 1 D:\project\yun_xk\Application\Common\Common\functions.php 第 117 行.
+NOTIC: [8] Undefined offset: 4 D:\project\yun_xk\Application\Common\Common\functions.php 第 117 行.
+
+[ 2018-01-26T10:34:46+08:00 ] 127.0.0.1 /Account/Jcsjroom/upload.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000493s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004524s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001955s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004129s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0097s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0070s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0083s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0011s ]
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given D:\project\yun_xk\ThinkPHP\Library\Think\Upload.class.php 第 170 行.
+
+[ 2018-01-26T10:36:01+08:00 ] 127.0.0.1 /Account/Jcsjroom/upload.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000492s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004042s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002081s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004194s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0122s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0076s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0087s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0010s ]
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given D:\project\yun_xk\ThinkPHP\Library\Think\Upload.class.php 第 170 行.
+NOTIC: [8] Uninitialized string offset: 1 D:\project\yun_xk\Application\Common\Common\functions.php 第 117 行.
+NOTIC: [8] Undefined offset: 4 D:\project\yun_xk\Application\Common\Common\functions.php 第 117 行.
+
+[ 2018-01-26T10:36:41+08:00 ] 127.0.0.1 /Account/Jcsjroom/upload.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000494s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003972s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003111s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005409s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0172s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0034s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0124s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0142s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0016s ]
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given D:\project\yun_xk\ThinkPHP\Library\Think\Upload.class.php 第 170 行.
+
+[ 2018-01-26T10:40:12+08:00 ] 127.0.0.1 /Account/Jcsjroom/upload.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000480s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004429s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002821s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004967s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0188s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0090s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0134s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0011s ]
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given D:\project\yun_xk\ThinkPHP\Library\Think\Upload.class.php 第 170 行.
+NOTIC: [8] Uninitialized string offset: 1 D:\project\yun_xk\Application\Common\Common\functions.php 第 117 行.
+NOTIC: [8] Undefined offset: 4 D:\project\yun_xk\Application\Common\Common\functions.php 第 117 行.
+
+[ 2018-01-26T10:40:36+08:00 ] 127.0.0.1 /Account/Jcsjroom/upload.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000476s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003857s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002127s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004267s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0104s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0075s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0105s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0014s ]
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given D:\project\yun_xk\ThinkPHP\Library\Think\Upload.class.php 第 170 行.
+NOTIC: [8] Uninitialized string offset: 1 D:\project\yun_xk\Application\Common\Common\functions.php 第 117 行.
+NOTIC: [8] Undefined offset: 4 D:\project\yun_xk\Application\Common\Common\functions.php 第 117 行.
+
+[ 2018-01-26T10:41:16+08:00 ] 127.0.0.1 /Account/Jcsjroom/upload.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000522s ]
+INFO: [ app_init ] --END-- [ RunTime:0.040544s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.007102s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.009228s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0128s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0259s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0113s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0014s ]
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given D:\project\yun_xk\ThinkPHP\Library\Think\Upload.class.php 第 170 行.
+NOTIC: [8] Uninitialized string offset: 1 D:\project\yun_xk\Application\Common\Common\functions.php 第 117 行.
+NOTIC: [8] Undefined offset: 4 D:\project\yun_xk\Application\Common\Common\functions.php 第 117 行.
+
+[ 2018-01-26T10:43:18+08:00 ] 127.0.0.1 /Account/Jcsjroom/exportfj/projid/2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000508s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004529s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003035s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.006107s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0315s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0316s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0242s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0069s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0222s ]
+SQL: SELECT * FROM `xk_project` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0012s ]
+
+[ 2018-01-26T10:43:25+08:00 ] 127.0.0.1 /Account/Jcsjroom/exportcw/projid/2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000487s ]
+INFO: [ app_init ] --END-- [ RunTime:0.008908s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003520s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.010663s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0116s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0095s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0127s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0016s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0463s ]
+SQL: SELECT * FROM `xk_project` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0016s ]
+NOTIC: [2] Missing argument 4 for Account\Controller\JcsjroomController::exportExcel(), called in D:\project\yun_xk\Application\Account\Controller\JcsjroomController.class.php on line 322 and defined D:\project\yun_xk\Application\Account\Controller\JcsjroomController.class.php 第 338 行.
+NOTIC: [8] Undefined variable: pd D:\project\yun_xk\Application\Account\Controller\JcsjroomController.class.php 第 357 行.
+
+[ 2018-01-26T10:43:41+08:00 ] 127.0.0.1 /Account/Jcsjroom/upload.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000484s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004373s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002409s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004889s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0268s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0085s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0257s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0011s ]
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given D:\project\yun_xk\ThinkPHP\Library\Think\Upload.class.php 第 170 行.
+NOTIC: [8] Undefined offset: 4 D:\project\yun_xk\Application\Common\Common\functions.php 第 117 行.
+
+[ 2018-01-26T10:43:45+08:00 ] 127.0.0.1 /Account/Jcsjroom/upload.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.004921s ]
+INFO: [ app_init ] --END-- [ RunTime:0.011638s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002652s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004889s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0122s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0028s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0106s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0148s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0014s ]
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given D:\project\yun_xk\ThinkPHP\Library\Think\Upload.class.php 第 170 行.
+NOTIC: [8] Undefined offset: 4 D:\project\yun_xk\Application\Common\Common\functions.php 第 117 行.
+
+[ 2018-01-26T10:43:53+08:00 ] 127.0.0.1 /Account/Jcsjroom/upload.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000548s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003904s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002028s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004794s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0102s ]
+SQL: SELECT * FROM `xk_user` WHERE `id` = 1 AND (  9933=9933 ) ORDER BY id DESC LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0079s ]
+SQL: SELECT `is_all` FROM `xk_user` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_fun` [ RunTime:0.0096s ]
+SQL: SELECT * FROM `xk_fun` WHERE ( is_fun=1 ) ORDER BY px ASC  [ RunTime:0.0010s ]
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given D:\project\yun_xk\ThinkPHP\Library\Think\Upload.class.php 第 170 行.
+NOTIC: [8] Undefined offset: 4 D:\project\yun_xk\Application\Common\Common\functions.php 第 117 行.
+

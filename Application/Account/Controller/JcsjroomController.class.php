@@ -221,7 +221,7 @@ class JcsjroomController extends BaseController {
 		$headArr = array(
 			'title' => array(
 				array('项目标识', '_type' => true),
-				$project_id,
+                rsa_encode($project_id,getChoosekey()),
 				'房间模板',
 				array('项目名称', '_type' => true),
 				$project['name'],
@@ -299,7 +299,7 @@ class JcsjroomController extends BaseController {
 		$headArr = array(
 			'title' => array(
 				array('项目标识', '_type' => true),
-				$project_id,
+                rsa_encode($project_id,getChoosekey()),
 				'车位模板',
 				array('项目名称', '_type' => true),
 				$project['name'],
@@ -531,6 +531,7 @@ class JcsjroomController extends BaseController {
         }
         //循环获取表中的数据，$currentRow表示当前行，从哪行开始读取数据，索引值从0开始
         $buildlist="";
+        $projid='';
         for($currentRow=1;$currentRow<=$allRow;$currentRow++){
             //从哪列开始，A表示第一列
             for($currentColumn='A';$currentColumn<=$allColumn;$currentColumn++){
@@ -542,7 +543,7 @@ class JcsjroomController extends BaseController {
                 {
                     if ($currentRow==1)
                     {
-                        $projid= $data[$currentRow][$currentColumn];
+                        $projid= rsa_decode($data[$currentRow][$currentColumn],getChoosekey());
                     }
                 }
                 if ($currentColumn=='A')
@@ -550,7 +551,7 @@ class JcsjroomController extends BaseController {
                     if($currentRow>2)
                     {
                         if (stristr($buildlist,$data[$currentRow][$currentColumn])<=0)
-                        {       
+                        {
                             $buildlist.=$data[$currentRow][$currentColumn]."|";
                         }
                     }

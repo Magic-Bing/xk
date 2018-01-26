@@ -5659,3 +5659,951 @@ INFO: [ app_end ] --START--
 INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002875s ]
 INFO: [ app_end ] --END-- [ RunTime:0.005670s ]
 
+[ 2018-01-25T17:06:16+08:00 ] 127.0.0.1 /Saler/Project/index/info/p2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000591s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004265s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003017s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.007377s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0094s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0133s ]
+SQL: SELECT * FROM `xk_project` WHERE `status` = 1 ORDER BY name ASC, id ASC  [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0137s ]
+SQL: SELECT p.id,p.name pname,e.name ename,e.batch_id FROM xk_project p INNER JOIN xk_event_order_house e ON e.project_id = p.id  WHERE ( e.id=2 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_station` [ RunTime:0.0105s ]
+SQL: SELECT * FROM `xk_station` INNER JOIN xk_station2user ON xk_station2user.station_id = xk_station.id AND xk_station2user.userid = 4 INNER JOIN xk_station2proj ON xk_station2proj.station_id = xk_station.id  AND xk_station2proj.proj_id = 2   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_room` [ RunTime:0.0362s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0108s ]
+SQL: SELECT `bld_id` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id ORDER BY bld_id, id  [ RunTime:0.0031s ]
+SQL: SELECT `bld_id`,`unit` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id, unit ORDER BY bld_id, unit, id  [ RunTime:0.0031s ]
+SQL: SELECT `floor` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `bld_id` = '4' AND `unit` = '1' AND `pc_id` = '2' GROUP BY floor DESC ORDER BY cast(floor as SIGNED) DESC  [ RunTime:0.0050s ]
+SQL: SELECT * FROM `xk_project` WHERE `id` = '2' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_build` [ RunTime:0.0296s ]
+SQL: SELECT * FROM `xk_build` WHERE `proj_id` = '2' AND `pc_id` = '2' AND `id` IN ('4','7','8','9','13','14') ORDER BY buildname, id DESC  [ RunTime:0.0010s ]
+SQL: SELECT xk_room.*,cr.id crid FROM `xk_room` LEFT JOIN (select djcount,room_id from xk_roomattribute a left join xk_room b on a.room_id=b.id where djcount>0 and b.is_xf=0 order by djcount desc limit 10 ) as xk_roomattribute ON xk_roomattribute.room_id = xk_room.id LEFT JOIN (select * from xk_cst2rooms where cst_id =4) cr ON xk_room.id=cr.room_id   WHERE xk_room.proj_id = '2' AND xk_room.bld_id = '4' AND xk_room.unit = '1' ORDER BY floor DESC, no ASC  [ RunTime:0.0059s ]
+SQL: SHOW COLUMNS FROM `xk_build` [ RunTime:0.0069s ]
+SQL: SELECT `buildname` FROM `xk_build` WHERE ( id=4 ) LIMIT 1   [ RunTime:0.0009s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.003046s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.005909s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:1.360257s ]
+INFO: [ view_parse ] --END-- [ RunTime:1.363107s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002449s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.005201s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002940s ]
+INFO: [ app_end ] --END-- [ RunTime:0.006333s ]
+
+[ 2018-01-25T17:06:20+08:00 ] 127.0.0.1 /Saler/RoomAnalysis/index/info/p2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000525s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003791s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002300s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004971s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0099s ]
+SQL: SELECT p.id,p.name pname,e.name ename,e.batch_id FROM xk_project p INNER JOIN xk_event_order_house e ON e.project_id = p.id  WHERE ( e.id=2 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_room` [ RunTime:0.0140s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0105s ]
+SQL: SELECT `bld_id` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id ORDER BY bld_id, id  [ RunTime:0.0031s ]
+SQL: SELECT `bld_id`,`unit` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id, unit ORDER BY bld_id, unit, id  [ RunTime:0.0034s ]
+SQL: SELECT `floor` FROM `xk_room` WHERE `proj_id` = '2' AND `bld_id` = '4' AND `unit` = '1' GROUP BY floor DESC ORDER BY id DESC  [ RunTime:0.0038s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0076s ]
+SQL: SELECT * FROM `xk_project` WHERE `id` = '2' LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_build` [ RunTime:0.0092s ]
+SQL: SELECT * FROM `xk_build` WHERE `proj_id` = '2' AND `id` IN ('4','7','8','9','13','14') ORDER BY buildname, id DESC  [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0127s ]
+SQL: SELECT SUM(CASE WHEN cr.px=1 THEN 1 ELSE 0 END) first_count,SUM(CASE WHEN cr.id IS NOT NULL  THEN 1 ELSE 0 END) sc_count,r.room,r.floor FROM xk_roomlist r LEFT JOIN xk_cst2rooms cr ON cr.room_id=r.id  WHERE ( r.proj_id=2 AND pc_id=2 AND r.bld_id=4 AND r.unit=1 ) GROUP BY r.id ORDER BY floor DESC, no ASC  [ RunTime:0.0147s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.002728s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.005598s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.741845s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.744752s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002468s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.005211s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002896s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005845s ]
+
+[ 2018-01-25T17:17:29+08:00 ] 192.168.2.100 /saler
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000496s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003848s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002371s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005107s ]
+
+[ 2018-01-25T17:17:29+08:00 ] 192.168.2.100 /Saler/logging/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000486s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004765s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002794s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005535s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001999s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.004826s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.174438s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.177253s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002220s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.005469s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002450s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005357s ]
+
+[ 2018-01-25T17:17:32+08:00 ] 192.168.2.100 /Saler/logging/check.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000512s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003877s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002052s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004284s ]
+SQL: SELECT * FROM xk_user WHERE (code='hladmin' or mobile='hladmin')  limit 1 [ RunTime:0.0010s ]
+
+[ 2018-01-25T17:17:38+08:00 ] 192.168.2.100 /Saler/logging/check.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000483s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003833s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002903s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005005s ]
+SQL: SELECT * FROM xk_user WHERE (code='hladmin' or mobile='hladmin')  limit 1 [ RunTime:0.0009s ]
+
+[ 2018-01-25T17:17:45+08:00 ] 192.168.2.100 /Saler/logging/check.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000484s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003745s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003620s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005885s ]
+SQL: SELECT * FROM xk_user WHERE (code='hladmin' or mobile='hladmin')  limit 1 [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_station2user` [ RunTime:0.0105s ]
+SQL: SELECT * FROM xk_station2user su INNER JOIN xk_station2proj sp ON su.station_id=sp.station_id  WHERE ( su.userid=4 ) LIMIT 1   [ RunTime:0.0015s ]
+
+[ 2018-01-25T17:17:46+08:00 ] 192.168.2.100 /Saler/index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000494s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004425s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002900s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005612s ]
+SQL: SELECT * FROM xk_user WHERE id=4 limit 1 [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_station` [ RunTime:0.0282s ]
+SQL: SELECT * FROM `xk_station` INNER JOIN xk_station2user ON xk_station2user.station_id = xk_station.id AND xk_station2user.userid = 4 INNER JOIN xk_station2proj ON xk_station2proj.station_id = xk_station.id    [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_station2pc` [ RunTime:0.0091s ]
+SQL: SELECT e.id,e.name FROM xk_station2pc sp INNER JOIN xk_event_order_house e ON e.project_id=sp.proj_id AND e.batch_id=sp.pc_id  WHERE ( sp.proj_id in(2) ) GROUP BY e.id  [ RunTime:0.0019s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001756s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.004541s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.202802s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.205600s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002067s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.005512s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002386s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005121s ]
+
+[ 2018-01-25T17:17:48+08:00 ] 192.168.2.100 /saler/DataStatistics/index/info/p2
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000481s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003779s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002237s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004913s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0088s ]
+SQL: SELECT * FROM `xk_user` WHERE ( id=4 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0084s ]
+SQL: SELECT p.id,p.name pname,e.name ename,e.batch_id FROM xk_project p INNER JOIN xk_event_order_house e ON e.project_id = p.id  WHERE ( e.id=2 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0102s ]
+SQL: SELECT `hx`,count(1) as zgs,count(case when is_xf = 1 then 1 end ) as sold,round(sum(total)/10000,2) as tatol_price,sum(area) as zmj,round(sum(case when is_xf = 1 then total else 0 end )/10000,2) as sold_price FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' ORDER BY hx ASC LIMIT 1   [ RunTime:0.0031s ]
+SQL: SHOW COLUMNS FROM `xk_station2user` [ RunTime:0.0073s ]
+SQL: SELECT * FROM xk_station2user su INNER JOIN xk_fun_station fs ON fs.station_id=su.station_id  WHERE ( userid=4 AND fs.fun_id=101 ) LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `xk_choose` [ RunTime:0.0094s ]
+SQL: SELECT count(1) zrs,SUM(CASE WHEN oh.id IS NULL THEN 0 ELSE 1 END) ydl,SUM(CASE WHEN oh.id IS NULL THEN 1 ELSE 0 END) wdl,SUM(CASE WHEN oh.id IS  NOT NULL AND r.id IS NOT NULL THEN 1 ELSE 0 END) yxf,SUM(CASE WHEN oh.id IS  NOT NULL AND r.id IS NULL THEN 1 ELSE 0 END) wxf FROM xk_choose c LEFT JOIN xk_room r ON r.cstid=c.id LEFT JOIN ( select * from xk_order_house_phone_login group by phone)  oh ON oh.phone=c.customer_phone  WHERE ( c.project_id=2 AND c.batch_id=2 ) LIMIT 1   [ RunTime:0.0025s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0085s ]
+SQL: SELECT `hx`,count(1) as total,count(case when is_xf = 1 then 1 end ) as saled_total,round(sum(case when is_xf = 1 then total else 0 end )/10000,2) as saled_price,count(case when is_xf = 0 then 1 end ) as nosaled_total,round(sum(case when is_xf = 0 then total else 0 end )/10000,2) as nosaled_price FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY hx ORDER BY count(case when is_xf = 1 then 1 end ) desc,sum(case when is_xf = 1 then total else 0 end ) desc ,count(case when is_xf = 1 then 1 end )/ count(1) desc,hx ASC  [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `xk_station2user` [ RunTime:0.0082s ]
+SQL: SELECT * FROM xk_station2user su INNER JOIN xk_fun_station fs ON fs.station_id=su.station_id  WHERE ( userid=4 AND fs.fun_id=102 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: select count(1) cou,round(sum(total)/10000,2) mon,concat(a.ywy,'(',a.ywyphone,')' ) as czusername FROM xk_choose a inner join xk_room b on a.id=b.cstid where b.is_xf=1 and a.project_id=2 AND a.batch_id=2 group by a.ywy order by count(1) desc [ RunTime:0.0013s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.002144s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.004975s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.418798s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.421492s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002103s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004802s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002417s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005200s ]
+
+[ 2018-01-25T17:17:53+08:00 ] 192.168.2.100 /Saler/RoomAnalysis/index/info/p2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000485s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003806s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002341s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005030s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0084s ]
+SQL: SELECT p.id,p.name pname,e.name ename,e.batch_id FROM xk_project p INNER JOIN xk_event_order_house e ON e.project_id = p.id  WHERE ( e.id=2 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_room` [ RunTime:0.0074s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0079s ]
+SQL: SELECT `bld_id` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id ORDER BY bld_id, id  [ RunTime:0.0031s ]
+SQL: SELECT `bld_id`,`unit` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id, unit ORDER BY bld_id, unit, id  [ RunTime:0.0031s ]
+SQL: SELECT `floor` FROM `xk_room` WHERE `proj_id` = '2' AND `bld_id` = '4' AND `unit` = '1' GROUP BY floor DESC ORDER BY id DESC  [ RunTime:0.0032s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0060s ]
+SQL: SELECT * FROM `xk_project` WHERE `id` = '2' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_build` [ RunTime:0.0071s ]
+SQL: SELECT * FROM `xk_build` WHERE `proj_id` = '2' AND `id` IN ('4','7','8','9','13','14') ORDER BY buildname, id DESC  [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0070s ]
+SQL: SELECT SUM(CASE WHEN cr.px=1 THEN 1 ELSE 0 END) first_count,SUM(CASE WHEN cr.id IS NOT NULL  THEN 1 ELSE 0 END) sc_count,r.room,r.floor FROM xk_roomlist r LEFT JOIN xk_cst2rooms cr ON cr.room_id=r.id  WHERE ( r.proj_id=2 AND pc_id=2 AND r.bld_id=4 AND r.unit=1 ) GROUP BY r.id ORDER BY floor DESC, no ASC  [ RunTime:0.0142s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.002765s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.006383s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.701404s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.704105s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002123s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004890s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002370s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005068s ]
+
+[ 2018-01-25T17:18:46+08:00 ] 127.0.0.1 /Saler/RoomAnalysis/index/info/p2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000683s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005700s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.004042s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.007621s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0277s ]
+SQL: SELECT p.id,p.name pname,e.name ename,e.batch_id FROM xk_project p INNER JOIN xk_event_order_house e ON e.project_id = p.id  WHERE ( e.id=2 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_room` [ RunTime:0.0121s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0124s ]
+SQL: SELECT `bld_id` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id ORDER BY bld_id, id  [ RunTime:0.0035s ]
+SQL: SELECT `bld_id`,`unit` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id, unit ORDER BY bld_id, unit, id  [ RunTime:0.0031s ]
+SQL: SELECT `floor` FROM `xk_room` WHERE `proj_id` = '2' AND `bld_id` = '4' AND `unit` = '1' GROUP BY floor DESC ORDER BY id DESC  [ RunTime:0.0032s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0085s ]
+SQL: SELECT * FROM `xk_project` WHERE `id` = '2' LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_build` [ RunTime:0.0084s ]
+SQL: SELECT * FROM `xk_build` WHERE `proj_id` = '2' AND `id` IN ('4','7','8','9','13','14') ORDER BY buildname, id DESC  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0074s ]
+SQL: SELECT SUM(CASE WHEN cr.px=1 THEN 1 ELSE 0 END) first_count,SUM(CASE WHEN cr.id IS NOT NULL  THEN 1 ELSE 0 END) sc_count,r.room,r.floor FROM xk_roomlist r LEFT JOIN xk_cst2rooms cr ON cr.room_id=r.id  WHERE ( r.proj_id=2 AND pc_id=2 AND r.bld_id=4 AND r.unit=1 ) GROUP BY r.id ORDER BY floor DESC, no ASC  [ RunTime:0.0151s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.002697s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.005660s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.787764s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.790539s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002153s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.005541s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002646s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005536s ]
+
+[ 2018-01-25T17:18:50+08:00 ] 192.168.2.100 /Saler/RoomAnalysis/index/info/p2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000564s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005055s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002239s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005475s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0098s ]
+SQL: SELECT p.id,p.name pname,e.name ename,e.batch_id FROM xk_project p INNER JOIN xk_event_order_house e ON e.project_id = p.id  WHERE ( e.id=2 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_room` [ RunTime:0.0082s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0085s ]
+SQL: SELECT `bld_id` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id ORDER BY bld_id, id  [ RunTime:0.0031s ]
+SQL: SELECT `bld_id`,`unit` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id, unit ORDER BY bld_id, unit, id  [ RunTime:0.0030s ]
+SQL: SELECT `floor` FROM `xk_room` WHERE `proj_id` = '2' AND `bld_id` = '4' AND `unit` = '1' GROUP BY floor DESC ORDER BY id DESC  [ RunTime:0.0035s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0062s ]
+SQL: SELECT * FROM `xk_project` WHERE `id` = '2' LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_build` [ RunTime:0.0082s ]
+SQL: SELECT * FROM `xk_build` WHERE `proj_id` = '2' AND `id` IN ('4','7','8','9','13','14') ORDER BY buildname, id DESC  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0070s ]
+SQL: SELECT SUM(CASE WHEN cr.px=1 THEN 1 ELSE 0 END) first_count,SUM(CASE WHEN cr.id IS NOT NULL  THEN 1 ELSE 0 END) sc_count,r.room,r.floor FROM xk_roomlist r LEFT JOIN xk_cst2rooms cr ON cr.room_id=r.id  WHERE ( r.proj_id=2 AND pc_id=2 AND r.bld_id=4 AND r.unit=1 ) GROUP BY r.id ORDER BY floor DESC, no ASC  [ RunTime:0.0135s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.002668s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.005529s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.703202s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.705905s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002086s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004766s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002666s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005487s ]
+
+[ 2018-01-25T17:19:13+08:00 ] 127.0.0.1 /Saler/RoomAnalysis/index/info/p2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000485s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003914s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002336s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005811s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0133s ]
+SQL: SELECT p.id,p.name pname,e.name ename,e.batch_id FROM xk_project p INNER JOIN xk_event_order_house e ON e.project_id = p.id  WHERE ( e.id=2 ) LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `xk_room` [ RunTime:0.0088s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0100s ]
+SQL: SELECT `bld_id` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id ORDER BY bld_id, id  [ RunTime:0.0034s ]
+SQL: SELECT `bld_id`,`unit` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id, unit ORDER BY bld_id, unit, id  [ RunTime:0.0031s ]
+SQL: SELECT `floor` FROM `xk_room` WHERE `proj_id` = '2' AND `bld_id` = '4' AND `unit` = '1' GROUP BY floor DESC ORDER BY id DESC  [ RunTime:0.0038s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0067s ]
+SQL: SELECT * FROM `xk_project` WHERE `id` = '2' LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_build` [ RunTime:0.0086s ]
+SQL: SELECT * FROM `xk_build` WHERE `proj_id` = '2' AND `id` IN ('4','7','8','9','13','14') ORDER BY buildname, id DESC  [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0079s ]
+SQL: SELECT SUM(CASE WHEN cr.px=1 THEN 1 ELSE 0 END) first_count,SUM(CASE WHEN cr.id IS NOT NULL  THEN 1 ELSE 0 END) sc_count,r.room,r.floor FROM xk_roomlist r LEFT JOIN xk_cst2rooms cr ON cr.room_id=r.id  WHERE ( r.proj_id=2 AND pc_id=2 AND r.bld_id=4 AND r.unit=1 ) GROUP BY r.id ORDER BY floor DESC, no ASC  [ RunTime:0.0142s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.003285s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.006263s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.820405s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.824447s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002913s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.005819s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002644s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005573s ]
+
+[ 2018-01-25T17:19:18+08:00 ] 192.168.2.100 /Saler/Project/index/info/p2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000486s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003792s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002293s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005038s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0088s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0064s ]
+SQL: SELECT * FROM `xk_project` WHERE `status` = 1 ORDER BY name ASC, id ASC  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0063s ]
+SQL: SELECT p.id,p.name pname,e.name ename,e.batch_id FROM xk_project p INNER JOIN xk_event_order_house e ON e.project_id = p.id  WHERE ( e.id=2 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_station` [ RunTime:0.0073s ]
+SQL: SELECT * FROM `xk_station` INNER JOIN xk_station2user ON xk_station2user.station_id = xk_station.id AND xk_station2user.userid = 4 INNER JOIN xk_station2proj ON xk_station2proj.station_id = xk_station.id  AND xk_station2proj.proj_id = 2   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_room` [ RunTime:0.0077s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0087s ]
+SQL: SELECT `bld_id` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id ORDER BY bld_id, id  [ RunTime:0.0031s ]
+SQL: SELECT `bld_id`,`unit` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id, unit ORDER BY bld_id, unit, id  [ RunTime:0.0034s ]
+SQL: SELECT `floor` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `bld_id` = '4' AND `unit` = '1' AND `pc_id` = '2' GROUP BY floor DESC ORDER BY cast(floor as SIGNED) DESC  [ RunTime:0.0042s ]
+SQL: SELECT * FROM `xk_project` WHERE `id` = '2' LIMIT 1   [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `xk_build` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `xk_build` WHERE `proj_id` = '2' AND `pc_id` = '2' AND `id` IN ('4','7','8','9','13','14') ORDER BY buildname, id DESC  [ RunTime:0.0009s ]
+SQL: SELECT xk_room.*,cr.id crid FROM `xk_room` LEFT JOIN (select djcount,room_id from xk_roomattribute a left join xk_room b on a.room_id=b.id where djcount>0 and b.is_xf=0 order by djcount desc limit 10 ) as xk_roomattribute ON xk_roomattribute.room_id = xk_room.id LEFT JOIN (select * from xk_cst2rooms where cst_id =4) cr ON xk_room.id=cr.room_id   WHERE xk_room.proj_id = '2' AND xk_room.bld_id = '4' AND xk_room.unit = '1' ORDER BY floor DESC, no ASC  [ RunTime:0.0061s ]
+SQL: SHOW COLUMNS FROM `xk_build` [ RunTime:0.0073s ]
+SQL: SELECT `buildname` FROM `xk_build` WHERE ( id=4 ) LIMIT 1   [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.002366s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.005184s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:1.269826s ]
+INFO: [ view_parse ] --END-- [ RunTime:1.272568s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002720s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.005526s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002353s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005657s ]
+
+[ 2018-01-25T17:19:22+08:00 ] 192.168.2.100 /Saler/project/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000504s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004386s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001954s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004113s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0087s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0066s ]
+SQL: SELECT * FROM `xk_project` WHERE `status` = 1 ORDER BY name ASC, id ASC  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0061s ]
+SQL: SELECT p.id,p.name pname,e.name ename,e.batch_id FROM xk_project p INNER JOIN xk_event_order_house e ON e.project_id = p.id  WHERE ( e.id=2 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_station` [ RunTime:0.0073s ]
+SQL: SELECT * FROM `xk_station` INNER JOIN xk_station2user ON xk_station2user.station_id = xk_station.id AND xk_station2user.userid = 4 INNER JOIN xk_station2proj ON xk_station2proj.station_id = xk_station.id  AND xk_station2proj.proj_id = 2   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_room` [ RunTime:0.0077s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0082s ]
+SQL: SELECT `bld_id` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id ORDER BY bld_id, id  [ RunTime:0.0038s ]
+SQL: SELECT `bld_id`,`unit` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id, unit ORDER BY bld_id, unit, id  [ RunTime:0.0034s ]
+SQL: SELECT `floor` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `bld_id` = '4' AND `unit` = '1' AND `pc_id` = '2' GROUP BY floor DESC ORDER BY cast(floor as SIGNED) DESC  [ RunTime:0.0044s ]
+SQL: SELECT * FROM `xk_project` WHERE `id` = '2' LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `xk_build` [ RunTime:0.0078s ]
+SQL: SELECT * FROM `xk_build` WHERE `proj_id` = '2' AND `pc_id` = '2' AND `id` IN ('4','7','8','9','13','14') ORDER BY buildname, id DESC  [ RunTime:0.0009s ]
+SQL: SELECT xk_room.*,cr.id crid FROM `xk_room` LEFT JOIN (select djcount,room_id from xk_roomattribute a left join xk_room b on a.room_id=b.id where djcount>0 and b.is_xf=0 order by djcount desc limit 10 ) as xk_roomattribute ON xk_roomattribute.room_id = xk_room.id LEFT JOIN (select * from xk_cst2rooms where cst_id =4) cr ON xk_room.id=cr.room_id   WHERE xk_room.proj_id = '2' AND xk_room.bld_id = '4' AND xk_room.unit = '1' ORDER BY floor DESC, no ASC  [ RunTime:0.0052s ]
+SQL: SHOW COLUMNS FROM `xk_build` [ RunTime:0.0065s ]
+SQL: SELECT `buildname` FROM `xk_build` WHERE ( id=4 ) LIMIT 1   [ RunTime:0.0008s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001716s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.005426s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.811356s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.813995s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002107s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004381s ]
+
+[ 2018-01-25T17:19:24+08:00 ] 192.168.2.100 /Saler/RoomAnalysis/index/info/p2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000484s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003933s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002280s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005050s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0097s ]
+SQL: SELECT p.id,p.name pname,e.name ename,e.batch_id FROM xk_project p INNER JOIN xk_event_order_house e ON e.project_id = p.id  WHERE ( e.id=2 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_room` [ RunTime:0.0082s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0083s ]
+SQL: SELECT `bld_id` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id ORDER BY bld_id, id  [ RunTime:0.0032s ]
+SQL: SELECT `bld_id`,`unit` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id, unit ORDER BY bld_id, unit, id  [ RunTime:0.0031s ]
+SQL: SELECT `floor` FROM `xk_room` WHERE `proj_id` = '2' AND `bld_id` = '4' AND `unit` = '1' GROUP BY floor DESC ORDER BY id DESC  [ RunTime:0.0033s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0092s ]
+SQL: SELECT * FROM `xk_project` WHERE `id` = '2' LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_build` [ RunTime:0.0079s ]
+SQL: SELECT * FROM `xk_build` WHERE `proj_id` = '2' AND `id` IN ('4','7','8','9','13','14') ORDER BY buildname, id DESC  [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0086s ]
+SQL: SELECT SUM(CASE WHEN cr.px=1 THEN 1 ELSE 0 END) first_count,SUM(CASE WHEN cr.id IS NOT NULL  THEN 1 ELSE 0 END) sc_count,r.room,r.floor FROM xk_roomlist r LEFT JOIN xk_cst2rooms cr ON cr.room_id=r.id  WHERE ( r.proj_id=2 AND pc_id=2 AND r.bld_id=4 AND r.unit=1 ) GROUP BY r.id ORDER BY floor DESC, no ASC  [ RunTime:0.0140s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.002664s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.006130s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.694631s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.697450s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002179s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.005127s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002369s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005079s ]
+
+[ 2018-01-25T17:19:52+08:00 ] 192.168.2.100 /Saler/RoomAnalysis/index/info/p2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000972s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004310s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002825s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005529s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0092s ]
+SQL: SELECT p.id,p.name pname,e.name ename,e.batch_id FROM xk_project p INNER JOIN xk_event_order_house e ON e.project_id = p.id  WHERE ( e.id=2 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_room` [ RunTime:0.0083s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0095s ]
+SQL: SELECT `bld_id` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id ORDER BY bld_id, id  [ RunTime:0.0031s ]
+SQL: SELECT `bld_id`,`unit` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id, unit ORDER BY bld_id, unit, id  [ RunTime:0.0035s ]
+SQL: SELECT `floor` FROM `xk_room` WHERE `proj_id` = '2' AND `bld_id` = '4' AND `unit` = '1' GROUP BY floor DESC ORDER BY id DESC  [ RunTime:0.0031s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0074s ]
+SQL: SELECT * FROM `xk_project` WHERE `id` = '2' LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_build` [ RunTime:0.0078s ]
+SQL: SELECT * FROM `xk_build` WHERE `proj_id` = '2' AND `id` IN ('4','7','8','9','13','14') ORDER BY buildname, id DESC  [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0080s ]
+SQL: SELECT SUM(CASE WHEN cr.px=1 THEN 1 ELSE 0 END) first_count,SUM(CASE WHEN cr.id IS NOT NULL  THEN 1 ELSE 0 END) sc_count,r.room,r.floor FROM xk_roomlist r LEFT JOIN xk_cst2rooms cr ON cr.room_id=r.id  WHERE ( r.proj_id=2 AND pc_id=2 AND r.bld_id=4 AND r.unit=1 ) GROUP BY r.id ORDER BY floor DESC, no ASC  [ RunTime:0.0141s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.002780s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.005745s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.698502s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.701206s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002152s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004842s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002492s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005340s ]
+
+[ 2018-01-25T17:20:04+08:00 ] 192.168.2.100 /Saler/RoomAnalysis/index/info/p2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000486s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003835s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002297s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004986s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0092s ]
+SQL: SELECT p.id,p.name pname,e.name ename,e.batch_id FROM xk_project p INNER JOIN xk_event_order_house e ON e.project_id = p.id  WHERE ( e.id=2 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_room` [ RunTime:0.0078s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0092s ]
+SQL: SELECT `bld_id` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id ORDER BY bld_id, id  [ RunTime:0.0032s ]
+SQL: SELECT `bld_id`,`unit` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id, unit ORDER BY bld_id, unit, id  [ RunTime:0.0030s ]
+SQL: SELECT `floor` FROM `xk_room` WHERE `proj_id` = '2' AND `bld_id` = '4' AND `unit` = '1' GROUP BY floor DESC ORDER BY id DESC  [ RunTime:0.0033s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0062s ]
+SQL: SELECT * FROM `xk_project` WHERE `id` = '2' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_build` [ RunTime:0.0075s ]
+SQL: SELECT * FROM `xk_build` WHERE `proj_id` = '2' AND `id` IN ('4','7','8','9','13','14') ORDER BY buildname, id DESC  [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0069s ]
+SQL: SELECT SUM(CASE WHEN cr.px=1 THEN 1 ELSE 0 END) first_count,SUM(CASE WHEN cr.id IS NOT NULL  THEN 1 ELSE 0 END) sc_count,r.room,r.floor FROM xk_roomlist r LEFT JOIN xk_cst2rooms cr ON cr.room_id=r.id  WHERE ( r.proj_id=2 AND pc_id=2 AND r.bld_id=4 AND r.unit=1 ) GROUP BY r.id ORDER BY floor DESC, no ASC  [ RunTime:0.0140s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.002728s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.006738s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.691632s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.694859s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002146s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004847s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002349s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005081s ]
+
+[ 2018-01-25T17:22:48+08:00 ] 192.168.2.100 /Saler/RoomAnalysis/index/info/p2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000481s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003808s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002420s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005107s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0105s ]
+SQL: SELECT p.id,p.name pname,e.name ename,e.batch_id FROM xk_project p INNER JOIN xk_event_order_house e ON e.project_id = p.id  WHERE ( e.id=2 ) LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `xk_room` [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0091s ]
+SQL: SELECT `bld_id` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id ORDER BY bld_id, id  [ RunTime:0.0031s ]
+SQL: SELECT `bld_id`,`unit` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id, unit ORDER BY bld_id, unit, id  [ RunTime:0.0031s ]
+SQL: SELECT `floor` FROM `xk_room` WHERE `proj_id` = '2' AND `bld_id` = '4' AND `unit` = '1' GROUP BY floor DESC ORDER BY id DESC  [ RunTime:0.0037s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0061s ]
+SQL: SELECT * FROM `xk_project` WHERE `id` = '2' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_build` [ RunTime:0.0087s ]
+SQL: SELECT * FROM `xk_build` WHERE `proj_id` = '2' AND `id` IN ('4','7','8','9','13','14') ORDER BY buildname, id DESC  [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0070s ]
+SQL: SELECT SUM(CASE WHEN cr.px=1 THEN 1 ELSE 0 END) first_count,SUM(CASE WHEN cr.id IS NOT NULL  THEN 1 ELSE 0 END) sc_count,r.room,r.floor FROM xk_roomlist r LEFT JOIN xk_cst2rooms cr ON cr.room_id=r.id  WHERE ( r.proj_id=2 AND pc_id=2 AND r.bld_id=4 AND r.unit=1 ) GROUP BY r.id ORDER BY floor DESC, no ASC  [ RunTime:0.0143s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.002688s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.005546s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.709541s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.712322s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002171s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004964s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002547s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005279s ]
+
+[ 2018-01-25T17:23:44+08:00 ] 192.168.2.100 /Saler/RoomAnalysis/index/info/p2/is_fx/1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000497s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004598s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.004061s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.006759s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0111s ]
+SQL: SELECT p.id,p.name pname,e.name ename,e.batch_id FROM xk_project p INNER JOIN xk_event_order_house e ON e.project_id = p.id  WHERE ( e.id=2 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SELECT p.id,p.name pname,e.name ename,e.batch_id FROM xk_project p INNER JOIN xk_event_order_house e ON e.project_id = p.id  WHERE ( e.id=2 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0083s ]
+SQL: SELECT r.bld_id bid,r.buildname name,SUM(CASE WHEN cr.id IS NOT NULL  THEN 1 ELSE 0 END) sc_count,count(r.id) all_count FROM xk_roomlist r LEFT JOIN xk_cst2rooms cr ON cr.room_id=r.id  WHERE ( r.proj_id=2 AND r.pc_id=2 ) GROUP BY r.bld_id ORDER BY r.buildcode ASC  [ RunTime:0.0226s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0089s ]
+SQL: SELECT `bld_id`,`buildname` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id ORDER BY bld_id, id  [ RunTime:0.0032s ]
+SQL: SELECT `bld_id`,`unit` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id, unit ORDER BY bld_id, unit, id  [ RunTime:0.0032s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0070s ]
+SQL: SELECT r.hx,SUM(CASE WHEN cr.id IS NOT NULL  THEN 1 ELSE 0 END) sc_count,count(r.id) all_count FROM xk_roomlist r LEFT JOIN xk_cst2rooms cr ON cr.room_id=r.id  WHERE ( r.proj_id=2 AND r.pc_id=2 ) GROUP BY r.hx ORDER BY r.hx ASC  [ RunTime:0.0231s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0103s ]
+SQL: SELECT SUM(CASE WHEN cr.px=1 THEN 1 ELSE 0 END) first_count,SUM(CASE WHEN cr.id IS NOT NULL  THEN 1 ELSE 0 END) sc_count,r.id FROM xk_roomlist r LEFT JOIN xk_cst2rooms cr ON cr.room_id=r.id  WHERE ( r.proj_id=2 AND r.pc_id=2 ) GROUP BY r.id  [ RunTime:0.0230s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.002769s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.007234s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.605556s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.608380s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002134s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.005160s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002389s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005705s ]
+
+[ 2018-01-25T17:27:46+08:00 ] 192.168.2.100 /Saler/RoomAnalysis/index/info/p2/is_fx/1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000520s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005171s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002398s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005164s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0128s ]
+SQL: SELECT p.id,p.name pname,e.name ename,e.batch_id FROM xk_project p INNER JOIN xk_event_order_house e ON e.project_id = p.id  WHERE ( e.id=2 ) LIMIT 1   [ RunTime:0.0012s ]
+SQL: SELECT p.id,p.name pname,e.name ename,e.batch_id FROM xk_project p INNER JOIN xk_event_order_house e ON e.project_id = p.id  WHERE ( e.id=2 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0089s ]
+SQL: SELECT r.bld_id bid,r.buildname name,SUM(CASE WHEN cr.id IS NOT NULL  THEN 1 ELSE 0 END) sc_count,count(r.id) all_count FROM xk_roomlist r LEFT JOIN xk_cst2rooms cr ON cr.room_id=r.id  WHERE ( r.proj_id=2 AND r.pc_id=2 ) GROUP BY r.bld_id ORDER BY r.buildcode ASC  [ RunTime:0.0238s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0083s ]
+SQL: SELECT `bld_id`,`buildname` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id ORDER BY bld_id, id  [ RunTime:0.0038s ]
+SQL: SELECT `bld_id`,`unit` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id, unit ORDER BY bld_id, unit, id  [ RunTime:0.0034s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0083s ]
+SQL: SELECT r.hx,SUM(CASE WHEN cr.id IS NOT NULL  THEN 1 ELSE 0 END) sc_count,count(r.id) all_count FROM xk_roomlist r LEFT JOIN xk_cst2rooms cr ON cr.room_id=r.id  WHERE ( r.proj_id=2 AND r.pc_id=2 ) GROUP BY r.hx ORDER BY r.hx ASC  [ RunTime:0.0251s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0110s ]
+SQL: SELECT SUM(CASE WHEN cr.px=1 THEN 1 ELSE 0 END) first_count,SUM(CASE WHEN cr.id IS NOT NULL  THEN 1 ELSE 0 END) sc_count,r.id FROM xk_roomlist r LEFT JOIN xk_cst2rooms cr ON cr.room_id=r.id  WHERE ( r.proj_id=2 AND r.pc_id=2 ) GROUP BY r.id  [ RunTime:0.0252s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.003410s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.006292s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.694251s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.697385s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002439s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.005414s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002626s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005467s ]
+
+[ 2018-01-25T17:28:05+08:00 ] 192.168.2.100 /Saler/ChooseAnalysis/index/info/p2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000499s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004337s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002512s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005235s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `xk_user` WHERE ( id=4 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_station2user` [ RunTime:0.0075s ]
+SQL: SELECT * FROM xk_station2user su INNER JOIN xk_fun_station fs ON fs.station_id=su.station_id  WHERE ( userid=4 AND fs.fun_id=101 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0093s ]
+SQL: SELECT p.id,p.name pname,e.name ename,e.batch_id FROM xk_project p INNER JOIN xk_event_order_house e ON e.project_id = p.id  WHERE ( e.id=2 ) LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_choose` [ RunTime:0.0093s ]
+SQL: SELECT c.id,r.id rid,oh.id oid,c.customer_name,c.customer_phone FROM xk_choose c LEFT JOIN xk_room r ON r.cstid=c.id LEFT JOIN ( select * from xk_order_house_phone_login group by phone) oh ON oh.phone=c.customer_phone  WHERE ( c.project_id=2 AND c.batch_id=2   )  [ RunTime:0.0023s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001951s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.004714s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.359753s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.362602s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002154s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004867s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002341s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005079s ]
+
+[ 2018-01-25T17:28:28+08:00 ] 192.168.2.100 /Saler/ChooseAnalysis/user_detail?project=2&cid=97
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000495s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003765s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002320s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005110s ]
+SQL: SHOW COLUMNS FROM `xk_choose` [ RunTime:0.0104s ]
+SQL: SELECT c.customer_name cname,c.customer_phone cphone,c.cardno,c.ywy,c.cyjno,b.buildname bname,r.unit,r.room,r.hx,r.area,r.total,r.id rid,o.id oid,o.logintime,oho.log_time FROM xk_choose c LEFT JOIN xk_room r ON r.cstid=c.id LEFT JOIN xk_build b ON b.id=r.bld_id LEFT JOIN xk_order_house_phone_login o ON o.phone=c.customer_phone LEFT JOIN xk_order_house_order oho ON oho.belong_uid=c.id  WHERE ( c.id=97 ) LIMIT 1   [ RunTime:0.0022s ]
+SQL: SHOW COLUMNS FROM `xk_cst2rooms` [ RunTime:0.0093s ]
+SQL: SELECT b.buildname bname,r.id,r.unit,r.room,r.area,r.total,h.hxmx,count(crs.id) sc_count,SUM(CASE WHEN crs.px=1 THEN 1 ELSE 0 END) first_count FROM xk_cst2rooms cr INNER JOIN xk_cst2rooms crs ON cr.room_id=crs.room_id INNER JOIN xk_room r ON r.id=cr.room_id INNER JOIN xk_build b ON b.id=r.bld_id INNER JOIN xk_hxset h ON h.hx=r.hx  WHERE ( cr.cst_id=97 ) GROUP BY cr.id ORDER BY cr.px  [ RunTime:0.1851s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.002199s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.005182s ]
+NOTIC: [8] Undefined variable: status D:\project\yun_xk\Application\Runtime\Cache\Saler\9053f1df892057ea9c8ddd5ec29ddb60.php 第 468 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.465886s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.468600s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002163s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004922s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002335s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005919s ]
+
+[ 2018-01-25T17:28:43+08:00 ] 192.168.2.100 /Saler/RoomAnalysis/index/info/p2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000486s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003862s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002341s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005097s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0129s ]
+SQL: SELECT p.id,p.name pname,e.name ename,e.batch_id FROM xk_project p INNER JOIN xk_event_order_house e ON e.project_id = p.id  WHERE ( e.id=2 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_room` [ RunTime:0.0083s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0090s ]
+SQL: SELECT `bld_id` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id ORDER BY bld_id, id  [ RunTime:0.0032s ]
+SQL: SELECT `bld_id`,`unit` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id, unit ORDER BY bld_id, unit, id  [ RunTime:0.0031s ]
+SQL: SELECT `floor` FROM `xk_room` WHERE `proj_id` = '2' AND `bld_id` = '4' AND `unit` = '1' GROUP BY floor DESC ORDER BY id DESC  [ RunTime:0.0032s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0087s ]
+SQL: SELECT * FROM `xk_project` WHERE `id` = '2' LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `xk_build` [ RunTime:0.0077s ]
+SQL: SELECT * FROM `xk_build` WHERE `proj_id` = '2' AND `id` IN ('4','7','8','9','13','14') ORDER BY buildname, id DESC  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0082s ]
+SQL: SELECT SUM(CASE WHEN cr.px=1 THEN 1 ELSE 0 END) first_count,SUM(CASE WHEN cr.id IS NOT NULL  THEN 1 ELSE 0 END) sc_count,r.room,r.floor FROM xk_roomlist r LEFT JOIN xk_cst2rooms cr ON cr.room_id=r.id  WHERE ( r.proj_id=2 AND pc_id=2 AND r.bld_id=4 AND r.unit=1 ) GROUP BY r.id ORDER BY floor DESC, no ASC  [ RunTime:0.0137s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.002696s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.005577s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.731204s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.734166s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002730s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.005477s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002597s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005318s ]
+
+[ 2018-01-25T17:28:45+08:00 ] 192.168.2.100 /Saler/MyReport/index/info/p2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000745s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004393s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002635s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005383s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.1027s ]
+SQL: SELECT * FROM `xk_user` WHERE ( id=4 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_station` [ RunTime:0.0083s ]
+SQL: SELECT * FROM `xk_station` INNER JOIN xk_station2user ON xk_station2user.station_id = xk_station.id AND xk_station2user.userid = 4 INNER JOIN xk_station2proj ON xk_station2proj.station_id = xk_station.id    [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_station2pc` [ RunTime:0.0073s ]
+SQL: SELECT e.id,e.name FROM xk_station2pc sp INNER JOIN xk_event_order_house e ON e.project_id=sp.proj_id AND e.batch_id=sp.pc_id  WHERE ( sp.proj_id in(2) ) GROUP BY e.id  [ RunTime:0.0013s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001851s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.004610s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.202497s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.205306s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002263s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.005099s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002676s ]
+INFO: [ app_end ] --END-- [ RunTime:0.006944s ]
+
+[ 2018-01-25T17:28:49+08:00 ] 192.168.2.100 /Saler/DataStatistics/index/info/p2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000486s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004455s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002280s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005688s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0086s ]
+SQL: SELECT * FROM `xk_user` WHERE ( id=4 ) LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0075s ]
+SQL: SELECT p.id,p.name pname,e.name ename,e.batch_id FROM xk_project p INNER JOIN xk_event_order_house e ON e.project_id = p.id  WHERE ( e.id=2 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0083s ]
+SQL: SELECT `hx`,count(1) as zgs,count(case when is_xf = 1 then 1 end ) as sold,round(sum(total)/10000,2) as tatol_price,sum(area) as zmj,round(sum(case when is_xf = 1 then total else 0 end )/10000,2) as sold_price FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' ORDER BY hx ASC LIMIT 1   [ RunTime:0.0031s ]
+SQL: SHOW COLUMNS FROM `xk_station2user` [ RunTime:0.0073s ]
+SQL: SELECT * FROM xk_station2user su INNER JOIN xk_fun_station fs ON fs.station_id=su.station_id  WHERE ( userid=4 AND fs.fun_id=101 ) LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `xk_choose` [ RunTime:0.0075s ]
+SQL: SELECT count(1) zrs,SUM(CASE WHEN oh.id IS NULL THEN 0 ELSE 1 END) ydl,SUM(CASE WHEN oh.id IS NULL THEN 1 ELSE 0 END) wdl,SUM(CASE WHEN oh.id IS  NOT NULL AND r.id IS NOT NULL THEN 1 ELSE 0 END) yxf,SUM(CASE WHEN oh.id IS  NOT NULL AND r.id IS NULL THEN 1 ELSE 0 END) wxf FROM xk_choose c LEFT JOIN xk_room r ON r.cstid=c.id LEFT JOIN ( select * from xk_order_house_phone_login group by phone)  oh ON oh.phone=c.customer_phone  WHERE ( c.project_id=2 AND c.batch_id=2 ) LIMIT 1   [ RunTime:0.0021s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0074s ]
+SQL: SELECT `hx`,count(1) as total,count(case when is_xf = 1 then 1 end ) as saled_total,round(sum(case when is_xf = 1 then total else 0 end )/10000,2) as saled_price,count(case when is_xf = 0 then 1 end ) as nosaled_total,round(sum(case when is_xf = 0 then total else 0 end )/10000,2) as nosaled_price FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY hx ORDER BY count(case when is_xf = 1 then 1 end ) desc,sum(case when is_xf = 1 then total else 0 end ) desc ,count(case when is_xf = 1 then 1 end )/ count(1) desc,hx ASC  [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `xk_station2user` [ RunTime:0.0057s ]
+SQL: SELECT * FROM xk_station2user su INNER JOIN xk_fun_station fs ON fs.station_id=su.station_id  WHERE ( userid=4 AND fs.fun_id=102 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: select count(1) cou,round(sum(total)/10000,2) mon,concat(a.ywy,'(',a.ywyphone,')' ) as czusername FROM xk_choose a inner join xk_room b on a.id=b.cstid where b.is_xf=1 and a.project_id=2 AND a.batch_id=2 group by a.ywy order by count(1) desc [ RunTime:0.0015s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.002174s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.005039s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.448120s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.450855s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.003869s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.006597s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002468s ]
+INFO: [ app_end ] --END-- [ RunTime:0.006133s ]
+
+[ 2018-01-25T17:29:04+08:00 ] 192.168.2.100 /Saler/DataStatistics/index/info/p2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000486s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003851s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002337s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005082s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0085s ]
+SQL: SELECT * FROM `xk_user` WHERE ( id=4 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0087s ]
+SQL: SELECT p.id,p.name pname,e.name ename,e.batch_id FROM xk_project p INNER JOIN xk_event_order_house e ON e.project_id = p.id  WHERE ( e.id=2 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0099s ]
+SQL: SELECT `hx`,count(1) as zgs,count(case when is_xf = 1 then 1 end ) as sold,round(sum(total)/10000,2) as tatol_price,sum(area) as zmj,round(sum(case when is_xf = 1 then total else 0 end )/10000,2) as sold_price FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' ORDER BY hx ASC LIMIT 1   [ RunTime:0.0037s ]
+SQL: SHOW COLUMNS FROM `xk_station2user` [ RunTime:0.0193s ]
+SQL: SELECT * FROM xk_station2user su INNER JOIN xk_fun_station fs ON fs.station_id=su.station_id  WHERE ( userid=4 AND fs.fun_id=101 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_choose` [ RunTime:0.0080s ]
+SQL: SELECT count(1) zrs,SUM(CASE WHEN oh.id IS NULL THEN 0 ELSE 1 END) ydl,SUM(CASE WHEN oh.id IS NULL THEN 1 ELSE 0 END) wdl,SUM(CASE WHEN oh.id IS  NOT NULL AND r.id IS NOT NULL THEN 1 ELSE 0 END) yxf,SUM(CASE WHEN oh.id IS  NOT NULL AND r.id IS NULL THEN 1 ELSE 0 END) wxf FROM xk_choose c LEFT JOIN xk_room r ON r.cstid=c.id LEFT JOIN ( select * from xk_order_house_phone_login group by phone)  oh ON oh.phone=c.customer_phone  WHERE ( c.project_id=2 AND c.batch_id=2 ) LIMIT 1   [ RunTime:0.0021s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0093s ]
+SQL: SELECT `hx`,count(1) as total,count(case when is_xf = 1 then 1 end ) as saled_total,round(sum(case when is_xf = 1 then total else 0 end )/10000,2) as saled_price,count(case when is_xf = 0 then 1 end ) as nosaled_total,round(sum(case when is_xf = 0 then total else 0 end )/10000,2) as nosaled_price FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY hx ORDER BY count(case when is_xf = 1 then 1 end ) desc,sum(case when is_xf = 1 then total else 0 end ) desc ,count(case when is_xf = 1 then 1 end )/ count(1) desc,hx ASC  [ RunTime:0.0041s ]
+SQL: SHOW COLUMNS FROM `xk_station2user` [ RunTime:0.0060s ]
+SQL: SELECT * FROM xk_station2user su INNER JOIN xk_fun_station fs ON fs.station_id=su.station_id  WHERE ( userid=4 AND fs.fun_id=102 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: select count(1) cou,round(sum(total)/10000,2) mon,concat(a.ywy,'(',a.ywyphone,')' ) as czusername FROM xk_choose a inner join xk_room b on a.id=b.cstid where b.is_xf=1 and a.project_id=2 AND a.batch_id=2 group by a.ywy order by count(1) desc [ RunTime:0.0013s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.002562s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.005534s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.437389s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.440121s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002296s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.005204s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002611s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005360s ]
+
+[ 2018-01-25T17:29:06+08:00 ] 192.168.2.100 /Saler/ChooseAnalysis/index/info/p2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000516s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005245s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002481s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.006323s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0089s ]
+SQL: SELECT * FROM `xk_user` WHERE ( id=4 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_station2user` [ RunTime:0.0076s ]
+SQL: SELECT * FROM xk_station2user su INNER JOIN xk_fun_station fs ON fs.station_id=su.station_id  WHERE ( userid=4 AND fs.fun_id=101 ) LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0077s ]
+SQL: SELECT p.id,p.name pname,e.name ename,e.batch_id FROM xk_project p INNER JOIN xk_event_order_house e ON e.project_id = p.id  WHERE ( e.id=2 ) LIMIT 1   [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `xk_choose` [ RunTime:0.0099s ]
+SQL: SELECT c.id,r.id rid,oh.id oid,c.customer_name,c.customer_phone FROM xk_choose c LEFT JOIN xk_room r ON r.cstid=c.id LEFT JOIN ( select * from xk_order_house_phone_login group by phone) oh ON oh.phone=c.customer_phone  WHERE ( c.project_id=2 AND c.batch_id=2   )  [ RunTime:0.0023s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001976s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.005294s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.337888s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.341098s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002196s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004949s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002411s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005229s ]
+
+[ 2018-01-25T17:29:13+08:00 ] 192.168.2.100 /Saler/ChooseAnalysis/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000490s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004282s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002764s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005065s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0207s ]
+SQL: SELECT * FROM `xk_user` WHERE ( id=4 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_station2user` [ RunTime:0.0076s ]
+SQL: SELECT * FROM xk_station2user su INNER JOIN xk_fun_station fs ON fs.station_id=su.station_id  WHERE ( userid=4 AND fs.fun_id=101 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0080s ]
+SQL: SELECT p.id,p.name pname,e.name ename,e.batch_id FROM xk_project p INNER JOIN xk_event_order_house e ON e.project_id = p.id  WHERE ( e.id=2 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_choose` [ RunTime:0.0082s ]
+SQL: SELECT c.id,r.id rid,oh.id oid,c.customer_name,c.customer_phone FROM xk_choose c LEFT JOIN xk_room r ON r.cstid=c.id LEFT JOIN ( select * from xk_order_house_phone_login group by phone) oh ON oh.phone=c.customer_phone  WHERE ( c.project_id=2 AND c.batch_id=2 AND oh.id IS NULL   )  [ RunTime:0.0022s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.002090s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.004264s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.088683s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.091528s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002412s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004615s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002166s ]
+INFO: [ app_end ] --END-- [ RunTime:0.004518s ]
+
+[ 2018-01-25T17:29:18+08:00 ] 192.168.2.100 /Saler/ChooseAnalysis/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000499s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004604s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002009s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004145s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0119s ]
+SQL: SELECT * FROM `xk_user` WHERE ( id=4 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_station2user` [ RunTime:0.0093s ]
+SQL: SELECT * FROM xk_station2user su INNER JOIN xk_fun_station fs ON fs.station_id=su.station_id  WHERE ( userid=4 AND fs.fun_id=101 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0105s ]
+SQL: SELECT p.id,p.name pname,e.name ename,e.batch_id FROM xk_project p INNER JOIN xk_event_order_house e ON e.project_id = p.id  WHERE ( e.id=2 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_choose` [ RunTime:0.0089s ]
+SQL: SELECT c.id,r.id rid,oh.id oid,c.customer_name,c.customer_phone FROM xk_choose c LEFT JOIN xk_room r ON r.cstid=c.id INNER JOIN ( select * from xk_order_house_phone_login group by phone) oh ON oh.phone=c.customer_phone  WHERE ( c.project_id=2 AND c.batch_id=2   )  [ RunTime:0.0022s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001615s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.003807s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.093857s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.096099s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002072s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004165s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002108s ]
+INFO: [ app_end ] --END-- [ RunTime:0.004793s ]
+
+[ 2018-01-25T17:29:20+08:00 ] 192.168.2.100 /Saler/ChooseAnalysis/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000487s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004680s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001992s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004746s ]
+SQL: SHOW COLUMNS FROM `xk_user` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `xk_user` WHERE ( id=4 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_station2user` [ RunTime:0.0075s ]
+SQL: SELECT * FROM xk_station2user su INNER JOIN xk_fun_station fs ON fs.station_id=su.station_id  WHERE ( userid=4 AND fs.fun_id=101 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0081s ]
+SQL: SELECT p.id,p.name pname,e.name ename,e.batch_id FROM xk_project p INNER JOIN xk_event_order_house e ON e.project_id = p.id  WHERE ( e.id=2 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_choose` [ RunTime:0.0080s ]
+SQL: SELECT c.id,r.id rid,oh.id oid,c.customer_name,c.customer_phone FROM xk_choose c INNER JOIN xk_room r ON r.cstid=c.id INNER JOIN ( select * from xk_order_house_phone_login group by phone) oh ON oh.phone=c.customer_phone  WHERE ( c.project_id=2 AND c.batch_id=2    )  [ RunTime:0.0053s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001607s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.003768s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.188298s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.190510s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002226s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.006015s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001904s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005120s ]
+
+[ 2018-01-25T17:29:23+08:00 ] 192.168.2.100 /Saler/RoomAnalysis/index/info/p2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000486s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003815s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002368s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005302s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0091s ]
+SQL: SELECT p.id,p.name pname,e.name ename,e.batch_id FROM xk_project p INNER JOIN xk_event_order_house e ON e.project_id = p.id  WHERE ( e.id=2 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_room` [ RunTime:0.0089s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.1020s ]
+SQL: SELECT `bld_id` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id ORDER BY bld_id, id  [ RunTime:0.0035s ]
+SQL: SELECT `bld_id`,`unit` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id, unit ORDER BY bld_id, unit, id  [ RunTime:0.0031s ]
+SQL: SELECT `floor` FROM `xk_room` WHERE `proj_id` = '2' AND `bld_id` = '4' AND `unit` = '1' GROUP BY floor DESC ORDER BY id DESC  [ RunTime:0.0032s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0094s ]
+SQL: SELECT * FROM `xk_project` WHERE `id` = '2' LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_build` [ RunTime:0.0073s ]
+SQL: SELECT * FROM `xk_build` WHERE `proj_id` = '2' AND `id` IN ('4','7','8','9','13','14') ORDER BY buildname, id DESC  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0101s ]
+SQL: SELECT SUM(CASE WHEN cr.px=1 THEN 1 ELSE 0 END) first_count,SUM(CASE WHEN cr.id IS NOT NULL  THEN 1 ELSE 0 END) sc_count,r.room,r.floor FROM xk_roomlist r LEFT JOIN xk_cst2rooms cr ON cr.room_id=r.id  WHERE ( r.proj_id=2 AND pc_id=2 AND r.bld_id=4 AND r.unit=1 ) GROUP BY r.id ORDER BY floor DESC, no ASC  [ RunTime:0.0137s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.002838s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.006462s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.747127s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.749853s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002639s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.005544s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002436s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005589s ]
+
+[ 2018-01-25T17:29:28+08:00 ] 192.168.2.100 /Saler/RoomAnalysis/index/info/p2/is_fx/1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000798s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005814s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002980s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005681s ]
+SQL: SHOW COLUMNS FROM `xk_project` [ RunTime:0.0095s ]
+SQL: SELECT p.id,p.name pname,e.name ename,e.batch_id FROM xk_project p INNER JOIN xk_event_order_house e ON e.project_id = p.id  WHERE ( e.id=2 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT p.id,p.name pname,e.name ename,e.batch_id FROM xk_project p INNER JOIN xk_event_order_house e ON e.project_id = p.id  WHERE ( e.id=2 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0085s ]
+SQL: SELECT r.bld_id bid,r.buildname name,SUM(CASE WHEN cr.id IS NOT NULL  THEN 1 ELSE 0 END) sc_count,count(r.id) all_count FROM xk_roomlist r LEFT JOIN xk_cst2rooms cr ON cr.room_id=r.id  WHERE ( r.proj_id=2 AND r.pc_id=2 ) GROUP BY r.bld_id ORDER BY r.buildcode ASC  [ RunTime:0.0232s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0092s ]
+SQL: SELECT `bld_id`,`buildname` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id ORDER BY bld_id, id  [ RunTime:0.0032s ]
+SQL: SELECT `bld_id`,`unit` FROM `xk_roomlist` WHERE `proj_id` = '2' AND `pc_id` = '2' GROUP BY bld_id, unit ORDER BY bld_id, unit, id  [ RunTime:0.0034s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0071s ]
+SQL: SELECT r.hx,SUM(CASE WHEN cr.id IS NOT NULL  THEN 1 ELSE 0 END) sc_count,count(r.id) all_count FROM xk_roomlist r LEFT JOIN xk_cst2rooms cr ON cr.room_id=r.id  WHERE ( r.proj_id=2 AND r.pc_id=2 ) GROUP BY r.hx ORDER BY r.hx ASC  [ RunTime:0.0244s ]
+SQL: SHOW COLUMNS FROM `xk_roomlist` [ RunTime:0.0068s ]
+SQL: SELECT SUM(CASE WHEN cr.px=1 THEN 1 ELSE 0 END) first_count,SUM(CASE WHEN cr.id IS NOT NULL  THEN 1 ELSE 0 END) sc_count,r.id FROM xk_roomlist r LEFT JOIN xk_cst2rooms cr ON cr.room_id=r.id  WHERE ( r.proj_id=2 AND r.pc_id=2 ) GROUP BY r.id  [ RunTime:0.0232s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.004397s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.007230s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.640554s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.643622s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002243s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.005111s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002483s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005613s ]
+

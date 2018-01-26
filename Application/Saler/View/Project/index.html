@@ -9,23 +9,42 @@
             font-weight: 400;
             font-size: 13px;
         }
+       .bqydiv{
+            margin-top: 43px;
+            height: 34px;
+            white-space: nowrap;
+            z-index: 100;
+            position: absolute;
+            display: flex;
+            background: #ffffff;
+            border-bottom: 1px solid #f2f2f2;
+        }
         .bl{
-            background-color: #ffffff;
-            color: #03a9f4!important;
             cursor: pointer;
             font-weight: 700;
-            border-bottom: 2px solid #03a9f4;
             -webkit-box-flex: 1;
             -webkit-flex: 1;
             flex: 1;
         }
         .gy{
-            color: #999!important;
             cursor: pointer;
-            border-bottom: 2px solid #c9c9c9;
             -webkit-box-flex: 1;
             -webkit-flex: 1;
             flex: 1;
+        }
+        .gy span{
+            height: 25px;
+            margin-top: 4px;
+            line-height: 25px;
+            color: #797979;
+        }
+        .bl span{
+            height: 25px;
+            margin-top: 4px;
+            line-height: 25px;
+            color: #333;
+            padding: 8px 5px;
+            border-bottom: 2px solid #333;
         }
         .weui-tabbar{
             display: -webkit-box;
@@ -150,7 +169,7 @@
             width: 50px;
             position: fixed;
             z-index: 101;
-            height: 31px;
+            height: 32px;
             top:79px;
             left: calc(100% - 50px);
             font-size:12px;
@@ -200,20 +219,20 @@
                         </a>
                     </div>
                 </div>
-            <div class="fl wm100 "  style="margin-top: 43px;height: 35px;white-space: nowrap;z-index: 100;position: absolute; display: flex;">
+            <div class="fl wm100 bqydiv"  >
                 <div class="fl up-center bl" id="room-xk">
                     <a href="<{:U('Project/index', array('info' => set_search_ids(array('p' => $search_hd_id))))}>">
-                        <div style="height:25px;margin-top: 4px;line-height: 25px;color: #03A9F4!important;">房源销控</div>
+                        <span >房源销控</span>
                     </a>
                 </div>
                 <div class="fl up-center gy" id="room-hot">
                     <a href="<{:U('RoomAnalysis/index', array('info' => set_search_ids(array('p' => $search_hd_id))))}>">
-                        <div style="height:25px;margin-top: 4px;line-height: 25px;color: #999999">房源热度</div>
+                        <span >房源热度</span>
                     </a>
                 </div>
                 <div class="fl up-center gy" id="room-img">
                     <a href="<{:U('RoomAnalysis/index', array('info' => set_search_ids(array('p' => $search_hd_id)),'is_fx' => 1 ))}>">
-                        <div style="height:25px;margin-top: 4px;line-height: 25px;color: #999999">装户统计</div>
+                        <span >装户统计</span>
                     </a>
                 </div>
 

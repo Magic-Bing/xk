@@ -570,6 +570,7 @@ var sign={
                 margin-left: 20px;
                 float: left;
             }
+
             a:link {
                 color: #0076cf;
                 text-decoration: none;
@@ -959,7 +960,7 @@ var sign={
                             <tr onmouseover="this.bgColor = '#F5F5F5';" onmouseout="this.bgColor = 'ffffff';" bgcolor="ffffff">
                                 <td class="left">上传图片</td>
                                 <td>
-                                    <input type="file" name="plan"  accept="image/jpeg,image/png" style="line-height: 100%">
+                                    <input type="file" name="plan"  accept="image/jpeg,image/png" style="line-height: 100%;">
                                 </td>
                             </tr>
                         </tbody> 

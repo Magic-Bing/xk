@@ -313,7 +313,7 @@
             width: 50px;
             position: fixed;
             z-index: 101;
-            height: 31px;
+            height: 32px;
             top:79px;
             left: calc(100% - 50px);
             font-size:12px;
@@ -451,9 +451,7 @@
                                                                                 </div>
                                                                                 <div class="saler-project-view-content-rooms-room-area">
                                                                                     <div style="float:left;width:50%"><i class="fa fa-heart-o"></i> <?php echo ($rooms_vo[ 'sc_count']); ?></div>
-                                                                                    <div style="float:right;width:50%;text-align:right;">① <?php echo ($rooms_vo[ 'first_count']); ?><div>
-                                                                                </div>
-                                                                            </div>
+                                                                                    <div style="float:right;width:50%;text-align:right;">① <?php echo ($rooms_vo[ 'first_count']); ?></div>
                                                                                 </div>
                                                                             </div>
                                                                         </a>
