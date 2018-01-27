@@ -452,10 +452,12 @@ var admission={
 	</li>
 
 	
-    <li>
-        <a href="<?php echo U('Xsglled/index');?>"><?php echo ((isset($classify_name) && ($classify_name !== ""))?($classify_name):''); ?></a>
-    </li>
-    <li class="active"><?php echo ((isset($seo_title) && ($seo_title !== ""))?($seo_title):''); ?></li>
+	<style>form{display: inline}</style>
+	<li>
+		<a href="<?php echo U('Xsgllog/index');?>"><?php echo ((isset($classify_name) && ($classify_name !== ""))?($classify_name):''); ?></a>
+	</li>
+
+	<li class="active"><?php echo ((isset($seo_title) && ($seo_title !== ""))?($seo_title):''); ?></li>
 
 	
 </ul><!-- .breadcrumb -->
@@ -481,81 +483,265 @@ var admission={
 
 										<!-- .page-content -->
 										
-    <style type="text/css">
-        .qpxs {
-            position: absolute;
-            top:260px;left:40%;
-            width:300px;
-            height:50px;
-            transform: translate(-10%, -10%);
-        }
-        .qpxs a{
-            padding: 10px 20px;
-            text-align: center;
-            background: red;
-            color: #FFF;
-            margin-left: 50px;
-        }
-        form{
-            display: inline;
-        }
-    </style>
-    <div class="row">
-        <div class="col-xs-12">
+<div class="row">
+	<div class="col-xs-12">
+		<div class="table-header">
+			交易记录列表
+		</div>
+		<div class="table-responsive dataTables_wrapper">
+			<div class="row">
+				<div class="col-sm-12">
+					<div id="sample-table-2_length" class="dataTables_length">
+						<form action="<?php echo U('/Account/Xsgllog/index');?>" method="post" id="form-p">
+						<label>
+							项目 
+							<select name="project_id" class="trade-project-id js-trade-project-id" style="width: auto;">
+								<?php if(!empty($search_project_id)): ?><option value="">全部</option>
+									<?php if(is_array($project_list)): foreach($project_list as $key=>$project_list_vo): if($search_project_id == $project_list_vo['id']): ?><option value="<?php echo ($project_list_vo['id']); ?>" selected>
+												<?php echo ($project_list_vo['company_name']); ?> -- <?php echo ($project_list_vo['name']); ?>
+											</option>
+										<?php else: ?>		 
+											<option value="<?php echo ($project_list_vo['id']); ?>">
+												<?php echo ($project_list_vo['company_name']); ?> -- <?php echo ($project_list_vo['name']); ?>
+											</option><?php endif; endforeach; endif; ?> 
+								<?php else: ?>
+									<option value="0" selected>全部</option>
+									<?php if(is_array($project_list)): foreach($project_list as $key=>$project_list_vo): ?><option value="<?php echo ($project_list_vo['id']); ?>">
+											<?php echo ($project_list_vo['company_name']); ?> -- <?php echo ($project_list_vo['name']); ?>
+										</option><?php endforeach; endif; endif; ?>
+							</select> 
+						</label>
+						</form>
+						<form action="<?php echo U('/Account/Xsgllog/index');?>" method="post" id="form-b">
+						<label>							
+							批次 
+							<select name="batch_id" class="trade-batch-id js-trade-batch-id" style="width: auto;">
+							<?php if(count($batch_list) != 1): ?><option value="0">全部</option><?php endif; ?>
+						
+								<?php if(is_array($batch_list)): foreach($batch_list as $key=>$batch_list_vo): if($batch_list_vo['id'] == $search_batch_id): ?><option value="<?php echo ($batch_list_vo['id']); ?>" selected>
+										<?php echo ($batch_list_vo['name']); ?>
+									</option>
+										<?php else: ?>
+										<option value="<?php echo ($batch_list_vo['id']); ?>">
+											<?php echo ($batch_list_vo['name']); ?>
+										</option><?php endif; endforeach; endif; ?> 
+							</select> 
+						</label>
 
-            <div class="table-header">
-                销控LED显示列表
-            </div>
-            <div class="table-responsive dataTables_wrapper">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div id="sample-table-2_length" class="dataTables_length">
-                            <form action="<?php echo U('/Account/Xsglled/index');?>" method="post" id="form-p">
-                            <label>
-                                项目 
-                                <select name="project_id" class="xkled-project-id" style="width: auto;">
-                                    <?php if(!empty($search_project_id)): ?><option value="0">全部</option>
-                                        <?php if(is_array($project_list)): foreach($project_list as $key=>$project_list_vo): if($search_project_id == $project_list_vo['id']): ?><option value="<?php echo ($project_list_vo['id']); ?>" selected>
-                                                    <?php echo ($project_list_vo['company_name']); ?> -- <?php echo ($project_list_vo['name']); ?>
-                                                </option>
-                                                <?php else: ?>		 
-                                                <option value="<?php echo ($project_list_vo['id']); ?>">
-                                                    <?php echo ($project_list_vo['company_name']); ?> -- <?php echo ($project_list_vo['name']); ?>
-                                                </option><?php endif; endforeach; endif; ?> 
-                                        <?php else: ?>
-                                        <option value="0" selected>全部</option>
-                                        <?php if(is_array($project_list)): foreach($project_list as $key=>$project_list_vo): ?><option value="<?php echo ($project_list_vo['id']); ?>">
-                                                <?php echo ($project_list_vo['company_name']); ?> -- <?php echo ($project_list_vo['name']); ?>
-                                            </option><?php endforeach; endif; endif; ?>
-                                </select> 
-                            </label>
-                            </form>
-                            <form action="<?php echo U('/Account/Xsglled/index');?>" method="post" id="form-b">
-                            <label>							
-                                批次 
-                                <select name="batch_id" class="xkled-batch-id" style="width: auto;">
-                                    <?php if(count($batch_list) != 1): ?><option value="0">全部</option><?php endif; ?>
-                                    <?php if(is_array($batch_list)): foreach($batch_list as $key=>$batch_list_vo): if($bid == $batch_list_vo['id']): ?><option value="<?php echo ($batch_list_vo['id']); ?>" selected>
-                                                <?php echo ($batch_list_vo['name']); ?>
-                                            </option>
-                                            <?php else: ?>
-                                            <option value="<?php echo ($batch_list_vo['id']); ?>" >
-                                                <?php echo ($batch_list_vo['name']); ?>
-                                            </option><?php endif; endforeach; endif; ?>
-                                </select> 
-                            </label>
-                                <input type="hidden" name="project_id" value="<?php echo ($search_project_id); ?>">
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="qpxs">
-        <a href="<?php echo U('../led/pmtled1');?>" target="_blank">负一层</a>
-        <a href="<?php echo U('../led/pmtled2');?>" target="_blank">负二层</a>
-    </div>
+						<label>
+							状态
+							<select name="pd" class="trade-zt-id js-trade-zt-id" style="width: auto;">
+
+
+								<?php if($pd == 1): ?><option value="0">激活</option>
+									<option value="1" selected>关闭</option>
+									<?php else: ?>
+									<option value="0">激活</option>
+									<option value="1" >关闭</option><?php endif; ?>>
+							</select>
+						</label>
+						<div class="nav-search" id="sample-table-2_filter" style="top:0;">
+							<label class="input-icon">
+								<input type="text" name="word" value="<?php echo ((isset($search_word) && ($search_word !== ""))?($search_word):''); ?>" class="nav-search-input js-choose-jy-word" id="zt_cx" placeholder="房间、客户、手机">
+								<i class="icon-search nav-search-icon" style="cursor: pointer;left:6px;" id="likeUsers"></i>
+							</label>
+						</div>
+							<input type="hidden" name="project_id" value="<?php echo ($search_project_id); ?>">
+							<input type="hidden" name="p" value="<?php echo ((isset($p) && ($p !== ""))?($p):1); ?>">
+						</form>
+					</div>
+				</div>
+
+			</div>
+			
+			<table id="sample-table-choose" class="table table-striped table-bordered table-hover dataTable">
+				<thead>
+					<tr>
+						<th class="center hidden-480">
+							<label>
+								<input type="checkbox" class="ace">
+								<span class="lbl"></span>
+							</label>
+						</th>
+						<th class="hidden-480">项目</th>
+                                                <th class="hidden-480">房间</th>
+						<th>客户名称</th>
+						<th>
+							<i class="icon-phone bigger-110 hidden-480"></i>
+							客户手机
+						</th>
+						<!--<th>
+							<i class="icon-jpy bigger-110 hidden-480"></i>
+							诚意金金额(元)
+						</th>-->
+                                                <th>来源</th>
+                                                <th>交易状态</th>
+                                                <th class="hidden-480">
+							<i class="icon-time bigger-110 hidden-480"></i>
+							交易时间
+						</th>
+                                                <th>置业顾问</th>
+						<th>
+							<i class="icon-jpy bigger-110 hidden-480"></i>
+							售价(元)
+						</th>
+						<th class="hidden-480">认购码</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<?php if(is_array($tradelist)): $list_key = 0; $__LIST__ = $tradelist;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list_vo): $mod = ($list_key % 2 );++$list_key;?><tr class="choose-user-item choose-user-item-<?php echo ((isset($choose_vo["id"]) && ($choose_vo["id"] !== ""))?($choose_vo["id"]):'0'); ?>">
+							<td class="center hidden-480">
+								<label>
+									<input type="checkbox" class="ace choose-user-item-id" data-id="<?php echo ((isset($list_vo["id"]) && ($list_vo["id"] !== ""))?($list_vo["id"]):'0'); ?>">
+									<span class="lbl"></span>
+								</label>
+							</td>
+							<td class="hidden-480">
+								<span>
+									<?php echo ((isset($list_vo["project_name"]) && ($list_vo["project_name"] !== ""))?($list_vo["project_name"]):''); ?>
+								</span>
+						
+								<?php if(!empty($list_vo["batch_name"])): ?><span class="label label-primary arrowed arrowed-right"><?php echo ($list_vo["batch_name"]); ?></span><?php endif; ?>
+							</td>
+                                                        <td><?php echo ($list_vo["bld_name"]); ?>-<?php echo ($list_vo["unit"]); ?>单元-<?php echo ($list_vo["floor"]); ?>层-<?php echo ($list_vo["room"]); ?></td>
+							<td><?php echo ((isset($list_vo["cst_name"]) && ($list_vo["cst_name"] !== ""))?($list_vo["cst_name"]):''); ?></td>
+							<td><?php echo rsa_decode($list_vo['cst_phone'],getChoosekey());?></td>
+                                                        <td><?php echo ((isset($list_vo["source"]) && ($list_vo["source"] !== ""))?($list_vo["source"]):''); ?></td>
+                                                        <td class="hidden-480">
+								<?php if($list_vo["status"] == '签约'): ?><span class="label label-sm label-success update_zt" style="cursor: pointer" data-id="<?php echo ($list_vo["id"]); ?>">签约</span><?php endif; ?>
+								<?php if($list_vo["status"] == '认购'): ?><span class="label label-sm label-warning update_zt" style="cursor: pointer" data-id="<?php echo ($list_vo["id"]); ?>">认购</span><?php endif; ?>
+                                                                <?php if($list_vo["status"] == '选房'): ?><span class="label label-sm label-purple update_zt" style="cursor: pointer" data-id="<?php echo ($list_vo["id"]); ?>">选房</span><?php endif; ?>
+							</td>
+                                                        <td class="hidden-480">
+								<?php if(!empty($list_vo['trade_time'])): echo (date("Y-m-d H:i:s",$list_vo["trade_time"])); endif; ?>
+							</td>
+                                                        <td><?php echo ((isset($list_vo["ywy"]) && ($list_vo["ywy"] !== ""))?($list_vo["ywy"]):''); ?></td>
+							<td style="text-align:right;"><?php echo number_format($list_vo[total], 2);?></td>
+							
+							<td class="hidden-480"><?php echo ((isset($list_vo["code"]) && ($list_vo["code"] !== ""))?($list_vo["code"]):''); ?></td>
+							<td>
+								<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+									<!--<a href="<?php echo U('edit', 'id='.$choose_vo['id']);?>" class="btn btn-xs btn-info js-choose-user-edit-btn" title="修改">-->
+										<!--<i class="icon-edit bigger-120"></i>-->
+									<!--</a>-->
+									<?php if($list_vo['isyx'] == 1): ?><button data-id="<?php echo ($list_vo["id"]); ?>" class="js-choose-user-circle-btn" title="作废" style="border-style: none;background-color: #ffb752;padding: 3px 7px">
+										<i class="icon-ban-circle bigger-120" style="color: #FFF"> </i>
+									</button>
+										<?php else: ?>
+										<button style="border-style: none;color: #FFF;background-color: grey;font-weight: bold" disabled>已关闭</button><?php endif; ?>
+								</div>
+								
+								<!--<div class="visible-xs visible-sm hidden-md hidden-lg">-->
+									<!--<div class="inline position-relative">-->
+										<!--<button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown">-->
+											<!--<i class="icon-cog icon-only bigger-110"></i>-->
+										<!--</button>-->
+
+										<!--<ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">-->
+											<!--&lt;!&ndash;<li>&ndash;&gt;-->
+												<!--&lt;!&ndash;<a href="<?php echo U('edit', 'id='.$choose_vo['id']);?>" &ndash;&gt;-->
+													<!--&lt;!&ndash;class="tooltip-success js-choose-user-edit-btn"&ndash;&gt;-->
+													<!--&lt;!&ndash;data-rel="tooltip" &ndash;&gt;-->
+													<!--&lt;!&ndash;data-original-title="修改"&ndash;&gt;-->
+												<!--&lt;!&ndash;&gt;&ndash;&gt;-->
+													<!--&lt;!&ndash;<span class="green">&ndash;&gt;-->
+														<!--&lt;!&ndash;<i class="icon-edit bigger-120"></i>&ndash;&gt;-->
+													<!--&lt;!&ndash;</span>&ndash;&gt;-->
+												<!--&lt;!&ndash;</a>&ndash;&gt;-->
+											<!--&lt;!&ndash;</li>&ndash;&gt;-->
+
+											<!--<li>-->
+												<!--<a href="javascript:void(0);" class="tooltip-error js-choose-user-delete-btn"-->
+													<!--title="" -->
+													<!--data-id="<?php echo ($choose_vo["id"]); ?>"-->
+													<!--data-rel="tooltip" -->
+													<!--data-original-title="作废"-->
+												<!--&gt;-->
+													<!--<span class="red">-->
+														<!--<i class="icon-ban-circle bigger-120"></i>-->
+													<!--</span>-->
+												<!--</a>-->
+											<!--</li>-->
+
+										<!--</ul>-->
+
+									<!--</div>-->
+								<!--</div>	-->
+							</td>
+						</tr><?php endforeach; endif; else: echo "" ;endif; ?>
+					
+					<!--<tr>
+						<td class="center hidden-480">
+							<div class="action-buttons">
+								
+							</div>
+						</td>
+						<td colspan="10">
+							<div class="pull-left">
+								<a href="<?php echo U('add');?>" class="btn btn-xs btn-pink js-choose-user-add">
+									<i class="icon-file bigger-110"></i>
+									<span class="bigger-110 no-text-shadow">新增交易</span>
+								</a>
+							</div>
+						</td>
+					</tr>-->
+				</tbody>
+
+			</table>
+			
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="dataTables_info" id="sample-table-2_info">
+						第 <?php echo ((isset($p) && ($p !== ""))?($p):1); ?> / <?php echo ((isset($total_pages) && ($total_pages !== ""))?($total_pages):1); ?> 页，共 <?php echo ((isset($count) && ($count !== ""))?($count):1); ?> 条
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="dataTables_paginate paging_bootstrap">
+						<?php echo ((isset($page_show) && ($page_show !== ""))?($page_show):''); ?>
+					</div>
+				</div>
+			</div>
+		</div><!-- /.table-responsive -->
+
+	</div><!-- /span -->
+
+</div>
+
+	
+<div class="js-choose-user-excel-export-tpl" style="display:none;">
+	<div class="choose-user-excel-export-tpl">
+		<div class="choose-user-excel-export-tpl-title">
+			你确认要导出该项目模板吗？
+		</div>
+		<div class="choose-user-excel-export-tpl-btns center">
+			<button class="btn btn-sm btn-success js-choose-user-excel-export-tpl-btn">
+				<i class="icon-cloud-download bigger-110"></i>
+				导出模板
+			</button>
+		</div>
+	</div>
+</div>
+
+<div class="js-choose-user-excel-import-tpl" style="display:none;">
+	<form method="post" id="choose-user-excel-import-tpl-form" class="choose-user-excel-import-tpl-form" name="import-form" action="<?php echo U('import');?>" enctype="multipart/form-data" >
+		<div class="choose-user-excel-import-tpl">
+			<div class="choose-user-excel-import-tpl-title">
+				提交客户信息文件
+			</div>
+			<div class="choose-user-excel-import-tpl-input">
+				<input type="file" class="choose-excel-import-tpl-file upload" name="excel" value="" />
+			</div>
+			<div class="choose-user-excel-import-tpl-btns center">
+				<button class="btn btn-sm btn-purple js-choose-user-excel-import-tpl-btn">
+					<i class="icon-cloud-upload align-top bigger-110"></i>
+					导入数据
+				</button>
+			</div>
+		</div>
+	</form>
+</div>
 
 
 										
@@ -609,6 +795,10 @@ var admission={
 			
 			<!-- page specific plugin scripts -->
 			
+<script src="/Public/account/assets/js/jquery.dataTables.min.js"></script>
+<script src="/Public/account/assets/js/jquery.dataTables.bootstrap.js"></script>
+	<script src="/Public/account/js/My97DatePicker/WdatePicker.js"></script>
+
 
 			<!-- ace scripts -->
 			
@@ -619,6 +809,53 @@ var admission={
 			
 			<!-- inline scripts related to this page -->
 			
+<script type="text/javascript">
+    var c_num="<?php echo ($p); ?>";
+	jQuery(function($) {
+        //分页跳转
+        $(".pagination li").on("click",function () {
+            var tx=$(this).attr("data-tx");
+            if(tx !==undefined){
+                if(tx ==="上一页"){
+                    $("#form-b input[name='p']").val(Number(c_num)-1);
+                }else if(tx ==="下一页"){
+                    $("#form-b input[name='p']").val(Number(c_num)+1);
+                }else if(tx ==="首页"){
+                    $("#form-b input[name='p']").val(1);
+                } else if(tx ==="尾页"){
+                    $("#form-b input[name='p']").val("<?php echo ((isset($total_pages) && ($total_pages !== ""))?($total_pages):1); ?>");
+                }else{
+                    $("#form-b input[name='p']").val(tx);
+                }
+                $("#form-b").submit();
+            }
+        });
+
+		$('table th input:checkbox').on('click' , function(){
+			var that = this;
+			$(this).closest('table').find('tr > td:first-child input:checkbox')
+			.each(function(){
+				this.checked = that.checked;
+				$(this).closest('tr').toggleClass('selected');
+			});
+		});
+
+		$('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+
+		function tooltip_placement(context, source) {
+			var $source = $(source);
+			var $parent = $source.closest('table')
+			var off1 = $parent.offset();
+			var w1 = $parent.width();
+			var off2 = $source.offset();
+			var w2 = $source.width();
+			if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+			return 'left';
+		}
+	});
+
+</script>
+
 
 			
 				<script src="/Public/account/assets/js/jquery.gritter.min.js"></script>

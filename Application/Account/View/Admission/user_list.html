@@ -21,7 +21,7 @@
     <tbody>
         <if condition="$count gt 0">
             <foreach name="res" item="vo" key="k">
-                <tr class="user-tr" data-yp="<{$vo.ywyphone}>" money="<{$vo.money}>" data-id="<{$vo.id}>"  data-is-sign="<{$vo.is_admission}>" data-bid="<{$vo.batch_id}>">
+                <tr class="user-tr" data-yp="<{$vo.ywyphone}>" money="<{$vo.money}>" data-id="<{$vo.id}>"  data-is-admission="<{$vo.is_admission}>" data-bid="<{$vo.batch_id}>">
                     <td class="center"><{$pages*$page_num+$k+1}></td>
                     <td><{$vo.customer_name}></td>
                     <td><{:rsa_decode($vo['customer_phone'],getChoosekey())}></td>

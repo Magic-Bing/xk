@@ -452,10 +452,16 @@ var admission={
 	</li>
 
 	
-    <li>
-        <a href="<?php echo U('Xsglled/index');?>"><?php echo ((isset($classify_name) && ($classify_name !== ""))?($classify_name):''); ?></a>
-    </li>
-    <li class="active"><?php echo ((isset($seo_title) && ($seo_title !== ""))?($seo_title):''); ?></li>
+	<style>
+		form{
+			display: inline;
+		}
+	</style>
+	<li>
+		<a href="<?php echo U('WeixBuyset/index');?>"><?php echo ((isset($classify_name) && ($classify_name !== ""))?($classify_name):''); ?></a>
+	</li>
+
+	<li class="active"><?php echo ((isset($seo_title) && ($seo_title !== ""))?($seo_title):''); ?></li>
 
 	
 </ul><!-- .breadcrumb -->
@@ -481,82 +487,204 @@ var admission={
 
 										<!-- .page-content -->
 										
-    <style type="text/css">
-        .qpxs {
-            position: absolute;
-            top:260px;left:40%;
-            width:300px;
-            height:50px;
-            transform: translate(-10%, -10%);
-        }
-        .qpxs a{
-            padding: 10px 20px;
-            text-align: center;
-            background: red;
-            color: #FFF;
-            margin-left: 50px;
-        }
-        form{
-            display: inline;
-        }
-    </style>
-    <div class="row">
-        <div class="col-xs-12">
+<div class="row">
 
-            <div class="table-header">
-                销控LED显示列表
-            </div>
-            <div class="table-responsive dataTables_wrapper">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div id="sample-table-2_length" class="dataTables_length">
-                            <form action="<?php echo U('/Account/Xsglled/index');?>" method="post" id="form-p">
-                            <label>
-                                项目 
-                                <select name="project_id" class="xkled-project-id" style="width: auto;">
-                                    <?php if(!empty($search_project_id)): ?><option value="0">全部</option>
-                                        <?php if(is_array($project_list)): foreach($project_list as $key=>$project_list_vo): if($search_project_id == $project_list_vo['id']): ?><option value="<?php echo ($project_list_vo['id']); ?>" selected>
-                                                    <?php echo ($project_list_vo['company_name']); ?> -- <?php echo ($project_list_vo['name']); ?>
-                                                </option>
-                                                <?php else: ?>		 
-                                                <option value="<?php echo ($project_list_vo['id']); ?>">
-                                                    <?php echo ($project_list_vo['company_name']); ?> -- <?php echo ($project_list_vo['name']); ?>
-                                                </option><?php endif; endforeach; endif; ?> 
-                                        <?php else: ?>
-                                        <option value="0" selected>全部</option>
-                                        <?php if(is_array($project_list)): foreach($project_list as $key=>$project_list_vo): ?><option value="<?php echo ($project_list_vo['id']); ?>">
-                                                <?php echo ($project_list_vo['company_name']); ?> -- <?php echo ($project_list_vo['name']); ?>
-                                            </option><?php endforeach; endif; endif; ?>
-                                </select> 
-                            </label>
-                            </form>
-                            <form action="<?php echo U('/Account/Xsglled/index');?>" method="post" id="form-b">
-                            <label>							
-                                批次 
-                                <select name="batch_id" class="xkled-batch-id" style="width: auto;">
-                                    <?php if(count($batch_list) != 1): ?><option value="0">全部</option><?php endif; ?>
-                                    <?php if(is_array($batch_list)): foreach($batch_list as $key=>$batch_list_vo): if($bid == $batch_list_vo['id']): ?><option value="<?php echo ($batch_list_vo['id']); ?>" selected>
-                                                <?php echo ($batch_list_vo['name']); ?>
-                                            </option>
-                                            <?php else: ?>
-                                            <option value="<?php echo ($batch_list_vo['id']); ?>" >
-                                                <?php echo ($batch_list_vo['name']); ?>
-                                            </option><?php endif; endforeach; endif; ?>
-                                </select> 
-                            </label>
-                                <input type="hidden" name="project_id" value="<?php echo ($search_project_id); ?>">
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="qpxs">
-        <a href="<?php echo U('../led/pmtled1');?>" target="_blank">负一层</a>
-        <a href="<?php echo U('../led/pmtled2');?>" target="_blank">负二层</a>
-    </div>
+	<div class="col-xs-12">
+	
+		<div class="table-header">
+			微信认购记录列表
+		</div>
 
+		<div class="table-responsive dataTables_wrapper">
+			<div class="row">
+				<div class="col-sm-12">
+					<div id="sample-table-2_length" class="dataTables_length">
+						<form action="<?php echo U('/Account/WeixBuylog/index');?>" method="post" id="form-p">
+						<label>
+							项目 
+							<select name="project_id" class="choose-activity-project-id " style="width: auto;" id="jl_pid">
+								<?php if(!empty($search_project_id)): ?><option value="">全部</option>
+									<?php if(is_array($project_list)): foreach($project_list as $key=>$project_list_vo): if($search_project_id == $project_list_vo['id']): ?><option value="<?php echo ($project_list_vo['id']); ?>" selected>
+												<?php echo ($project_list_vo['company_name']); ?> -- <?php echo ($project_list_vo['name']); ?>
+											</option>
+										<?php else: ?>		 
+											<option value="<?php echo ($project_list_vo['id']); ?>">
+												<?php echo ($project_list_vo['company_name']); ?> -- <?php echo ($project_list_vo['name']); ?>
+											</option><?php endif; endforeach; endif; ?> 
+								<?php else: ?>
+									<option value="0" selected>全部</option>
+									<?php if(is_array($project_list)): foreach($project_list as $key=>$project_list_vo): ?><option value="<?php echo ($project_list_vo['id']); ?>">
+											<?php echo ($project_list_vo['company_name']); ?> -- <?php echo ($project_list_vo['name']); ?>
+										</option><?php endforeach; endif; endif; ?>
+							</select> 
+						</label>
+						</form>
+						<form action="<?php echo U('/Account/WeixBuylog/index');?>" method="post" id="form-b">
+						<label>							
+							批次 
+							<select name="batch_id" class="choose-activity-batch-id" style="width: auto;" id="jl_pc">
+								<?php if(count($batch_list) != 1): ?><option value="0">全部</option><?php endif; ?>
+								<?php if(is_array($batch_list)): foreach($batch_list as $key=>$batch_list_vo): if($search_batch_id == $batch_list_vo['id']): ?><option value="<?php echo ($batch_list_vo['id']); ?>" selected>
+											<?php echo ($batch_list_vo['name']); ?>
+										</option>
+										<?php else: ?>
+										<option value="<?php echo ($batch_list_vo['id']); ?>">
+											<?php echo ($batch_list_vo['name']); ?>
+										</option><?php endif; endforeach; endif; ?> 
+							</select> 
+						</label>
+						<label>
+							状态
+							<select name="status" class="choose-activity-batch-id " style="width: auto;" id="jl_status">
+									<option value="0">未审核</option>
+									<option value="1">已审核</option>
+									<option value="2">全部</option>
+							</select>
+						</label>
+							<div class="nav-search" id="sample-table-2_filter"  style="top:0;">
+								<label class="input-icon">
+									<input type="text" name="word" value="<?php echo ((isset($search_word) && ($search_word !== ""))?($search_word):''); ?>" id="jl_ss"  class="nav-search-input" placeholder="签约号、房号、手机">
+									<i class="icon-search nav-search-icon" style="cursor: pointer;left:6px;" id="likeUsers"></i>
+								</label>
+							</div>
+							<input type="hidden" name="project_id" value="<?php echo ($search_project_id); ?>">
+							<input type="hidden" name="p" value="<?php echo ((isset($p) && ($p !== ""))?($p):1); ?>">
+						</form>
+					</div>
+				</div>
+			</div>
+			
+			<table id="sample-table-choose" class="table table-striped table-bordered table-hover dataTable">
+				<thead>
+					<tr>
+						<th class="center hidden-480">
+							<label>
+								<input type="checkbox" class="ace">
+								<span class="lbl"></span>
+							</label>
+						</th>
+						<th class="center hidden-480">序号</th>
+						<th class="hidden-480">项目</th>
+						<th class="hidden-480">房间</th>
+						<th class="hidden-480">
+							姓名
+						</th>
+						<th class="hidden-480">
+							手机
+						</th>
+						<!--<th class="hidden-480">-->
+							<!--性别-->
+						<!--</th>-->
+						<th>
+							签约码
+						</th>
+						<th class="hidden-480">
+							<i class="icon-time bigger-110 hidden-480"></i>
+							选房时间
+						</th>
+						<th class="hidden-480">状态</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<?php if(!empty($choose_activity_list)): if(is_array($choose_activity_list)): $choose_activity_k = 0; $__LIST__ = $choose_activity_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$choose_activity_vo): $mod = ($choose_activity_k % 2 );++$choose_activity_k;?><tr class="choose-activity-item choose-activity-item-<?php echo ((isset($choose_activity_vo["id"]) && ($choose_activity_vo["id"] !== ""))?($choose_activity_vo["id"]):'0'); ?>">
+								<td class="center hidden-480">
+									<label>
+										<input type="checkbox" class="ace choose-activity-item-id" data-id="<?php echo ((isset($choose_activity_vo["id"]) && ($choose_activity_vo["id"] !== ""))?($choose_activity_vo["id"]):'0'); ?>">
+										<span class="lbl"></span>
+									</label>
+								</td>
+
+								<td class="center hidden-480"><?php echo ($choose_activity_k); ?></td>
+								<td class="hidden-480">
+									<?php echo ((isset($choose_activity_vo['project_name']) && ($choose_activity_vo['project_name'] !== ""))?($choose_activity_vo['project_name']):''); ?>
+									<?php if(!empty($choose_activity_vo["batch_name"])): ?><span class="label label-sm label-primary arrowed arrowed-right"><?php echo ($choose_activity_vo["batch_name"]); ?></span><?php endif; ?>
+								</td>
+								<td class="hidden-480">
+										<?php echo ($choose_activity_vo["build_name"]); ?>-<?php echo ($choose_activity_vo["unit_no"]); ?>单元-<?php echo ($choose_activity_vo["floor_no"]); ?>层-<?php echo ($choose_activity_vo["room_room"]); ?>
+								</td>
+								<td class="hidden-480">
+									<?php if(!empty($choose_activity_vo['belong_real_name'])): echo ($choose_activity_vo["belong_real_name"]); endif; ?>
+								</td>
+								<td class="hidden-480">
+									<?php if(!empty($choose_activity_vo['belong_phone'])): echo ($choose_activity_vo["belong_phone"]); endif; ?>
+								</td>
+								<!--<td class="hidden-480">-->
+									<!--<?php if($choose_activity_vo['belong_gender']==1): ?>男-->
+									<!--<?php elseif($choose_activity_vo['belong_gender']==2): ?>女-->
+									<!--<?php else: ?>保密-->
+									<!--<?php endif; ?>-->
+								<!--</td>-->
+								<td>
+									<?php echo ($choose_activity_vo["code"]); ?>
+								</td>
+								<td class="hidden-480" style="text-align: center;">
+									<?php if(!empty($choose_activity_vo['log_time'])): echo (date("Y-m-d H:i:s",$choose_activity_vo["log_time"])); endif; ?>
+								</td>
+								<td class="hidden-480 center">
+									<?php if(($choose_activity_vo['is_checked']) == "1"): ?><span class="label label-sm label-success">已审核</span>
+									<?php else: ?>
+										<span class="label label-sm label-warning">未审核</span><?php endif; ?>
+								</td>
+								<td style="text-align: center;">
+									<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+										<?php if(($choose_activity_vo['is_checked']) != "1"): ?><button data-id="<?php echo ($choose_activity_vo["id"]); ?>"  data-selector="check"  title="核销" style="background-color: #3babbe;font-weight: bold;border-style: none;color: #FFF">
+												打印/核销
+											</button><?php endif; ?>
+
+									</div>
+								</td>
+							</tr><?php endforeach; endif; else: echo "" ;endif; ?>
+					<?php else: ?>
+						<tr>
+							<td colspan="12" class="no-padding">
+								<div class="alert alert-warning no-margin-bottom">
+									还没有记录！
+									<br>
+								</div>
+							</td>
+						</tr><?php endif; ?>
+					
+					<tr>
+						<td class="center hidden-480">
+							<div class="action-buttons">
+								<!--<a class="red btn-sm js-choose-activity-delete-all-btn" href="javascript:void(0);" title="批量删除">
+									<i class="icon-trash bigger-130"></i>
+								</a>-->
+							</div>
+						</td>
+						<td colspan="11">
+
+								<button style="background-color: rgb(48, 126, 204);border-style:none;float: right;color: #FFF;font-weight: bold;padding: 5px 8px" id="check_jl">
+									<i class="icon-cloud-download bigger-110"></i>导出数据</button>
+								<!--<a href="<?php echo U('add');?>" class="btn btn-xs btn-pink js-choose-activity-add">
+									<i class="icon-file bigger-110"></i>
+									<span class="bigger-110 no-text-shadow">添加信息</span>
+								</a>-->
+						</td>
+					</tr>
+				</tbody>
+
+			</table>
+			
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="dataTables_info" id="sample-table-2_info">
+						第 <?php echo ((isset($p) && ($p !== ""))?($p):1); ?> / <?php echo ((isset($total_pages) && ($total_pages !== ""))?($total_pages):1); ?> 页，共 <span><?php echo ((isset($count) && ($count !== ""))?($count):1); ?> </span>条
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="dataTables_paginate paging_bootstrap">
+						<?php echo ((isset($page_show) && ($page_show !== ""))?($page_show):''); ?>
+					</div>
+				</div>
+			</div>
+		</div><!-- /.table-responsive -->
+
+	</div><!-- /span -->
+
+</div>
 
 										
 										<!-- PAGE CONTENT ENDS -->
@@ -609,6 +737,9 @@ var admission={
 			
 			<!-- page specific plugin scripts -->
 			
+<script src="/Public/account/assets/js/jquery.dataTables.min.js"></script>
+<script src="/Public/account/assets/js/jquery.dataTables.bootstrap.js"></script>
+
 
 			<!-- ace scripts -->
 			
@@ -619,6 +750,74 @@ var admission={
 			
 			<!-- inline scripts related to this page -->
 			
+<script type="text/javascript">
+    var c_num="<?php echo ($p); ?>";
+jQuery(function($) {
+
+    //分页跳转
+    $(".pagination li").on("click",function () {
+        var tx=$(this).attr("data-tx");
+        if(tx !==undefined){
+            if(tx ==="上一页"){
+                $("#form-b input[name='p']").val(Number(c_num)-1);
+            }else if(tx ==="下一页"){
+                $("#form-b input[name='p']").val(Number(c_num)+1);
+            }else if(tx ==="首页"){
+                $("#form-b input[name='p']").val(1);
+            } else if(tx ==="尾页"){
+                $("#form-b input[name='p']").val("<?php echo ((isset($total_pages) && ($total_pages !== ""))?($total_pages):1); ?>");
+            }else{
+                $("#form-b input[name='p']").val(tx);
+            }
+            $("#form-b").submit();
+        }
+    });
+    $("#jl_status").val('<?php echo ($search_status); ?>');
+
+
+	$('table th input:checkbox').on('click' , function(){
+		var that = this;
+		$(this).closest('table').find('tr > td:first-child input:checkbox')
+		.each(function(){
+			this.checked = that.checked;
+			$(this).closest('tr').toggleClass('selected');
+		});
+	});
+
+	$('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+
+	function tooltip_placement(context, source) {
+		var $source = $(source);
+		var $parent = $source.closest('table')
+		var off1 = $parent.offset();
+		var w1 = $parent.width();
+		var off2 = $source.offset();
+		var w2 = $source.width();
+		if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+		return 'left';
+	}
+});
+
+$(document).on('click','button[data-selector=check]',function () {
+    var t=$(this);
+    var pd=$("#jl_status").val();
+    ajax_post_callback(
+        "<?php echo U('check');?>"
+		,{id:$(this).data('id')}
+		,function (data,status) {
+            if(Number(pd)===0){
+                t.parents("tr").remove();
+			}else{
+                t.parents("tr").find("td").eq(8).html('<span class="label label-sm label-success">已审核</span>');
+                t.hide();
+			}
+            layer_alert(data.info);
+		}
+		);
+})
+
+</script>
+
 
 			
 				<script src="/Public/account/assets/js/jquery.gritter.min.js"></script>
@@ -629,8 +828,6 @@ var admission={
 				<script src="/Public/account/js/account.js"></script>
 			
 			
-
-
 		</body>
 	
 	

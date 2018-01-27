@@ -453,7 +453,7 @@ var admission={
 
 	
 	<li>
-		<a href="<?php echo U('Jcsjroom/room');?>"><?php echo ((isset($classify_name) && ($classify_name !== ""))?($classify_name):''); ?></a>
+		<a href="<?php echo U('Yhqxuser/index');?>"><?php echo ((isset($classify_name) && ($classify_name !== ""))?($classify_name):''); ?></a>
 	</li>
 
 	<li class="active"><?php echo ((isset($seo_title) && ($seo_title !== ""))?($seo_title):''); ?></li>
@@ -497,10 +497,10 @@ var admission={
     clear: both;
 }
 
-#tagscontent .table_td th, #tagscontent #sample-table-room th {
+#tagscontent .table_td th, #tagscontent #table th {
     background: #f2f2f2;
     text-align: center;
-    font-size:13px;
+    font-size: 13px;
     border: 1px solid #DDD;
 }
 #tagscontent th {
@@ -528,15 +528,26 @@ var admission={
     font-size:12px;
     background: #eff3f8;
 }
-
+.search_content label{
+    margin-left: 5px;
+}
+.search_content input{
+    width:100px;
+    padding: 3px 4px;
+}
+.page_newc
+{
+    height: 34px;
+    background: #F5F5F5;
+    
+}
 
 /* 通用分页 */
 .page-container {
 	text-align: right;
-	background: #eff3f8;
-        padding-top: 12px;
-        padding-bottom: 12px;
-        border-bottom: 1px solid #DDD;
+	/*padding: 10px 0; */
+	margin-top: 5px;
+	background: #F5F5F5;
 }
 .page-container .num,
 .page-container .prev,
@@ -548,19 +559,17 @@ var admission={
 {
 	padding: 5px;
 	display: inline-block;
-        padding: 6px 12px;
-        background: #fafafa;
-        color: #0076cf;
-        font-size: 12px;
-        border: 1px solid #ddd;
-        margin-left: -1px;
+	padding: 5px 9px;
+    background: #d1cfd6;
+	color: #0076cf;
+	font-size: 16px;
 }
 .page-container .current
 {
-    background: #6faed9;
+    background: #ff6600;
     color: #fff;
-    font-weight: bold;
-    cursor: pointer;
+	font-weight: bold;
+	cursor: pointer;
 }
 .page-container .num:hover,
 .page-container .prev:hover,
@@ -570,10 +579,8 @@ var admission={
 .page-container .rows:hover,
 .page-container .current:hover
 {
-    cursor: pointer;
-}
-form{
-    display: inline;
+    background: #d08553;
+	color: #FFF;
 }
 
 .button {
@@ -588,7 +595,7 @@ form{
     color: #1f74bd;
     overflow: hidden;
     margin-left: 20px;
-    font-size:12px;
+	font-size:12px;
 }
 .showtop_t {
     font-weight: bold;
@@ -612,7 +619,7 @@ form{
 a:link {
     color: #0076cf;
     text-decoration: none;
-   /*font-weight:bold;*/
+    /*font-weight:bold;*/
 }
 
 
@@ -630,16 +637,10 @@ a:link {
 }
 
 .xzblddiv{
-width: 60px;
-margin-left: 40px;
-color:#FFF;
-border:1px solid #FFF;
-background:rgb(220, 45, 14);
-border-radius:5px;
-padding:2px 0;
-font-weight:bold;
-cursor:pointer;
-line-height:20px
+    color: #dc2d0e;
+    cursor: pointer;
+    margin: auto;
+    text-align: center;
 }
 a{
 cursor:pointer;
@@ -667,10 +668,9 @@ margin-top:100px;
 	padding: 0;
 }
 .room-nav-edit .room-nav-edit-btn {
-	    list-style: none;
-            display: inline-block;
-            padding: 4px 7px;
-            background: #428bca;
+	list-style: none;
+	display: inline-block;
+	padding: 0 7px;
 }
 .room-export-btn {
 	width:66px;
@@ -716,13 +716,16 @@ margin-top:100px;
     padding: 3px 5px;
     margin-left: 5px;
 }
-
-#sample-table-room>tbody>tr:nth-child(odd)>td{
-    background-color: #f9f9f9;
+.adduser_btn{
+    line-height: 20px;
+    float: left;
+    margin-right: 20px;
+    background: #d6487e;
+    padding: 1px 5px;
 }
-.search_content label input{
-    width:100px;
-    padding: 3px 4px;
+
+#table>tbody>tr:nth-child(odd)>td{
+    background-color: #f9f9f9;
 }
 .pagerow{
     padding-top: 12px;
@@ -730,225 +733,155 @@ margin-top:100px;
     background-color: #eff3f8;
     border-bottom: 1px solid #DDD;
 }
+    form{
+        display: inline;
+    }
 </style>
 <div class="row">
     <div class="col-xs-12">
     <div class="table-header">
-	<span>房间列表</span>
-        
-	
-	<div style="float:right;margin-right:10px;height: 31px;">
+	<span style="">用户列表</span>
+    </div>
+    <div class="show_content_m_t2">
+        <div style="width:100%;overflow-x:hidden;overflow-y:hidden"> 
+            <div style="background: #eff3f8;height: 43px;">   
+                <div style="display:block;float:left;line-height: 38px;">
+                    <font style="margin-left:10px;">公司</font>
+                    <select id= "companys" name="companys" style="padding: 1px 10px;height:25px;" >
+                    <?php if($cp_id > 0): if(is_array($companys)): foreach($companys as $key=>$companys_vo): if($cp_id == $companys_vo['id']): ?><option value="<?php echo ($companys_vo['id']); ?>" selected>
+                                    <?php echo ($companys_vo['compname']); ?>
+                              </option>
+                            <?php else: ?>		 
+                              <option value="<?php echo ($companys_vo['id']); ?>">
+                                    <?php echo ($companys_vo['compname']); ?> 
+                              </option><?php endif; endforeach; endif; ?> 
+                    <?php else: ?>
+                            <option value="0" selected></option>
+                             <?php if(is_array($companys)): foreach($companys as $key=>$companys_vo): ?><option value="<?php echo ($companys_vo['id']); ?>">
+                                    <?php echo ($companys_vo['compname']); ?>
+                               </option><?php endforeach; endif; endif; ?>
+                    </select>
 
-	</div>
-</div>
+                     <form method="post" id="selectcomp" name="selectcomp" action="index" style="display:none">
+                            <input type="text" id="cp_id" name="cp_id" value="">
+                            <input type="submit" value="提交查询" class="button">  
+                    </form>
+                </div>
+                <div class="search">
+                    <div class="search_content">	 
+                        <form method="post"  action="index" id="form-b">
+                            <input type="hidden" name="cp_id" value="<?php echo ($cp_id); ?>">
+                            <input type="hidden" name="p" value="<?php echo ((isset($p) && ($p !== ""))?($p):1); ?>">
+                            <label>用户名称</label>
+                            <input type="text" name="name" value="<?php echo ($name); ?>">
+                            <label>用户代码</label>
+                            <input type="text" name="code" value="<?php echo ($code); ?>">
+                            <label>电话号码</label>
+                            <input type="text" name="mobile" value="<?php echo ($mobile); ?>">
+                            <input type="submit" value="提交查询" class="button room-search-button">
+                        </form>
+                    </div>
 
-<div class="show_content_m_t2">
- <div style="width:100%;overflow-x:hidden;overflow-y:hidden"> 
-     <div style="background: #eff3f8;height: 43px;">   
-     <div style="display:block;float:left;line-height: 38px;">
-         <form method="post" id="selectproj" name="selectproj" action="room" >
-            <font style="margin-left:10px;">项目</font>
-            <select id= "projlist" name="projid" style="height:25px;padding: 1px 10px;" >
-            <?php if($selectedproj['id'] > 0): if(is_array($projlist)): foreach($projlist as $key=>$projlist_vo): if($selectedproj['id'] == $projlist_vo['id']): ?><option value="<?php echo ($projlist_vo['id']); ?>" selected>
-                            <?php echo ($projlist_vo['company_name']); ?>--<?php echo ($projlist_vo['name']); ?>  
-                      </option>
-                    <?php else: ?>		 
-                      <option value="<?php echo ($projlist_vo['id']); ?>">
-                            <?php echo ($projlist_vo['company_name']); ?>--<?php echo ($projlist_vo['name']); ?>
-                      </option><?php endif; endforeach; endif; ?> 
-            <?php else: ?>
-                    <option value="0" selected></option>
-                     <?php if(is_array($projlist)): foreach($projlist as $key=>$projlist_vo): ?><option value="<?php echo ($projlist_vo['id']); ?>">
-                            <?php echo ($projlist_vo['company_name']); ?>--<?php echo ($projlist_vo['name']); ?> 
-                       </option><?php endforeach; endif; endif; ?>
-            </select>
-            </form>
-        </div>
-	<div class="search"> 
-		<div class="search_content">	 
-			<form method="post"  action="room" id="form-b">
-				<input type="hidden" name="projid" value="<?php echo ((isset($projid) && ($projid !== ""))?($projid):''); ?>" style="display:none;">
-                <input type="hidden" name="p" value="<?php echo ((isset($p) && ($p !== ""))?($p):1); ?>">
-                <input type="hidden" name="r" value="<?php echo ((isset($listRows) && ($listRows !== ""))?($listRows):15); ?>">
-                <input type="hidden" name="excel" value="0">
-				<label style="font-size: 13px;">
-				   楼栋
-				   <input type="text" name="buildname" value="<?php echo ((isset($buildname) && ($buildname !== ""))?($buildname):''); ?>"> 
-				</label>
-			   
-			   &nbsp;
-				<label>
-					单元
-					<input type="text" name="unit" value="<?php echo ((isset($unit) && ($unit !== ""))?($unit):''); ?>"> 
-				</label>
-				&nbsp;
-				<label>
-					户型
-					<input type="text" name="hx" value="<?php echo ((isset($hx) && ($hx !== ""))?($hx):''); ?>">  
-				</label>
-               
-				&nbsp;
-				<label style="font-size: 13px;">
-					房号
-					<input type="text" name="room" value="<?php echo ((isset($room) && ($room !== ""))?($room):''); ?>">    
-				</label>
-				
-				<input type="submit" value="提交查询" class="button room-search-button">  
-			</form>
-		</div>
-	</div>
-     </div>
-	
-    <div class="tags" style="width:100%; padding: 0;border:0;">
-      	<div id="tagstitle"></div>
-        <div id="tagscontent">
-           <div id="con_one_1">
-             <div class="table_td" >
-              <!--<form method="post" action="">-->
-                  <table border="0" cellspacing="2" id="sample-table-room" cellpadding="4" class="table table-striped table-bordered table-hover dataTable" >
-                    <thead>
-                      <tr>
-                        <th width="60px">
-                            <label>
-                                <input type="checkbox" class="ace">
-                                <span class="lbl"></span>
-                            </label>
-                        </th>
-						<th align="center">房间名称</th>
-						<th align="center">户型</th>
-						<th align="center">建筑面积</th>
-                        <th align="center">建筑单价</th>
-						<th align="center">套内面积</th> 
-						<th align="center">套内单价</th>
-						<th align="center">标准总价</th>
-						<th align="center">优惠后总价</th>
-						<th align="center">销售状态</th>
-                        <th align="center" style="width:100px">
-						操作
-						</th>
-                      </tr>
-                    </thead> 
-                     <tbody id="roomlisttb">
-                      <?php if(is_array($roomlist)): foreach($roomlist as $key=>$roomlist_vo): ?><tr class="s_out" onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="#ffffff"> 
-                        <td align="center" >
-                            <label>
-                                <input type="checkbox"  data-id="<?php echo ($roomlist_vo['id']); ?>"  <?php if($roomlist_vo['is_xf'] == 1): ?>class="ace" disabled<?php else: ?>class="ace delete-bs"<?php endif; ?>>
-                                <span class="lbl"></span>
-                            </label>
-                        </td>
-						<td align="left">
-                                                    <a href="<?php echo U('jcsjroom/edit', array('id' => $roomlist_vo['id']));?>" style="text-decoration: underline;">
-                                                            <?php echo ($roomlist_vo['projname']); ?>-<?php echo ($roomlist_vo['buildname']); ?>-<?php echo ($roomlist_vo['unit']); ?>-<?php echo ($roomlist_vo['room']); ?>
-                                                    </a>
-						</td> 
-                        <td align="center"><?php echo ($roomlist_vo['hx']); ?></td> 
-                        <td align="right"> <?php echo ($roomlist_vo['area']); ?> </td> 
-                        <td align="right"><?php echo number_format($roomlist_vo['price'],2);?></td> 
-						<td align="right"> <?php echo ($roomlist_vo['tnarea']); ?> </td> 
-                        <td align="right"><?php echo number_format($roomlist_vo['tnprice'],2);?></td>
-						<td align="right"><?php echo number_format($roomlist_vo['total'],2);?></td> 
-						<td align="right"><?php echo number_format($roomlist_vo['discount'],2);?></td>
-						<?php if($roomlist_vo['is_xf'] == 0): ?><td align="center">待售</td>	
-						<?php else: ?>
-						<td align="center">已售</td><?php endif; ?>
-                        <td align="center">
-                        	<a href="<?php echo U('jcsjroom/edit', array('id' => $roomlist_vo['id']));?>" >
-                                                            <span class="" style="padding: 3px 3px;background-color: #6fb3e0;color: #FFF;" title="修改">
+                </div>
+            </div>
+
+            <div class="tags" style="width: 100%;padding: 0;border: 0;">
+                <div id="tagstitle"></div>
+                <div id="tagscontent">
+                    <div id="con_one_1">
+                        <div class="table_td">
+                            <table border="0" cellspacing="2" cellpadding="4" class="list" name="table" id="table" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th width="80px"><input type="checkbox" id="chkall" name="chkall" onclick="checkall()"></th> 
+                                        <th align="center">所属公司</th>
+                                        <th align="center">用户名称</th>
+                                        <th align="center">用户代码</th> 
+                                        <th align="center">用户手机</th>
+                                        <th align="center">状态</th>
+                                        <th align="center" style="width:100px">操作</th>
+                                    </tr>
+                                </thead> 
+                                <tbody id="userlisttb">
+                                <?php if(is_array($userlist)): foreach($userlist as $key=>$userlist_vo): ?><tr class="s_out user-item-<?php echo ($userlist_vo['id']); ?>" onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="#ffffff"> 
+                                        <td align="center" ><input type="checkbox" class="selectuser" name="id[]" value="<?php echo ($userlist_vo['id']); ?>"></td> 
+                                        <td align="left"> <?php echo ($userlist_vo['compname']); ?> </td> 
+                                        <td align="left"><a href="edit.html?id=<?php echo ($userlist_vo['id']); ?>" style="text-decoration: underline;"><?php echo ($userlist_vo['name']); ?><a></td> 
+                                                    <td align="left"> <?php echo ($userlist_vo['code']); ?> </td> 
+                                                    <td align="left"><?php echo ($userlist_vo['mobile']); ?></td>
+                                                    <td class="center">
+                                                        <?php if($userlist_vo['status'] == 0): ?><span style="cursor: pointer" class="label label-sm label-success click-status" data-id="<?php echo ($userlist_vo['id']); ?>" data-s="0">启用</span>
+                                                            <?php else: ?>
+                                                            <span style="cursor: pointer" class="label label-sm label-warning click-status" data-id="<?php echo ($userlist_vo['id']); ?>" data-s="1">关闭</span><?php endif; ?>
+                                                    </td>
+                                                    <td align="center">
+                                                        <a href="edit.html?id=<?php echo ($userlist_vo['id']); ?>" >
+                                                            <span style="padding: 3px 3px;background-color: #6fb3e0;color: #FFF;" title="修改">
 								<i class="icon-edit bigger-120"></i>
                                                             </span>
-							</a>
-                            <?php if($roomlist_vo['is_xf'] == 0): ?><a href="javascript:void(0);" class="a_tb_bg js-del-room" roomid="<?php echo ($roomlist_vo['id']); ?>" title="删除">
-                                                            <span class="white">
+                                                        </a> 
+                                                        <a class="a_tb_bg" onclick="deluser(<?php echo ($userlist_vo['id']); ?>,0)"> 
+                                                            <span class="white" title="删除">
 								<i class="icon-trash bigger-120"></i> 
                                                             </span>
                                                         </a>
-                                <?php else: ?>
-                                &nbsp;
-                                &nbsp;
-                                &nbsp;
-                                &nbsp;<?php endif; ?>
-                        </td> 
-                      </tr><?php endforeach; endif; ?> 
-                     <tr>
-                        <td class="center">
-                            <div class="action-buttons" id="delete-batch" title="批量删除" style="border-style: none">
-                                <a>
-                                <i class="icon-trash bigger-130" style="margin: 0;color:#dd5a43;"></i>
-                                </a>
-                            </div>
-                        </td>
-                        <td colspan="10">
-                        <ul class="room-nav-edit" >
-                                <li class="room-nav-edit-btn">
-                                        <a class="room-export-btn js-room-excel-import" href="javascript:void(0);">
-                                                <i class="icon-cloud-upload bigger-110"></i>
-                                                导入数据
-                                        </a>
-                                </li>
-                                <li class="room-nav-edit-btn">
-                                    <a class="room-export-btn" href="/Account/Jcsjroom/exportfj/projid/<?php echo ($selectedproj['id']); ?>.html">
-                                                <i class="icon-cloud-download bigger-110"></i>
-                                                导出房间模板
-                                        </a>
-                                </li>
-                                 <li class="room-nav-edit-btn">
-                                        <a class="room-export-btn" href="/Account/Jcsjroom/exportcw/projid/<?php echo ($selectedproj['id']); ?>.html">
-                                                <i class="icon-cloud-download bigger-110"></i>
-                                                导出车位模板
-                                        </a>
-                                </li>
-                            <li class="room-nav-edit-btn" style="float: right;
-    margin-right: 18px;">
-                                <a class="room-export-btn" id="check-room" href="javascript:;">
-                                    <i class="icon-cloud-download bigger-110"></i>
-                                    导出房间数据
-                                </a>
-                            </li>
-                        </ul>
-                        </td>     
-                     </tr>
-                    </tbody> 
+                                                    </td> 
+                                                    </tr><?php endforeach; endif; ?> 
+                                                    <tr>
+                                                        <td>
+                                                            <div class="xzblddiv action-buttons"  >
+                                                                <a title="批量删除" onclick="pldeluser()">
+                                                                    <i class="icon-trash bigger-130" style="color:#dd5a43;"></i>
+                                                                </a>
+                                                                <a title="批量关闭" onclick="plcloseuser()">
+                                                                    <i class="icon-eye-close bigger-130" style="color:#dd5a43;"></i>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td colspan="10">
+                                                            <a href="add.html" class="btn btn-xs btn-pink" style="color:#FFF"><i class="icon-file bigger-110"></i> 新增用户</a>
+                                                            <button class="btn btn-xs btn-primary" id="moban-out">
+                                                                <i class="icon-cloud-download bigger-110" ></i>
+                                                                <span class="bigger-110 no-text-shadow">导出模板</span>
+                                                            </button>
+                                                            <form action="" enctype="multipart/form-data" id="upload-user" style="display: inline">
+                                                                <input type="file" name="excel" style="display: none" accept="application/vnd.ms-excel" id="file">
+                                                                <button type="button" class="btn btn-xs btn-primary " onclick="$('input[type=file]').click();" id="moban-in">
+                                                                    <i class="icon-cloud-upload bigger-110"></i>
+                                                                    <span class="bigger-110 no-text-shadow" >导入数据</span>
+                                                                </button>
+                                                            </form>
+                                                            <button class="btn btn-xs btn-primary"  style="float: right" id="user-out">
+                                                                <i class="icon-cloud-download bigger-110"></i>
+                                                                <span class="bigger-110 no-text-shadow">导出用户数据</span>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody> 
 
-                  </table>
-                <div class="row pagerow">
-                    <div class="col-sm-6">
-                            <div class="dataTables_info" id="sample-table-2_info">
-                            &nbsp;&nbsp;第 <input id="newpage" type="tel" value="<?php echo ((isset($p) && ($p !== ""))?($p):1); ?>" style="width:30px" class="tzpage"> 页/ <?php echo ((isset($total_pages) && ($total_pages !== ""))?($total_pages):1); ?> 页，每页<input id="newrows"  type="tel" value="<?php echo ((isset($listRows) && ($listRows !== ""))?($listRows):15); ?>" style="width:30px"  class="tzrows"> 条/共 <?php echo ((isset($count) && ($count !== ""))?($count):1); ?> 条
+                                                    </table>
+
+                                                    <div class="row pagerow">
+                                                        <div class="col-sm-6">
+                                                                <div class="dataTables_info" id="sample-table-2_info">
+                                                                &nbsp;&nbsp;第 <?php echo ((isset($p) && ($p !== ""))?($p):1); ?> / <?php echo ((isset($total_pages) && ($total_pages !== ""))?($total_pages):1); ?> 页，共 <?php echo ((isset($count) && ($count !== ""))?($count):1); ?> 条
+                                                                </div>
+                                                        </div> 
+                                                        <div class="col-sm-6">
+                                                                <div class="dataTables_paginate paging_bootstrap"> 
+                                                                        <?php echo ((isset($page_show) && ($page_show !== ""))?($page_show):''); ?>
+                                                                </div>
+                                                        </div>
+                                                    </div>
                             </div>
-                    </div> 
-                    <div class="col-sm-6">
-                            <div class="dataTables_paginate paging_bootstrap"> 
-                                    <?php echo ((isset($page_show) && ($page_show !== ""))?($page_show):''); ?>
-                            </div>
+                        </div>
                     </div>
-		</div>
-				
-            </div>
-           </div>
-        </div>
-    </div>    
-  </div> 
-</div>
+                </div>    
+            </div> 
+    </div>
+
  
-</div>
-</div>
-<div class="js-choose-user-excel-import-tpl" style="display:none;">
-	<form method="post" id="choose-user-excel-import-tpl-form" class="choose-user-excel-import-tpl-form" name="import-form" action="<?php echo U('upload');?>" enctype="multipart/form-data" >
-		<div class="choose-user-excel-import-tpl">
-			<div class="choose-user-excel-import-tpl-title">
-				提交EXECL数据文件
-			</div>
-			<div class="choose-user-excel-import-tpl-input">
-				<input type="file" class="choose-excel-import-tpl-file upload" name="excel" value="" />
-			</div>
-			<div class="choose-user-excel-import-tpl-btns center">
-				<button class="btn btn-sm btn-purple js-choose-room-excel-import-tpl-btn">
-					<i class="icon-cloud-upload align-top bigger-110"></i>
-					导入数据
-				</button>
-			</div>
-		</div>
-	</form>
+    </div>
 </div>
 
 
@@ -1016,177 +949,240 @@ margin-top:100px;
 <script type="text/javascript">
     var c_num="<?php echo ($p); ?>";
 $(function() {
-    //批量删除
-    $("#delete-batch").on("click",function () {
-        var cd=$(".delete-bs:checked");
-        var id_arr=[];
-       for(var i=0;i<cd.length;i++){
-           id_arr[i]=cd.eq(i).attr("data-id");
-       }
-       if(id_arr.length===0){
-           gritter_alert('请至少选中一条数据！');
-           return false;
-       }
-       var data={"sz":id_arr};
-        var callback = function() {
-            ajax_post_callback("<?php echo U('/Account/Jcsjroom/delete_batch');?>", data, function(data, status) {
-                console.log(data);
-                if (data['status'] != 1) {
-                    gritter_alert(data['info']);
-                    return false;
-                } else {
-                    gritter_alert_success('删除成功！');
-
-                    setTimeout(function() {
-                       window.location.reload();
-                    }, 1000);
-                }
-            });
-        };
-        layer_confirm('确认删除吗，删除后将不能恢复？', callback);
-
+    //分页跳转
+    $(".pagination li").on("click",function () {
+        var tx=$(this).attr("data-tx");
+        var ip= $("#form-b input[name='p']");
+        if(tx !==undefined){
+            if(tx ==="上一页"){
+                ip.val(Number(c_num)-1);
+            }else if(tx ==="下一页"){
+                ip.val(Number(c_num)+1);
+            }else if(tx ==="首页"){
+                ip.val(1);
+            } else if(tx ==="尾页"){
+                ip.val("<?php echo ((isset($total_pages) && ($total_pages !== ""))?($total_pages):1); ?>");
+            }else{
+                ip.val(tx);
+            }
+            $("#form-b").submit();
+        }
     });
     $("#form-b input").on("keyup",function () {
-       if(event.keyCode ===13){
-           $("#form-b input[name='p']").val("1");
-           $("#form-b").submit();
-       }
+        if(event.keyCode ===13){
+            $("#form-b input[name='p']").val("1");
+            $("#form-b").submit();
+        }
     });
-    $("#check-room").on("click",function () {
-        $("#form-b input[name='excel']").val("1");
-        $("#form-b").submit();
-    });
-    $("#projlist").change(function(){
-            $("#selectproj").submit();
-      });  
+    //单个点击启用，或者禁用用户
+    $(".click-status").on("click",function () {
+        var pd=$(this).attr("data-s");
+        var id=$(this).attr("data-id");
+        var t=$(this);
+        var vo=0;
+        if(Number(pd)===1){
+            vo=0;
+        }else{
+            vo=1;
+        }
+        $.post("<?php echo U('/Account/Yhqxuser/updateStatus');?>",{status:vo,id:id},function (data) {
+//                layer_confirm('确认删除吗，删除后将不能恢复？', callback);
+            if(data==='false'){
+                layer.alert('操作失败，请刷新重试！');
+            }else{
+                    if(vo===0){
+                        t.removeClass("label-warning").addClass("label-success").attr("data-s",vo).text('启用');
+                        layer.msg('启用成功！');
+                    }else{
+                        t.removeClass("label-success").addClass("label-warning").attr("data-s",vo).text('关闭');
+                        layer.msg('关闭成功！');
+                    }
 
-      $(".js-del-room").on('click', function(){
-          var $id=$(this).attr("roomid");
-          if ($id==0)
+            }
+        });
+    });
+
+    //导入数据
+    $(document).on("change","#file",function(){
+        var f=$(this);
+        var formdata = new FormData($('#upload-user')[0]);
+        $.ajax({
+            url:"<?php echo U('/Account/Yhqxuser/check_in_user');?>",
+            type:"post",
+            processData:false,
+            contentType:false,
+            dataType:"json",
+            data:formdata,
+            success:function(data){
+                console.log(data);
+                f.val("");
+                if(data.hasOwnProperty("in_error")){
+                    layer.closeAll();
+                    layer_alert('存在异常数据！，一共'+data['in_all']+'条，导入成功'+(data['in_all']-data['in_error'])+"条，点击确认后下载异常数据.",function () {
+                        layer.closeAll();
+                        window.open("http://"+window.location.host+data['error_path']);
+                        window.location.reload();
+                    });
+                }else if(data.hasOwnProperty("in_all")){
+                    layer.closeAll();
+                    layer_msg('全部导入成功');
+                    window.location.reload();
+                }else{
+                    layer_alert(data.info);
+                }
+            }
+        });
+    });
+
+    //导出用户数据
+    $("#user-out").on("click",function () {
+        var code=$("input[name='code']").val();
+        var name=$("input[name='name']").val();
+        var mobile=$("input[name='mobile']").val();
+        var cp_id=$("#companys").val();
+//        console.log(code);
+//        console.log(name);
+//        console.log(mobile);
+//        console.log(cp_id);
+//        return false;
+        window.location.href="<?php echo U('/Account/Yhqxuser/check_out_user_data');?>"+"?code="+code+"&name="+name+"&mobile="+mobile+"&cp_id="+cp_id;
+    });
+    $("#moban-out").on("click",function () {
+        var cid=$("#companys").val();
+       window.location.href="<?php echo U('/Account/Yhqxuser/check_out_user');?>?cid="+cid;
+    });
+
+    $("#companys").change(function(){
+            $("#cp_id").val($("#companys option:selected").val());
+            $("#selectcomp").submit();
+      });  
+});
+
+function deluser($id,$type)
+    {
+            if ($id==0)
             {
                     layer_alert("数据异常，请稍后重试");
                     return false;
             }
             var callback = function() {
-			var $url = Jcsj_room_url.delroom;			
+			 var $user_url = {deluser: '<?php echo U("deluser");?>',}
+			
 			var $data = {
 				id: $id,
 			}
-			ajax_post_callback($url, $data, function(data, status) {
+			
+			ajax_post_callback($user_url.deluser, $data, function(data, status) {
 				if (data['status'] != 1) {
 					gritter_alert(data['info']);
 					return false;
 				} else {
 					gritter_alert_success('删除成功！');
 					
-					window.location.reload();
+					setTimeout(function() {
+						$(".user-item-" + $id).remove();
+					}, 200);
 				}			
 			});
 		}
-		
-		layer_confirm('是否删除此房间？！', callback);
-      });	
-	
-        //房间 - 导入excel - 提示
-	$(".js-room-excel-import").on('click', function() {
-		var $html = $(".js-choose-user-excel-import-tpl").html();
-		
-		layer_html($html);
-		
-		return false;
-	});
+                layer_confirm('确认删除此用户吗？', callback);
+    }
 
-    //分页跳转
-    $(".pagination li").on("click",function () {
-        var tx=$(this).attr("data-tx");
-        if(tx !==undefined){
-            if(tx ==="上一页"){
-                $("#form-b input[name='p']").val(Number(c_num)-1);
-            }else if(tx ==="下一页"){
-                $("#form-b input[name='p']").val(Number(c_num)+1);
-            }else if(tx ==="首页"){
-                $("#form-b input[name='p']").val(1);
-            } else if(tx ==="尾页"){
-                $("#form-b input[name='p']").val("<?php echo ((isset($total_pages) && ($total_pages !== ""))?($total_pages):1); ?>");
-            }else{
-                $("#form-b input[name='p']").val(tx);
-            }
-            $("#form-b").submit();
-        }
-    });
-    //全选和全不选
-    $("#sample-table-room input:first").click(function () {
-        if($(this).prop("checked")===true){
-            $("#sample-table-room .delete-bs").prop("checked",true);
-        }else{
-            $("#sample-table-room .delete-bs").prop("checked",false);
-        }
-    });
+    function pldeluser()
+    {
+            var $userlist="";
+            var $alluser=$("#userlisttb").find(".selectuser")
 
-
-    //设置每页显示条数
-    $(".tzrows").keypress(function(e) {
-        if (e.which == 13)
-        {
-            $zcount=parseInt("<?php echo ($count); ?>",10);//总条数
-            $oldcount=parseInt("<?php echo ($listRows); ?>",10);//旧的的显示条数
-            $newcount=parseInt($("#newrows").val(),10);//新的显示条数
-            if($newcount<=$zcount &&$newcount>0)
+            for(var i=0;i<$alluser.length;i++)
             {
-                $("#form-b input[name='r']").val($newcount);
-                $("#form-b input[name='p']").val("1");
-                $("#form-b").submit();
+                    if ($alluser.eq(i).is(':checked'))
+                            $userlist+=$alluser.eq(i).val()+"|";
             }
-        }
-    });
 
-    //直接跳转到第N页
-    $(".tzpage").keypress(function(e) {
-        if (e.which == 13)
-        {
-            $zpage=parseInt("<?php echo ($total_pages); ?>",10);
-            $newpage=parseInt($("#newpage").val(),10);
-            //$dqpage=parseInt($(".pagination .current a").text(),10);
-            $dqpage=parseInt("<?php echo ($p); ?>",10);
-            if($dqpage != $newpage && $newpage<=$zpage &&$newpage>0)
+            if ($userlist=="")
             {
-                $("#form-b input[name='p']").val($newpage);
-                $("#form-b").submit();
-//                     var $count=0;
-//                     $oldhref=window.location.href.replace("http://",'');
-//                     if ($oldhref.indexOf("/p/")>-1)
-//                     {
-//                        if ($dqpage>0 && $dqpage<10)
-//                        {
-//                            $count=4;
-//                        }
-//                        else
-//                        {
-//                            $count=5;
-//                        }
-//                        $bthstr=$oldhref.substr($oldhref.indexOf("/p/"),$count);
-//                        window.location.href="http://"+ $oldhref.replace($bthstr,'/p/'+$newpage);
-//                     }
-//                     else
-//                     {
-//                          window.location.href="http://"+ $oldhref.replace(".html",'/p/'+$newpage+".html");
-//                     }
+                    layer_alert('请选择用户！');
+                    return false;
             }
-        }
-
-
-    });
-});
-function checkall()
-            { 
-                    var $checkinfo = $('#chkall').is(':checked');
-                    if($checkinfo ==  true){
-                            $("input[name='id[]']").prop("checked",true); 
-                    }else{
-                            $("input[name='id[]']").prop("checked",false); 
-                    } 
+            else{
+                    $userlist=$userlist.substring(0,$userlist.length-1);
             }
             
+            var callback = function() {
+			 var $user_url = {pldeluser: '<?php echo U("pldeluser");?>',}
+			
+			var $data = {
+				userlist: $userlist ,
+			}
+			
+			ajax_post_callback($user_url.pldeluser, $data, function(data, status) {
+				if (data['status'] != 1) {
+					gritter_alert(data['info']);
+					return false;
+				} else {
+					gritter_alert_success('删除成功！');
+					
+					setTimeout(function() {
+						window.location.reload();
+					}, 200);
+				}			
+			});
+		}
+                layer_confirm('确认批量删除？', callback);
+    }
+    
+    function plcloseuser()
+    {
+            var $userlist="";
+            var $alluser=$("#userlisttb").find(".selectuser")
+
+            for(var i=0;i<$alluser.length;i++)
+            {
+                    if ($alluser.eq(i).is(':checked'))
+                            $userlist+=$alluser.eq(i).val()+"|";
+            }
+
+            if ($userlist=="")
+            {
+                    layer_alert('请选择用户！');
+                    return false;
+            }
+            else{
+                    $userlist=$userlist.substring(0,$userlist.length-1);
+            }
+            
+            var callback = function() {
+			 var $user_url = {plcloseuser: '<?php echo U("plcloseuser");?>',}
+			
+			var $data = {
+				userlist: $userlist ,
+			}
+			
+			ajax_post_callback($user_url.plcloseuser, $data, function(data, status) {
+				if (data['status'] != 1) {
+					gritter_alert(data['info']);
+					return false;
+				} else {
+					gritter_alert_success('关闭用户成功！');
+					
+					setTimeout(function() {
+						window.location.reload();
+					}, 200);
+				}			
+			});
+		}
+                layer_confirm('确认批量关闭？', callback);
+    }
+
+    function checkall()
+    { 
+            var $checkinfo = $('#chkall').is(':checked');
+            if($checkinfo ==  true){
+                    $("input[name='id[]']").prop("checked",true); 
+            }else{
+                    $("input[name='id[]']").prop("checked",false); 
+            } 
+    }
 </script>
 
 

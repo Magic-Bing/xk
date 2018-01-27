@@ -452,10 +452,11 @@ var admission={
 	</li>
 
 	
-    <li>
-        <a href="<?php echo U('Xsglled/index');?>"><?php echo ((isset($classify_name) && ($classify_name !== ""))?($classify_name):''); ?></a>
-    </li>
-    <li class="active"><?php echo ((isset($seo_title) && ($seo_title !== ""))?($seo_title):''); ?></li>
+	<li>
+		<a href="<?php echo U('Yhqxuser/index');?>"><?php echo ((isset($classify_name) && ($classify_name !== ""))?($classify_name):''); ?></a>
+	</li>
+
+	<li class="active"><?php echo ((isset($seo_title) && ($seo_title !== ""))?($seo_title):''); ?></li>
 
 	
 </ul><!-- .breadcrumb -->
@@ -481,82 +482,147 @@ var admission={
 
 										<!-- .page-content -->
 										
-    <style type="text/css">
-        .qpxs {
-            position: absolute;
-            top:260px;left:40%;
-            width:300px;
-            height:50px;
-            transform: translate(-10%, -10%);
-        }
-        .qpxs a{
-            padding: 10px 20px;
-            text-align: center;
-            background: red;
-            color: #FFF;
-            margin-left: 50px;
-        }
-        form{
-            display: inline;
-        }
-    </style>
-    <div class="row">
-        <div class="col-xs-12">
-
-            <div class="table-header">
-                销控LED显示列表
+<style type="text/css">
+    .role-checked{
+        float: left;
+        margin-left: 1%;
+        border-style: none;
+        width: 100px;
+        padding: 5px 23px;
+        background-color: rgba(255, 165, 0, 0.12) ;
+        font-weight: bold;
+    }
+    .role-not-checked{
+        float: left;
+        margin-left: 1%;
+        border-style: none;
+        width: 100px;
+        padding: 5px 23px;
+        background-color: #FFF;
+    }
+    #update-mk{
+        float: right;
+        background-color: rgb(135, 184, 127);
+        color: #FFF;
+        font-weight: bold;
+        border: 0;
+        padding: 5px 20px;
+        margin: 0 20px;
+        margin: 0 20px 20px 20px;
+    }
+    #role-ul{
+        width: 100%;
+        padding: 0;
+        margin-top: 0px;
+    }
+    #role-ul li{
+        width: 100%;
+        float: left;
+        color: #1B4670;
+        list-style: none;
+        margin: 0 0 0 -25px;
+        padding: auto 0;
+        border-bottom: 1px solid #e8eef6;
+        cursor: pointer;
+        line-height: 25px;
+    }
+    .role-not-checked:hover{
+       background-color:  rgb(245, 245, 245);
+    }
+    .tr_x{
+        cursor: pointer;
+        padding: 3px 3px;
+    }
+    .plusshow{
+        background: #6fb3e0;
+        color: #FFF;
+        font-size: 18px;
+        font-weight: 700;
+        text-align: center;
+        line-height: 15px;
+        height: 17px;
+        width: 17px;
+        border-radius: 3px;
+    }
+    .minushide{
+        color: #DDD;
+        font-size: 18px;
+        font-weight: 700;
+        text-align: center;
+        line-height: 15px;
+        height: 16px;
+        width: 16px;
+        border:1px solid #ddd;
+        border-radius: 3px;
+    }
+    .lt{
+        text-align: left;
+    }
+    .isaction
+    {
+        border: 1px solid #6fb3e0;
+        padding: 3px 5px;
+    }
+</style>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="table-header">
+            岗位权限列表
+        </div>
+        <div class="table-header" style="background-color:#e8eef6;margin-bottom: 1px;color: black">
+            <form action="index" id="post-company" method="post">
+                <label for="f-company" >公司</label>
+                <select name="compid" id="f-company" style="padding: 1px 10px;height: 25px">
+                   <?php if(is_array($companys)): foreach($companys as $k=>$vo): if($vo["id"] == $compid): ?><option value="<?php echo ($vo["id"]); ?>" selected><?php echo ($vo["compname"]); ?></option>
+                           <?php else: ?>
+                           <option value="<?php echo ($vo["id"]); ?>"><?php echo ($vo["compname"]); ?></option><?php endif; endforeach; endif; ?>
+                </select>
+            </form>
+        </div>
+        <div  style="border:1px solid #e8eef6;width: 25%;float: left;height:75vh; padding: 4px 6px;">
+            <div style="width: 100%;padding:0;text-align: center" id="role">
+                <div style="line-height: 35px;height: 35px;background: #f2f2f2;color: #707070;font-weight: 700;border-bottom: 1px solid #ddd;">岗位名称</div>
+                <ul id="role-ul">
+                <?php if(is_array($stationlist)): foreach($stationlist as $i=>$station_vo): if($i == 0): ?><!--<li rid="<?php echo ($value["id"]); ?>" <?php if($k == 0): ?>class="role-checked" <?php else: ?>class="role-not-checked"<?php endif; ?>>-->
+                        <!--<?php echo ($value["name"]); ?>-->
+                        <!--</li>-->
+                        <?php if(!empty($station_vo['projname']) and empty($station_vo['id'])): ?><li class="tr_x lt"  data_id="<?php echo ($i); ?>" pid="<?php echo ($station_vo['proj_id']); ?>">
+                                    <label class="plusshow">-</label> <?php echo ($station_vo['projname']); ?>
+                            </li>
+                            <?php else: ?>
+                            <li class="role-checked js-role lt"  rid="<?php echo ($station_vo['id']); ?>" data_id="<?php echo ($i); ?>" pid="<?php echo ($station_vo['proj_id']); ?>">
+                                    <?php echo ($station_vo['name']); ?>
+                            </li><?php endif; ?>
+                        <?php else: ?>
+                        <?php if(!empty($station_vo['projname']) and empty($station_vo['id'])): ?><li class="tr_x lt"   data_id="<?php echo ($i); ?>" pid="<?php echo ($station_vo['proj_id']); ?>">
+                                    <label class="plusshow">-</label> <?php echo ($station_vo['projname']); ?>
+                            </li>
+                            <?php else: ?>
+                            <li class="role-not-checked js-role lt" rid="<?php echo ($station_vo['id']); ?>" data_id="<?php echo ($i); ?>" pid="<?php echo ($station_vo['proj_id']); ?>">
+                                    <?php echo ($station_vo['name']); ?>
+                            </li><?php endif; endif; endforeach; endif; ?>
+                </ul>
             </div>
-            <div class="table-responsive dataTables_wrapper">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div id="sample-table-2_length" class="dataTables_length">
-                            <form action="<?php echo U('/Account/Xsglled/index');?>" method="post" id="form-p">
-                            <label>
-                                项目 
-                                <select name="project_id" class="xkled-project-id" style="width: auto;">
-                                    <?php if(!empty($search_project_id)): ?><option value="0">全部</option>
-                                        <?php if(is_array($project_list)): foreach($project_list as $key=>$project_list_vo): if($search_project_id == $project_list_vo['id']): ?><option value="<?php echo ($project_list_vo['id']); ?>" selected>
-                                                    <?php echo ($project_list_vo['company_name']); ?> -- <?php echo ($project_list_vo['name']); ?>
-                                                </option>
-                                                <?php else: ?>		 
-                                                <option value="<?php echo ($project_list_vo['id']); ?>">
-                                                    <?php echo ($project_list_vo['company_name']); ?> -- <?php echo ($project_list_vo['name']); ?>
-                                                </option><?php endif; endforeach; endif; ?> 
-                                        <?php else: ?>
-                                        <option value="0" selected>全部</option>
-                                        <?php if(is_array($project_list)): foreach($project_list as $key=>$project_list_vo): ?><option value="<?php echo ($project_list_vo['id']); ?>">
-                                                <?php echo ($project_list_vo['company_name']); ?> -- <?php echo ($project_list_vo['name']); ?>
-                                            </option><?php endforeach; endif; endif; ?>
-                                </select> 
-                            </label>
-                            </form>
-                            <form action="<?php echo U('/Account/Xsglled/index');?>" method="post" id="form-b">
-                            <label>							
-                                批次 
-                                <select name="batch_id" class="xkled-batch-id" style="width: auto;">
-                                    <?php if(count($batch_list) != 1): ?><option value="0">全部</option><?php endif; ?>
-                                    <?php if(is_array($batch_list)): foreach($batch_list as $key=>$batch_list_vo): if($bid == $batch_list_vo['id']): ?><option value="<?php echo ($batch_list_vo['id']); ?>" selected>
-                                                <?php echo ($batch_list_vo['name']); ?>
-                                            </option>
-                                            <?php else: ?>
-                                            <option value="<?php echo ($batch_list_vo['id']); ?>" >
-                                                <?php echo ($batch_list_vo['name']); ?>
-                                            </option><?php endif; endforeach; endif; ?>
-                                </select> 
-                            </label>
-                                <input type="hidden" name="project_id" value="<?php echo ($search_project_id); ?>">
-                            </form>
-                        </div>
-                    </div>
-                </div>
+        </div>
+        <div style="border:1px solid #e8eef6;width: 72%;height: 75vh;float: left;margin-left: 3%;padding: 4px 6px;">
+            <div style="line-height: 35px;height: 35px;background: #f2f2f2;color: #707070;font-weight: 700;border-bottom: 1px solid #ddd;text-align: center;">功能权限</div>
+            <div style="width: 100%;padding: 10px 0" id="fun">
+                <?php if(is_array($one_mk)): foreach($one_mk as $k=>$vo): ?><label style="margin-left: 1%;display: block; margin-bottom: 10px;">
+                        <input type="checkbox" class="ace one_mk" fid="<?php echo ($vo["id"]); ?>">
+                        <span class="lbl" style=" font-weight: 700;">&nbsp;&nbsp;&nbsp;<?php echo ($vo["name"]); ?></span>
+                    </label>
+                    <?php if(is_array($two_mk)): foreach($two_mk as $ks=>$val): if($val["parent_id"] == $one_mk[$k]['id']): ?><label style="margin-left: 35px; margin-bottom: 20px;">
+                                <input disabled type="checkbox" class="ace two_mk" fid="<?php echo ($val["id"]); ?>" pid="<?php echo ($one_mk[$k]['id']); ?>">
+                                <?php if($val['is_fun'] == 1): ?><span class="lbl ">&nbsp;&nbsp;&nbsp;<?php echo ($val["name"]); ?></span>
+                                <?php else: ?>
+                                <span class="lbl isaction">&nbsp;&nbsp;&nbsp;<?php echo ($val["name"]); ?></span><?php endif; ?>
+                            </label><?php endif; endforeach; endif; endforeach; endif; ?>
+                <hr>
+                <button  id="update-mk"  rid="<?php echo ($stationlist[0]['id']); ?>">授权</button>
             </div>
         </div>
     </div>
-    <div class="qpxs">
-        <a href="<?php echo U('../led/pmtled1');?>" target="_blank">负一层</a>
-        <a href="<?php echo U('../led/pmtled2');?>" target="_blank">负二层</a>
-    </div>
-
+</div>
 
 										
 										<!-- PAGE CONTENT ENDS -->
@@ -619,6 +685,65 @@ var admission={
 			
 			<!-- inline scripts related to this page -->
 			
+    <script type="text/javascript">
+        <?php if(is_array($mk_checked)): foreach($mk_checked as $k=>$vo): ?>$(".one_mk[fid="+<?php echo ($vo["fun_id"]); ?>+"]").prop("checked",true);
+                $(".two_mk[pid="+<?php echo ($vo["fun_id"]); ?>+"]").prop("disabled",false);
+                $(".two_mk[fid="+<?php echo ($vo["fun_id"]); ?>+"]").prop("checked",true);<?php endforeach; endif; ?>
+        //一级模块选中才能操作二级模块
+        $(document).on("click",".one_mk",function () {
+            var id=$(this).attr("fid");
+            if($(this).is(":checked")) $(".two_mk[pid="+id+"]").prop("disabled",false); else $(".two_mk[pid="+id+"]").prop("checked",false).prop("disabled",true);
+        });
+        //切换角色，改变样式和修改按钮的角色id值
+        $("#role-ul .js-role").on("click",function () {
+            var id=$(this).attr("rid");
+            $("#update-mk").attr("rid",id);
+            $("#role-ul .js-role").removeClass("role-checked").addClass("role-not-checked");
+            $(this).removeClass("role-not-checked").addClass("role-checked");
+            $.post("<?php echo U('Yhqxfun/getFun');?>",{sid:id},function (data) {
+                $("#fun input").prop("checked",false);
+                $(".two_mk").prop("disabled",true);
+                for(var i=0;i<data.length;i++){
+                    $(".one_mk[fid="+data[i]['fun_id']+"]").prop("checked",true);
+                    $(".two_mk[pid="+data[i]['fun_id']+"]").prop("disabled",false);
+                    $(".two_mk[fid="+data[i]['fun_id']+"]").prop("checked",true);
+                }
+            },"json");
+        });
+
+        $(".tr_x").on("click",function () {
+            var pid=$(this).attr("pid");
+            if($.trim($(this).find("label").text()) ==='-'){
+                $(".js-role[pid='"+pid+"']").hide();
+                $(this).find("label").text('+');
+            }else{
+                $(".js-role[pid='"+pid+"']").show();
+                $(this).find("label").text('-');
+            }
+        });
+        $("#update-mk").on("click",function () {
+           var input_checked=$("#fun input:checked");
+           var rid=$(this).attr("rid");
+           if(input_checked.length===0){
+                layer_alert("请至少选中一个模块再提交");
+           }else{
+               var arr=[];
+               for(var i=0;i<input_checked.length;i++){
+                    arr[i]={"fun_id":input_checked.eq(i).attr("fid"),"station_id":rid};
+               }
+//               console.log(arr);return false;
+               $.post("<?php echo U('Yhqxfun/updateFun');?>",{funs:arr},function (data) {
+                   layer_alert(data);
+//                   window.location.reload();
+               });
+           }
+        });
+        $("#f-company").on("change",function () {
+           $("#post-company").submit();
+        });
+        //提交选中的模块到后台
+  </script>
+
 
 			
 				<script src="/Public/account/assets/js/jquery.gritter.min.js"></script>
@@ -629,8 +754,6 @@ var admission={
 				<script src="/Public/account/js/account.js"></script>
 			
 			
-
-
 		</body>
 	
 	

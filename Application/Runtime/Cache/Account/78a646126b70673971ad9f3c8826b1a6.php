@@ -452,9 +452,47 @@ var admission={
 	</li>
 
 	
+    <style>
+        form{
+            display: inline;
+        }
+        #hx-img{
+            position: absolute;
+            /*background-color: #ff4334;*/
+            z-index: 100;
+            display: none;
+        }
+        #hx-img img{
+            width: 200px;
+
+        }
+        .gbdiv {
+            position: absolute;
+            right: 1%;
+            top: 3px;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            line-height: 40px;
+            text-align: center;
+            font-size: 22px;
+            cursor: pointer;
+        }
+        .yaohbtn{
+            float: left;
+            padding: 2px 5px;
+            background: #82af6f;
+            color: #FFF;
+            margin-right: 5px;
+        }
+        .yaohbtn:hover{
+            color: #FFF;
+        }
+    </style>
     <li>
-        <a href="<?php echo U('Xsglled/index');?>"><?php echo ((isset($classify_name) && ($classify_name !== ""))?($classify_name):''); ?></a>
+        <a href="<?php echo U('YaoHset/index');?>"><?php echo ((isset($classify_name) && ($classify_name !== ""))?($classify_name):''); ?></a>
     </li>
+
     <li class="active"><?php echo ((isset($seo_title) && ($seo_title !== ""))?($seo_title):''); ?></li>
 
 	
@@ -481,82 +519,216 @@ var admission={
 
 										<!-- .page-content -->
 										
-    <style type="text/css">
-        .qpxs {
-            position: absolute;
-            top:260px;left:40%;
-            width:300px;
-            height:50px;
-            transform: translate(-10%, -10%);
-        }
-        .qpxs a{
-            padding: 10px 20px;
-            text-align: center;
-            background: red;
-            color: #FFF;
-            margin-left: 50px;
-        }
-        form{
-            display: inline;
-        }
-    </style>
+    <div id="hx-img">
+        <img src="" alt="无图片">
+    </div>
     <div class="row">
         <div class="col-xs-12">
-
             <div class="table-header">
-                销控LED显示列表
+                摇号设置列表
             </div>
+
             <div class="table-responsive dataTables_wrapper">
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         <div id="sample-table-2_length" class="dataTables_length">
-                            <form action="<?php echo U('/Account/Xsglled/index');?>" method="post" id="form-p">
-                            <label>
-                                项目 
-                                <select name="project_id" class="xkled-project-id" style="width: auto;">
-                                    <?php if(!empty($search_project_id)): ?><option value="0">全部</option>
-                                        <?php if(is_array($project_list)): foreach($project_list as $key=>$project_list_vo): if($search_project_id == $project_list_vo['id']): ?><option value="<?php echo ($project_list_vo['id']); ?>" selected>
-                                                    <?php echo ($project_list_vo['company_name']); ?> -- <?php echo ($project_list_vo['name']); ?>
-                                                </option>
-                                                <?php else: ?>		 
-                                                <option value="<?php echo ($project_list_vo['id']); ?>">
-                                                    <?php echo ($project_list_vo['company_name']); ?> -- <?php echo ($project_list_vo['name']); ?>
-                                                </option><?php endif; endforeach; endif; ?> 
-                                        <?php else: ?>
-                                        <option value="0" selected>全部</option>
-                                        <?php if(is_array($project_list)): foreach($project_list as $key=>$project_list_vo): ?><option value="<?php echo ($project_list_vo['id']); ?>">
-                                                <?php echo ($project_list_vo['company_name']); ?> -- <?php echo ($project_list_vo['name']); ?>
-                                            </option><?php endforeach; endif; endif; ?>
-                                </select> 
-                            </label>
-                            </form>
-                            <form action="<?php echo U('/Account/Xsglled/index');?>" method="post" id="form-b">
-                            <label>							
-                                批次 
-                                <select name="batch_id" class="xkled-batch-id" style="width: auto;">
-                                    <?php if(count($batch_list) != 1): ?><option value="0">全部</option><?php endif; ?>
-                                    <?php if(is_array($batch_list)): foreach($batch_list as $key=>$batch_list_vo): if($bid == $batch_list_vo['id']): ?><option value="<?php echo ($batch_list_vo['id']); ?>" selected>
-                                                <?php echo ($batch_list_vo['name']); ?>
-                                            </option>
+                            <form action="<?php echo U('/Account/YaoHset/index');?>" method="get" id="form-p">
+                                <label>
+                                    项目
+                                    <select name="project_id" class="choose-order_house-project-id js-choose-order_house-project-id" style="width: auto;">
+                                        <?php if(!empty($search_project_id)): ?><option value="0">全部</option>
+                                            <?php if(is_array($project_list)): foreach($project_list as $key=>$project_list_vo): if($search_project_id == $project_list_vo['id']): ?><option value="<?php echo ($project_list_vo['id']); ?>" selected>
+                                                        <?php echo ($project_list_vo['company_name']); ?> -- <?php echo ($project_list_vo['name']); ?>
+                                                    </option>
+                                                    <?php else: ?>
+                                                    <option value="<?php echo ($project_list_vo['id']); ?>">
+                                                        <?php echo ($project_list_vo['company_name']); ?> -- <?php echo ($project_list_vo['name']); ?>
+                                                    </option><?php endif; endforeach; endif; ?>
                                             <?php else: ?>
-                                            <option value="<?php echo ($batch_list_vo['id']); ?>" >
-                                                <?php echo ($batch_list_vo['name']); ?>
-                                            </option><?php endif; endforeach; endif; ?>
-                                </select> 
-                            </label>
+                                            <option value="0" selected>全部</option>
+                                            <?php if(is_array($project_list)): foreach($project_list as $key=>$project_list_vo): ?><option value="<?php echo ($project_list_vo['id']); ?>">
+                                                    <?php echo ($project_list_vo['company_name']); ?> -- <?php echo ($project_list_vo['name']); ?>
+                                                </option><?php endforeach; endif; endif; ?>
+                                    </select>
+                                </label>
+                            </form>
+
+                            <form action="<?php echo U('/Account/YaoHset/index');?>" method="get" id="form-b">
+                                <label>							
+                                    批次 
+                                    <select name="batch_id" class="choose-activity-batch-id js-choose-activity-batch-id" style="width: auto;" id="wx_sz">
+                                        <?php if(count($batch_list) != 1): ?><option value="0">全部</option><?php endif; ?>
+                                        <?php if(is_array($batch_list)): foreach($batch_list as $key=>$batch_list_vo): if($bid == $batch_list_vo['id']): ?><option value="<?php echo ($batch_list_vo['id']); ?>" selected>
+                                                    <?php echo ($batch_list_vo['name']); ?>
+                                                </option>
+                                                <?php else: ?>
+                                                <option value="<?php echo ($batch_list_vo['id']); ?>" >
+                                                    <?php echo ($batch_list_vo['name']); ?>
+                                                </option><?php endif; endforeach; endif; ?>
+                                    </select> 
+                                </label>
+                                <!--<div class="nav-search" id="sample-table-2_filter" style="top:0;">
+                                    <label class="input-icon">
+                                        <input type="text" name="word" value="<?php echo ((isset($search_word) && ($search_word !== ""))?($search_word):''); ?>" class="nav-search-input js-choose-activity-word" id="sz_ss" placeholder="开盘活动名称">
+                                        <i class="icon-search nav-search-icon" style="cursor: pointer;left:6px;" id="likeUsers"></i>
+                                    </label>
+                                </div>-->
                                 <input type="hidden" name="project_id" value="<?php echo ($search_project_id); ?>">
+                                <input type="hidden" name="p" value="<?php echo ((isset($p) && ($p !== ""))?($p):1); ?>">
                             </form>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="qpxs">
-        <a href="<?php echo U('../led/pmtled1');?>" target="_blank">负一层</a>
-        <a href="<?php echo U('../led/pmtled2');?>" target="_blank">负二层</a>
-    </div>
 
+                </div>
+
+                <table id="sample-table-choose" class="table table-striped table-bordered table-hover dataTable">
+                    <thead>
+                        <tr>
+                            <th class="center hidden-480">
+                                <label>
+                                    <input type="checkbox" class="ace">
+                                    <span class="lbl"></span>
+                                </label>
+                            </th>
+                            <th class="hidden-480">项目</th>
+                             <th class="hidden-480">名称</th>
+                            <th class="hidden-480">客户人数</th>
+                            <th class="hidden-480">
+                                每组抽取人数
+                            </th>
+                            <th class="hidden-760" style="width:220px">
+                                显示信息
+                            </th>
+                            <th class="hidden-480">已摇号人数</th>
+                            <th class="hidden-480">摇号状态</th>
+                            <th class="hidden-480">是否启用</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    <?php if(!empty($list)): if(is_array($list)): $list_k = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list_vo): $mod = ($list_k % 2 );++$list_k;?><tr class="yaohset-item">
+                                <td class="center hidden-480">
+                                    <label>
+                                        <input type="checkbox" class="ace yaohset-item-id" data-id="<?php echo ((isset($list_vo["id"]) && ($list_vo["id"] !== ""))?($list_vo["id"]):'0'); ?>">
+                                        <span class="lbl"></span>
+                                    </label>
+                                </td>
+                                <td class="hidden-480">
+                                    <span class="label-sm">
+                                        <?php echo ((isset($list_vo["project_name"]) && ($list_vo["project_name"] !== ""))?($list_vo["project_name"]):''); ?>
+                                    </span>
+
+                            <?php if(!empty($list_vo['batch_name'])): ?><span class="label label-sm label-primary arrowed arrowed-right"><?php echo ($list_vo["batch_name"]); ?></span><?php endif; ?>
+                            </nobr>
+                            </td>
+                            <td class="hidden-480" style="text-align: center;">
+                            <?php echo ($list_vo["name"]); ?>
+                            </td>
+                            <td class="hidden-480" style="text-align: center;">
+                            <?php echo ($list_vo["cstcount"]); ?>
+                            </td>
+                            <td class="hidden-480" style="text-align: center;">
+                            <?php echo ($list_vo["mzgs"]); ?>
+                            </td> 
+                            
+                            <td class="hidden-760">
+                            <?php echo ($list_vo["showcontent"]); ?>
+                            </td> 
+                            <td class="hidden-480" style="text-align: center;">
+                            <?php echo ($list_vo["yyhcount"]); ?>
+                            </td>
+                            <td class="hidden-480" style="text-align:center;">
+                                <?php if(($list_vo['status']) == "1"): ?><span class="label label-sm label-success">摇号中</span>
+                                <?php else: ?>
+                                    <?php if(($list_vo['status']) == "0"): ?><span class="label label-sm label-warning">未开始</span>
+                                    <?php else: ?>
+                                    <span class="label label-sm label-grey">已结束</span><?php endif; endif; ?>
+                            </td>
+                            
+                            <td class="hidden-480" style="text-align:center;">
+                                <?php if(($list_vo['is_yx']) == "1"): ?><span class="label label-sm label-success">启用</span>
+                                <?php else: ?>
+                                <span class="label label-sm label-danger">关闭</span><?php endif; ?>
+                            </td>
+
+                            <td style="text-align: center;width:140px">
+                                <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+                                    <?php if(($list_vo['is_yx']) == "1"): if(($list_vo['status']) == "1"): ?><a href="<?php echo U('display_yaoh', 'id='.$list_vo['id']);?>" target="_blank" class="yaohbtn" style="color:#FFF" title="点击打开摇号页面">
+                                            继续摇号
+                                        </a>
+                                    <?php else: ?>
+                                         <?php if(($list_vo['status']) == "0"): ?><a href="<?php echo U('display_yaoh', 'id='.$list_vo['id']);?>" target="_blank" class="yaohbtn" style="color:#FFF" title="点击打开摇号页面">
+                                                开始摇号
+                                            </a>
+                                         <?php else: ?>
+                                            <!--<a href="/Account/YaoHresult/index.html?project_id=<?php echo ($list_vo['project_id']); ?>&batch_id=<?php echo ($list_vo['batch_id']); ?>" class="yaohbtn" title="点击查看摇号结果">
+                                                查看记录
+                                            </a>-->
+                                            <a href="<?php echo U('history_yaoh',array('id'=>$list_vo['id'], 'zcid'=>1)) ;?>" target="_blank" class="yaohbtn" style="color:#FFF" title="点击查看摇号结果" >
+                                                查看记录
+                                            </a><?php endif; endif; ?>
+                                    <?php else: ?>
+                                        <a href="<?php echo U('history_yaoh',array('id'=>$list_vo['id'], 'zcid'=>1)) ;?>" target="_blank" class="yaohbtn" style="color:#FFF" title="点击查看摇号结果">
+                                            查看记录
+                                        </a><?php endif; ?>
+                                    <a href="<?php echo U('display_edit', 'id='.$list_vo['id']);?>" class="btn btn-xs btn-info js-yaohset-edit-btn" title="修改">
+                                        <i class="icon-edit bigger-120"></i>
+                                    </a>
+                                    <button data-id="<?php echo ($list_vo["id"]); ?>" class="btn btn-xs btn-danger js-yaohset-delete-btn" title="删除">
+                                        <i class="icon-trash bigger-120"></i>
+                                    </button>
+                                </div>	
+                            </td>
+                            </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+                        <?php else: ?>
+                        <tr>
+                            <td colspan="12" class="no-padding">
+                                <div class="alert alert-warning no-margin-bottom">
+                                    还没有设置摇号！
+                                    <br>
+                                </div>
+                            </td>
+                        </tr><?php endif; ?>
+
+                    <tr>
+                        <td class="center hidden-480">
+                            <div class="action-buttons">
+                                <a class="red btn-sm js-yaohset-delete-all-btn" href="javascript:void(0);" title="批量删除">
+                                    <i class="icon-trash bigger-130"></i>
+                                </a>
+                            </div>
+                        </td>
+                        <td colspan="11">
+                            <div class="pull-left">
+                                <a href="<?php echo U('display_add');?>" class="btn btn-xs btn-pink js-choose-activity-add">
+                                    <i class="icon-file bigger-110"></i>
+                                    <span class="bigger-110 no-text-shadow">添加摇号</span>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+
+                </table>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="dataTables_info" id="sample-table-2_info">
+                            第 <?php echo ((isset($p) && ($p !== ""))?($p):1); ?> / <?php echo ((isset($total_pages) && ($total_pages !== ""))?($total_pages):1); ?> 页，共 <?php echo ((isset($count) && ($count !== ""))?($count):1); ?> 条
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="dataTables_paginate paging_bootstrap">
+                            <?php echo ((isset($page_show) && ($page_show !== ""))?($page_show):''); ?>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.table-responsive -->
+
+        </div><!-- /span -->
+
+    </div>
 
 										
 										<!-- PAGE CONTENT ENDS -->
@@ -609,6 +781,10 @@ var admission={
 			
 			<!-- page specific plugin scripts -->
 			
+    <script src="/Public/account/assets/js/jquery.dataTables.min.js"></script>
+    <script src="/Public/account/assets/js/jquery.dataTables.bootstrap.js"></script>
+    <script src="/Public/account/js/cj/clipboard.min.js"></script>
+
 
 			<!-- ace scripts -->
 			
@@ -619,6 +795,122 @@ var admission={
 			
 			<!-- inline scripts related to this page -->
 			
+    <script type="text/javascript">
+        var c_num = "<?php echo ($p); ?>";
+        jQuery(function ($) {
+           
+            //分页跳转
+            $(".pagination li").on("click", function () {
+                var tx = $(this).attr("data-tx");
+                if (tx !== undefined) {
+                    if (tx === "上一页") {
+                        $("#form-b input[name='p']").val(Number(c_num) - 1);
+                    } else if (tx === "下一页") {
+                        $("#form-b input[name='p']").val(Number(c_num) + 1);
+                    } else if (tx === "首页") {
+                        $("#form-b input[name='p']").val(1);
+                    } else if (tx === "尾页") {
+                        $("#form-b input[name='p']").val("<?php echo ((isset($total_pages) && ($total_pages !== ""))?($total_pages):1); ?>");
+                    } else {
+                        $("#form-b input[name='p']").val(tx);
+                    }
+                    $("#form-b").submit();
+                }
+            });
+            $('table th input:checkbox').on('click', function () {
+                var that = this;
+                $(this).closest('table').find('tr > td:first-child input:checkbox')
+                        .each(function () {
+                            this.checked = that.checked;
+                            $(this).closest('tr').toggleClass('selected');
+                        });
+            });
+            $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+            function tooltip_placement(context, source) {
+                var $source = $(source);
+                var $parent = $source.closest('table');
+                var off1 = $parent.offset();
+                var w1 = $parent.width();
+                var off2 = $source.offset();
+                var w2 = $source.width();
+                if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2))
+                    return 'right';
+                return 'left';
+            }
+        });
+        
+    //删除
+    $(".js-yaohset-delete-btn").on('click', function() {
+    	var $ids = [];
+        $ids.push($(this).attr("data-id"));
+
+        var callBack = function() {
+            var $url = order_house.delete;
+
+            var $data = {
+                ids: $ids,
+            };
+
+            ajax_post_callback($url, $data, function(data, status) {
+                if (data['status'] != 1) {
+                    layer_alert(data['info']);
+                    return false;
+                } else {
+                    layer_alert('删除成功！');
+
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 200);
+                }
+            });
+        };
+
+        layer_confirm('确认删除吗，删除后将不能恢复？', callBack);
+    });
+
+    //批量删除
+    $(".js-yaohset-delete-all-btn").on('click', function() {
+        var $ids = [];
+        var $item_list = $(".yaohset-item");
+
+        for (var $i = 0; $i < $item_list.length; $i ++) {
+            var $id = $($item_list[$i]).find(".yaohset-item-id:checked").attr("data-id");
+            if ($id != undefined) {
+                $ids.push($id);
+            }
+        }
+        var $ids_length = $ids.length;
+
+        if ($ids.length <= 0) {
+            gritter_alert('请选择要删除的信息！');
+            return false;
+        }
+
+        var callback = function() {
+            var $url = order_house.delete;
+
+            var $data = {
+                ids: $ids,
+            };
+
+            ajax_post_callback($url, $data, function(data, status) {
+                if (data['status'] != 1) {
+                    gritter_alert(data['info']);
+                    return false;
+                } else {
+                    gritter_alert_success('批量删除成功！');
+
+                    setTimeout(function() {
+                        window.location.href = order_house.index;
+                    }, 500);
+                }
+            });
+        };
+
+        layer_confirm('确认批量删除这'+$ids_length+'条记录吗，删除后将不能恢复？', callback);
+    });
+    </script>
+
 
 			
 				<script src="/Public/account/assets/js/jquery.gritter.min.js"></script>

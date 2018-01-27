@@ -171,24 +171,27 @@ $(function () {
         }
         // console.log(tr.length);
     }
+    //关闭弹出框
+    $("#shadow,#off-alert").on("click",function () {
+        $("#shadow").hide();
+        $("#admission").hide();
+    });
     //tr的点击事件
     $(document).on("click",".user-tr",function (event) {
         event.stopPropagation();
+        $("#shadow").show();
+        $("#admission").show();
         $(".user-tr").removeClass("tr-selected");
         $(this).addClass("tr-selected");
         var td=$(this).find('td');
-        var pd=Number($(this).attr("data-is-sign"));
+        var pd=Number($(this).attr("data-is-admission"));
         var id=Number($(this).attr("data-id"));
-        var bid=$(this).attr("data-bid");
-        $("#pname").val($.trim($("#project-not-sign option:selected").text()));
-        $("#bname").val($.trim($("#batch-one option[value='"+bid+"']").text()));
-        $("#uname").val($.trim(td.eq(1).text()));
-        $("#uphone").val($.trim(td.eq(2).text()));
-        $("#card").val($.trim(td.eq(3).text()));
-        $("#cyjno").val($.trim(td.eq(4).text()));
-        $("#money").val($(this).attr('money'));
-        $("#ywy").val($.trim(td.eq(5).text()));
-        $("#yphone").val($(this).attr('data-yp'));
+        $("#admission-txt h1").text($.trim(td.eq(1).text()));
+        $("#admission-txt p span:first").text($.trim(td.eq(2).text()));
+        $("#admission-txt p span").eq(1).text($.trim(td.eq(4).text()));
+        $("#admission-txt p").eq(1).text($.trim(td.eq(3).text()));
+        $("#admission-group p").eq(0).find('span').text($.trim(td.eq(6).text()));
+        $("#admission-group p").eq(1).find('span').text($.trim(td.eq(7).text()));
         if(pd === 0){
             $("#button-sign").show().attr("data-id",id);
             $("#sign-reset").hide();
@@ -198,7 +201,8 @@ $(function () {
         }
     });
     //入场
-    $(document).on("click",'.sign-check,#button-sign',function () {
+    $(document).on("click",'.sign-check,#button-sign',function (event) {
+        event.stopPropagation();
         var id=$(this).attr('data-id');
         $.post(admission.admission,{id:id,zt:1},function (data) {
             if(data === "true"){
@@ -206,23 +210,28 @@ $(function () {
                 $("#batch-one").trigger("change");
                 $("#sign-reset").show().attr('data-id',$("#button-sign").attr('data-id'));
                 $("#button-sign").hide();
+                $("#shadow").hide();
+                $("#admission").hide();
                 // setTimeout(function () {
                 //     window.location.reload();
                 // },1000)
             }else{
-                layer_alert(data);
+                layer_alert('异常错误，请刷新重试');
             }
         });
     });
     //取消入场
-    $(document).on("click",'.sign-cancel,#sign-reset',function () {
+    $(document).on("click",'.sign-cancel,#sign-reset',function (event) {
+        event.stopPropagation();
         var id=$(this).attr('data-id');
         $.post(admission.admission,{id:id,zt:0},function (data) {
             if(data === "true"){
                 layer_msg("取消入场成功！");
                 $("#batch-one").trigger("change");
                 $("#sign-reset").hide();
-                $("#button-sign").show().attr('data-id',$("#sign-reset").attr('data-id'));;
+                $("#button-sign").show().attr('data-id',$("#sign-reset").attr('data-id'));
+                $("#shadow").hide();
+                $("#admission").hide();
                 // setTimeout(function () {
                 //     window.location.reload();
                 // },1000)

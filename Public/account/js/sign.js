@@ -210,7 +210,7 @@ $(function () {
                 //     window.location.reload();
                 // },1000)
             }else{
-                layer_alert(data);
+                layer_alert('异常错误，请刷新重试');
             }
         });
     });
