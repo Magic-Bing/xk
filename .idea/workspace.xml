@@ -2,35 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d93e351b-3e78-4fb4-bd62-b1a84d311097" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/beat_xk2018-1-26.sql" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/ChooseUser/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/ChooseUser/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Common/base.html" afterPath="$PROJECT_DIR$/Application/Account/View/Common/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Common/navbar.html" afterPath="$PROJECT_DIR$/Application/Account/View/Common/navbar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Hxset/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/Hxset/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/WeixBuyled/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/WeixBuyled/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/WeixBuylog/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/WeixBuylog/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/WeixBuyset/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/WeixBuyset/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Xsglled/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/Xsglled/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Xsgllog/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/Xsgllog/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/YaoHresult/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/YaoHresult/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/YaoHset/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/YaoHset/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/View/Login/index.html" afterPath="$PROJECT_DIR$/Application/Admin/View/Login/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Common/Conf/config.php" afterPath="$PROJECT_DIR$/Application/Common/Conf/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/Login/index.html" afterPath="$PROJECT_DIR$/Application/Home/View/Login/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/347035ad1da07668580202d9565d9756.php" afterPath="$PROJECT_DIR$/Application/Runtime/Cache/Account/347035ad1da07668580202d9565d9756.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/35420556f4867021384eed9b5f9f21f3.php" afterPath="$PROJECT_DIR$/Application/Runtime/Cache/Account/35420556f4867021384eed9b5f9f21f3.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/39590b8aeb24e6279b835e5e6b594f62.php" afterPath="$PROJECT_DIR$/Application/Runtime/Cache/Account/39590b8aeb24e6279b835e5e6b594f62.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/55033a84bcfb336be68359b80fdcad2c.php" afterPath="$PROJECT_DIR$/Application/Runtime/Cache/Account/55033a84bcfb336be68359b80fdcad2c.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/60943a038af6b7f56fa7b296d9e4ce75.php" afterPath="$PROJECT_DIR$/Application/Runtime/Cache/Account/60943a038af6b7f56fa7b296d9e4ce75.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/78a646126b70673971ad9f3c8826b1a6.php" afterPath="$PROJECT_DIR$/Application/Runtime/Cache/Account/78a646126b70673971ad9f3c8826b1a6.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/8af092e37d526d403966792ffd782a96.php" afterPath="$PROJECT_DIR$/Application/Runtime/Cache/Account/8af092e37d526d403966792ffd782a96.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/9b333b856df71c9a93192c106b07d300.php" afterPath="$PROJECT_DIR$/Application/Runtime/Cache/Account/9b333b856df71c9a93192c106b07d300.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/9bd10ec698ff284eeb8406148ca8f8c7.php" afterPath="$PROJECT_DIR$/Application/Runtime/Cache/Account/9bd10ec698ff284eeb8406148ca8f8c7.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/a7309cfe75045058849c6f3b2bd3669f.php" afterPath="$PROJECT_DIR$/Application/Runtime/Cache/Account/a7309cfe75045058849c6f3b2bd3669f.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/eb3304742debcadc0d6a1071877daec4.php" afterPath="$PROJECT_DIR$/Application/Runtime/Cache/Account/eb3304742debcadc0d6a1071877daec4.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/f55e6e9d3720ab1141aac2b234aa9dc7.php" afterPath="$PROJECT_DIR$/Application/Runtime/Cache/Account/f55e6e9d3720ab1141aac2b234aa9dc7.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/f9c7a8243389c093a412d597f6726f44.php" afterPath="$PROJECT_DIR$/Application/Runtime/Cache/Account/f9c7a8243389c093a412d597f6726f44.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Home/5b6adcb62ad2b5dfc2abc2cd5e11dc99.php" afterPath="$PROJECT_DIR$/Application/Runtime/Cache/Home/5b6adcb62ad2b5dfc2abc2cd5e11dc99.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -98,8 +73,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Application/Home/View/Login/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="161" column="31" lean-forward="false" selection-start-line="161" selection-start-column="31" selection-end-line="161" selection-end-column="31" />
+            <state relative-caret-position="391">
+              <caret line="176" column="20" lean-forward="false" selection-start-line="176" selection-start-column="12" selection-end-line="176" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -353,6 +328,28 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yun_xk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yun_xk" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Account" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="View" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -475,15 +472,15 @@
       <workItem from="1516844167986" duration="15702000" />
       <workItem from="1516930676083" duration="18704000" />
       <workItem from="1517021280066" duration="4890000" />
-      <workItem from="1517188782999" duration="8401000" />
+      <workItem from="1517188782999" duration="10747000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="135009000" />
+    <option name="totallyTimeSpent" value="137355000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1924" height="1056" extended-state="1" />
+    <frame x="-8" y="-8" width="1924" height="1056" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14645922" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -628,6 +625,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
           <caret line="283" column="66" lean-forward="false" selection-start-line="283" selection-start-column="65" selection-end-line="283" selection-end-column="66" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -829,14 +827,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuyset/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-184">
-          <caret line="31" column="9" lean-forward="false" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuyled/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
@@ -1000,10 +990,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuyset/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="31" column="9" lean-forward="false" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Home/View/Login/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="161" column="31" lean-forward="false" selection-start-line="161" selection-start-column="31" selection-end-line="161" selection-end-column="31" />
+        <state relative-caret-position="391">
+          <caret line="176" column="20" lean-forward="false" selection-start-line="176" selection-start-column="12" selection-end-line="176" selection-end-column="20" />
           <folding />
         </state>
       </provider>

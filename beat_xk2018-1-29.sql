@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-01-26 14:32:31
+Date: 2018-01-29 15:18:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -115,18 +115,18 @@ CREATE TABLE `xk_choose` (
   `is_admission` tinyint(1) NOT NULL,
   `admission_time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=113 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='竞价选房';
+) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='竞价选房';
 
 -- ----------------------------
 -- Records of xk_choose
 -- ----------------------------
-INSERT INTO `xk_choose` VALUES ('79', '1', '1', 'AAA6', '18000000006', '12345', '6', null, null, '0.00', '0.00', '', '', null, null, '', '0', '1513158412', '127.0.0.1', '', '', '0', '10', '', '', '0', '0', '0', '0');
+INSERT INTO `xk_choose` VALUES ('50', '1', '1', '姜', '18583229632', '123456789012345678', 'VIP001', '0', '0.00', '0.00', '0.00', '', '', '', null, '', '1', '1513149108', '127.0.0.1', '', '', '1513174078', '0', '', '', '0', '0', '0', '0');
 INSERT INTO `xk_choose` VALUES ('74', '1', '1', 'AAA1', '18000000001', '12345', '1', null, null, '0.00', '0.00', '', '', '1020', null, '', '1', '1513158412', '127.0.0.1', '', '', '0', '5', '', '', '0', '0', '0', '0');
 INSERT INTO `xk_choose` VALUES ('75', '1', '1', 'AAA2', '18000000002', '12345', '2', null, null, '0.00', '0.00', '', '', '1019', null, '', '0', '1513158412', '127.0.0.1', '', '', '0', '5', '', '', '0', '0', '0', '0');
 INSERT INTO `xk_choose` VALUES ('76', '1', '1', 'AAA3', '18000000003', '12345', '3', null, null, '0.00', '0.00', '', '', null, null, '', '0', '1513158412', '127.0.0.1', '', '', '0', '5', '', '', '0', '0', '0', '0');
 INSERT INTO `xk_choose` VALUES ('77', '1', '1', 'AAA4', '18000000004', '12345', '4', null, null, '0.00', '0.00', '', '', null, null, '', '0', '1513158412', '127.0.0.1', '', '', '0', '5', '', '', '0', '0', '0', '0');
 INSERT INTO `xk_choose` VALUES ('78', '1', '1', 'AAA5', '18000000005', '12345', '5', null, null, '0.00', '0.00', '', '', null, null, '', '0', '1513158412', '127.0.0.1', '', '', '0', '5', '', '', '0', '0', '0', '0');
-INSERT INTO `xk_choose` VALUES ('50', '1', '1', '姜', '18583229632', '123456789012345678', 'VIP001', '0', '0.00', '0.00', '0.00', '', '', '', null, '', '1', '1513149108', '127.0.0.1', '', '', '1513174078', '0', '', '', '0', '0', '0', '0');
+INSERT INTO `xk_choose` VALUES ('79', '1', '1', 'AAA6', '18000000006', '12345', '6', null, null, '0.00', '0.00', '', '', null, null, '', '0', '1513158412', '127.0.0.1', '', '', '0', '10', '', '', '0', '0', '0', '0');
 INSERT INTO `xk_choose` VALUES ('80', '1', '1', 'AAA7', '18000000007', '12345', '7', null, null, '0.00', '0.00', '', '', null, null, '', '0', '1513158412', '127.0.0.1', '', '', '0', '10', '', '', '0', '0', '0', '0');
 INSERT INTO `xk_choose` VALUES ('81', '1', '1', 'AAA8', '18000000008', '12345', '8', null, null, '0.00', '0.00', '', '', null, null, '', '0', '1513158412', '127.0.0.1', '', '', '0', '10', '', '', '0', '0', '0', '0');
 INSERT INTO `xk_choose` VALUES ('82', '1', '1', 'AAA9', '18000000009', '12345', '9', null, null, '0.00', '0.00', '', '', null, null, '', '0', '1513158412', '127.0.0.1', '', '', '0', '10', '', '', '0', '0', '0', '0');
@@ -143,11 +143,11 @@ INSERT INTO `xk_choose` VALUES ('92', '1', '1', 'AAA19', '18000000019', '12345',
 INSERT INTO `xk_choose` VALUES ('93', '1', '1', 'AAA20', '18000000020', '12345', '20', null, null, '0.00', '0.00', '', '', null, null, '', '1', '1513158412', '127.0.0.1', '', '', '0', '15', '', '', '0', '0', '0', '0');
 INSERT INTO `xk_choose` VALUES ('94', '1', '1', 'AAA21', '18000000021', '12345', '21', null, null, '0.00', '0.00', '', '', null, null, '', '1', '1513158412', '127.0.0.1', '', '', '0', '15', '', '', '0', '0', '0', '0');
 INSERT INTO `xk_choose` VALUES ('95', '1', '1', 'AAA22', '18000000022', '12345', '22', null, null, '0.00', '0.00', '', '', null, null, '', '1', '1513158412', '127.0.0.1', '', '', '0', '15', '', '', '0', '0', '0', '0');
-INSERT INTO `xk_choose` VALUES ('97', '2', '2', '是是是', 'M!T6M328OWTfMg0hMMj*UL4NjUO0O0O', 'N!T6E3w8NWDfAgzhMMT*kL4', '1111', '0', '0.00', '0.00', '0.00', '', '', '1065', null, '', '1', '1513388299', '127.0.0.1', '', '', '0', '0', '53|54|56|53|50|52|51|57|54|51|49|', '56|57|49|51|48|52|48|49|53|', '0', '0', '0', '0');
-INSERT INTO `xk_choose` VALUES ('108', '2', '2', '好好', 'M!T6M328OWTfMg0hMMj*UL4NjYO0O0O', 'N!T6E3w8NWDfAgzhMMT*kL4MjEyMDQwMzFY', 'VIP004', '0', '8000.00', '0.00', '0.00', '', '', null, null, '', '1', '1515737749', '127.0.0.1', '置业顾问1', '13898989898', '0', '10', '54|54|56|53|50|52|51|57|54|51|49|', '88|49|51|48|52|48|50|49|50|56|57|49|51|48|52|48|49|53|', '0', '0', '0', '0');
-INSERT INTO `xk_choose` VALUES ('100', '2', '2', '姜姜姜', 'M!T6g318OWDfMgyhMMj*kL2MzIO0O0O', 'N!T6E3x8', '1112', '0', '0.00', '0.00', '0.00', '', '', null, null, '', '1', '1513753510', '127.0.0.1', '', '', '0', '30', '50|51|54|57|50|50|51|56|53|56|49|', '49|49|53|', '0', '0', '0', '0');
+INSERT INTO `xk_choose` VALUES ('97', '2', '2', '是是是', 'M!T6M328OWTfMg0hMMj*UL4NjUO0O0O', 'N!T6E3w8NWDfAgzhMMT*kL4', '1111', '0', '0.00', '0.00', '0.00', '', '', '1065', null, '', '1', '1513388299', '127.0.0.1', '', '', '0', '0', '53|54|56|53|50|52|51|57|54|51|49|', '56|57|49|51|48|52|48|49|53|', '1', '1516950162', '0', '1516957911');
+INSERT INTO `xk_choose` VALUES ('100', '2', '2', '姜姜姜', 'M!T6g318OWDfMgyhMMj*kL2MzIO0O0O', 'N!T6E3x8', '1112', '0', '0.00', '0.00', '0.00', '', '', null, null, '', '1', '1513753510', '127.0.0.1', '', '', '0', '30', '50|51|54|57|50|50|51|56|53|56|49|', '49|49|53|', '0', '1516951959', '0', '0');
 INSERT INTO `xk_choose` VALUES ('103', '2', '2', '薛01', 'M!T6g338OWDfIgwhOMD*gLwODUO0O0O', 'N!T6E3x8MWTfEgxhMMT*ELxMTExMTExMTEx', 'VIP01', '0', '0.00', '0.00', '0.00', '', '', '', null, '', '1', '1515115689', '192.168.2.99', '置业顾问1', '18111111111', '0', '0', '53|56|48|56|56|48|50|56|55|56|49|', '49|49|49|49|49|49|49|49|49|49|49|49|49|49|49|49|49|53|', '0', '0', '0', '0');
 INSERT INTO `xk_choose` VALUES ('107', '3', '3', '薛1', 'M!T6g338OWDfIgwhOMD*gLwODUO0O0O', 'M!T6I3z8', '12', '0', '0.00', '0.00', '0.00', '', '', '', null, '', '1', '1515468806', '192.168.2.103', '', '', '0', '0', '53|56|48|56|56|48|50|56|55|56|49|', '51|50|49|', '0', '0', '0', '0');
+INSERT INTO `xk_choose` VALUES ('108', '2', '2', '好好', 'M!T6M328OWTfMg0hMMj*UL4NjYO0O0O', 'N!T6E3w8NWDfAgzhMMT*kL4MjEyMDQwMzFY', 'VIP004', '0', '8000.00', '0.00', '0.00', '', '', null, null, '', '1', '1515737749', '127.0.0.1', '置业顾问1', '13898989898', '0', '10', '54|54|56|53|50|52|51|57|54|51|49|', '88|49|51|48|52|48|50|49|50|56|57|49|51|48|52|48|49|53|', '0', '0', '0', '0');
 INSERT INTO `xk_choose` VALUES ('109', '2', '2', '张三', 'M!T6I3z8NWDfUg2hNMz*gL5MDAO0O0O', 'M!T6g348OWDfgg4hOMA*O0O0OLO0O0O', 'VIP888', '0', '0.00', '0.00', '0.00', '', '', '', null, '', '1', '1516177027', '127.0.0.1', '', '', '0', '0', '48|48|57|56|55|54|53|52|51|50|49|', '56|56|56|56|56|56|49|', '0', '0', '0', '0');
 INSERT INTO `xk_choose` VALUES ('110', '2', '2', '李四', 'M!T6I3z8NWDfUg2hNMz*gL5MDEO0O0O', 'M!T6k358OWTfkg5hOMQ*O0O0OLO0O0O', 'VIP189', '0', '0.00', '0.00', '0.00', '', '', '', null, '', '1', '1516177219', '127.0.0.1', '', '', '0', '0', '49|48|57|56|55|54|53|52|51|50|49|', '57|57|57|57|57|57|49|', '0', '0', '0', '0');
 INSERT INTO `xk_choose` VALUES ('111', '2', '2', '王五', 'M!T6I3z8NWDfUg2hNMz*gL5MDIO0O0O', 'M!T6g338NWzfcg3hNMz*cLO0O0O', 'VIP187', '0', '0.00', '0.00', '0.00', '', '', '', null, '', '1', '1516177262', '127.0.0.1', '', '', '0', '0', '50|48|57|56|55|54|53|52|51|50|49|', '55|55|55|55|55|55|56|49|', '0', '0', '0', '0');
@@ -158,18 +158,31 @@ INSERT INTO `xk_choose` VALUES ('112', '2', '2', 'ggg', 'M!T6I3z8NWDfUg2hNMz*gL5
 -- ----------------------------
 DROP TABLE IF EXISTS `xk_choose2user_log`;
 CREATE TABLE `xk_choose2user_log` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `choose_id` int(11) NOT NULL COMMENT '客户id',
   `log_type` varchar(15) NOT NULL COMMENT '记录类型，签到，取消签到，入场，取消入场',
   `user_id` int(11) NOT NULL COMMENT '操作人',
   `log_time` int(11) NOT NULL COMMENT '操作时间',
   `log_ip` varchar(20) NOT NULL COMMENT '操作ip',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xk_choose2user_log
 -- ----------------------------
+INSERT INTO `xk_choose2user_log` VALUES ('1', '97', '签到', '1', '1516950162', '127.0.0.1');
+INSERT INTO `xk_choose2user_log` VALUES ('2', '100', '签到', '1', '1516950514', '127.0.0.1');
+INSERT INTO `xk_choose2user_log` VALUES ('13', '100', '取消签到', '1', '1516951253', '127.0.0.1');
+INSERT INTO `xk_choose2user_log` VALUES ('14', '100', '签到', '1', '1516951256', '127.0.0.1');
+INSERT INTO `xk_choose2user_log` VALUES ('15', '100', '取消签到', '1', '1516951257', '127.0.0.1');
+INSERT INTO `xk_choose2user_log` VALUES ('16', '100', '签到', '1', '1516951259', '127.0.0.1');
+INSERT INTO `xk_choose2user_log` VALUES ('17', '100', '取消签到', '1', '1516951261', '127.0.0.1');
+INSERT INTO `xk_choose2user_log` VALUES ('18', '100', '签到', '1', '2147483647', '127.0.0.1');
+INSERT INTO `xk_choose2user_log` VALUES ('19', '100', '取消签到', '1', '1516951336', '11111111111111111111');
+INSERT INTO `xk_choose2user_log` VALUES ('20', '100', '签到', '1', '1516951957', '127.0.0.1');
+INSERT INTO `xk_choose2user_log` VALUES ('21', '100', '取消签到', '1', '1516951959', '127.0.0.1');
+INSERT INTO `xk_choose2user_log` VALUES ('22', '97', '入场', '1', '1516957826', '127.0.0.1');
+INSERT INTO `xk_choose2user_log` VALUES ('23', '97', '取消入场', '1', '1516957911', '127.0.0.1');
 
 -- ----------------------------
 -- Table structure for `xk_choose_activity`
@@ -402,7 +415,7 @@ INSERT INTO `xk_fun` VALUES ('31', '快速选房', '3', '1', '2', '../Room/index
 INSERT INTO `xk_fun` VALUES ('32', '交易管理', '0', '1', '6', 'Xsgllog/index', null, 'icon-edit', '1', '0');
 INSERT INTO `xk_fun` VALUES ('33', 'LED显示', '3', '1', '4', 'Xsglled/index', null, null, '1', '0');
 INSERT INTO `xk_fun` VALUES ('34', '取消选房', '3', '1', '5', null, null, null, '0', '0');
-INSERT INTO `xk_fun` VALUES ('35', '入场审核', '3', '1', '1', null, null, null, '1', '0');
+INSERT INTO `xk_fun` VALUES ('35', '入场审核', '3', '1', '1', 'Admission/index', null, null, '1', '0');
 INSERT INTO `xk_fun` VALUES ('41', '房间导入', '4', '1', '1', 'Jcsjroom/room', null, null, '1', '0');
 INSERT INTO `xk_fun` VALUES ('42', '批次设置', '4', '1', '3', 'Jcsjpcset/index', null, null, '1', '0');
 INSERT INTO `xk_fun` VALUES ('43', '户型设置', '4', '1', '2', 'Hxset/index', null, null, '1', '0');
@@ -569,12 +582,12 @@ CREATE TABLE `xk_hxset` (
 -- ----------------------------
 -- Records of xk_hxset
 -- ----------------------------
-INSERT INTO `xk_hxset` VALUES ('2', '2', '2', 'Q2', '五室两厅两卫', null, null, '/Uploads/img/hximg/20171214/5a32587953c09.png');
-INSERT INTO `xk_hxset` VALUES ('3', '2', '2', 'Q3', '四室两厅两卫', null, null, '/Uploads/img/hximg/20180110/5a5569fc6c8f5.jpg');
+INSERT INTO `xk_hxset` VALUES ('2', '2', '2', 'Q2', '五室两厅两卫', null, null, '/Uploads/img/hximg/20180129/5a6e8e5d6e7ec.png');
+INSERT INTO `xk_hxset` VALUES ('3', '2', '2', 'Q3', '四室两厅两卫', null, null, '/Uploads/img/hximg/20180129/5a6e8316e0d4f.png');
 INSERT INTO `xk_hxset` VALUES ('4', '1', '1', 'A2', '4室2厅2卫', null, null, '/Uploads/img/hximg/20171218/5a3717aa42d59.jpg');
 INSERT INTO `xk_hxset` VALUES ('5', '1', '1', 'A1', '3室2厅2卫', null, null, '/Uploads/img/hximg/20171218/5a372775e018a.jpg');
 INSERT INTO `xk_hxset` VALUES ('6', '2', '2', 'A2', '3室1厅1卫', null, null, '/Uploads/img/hximg/20180110/5a5569eceb037.jpg');
-INSERT INTO `xk_hxset` VALUES ('7', '2', '2', 'A1', '3室2厅2卫', null, null, '/Uploads/img/hximg/20180110/5a556a0b9932a.jpg');
+INSERT INTO `xk_hxset` VALUES ('7', '2', '2', 'A1', '3室2厅2卫', null, null, '/Uploads/img/hximg/20180129/5a6ebacfae727.png');
 
 -- ----------------------------
 -- Table structure for `xk_kppc`
