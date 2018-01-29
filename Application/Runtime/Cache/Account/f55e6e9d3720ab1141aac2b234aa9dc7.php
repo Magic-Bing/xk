@@ -452,7 +452,12 @@ var admission={
 	</li>
 
 	
-	<style>form{display: inline}</style>
+	<style>
+	form{display: inline}
+	#sample-table-2_length label{
+		margin-left: 10px;
+	}
+	</style>
 	<li>
 		<a href="<?php echo U('Xsgllog/index');?>"><?php echo ((isset($classify_name) && ($classify_name !== ""))?($classify_name):''); ?></a>
 	</li>

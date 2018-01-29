@@ -72,13 +72,13 @@
     			<input type="text"  tabindex="1" class="form-control codeinput" placeholder="用户代码或手机号码" regex="^\w{3,16}$"/>
     		</div>
     	</div>
-
+		<form action="" id="form-login">
         <div class="input-group m-b-20">
     		<span class="input-group-addon">
     			<i class="zmdi zmdi-male"></i>
     		</span>
     		<div class="fg-line">
-    			<input type="password" tabindex="2" class="form-control pwdinput" placeholder="密码" regex="^\w+"/>
+    			<input type="password"  tabindex="2" class="form-control pwdinput" placeholder="密码" regex="^\w+"/>
     		</div>
     	</div>
     	
@@ -97,6 +97,7 @@
     		<i class="zmdi zmdi-arrow-forward"></i>
     	</a>
 		<input tabindex="3" type="button" class="bt_login" value="" onclick="login()"/>
+		</form>
     </div>
 	<div class="bqsy-sm">
 	©2016成都链商科技有限公司 蜀ICP备16013196号-2&nbsp;&nbsp;<a target="_blank" href="http://www.yun-xk.com" style="text-decoration:underline;color:rgb(67, 67, 67);">产品介绍</a> 
@@ -139,6 +140,34 @@
 	
 	<script type="text/javascript">
 	$(function(){
+	    //阻止表单提交
+		$("#form-login").on('submit',function () {
+			return false;
+        });
+        //改为可以回车登录
+        $(document).on("keyup",".codeinput",function () {
+            if(event.keyCode === 13 ){
+                $(this).blur();
+                var vo=$(this).val();
+                if(vo === '' || vo ===undefined){
+                    layer_alert('用户名不能为空！');
+                }  else{
+                    login();
+                }
+
+            };
+        });
+        $(document).on("keyup",".pwdinput",function () {
+            if(event.keyCode === 13 ){
+                $(this).blur();
+                var vo=$(this).val();
+                if(vo === '' || vo ===undefined){
+                    layer_alert('密码不能为空！');
+                }  else{
+                    login();
+                }
+            };
+        });
         //找到文本框，并注册得到焦点事件
         $(".bt_login").focus(function(){
             //让当前得到焦点的文本框改变其背景色

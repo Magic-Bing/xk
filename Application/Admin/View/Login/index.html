@@ -147,8 +147,8 @@
             $(this).css("background","rgba(255,0,0,0.4)");
         });
     });
-	
-	
+
+
 	function login()
 	{
 		var $name = $(".codeinput").val();
@@ -156,7 +156,7 @@
 		var login_url = {
 					index: '../room/index.html',
 					login: '<{:U("login/check")}>',
-				}
+				};
 		
 		var $url = login_url.login;
 		var $data = {

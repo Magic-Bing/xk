@@ -478,6 +478,9 @@ var admission={
             font-size: 22px;
             cursor: pointer;
         }
+        #sample-table-2_length label{
+            margin-left: 10px;
+        }
     </style>
     <li>
         <a href="<?php echo U('WeixBuyset/index');?>"><?php echo ((isset($classify_name) && ($classify_name !== ""))?($classify_name):''); ?></a>

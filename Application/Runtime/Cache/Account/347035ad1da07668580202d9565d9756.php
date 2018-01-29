@@ -197,7 +197,7 @@ var admission={
 
 	<script type="text/javascript">
             try{ace.settings.check('navbar' , 'fixed')}catch(e){}
-          
+
             $(function() {
                 $(document).on("click",".light-blue",function () {
                     var pd=$(this).attr("on");
@@ -709,6 +709,10 @@ var admission={
             form{
                 display: inline;
             }
+            #sample-table-2_length label{
+                margin-left: 10px;
+            }
+
         </style>
         <div id="hx-img">
             <img src="" alt="图片不存在">
@@ -1024,6 +1028,7 @@ var admission={
 				<script type="text/javascript">
 					if("ontouchend" in document) document.write("<script src='/Public/account/assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
 				</script>
+				<script src="/Public/common/js/jquery/jquery-2.1.1.min.js"></script><!--这个jq引入很关键，不引入在ipad pro 类型的机型上bootstrap模态框会报错-->
 				<script src="/Public/account/assets/js/bootstrap.min.js"></script>
 				<script src="/Public/account/assets/js/typeahead-bs2.min.js"></script>
 			
@@ -1169,6 +1174,7 @@ var admission={
 	
 	
 </html>
+
 <script>
         //控制一级模块选中后的样式
         var nav_li=$('.nav-list>li');

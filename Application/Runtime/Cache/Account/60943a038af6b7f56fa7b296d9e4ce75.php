@@ -65,7 +65,7 @@
             <ul class="pagination" id="not-sign">
                 <?php if($all_page > 1 ): if($page > 1 ): ?><li><a href="#" style="color: #ffb751">«</a></li><?php endif; ?>
 
-                <?php $__FOR_START_10532__=1;$__FOR_END_10532__=$all_page+1;for($i=$__FOR_START_10532__;$i < $__FOR_END_10532__;$i+=1){ if($i == $page ): ?><li><a href="#" style="background-color: #ffb751;color: #FFF"><?php echo ($i); ?></a></li>
+                <?php $__FOR_START_7205__=1;$__FOR_END_7205__=$all_page+1;for($i=$__FOR_START_7205__;$i < $__FOR_END_7205__;$i+=1){ if($i == $page ): ?><li><a href="#" style="background-color: #ffb751;color: #FFF"><?php echo ($i); ?></a></li>
                     <?php else: ?>
                         <?php if($all_page > 7): if($page <= 4 ): if($i > 7): break; ?>
                                 <?php else: ?>

@@ -499,6 +499,9 @@ var admission={
         form{
             display: inline;
         }
+        #sample-table-2_length label{
+            margin-left: 10px;
+        }
     </style>
     <div class="row">
         <div class="col-xs-12">
