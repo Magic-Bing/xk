@@ -26,6 +26,8 @@ class AdmissionController extends BaseController
     //页面
     public function index(){
         $zt=I("zt",0,"intval");
+        $selected_project=session("selected_project");
+        $this->assign('selected_project', $selected_project);
         //当前用户的项目
         $user_project_ids = $this->get_user_project_ids();
         //获取项目列表
@@ -54,17 +56,22 @@ class AdmissionController extends BaseController
         if(!IS_AJAX){
             $this->error("非法操作",U("index/index"));
         }
+        $user_project_ids = $this->get_user_project_ids();
+        $user_project_ids=array_merge($user_project_ids);
+        $arr_str=implode(",",$user_project_ids);
         $page_num=I("num",C("SIGN_PAGE_NUM"),"intval");
         $pid=I("pid",0,"intval");
+        session("selected_project",$pid);
         $bid=I("bid",0,"intval");
         $search=I("search",'',"trim");
         $page=I("page",0,"intval");
         $zt=I("zt",0,"intval");
-        $p='';
         $b='';
         $s='';
         if($pid !== 0){
             $p="AND c.project_id =$pid";
+        }else{
+            $p="AND c.project_id in ($arr_str)";
         }
         if($bid !== 0){
             $b="AND c.batch_id =$bid";
@@ -122,15 +129,19 @@ class AdmissionController extends BaseController
 
     //导出EXCEL
     public function check_excel(){
+        $user_project_ids = $this->get_user_project_ids();
+        $user_project_ids=array_merge($user_project_ids);
+        $arr_str=implode(",",$user_project_ids);
         $pid=I("pid",0,"intval");
         $bid=I("bid",0,"intval");
         $search=I("search",'',"trim");
         $zt=I("zt",0,"intval");
-        $p='';
         $b='';
         $s='';
         if($pid !== 0){
             $p="AND c.project_id =$pid";
+        }else{
+            $p="AND c.project_id in ($arr_str)";
         }
         if($bid !== 0){
             $b="AND c.batch_id =$bid";

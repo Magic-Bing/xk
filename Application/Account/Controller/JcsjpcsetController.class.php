@@ -34,10 +34,19 @@ class JcsjpcsetController extends BaseController {
      */
     public function index() {
         $Model = new \Think\Model(); 
-        $projid = I('projid');
-        $ishaveid=false;
+        $projid = I('projid',0,'intval');
         //可选项目取值
         $user_project_ids = $this->get_user_project_ids();
+        $pids=array_merge($user_project_ids);
+        $str_p=implode(",",$pids);
+       if (!empty($projid)) {
+            if(!in_array($projid,$user_project_ids)){
+                $this->error("非法操作！",'/Account/Jcsjroom/room');
+            }
+            $where ="  a.proj_id = $projid" ;
+        }else{
+           $where ="  a.proj_id in ($str_p)" ;
+       }
         //获取项目列表
         $project_where = array();
         //$project_where['status'] = 1;
@@ -50,33 +59,15 @@ class JcsjpcsetController extends BaseController {
         if (!empty($project_old_list)) {
             foreach ($project_old_list as $project_list_key => $project_list_value) {
                 $project_list[] = $project_list_value;
-                if(empty($projid))
-                {
-                    $projid=$project_list_value['id'];
-                    $ishaveid=true;
-                }
-                else if($projid==$project_list_value['id'])
-                {
-                    $ishaveid=true;
-                }
             }
         } else {
             $project_list = array();
         }
         $this->assign('projectlist', $project_list);
-        
-        if(!empty($projid) && !$ishaveid)
-        {
-             $this->error("项目错误，请选择正确的项目！");
-        }
-        if (!empty($projid) && $projid<>0)
-        {
-            $selectedproj=$Model->query("SELECT a.*,b.name as compname FROM xk_project a left join xk_company b on a.cp_id=b.id where a.status=1 and a.id= " . $projid . " and 1=1 order by b.id asc,a.id asc" );
-            $this->assign('selectedproj', $selectedproj[0] ); 
+
+            $kppc=$Model->query("SELECT a.*,case when is_yx=1 then '开启' else '关闭' end as zt,a.plan  FROM xk_kppc a where " . $where . "  order by is_yx desc,a.id asc" );
             
-            $kppc=$Model->query("SELECT a.*,case when is_yx=1 then '开启' else '关闭' end as zt,a.plan  FROM xk_kppc a where a.proj_id=" . $projid . "  order by is_yx desc,a.id asc" );
-            
-            $bldlist=$Model->query("SELECT a.*  FROM xk_build a where a.proj_id=" . $projid . " and 3=3 order by a.proj_id asc,a.pc_id asc,a.id asc" );
+            $bldlist=$Model->query("SELECT a.*  FROM xk_build a where " . $where . "  order by a.proj_id asc,a.pc_id asc,a.id asc" );
             
             $kppclist=array();
             foreach ($kppc as $kppc_k => $kppc_v) {  
@@ -87,8 +78,8 @@ class JcsjpcsetController extends BaseController {
                 }
                 $kppclist[]=$kppc_v;
             }
-            $this->assign('kppclist', $kppclist); 
-        }
+            $this->assign('projid', $projid);
+            $this->assign('kppclist', $kppclist);
         $this->set_seo_title("批次设置");
         $this->display();
     }

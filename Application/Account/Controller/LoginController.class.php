@@ -81,7 +81,8 @@ class LoginController extends Controller
 		//添加登录信息
 		session('ACCOUNT_ID', $user['id']);
                 session('ACCOUNT_TYPE', $user['type']);
-		
+                session('selected_project','');
+
 		$this->success('登录成功！', U('index/index'));		
     }
 
@@ -94,6 +95,7 @@ class LoginController extends Controller
     public function logout() 
 	{
 		session('ACCOUNT_ID', null);
+        session('selected_project',null);
 		//$this->success('退出成功！', U('login/index'));
                 redirect(U('../login/index'),0);
 	}

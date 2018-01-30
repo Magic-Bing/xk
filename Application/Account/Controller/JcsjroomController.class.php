@@ -38,7 +38,9 @@ class JcsjroomController extends BaseController {
     }
     
     public function room() {
-         
+//         if(!IS_POST){
+//             $this->error("非法操作！");
+//         }
         $Model = new \Think\Model();
 		
         //查询条件
@@ -66,15 +68,20 @@ class JcsjroomController extends BaseController {
 			$where .=" and a.room like '%". $room ."%' " ;
             $this->assign('room', $room); 
 		}
-
+        $user_project_ids = $this->get_user_project_ids();
         $projid = I('projid',0,'intval');
+        if (!empty($projid)) {
+            if(!in_array($projid,$user_project_ids)){
+                $this->error("非法操作！",'/Account/Jcsjroom/room');
+            }
+            $where .=" and a.proj_id = $projid" ;
+        }
         if($excel===1){
-            $roomlist=$Model->query("SELECT concat_ws('-',c.name,b.buildname,a.unit,a.room) dz,a.hx,a.area,Format(a.price,2) p1,a.tnarea,Format(a.tnprice,2) p2,Format(a.total,2) p3,Format(a.discount,2) p4,CASE WHEN a.is_xf=0 THEN  '待售' ELSE  '已售' END zt FROM xk_room a left join xk_build b on a.bld_id=b.id left join xk_project c on a.proj_id=c.id ".$where ."and  a.proj_id=" . $projid . "  order by a.id asc ");
+            $roomlist=$Model->query("SELECT concat_ws('-',c.name,b.buildname,a.unit,a.room) dz,a.hx,a.area,Format(a.price,2) p1,a.tnarea,Format(a.tnprice,2) p2,Format(a.total,2) p3,Format(a.discount,2) p4,CASE WHEN a.is_xf=0 THEN  '待售' ELSE  '已售' END zt FROM xk_room a left join xk_build b on a.bld_id=b.id left join xk_project c on a.proj_id=c.id ".$where  . "  order by a.id asc ");
             $this->exportExcel("房间数据",['head'=>['房间名称','户型','建筑面积','建筑单价','套内面积','套内单价','标准总价','优惠总价','销售状态']],$roomlist,0);
         }
-        $ishaveid=false;
         //可选项目取值
-        $user_project_ids = $this->get_user_project_ids();
+
         //获取项目列表
         $project_where = array();
         //$project_where['status'] = 1;
@@ -84,34 +91,17 @@ class JcsjroomController extends BaseController {
             $project_where['id'] = '-99999';
         }
         $project_old_list = D('Common/ProjectView')->getList($project_where, 'company_id DESC, id DESC', '50');
+        $project_list='';
         if (!empty($project_old_list)) {
             foreach ($project_old_list as $project_list_key => $project_list_value) {
                 $project_list[] = $project_list_value;
-                if(empty($projid))
-                {
-                    $projid=$project_list_value['id'];
-                    $ishaveid=true;
-                }
-                else if($projid==$project_list_value['id'])
-                {
-                    $ishaveid=true;
-                }
             }
         } else {
             $project_list = array();
         }
         $this->assign('projlist', $project_list);
-        
-        if(!empty($projid) && !$ishaveid)
-        {
-             $this->error("项目错误，请选择正确的项目！");
-        }
-        if (!empty($projid) && $projid<>0) {   
-            $selectedproj=$Model->query("SELECT a.*,b.name as compname FROM xk_project a left join xk_company b on a.cp_id=b.id where a.id=" .$projid. " and 2=2 order by b.id asc,a.id asc" );
-            $this->assign('selectedproj', $selectedproj[0]);
-            
             //房间列表
-            $allroom=$Model->query("SELECT a.* FROM xk_room a left join xk_build b on a.bld_id=b.id left join xk_project c on a.proj_id=c.id ".$where ." and  a.proj_id=" . $projid );
+            $allroom=$Model->query("SELECT a.* FROM xk_room a left join xk_build b on a.bld_id=b.id left join xk_project c on a.proj_id=c.id ".$where );
             $count = count($allroom);
             $listRows = I('r', '10', 'intval');
 		
@@ -122,7 +112,7 @@ class JcsjroomController extends BaseController {
 
             //房间列表
             $limit = 'limit '.$Page->firstRow.','.$Page->listRows;
-            $roomlist=$Model->query("SELECT a.*,b.buildname,c.name as projname FROM xk_room a left join xk_build b on a.bld_id=b.id left join xk_project c on a.proj_id=c.id ".$where ."and  a.proj_id=" . $projid . "  order by a.id asc ".$limit );
+            $roomlist=$Model->query("SELECT a.*,b.buildname,c.name as projname FROM xk_room a left join xk_build b on a.bld_id=b.id left join xk_project c on a.proj_id=c.id ".$where ."  order by a.id asc ".$limit );
 			
             $this->assign('projid', $projid); 
             $p = I('p', '1', 'intval');
@@ -132,7 +122,7 @@ class JcsjroomController extends BaseController {
             $this->assign('count', $count);
             $this->assign('listRows', $listRows);;
             $this->assign('roomlist', $roomlist); 
-        } 
+
         $this->set_seo_title("房间导入");
         $this->display();
      }
@@ -166,7 +156,7 @@ class JcsjroomController extends BaseController {
     {
 		$project_id = I("projid", '', 'intval');
 		if (empty($project_id) || $project_id == 0) {
-			$this->error('项目不存在，请重试！');
+			$this->error('项目不存在，请重试！',U('Jcsjroom/room'));
 		}
 		
 		//房间信息
@@ -259,7 +249,7 @@ class JcsjroomController extends BaseController {
     {
 		$project_id = I("projid", '', 'intval');
 		if (empty($project_id) || $project_id == 0) {
-			$this->error('项目不存在，请重试！');
+            $this->error('项目不存在，请重试！',U('Jcsjroom/room'));
 		}
 		
 		//房间信息
@@ -480,7 +470,7 @@ class JcsjroomController extends BaseController {
     public function upload()
     {
         if (!IS_POST) {
-                $this->error("访问错误，请确认后重试！");
+                $this->error("访问错误，请确认后重试！",U('Jcsjroom/room'));
         }
 
         $upload = new \Think\Upload();// 实例化上传类

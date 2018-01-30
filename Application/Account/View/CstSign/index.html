@@ -105,6 +105,9 @@
                                 项目
                                 <select name="project_id" class="choose-user-project-id" id="project-not-sign"
                                         style="width: auto;">
+                                    <if condition="count($project_list) gt 1">
+                                        <option value="">全部</option>
+                                    </if>
                                     <foreach name="project_list" item="vo" key="k">
                                         <option value="<{$vo.id}>"><{$vo.company_name}>--<{$vo.name}></option>
                                     </foreach>
@@ -251,7 +254,8 @@
 
         $(function () {
             <!--代币获取弹窗-->
-
+            $("#project-not-sign").val('<{$selected_project}>');
+            $("#project-not-sign").trigger('change');
             //设置内容框的高度
             var w = window.innerHeight;//获取浏览器可视窗口高度
 //            console.log(w);

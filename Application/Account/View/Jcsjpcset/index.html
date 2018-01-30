@@ -325,9 +325,9 @@
                     <div style="display:block;float:left;line-height: 38px;background: #eff3f8;width:100%;padding:0 0 3px 0">
                             <font style="margin-left:10px;">项目</font>
                             <select id= "projectlist" name="projectlist" style="padding: 1px 10px;height: 25px;" >
-                                <if condition="$selectedproj['id'] gt 0">
+                                <option value="">全部</option>
                                     <foreach name="projectlist" item="projectlist_vo">
-                                        <if condition="$selectedproj['id'] eq $projectlist_vo['id']">
+                                        <if condition="$projid eq $projectlist_vo['id']">
                                             <option value="<{$projectlist_vo['id']}>" selected>
                                                 <{$projectlist_vo['company_name']}>--<{$projectlist_vo['name']}> 
                                             </option>
@@ -336,15 +336,7 @@
                                                 <{$projectlist_vo['company_name']}>--<{$projectlist_vo['name']}>
                                             </option>
                                         </if>
-                                    </foreach> 
-                                    <else />
-                                    <option value="0" selected></option>
-                                    <foreach name="projectlist" item="projectlist_vo">
-                                        <option value="<{$projectlist_vo['id']}>">
-                                            <{$projectlist_vo['company_name']}>--<{$projectlist_vo['name']}> 
-                                        </option>
-                                    </foreach> 
-                                </if>
+                                    </foreach>
                             </select>
 
                             <form method="post" id="selectproj" name="selectproj" action="index"  style="display:none">
@@ -371,7 +363,7 @@
                                             <tbody>
                                             <foreach name="kppclist" item="kppc_vo" key="i">
                                                 <if condition="$i eq 0"> 
-                                                    <tr class="tr_c selectpc pctr_<{$kppc_vo['id']}>" onmouseover="this.bgColor = '#F5F5F5';" onmouseout="this.bgColor = '#ffffff';" bgcolor="#ffffff" pcid="<{$kppc_vo['id']}>" data_id="<{$i}>">   
+                                                    <tr class="tr_c selectpc pctr_<{$kppc_vo['id']}>" onmouseover="this.bgColor = '#F5F5F5';" onmouseout="this.bgColor = '#ffffff';" bgcolor="#ffffff" pcid="<{$kppc_vo['id']}>" data_id="<{$i}>" pid='<{$kppc_vo["proj_id"]}>'>
                                                         <td align="center"><{$kppc_vo['name']}></td> 
                                                         <td align="center"><{$kppc_vo['zt']}></td>
                                                     <if condition="$kppc_vo['is_dq'] eq 0"> 
@@ -392,7 +384,7 @@
                                                     </td> 
                                                     </tr>
                                                 <else />
-                                                    <tr class="tr_c  pctr_<{$kppc_vo['id']}>" onmouseover="this.bgColor = '#F5F5F5';" onmouseout="this.bgColor = '#ffffff';" bgcolor="#ffffff" pcid="<{$kppc_vo['id']}>" data_id="<{$i}>">   
+                                                    <tr class="tr_c  pctr_<{$kppc_vo['id']}>" onmouseover="this.bgColor = '#F5F5F5';" onmouseout="this.bgColor = '#ffffff';" bgcolor="#ffffff" pcid="<{$kppc_vo['id']}>" data_id="<{$i}>" pid='<{$kppc_vo["proj_id"]}>'>
                                                         <td align="center"><{$kppc_vo['name']}></td> 
                                                         <td align="center"><{$kppc_vo['zt']}></td>
                                                     <if condition="$kppc_vo['is_dq'] eq 0"> 
@@ -605,7 +597,7 @@
             $trlist.eq($i).removeClass("selectpc");
             }
             $(this).addClass("selectpc");
-            var $projid = $("#projectlist option:selected").val();
+            var $projid = $(this).attr('pid');
             showbldist($(this).attr("pcid"), $projid);
             }
 
@@ -817,9 +809,9 @@
             }
 
             $(".xzblddiv").on('click', function(){
-            var $projid = $("#projectlist option:selected").val();
+            var $projid = $(this).parent().parent().attr("pid");
             var $pcid = $(this).parent().parent().attr("pcid");
-            var pcset_url = {getbldlist: '<{:U("getbldlist")}>', }
+            var pcset_url = {getbldlist: '<{:U("getbldlist")}>'};
             $.ajax({
             url: pcset_url.getbldlist,
                     data: {

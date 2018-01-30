@@ -184,6 +184,7 @@ abstract class Controller {
      * @return void
      */
     protected function error($message='',$jumpUrl='',$ajax=false) {
+        $this->assign('classify_name', '');//必须设置一级模块为空，不然会弹出没有权限进入界面
         $this->dispatchJump($message,0,$jumpUrl,$ajax);
     }
 

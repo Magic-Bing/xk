@@ -56,7 +56,8 @@ $(function () {
             user_ajax();
         });
     });
-    $("#project-not-sign").trigger('change');
+
+
     //选择批次
     $("#batch-one").on('change',function () {
         var pid=$('#project-not-sign').val();
@@ -180,7 +181,8 @@ $(function () {
         var pd=Number($(this).attr("data-is-sign"));
         var id=Number($(this).attr("data-id"));
         var bid=$(this).attr("data-bid");
-        $("#pname").val($.trim($("#project-not-sign option:selected").text()));
+        var pid=$(this).attr("data-pid");
+        $("#pname").val($.trim($("#project-not-sign option[value='"+pid+"']").text()));
         $("#bname").val($.trim($("#batch-one option[value='"+bid+"']").text()));
         $("#uname").val($.trim(td.eq(1).text()));
         $("#uphone").val($.trim(td.eq(2).text()));

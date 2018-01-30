@@ -56,7 +56,7 @@ $(function () {
             user_ajax();
         });
     });
-    $("#project-not-sign").trigger('change');
+    // $("#project-not-sign").trigger('change');
     //选择批次
     $("#batch-one").on('change',function () {
         var pid=$('#project-not-sign').val();

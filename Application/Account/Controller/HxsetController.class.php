@@ -50,6 +50,8 @@ class HxsetController extends BaseController
         $this->assign('bid', $search_batch_id);
         //当前用户的项目
         $user_project_ids = $this->get_user_project_ids();
+        $pids=array_merge($user_project_ids);
+        $str_p=implode(",",$pids);
         if (empty($user_project_ids)) {
             $user_project_ids = array('-99999');
         } else {
@@ -59,15 +61,12 @@ class HxsetController extends BaseController
         }
 
         //项目
-        $Project = D('Common/Project');
-
         if ($search_project_id != 0) {
             if (!in_array($search_project_id, $user_project_ids)) {
                 $this->error("你没有权限访问该项目的信息！");
             }
         }
-        
-       
+
         //获取项目列表
         $project_where = array();
         $project_where['status'] = 1;
@@ -76,10 +75,6 @@ class HxsetController extends BaseController
         if (!empty($project_old_list)) {
             foreach ($project_old_list as $project_list_key => $project_list_value) {
                 $project_list[$project_list_value['id']] = $project_list_value;
-                if(empty($search_project_id))
-                {
-                    $search_project_id=$project_list_value['id'];
-                }
             }
         } else {
             $project_list = array();
@@ -93,6 +88,8 @@ class HxsetController extends BaseController
         $this->assign($search);
         //用户的项目批次
         $user_batch_ids = $this->get_user_batch_ids();
+        $bids=array_merge($user_batch_ids);
+        $str_b=implode(",",$bids);
         //批次
         if (!empty($user_batch_ids)) {
             $user_batch_where['id'] = array('in', $user_batch_ids);
@@ -108,14 +105,14 @@ class HxsetController extends BaseController
         if (!empty($search_project_id)) {
             $p = "AND h.project_id=$search_project_id";
         } else {
-            $p = "";
+            $p = "AND h.project_id in ($str_p)";
         }
 
         //批次条件
         if (!empty($search_batch_id)) {
             $b = "AND h.batch_id=$search_batch_id";
         } else {
-            $b = "";
+            $b = "AND h.batch_id in ($str_b)";
         }
 
         //搜索查询

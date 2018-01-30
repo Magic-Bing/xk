@@ -375,7 +375,7 @@
                                 <label>
                                     项目
                                     <select name="project_id" class="choose-user-project-id" style="width: auto;" id="hx_pro">
-                                        <if condition="!empty($search_project_id)">
+                                            <option value="">全部</option>
                                             <foreach name="project_list" item="project_list_vo">
                                                 <if condition="$search_project_id eq $project_list_vo['id']">
                                                     <option value="<{$project_list_vo['id']}>" selected>
@@ -387,13 +387,7 @@
                                                     </option>
                                                 </if>
                                             </foreach>
-                                            <else />
-                                            <foreach name="project_list" item="project_list_vo">
-                                                <option value="<{$project_list_vo['id']}>">
-                                                    <{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
-                                                </option>
-                                            </foreach>
-                                        </if>
+
                                     </select>
                                 </label>
                                 </form>

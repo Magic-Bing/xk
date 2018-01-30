@@ -43,10 +43,16 @@ class ChooseUserController extends BaseController {
 //        }
 //        echo json_encode($_POST);exit;
         //项目ID
-        $search_project_id = I('project_id', '', 'intval');
-        $zt = I('zt', '', 'intval');
+        if(isset($_POST['project_id'])){
+            $search_project_id = I('project_id', 0, 'intval');
+            session("selected_project",$search_project_id);
+        }else{
+            $search_project_id = session("selected_project");
+        }
+
+        $zt = I('zt', 0, 'intval');
         $status = I('status', '', 'trim');
-        $search_batch_id = I('batch_id', '', 'intval');
+        $search_batch_id = I('batch_id', 0, 'intval');
         $search_word = I('word', '', 'trim');
         $search_uid = I('uid', 0, 'intval');
         $this->assign('bid', $search_batch_id);
@@ -112,7 +118,6 @@ class ChooseUserController extends BaseController {
         $choose_where = array();
         if (!empty($search_project_id)) {
             $choose_where['project_id'][] = $search_project_id;
-//			echo 1;exit;
         } else {
             //项目条件
             if (!empty($user_project_ids)) {

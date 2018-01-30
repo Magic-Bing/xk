@@ -101,12 +101,12 @@
             position: fixed;
             top:50%;
             left: 50%;
-            width: 500px;
+            width: 450px;
             height: 280px;
             background-color: #fff;
             z-index: 1050;
             margin-top: -140px;
-            margin-left: -250px;
+            margin-left: -225px;
         }
         #admission-head{
             background-color: #ff9f62;
@@ -134,7 +134,7 @@
             height: 202px;
         }
         #admission-img{
-            width: 25%;
+            width: 28%;
             height: 100%;
             float: left;
         }
@@ -145,7 +145,7 @@
             padding-top:10px ;
         }
         #admission-txt{
-            width: 58%;
+            width: 55%;
             height: 100%;
             /*background-color: #ff6058;*/
             float: left;
@@ -219,6 +219,9 @@
                                 项目
                                 <select name="project_id" class="choose-user-project-id" id="project-not-sign"
                                         style="width: auto;">
+                                    <if condition="count($project_list) gt 1">
+                                        <option value="">全部</option>
+                                    </if>
                                     <foreach name="project_list" item="vo" key="k">
                                         <option value="<{$vo.id}>"><{$vo.company_name}>--<{$vo.name}></option>
                                     </foreach>
@@ -261,6 +264,8 @@
 <block name="page_js">
     <script>
         $(function () {
+            $("#project-not-sign").val('<{$selected_project}>');
+            $("#project-not-sign").trigger('change');
             //设置内容框的高度
             var w = window.innerHeight;//获取浏览器可视窗口高度
 //            console.log(w);

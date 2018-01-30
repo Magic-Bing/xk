@@ -67,6 +67,11 @@
                 border-bottom:1px solid #dff0d8;
                 cursor: pointer;
             }
+            .rcno{
+                padding: 5px;
+                background: #791311;
+                color: #FFF;
+            }
             
         </style>
     </head>
@@ -126,7 +131,7 @@
                         <ul class="cstul" style="width: 100%;margin-top:5px;line-height: 45px;font-size:15px;display: black;">
                             <foreach name="cstlist" item="cstlist_vo">
                             <li class="cstli wxd" style="width:100%;display:flex;">
-                                <div  style="display:block;flex: 1;text-align: center;"><span class="rcno"><{$cstlist_vo.no}></span></div>
+                                <div  style="display:block;flex: 1;text-align: center;"><span class="rcno">第 <{$cstlist_vo.no}> 位</span></div>
                                 <div class="cstname" style="display:block;flex: 1;text-align: center;"><{$cstlist_vo.customer_name}></div>
                                 <if condition="$showcontent['hasphone'] eq 1"> 
                                 <div class="cstphone" style="display:block;flex: 1;text-align: center;"> <{:rsa_decode($cstlist_vo['customer_phone'],getChoosekey())}></div>

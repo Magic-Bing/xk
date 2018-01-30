@@ -283,26 +283,18 @@ margin-top:100px;
          <form method="post" id="selectproj" name="selectproj" action="room" >
             <font style="margin-left:10px;">项目</font>
             <select id= "projlist" name="projid" style="height:25px;padding: 1px 10px;" >
-            <if condition="$selectedproj['id'] gt 0">
-                    <foreach name="projlist" item="projlist_vo">
-                    <if condition="$selectedproj['id'] eq $projlist_vo['id']">
-                      <option value="<{$projlist_vo['id']}>" selected>
-                            <{$projlist_vo['company_name']}>--<{$projlist_vo['name']}>  
-                      </option>
-                    <else />		 
-                      <option value="<{$projlist_vo['id']}>">
-                            <{$projlist_vo['company_name']}>--<{$projlist_vo['name']}>
-                      </option>
-                    </if>
-                    </foreach> 
-            <else />
-                    <option value="0" selected></option>
+                    <option value="0" selected>全部</option>
                      <foreach name="projlist" item="projlist_vo">
-                       <option value="<{$projlist_vo['id']}>">
-                            <{$projlist_vo['company_name']}>--<{$projlist_vo['name']}> 
-                       </option>
-                    </foreach> 
-            </if>
+                         <if condition="$projid eq $projlist_vo['id']">
+                             <option value="<{$projlist_vo['id']}>" selected>
+                                 <{$projlist_vo['company_name']}>--<{$projlist_vo['name']}>
+                             </option>
+                             <else />
+                             <option value="<{$projlist_vo['id']}>">
+                                 <{$projlist_vo['company_name']}>--<{$projlist_vo['name']}>
+                             </option>
+                         </if>
+                    </foreach>
             </select>
             </form>
         </div>
@@ -433,18 +425,20 @@ margin-top:100px;
                                                 导入数据
                                         </a>
                                 </li>
+                            <if condition="$projid gt 0">
                                 <li class="room-nav-edit-btn">
-                                    <a class="room-export-btn" href="/Account/Jcsjroom/exportfj/projid/<{$selectedproj['id']}>.html">
+                                    <a class="room-export-btn" href="/Account/Jcsjroom/exportfj/projid/<{$projid}>.html">
                                                 <i class="icon-cloud-download bigger-110"></i>
                                                 导出房间模板
                                         </a>
                                 </li>
                                  <li class="room-nav-edit-btn">
-                                        <a class="room-export-btn" href="/Account/Jcsjroom/exportcw/projid/<{$selectedproj['id']}>.html">
+                                        <a class="room-export-btn" href="/Account/Jcsjroom/exportcw/projid/<{$projid}>.html">
                                                 <i class="icon-cloud-download bigger-110"></i>
                                                 导出车位模板
                                         </a>
                                 </li>
+                            </if>
                             <li class="room-nav-edit-btn" style="float: right;
     margin-right: 18px;">
                                 <a class="room-export-btn" id="check-room" href="javascript:;">
