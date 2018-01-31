@@ -41,6 +41,13 @@ class JcsjroomController extends BaseController {
 //         if(!IS_POST){
 //             $this->error("非法操作！");
 //         }
+        if(isset($_POST['projid'])){
+            $search_project_id = I('projid', 0, 'intval');
+            session("selected_project",$search_project_id);
+        }else{
+            $search_project_id = session("selected_project");
+        }
+        $projid = $search_project_id;
         $Model = new \Think\Model();
 		
         //查询条件
@@ -69,7 +76,7 @@ class JcsjroomController extends BaseController {
             $this->assign('room', $room); 
 		}
         $user_project_ids = $this->get_user_project_ids();
-        $projid = I('projid',0,'intval');
+
         if (!empty($projid)) {
             if(!in_array($projid,$user_project_ids)){
                 $this->error("非法操作！",'/Account/Jcsjroom/room');

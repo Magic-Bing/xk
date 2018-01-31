@@ -106,7 +106,7 @@
                                 <select name="project_id" class="choose-user-project-id" id="project-not-sign"
                                         style="width: auto;">
                                     <if condition="count($project_list) gt 1">
-                                        <option value="">全部</option>
+                                        <option value="0">全部</option>
                                     </if>
                                     <foreach name="project_list" item="vo" key="k">
                                         <option value="<{$vo.id}>"><{$vo.company_name}>--<{$vo.name}></option>
@@ -116,7 +116,7 @@
                             <label>
                                 批次
                                 <select name="batch_id" class="choose-user-batch-id" id="batch-one"
-                                        style="width: auto;">
+                                        style="width: 70px;">
                                     <option value="">全部</option>
                                     <foreach name="batch_list" item="vo" key="k">
                                         <option value="<{$vo.id}>" pid="<{$vo.proj_id}>" style="display: none"><{$vo.name}></option>

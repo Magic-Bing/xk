@@ -9,9 +9,7 @@
     <body>
     <extend name="Common/base" />
     <block name="breadcrumb_active">
-        <li>
-            <a href="<{:U('Jcsjroom/room')}>"><{$classify_name|default=''}></a>
-        </li>
+        <li><{$classify_name|default=''}></li>
         <li class="active"><{$seo_title|default=''}></li>
     </block>
     <block name="page_content">
@@ -394,7 +392,7 @@
                                 <form action="<{:U('/Account/Hxset/index')}>" method="post" id="form-b">
                                 <label>
                                     批次
-                                    <select name="batch_id" class="choose-user-batch-id" style="width: auto;" id="hx_bch">
+                                    <select name="batch_id" class="choose-user-batch-id" style="width: 70px;" id="hx_bch">
                                         <if condition="count($batch_list) neq 1">
                                             <option value="0">全部</option>
                                         </if>

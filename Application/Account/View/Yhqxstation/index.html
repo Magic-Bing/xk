@@ -9,10 +9,7 @@
 <body>
 <extend name="Common/base" />
 <block name="breadcrumb_active">
-	<li>
-		<a href="<{:U('Yhqxuser/index')}>"><{$classify_name|default=''}></a>
-	</li>
-
+    <li><{$classify_name|default=''}></li>
 	<li class="active"><{$seo_title|default=''}></li>
 </block>
 <block name="page_content">

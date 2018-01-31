@@ -1,6 +1,8 @@
 <extend name="Common/base" />
 
 <block name="breadcrumb_active">
+	<li><{$classify_name|default=''}></li>
+	<li class="active"><{$seo_title|default=''}></li>
 	<style>
 		form{
 			display: inline;
@@ -8,12 +10,10 @@
 		#sample-table-2_length label{
 			margin-left: 10px;
 		}
+		#sample-table-2_length>form:not(:first-child)>label>select{
+			width: 70px;
+		}
 	</style>
-	<li>
-		<a href="<{:U('YaoHresult/index')}>"><{$classify_name|default=''}></a>
-	</li>
-
-	<li class="active"><{$seo_title|default=''}></li>
 </block>
 
 <block name="page_content">
@@ -29,7 +29,7 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<div id="sample-table-2_length" class="dataTables_length">
-						<form action="<{:U('/Account/YaoHresult/index')}>" method="get" id="form-p">
+						<form action="<{:U('/Account/YaoHresult/index')}>" method="post" id="form-p">
 						<label>
 							项目 
 							<select name="project_id" class="choose-activity-project-id " style="width: auto;" id="jl_pid">
@@ -57,10 +57,10 @@
 							</select> 
 						</label>
 						</form>
-						<form action="<{:U('/Account/YaoHresult/index')}>" method="get" id="form-b">
+						<form action="<{:U('/Account/YaoHresult/index')}>" method="post" id="form-b">
 						<label>							
 							批次 
-							<select name="batch_id" class="choose-activity-batch-id" style="width: auto;" id="jl_pc">
+							<select name="batch_id" class="choose-activity-batch-id"  id="jl_pc">
 								<if condition="count($batch_list) neq 1">
 									<option value="0">全部</option>
 								</if>
@@ -80,7 +80,7 @@
                                                 
 						<label>
 							入场状态
-							<select name="status" class="yaohresult-status " style="width: auto;" id="jl_status">
+							<select name="status" class="yaohresult-status "  id="jl_status">
 									<option value="0">未入场</option>
                                                                         <option value="1">已入场</option>
 							</select>

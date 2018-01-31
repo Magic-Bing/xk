@@ -33,8 +33,14 @@ class JcsjpcsetController extends BaseController {
      * @author jxw
      */
     public function index() {
-        $Model = new \Think\Model(); 
-        $projid = I('projid',0,'intval');
+        $Model = new \Think\Model();
+        if(isset($_POST['projid'])){
+            $search_project_id = I('projid', 0, 'intval');
+            session("selected_project",$search_project_id);
+        }else{
+            $search_project_id = session("selected_project");
+        }
+        $projid = $search_project_id;
         //可选项目取值
         $user_project_ids = $this->get_user_project_ids();
         $pids=array_merge($user_project_ids);

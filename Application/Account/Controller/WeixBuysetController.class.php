@@ -28,7 +28,12 @@ class WeixBuysetController extends BaseController {
 
     public function index(){
         //项目ID
-        $search_project_id = I('project_id', 0, 'intval');
+        if(isset($_POST['project_id'])){
+            $search_project_id = I('project_id', 0, 'intval');
+            session("selected_project",$search_project_id);
+        }else{
+            $search_project_id = session("selected_project");
+        }
         $search_batch_id = I('batch_id', 0, 'intval');
         $search_word = I('word', '', 'trim');
         $this->assign('bid', $search_batch_id);
@@ -470,7 +475,8 @@ class WeixBuysetController extends BaseController {
         $this->set_current_action('weixbuy_fx', 'weixbuy');
 //        if (empty($eventId))
 //            $this->error('没有选中活动');
-
+        $selected_project=session("selected_project");
+        $this->assign('selected_project', $selected_project);
         //用户的项目和项目批次
         $user_project_ids = $this->get_user_project_ids();
 
@@ -503,7 +509,8 @@ class WeixBuysetController extends BaseController {
      * 2017-10-19
      * qzb*/
     public  function get_px(){
-        $pid=I("post.pid");
+        $pid=I("pid",0,'intval');
+        session('selected_project',$pid);
         $batchs=M()->table("xk_kppc")->field("id,name")->where("proj_id=$pid")->select();
         echo json_encode($batchs);exit;
     }

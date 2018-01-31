@@ -1,17 +1,17 @@
 <extend name="Common/base" />
 
 <block name="breadcrumb_active">
+	<li><{$classify_name|default=''}></li>
+
 	<style>
 	form{display: inline}
 	#sample-table-2_length label{
 		margin-left: 10px;
 	}
+	#sample-table-2_length>form:not(:first-child)>label>select{
+		width: 70px;
+	}
 	</style>
-	<li>
-		<a href="<{:U('Xsgllog/index')}>"><{$classify_name|default=''}></a>
-	</li>
-
-	<li class="active"><{$seo_title|default=''}></li>
 </block>
 
 <block name="page_content">
@@ -55,7 +55,7 @@
 						<form action="<{:U('/Account/Xsgllog/index')}>" method="post" id="form-b">
 						<label>							
 							批次 
-							<select name="batch_id" class="trade-batch-id js-trade-batch-id" style="width: auto;">
+							<select name="batch_id" class="trade-batch-id js-trade-batch-id" >
 							<if condition="count($batch_list) neq 1">
 								<option value="0">全部</option>
 							</if>
@@ -76,7 +76,7 @@
 
 						<label>
 							状态
-							<select name="pd" class="trade-zt-id js-trade-zt-id" style="width: auto;">
+							<select name="pd" class="trade-zt-id js-trade-zt-id" >
 
 
 								<if condition="$pd eq 1">
@@ -139,6 +139,9 @@
 				</thead>
 
 				<tbody>
+				<if condition="count($tradelist) gt 0 ">
+
+
 					<volist name="tradelist" id="list_vo" key="list_key">
 						<tr class="choose-user-item choose-user-item-<{$choose_vo.id|default='0'}>">
 							<td class="center hidden-480">
@@ -233,7 +236,11 @@
 							</td>
 						</tr>
 					</volist>
-					
+					<else/>
+					<tr>
+						<td colspan="13" class="center">暂时没有数据...</td>
+					</tr>
+				</if>
 					<!--<tr>
 						<td class="center hidden-480">
 							<div class="action-buttons">

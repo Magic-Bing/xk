@@ -28,16 +28,20 @@ class YaoHsetController extends BaseController {
 
     public function index(){
         //项目ID
-        $search_project_id = I('project_id', 0, 'intval');
+        if(isset($_POST['project_id'])){
+            $search_project_id = I('project_id', 0, 'intval');
+            session("selected_project",$search_project_id);
+        }else{
+            $search_project_id = session("selected_project");
+        }
         $search_batch_id = I('batch_id', 0, 'intval');
         //$search_word = I('word', '', 'trim');
         $this->assign('bid', $search_batch_id);
-
         //设置当前搜索
         $search = array(
             'search_project_id' => $search_project_id,
             'search_batch_id' => $search_batch_id,
-            'search_word' => $search_word,
+         /*   'search_word' => $search_word,*/
         );
         $this->assign($search);
 

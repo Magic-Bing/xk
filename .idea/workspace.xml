@@ -2,70 +2,47 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d93e351b-3e78-4fb4-bd62-b1a84d311097" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/078806c964f604eed7f54d530f6ab367.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/1a17f0b3cd67c149250998be8a501221.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/347035ad1da07668580202d9565d9756.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/35420556f4867021384eed9b5f9f21f3.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/39590b8aeb24e6279b835e5e6b594f62.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/4862f1b01b593bbf1d71d93e04122c37.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/55033a84bcfb336be68359b80fdcad2c.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/60943a038af6b7f56fa7b296d9e4ce75.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/6306909a6de538b575b534bec7db4e02.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/66fff0e9a1ef56caa1bb9c93628c2e6b.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/78a646126b70673971ad9f3c8826b1a6.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/809086d9e82dfbe65d63b43eaa0d82bc.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/88377868db05ea36cc528035a21c93de.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/8af092e37d526d403966792ffd782a96.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/9842309cc6537ef92139276f4c3bb0ae.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/9b333b856df71c9a93192c106b07d300.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/9bd10ec698ff284eeb8406148ca8f8c7.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/a1a876d5b4a213868ddc4267dac9dc90.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/a7309cfe75045058849c6f3b2bd3669f.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/eb3304742debcadc0d6a1071877daec4.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/f55e6e9d3720ab1141aac2b234aa9dc7.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Account/f9c7a8243389c093a412d597f6726f44.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Home/5b6adcb62ad2b5dfc2abc2cd5e11dc99.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Home/efc69eaf1665cd2e6f992b9e0b55f304.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Saler/1c20146624b8709bc6de2911f502c331.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Saler/2fd4dc89e2f2d06b900b3552465b10ad.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Saler/39a308d9b1d562b8afcc2f56de9015cc.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Saler/5bd90d87e15fa94159958f62b3bfe2e9.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Saler/812ca910e9d2f2e27a2df61058304d00.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Saler/9053f1df892057ea9c8ddd5ec29ddb60.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Saler/b5a49227472e4cbd5b25dd63ef8a3dfc.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Saler/b93fa5e17dec72b28a0763661017176c.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Saler/c21af19cf21a247bd68eaecd2971dceb.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Saler/e398a93cc8a97fa1f521695ed5064aaa.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Cache/Saler/ea5bf878f2f6dd3389f0e55a0023f12a.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Logs/Account/18_01_25.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Logs/Account/18_01_26.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Logs/Account/18_01_27.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Logs/Home/18_01_25.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Logs/Home/18_01_26.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Logs/Home/18_01_27.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Runtime/Logs/Saler/18_01_25.log" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/ChooseUserController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/ChooseUserController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/CstSignController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/CstSignController.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/HxsetController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/HxsetController.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/JcsjpcsetController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/JcsjpcsetController.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/JcsjroomController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/JcsjroomController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/LoginController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/LoginController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/WeixBuyledController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/WeixBuyledController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/WeixBuylogController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/WeixBuylogController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/WeixBuysetController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/WeixBuysetController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/XsgllogController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/XsgllogController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/YaoHresultController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/YaoHresultController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/YaoHsetController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/YaoHsetController.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Admission/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/Admission/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Admission/user_list.html" afterPath="$PROJECT_DIR$/Application/Account/View/Admission/user_list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/ChooseUser/add.html" afterPath="$PROJECT_DIR$/Application/Account/View/ChooseUser/add.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/ChooseUser/edit.html" afterPath="$PROJECT_DIR$/Application/Account/View/ChooseUser/edit.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/ChooseUser/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/ChooseUser/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Common/Error/302.html" afterPath="$PROJECT_DIR$/Application/Account/View/Common/Error/302.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/CstSign/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/CstSign/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/CstSign/user_list.html" afterPath="$PROJECT_DIR$/Application/Account/View/CstSign/user_list.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Hxset/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/Hxset/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Jcsjpcset/add.html" afterPath="$PROJECT_DIR$/Application/Account/View/Jcsjpcset/add.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Jcsjpcset/edit.html" afterPath="$PROJECT_DIR$/Application/Account/View/Jcsjpcset/edit.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Jcsjpcset/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/Jcsjpcset/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Jcsjroom/edit.html" afterPath="$PROJECT_DIR$/Application/Account/View/Jcsjroom/edit.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Jcsjroom/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/Jcsjroom/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Jcsjroom/room.html" afterPath="$PROJECT_DIR$/Application/Account/View/Jcsjroom/room.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/YaoHset/history_yaoh.html" afterPath="$PROJECT_DIR$/Application/Account/View/YaoHset/history_yaoh.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/YaoHset/yaoh.html" afterPath="$PROJECT_DIR$/Application/Account/View/YaoHset/yaoh.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Public/account/js/admission.js" afterPath="$PROJECT_DIR$/Public/account/js/admission.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Public/account/js/sign.js" afterPath="$PROJECT_DIR$/Public/account/js/sign.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThinkPHP/Library/Think/Controller.class.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Think/Controller.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/WeixBuyled/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/WeixBuyled/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/WeixBuylog/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/WeixBuylog/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/WeixBuyset/AnalyticalRoomHot.html" afterPath="$PROJECT_DIR$/Application/Account/View/WeixBuyset/AnalyticalRoomHot.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/WeixBuyset/add.html" afterPath="$PROJECT_DIR$/Application/Account/View/WeixBuyset/add.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/WeixBuyset/edit.html" afterPath="$PROJECT_DIR$/Application/Account/View/WeixBuyset/edit.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/WeixBuyset/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/WeixBuyset/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Xsgllog/add.html" afterPath="$PROJECT_DIR$/Application/Account/View/Xsgllog/add.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Xsgllog/edit.html" afterPath="$PROJECT_DIR$/Application/Account/View/Xsgllog/edit.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Xsgllog/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/Xsgllog/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/YaoHresult/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/YaoHresult/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/YaoHset/add.html" afterPath="$PROJECT_DIR$/Application/Account/View/YaoHset/add.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/YaoHset/edit.html" afterPath="$PROJECT_DIR$/Application/Account/View/YaoHset/edit.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/YaoHset/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/YaoHset/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Yhqxfun/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/Yhqxfun/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Yhqxproj/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/Yhqxproj/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Yhqxstation/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/Yhqxstation/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Yhqxuser/add.html" afterPath="$PROJECT_DIR$/Application/Account/View/Yhqxuser/add.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Yhqxuser/edit.html" afterPath="$PROJECT_DIR$/Application/Account/View/Yhqxuser/edit.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Yhqxuser/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/Yhqxuser/index.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -86,42 +63,26 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ChooseUserController.class.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Application/Account/Controller/ChooseUserController.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="47" column="59" lean-forward="true" selection-start-line="47" selection-start-column="10" selection-end-line="47" selection-end-column="59" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LoginController.class.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Application/Account/Controller/LoginController.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="565">
-              <caret line="83" column="43" lean-forward="false" selection-start-line="83" selection-start-column="43" selection-end-line="83" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Account/View/ChooseUser/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="473">
-              <caret line="692" column="28" lean-forward="true" selection-start-line="692" selection-start-column="28" selection-end-line="692" selection-end-column="28" />
-              <folding />
+            <state relative-caret-position="337">
+              <caret line="50" column="9" lean-forward="true" selection-start-line="48" selection-start-column="8" selection-end-line="50" selection-end-column="9" />
+              <folding>
+                <element signature="n#div#0;n#div#0;n#div#1;n#block#1;n#!!top" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Controller.class.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Think/Controller.class.php">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Application/Account/View/Hxset/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="482">
-              <caret line="193" column="34" lean-forward="true" selection-start-line="193" selection-start-column="34" selection-end-line="193" selection-end-column="34" />
-              <folding />
+            <state relative-caret-position="483">
+              <caret line="394" column="107" lean-forward="false" selection-start-line="394" selection-start-column="107" selection-end-line="394" selection-end-column="107" />
+              <folding>
+                <element signature="n#style#0;n#block#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -138,7 +99,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>saler-statistics-list-box</find>
       <find>gd</find>
       <find>set_seo_title</find>
       <find>saler-project-view-header-unit-info</find>
@@ -168,6 +128,7 @@
       <find>THINK_PATH</find>
       <find>xzblddiv</find>
       <find>$search_project_id</find>
+      <find>style=&quot;width: auto;&quot;</find>
     </findStrings>
     <replaceStrings>
       <replace>&lt;</replace>
@@ -182,57 +143,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Application/Saler/Controller/Index1Controller.class.php" />
-        <option value="$PROJECT_DIR$/Application/Account/View/WeixBuyled/led.html" />
-        <option value="$PROJECT_DIR$/Application/Home/View/Room/index.html" />
-        <option value="$PROJECT_DIR$/Application/Account/View/ChooseSign/index.html" />
-        <option value="$PROJECT_DIR$/Application/Account/Controller/ChooseSignController.class.php" />
-        <option value="$PROJECT_DIR$/ThinkPHP/Library/Think/Template/TagLib/Cx.class.php" />
-        <option value="$PROJECT_DIR$/Application/Account/View/CstSign/signed.html" />
-        <option value="$USER_HOME$/Desktop/项目首页/nav.html" />
-        <option value="$PROJECT_DIR$/Application/Account/View/CstSign/cs.html" />
-        <option value="$PROJECT_DIR$/Application/Runtime/Cache/Saler/ea5bf878f2f6dd3389f0e55a0023f12a.php" />
-        <option value="$PROJECT_DIR$/Application/Saler/Controller/RoomAnalysisController.class.php" />
-        <option value="$PROJECT_DIR$/Application/Saler/Controller/ProjectController.class.php" />
-        <option value="$PROJECT_DIR$/Application/Saler/Controller/IndexController.class.php" />
-        <option value="$PROJECT_DIR$/Application/Saler/Controller/MyReportController.php" />
-        <option value="$PROJECT_DIR$/Application/Saler/View/RoomAnalysis/index.html" />
-        <option value="$PROJECT_DIR$/Application/Saler/View/Project/index.html" />
-        <option value="$PROJECT_DIR$/Application/Common/Common/functions.php" />
-        <option value="$PROJECT_DIR$/Application/Account/View/Common/config.html" />
-        <option value="$PROJECT_DIR$/Application/Common/Conf/config.php" />
+        <option value="$PROJECT_DIR$/Application/Account/View/Admission/user_list.html" />
+        <option value="$PROJECT_DIR$/ThinkPHP/Tpl/dispatch_jump.tpl" />
+        <option value="$PROJECT_DIR$/Application/Account/View/Common/Error/302.html" />
+        <option value="$PROJECT_DIR$/ThinkPHP/Library/Think/Controller.class.php" />
+        <option value="$PROJECT_DIR$/Application/Account/Controller/LoginController.class.php" />
+        <option value="$PROJECT_DIR$/Public/account/js/sign.js" />
+        <option value="$PROJECT_DIR$/Application/Account/Controller/ChooseUserController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Account/Controller/CstSignController.class.php" />
+        <option value="$PROJECT_DIR$/Public/account/js/admission.js" />
+        <option value="$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Account/Controller/YaoHsetController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Account/Controller/YaoHresultController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Account/View/ChooseUser/add.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/ChooseUser/edit.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/YaoHset/add.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/YaoHset/edit.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/WeixBuyset/add.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/WeixBuyset/edit.html" />
+        <option value="$PROJECT_DIR$/Application/Account/Controller/WeixBuyledController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Account/Controller/WeixBuylogController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Account/View/WeixBuyset/AnalyticalRoomHot.html" />
+        <option value="$PROJECT_DIR$/Application/Account/Controller/WeixBuysetController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Account/View/Xsgllog/add.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/Xsgllog/edit.html" />
+        <option value="$PROJECT_DIR$/Application/Account/Controller/XsgllogController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Account/View/Jcsjroom/edit.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/Jcsjroom/index.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/Jcsjroom/room.html" />
+        <option value="$PROJECT_DIR$/Application/Account/Controller/JcsjroomController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Account/Controller/HxsetController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Account/View/Jcsjpcset/add.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/Jcsjpcset/edit.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/Jcsjpcset/index.html" />
+        <option value="$PROJECT_DIR$/Application/Account/Controller/JcsjpcsetController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Account/View/Yhqxuser/index.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/Yhqxuser/add.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/Yhqxuser/edit.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/Yhqxstation/index.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/Yhqxproj/index.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/Yhqxfun/index.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/ChooseUser/index.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/CstSign/index.html" />
         <option value="$PROJECT_DIR$/Application/Account/View/YaoHset/index.html" />
         <option value="$PROJECT_DIR$/Application/Account/View/YaoHresult/index.html" />
         <option value="$PROJECT_DIR$/Application/Account/View/WeixBuyset/index.html" />
         <option value="$PROJECT_DIR$/Application/Account/View/WeixBuyled/index.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/SpeedBuylog/index.html" />
         <option value="$PROJECT_DIR$/Application/Account/View/WeixBuylog/index.html" />
-        <option value="$PROJECT_DIR$/Application/Account/View/Xsglled/index.html" />
-        <option value="$PROJECT_DIR$/Application/Account/View/Xsgllog/index.html" />
-        <option value="$PROJECT_DIR$/Application/Account/View/Common/base.html" />
-        <option value="$PROJECT_DIR$/Application/Account/View/Common/navbar.html" />
-        <option value="$PROJECT_DIR$/Public/account/js/account.js" />
-        <option value="$PROJECT_DIR$/Application/Home/View/Login/index.html" />
-        <option value="$PROJECT_DIR$/Application/Admin/View/Login/index.html" />
-        <option value="$PROJECT_DIR$/Application/Account/View/CstSign/user_list.html" />
-        <option value="$PROJECT_DIR$/Application/Account/View/Admission/user_list.html" />
-        <option value="$PROJECT_DIR$/Application/Account/View/Jcsjroom/room.html" />
-        <option value="$PROJECT_DIR$/ThinkPHP/Tpl/dispatch_jump.tpl" />
-        <option value="$PROJECT_DIR$/Application/Account/View/Common/Error/302.html" />
-        <option value="$PROJECT_DIR$/Application/Account/Controller/JcsjroomController.class.php" />
-        <option value="$PROJECT_DIR$/ThinkPHP/Library/Think/Controller.class.php" />
-        <option value="$PROJECT_DIR$/Application/Account/View/Hxset/index.html" />
-        <option value="$PROJECT_DIR$/Application/Account/Controller/HxsetController.class.php" />
-        <option value="$PROJECT_DIR$/Application/Account/Controller/JcsjpcsetController.class.php" />
-        <option value="$PROJECT_DIR$/Application/Account/View/Jcsjpcset/index.html" />
-        <option value="$PROJECT_DIR$/Application/Account/View/ChooseUser/index.html" />
-        <option value="$PROJECT_DIR$/Application/Account/Controller/LoginController.class.php" />
-        <option value="$PROJECT_DIR$/Public/account/js/sign.js" />
-        <option value="$PROJECT_DIR$/Application/Account/View/CstSign/index.html" />
-        <option value="$PROJECT_DIR$/Application/Account/Controller/ChooseUserController.class.php" />
-        <option value="$PROJECT_DIR$/Application/Account/Controller/CstSignController.class.php" />
         <option value="$PROJECT_DIR$/Application/Account/View/Admission/index.html" />
-        <option value="$PROJECT_DIR$/Public/account/js/admission.js" />
-        <option value="$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Account/View/Xsgllog/index.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/Hxset/index.html" />
       </list>
     </option>
   </component>
@@ -276,60 +237,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ThinkPHP" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ThinkPHP" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Library" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ThinkPHP" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Library" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Think" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -449,7 +356,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Jcsjpcset" />
+              <option name="myItemId" value="Xsgllog" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -475,33 +382,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="CstSign" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Account" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="View" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ChooseUser" />
+              <option name="myItemId" value="Hxset" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -679,26 +560,28 @@
       <workItem from="1517021280066" duration="4890000" />
       <workItem from="1517188782999" duration="13666000" />
       <workItem from="1517276081075" duration="3623000" />
-      <workItem from="1517283427468" duration="12914000" />
+      <workItem from="1517283427468" duration="14032000" />
+      <workItem from="1517361233603" duration="8334000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="156811000" />
+    <option name="totallyTimeSpent" value="166263000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1924" height="1056" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14967811" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15128756" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.07618026" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329718" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329718" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -711,6 +594,42 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="processedProjectFiles" value="true" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -725,26 +644,43 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Application/Common/Common/functions.php">
+    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/YaoHsetController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="283" column="66" lean-forward="false" selection-start-line="283" selection-start-column="65" selection-end-line="283" selection-end-column="66" />
+        <state relative-caret-position="381">
+          <caret line="35" column="9" lean-forward="true" selection-start-line="30" selection-start-column="6" selection-end-line="35" selection-end-column="9" />
+          <folding>
+            <element signature="e#5404#8852#0#PHP" expanded="false" />
+            <element signature="e#8863#11656#0#PHP" expanded="false" />
+            <element signature="e#11666#14297#0#PHP" expanded="false" />
+            <element signature="e#14307#15591#0#PHP" expanded="false" />
+            <element signature="e#15597#18619#0#PHP" expanded="false" />
+            <element signature="e#18629#19728#0#PHP" expanded="false" />
+            <element signature="e#19734#20129#0#PHP" expanded="false" />
+            <element signature="e#20139#22679#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/Common/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-598">
+          <caret line="290" column="132" lean-forward="false" selection-start-line="290" selection-start-column="132" selection-end-line="290" selection-end-column="132" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/WeixBuyledController.class.php">
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/ChooseUser/edit.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2001">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="69">
+          <caret line="3" column="42" lean-forward="false" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/XsglledController.class.php">
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/ChooseUser/add.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="667">
-          <caret line="98" column="46" lean-forward="true" selection-start-line="98" selection-start-column="16" selection-end-line="98" selection-end-column="46" />
+        <state relative-caret-position="69">
+          <caret line="3" column="4" lean-forward="false" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="42" />
           <folding />
         </state>
       </provider>
@@ -753,101 +689,35 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/YaoHset/index.html">
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/YaoHset/yaoh.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="41" column="9" lean-forward="true" selection-start-line="39" selection-start-column="6" selection-end-line="41" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/YaoHresult/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="9" column="9" lean-forward="false" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuyled/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="9" lean-forward="false" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/Xsglled/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="30" column="9" lean-forward="false" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/Xsgllog/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="4" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/Common/config.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1518">
-          <caret line="66" column="13" lean-forward="true" selection-start-line="61" selection-start-column="4" selection-end-line="66" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuylog/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="9" lean-forward="false" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/Common/breadcrumb.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="-2760">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/Common/sidebar.html">
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/YaoHset/edit.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1380">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="69">
+          <caret line="3" column="42" lean-forward="false" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/Common/page-header.html">
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/YaoHset/add.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="69">
+          <caret line="3" column="42" lean-forward="false" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/Common/navbar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="40" column="45" lean-forward="false" selection-start-line="40" selection-start-column="45" selection-end-line="40" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Common/View/Index/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Common/View/Common/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuyset/AnalyticalCustomerCollectedOrdered.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -855,71 +725,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/LoginController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-966">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Admin/View/Login/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="159" column="8" lean-forward="true" selection-start-line="159" selection-start-column="8" selection-end-line="159" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/Login/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="44" column="132" lean-forward="false" selection-start-line="44" selection-start-column="111" selection-end-line="44" selection-end-column="132" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuyset/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="31" column="9" lean-forward="false" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/View/Login/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="176" column="20" lean-forward="false" selection-start-line="176" selection-start-column="12" selection-end-line="176" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/CstSign/user_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="20" column="189" lean-forward="false" selection-start-line="20" selection-start-column="189" selection-end-line="20" selection-end-column="189" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/YwcsSetController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/Admission/user_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="12" column="22" lean-forward="true" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/Jcsjroom/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="32" column="53" lean-forward="true" selection-start-line="32" selection-start-column="53" selection-end-line="32" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Common/View/Common/Pc/error.html">
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuyset/AnalyticalCustomerNotLogin.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -927,177 +733,93 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Common/Conf/config.php">
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuyset/add.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="34" column="13" lean-forward="false" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+        <state relative-caret-position="69">
+          <caret line="3" column="42" lean-forward="false" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/Tpl/dispatch_jump.tpl">
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuyset/AnalyticalRoomOrder.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="772">
-          <caret line="44" column="9" lean-forward="true" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/Common/Error/302.html">
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuyset/edit.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-10">
-          <caret line="64" column="18" lean-forward="true" selection-start-line="64" selection-start-column="18" selection-end-line="64" selection-end-column="18" />
+        <state relative-caret-position="69">
+          <caret line="3" column="42" lean-forward="false" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/Common/base.html">
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuyset/FxHot.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1219">
-          <caret line="290" column="132" lean-forward="false" selection-start-line="290" selection-start-column="132" selection-end-line="290" selection-end-column="132" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/BaseController.class.php">
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuyled/led1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="43" column="18" lean-forward="false" selection-start-line="43" selection-start-column="18" selection-end-line="43" selection-end-column="18" />
+        <state relative-caret-position="-6624">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2876#3302#0#PHP" expanded="false" />
-            <marker date="1515124508105" expanded="true" signature="8587:8650" ph="SELECT b.nam... xk_company" />
-            <marker date="1515124508105" expanded="true" signature="8757:8896" ph="SELECT b.nam... xk_user" />
+            <marker date="1513935582689" expanded="true" signature="33487:34298" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Public/account/js/account.js">
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuyled/led.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2185">
-          <caret line="609" column="54" lean-forward="false" selection-start-line="609" selection-start-column="54" selection-end-line="609" selection-end-column="54" />
+        <state relative-caret-position="3617">
+          <caret line="603" column="0" lean-forward="false" selection-start-line="603" selection-start-column="0" selection-end-line="603" selection-end-column="0" />
           <folding>
-            <marker date="1517196264586" expanded="true" signature="3834:3880" ph="..." />
-            <marker date="1517196264586" expanded="true" signature="4138:4184" ph="..." />
-            <marker date="1517196264586" expanded="true" signature="4199:4210" ph="..." />
-            <marker date="1517196264586" expanded="true" signature="7175:7185" ph="..." />
-            <marker date="1517196264586" expanded="true" signature="7644:7765" ph="..." />
-            <marker date="1517196264586" expanded="true" signature="8075:8200" ph="..." />
+            <marker date="1516327874272" expanded="true" signature="24140:24154" ph="..." />
+            <marker date="1516327874272" expanded="true" signature="37509:38320" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/Jcsjroom/room.html">
+    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/WeixBuyledController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3459">
-          <caret line="435" column="116" lean-forward="false" selection-start-line="435" selection-start-column="116" selection-end-line="435" selection-end-column="116" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/HxsetController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1012">
-          <caret line="45" column="26" lean-forward="false" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/JcsjroomController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-184">
-          <caret line="76" column="46" lean-forward="false" selection-start-line="76" selection-start-column="39" selection-end-line="76" selection-end-column="46" />
+        <state relative-caret-position="368">
+          <caret line="38" column="9" lean-forward="false" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
           <folding>
-            <element signature="e#532#627#0#PHP" expanded="false" />
-            <element signature="e#4493#4839#0#PHP" expanded="false" />
-            <element signature="e#4912#7052#0#PHP" expanded="false" />
-            <element signature="e#13887#16482#0#PHP" expanded="false" />
-            <marker date="1517296829048" expanded="true" signature="1997:2340" ph="SELECT conca... xk_room" />
-            <marker date="1517296829048" expanded="true" signature="3272:3377" ph="SELECT a.* F... xk_room" />
-            <marker date="1517296829048" expanded="true" signature="3272:3386" ph="SELECT a.* F... xk_room" />
-            <marker date="1517296829048" expanded="true" signature="3767:3934" ph="SELECT a.*,b... xk_room" />
-            <marker date="1517296829048" expanded="true" signature="16742:16805" ph="SELECT a.* F... xk_project" />
-            <marker date="1517296829048" expanded="true" signature="17124:17221" ph="SELECT a.* F... xk_build" />
-            <marker date="1517296829048" expanded="true" signature="18901:19039" ph="update xk_ro... " />
-            <marker date="1517296829048" expanded="true" signature="19105:19264" ph="update xk_ro... " />
-            <marker date="1517296829048" expanded="true" signature="19338:19382" ph="SELECT a.* F... xk_roomtemp" />
-            <marker date="1517296829048" expanded="true" signature="19489:19600" ph="insert into xk_room... " />
-            <marker date="1517296829048" expanded="true" signature="19627:19754" ph="select proj_... " />
-            <marker date="1517296829048" expanded="true" signature="19846:19892" ph="SELECT a.* F... xk_roomtemp" />
-            <marker date="1517296829048" expanded="true" signature="19998:20206" ph="update xk_ro... " />
-            <marker date="1517296829048" expanded="true" signature="20604:20667" ph="SELECT a.* F... xk_project" />
-            <marker date="1517296829048" expanded="true" signature="20986:21083" ph="SELECT a.* F... xk_build" />
-            <marker date="1517296829048" expanded="true" signature="22767:22905" ph="update xk_ro... " />
-            <marker date="1517296829048" expanded="true" signature="22971:23149" ph="update xk_ro... " />
-            <marker date="1517296829048" expanded="true" signature="23222:23266" ph="SELECT a.* F... xk_roomtemp" />
-            <marker date="1517296829048" expanded="true" signature="23373:23475" ph="insert into xk_room... " />
-            <marker date="1517296829048" expanded="true" signature="23502:23620" ph="select proj_... " />
-            <marker date="1517296829048" expanded="true" signature="23712:23758" ph="SELECT a.* F... xk_roomtemp" />
-            <marker date="1517296829048" expanded="true" signature="23864:24050" ph="update xk_ro... " />
-            <marker date="1517296829048" expanded="true" signature="24527:24564" ph="SELECT a.* F... xk_room" />
-            <marker date="1517296829048" expanded="true" signature="24733:24774" ph="SELECT a.* F... xk_room" />
-            <marker date="1517296829048" expanded="true" signature="26266:26305" ph="SELECT bld_i... xk_room" />
-            <marker date="1517296829048" expanded="true" signature="26478:26519" ph="SELECT a.* F... xk_room" />
+            <marker date="1517366452471" expanded="true" signature="4312:4406" ph="select build... xk_build" />
+            <marker date="1517366452471" expanded="true" signature="4888:5014" ph="select count... xk_roomlist" />
+            <marker date="1517366452471" expanded="true" signature="5964:6008" ph="select * fro... xk_event_order_house" />
+            <marker date="1517366452471" expanded="true" signature="7721:7852" ph="select * fro... xk_station2user" />
+            <marker date="1517366452471" expanded="true" signature="8181:8215" ph="select * fro... xk_project" />
+            <marker date="1517366452471" expanded="true" signature="8278:8409" ph="SELECT bld_i... xk_roomlist" />
+            <marker date="1517366452471" expanded="true" signature="8452:8578" ph="SELECT `bld_... xk_roomlist" />
+            <marker date="1517366452471" expanded="true" signature="8622:8785" ph="SELECT `bld_... xk_roomlist" />
+            <marker date="1517366452471" expanded="true" signature="8830:9009" ph="SELECT `bld_... xk_roomlist" />
+            <marker date="1517366452471" expanded="true" signature="9050:9211" ph="SELECT * FRO... xk_roomlist" />
+            <marker date="1517366452471" expanded="true" signature="9245:9457" ph="SELECT count... xk_roomlist" />
+            <marker date="1517366452471" expanded="true" signature="12130:12174" ph="select * fro... xk_event_order_house" />
+            <marker date="1517366452471" expanded="true" signature="13641:13772" ph="select * fro... xk_station2user" />
+            <marker date="1517366452471" expanded="true" signature="14053:14087" ph="select * fro... xk_project" />
+            <marker date="1517366452471" expanded="true" signature="14150:14275" ph="SELECT bld_i... xk_roomlist" />
+            <marker date="1517366452471" expanded="true" signature="14318:14437" ph="SELECT `bld_... xk_roomlist" />
+            <marker date="1517366452471" expanded="true" signature="14481:14610" ph="SELECT `bld_... xk_roomlist" />
+            <marker date="1517366452471" expanded="true" signature="14655:14826" ph="SELECT `bld_... xk_roomlist" />
+            <marker date="1517366452471" expanded="true" signature="14867:15028" ph="SELECT * FRO... xk_roomlist" />
+            <marker date="1517366452471" expanded="true" signature="15062:15252" ph="SELECT count... xk_roomlist" />
+            <marker date="1517366452471" expanded="true" signature="18349:18471" ph="select * fro... xk_roomlist" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/JcsjpcsetController.class.php">
+    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/WeixBuylogController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="874">
-          <caret line="80" column="43" lean-forward="false" selection-start-line="80" selection-start-column="36" selection-end-line="80" selection-end-column="43" />
-          <folding>
-            <marker date="1517298902742" expanded="true" signature="1810:1942" ph="SELECT a.*,c... xk_kppc" />
-            <marker date="1517298902742" expanded="true" signature="1996:2089" ph="SELECT a.* F... xk_build" />
-            <marker date="1517298902742" expanded="true" signature="3156:3265" ph="SELECT a.* F... xk_build" />
-            <marker date="1517298902742" expanded="true" signature="4710:4930" ph="SELECT a.id,... xk_kppc" />
-            <marker date="1517298902742" expanded="true" signature="6835:6891" ph="SELECT * FRO... xk_build" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/Hxset/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="117" column="39" lean-forward="false" selection-start-line="117" selection-start-column="39" selection-end-line="117" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/Jcsjpcset/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="813" column="65" lean-forward="true" selection-start-line="813" selection-start-column="65" selection-end-line="813" selection-end-column="65" />
-          <folding>
-            <element signature="n#div#2;n#div#0;n#div#1;n#block#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#block#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#3;n#block#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <marker date="1517300055709" expanded="true" signature="31189:31200" ph="..." />
-            <marker date="1517300055709" expanded="true" signature="31408:31463" ph="..." />
-            <marker date="1517300055709" expanded="true" signature="31789:31844" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/LoginController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="565">
-          <caret line="83" column="43" lean-forward="false" selection-start-line="83" selection-start-column="43" selection-end-line="83" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/ChooseUserController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="47" column="59" lean-forward="true" selection-start-line="47" selection-start-column="10" selection-end-line="47" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Public/account/js/sign.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="574">
-          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+        <state relative-caret-position="322">
+          <caret line="154" column="9" lean-forward="false" selection-start-line="154" selection-start-column="9" selection-end-line="154" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -1105,69 +827,345 @@
     <entry file="file://$PROJECT_DIR$/Application/Account/Controller/CstSignController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="451">
-          <caret line="32" column="61" lean-forward="true" selection-start-line="31" selection-start-column="7" selection-end-line="32" selection-end-column="61" />
+          <caret line="32" column="51" lean-forward="false" selection-start-line="31" selection-start-column="7" selection-end-line="32" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuyset/AnalyticalRoomHot.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="81" column="44" lean-forward="false" selection-start-line="81" selection-start-column="34" selection-end-line="81" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/WeixBuysetController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="511" column="30" lean-forward="false" selection-start-line="511" selection-start-column="30" selection-end-line="511" selection-end-column="30" />
+          <folding>
+            <element signature="e#452#4989#0#PHP" expanded="false" />
+            <element signature="e#4995#7503#0#PHP" expanded="false" />
+            <element signature="e#7513#9784#0#PHP" expanded="false" />
+            <element signature="e#9790#12836#0#PHP" expanded="false" />
+            <element signature="e#12841#15351#0#PHP" expanded="false" />
+            <element signature="e#15357#15889#0#PHP" expanded="false" />
+            <marker date="1517367388005" expanded="true" signature="19600:21145" ph="SELECT choos... xk_choose" />
+            <marker date="1517367388005" expanded="true" signature="21765:22347" ph="SELECT choos... xk_choose" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/Xsgllog/add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" column="42" lean-forward="true" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/Xsgllog/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" column="42" lean-forward="false" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/XsgllogController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="598">
+          <caret line="80" column="9" lean-forward="false" selection-start-line="80" selection-start-column="9" selection-end-line="80" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/JcsjroomController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="43" column="31" lean-forward="false" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
+          <folding>
+            <element signature="e#532#627#0#PHP" expanded="false" />
+            <element signature="e#4733#5079#0#PHP" expanded="false" />
+            <element signature="e#5152#7292#0#PHP" expanded="false" />
+            <element signature="e#14127#16722#0#PHP" expanded="false" />
+            <marker date="1517367991777" expanded="true" signature="2237:2580" ph="SELECT conca... xk_room" />
+            <marker date="1517367991777" expanded="true" signature="3512:3617" ph="SELECT a.* F... xk_room" />
+            <marker date="1517367991777" expanded="true" signature="3512:3626" ph="SELECT a.* F... xk_room" />
+            <marker date="1517367991777" expanded="true" signature="4007:4174" ph="SELECT a.*,b... xk_room" />
+            <marker date="1517367991777" expanded="true" signature="16982:17045" ph="SELECT a.* F... xk_project" />
+            <marker date="1517367991777" expanded="true" signature="17364:17461" ph="SELECT a.* F... xk_build" />
+            <marker date="1517367991777" expanded="true" signature="19141:19279" ph="update xk_ro... " />
+            <marker date="1517367991777" expanded="true" signature="19345:19504" ph="update xk_ro... " />
+            <marker date="1517367991777" expanded="true" signature="19578:19622" ph="SELECT a.* F... xk_roomtemp" />
+            <marker date="1517367991777" expanded="true" signature="19729:19840" ph="insert into xk_room... " />
+            <marker date="1517367991777" expanded="true" signature="19867:19994" ph="select proj_... " />
+            <marker date="1517367991777" expanded="true" signature="20086:20132" ph="SELECT a.* F... xk_roomtemp" />
+            <marker date="1517367991777" expanded="true" signature="20238:20446" ph="update xk_ro... " />
+            <marker date="1517367991777" expanded="true" signature="20844:20907" ph="SELECT a.* F... xk_project" />
+            <marker date="1517367991777" expanded="true" signature="21226:21323" ph="SELECT a.* F... xk_build" />
+            <marker date="1517367991777" expanded="true" signature="23007:23145" ph="update xk_ro... " />
+            <marker date="1517367991777" expanded="true" signature="23211:23389" ph="update xk_ro... " />
+            <marker date="1517367991777" expanded="true" signature="23462:23506" ph="SELECT a.* F... xk_roomtemp" />
+            <marker date="1517367991777" expanded="true" signature="23613:23715" ph="insert into xk_room... " />
+            <marker date="1517367991777" expanded="true" signature="23742:23860" ph="select proj_... " />
+            <marker date="1517367991777" expanded="true" signature="23952:23998" ph="SELECT a.* F... xk_roomtemp" />
+            <marker date="1517367991777" expanded="true" signature="24104:24290" ph="update xk_ro... " />
+            <marker date="1517367991777" expanded="true" signature="24767:24804" ph="SELECT a.* F... xk_room" />
+            <marker date="1517367991777" expanded="true" signature="24973:25014" ph="SELECT a.* F... xk_room" />
+            <marker date="1517367991777" expanded="true" signature="26506:26545" ph="SELECT bld_i... xk_room" />
+            <marker date="1517367991777" expanded="true" signature="26718:26759" ph="SELECT a.* F... xk_room" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/Jcsjroom/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="4" lean-forward="false" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/Jcsjroom/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" column="42" lean-forward="false" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/Jcsjroom/room.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="42" lean-forward="false" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/HxsetController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="50" column="9" lean-forward="false" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/ChooseUserController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="47" column="27" lean-forward="true" selection-start-line="45" selection-start-column="8" selection-end-line="50" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/Jcsjpcset/add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" column="42" lean-forward="false" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/Jcsjpcset/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" column="42" lean-forward="false" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/Jcsjpcset/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="41" lean-forward="false" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
+          <folding>
+            <element signature="n#div#2;n#div#0;n#div#1;n#block#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#2;n#block#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#3;n#block#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <marker date="1517368371264" expanded="true" signature="31129:31140" ph="..." />
+            <marker date="1517368371264" expanded="true" signature="31348:31403" ph="..." />
+            <marker date="1517368371264" expanded="true" signature="31729:31784" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/JcsjpcsetController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="666">
+          <caret line="42" column="36" lean-forward="false" selection-start-line="42" selection-start-column="36" selection-end-line="42" selection-end-column="36" />
+          <folding>
+            <marker date="1517368413809" expanded="true" signature="2048:2180" ph="SELECT a.*,c... xk_kppc" />
+            <marker date="1517368413809" expanded="true" signature="2234:2327" ph="SELECT a.* F... xk_build" />
+            <marker date="1517368413809" expanded="true" signature="3394:3503" ph="SELECT a.* F... xk_build" />
+            <marker date="1517368413809" expanded="true" signature="4948:5168" ph="SELECT a.id,... xk_kppc" />
+            <marker date="1517368413809" expanded="true" signature="7073:7129" ph="SELECT * FRO... xk_build" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/Yhqxuser/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" column="42" lean-forward="false" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/Yhqxuser/add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" column="42" lean-forward="false" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/Yhqxuser/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/Yhqxstation/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="42" lean-forward="false" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
+          <folding>
+            <marker date="1517368525529" expanded="true" signature="25398:25411" ph="..." />
+            <marker date="1517368525529" expanded="true" signature="25580:25635" ph="..." />
+            <marker date="1517368525529" expanded="true" signature="28970:28980" ph="..." />
+            <marker date="1517368525529" expanded="true" signature="29176:29217" ph="..." />
+            <marker date="1517368525529" expanded="true" signature="29351:29392" ph="..." />
+            <marker date="1517368525529" expanded="true" signature="29526:29567" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/Yhqxproj/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="42" lean-forward="false" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
+          <folding>
+            <marker date="1517368544668" expanded="true" signature="23758:23771" ph="..." />
+            <marker date="1517368544668" expanded="true" signature="23936:23991" ph="..." />
+            <marker date="1517368544668" expanded="true" signature="27956:27965" ph="..." />
+            <marker date="1517368544668" expanded="true" signature="28192:28216" ph="..." />
+            <marker date="1517368544668" expanded="true" signature="28351:28375" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/Yhqxfun/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="42" lean-forward="false" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Account/View/CstSign/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="257" column="53" lean-forward="true" selection-start-line="256" selection-start-column="11" selection-end-line="257" selection-end-column="53" />
+        <state relative-caret-position="551">
+          <caret line="118" column="58" lean-forward="false" selection-start-line="118" selection-start-column="58" selection-end-line="118" selection-end-column="58" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/YaoHset/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="99" column="85" lean-forward="false" selection-start-line="99" selection-start-column="85" selection-end-line="99" selection-end-column="85" />
+          <folding>
+            <element signature="n#style#0;n#select#0;n#label#0;n#form#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#block#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/YaoHresult/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="82" column="77" lean-forward="false" selection-start-line="82" selection-start-column="77" selection-end-line="82" selection-end-column="77" />
+          <folding>
+            <element signature="n#form#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#block#1;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/SpeedBuylog/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="52" column="131" lean-forward="false" selection-start-line="52" selection-start-column="127" selection-end-line="52" selection-end-column="131" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuylog/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="644">
+          <caret line="82" column="84" lean-forward="false" selection-start-line="82" selection-start-column="84" selection-end-line="82" selection-end-column="84" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuyled/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="58" column="95" lean-forward="false" selection-start-line="58" selection-start-column="95" selection-end-line="58" selection-end-column="95" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuyset/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="91" column="139" lean-forward="false" selection-start-line="91" selection-start-column="139" selection-end-line="91" selection-end-column="139" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/Xsgllog/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="78" column="81" lean-forward="false" selection-start-line="78" selection-start-column="81" selection-end-line="78" selection-end-column="81" />
+          <folding>
+            <element signature="n#volist#0;n#if#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#block#1;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Account/View/Admission/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="267" column="53" lean-forward="false" selection-start-line="267" selection-start-column="53" selection-end-line="267" selection-end-column="53" />
+        <state relative-caret-position="345">
+          <caret line="231" column="34" lean-forward="false" selection-start-line="231" selection-start-column="34" selection-end-line="231" selection-end-column="34" />
           <folding>
-            <marker date="1517303758419" expanded="true" signature="1555:1569" ph="{...}" />
-            <marker date="1517303758419" expanded="true" signature="5822:5845" ph="..." />
+            <element signature="n#style#0;n#select#0;n#label#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#2;n#block#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#2;n#block#1;n#!!top" expanded="true" />
+            <marker date="1517369697053" expanded="true" signature="1555:1569" ph="{...}" />
+            <marker date="1517369697053" expanded="true" signature="5822:5845" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="63" column="41" lean-forward="false" selection-start-line="63" selection-start-column="41" selection-end-line="63" selection-end-column="41" />
-          <folding>
-            <element signature="e#3250#4211#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Public/account/js/admission.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="666">
-          <caret line="59" column="10" lean-forward="true" selection-start-line="59" selection-start-column="10" selection-end-line="59" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/Conf/convention.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="112" column="56" lean-forward="true" selection-start-line="112" selection-start-column="56" selection-end-line="112" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Account/View/ChooseUser/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="473">
-          <caret line="692" column="28" lean-forward="true" selection-start-line="692" selection-start-column="28" selection-end-line="692" selection-end-column="28" />
-          <folding />
+        <state relative-caret-position="337">
+          <caret line="50" column="9" lean-forward="true" selection-start-line="48" selection-start-column="8" selection-end-line="50" selection-end-column="9" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#div#1;n#block#1;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Think/Controller.class.php">
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/Hxset/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="193" column="34" lean-forward="true" selection-start-line="193" selection-start-column="34" selection-end-line="193" selection-end-column="34" />
-          <folding />
+        <state relative-caret-position="483">
+          <caret line="394" column="107" lean-forward="false" selection-start-line="394" selection-start-column="107" selection-end-line="394" selection-end-column="107" />
+          <folding>
+            <element signature="n#style#0;n#block#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

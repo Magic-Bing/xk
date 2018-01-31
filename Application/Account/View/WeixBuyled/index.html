@@ -1,17 +1,15 @@
 <extend name="Common/base" />
 
 <block name="breadcrumb_active">
+	<li><{$classify_name|default=''}></li>
+	<li class="active"><{$seo_title|default=''}></li>
 	<style>
 		form{display: inline}
 		#sample-table-2_length label{
 			margin-left: 10px;
 		}
 	</style>
-	<li>
-		<a href="<{:U('WeixBuyset/index')}>"><{$classify_name|default=''}></a>
-	</li>
 
-	<li class="active"><{$seo_title|default=''}></li>
 </block>
 
 <block name="page_content">
@@ -58,7 +56,7 @@
 						<form action="<{:U('/Account/WeixBuyled/index')}>" method="post" id="form-b">
 						<label>							
 							批次 
-							<select name="batch_id" class="wxrgled-batch-id" style="width: auto;" >
+							<select name="batch_id" class="wxrgled-batch-id" style="width: 70px;" >
 								<if condition="count($batch_list) neq 1">
 									<option value="0">全部</option>
 								</if>

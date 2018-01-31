@@ -1,10 +1,7 @@
 <extend name="Common/base" />
 
 <block name="breadcrumb_active">
-	<li>
-		<a href="<{:U('WeixBuyset/index')}>"><{$classify_name|default=''}></a>
-	</li>
-
+	<li><{$classify_name|default=''}></li>
 	<li class="active"><{$seo_title|default=''}></li>
 </block>
 
@@ -24,6 +21,7 @@
 							项目
 							<select name="project-id" class="choose-order_house-project-id" id="a_pro" style="width: 150px">
 								<!--<option value="">请选择项目</option>-->
+								<option value="0">全部</option>
 								<volist name="projects" id="vo">
 									<option value="<{$vo.id}>"><{$vo.name}></option>
 								</volist>
@@ -160,7 +158,7 @@
 			}
                     $("#dcsj").show();
         });
-
+        $("#a_pro").val("<{$selected_project}>");
         $("#a_pro").trigger("change",[1]);
 		$(document).on("click",".label-xlg",function () {
 		    if($("#a_hd").val()==""){

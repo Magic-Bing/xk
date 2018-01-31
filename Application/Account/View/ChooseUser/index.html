@@ -2,12 +2,14 @@
 <extend name="Common/base" />
 
 <block name="breadcrumb_active">
+
+	<li class="active">客户信息</li>
 	<style>
 		#error{
 			float: right;
 			margin-right: 10px;
 			color:#FFF;
-                        cursor: pointer;
+			cursor: pointer;
 		}
 		#error div{
 			border: 1px solid #FFF;
@@ -38,14 +40,16 @@
 		#form-p,#form-b{
 			display: inline;
 		}
-                .btn-xs {
-                    border-width: 1px;
-                }
+		.btn-xs {
+			border-width: 1px;
+		}
 		#sample-table-2_length label{
 			margin-left: 10px;
 		}
+		#sample-table-2_length>form:not(:first-child)>label>select{
+			width: 70px;
+		}
 	</style>
-	<li class="active">客户信息</li>
 </block>
 
 <block name="page_content">
@@ -130,7 +134,7 @@
 						<form action="<{:U('/Account/ChooseUser/index')}>" method="post" id="form-b" >
 						<label>							
 							批次 
-							<select name="batch_id" class="choose-user-batch-id js-choose-user-batch-id" style="width: auto;">
+							<select name="batch_id" class="choose-user-batch-id js-choose-user-batch-id" >
 								<if condition="count($batch_list) neq 1">
 									<option value="">全部</option>
 								</if>
@@ -150,7 +154,7 @@
 
 						<label>
 							选房状态
-							<select name="zt" class="choose-user-is-xf js-choose-user-is-xf" style="width: auto;" id="z_t">
+							<select name="zt" class="choose-user-is-xf js-choose-user-is-xf"  id="z_t">
 								<option value="">全部</option>
 								<if condition="$zt eq 1">
 									<option value="1" selected>已选房</option>
@@ -169,7 +173,7 @@
 
 							<label>
 							用户状态
-							<select name="status" class="choose-user-is-xf" style="width: auto;" id="c_status">
+							<select name="status" class="choose-user-is-xf"  id="c_status">
 								<option value="">全部</option>
 								<if condition="$status eq '1'">
 									<option value="1" selected>启用</option>
@@ -687,7 +691,7 @@
         window.location.href = choose_user_url.check_user + '?project_id=' + pid+"&bid="+bid+"&zt="+zt+"&word="+word+"&satus="+status;
 		return false;
     });
-	console.log('<{$a}>');
+//	console.log('<{$a}>');
 </script>
 </block>
 <block name="footer_add_js">
