@@ -72,9 +72,12 @@
                 background: #791311;
                 color: #FFF;
             }
-            .infospan{
-                padding: 5px;
+            .spanshow{
+                line-height: 30px;
+                width: 80%;
+                margin-left: 10%;
                 background: #FFF;
+                margin-top: 7.5px;
             }
         </style>
     </head>
@@ -132,15 +135,15 @@
                             <php>$dqno=$yaohset['dqmaxno'] + $i + 1;</php>
                             <li class="cstli wxd" style="width:100%;display:flex;">
                                 <div  style="display:block;flex: 1;text-align: center;" ><span class="rcno">第 <{$dqno}> 位</span></div>
-                                <div class="cstname" style="display:block;flex: 1;text-align: center;">等待摇号</div>
+                                <div  style="display:block;flex: 1;text-align: center;"><div class="cstname spanshow" >等待摇号</div></div>
                                 <if condition="$showcontent['hasphone'] eq 1"> 
-                                <div class="cstphone" style="display:block;flex: 1;text-align: center;">***</div>
+                                <div style="display:block;flex: 1;text-align: center;"><div class="cstphone spanshow" >***</div></div>
                                 </if>
                                 <if  condition="$showcontent['hascyjno'] eq 1"> 
-                                <div class="cyjno" style="display:block;flex: 1;text-align: center;">***</div>
+                                <div style="display:block;flex: 1;text-align: center;"><div class="cyjno spanshow" >***</div></div>
                                 </if>
                                 <if  condition="$showcontent['hascard'] eq 1"> 
-                                <div class="cardno" style="display:block;flex: 1;text-align: center;">***</div>
+                                <div style="display:block;flex: 1;text-align: center;"><div class="cardno spanshow" >***</div></div>
                                 </if>
                             </li>
                             </for>

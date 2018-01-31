@@ -1,27 +1,27 @@
 <extend name="Common/base" />
 
 <block name="breadcrumb_active">
-    <li>
-        <a href="<{:U('Xsglled/index')}>"><{$classify_name|default=''}></a>
-    </li>
+    <li><{$classify_name|default=''}></li>
     <li class="active"><{$seo_title|default=''}></li>
 </block>
 
 <block name="page_content">
     <style type="text/css">
         .qpxs {
-            position: absolute;
-            top:260px;left:40%;
-            width:300px;
-            height:50px;
-            transform: translate(-10%, -10%);
         }
-        .qpxs a{
-            padding: 10px 20px;
+        .qpxs .ledshow{
             text-align: center;
-            background: red;
+            padding: 2px;
+            background: #ec5858;
             color: #FFF;
-            margin-left: 50px;
+            cursor: pointer;
+        }
+        .qpxs .cfbuild{
+            text-align: center;
+            padding: 2px 4px;
+            background: #87b87f;
+            color: #FFF;
+            cursor: pointer;
         }
         form{
             display: inline;
@@ -29,79 +29,476 @@
         #sample-table-2_length label{
             margin-left: 10px;
         }
+        .addbldlist_div {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-10%);
+            width: 40%;
+            height: 460px;
+            box-shadow: rgb(136, 136, 136) -5px 5px 15px;
+            background: rgb(255, 255, 255);
+            display: none;
+            z-index: 999;
+            animation: showdiv1 0.3s;
+            -moz-animation: showdiv1 0.3s;
+            -webkit-animation: showdiv1 0.3s;
+            -o-animation: showdiv1 0.3s;
+            -webkit-animation-fill-mode: forwards;
+        }
+        .addbldlist_title {
+            width: 100%;
+            height: 50px;
+            text-align: left;
+            background: #ec5858;
+            color: #FFF;
+            line-height: 50px;
+            padding: 0 20px;
+            border-bottom: 1px solid #ccc;
+            font-size: 18px;
+        }
+        .addbldlist_div table {
+            width: 100%;
+        }
+        .addbldlist_sec_title {
+            width: 240px;
+            background: rgba(232, 232, 232, 0.45);
+        }
+        .addbldlist_div table tr{
+            line-height: 35px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+        .addbldlist_div table th, .addbldlist_div table td {
+            text-align: center;
+            color: #000;
+        }
+        .bld_bottom {
+            position: absolute;
+            bottom: 0px;
+            width: 100%;
+            text-align: center;
+            background: #eff3f8;
+            color: #FFF;
+            height: 50px;
+        }
+        .bld_bottom input {
+            float: right;
+            margin-right: 10px;
+            margin-top: 10px;
+            width: 20%;
+            border: 0;
+            background: #abbac3;
+            color: #FFF;
+            padding: 6px 0;
+        }
+        .bld_bottom .save {
+            background-color: #428bca;
+        }
+        .delete-yes span{
+            padding:3px 3px 3px 5px;margin-right:5px;background-color: #d15b47;color: #FFF;
+            cursor: pointer;
+        }
+        .delete-no span{
+            padding:3px 3px 3px 5px;margin-right:5px;background-color: #e7e7e7;color: #FFF;
+            cursor: not-allowed;
+        }
     </style>
     <div class="row">
         <div class="col-xs-12">
-
             <div class="table-header">
                 销控LED显示列表
             </div>
             <div class="table-responsive dataTables_wrapper">
                 <div class="row">
-                    <div class="col-sm-6">
-                        <div id="sample-table-2_length" class="dataTables_length">
-                            <form action="<{:U('/Account/Xsglled/index')}>" method="post" id="form-p">
-                            <label>
-                                项目 
-                                <select name="project_id" class="xkled-project-id" style="width: auto;">
-                                    <if condition="!empty($search_project_id)">
-                                        <option value="0">全部</option>
-                                        <foreach name="project_list" item="project_list_vo">
-                                            <if condition="$search_project_id eq $project_list_vo['id']">
-                                                <option value="<{$project_list_vo['id']}>" selected>
-                                                    <{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
-                                                </option>
-                                                <else />		 
-                                                <option value="<{$project_list_vo['id']}>">
-                                                    <{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
-                                                </option>
-                                            </if>
-                                        </foreach> 
-                                        <else />
-                                        <option value="0" selected>全部</option>
-                                        <foreach name="project_list" item="project_list_vo">
-                                            <option value="<{$project_list_vo['id']}>">
-                                                <{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
-                                            </option>
-                                        </foreach> 
-                                    </if>
-                                </select> 
-                            </label>
-                            </form>
-                            <form action="<{:U('/Account/Xsglled/index')}>" method="post" id="form-b">
-                            <label>							
-                                批次 
-                                <select name="batch_id" class="xkled-batch-id" style="width: auto;">
-                                    <if condition="count($batch_list) neq 1">
-                                        <option value="0">全部</option>
-                                    </if>
-                                    <foreach name="batch_list" item="batch_list_vo">
-                                        <if condition="$bid eq $batch_list_vo['id']">
-                                            <option value="<{$batch_list_vo['id']}>" selected>
-                                                <{$batch_list_vo['name']}>
-                                            </option>
-                                            <else/>
-                                            <option value="<{$batch_list_vo['id']}>" >
-                                                <{$batch_list_vo['name']}>
-                                            </option>
-                                        </if>
-                                    </foreach>
-                                </select> 
-                            </label>
-                                <input type="hidden" name="project_id" value="<{$search_project_id}>">
-                            </form>
+                        <div class="col-sm-12">
+                                <div class="addbldlist_div" id="bldlistdiv">
+                                    <div  class="addbldlist_title">分楼栋显示，请选择</div>
+                                    <div id="bldsinfodiv" style="height: 360px;overflow-y: auto;">
+                                        <table style="background-color: #FFF;">
+                                            <thead class="addbldlist_sec_title">
+                                                <tr>
+                                                    <th style="width:20%" ><!--<input type="checkbox"   id="chkall"  name="chkall" checked >--></th>
+                                                    <th style="width:40%;font-size:13px">楼栋名称</th>
+                                                    <th style="width:40%;font-size:13px">楼栋编号</th>
+                                                </tr>
+                                            </thead>	
+                                            <tbody id="bldlisttb">
+
+                                            </tbody>
+                                        </table>
+                                    </div>    
+                                    <div class="bld_bottom">
+                                        <input style="line-height: normal;" class="addbld_btn save" id="addqz" type="button" value="确定" />
+                                        <input style="line-height: normal;" class="addbld_btn btnqx" type="button" value="取消" />
+                                    </div>
+                                </div>
+                                <div id="sample-table-2_length" class="dataTables_length">
+                                        <form action="<{:U('/Account/Xsglled/index')}>" method="post" id="form-p">
+                                        <label>
+                                                项目 
+                                                <select name="project_id" class="choose-activity-project-id " style="width: auto;" id="jl_pid">
+                                                        <if condition="!empty($search_project_id)">
+                                                                <option value="">全部</option>
+                                                                <foreach name="project_list" item="project_list_vo">
+                                                                        <if condition="$search_project_id eq $project_list_vo['id']">
+                                                                                <option value="<{$project_list_vo['id']}>" selected>
+                                                                                        <{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
+                                                                                </option>
+                                                                        <else />		 
+                                                                                <option value="<{$project_list_vo['id']}>">
+                                                                                        <{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
+                                                                                </option>
+                                                                        </if>
+                                                                </foreach> 
+                                                        <else />
+                                                                <option value="0" selected>全部</option>
+                                                                <foreach name="project_list" item="project_list_vo">
+                                                                        <option value="<{$project_list_vo['id']}>">
+                                                                                <{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
+                                                                        </option>
+                                                                </foreach> 
+                                                        </if>
+                                                </select> 
+                                        </label>
+                                        </form>
+                                        <form action="<{:U('/Account/Xsglled/index')}>" method="post" id="form-b">
+                                        <label>							
+                                                批次 
+                                                <select name="batch_id" class="choose-activity-batch-id" style="width: auto;" id="jl_pc">
+                                                        <if condition="count($batch_list) neq 1">
+                                                            <option value="0">全部</option>
+                                                        </if>
+                                                        <foreach name="batch_list" item="batch_list_vo">
+                                                                <if condition="$search_batch_id eq $batch_list_vo['id']">
+                                                                    <option value="<{$batch_list_vo['id']}>" selected>
+                                                                        <{$batch_list_vo['name']}>
+                                                                    </option>
+                                                                    <else/>
+                                                                    <option value="<{$batch_list_vo['id']}>">
+                                                                        <{$batch_list_vo['name']}>
+                                                                    </option>
+                                                                </if>
+                                                        </foreach> 
+                                                </select> 
+                                        </label>
+                                                <input type="hidden" name="project_id" value="<{$search_project_id}>">
+                                                <input type="hidden" name="p" value="<{$p|default=1}>">
+                                        </form>
+                                </div>
                         </div>
-                    </div>
+                </div>
+
+                <table id="sample-table-choose" class="table table-striped table-bordered table-hover dataTable">
+                        <thead>
+                                <tr>
+                                        <th class="center hidden-480">
+                                                <label>
+                                                        <input type="checkbox" class="ace">
+                                                        <span class="lbl"></span>
+                                                </label>
+                                        </th>
+                                        <th class="center hidden-480">序号</th>
+                                        <th class="hidden-480">项目</th>
+                                        <th class="hidden-480">包含楼栋</th>
+                                        <!--<th class="hidden-480">房间数量</th>-->
+                                        <th class="hidden-480">操作</th>
+                                </tr>
+                        </thead>
+
+                        <tbody>
+                                <notempty name="ledlist">
+                                    <volist name="ledlist" id="ledlist_vo" key="ledlist_k" >
+                                        <tr data_id="<{$ledlist_vo.id|default='0'}>" bldids="<{$ledlist_vo.bldidlist}>" batchid="<{$ledlist_vo.batch_id|default='0'}>"  projectid="<{$ledlist_vo.project_id|default='0'}>" >
+                                                    <td class="center hidden-480">
+                                                            <label>
+                                                                    <input type="checkbox" class="ace" data-id="<{$ledlist_vo.id|default='0'}>">
+                                                                    <span class="lbl"></span>
+                                                            </label>
+                                                    </td>
+
+                                                    <td class="center hidden-480"><{$ledlist_k}></td>
+                                                    <td class="hidden-480">
+                                                            <{$ledlist_vo['pname']|default=''}>
+                                                            <notempty name="ledlist_vo.bname">
+                                                                    <span class="label label-sm label-primary arrowed arrowed-right"><{$ledlist_vo.bname}></span>
+                                                            </notempty>
+                                                    </td>
+                                                    <td class="hidden-480">
+                                                            <{$ledlist_vo.bldnamelist}>
+                                                    </td>
+                                                    <!--<td class="hidden-480">
+                                                            <{$ledlist_vo.roomcount}>
+                                                    </td> -->  
+                                                    <td style="text-align: left;width:150px">
+                                                        <div class="qpxs"> 
+                                                            <if condition="$ledlist_vo['bldidlist'] neq ''">
+                                                                <if condition="$ledlist_vo['id'] neq 0">
+                                                                    <a  class="delete-yes" href="javascript:;" data_id="<{$ledlist_vo.id|default='0'}>"  title="删除">
+                                                                        <span>
+                                                                            <i class="icon-trash bigger-120"></i>
+                                                                        </span>
+                                                                    </a>
+                                                                <else />
+                                                                    <a  class="delete-no" href="javascript:;" data_id="<{$ledlist_vo.id|default='0'}>"  title="删除">
+                                                                        <span>
+                                                                            <i class="icon-trash bigger-120"></i>
+                                                                        </span>
+                                                                    </a>
+                                                                </if>
+                                                              
+                                                               <a class="cfbuild" href="javascript:;" data_id="<{$ledlist_vo.id|default='0'}>" batchid="<{$ledlist_vo.batch_id|default='0'}>"  projectid="<{$ledlist_vo.project_id|default='0'}>" bldids="<{$ledlist_vo.bldidlist}>"><span>拆分</span></a>
+                                                               <a class="ledshow" href="/Account/Xsglled/led/bldids/<{$ledlist_vo.bldidlist}>"  target="_blank" ><span>LED显示</span></a>
+                                                            </if>
+                                                        </div>
+                                                        
+                                                    </td>
+                                            </tr>
+                                    </volist>
+                                <else />
+                                        <tr>
+                                                <td colspan="12" class="no-padding">
+                                                        <div class="alert alert-warning no-margin-bottom">
+                                                                还没有记录！
+                                                                <br>
+                                                        </div>
+                                                </td>
+                                        </tr>
+                                </notempty>
+
+                        </tbody>
+
+                </table>
+
+                <div class="row">
+                        <div class="col-sm-6">
+                                <div class="dataTables_info" id="sample-table-2_info">
+                                        第 <{$p|default=1}> / <{$total_pages|default=1}> 页，共 <span><{$count|default=1}> </span>条
+                                </div>
+                        </div>
+                        <div class="col-sm-6">
+                                <div class="dataTables_paginate paging_bootstrap">
+                                        <{$page_show|default=''}>
+                                </div>
+                        </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="qpxs">
-        <a href="<{:U('../led/pmtled1')}>" target="_blank">负一层</a>
-        <a href="<{:U('../led/pmtled2')}>" target="_blank">负二层</a>
-    </div>
+   
 
 </block>
-<block name="footer_add_js">
+<block name="page_js">
+<script type="text/javascript">
+    var c_num="<{$p}>";
+jQuery(function($) {
 
+    //分页跳转
+    $(".pagination li").on("click",function () {
+        var tx=$(this).attr("data-tx");
+        if(tx !==undefined){
+            if(tx ==="上一页"){
+                $("#form-b input[name='p']").val(Number(c_num)-1);
+            }else if(tx ==="下一页"){
+                $("#form-b input[name='p']").val(Number(c_num)+1);
+            }else if(tx ==="首页"){
+                $("#form-b input[name='p']").val(1);
+            } else if(tx ==="尾页"){
+                $("#form-b input[name='p']").val("<{$total_pages|default=1}>");
+            }else{
+                $("#form-b input[name='p']").val(tx);
+            }
+            $("#form-b").submit();
+        }
+    });
+     
+    $(".cfbuild").on('click', function(){
+            var $id=$(this).attr("data_id");
+            var $projid = $(this).attr("projectid");
+            var $pcid = $(this).attr("batchid");
+            var $strbldids = $(this).attr("bldids")
+            var $bldids = $strbldids.split(",");
+            
+            if( $.inArray("13", $bldids)>-1)
+            {
+                console.log($bldids);
+            }
+            var pcset_url = {getbldlist: '<{:U("getbldlist")}>', }
+            $.ajax({
+            url: pcset_url.getbldlist,
+                    data: {
+                    bldids: $strbldids,
+                    pcid: $pcid,
+                    projid: $projid,
+                    },
+                    type: 'POST',
+                    dataType: 'JSON',
+                    success: function (data, status) {
+                        if (typeof (data.status) == 'undefined') {
+                            layer_alert('请求失败，请重试！');
+                            return false;
+                        }
+                        if (data.status == false) {
+                            alert(data.info);
+                            return false;
+                        }
+                        var $bldlist = data.info;
+                        var $temphtml = "";
+                        if ($bldlist.length > 0) {
+                            for (var $i = 0; $i < $bldlist.length; $i ++) {
+                            $temphtml += "<tr id='pcbldid_" + $bldlist[$i].id + "' class='trcb' >";
+                            $temphtml += "<td class='tdcb'><input type='checkbox' class='selectbuild' data_name='" + $bldlist[$i].buildname + "' name='subBox'   value='" + $bldlist[$i].id + "' checked ></td> ";
+                            $temphtml += "<td>" + $bldlist[$i].buildname + "</td> ";
+                            $temphtml += "<td>" + $bldlist[$i].buildcode + "</td> ";
+                            $temphtml += "</tr> ";
+                            }
+                            $("#addqz").attr("pc_id", $pcid);
+                            $("#addqz").attr("proj_id", $projid);
+                            $("#addqz").attr("data_id", $id);
+                            $("#bldlisttb").html("").html($temphtml);
+                            $("#bldlistdiv").css("height","75vh").show();
+                            $allheight=$("#bldlistdiv").height();
+                            $("#bldsinfodiv").css("height",$allheight -100)
+                            $("#zz_div").show();
+                        }
+                        else
+                        {
+                            layer_alert('楼栋已分配完');
+                        }
+
+                    },
+                    error: function (data, status, e) {
+                        layer_alert('提交连接失败！');
+                    }
+            });
+    });
+    
+    $(".delete-yes").click(function(){
+        var $id=$(this).attr("data_id");
+        var callback = function() {
+                var $url = "<{:U('deletecf')}>";
+                var $data = {
+                    id: $id,
+                };
+                ajax_post_callback($url, $data, function(data, status) {
+                    if (data['status'] != 1) {
+                        gritter_alert(data['info']);
+                        return false;
+                    } else {
+                        gritter_alert_success('删除成功！');
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 1500);
+                    }
+                });
+            };
+
+            layer_confirm('删除后，此批次下所有楼栋需重新拆分，确认吗？', callback);
+    });
+    
+    $("#addqz").click(function(){
+            var $batchid = $(this).attr("pc_id");
+            var $projectid = $(this).attr("proj_id");
+            var $id = $(this).attr("data_id");
+            var $bldlist = "";
+            var $bldnamelist = "";
+            var $nobldlist = "";
+            var $nobldnamelist = "";
+            var $allbld = $("#bldlisttb").find(".selectbuild");
+            var $ii=0
+            for (var i = 0; i < $allbld.length; i++)
+            {
+                if ($allbld.eq(i).is(':checked'))
+                {
+                    $bldlist += $allbld.eq(i).val() + ",";
+                    $bldnamelist += $allbld.eq(i).attr("data_name") + ",";
+                    $ii++;
+                }
+                else
+                {
+                    $nobldlist += $allbld.eq(i).val() + ",";
+                    $nobldnamelist += $allbld.eq(i).attr("data_name")+ ",";
+                }
+            }
+            if ($bldlist == "")
+            {
+                layer_alert('请选择楼栋！');
+                return false;
+            }else if($ii == $allbld.length){
+                layer_alert('内容无改变，不需要保存！');
+                return false;
+            }
+            else{
+                $bldlist = $bldlist.substring(0, $bldlist.length - 1);
+                $bldnamelist = $bldnamelist.substring(0, $bldnamelist.length - 1);
+                $nobldlist = $nobldlist.substring(0, $nobldlist.length - 1);
+                $nobldnamelist = $nobldnamelist.substring(0, $nobldnamelist.length - 1);
+            }
+            
+            var set_url = {ledcfshow: '<{:U("ledcfshow")}>', }
+            $.ajax({
+            url: set_url.ledcfshow,
+                    data: {
+                        id:$id,
+                        batch_id: $batchid,
+                        project_id: $projectid,
+                        bldlist:$bldlist,
+                        bldnamelist:$bldnamelist,
+                        nobldlist:$nobldlist,
+                        nobldnamelist:$nobldnamelist,
+                    },
+                    type: 'POST',
+                    dataType: 'JSON',
+                    success: function (data, status) {
+                        if (typeof (data.status) == 'undefined') {
+                            layer_alert('请求失败，请重试！');
+                            return false;
+                        }
+                        if (data.status == false) {
+                            alert(data.info);
+                            return false;
+                        }
+                        $("#bldlistdiv").hide();
+                        $("#zz_div").hide();
+                        gritter_alert_success('操作成功！');
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 1500);
+                    },
+                    error: function (data, status, e) {
+                        layer_alert('提交连接失败！');
+                    }
+            });
+    });
+    
+    //隐藏编辑图层及内容
+    $(".btnqx").on('click', function(){
+        $("#bldlistdiv").hide();
+        $("#zz_div").hide();
+    })
+    
+    $(".addbldlist_div table").on("click",".trcb",function(){
+        if ($(this).first().find("input").prop("checked"))
+            $(this).first().find("input").prop("checked", false);
+        else
+            $(this).first().find("input").prop("checked", true);
+    });
+    
+    $(".addbldlist_div table").on("click",".selectbuild",function(){
+        if ($(this).prop("checked"))
+            $(this).prop("checked", false);
+        else
+            $(this).prop("checked", true);
+    });
+    
+    $("#chkall").click(function() {
+        $('#bldlisttb input[name="subBox"]').prop("checked", this.checked);
+    });
+    $("#bldlisttb").on('selectbuild click', function(){
+        $subBox = $('#bldlisttb input[name="subBox"]');
+        $("#chkall").prop("checked", $subBox.length == $("input[name='subBox']:checked").length ? true : false);
+    });
+
+});
+</script>
 </block>

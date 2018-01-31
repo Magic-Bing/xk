@@ -3,46 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="d93e351b-3e78-4fb4-bd62-b1a84d311097" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/HxsetController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/HxsetController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/JcsjpcsetController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/JcsjpcsetController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/JcsjroomController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/JcsjroomController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/WeixBuyledController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/WeixBuyledController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/WeixBuylogController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/WeixBuylogController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/WeixBuysetController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/WeixBuysetController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/XsgllogController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/XsgllogController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/YaoHresultController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/YaoHresultController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/YaoHsetController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/YaoHsetController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Admission/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/Admission/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/ChooseUser/add.html" afterPath="$PROJECT_DIR$/Application/Account/View/ChooseUser/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/ChooseUser/edit.html" afterPath="$PROJECT_DIR$/Application/Account/View/ChooseUser/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/ChooseUser/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/ChooseUser/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/CstSign/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/CstSign/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Hxset/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/Hxset/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Jcsjpcset/add.html" afterPath="$PROJECT_DIR$/Application/Account/View/Jcsjpcset/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Jcsjpcset/edit.html" afterPath="$PROJECT_DIR$/Application/Account/View/Jcsjpcset/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Jcsjpcset/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/Jcsjpcset/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Jcsjroom/edit.html" afterPath="$PROJECT_DIR$/Application/Account/View/Jcsjroom/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Jcsjroom/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/Jcsjroom/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Jcsjroom/room.html" afterPath="$PROJECT_DIR$/Application/Account/View/Jcsjroom/room.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/WeixBuyled/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/WeixBuyled/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/WeixBuylog/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/WeixBuylog/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/XsglledController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/XsglledController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/WeixBuyled/led.html" afterPath="$PROJECT_DIR$/Application/Account/View/WeixBuyled/led.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/WeixBuyset/AnalyticalRoomHot.html" afterPath="$PROJECT_DIR$/Application/Account/View/WeixBuyset/AnalyticalRoomHot.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/WeixBuyset/add.html" afterPath="$PROJECT_DIR$/Application/Account/View/WeixBuyset/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/WeixBuyset/edit.html" afterPath="$PROJECT_DIR$/Application/Account/View/WeixBuyset/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/WeixBuyset/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/WeixBuyset/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Xsgllog/add.html" afterPath="$PROJECT_DIR$/Application/Account/View/Xsgllog/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Xsgllog/edit.html" afterPath="$PROJECT_DIR$/Application/Account/View/Xsgllog/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Xsgllog/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/Xsgllog/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/YaoHresult/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/YaoHresult/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/YaoHset/add.html" afterPath="$PROJECT_DIR$/Application/Account/View/YaoHset/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/YaoHset/edit.html" afterPath="$PROJECT_DIR$/Application/Account/View/YaoHset/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/YaoHset/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/YaoHset/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Yhqxfun/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/Yhqxfun/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Yhqxproj/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/Yhqxproj/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Yhqxstation/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/Yhqxstation/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Yhqxuser/add.html" afterPath="$PROJECT_DIR$/Application/Account/View/Yhqxuser/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Yhqxuser/edit.html" afterPath="$PROJECT_DIR$/Application/Account/View/Yhqxuser/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Yhqxuser/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/Yhqxuser/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Xsglled/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/Xsglled/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/YaoHset/history_yaoh.html" afterPath="$PROJECT_DIR$/Application/Account/View/YaoHset/history_yaoh.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/YaoHset/yaoh.html" afterPath="$PROJECT_DIR$/Application/Account/View/YaoHset/yaoh.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Common/Conf/config.php" afterPath="$PROJECT_DIR$/Application/Common/Conf/config.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Public/common/js/layer/layer.js" afterPath="$PROJECT_DIR$/Public/common/js/layer/layer.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -63,26 +31,54 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Application/Account/View/ChooseUser/index.html">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Application/Account/View/Xsglled/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
-              <caret line="50" column="9" lean-forward="true" selection-start-line="48" selection-start-column="8" selection-end-line="50" selection-end-column="9" />
+            <state relative-caret-position="-138">
+              <caret line="3" column="8" lean-forward="false" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="XsglledController.class.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Account/Controller/XsglledController.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="736">
+              <caret line="32" column="14" lean-forward="true" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
               <folding>
-                <element signature="n#div#0;n#div#0;n#div#1;n#block#1;n#!!top" expanded="false" />
+                <marker date="1517385200298" expanded="true" signature="3472:4116" ph="select a.*,p... xk_xsledset" />
+                <marker date="1517385200298" expanded="true" signature="4512:5260" ph="select a.*,p... xk_xsledset" />
+                <marker date="1517385200298" expanded="true" signature="7933:8040" ph="SELECT a.* F... xk_build" />
+                <marker date="1517385200298" expanded="true" signature="10703:10737" ph="select * fro... xk_project" />
+                <marker date="1517385200298" expanded="true" signature="10899:11004" ph="SELECT bld_i... xk_roomlist" />
+                <marker date="1517385200298" expanded="true" signature="11047:11148" ph="SELECT `bld_... xk_roomlist" />
+                <marker date="1517385200298" expanded="true" signature="11192:11330" ph="SELECT `bld_... xk_roomlist" />
+                <marker date="1517385200298" expanded="true" signature="11375:11526" ph="SELECT `bld_... xk_roomlist" />
+                <marker date="1517385200298" expanded="true" signature="11567:11699" ph="SELECT * FRO... xk_roomlist" />
+                <marker date="1517385200298" expanded="true" signature="11733:11916" ph="SELECT count... xk_roomlist" />
+                <marker date="1517385200298" expanded="true" signature="13858:14040" ph="SELECT a.* F... xk_roomlist" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Application/Account/View/Hxset/index.html">
+      <file leaf-file-name="AnalyticalRoomHot.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuyset/AnalyticalRoomHot.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="358">
+              <caret line="24" column="64" lean-forward="false" selection-start-line="24" selection-start-column="64" selection-end-line="24" selection-end-column="64" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="led.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Account/View/Xsglled/led.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="483">
-              <caret line="394" column="107" lean-forward="false" selection-start-line="394" selection-start-column="107" selection-end-line="394" selection-end-column="107" />
-              <folding>
-                <element signature="n#style#0;n#block#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-              </folding>
+              <caret line="340" column="30" lean-forward="false" selection-start-line="340" selection-start-column="30" selection-end-line="340" selection-end-column="30" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -99,8 +95,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>gd</find>
-      <find>set_seo_title</find>
       <find>saler-project-view-header-unit-info</find>
       <find>shadow-list</find>
       <find>bld-list</find>
@@ -129,6 +123,8 @@
       <find>xzblddiv</find>
       <find>$search_project_id</find>
       <find>style=&quot;width: auto;&quot;</find>
+      <find>td_room</find>
+      <find>close</find>
     </findStrings>
     <replaceStrings>
       <replace>&lt;</replace>
@@ -143,13 +139,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Application/Account/View/Admission/user_list.html" />
-        <option value="$PROJECT_DIR$/ThinkPHP/Tpl/dispatch_jump.tpl" />
-        <option value="$PROJECT_DIR$/Application/Account/View/Common/Error/302.html" />
-        <option value="$PROJECT_DIR$/ThinkPHP/Library/Think/Controller.class.php" />
-        <option value="$PROJECT_DIR$/Application/Account/Controller/LoginController.class.php" />
-        <option value="$PROJECT_DIR$/Public/account/js/sign.js" />
-        <option value="$PROJECT_DIR$/Application/Account/Controller/ChooseUserController.class.php" />
         <option value="$PROJECT_DIR$/Application/Account/Controller/CstSignController.class.php" />
         <option value="$PROJECT_DIR$/Public/account/js/admission.js" />
         <option value="$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php" />
@@ -163,7 +152,6 @@
         <option value="$PROJECT_DIR$/Application/Account/View/WeixBuyset/edit.html" />
         <option value="$PROJECT_DIR$/Application/Account/Controller/WeixBuyledController.class.php" />
         <option value="$PROJECT_DIR$/Application/Account/Controller/WeixBuylogController.class.php" />
-        <option value="$PROJECT_DIR$/Application/Account/View/WeixBuyset/AnalyticalRoomHot.html" />
         <option value="$PROJECT_DIR$/Application/Account/Controller/WeixBuysetController.class.php" />
         <option value="$PROJECT_DIR$/Application/Account/View/Xsgllog/add.html" />
         <option value="$PROJECT_DIR$/Application/Account/View/Xsgllog/edit.html" />
@@ -194,6 +182,14 @@
         <option value="$PROJECT_DIR$/Application/Account/View/Admission/index.html" />
         <option value="$PROJECT_DIR$/Application/Account/View/Xsgllog/index.html" />
         <option value="$PROJECT_DIR$/Application/Account/View/Hxset/index.html" />
+        <option value="$PROJECT_DIR$/Application/README.md" />
+        <option value="$PROJECT_DIR$/Application/Common/Conf/config.php" />
+        <option value="$PROJECT_DIR$/Application/Account/Controller/XsglledController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Account/View/Xsglled/index.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/WeixBuyset/AnalyticalRoomHot.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/WeixBuyled/led.html" />
+        <option value="$PROJECT_DIR$/Public/common/js/layer/layer.js" />
+        <option value="$PROJECT_DIR$/Application/Account/View/Xsglled/led.html" />
       </list>
     </option>
   </component>
@@ -268,46 +264,6 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Common" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Common" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Conf" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Account" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -356,7 +312,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Xsgllog" />
+              <option name="myItemId" value="Xsglled" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -382,7 +338,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Hxset" />
+              <option name="myItemId" value="WeixBuyset" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -408,7 +364,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Admission" />
+              <option name="myItemId" value="WeixBuyled" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -561,12 +517,12 @@
       <workItem from="1517188782999" duration="13666000" />
       <workItem from="1517276081075" duration="3623000" />
       <workItem from="1517283427468" duration="14032000" />
-      <workItem from="1517361233603" duration="8334000" />
+      <workItem from="1517361233603" duration="18204000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="166263000" />
+    <option name="totallyTimeSpent" value="176133000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1924" height="1056" extended-state="0" />
@@ -644,63 +600,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/YaoHsetController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="35" column="9" lean-forward="true" selection-start-line="30" selection-start-column="6" selection-end-line="35" selection-end-column="9" />
-          <folding>
-            <element signature="e#5404#8852#0#PHP" expanded="false" />
-            <element signature="e#8863#11656#0#PHP" expanded="false" />
-            <element signature="e#11666#14297#0#PHP" expanded="false" />
-            <element signature="e#14307#15591#0#PHP" expanded="false" />
-            <element signature="e#15597#18619#0#PHP" expanded="false" />
-            <element signature="e#18629#19728#0#PHP" expanded="false" />
-            <element signature="e#19734#20129#0#PHP" expanded="false" />
-            <element signature="e#20139#22679#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/Common/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-598">
-          <caret line="290" column="132" lean-forward="false" selection-start-line="290" selection-start-column="132" selection-end-line="290" selection-end-column="132" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/ChooseUser/edit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="3" column="42" lean-forward="false" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/ChooseUser/add.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="3" column="4" lean-forward="false" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/YaoHset/history_yaoh.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/YaoHset/yaoh.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2760">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Account/View/YaoHset/edit.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="69">
@@ -770,18 +669,7 @@
         <state relative-caret-position="-6624">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1513935582689" expanded="true" signature="33487:34298" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuyled/led.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3617">
-          <caret line="603" column="0" lean-forward="false" selection-start-line="603" selection-start-column="0" selection-end-line="603" selection-end-column="0" />
-          <folding>
-            <marker date="1516327874272" expanded="true" signature="24140:24154" ph="..." />
-            <marker date="1516327874272" expanded="true" signature="37509:38320" ph="..." />
+            <marker date="1517380615893" expanded="true" signature="33487:34298" ph="..." />
           </folding>
         </state>
       </provider>
@@ -791,27 +679,27 @@
         <state relative-caret-position="368">
           <caret line="38" column="9" lean-forward="false" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
           <folding>
-            <marker date="1517366452471" expanded="true" signature="4312:4406" ph="select build... xk_build" />
-            <marker date="1517366452471" expanded="true" signature="4888:5014" ph="select count... xk_roomlist" />
-            <marker date="1517366452471" expanded="true" signature="5964:6008" ph="select * fro... xk_event_order_house" />
-            <marker date="1517366452471" expanded="true" signature="7721:7852" ph="select * fro... xk_station2user" />
-            <marker date="1517366452471" expanded="true" signature="8181:8215" ph="select * fro... xk_project" />
-            <marker date="1517366452471" expanded="true" signature="8278:8409" ph="SELECT bld_i... xk_roomlist" />
-            <marker date="1517366452471" expanded="true" signature="8452:8578" ph="SELECT `bld_... xk_roomlist" />
-            <marker date="1517366452471" expanded="true" signature="8622:8785" ph="SELECT `bld_... xk_roomlist" />
-            <marker date="1517366452471" expanded="true" signature="8830:9009" ph="SELECT `bld_... xk_roomlist" />
-            <marker date="1517366452471" expanded="true" signature="9050:9211" ph="SELECT * FRO... xk_roomlist" />
-            <marker date="1517366452471" expanded="true" signature="9245:9457" ph="SELECT count... xk_roomlist" />
-            <marker date="1517366452471" expanded="true" signature="12130:12174" ph="select * fro... xk_event_order_house" />
-            <marker date="1517366452471" expanded="true" signature="13641:13772" ph="select * fro... xk_station2user" />
-            <marker date="1517366452471" expanded="true" signature="14053:14087" ph="select * fro... xk_project" />
-            <marker date="1517366452471" expanded="true" signature="14150:14275" ph="SELECT bld_i... xk_roomlist" />
-            <marker date="1517366452471" expanded="true" signature="14318:14437" ph="SELECT `bld_... xk_roomlist" />
-            <marker date="1517366452471" expanded="true" signature="14481:14610" ph="SELECT `bld_... xk_roomlist" />
-            <marker date="1517366452471" expanded="true" signature="14655:14826" ph="SELECT `bld_... xk_roomlist" />
-            <marker date="1517366452471" expanded="true" signature="14867:15028" ph="SELECT * FRO... xk_roomlist" />
-            <marker date="1517366452471" expanded="true" signature="15062:15252" ph="SELECT count... xk_roomlist" />
-            <marker date="1517366452471" expanded="true" signature="18349:18471" ph="select * fro... xk_roomlist" />
+            <marker date="1517380616196" expanded="true" signature="4312:4406" ph="select build... xk_build" />
+            <marker date="1517380616196" expanded="true" signature="4888:5014" ph="select count... xk_roomlist" />
+            <marker date="1517380616196" expanded="true" signature="5964:6008" ph="select * fro... xk_event_order_house" />
+            <marker date="1517380616196" expanded="true" signature="7721:7852" ph="select * fro... xk_station2user" />
+            <marker date="1517380616196" expanded="true" signature="8181:8215" ph="select * fro... xk_project" />
+            <marker date="1517380616196" expanded="true" signature="8278:8409" ph="SELECT bld_i... xk_roomlist" />
+            <marker date="1517380616196" expanded="true" signature="8452:8578" ph="SELECT `bld_... xk_roomlist" />
+            <marker date="1517380616196" expanded="true" signature="8622:8785" ph="SELECT `bld_... xk_roomlist" />
+            <marker date="1517380616196" expanded="true" signature="8830:9009" ph="SELECT `bld_... xk_roomlist" />
+            <marker date="1517380616196" expanded="true" signature="9050:9211" ph="SELECT * FRO... xk_roomlist" />
+            <marker date="1517380616196" expanded="true" signature="9245:9457" ph="SELECT count... xk_roomlist" />
+            <marker date="1517380616196" expanded="true" signature="12130:12174" ph="select * fro... xk_event_order_house" />
+            <marker date="1517380616196" expanded="true" signature="13641:13772" ph="select * fro... xk_station2user" />
+            <marker date="1517380616196" expanded="true" signature="14053:14087" ph="select * fro... xk_project" />
+            <marker date="1517380616196" expanded="true" signature="14150:14275" ph="SELECT bld_i... xk_roomlist" />
+            <marker date="1517380616196" expanded="true" signature="14318:14437" ph="SELECT `bld_... xk_roomlist" />
+            <marker date="1517380616196" expanded="true" signature="14481:14610" ph="SELECT `bld_... xk_roomlist" />
+            <marker date="1517380616196" expanded="true" signature="14655:14826" ph="SELECT `bld_... xk_roomlist" />
+            <marker date="1517380616196" expanded="true" signature="14867:15028" ph="SELECT * FRO... xk_roomlist" />
+            <marker date="1517380616196" expanded="true" signature="15062:15252" ph="SELECT count... xk_roomlist" />
+            <marker date="1517380616196" expanded="true" signature="18349:18471" ph="select * fro... xk_roomlist" />
           </folding>
         </state>
       </provider>
@@ -832,14 +720,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuyset/AnalyticalRoomHot.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="81" column="44" lean-forward="false" selection-start-line="81" selection-start-column="34" selection-end-line="81" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Account/Controller/WeixBuysetController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="621">
@@ -851,8 +731,8 @@
             <element signature="e#9790#12836#0#PHP" expanded="false" />
             <element signature="e#12841#15351#0#PHP" expanded="false" />
             <element signature="e#15357#15889#0#PHP" expanded="false" />
-            <marker date="1517367388005" expanded="true" signature="19600:21145" ph="SELECT choos... xk_choose" />
-            <marker date="1517367388005" expanded="true" signature="21765:22347" ph="SELECT choos... xk_choose" />
+            <marker date="1517380616200" expanded="true" signature="19600:21145" ph="SELECT choos... xk_choose" />
+            <marker date="1517380616200" expanded="true" signature="21765:22347" ph="SELECT choos... xk_choose" />
           </folding>
         </state>
       </provider>
@@ -890,32 +770,32 @@
             <element signature="e#4733#5079#0#PHP" expanded="false" />
             <element signature="e#5152#7292#0#PHP" expanded="false" />
             <element signature="e#14127#16722#0#PHP" expanded="false" />
-            <marker date="1517367991777" expanded="true" signature="2237:2580" ph="SELECT conca... xk_room" />
-            <marker date="1517367991777" expanded="true" signature="3512:3617" ph="SELECT a.* F... xk_room" />
-            <marker date="1517367991777" expanded="true" signature="3512:3626" ph="SELECT a.* F... xk_room" />
-            <marker date="1517367991777" expanded="true" signature="4007:4174" ph="SELECT a.*,b... xk_room" />
-            <marker date="1517367991777" expanded="true" signature="16982:17045" ph="SELECT a.* F... xk_project" />
-            <marker date="1517367991777" expanded="true" signature="17364:17461" ph="SELECT a.* F... xk_build" />
-            <marker date="1517367991777" expanded="true" signature="19141:19279" ph="update xk_ro... " />
-            <marker date="1517367991777" expanded="true" signature="19345:19504" ph="update xk_ro... " />
-            <marker date="1517367991777" expanded="true" signature="19578:19622" ph="SELECT a.* F... xk_roomtemp" />
-            <marker date="1517367991777" expanded="true" signature="19729:19840" ph="insert into xk_room... " />
-            <marker date="1517367991777" expanded="true" signature="19867:19994" ph="select proj_... " />
-            <marker date="1517367991777" expanded="true" signature="20086:20132" ph="SELECT a.* F... xk_roomtemp" />
-            <marker date="1517367991777" expanded="true" signature="20238:20446" ph="update xk_ro... " />
-            <marker date="1517367991777" expanded="true" signature="20844:20907" ph="SELECT a.* F... xk_project" />
-            <marker date="1517367991777" expanded="true" signature="21226:21323" ph="SELECT a.* F... xk_build" />
-            <marker date="1517367991777" expanded="true" signature="23007:23145" ph="update xk_ro... " />
-            <marker date="1517367991777" expanded="true" signature="23211:23389" ph="update xk_ro... " />
-            <marker date="1517367991777" expanded="true" signature="23462:23506" ph="SELECT a.* F... xk_roomtemp" />
-            <marker date="1517367991777" expanded="true" signature="23613:23715" ph="insert into xk_room... " />
-            <marker date="1517367991777" expanded="true" signature="23742:23860" ph="select proj_... " />
-            <marker date="1517367991777" expanded="true" signature="23952:23998" ph="SELECT a.* F... xk_roomtemp" />
-            <marker date="1517367991777" expanded="true" signature="24104:24290" ph="update xk_ro... " />
-            <marker date="1517367991777" expanded="true" signature="24767:24804" ph="SELECT a.* F... xk_room" />
-            <marker date="1517367991777" expanded="true" signature="24973:25014" ph="SELECT a.* F... xk_room" />
-            <marker date="1517367991777" expanded="true" signature="26506:26545" ph="SELECT bld_i... xk_room" />
-            <marker date="1517367991777" expanded="true" signature="26718:26759" ph="SELECT a.* F... xk_room" />
+            <marker date="1517380616165" expanded="true" signature="2237:2580" ph="SELECT conca... xk_room" />
+            <marker date="1517380616165" expanded="true" signature="3512:3617" ph="SELECT a.* F... xk_room" />
+            <marker date="1517380616165" expanded="true" signature="3512:3626" ph="SELECT a.* F... xk_room" />
+            <marker date="1517380616165" expanded="true" signature="4007:4174" ph="SELECT a.*,b... xk_room" />
+            <marker date="1517380616165" expanded="true" signature="16982:17045" ph="SELECT a.* F... xk_project" />
+            <marker date="1517380616165" expanded="true" signature="17364:17461" ph="SELECT a.* F... xk_build" />
+            <marker date="1517380616165" expanded="true" signature="19141:19279" ph="update xk_ro... " />
+            <marker date="1517380616165" expanded="true" signature="19345:19504" ph="update xk_ro... " />
+            <marker date="1517380616165" expanded="true" signature="19578:19622" ph="SELECT a.* F... xk_roomtemp" />
+            <marker date="1517380616165" expanded="true" signature="19729:19840" ph="insert into xk_room... " />
+            <marker date="1517380616165" expanded="true" signature="19867:19994" ph="select proj_... " />
+            <marker date="1517380616165" expanded="true" signature="20086:20132" ph="SELECT a.* F... xk_roomtemp" />
+            <marker date="1517380616165" expanded="true" signature="20238:20446" ph="update xk_ro... " />
+            <marker date="1517380616165" expanded="true" signature="20844:20907" ph="SELECT a.* F... xk_project" />
+            <marker date="1517380616165" expanded="true" signature="21226:21323" ph="SELECT a.* F... xk_build" />
+            <marker date="1517380616165" expanded="true" signature="23007:23145" ph="update xk_ro... " />
+            <marker date="1517380616165" expanded="true" signature="23211:23389" ph="update xk_ro... " />
+            <marker date="1517380616165" expanded="true" signature="23462:23506" ph="SELECT a.* F... xk_roomtemp" />
+            <marker date="1517380616165" expanded="true" signature="23613:23715" ph="insert into xk_room... " />
+            <marker date="1517380616165" expanded="true" signature="23742:23860" ph="select proj_... " />
+            <marker date="1517380616165" expanded="true" signature="23952:23998" ph="SELECT a.* F... xk_roomtemp" />
+            <marker date="1517380616165" expanded="true" signature="24104:24290" ph="update xk_ro... " />
+            <marker date="1517380616165" expanded="true" signature="24767:24804" ph="SELECT a.* F... xk_room" />
+            <marker date="1517380616165" expanded="true" signature="24973:25014" ph="SELECT a.* F... xk_room" />
+            <marker date="1517380616165" expanded="true" signature="26506:26545" ph="SELECT bld_i... xk_room" />
+            <marker date="1517380616165" expanded="true" signature="26718:26759" ph="SELECT a.* F... xk_room" />
           </folding>
         </state>
       </provider>
@@ -952,14 +832,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/ChooseUserController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="47" column="27" lean-forward="true" selection-start-line="45" selection-start-column="8" selection-end-line="50" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Account/View/Jcsjpcset/add.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="69">
@@ -984,9 +856,9 @@
             <element signature="n#div#2;n#div#0;n#div#1;n#block#1;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#2;n#block#1;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#3;n#block#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <marker date="1517368371264" expanded="true" signature="31129:31140" ph="..." />
-            <marker date="1517368371264" expanded="true" signature="31348:31403" ph="..." />
-            <marker date="1517368371264" expanded="true" signature="31729:31784" ph="..." />
+            <marker date="1517380615940" expanded="true" signature="31129:31140" ph="..." />
+            <marker date="1517380615940" expanded="true" signature="31348:31403" ph="..." />
+            <marker date="1517380615940" expanded="true" signature="31729:31784" ph="..." />
           </folding>
         </state>
       </provider>
@@ -996,11 +868,11 @@
         <state relative-caret-position="666">
           <caret line="42" column="36" lean-forward="false" selection-start-line="42" selection-start-column="36" selection-end-line="42" selection-end-column="36" />
           <folding>
-            <marker date="1517368413809" expanded="true" signature="2048:2180" ph="SELECT a.*,c... xk_kppc" />
-            <marker date="1517368413809" expanded="true" signature="2234:2327" ph="SELECT a.* F... xk_build" />
-            <marker date="1517368413809" expanded="true" signature="3394:3503" ph="SELECT a.* F... xk_build" />
-            <marker date="1517368413809" expanded="true" signature="4948:5168" ph="SELECT a.id,... xk_kppc" />
-            <marker date="1517368413809" expanded="true" signature="7073:7129" ph="SELECT * FRO... xk_build" />
+            <marker date="1517380616160" expanded="true" signature="2048:2180" ph="SELECT a.*,c... xk_kppc" />
+            <marker date="1517380616160" expanded="true" signature="2234:2327" ph="SELECT a.* F... xk_build" />
+            <marker date="1517380616160" expanded="true" signature="3394:3503" ph="SELECT a.* F... xk_build" />
+            <marker date="1517380616160" expanded="true" signature="4948:5168" ph="SELECT a.id,... xk_kppc" />
+            <marker date="1517380616160" expanded="true" signature="7073:7129" ph="SELECT * FRO... xk_build" />
           </folding>
         </state>
       </provider>
@@ -1034,12 +906,12 @@
         <state relative-caret-position="253">
           <caret line="11" column="42" lean-forward="false" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
           <folding>
-            <marker date="1517368525529" expanded="true" signature="25398:25411" ph="..." />
-            <marker date="1517368525529" expanded="true" signature="25580:25635" ph="..." />
-            <marker date="1517368525529" expanded="true" signature="28970:28980" ph="..." />
-            <marker date="1517368525529" expanded="true" signature="29176:29217" ph="..." />
-            <marker date="1517368525529" expanded="true" signature="29351:29392" ph="..." />
-            <marker date="1517368525529" expanded="true" signature="29526:29567" ph="..." />
+            <marker date="1517380615357" expanded="true" signature="25398:25411" ph="..." />
+            <marker date="1517380615357" expanded="true" signature="25580:25635" ph="..." />
+            <marker date="1517380615357" expanded="true" signature="28970:28980" ph="..." />
+            <marker date="1517380615357" expanded="true" signature="29176:29217" ph="..." />
+            <marker date="1517380615357" expanded="true" signature="29351:29392" ph="..." />
+            <marker date="1517380615357" expanded="true" signature="29526:29567" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1049,11 +921,11 @@
         <state relative-caret-position="253">
           <caret line="11" column="42" lean-forward="false" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
           <folding>
-            <marker date="1517368544668" expanded="true" signature="23758:23771" ph="..." />
-            <marker date="1517368544668" expanded="true" signature="23936:23991" ph="..." />
-            <marker date="1517368544668" expanded="true" signature="27956:27965" ph="..." />
-            <marker date="1517368544668" expanded="true" signature="28192:28216" ph="..." />
-            <marker date="1517368544668" expanded="true" signature="28351:28375" ph="..." />
+            <marker date="1517380615364" expanded="true" signature="23758:23771" ph="..." />
+            <marker date="1517380615364" expanded="true" signature="23936:23991" ph="..." />
+            <marker date="1517380615364" expanded="true" signature="27956:27965" ph="..." />
+            <marker date="1517380615364" expanded="true" signature="28192:28216" ph="..." />
+            <marker date="1517380615364" expanded="true" signature="28351:28375" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1079,7 +951,7 @@
         <state relative-caret-position="552">
           <caret line="99" column="85" lean-forward="false" selection-start-line="99" selection-start-column="85" selection-end-line="99" selection-end-column="85" />
           <folding>
-            <element signature="n#style#0;n#select#0;n#label#0;n#form#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#block#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#select#0;n#label#0;n#form#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#block#1;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1143,8 +1015,18 @@
           <folding>
             <element signature="n#style#0;n#select#0;n#label#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#2;n#block#1;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#2;n#block#1;n#!!top" expanded="true" />
-            <marker date="1517369697053" expanded="true" signature="1555:1569" ph="{...}" />
-            <marker date="1517369697053" expanded="true" signature="5822:5845" ph="..." />
+            <marker date="1517380616079" expanded="true" signature="1555:1569" ph="{...}" />
+            <marker date="1517380616079" expanded="true" signature="5822:5845" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/Hxset/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="394" column="107" lean-forward="false" selection-start-line="394" selection-start-column="107" selection-end-line="394" selection-end-column="107" />
+          <folding>
+            <element signature="n#style#0;n#block#1;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1159,13 +1041,115 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/Hxset/index.html">
+    <entry file="file://$PROJECT_DIR$/Application/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="4" lean-forward="true" selection-start-line="0" selection-start-column="4" selection-end-line="0" selection-end-column="4" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Common/Conf/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="46" column="17" lean-forward="false" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/ChooseUserController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="565">
+          <caret line="50" column="9" lean-forward="true" selection-start-line="45" selection-start-column="6" selection-end-line="50" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuyled/led.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6668">
+          <caret line="159" column="27" lean-forward="false" selection-start-line="159" selection-start-column="27" selection-end-line="159" selection-end-column="27" />
+          <folding>
+            <marker date="1517385809613" expanded="true" signature="24126:24140" ph="..." />
+            <marker date="1517385809613" expanded="true" signature="37495:38306" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Public/common/js/layer/layer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="426">
+          <caret line="132" column="53" lean-forward="false" selection-start-line="132" selection-start-column="52" selection-end-line="132" selection-end-column="53" />
+          <folding>
+            <marker date="1517390245537" expanded="true" signature="4986:5167" ph="..." />
+            <marker date="1517390245537" expanded="true" signature="5494:5545" ph="..." />
+            <marker date="1517390245537" expanded="true" signature="29354:29362" ph="..." />
+            <marker date="1517390245537" expanded="true" signature="30004:30012" ph="..." />
+            <marker date="1517390245537" expanded="true" signature="30012:30020" ph="..." />
+            <marker date="1517390245537" expanded="true" signature="30020:30028" ph="..." />
+            <marker date="1517390245537" expanded="true" signature="30028:30036" ph="..." />
+            <marker date="1517390245537" expanded="true" signature="30036:30044" ph="..." />
+            <marker date="1517390245537" expanded="true" signature="30044:30052" ph="..." />
+            <marker date="1517390245537" expanded="true" signature="30052:30060" ph="..." />
+            <marker date="1517390245537" expanded="true" signature="30060:30068" ph="..." />
+            <marker date="1517390245537" expanded="true" signature="30072:30080" ph="..." />
+            <marker date="1517390245537" expanded="true" signature="30080:30088" ph="..." />
+            <marker date="1517390245537" expanded="true" signature="30088:30096" ph="..." />
+            <marker date="1517390245537" expanded="true" signature="30096:30104" ph="..." />
+            <marker date="1517390245537" expanded="true" signature="30104:30112" ph="..." />
+            <marker date="1517390245537" expanded="true" signature="30112:30120" ph="..." />
+            <marker date="1517390245537" expanded="true" signature="30120:30128" ph="..." />
+            <marker date="1517390245537" expanded="true" signature="30128:30136" ph="..." />
+            <marker date="1517390245537" expanded="true" signature="30136:30144" ph="..." />
+            <marker date="1517390245537" expanded="true" signature="30144:30152" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/Xsglled/led.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="483">
-          <caret line="394" column="107" lean-forward="false" selection-start-line="394" selection-start-column="107" selection-end-line="394" selection-end-column="107" />
+          <caret line="340" column="30" lean-forward="false" selection-start-line="340" selection-start-column="30" selection-end-line="340" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuyset/AnalyticalRoomHot.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="24" column="64" lean-forward="false" selection-start-line="24" selection-start-column="64" selection-end-line="24" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/XsglledController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="736">
+          <caret line="32" column="14" lean-forward="true" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
           <folding>
-            <element signature="n#style#0;n#block#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <marker date="1517385200298" expanded="true" signature="3472:4116" ph="select a.*,p... xk_xsledset" />
+            <marker date="1517385200298" expanded="true" signature="4512:5260" ph="select a.*,p... xk_xsledset" />
+            <marker date="1517385200298" expanded="true" signature="7933:8040" ph="SELECT a.* F... xk_build" />
+            <marker date="1517385200298" expanded="true" signature="10703:10737" ph="select * fro... xk_project" />
+            <marker date="1517385200298" expanded="true" signature="10899:11004" ph="SELECT bld_i... xk_roomlist" />
+            <marker date="1517385200298" expanded="true" signature="11047:11148" ph="SELECT `bld_... xk_roomlist" />
+            <marker date="1517385200298" expanded="true" signature="11192:11330" ph="SELECT `bld_... xk_roomlist" />
+            <marker date="1517385200298" expanded="true" signature="11375:11526" ph="SELECT `bld_... xk_roomlist" />
+            <marker date="1517385200298" expanded="true" signature="11567:11699" ph="SELECT * FRO... xk_roomlist" />
+            <marker date="1517385200298" expanded="true" signature="11733:11916" ph="SELECT count... xk_roomlist" />
+            <marker date="1517385200298" expanded="true" signature="13858:14040" ph="SELECT a.* F... xk_roomlist" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/Xsglled/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-138">
+          <caret line="3" column="8" lean-forward="false" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>

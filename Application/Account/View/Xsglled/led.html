@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><{$seo_title}></title>
+        <meta name="keywords" content="LED销控表">
+        <meta name="description" content="LED销控表">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link href="/Public/common/css/base.css" type="text/css" rel="stylesheet">
+        <link href="/Public/xk/css/xk.css" type="text/css" rel="stylesheet">
+        <link href="/Public/xk/css/led.css" type="text/css" rel="stylesheet">
+        
+         <!--<link href="/Public/xk/css/cj/style.css" type="text/css" rel="stylesheet">
+         <link href="/Public/xk/css/cj/jquery.running.css" type="text/css" rel="stylesheet">-->
+
+        <script src="/Public/common/js/jquery/jquery-1.11.3.min.js"></script>
+        <script src="/Public/common/js/jquery/jquery-ui-1.12.0.custom/jquery-ui.js"></script>
+        <script src="/Public/common/js/jquery/jquery.mousewheel.js"></script>
+        <link href="/Public/common/js/jquery/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet">
+        <script src="/Public/common/js/jquery/perfect-scrollbar/perfect-scrollbar.js"></script>
+        <script src="/Public/common/js/layer/layer.js"></script>
+        <script src="/Public/common/js/pc/functions.js"></script>
+        <script src="/Public/common/js/functions.js"></script>
+        
+        <!--<script src="/Public/xk/js/cj/blower-loading.js"></script>
+        <script src="/Public/xk/js/cj/jquery.running.js"></script>-->
+        <script src="/Public/xk/js/cj/jquery.classyloader.min.js"></script>
+       
+
+        <script type="text/javascript">
+
+            var room_url = {
+                room_index: '/room/index.html',
+                room_info: '/room/room_info.html',
+                choose_room: '/room/choose_room.html',
+                not_choose_room: '/room/not_choose_room.html',
+                search_room: '/room/search_room.html',
+                search_room_name: '/room/search_room_name.html',
+                search_cst: '/room/search_cst.html',
+                get_oneroom: '/room/get_oneroom.html',
+            }
+        </script>
+        <style>
+            video{  
+                position: fixed;  
+                right: 0px;  
+                bottom: 0px;  
+                min-width: 100%;  
+                min-height: 100%;  
+                height: auto;  
+                width: auto;  
+                /*加滤镜*/  
+                /*-webkit-filter: grayscale(100%);*/  
+                /*filter:grayscale(100%);*/  
+            }  
+            source{  
+                min-width: 100%;  
+                min-height: 100%;  
+                height: auto;  
+                width: auto;  
+            }  
+            #djs-type-title
+            {
+                font-size: 18px;
+                font-weight: 500;
+                margin-left: 10px
+            }
+            .djs-time
+            {
+                font-size: 18px;
+                font-weight: 500;
+                color: red;
+            }
+            
+            .xsqhl{
+                position: absolute;
+                top: 5px;
+                left: 50%;
+                transform: translate(-40%, 0%);
+                font-size: 18px;
+                line-height: 45px;
+            }
+            .xsqhl span{
+                margin-left: 15px;
+                color:#FFF;
+            }
+           .td_floor1 {
+            padding: 0px 15px;
+            width:45px;
+            font-size: 100%;
+            border: 1px solid #fff;
+            color: #FFF;
+            text-align: center;
+            font-size: 80%;
+            font-weight: bold;
+        }
+        #qhldc{
+            position: absolute;
+            bottom: 0px;
+            width: 30px;
+            height:100%;
+            background: #fef5fd;
+            margin-left: 5px;
+            border-radius: 5px;
+        }
+        #qhlsc{
+            position: absolute;
+            bottom: 0px;
+            width: 30px;
+            height: 0px;
+            background: #ec5858;
+            border-radius: 5px;
+        }
+        #showtitle{
+            position: absolute;
+            bottom: -35px;
+            width: 30px;
+            margin-left: 6px;
+            line-height: 15px;
+            color: #FFF;
+            font-size: 14px;
+            font-family: "Microsoft YaHei";
+        }
+        #showyszb{
+            position: absolute;
+            top: -20px;
+            width: 30px;
+            font-size: 14px;
+            margin-left: 5px;
+            line-height: 15px;
+            text-align: center;
+            color: #FFF;
+        }
+        #showprojtitle
+        {
+            font-size: 40px;
+            color: #FFF;
+            font-weight: 700;
+            font-family: 宋体;
+            line-height: 25px;
+        }
+        #cjtotaldiv{
+            width: 100px;
+            height:100px;
+            line-height: 80px;
+            background: red;
+            border-radius: 50%;
+            text-align: center;
+            border:10px solid #FFF;
+        }
+        #wscountdiv{
+                line-height: 105px;
+                text-align: center;
+                position: absolute;
+                margin-top: 0px;
+                background: rgba(255, 255, 255, 0.75);
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+        }
+        .td_room{
+                padding: 0px;
+        }
+        #wscount{
+            font-weight: bold;font-size: 20px; color: red;
+        }
+        .djs-ul{
+            display: inline-block;width: 100%;text-align: center;
+        }
+        .djs-ul li{
+            height: 45px;line-height: 45px;margin: -5px 0 0 -10px;color: #FFF;
+        }
+        #divtable{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+        .divwxf {
+            width: 70px;
+            line-height: 30px;
+            text-align: center;
+            background-color: #fff;
+            font-size: 10px;
+            font-weight: 400;
+        }
+        .divyxf {
+             width: 70px;
+            line-height: 30px;
+            text-align: center;
+            background-color: #ff0000;
+            font-size: 10px;
+            font-weight: 400;
+        }
+        .r_in {width:130px; height:130px; background: rgba(255, 255, 255, 0.75);border:5px solid #fef5fd; border-radius:50%; -webkit-border-radius:50%; -moz-border-radius:50%; -ms_border-radius:50%; overflow:hidden; position:relative;}
+        .r_c {width:130px; height:130px; position:absolute; bottom:0; left:0; height:0;}
+        .c1 {background:#2feeca;}
+        .r_num {color:#ff0000;position:absolute; top:50%; margin-top:-30px; text-align:center; width:100%;}
+        
+        /*数字滚动插件的CSS可调整样式*/
+        .mt-number-animate{ 
+                font-family: 'FZYaoti' !important; 
+                font-weight: bold;
+                line-height:40px; 
+                height: 40px;/*设置数字显示高度*/; 
+                font-size: 20px;/*设置数字大小*/ 
+                overflow: hidden; display: inline-block; position: relative; 
+        }
+        .mt-number-animate .mt-number-animate-dot{ 
+                width: 14px;/*设置分割符宽度*/ 
+                line-height: 40px; float: left; 
+                text-align: center;
+        }
+        .mt-number-animate .mt-number-animate-dom{ 
+                width: 12px;/*设置单个数字宽度*/ 
+                text-align: center; float: left; position: relative; top: 0;
+        }
+        .mt-number-animate .mt-number-animate-dom .mt-number-animate-span{ width: 100%; float: left;font-family: 'FZYaoti' !important;}
+        .wssl{
+            float: right;
+            padding: 0 5px;
+            text-align: center;
+            width: 30px;
+            background: white;
+            margin-right: 10px;
+        }
+        .yssl{
+            float: right;
+            padding: 0 5px;
+            text-align: center;
+            width: 30px;
+            background: red;
+            color:white;
+            
+        }
+        </style>
+    </head>
+    <body style="background: #3e97eb; ">
+        <div>
+            <div style="width:100%;" id="roomdiv">
+                <div id="divtable">
+                    <div style="width:100%;text-align: center;color: #FFF;font-size: 20px;">天誉5区SOHO销控表</div>
+                    <div style="position: absolute;right: 22px;margin-top: 13px;"><div class="yssl">已售</div> <div  class="wssl">未售</div></div>
+                    <table style="border-collapse:separate;border-spacing:8px;" id="roomstable">
+                        <tr>
+                        <volist name="builds" id="builds_vo" key="builds_k">
+                            <td valign="top">
+                                <table style="margin-left: 5px;">
+                                    <tr>
+                                    <volist name="units" id="units_vo" key="units_k">
+                                        <if condition="$units_vo['bld_id'] eq $builds_vo['id']"> 
+                                            <td>	
+                                                <table style="border-collapse: collapse;border-spacing:2px;">
+                                                    <tr >
+                                                        <td style="text-align:center;border:1px solid #fff;color:#FFF;font-weight:bold;border:1px solid #fff;padding: 5px 0;font-size: 15px;">
+                                                            <!--<{$builds_vo['buildname']}><{$units_vo.unit|default=1}>单元--> 房号</td>
+                                                    </tr>
+                                                    <tr >
+                                                        <td style="border: 1px solid white;">
+                                                            <table style="border-collapse: separate;border-spacing:1px;">
+                                                                <volist name="floors" id="floors_vo" key="floors_k">
+                                                                    <if condition="$floors_vo['bld_id'] eq $builds_vo['id']">																		
+                                                                        <tr style="width:100%;"> 
+                                                                            <td class="td_floor1">
+                                                                                <{$floors_vo.floor|default=1}>F
+                                                                            </td>
+                                                                        <foreach name="nolist" item="nolist_vo">
+                                                                            <if condition="$nolist_vo['bld_id'] eq $builds_vo['id']">
+                                                                                <if condition="$nolist_vo['unit'] eq $units_vo['unit']">
+                                                                                    <td class="td_room">
+                                                                                    <php>$ii=0;</php>
+                                                                                    <for start="$ii" end="count($rooms)">
+                                                                                        <if condition="$rooms[$i]['bld_id'] eq $builds_vo['id']">	
+                                                                                            <if condition="$rooms[$i]['unit'] eq $units_vo['unit']">
+                                                                                                <if condition="$rooms[$i]['floor'] eq $floors_vo['floor']">
+                                                                                                    <if condition="$rooms[$i]['no'] eq $nolist_vo['no']">
+                                                                                                        <if condition="$rooms[$i]['is_xf'] eq 1">
+                                                                                                            <div id="roomid_<{$rooms[$i]['id']}>" roomid="<{$rooms[$i]['id']}>" total="<{$rooms[$i]['total']}>" class="divyxf" ydroom="<{$rooms[$i]['ydroom']}>">
+                                                                                                                <font style="font-size:90%;font-weight:bold"><{$rooms[$i].room}></font><br/>
+                                                                                                            </div>
+                                                                                                            <else />
+                                                                                                            <div id="roomid_<{$rooms[$i]['id']}>" roomid="<{$rooms[$i]['id']}>" total="<{$rooms[$i]['total']}>" class="divwxf" ydroom="<{$rooms[$i]['ydroom']}>">
+                                                                                                                <font style="font-size:90%;font-weight:bold"><{$rooms[$i].room}></font><br/>
+                                                                                                            </div>
+                                                                                                        </if>
+                                                                                                        <php>$ii++;break;</php>
+                                                                                                    </if>
+                                                                                                </if>
+                                                                                            </if>
+                                                                                        </if>
+                                                                                    </for>
+                                                                                    </td>
+                                                                                </if>
+                                                                            </if>
+                                                                        </foreach>
+                                                                        </td>
+                                                                        </tr>
+                                                                    </if>
+                                                                </volist>	
+                                                            </table>
+                                                        </td>
+                                                    </tr >
+                                                </table>
+                                            </td>
+                                        </if>
+                                    </volist>
+                                    </tr>
+                                </table>
+                            </td>
+                        </volist>
+                        </tr>
+                    </table>
+                    <div style=";text-align: center; color: #FFF;   font-size: 14px;font-family:'Microsoft YaHei';font-weight: bold;">Powered  by  云销控</div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+
+            var bldid = "<{$bldid}>";
+            var projid = "<{$projid}>";
+            function launchFullscreen(element) {
+//                console.log(element);
+                if(element.requestFullscreen) {
+                    element.requestFullscreen();
+                } else if(element.mozRequestFullScreen) {
+                    element.mozRequestFullScreen();
+                } else if(element.webkitRequestFullscreen) {
+                    element.webkitRequestFullscreen();
+                } else if(element.msRequestFullscreen) {
+                    element.msRequestFullscreen();
+                }
+            }
+            $(document).ready(function() {
+                layer.confirm('是否全屏显示？', {
+                    title:'温馨提示',
+                    btn: ['确认','取消'] //按钮
+                }, function(index){
+                    layer.close(index);
+                    launchFullscreen(document.documentElement);
+                }, function(){
+                });
+                setInterval("shownewrooms()", 3000); //定时刷最新房间信息
+            });
+            
+            //测试用
+            /*$("#divtable").click(function () {
+                    shownewrooms();
+            });*/
+            
+            //获取最新数据
+            function shownewrooms()
+            {
+
+                var $data = {
+                    projid: projid
+                };
+                var orderedRooms;
+                //ajax_post_callback('/account/WeixBuyled/getAllOrderedRooms', $data, function (data, status) {
+                ajax_post_callback('/account/Xsglled/get_gfrooms', $data, function (data, status) {
+                    orderedRooms = data.info[1];
+                    renderRoom(orderedRooms);
+                });
+            }
+            
+            function renderRoom(rooms)
+            {
+                //刷新房间状态
+                for(var i = rooms.length-1; i >= 0; i--){
+                    var $id=rooms[i].id;
+                    if($id===0)
+                    {
+                        continue;
+                    }
+                    if (rooms[i].is_xf>0)
+                    {
+                          $("#roomid_" + $id).removeClass("divwxf").addClass("divyxf");
+                    }
+                    else
+                    {
+                         $("#roomid_" + $id).addClass("divwxf").removeClass("divyxf");
+                    }
+                    
+                }
+            }
+            
+            function fmoney(s, n)  
+            {  
+               n = n > 0 && n <= 20 ? n : 2;  
+               s = parseFloat((s + "").replace(/[^\d\.-]/g, "")).toFixed(n) + "";//更改这里n数也可确定要保留的小数位  
+               var l = s.split(".")[0].split("").reverse(),  
+               r = s.split(".")[1];  
+               t = "";  
+               for(i = 0; i < l.length; i++ )  
+               {  
+                  t += l[i] + ((i + 1) % 3 == 0 && (i + 1) != l.length ? "," : "");  
+               }  
+               return t.split("").reverse().join("") + "." + r.substring(0,2);//保留2位小数  如果要改动 把substring 最后一位数改动就可  
+            }
+
+
+        </script>
+    </body>
+</html>

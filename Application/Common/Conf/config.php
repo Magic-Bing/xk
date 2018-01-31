@@ -61,6 +61,7 @@ return array(
         'Api',
         'Admin',
     ),
+    'DEFAULT_MODULE' => 'Home',
     //模块设置
     'DEFAULT_MODULE' => 'Home', // 默认模块
     'DEFAULT_CONTROLLER' => 'Index', // 默认控制器名称

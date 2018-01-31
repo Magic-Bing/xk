@@ -72,6 +72,13 @@
                 background: #791311;
                 color: #FFF;
             }
+            .spanshow{
+                line-height: 30px;
+                width: 80%;
+                margin-left: 10%;
+                background: #FFF;
+                margin-top: 7.5px;
+            }
             
         </style>
     </head>
@@ -132,15 +139,15 @@
                             <foreach name="cstlist" item="cstlist_vo">
                             <li class="cstli wxd" style="width:100%;display:flex;">
                                 <div  style="display:block;flex: 1;text-align: center;"><span class="rcno">第 <{$cstlist_vo.no}> 位</span></div>
-                                <div class="cstname" style="display:block;flex: 1;text-align: center;"><{$cstlist_vo.customer_name}></div>
+                                <div  style="display:block;flex: 1;text-align: center;"><div class="spanshow cstname" ><{$cstlist_vo.customer_name}></div></div>
                                 <if condition="$showcontent['hasphone'] eq 1"> 
-                                <div class="cstphone" style="display:block;flex: 1;text-align: center;"> <{:rsa_decode($cstlist_vo['customer_phone'],getChoosekey())}></div>
+                                <div  style="display:block;flex: 1;text-align: center;"> <div class="spanshow cstphone" ><{:rsa_decode($cstlist_vo['customer_phone'],getChoosekey())}></div></div>
                                 </if>
                                 <if  condition="$showcontent['hascyjno'] eq 1"> 
-                                <div class="cyjno" style="display:block;flex: 1;text-align: center;"><{$cstlist_vo.cyjno}></div>
+                                    <div  style="display:block;flex: 1;text-align: center;"><div class="spanshow cyjno" ><{$cstlist_vo.cyjno}></div></div>
                                 </if>
                                 <if  condition="$showcontent['hascard'] eq 1"> 
-                                <div class="cardno" style="display:block;flex: 1;text-align: center;"><{:rsa_decode($cstlist_vo['cardno'],getChoosekey())}></div>
+                                <div  style="display:block;flex: 1;text-align: center;"><div class="spanshow cardno" ><{:rsa_decode($cstlist_vo['cardno'],getChoosekey())}></div></div>
                                 </if>
                             </li>
                             </foreach>
