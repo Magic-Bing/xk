@@ -289,18 +289,13 @@ class XsglledController extends BaseController {
     public function led()
     {
         $userid=$this->get_user_id();
-        $bids=I('bldids', 0, 'intval');
-        $ids = str_replace(",","','",implode(",",$bids));
-        
-        
-        $project_id=I('project_id', 0, 'intval');
+        $bids=I('bldids', '', 'trim');
+        $project_id=I('pid', 0, 'intval');
         $projinfo=M()->query("select * from xk_project where id=". $project_id );
-        
         $where =" where 1=1 ";
-        $where.= " and bld_id in('{$bids}')";
-        
-        
+        $where.= " and bld_id in($bids)";
         $group_room_build = M()->query("SELECT bld_id,buildname,buildcode FROM xk_roomlist " . $where . "  GROUP BY bld_id ORDER BY bld_id,id asc");
+//        echo $str;exit;
         $group_room_unit = M()->query("SELECT `bld_id`,`unit` FROM `xk_roomlist` ". $where . "  GROUP BY bld_id, unit ORDER BY bld_id,id asc");
         $group_room_floor = M()->query("SELECT `bld_id`,`unit`,`floor` FROM `xk_roomlist` ". $where . "  GROUP BY bld_id, floor ORDER BY bld_id,cast(floor as SIGNED) desc,id DESC");
         $group_room_nolist = M()->query("SELECT `bld_id`,`unit`,`no` FROM `xk_roomlist` ". $where . "  GROUP BY bld_id, unit, no ORDER BY  bld_id,cast(unit as SIGNED),cast(no as SIGNED),id asc");
