@@ -43,6 +43,9 @@ class XsgllogController extends BaseController {
     public function update_zt(){
         $id=I("id",0,"intval");
         $zt=I("zt",0,"trim");
+        $pay=I("pay",'',"trim");
+        $proportion=I("proportion",0,"trim");
+        $money=I("money",0,"trim");
         $tm=strtotime(I("tm",0,"trim"));
         $res=M()->table("xk_trade")->where("id=$id")->select();
         M()->table("xk_trade")->where("id=$id")->save(['isyx'=>0]);
@@ -58,10 +61,25 @@ class XsgllogController extends BaseController {
         $data['createdbyid']=$res[0]['createdbyid'];
         $data['createdby']=$res[0]['createdby'];
         $data['old_id']=$id;
+        $data['proportion']=$proportion;
+        $data['pay']=$pay;
+        $data['money']=$money;
         $res=M()->table("xk_trade")->add($data);
         echo $res?"true":"false";
     }
-
+    //2018-2-5获取打印模板
+    public function get_print(){
+        $pid=I('pid',0,'intval');
+        $bid=I('bid',0,'intval');
+        echo json_encode(M()->table("xk_print")->where("proj_id=$pid AND pc_id=$bid")->select());
+    }
+    //显示打印页面
+    public function show_print(){
+        $name=I('name');
+        $arr=explode(".",$name);
+//        echo json_encode($arr);exit;
+        $this->display("Printing/".$arr[0]);
+    }
     /*=========================================end============================================*/
 
     /**

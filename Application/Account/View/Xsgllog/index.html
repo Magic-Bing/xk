@@ -105,35 +105,31 @@
 			<table id="sample-table-choose" class="table table-striped table-bordered table-hover dataTable">
 				<thead>
 					<tr>
-						<th class="center hidden-480">
-							<label>
-								<input type="checkbox" class="ace">
-								<span class="lbl"></span>
-							</label>
-						</th>
+						<!--<th class="center hidden-480">-->
+							<!--<label>-->
+								<!--<input type="checkbox" class="ace">-->
+								<!--<span class="lbl"></span>-->
+							<!--</label>-->
+						<!--</th>-->
 						<th class="hidden-480">项目</th>
                                                 <th class="hidden-480">房间</th>
 						<th>客户名称</th>
 						<th>
 							<i class="icon-phone bigger-110 hidden-480"></i>
 							客户手机
-						</th>
-						<!--<th>
-							<i class="icon-jpy bigger-110 hidden-480"></i>
-							诚意金金额(元)
-						</th>-->
-                                                <th>来源</th>
-                                                <th>交易状态</th>
-                                                <th class="hidden-480">
+					    </th>
+						<th>来源</th>
+						<th>交易信息</th>
+						<th>付款方式</th>
+						<th class="hidden-480">
 							<i class="icon-time bigger-110 hidden-480"></i>
 							交易时间
 						</th>
-                                                <th>置业顾问</th>
 						<th>
 							<i class="icon-jpy bigger-110 hidden-480"></i>
 							售价(元)
 						</th>
-						<th class="hidden-480">认购码</th>
+						<th>置业顾问</th>
 						<th>操作</th>
 					</tr>
 				</thead>
@@ -143,13 +139,13 @@
 
 
 					<volist name="tradelist" id="list_vo" key="list_key">
-						<tr class="choose-user-item choose-user-item-<{$choose_vo.id|default='0'}>">
-							<td class="center hidden-480">
-								<label>
-									<input type="checkbox" class="ace choose-user-item-id" data-id="<{$list_vo.id|default='0'}>">
-									<span class="lbl"></span>
-								</label>
-							</td>
+						<tr class="choose-user-item choose-user-item-<{$choose_vo.id|default='0'}>" data-id="<{$list_vo.id}>" data-pay="	<{$list_vo.pay|default=''}>" data-je="<{$list_vo['money']}>" data-bl="<{$list_vo['proportion']}>">
+							<!--<td class="center hidden-480">-->
+								<!--<label>-->
+									<!--<input type="checkbox" class="ace choose-user-item-id" data-id="<{$list_vo.id|default='0'}>">-->
+									<!--<span class="lbl"></span>-->
+								<!--</label>-->
+							<!--</td>-->
 							<td class="hidden-480">
 								<span>
 									<{$list_vo.project_name|default=''}>
@@ -166,30 +162,33 @@
                                                         <td class="hidden-480">
 								<if condition="$list_vo.status eq '签约'">
 									<span class="label label-sm label-success update_zt" style="cursor: pointer" data-id="<{$list_vo.id}>">签约</span>
-                                                                </if>
+								</if>
 								<if condition="$list_vo.status eq '认购'">
 									<span class="label label-sm label-warning update_zt" style="cursor: pointer" data-id="<{$list_vo.id}>">认购</span>
-                                                                </if>
-                                                                <if condition="$list_vo.status eq '选房'">
+                                </if>
+                                <if condition="$list_vo.status eq '选房'">
                                                                     <span class="label label-sm label-purple update_zt" style="cursor: pointer" data-id="<{$list_vo.id}>">选房</span>
 								</if>
 							</td>
-                                                        <td class="hidden-480">
+							<td>
+								<{$list_vo.pay}>（<{$list_vo.proportion}>%）
+							</td>
+                            <td class="hidden-480">
 								<if condition="!empty($list_vo['trade_time'])">
 									<{$list_vo.trade_time|date="Y-m-d H:i:s",###}>
 								</if>
 							</td>
-                                                        <td><{$list_vo.ywy|default=''}></td>
-							<td style="text-align:right;"><{:number_format($list_vo[total], 2)}></td>
-							
-							<td class="hidden-480"><{$list_vo.code|default=''}></td>
+							<td style="text-align:right;"><{:number_format($list_vo['total'], 2)}></td>
+							<td>
+								<{$list_vo.ywy|default=''}>
+							</td>
 							<td>
 								<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-									<!--<a href="<{:U('edit', 'id='.$choose_vo['id'])}>" class="btn btn-xs btn-info js-choose-user-edit-btn" title="修改">-->
-										<!--<i class="icon-edit bigger-120"></i>-->
-									<!--</a>-->
+									<span class="print-log" data-bid="<{$list_vo.pcid}>" data-pid="<{$list_vo.xmid}>" style="color: #fff;background-color: #2db5ee;padding: 3px 2px 4px 5px;cursor: pointer;margin-right: 1px">
+										打印
+									</span>
 									<if condition="$list_vo['isyx'] eq 1">
-									<button data-id="<{$list_vo.id}>" class="js-choose-user-circle-btn" title="作废" style="border-style: none;background-color: #ffb752;padding: 3px 7px">
+									<button data-id="<{$list_vo.id}>" class="js-choose-user-circle-btn" title="作废" style="border-style: none;background-color: #ffb752;padding: 3px 11px">
 										<i class="icon-ban-circle bigger-120" style="color: #FFF"> </i>
 									</button>
 										<else/>
@@ -197,42 +196,7 @@
 									</if>
 								</div>
 								
-								<!--<div class="visible-xs visible-sm hidden-md hidden-lg">-->
-									<!--<div class="inline position-relative">-->
-										<!--<button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown">-->
-											<!--<i class="icon-cog icon-only bigger-110"></i>-->
-										<!--</button>-->
 
-										<!--<ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">-->
-											<!--&lt;!&ndash;<li>&ndash;&gt;-->
-												<!--&lt;!&ndash;<a href="<{:U('edit', 'id='.$choose_vo['id'])}>" &ndash;&gt;-->
-													<!--&lt;!&ndash;class="tooltip-success js-choose-user-edit-btn"&ndash;&gt;-->
-													<!--&lt;!&ndash;data-rel="tooltip" &ndash;&gt;-->
-													<!--&lt;!&ndash;data-original-title="修改"&ndash;&gt;-->
-												<!--&lt;!&ndash;&gt;&ndash;&gt;-->
-													<!--&lt;!&ndash;<span class="green">&ndash;&gt;-->
-														<!--&lt;!&ndash;<i class="icon-edit bigger-120"></i>&ndash;&gt;-->
-													<!--&lt;!&ndash;</span>&ndash;&gt;-->
-												<!--&lt;!&ndash;</a>&ndash;&gt;-->
-											<!--&lt;!&ndash;</li>&ndash;&gt;-->
-
-											<!--<li>-->
-												<!--<a href="javascript:void(0);" class="tooltip-error js-choose-user-delete-btn"-->
-													<!--title="" -->
-													<!--data-id="<{$choose_vo.id}>"-->
-													<!--data-rel="tooltip" -->
-													<!--data-original-title="作废"-->
-												<!--&gt;-->
-													<!--<span class="red">-->
-														<!--<i class="icon-ban-circle bigger-120"></i>-->
-													<!--</span>-->
-												<!--</a>-->
-											<!--</li>-->
-
-										<!--</ul>-->
-
-									<!--</div>-->
-								<!--</div>	-->
 							</td>
 						</tr>
 					</volist>
@@ -241,21 +205,7 @@
 						<td colspan="13" class="center">暂时没有数据...</td>
 					</tr>
 				</if>
-					<!--<tr>
-						<td class="center hidden-480">
-							<div class="action-buttons">
-								
-							</div>
-						</td>
-						<td colspan="10">
-							<div class="pull-left">
-								<a href="<{:U('add')}>" class="btn btn-xs btn-pink js-choose-user-add">
-									<i class="icon-file bigger-110"></i>
-									<span class="bigger-110 no-text-shadow">新增交易</span>
-								</a>
-							</div>
-						</td>
-					</tr>-->
+
 				</tbody>
 
 			</table>
@@ -324,6 +274,7 @@
 <script type="text/javascript">
     var c_num="<{$p}>";
 	jQuery(function($) {
+//        document.execCommand('print');
         //分页跳转
         $(".pagination li").on("click",function () {
             var tx=$(this).attr("data-tx");
@@ -356,7 +307,7 @@
 
 		function tooltip_placement(context, source) {
 			var $source = $(source);
-			var $parent = $source.closest('table')
+			var $parent = $source.closest('table');
 			var off1 = $parent.offset();
 			var w1 = $parent.width();
 			var off2 = $source.offset();

@@ -126,6 +126,14 @@ class YwcsSetController extends BaseController {
                       $list['showinfo']['cs_value']=$karr;
                       $list['showinfo']['cs_id']=$bv['id'];
                       break; 
+                   case '选房时录入付款方式':
+                      $list['xftxpay']['cs_value']=$bv['cs_value'];
+                      $list['xftxpay']['cs_id']=$bv['id'];
+                      break; 
+                   case '付款方式必填':
+                      $list['paybt']['cs_value']=$bv['cs_value'];
+                      $list['paybt']['cs_id']=$bv['id'];
+                      break; 
                     }
                     break;
                 }

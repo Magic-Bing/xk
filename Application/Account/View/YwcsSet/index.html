@@ -26,9 +26,45 @@
             margin: 0 20px;
             margin: 0 20px 20px 20px;
          }
+         #csinfo{
+             margin-top: 15px;width:100%;
+         }
+         .kpms{
+             width: 90%;margin-left: 5%;margin-bottom: 10px;
+         }
+         .cstypediv{
+             width: 90%;margin: auto; border:1px solid #6fb3e0
+         }
+         .cstypetitle{
+            border-bottom:1px solid  #6fb3e0;
+            font-weight: 700;
+            width: 96%;
+            margin: 10px auto;
+            color: #428bca;
+            font-size:15px;
+         }
+         .lidiv{
+             width:94%;
+             margin-left: 3%;
+             margin-bottom: 10px;
+         }
+         .lidiv span,.kpms span{
+             font-weight: 700; padding:0 15px 0 0;
+         }
+         .lidiv label,.kpms label{
+             padding:0 20px 0 0px;
+             cursor: pointer;
+         }
+         .lidiv .content{
+         }
+         .remark{
+            font-size: 10px;
+            color: #CCC;
+            margin-top: -10px;
+         }
         </style>
         <div>
-            <div style="height:40px;line-height: 35px;border-bottom: 1px solid #e5e5e5;">
+            <div style="height:35px;line-height: 35px;border-bottom: 1px solid #e5e5e5;">
                 <span style="font-size: 14px;font-weight: 700;">批次分期级参数</span>
                 <form action="<{:U('/Account/YwcsSet/index')}>" method="get" id="form-b">
                     
@@ -70,48 +106,78 @@
                 </label> 
                 </form>
             </div>
-            <div style="margin-top: 15px;width:100%;" id="csinfo">
-                <div style="margin-left: 100px;margin-bottom: 10px;" data_setid="1" data_id="<{$list['kplx']['cs_id']|default=0}>">
-                    <span style="font-weight: 700; padding:0 5px;">开盘模式</span> 
-                    <label><input type="radio"  name="kplx" value="0" <if condition="$list['kplx']['cs_value'] eq 0"> checked='checked' </if> >电子开盘</label>
-                    <label><input type="radio"  name="kplx" value="1" <if condition="$list['kplx']['cs_value'] eq 1"> checked='checked' </if>>微信开盘</label>
+            <div id="csinfo">
+                <div class="kpms" data_setid="1" data_id="<{$list['kplx']['cs_id']|default=0}>">
+                    <span>开盘模式:</span> 
+                    <label><input type="radio"  name="kplx" value="0" <if condition="$list['kplx']['cs_value'] eq 0"> checked='checked' </if> > 电子开盘</label>
+                    <label><input type="radio"  name="kplx" value="1" <if condition="$list['kplx']['cs_value'] eq 1"> checked='checked' </if>> 微信开盘</label>
                 </div>
-                <div style="margin-left: 100px;margin-bottom: 20px;" data_setid="2" data_id="<{$list['zdqd']['cs_id']|default=0}>">
-                     <span style="font-weight: 700; padding:0 5px;">自动签到</span>  
-                    <label><input type="radio"  name="zdqd" value="0" <if condition="$list['zdqd']['cs_value'] eq 0"> checked='checked' </if> >是</label>
-                    <label><input type="radio"  name="zdqd" value="1" <if condition="$list['zdqd']['cs_value'] eq 1"> checked='checked' </if> >否</label>
-                </div>
-                <div style="margin-left: 100px;margin-bottom: 20px;" data_setid="3" data_id="<{$list['isyh']['cs_id']|default=0}>">
-                     <span style="font-weight: 700; padding:0 5px;">是否摇号</span> 
-                    <label><input type="radio"  name="isyh" value="0" <if condition="$list['isyh']['cs_value'] eq 0"> checked='checked' </if> >是</label>
-                    <label><input type="radio"  name="isyh" value="1" <if condition="$list['isyh']['cs_value'] eq 1"> checked='checked' </if> >否</label>
-                </div>
-                <div style="margin-left: 100px;margin-bottom: 20px;" data_setid="4" data_id="<{$list['zdrcsh']['cs_id']|default=0}>">
-                     <span style="font-weight: 700; padding:0 5px;">自动入场</span>  
-                    <label><input type="radio"  name="zdrcsh" value="0" <if condition="$list['zdrcsh']['cs_value'] eq 0"> checked='checked' </if> >是</label>
-                    <label><input type="radio"  name="zdrcsh" value="1" <if condition="$list['zdrcsh']['cs_value'] eq 1"> checked='checked' </if> >否</label>
-                </div>
-                <div style="margin-left: 100px;margin-bottom: 20px;" data_setid="5" data_id="<{$list['showinfo']['cs_id']|default=0}>">
-                    <span style="font-weight: 700; padding:0 5px;">快速选房显示信息</span>  
-                    <if condition="empty($list['showinfo'])" >
-                        <volist name="xfinfolist" id="xfinfolist_vo" key="xfinfolist_k">
-                            <if condition="$xfinfolist_k lt 4">
-                            <label style="margin-left: 10px;"><input name='showinfo' type="checkbox" value="<{$xfinfolist_vo}>" checked='checked' ><{$xfinfolist_vo}></label> 
-                            <else/>
-                            <label style="margin-left: 10px;"><input name='showinfo' type="checkbox" value="<{$xfinfolist_vo}>" ><{$xfinfolist_vo}></label> 
-                            </if>
-                        </volist>
-                    <else />
-                        <volist name="xfinfolist" id="xfinfolist_vo" key="xfinfolist_k">
-                            <if condition="in_array($xfinfolist_vo,$list['showinfo']['cs_value'])">  
-                                <label style="margin-left: 10px;"><input name='showinfo' type="checkbox" value="<{$xfinfolist_vo}>" checked='checked' ><{$xfinfolist_vo}></label> 
+                <div class="cstypediv dzkp">
+                    <div  class ="cstypetitle">◆ 电子开盘参数</div>
+                    <div class="lidiv" data_setid="2" data_id="<{$list['zdqd']['cs_id']|default=0}>">
+                        <div class="content">
+                            <span>自动签到:</span>  
+                            <label><input type="radio"  name="zdqd" value="0" <if condition="$list['zdqd']['cs_value'] eq 0"> checked='checked' </if> > 是</label>
+                            <label><input type="radio"  name="zdqd" value="1" <if condition="$list['zdqd']['cs_value'] eq 1"> checked='checked' </if> > 否</label>
+                        </div>
+                        <div class="remark"><label>[控制刷身份证是否自动签到]<label></div>
+                    </div>
+                    <div class="lidiv" data_setid="3" data_id="<{$list['isyh']['cs_id']|default=0}>">
+                        <div class="content">
+                            <span>是否摇号:</span> 
+                            <label><input type="radio"  name="isyh" value="0" <if condition="$list['isyh']['cs_value'] eq 0"> checked='checked' </if> > 是</label>
+                            <label><input type="radio"  name="isyh" value="1" <if condition="$list['isyh']['cs_value'] eq 1"> checked='checked' </if> > 否</label>
+                        </div>
+                        <div class="remark"><label>[控制是否开启摇号入场]<label></div>
+                    </div>
+                    <div class="lidiv"  data_setid="4" data_id="<{$list['zdrcsh']['cs_id']|default=0}>">
+                        <div class="content">
+                            <span>自动入场:</span>  
+                            <label><input type="radio"  name="zdrcsh" value="0" <if condition="$list['zdrcsh']['cs_value'] eq 0"> checked='checked' </if> > 是</label>
+                            <label><input type="radio"  name="zdrcsh" value="1" <if condition="$list['zdrcsh']['cs_value'] eq 1"> checked='checked' </if> > 否</label>
+                        </div>
+                         <div class="remark"><label>[控制刷身份证是否自动入场]<label></div>
+                    </div>
+                    <div class="lidiv"  data_setid="5" data_id="<{$list['showinfo']['cs_id']|default=0}>">
+                        <div class="content">
+                            <span >快速选房显示信息:</span>  
+                            <if condition="empty($list['showinfo'])" >
+                                <volist name="xfinfolist" id="xfinfolist_vo" key="xfinfolist_k">
+                                    <if condition="$xfinfolist_k lt 4">
+                                    <label style="margin-left: 10px;"><input name='showinfo' type="checkbox" class="showinfo" value="<{$xfinfolist_vo}>" checked='checked' > <{$xfinfolist_vo}></label> 
+                                    <else/>
+                                    <label style="margin-left: 10px;"><input name='showinfo' type="checkbox" class="showinfo" value="<{$xfinfolist_vo}>" > <{$xfinfolist_vo}></label> 
+                                    </if>
+                                </volist>
                             <else />
-                                <label kkk="<{$list['showinfo'].cs_value}>" style="margin-left: 10px;"><input name='showinfo' type="checkbox" value="<{$xfinfolist_vo}>" ><{$xfinfolist_vo}></label> 
-                            </if> 
-                        </volist>
-                    </if>
-                </div> 
-                <hr>
+                                <volist name="xfinfolist" id="xfinfolist_vo" key="xfinfolist_k">
+                                    <if condition="in_array($xfinfolist_vo,$list['showinfo']['cs_value'])">  
+                                        <label style="margin-left: 10px;"><input name='showinfo' type="checkbox" class="showinfo" value="<{$xfinfolist_vo}>" checked='checked' > <{$xfinfolist_vo}></label> 
+                                    <else />
+                                        <label kkk="<{$list['showinfo'].cs_value}>" style="margin-left: 10px;"><input name='showinfo' type="checkbox" class="showinfo" value="<{$xfinfolist_vo}>" > <{$xfinfolist_vo}></label> 
+                                    </if> 
+                                </volist>
+                            </if>
+                        </div>
+                    </div>
+                    <div class="lidiv"  data_setid="6" data_id="<{$list['xftxpay']['cs_id']|default=0}>">
+                        <div class="content">
+                            <span>选房填写付款方式:</span>  
+                            <label><input type="radio"  name="xftxpay" value="0" <if condition="$list['xftxpay']['cs_value'] eq 0"> checked='checked' </if> > 是</label>
+                            <label><input type="radio"  name="xftxpay" value="1" <if condition="$list['xftxpay']['cs_value'] eq 1"> checked='checked' </if> > 否</label>
+                        </div>
+                        <div class="remark"><label>[快速选房时是否需要填写付款方式]<label></div>
+                    </div>
+                    <div class="lidiv"  data_setid="7" data_id="<{$list['paybt']['cs_id']|default=0}>">
+                        <div class="content">
+                            <span>付款方式必填:</span>  
+                            <label><input type="radio"  name="paybt" value="0" <if condition="$list['paybt']['cs_value'] eq 0"> checked='checked' </if> > 是</label>
+                            <label><input type="radio"  name="paybt" value="1" <if condition="$list['paybt']['cs_value'] eq 1"> checked='checked' </if> > 否</label>
+                        </div>
+                        <div class="remark"><label>[控制打印认购书或交易录入时,付款方式是否必填]<label></div>
+                    </div>
+                </div>
+                <hr style="border-top: 1px solid #e5e5e5;">
                 <button  id="update-mk" pid="<{$search_project_id}>" bid="<{$search_batch_id}>">保存</button>
             </div>
         </div>
@@ -123,6 +189,24 @@
             });
             $(".ywcs_batch_id").on('change', function() {
                 $("#form-b").submit();
+            });
+            
+            $(".showinfo").on("click",function () {
+                var list=$("#csinfo").find(".showinfo");
+                var yxz=0;
+                for(var i=0;i<list.length;i++)
+                {
+                    if(list.eq(i).prop("checked"))
+                    {
+                        yxz++;
+                    }
+                    if(yxz>3)
+                    {
+                        layer_alert("只能勾选3个快速选房显示信息");
+                        list.eq(i).prop("checked",false);
+                        break;
+                    }                    
+                }
             });
             
             $("#update-mk").on("click",function () {

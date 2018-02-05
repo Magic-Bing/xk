@@ -132,7 +132,10 @@
         {
             font-weight:700;
         }  
- 
+        #build_q li
+        {
+            display: inline-block;
+        }
     </style>
 </block>
 <block name="header_js_add">
@@ -319,10 +322,10 @@
                             <ul class="allproject_ul">
                             </ul>
                         </div>
-                        <div style="height:45px;margin-top: 5px;float: left;width: 151px;max-width: 151px;line-height: 45px;text-align: center"><!--修改标记-->
-                             <!--<div style="width: 80%;height: 100%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;color: #FFF;text-align: left;padding-left: 5px;cursor: pointer;"  id="show_build" on="0">
+                        <div style="height:45px;margin-top: 5px;float: left;width: 162px;max-width: 162px;line-height: 45px;text-align: center;background: #f39900;margin-left: 3px;"><!--修改标记-->
+                             <div style="width: 85%;height: 100%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;color: #FFF;text-align: left;padding-left: 5px;cursor: pointer;"  id="show_build" on="0">
                                 <volist name="rooms" id="rooms_vo" key="rooms_k">
-                                            <span style="margin-left: 5px">
+                                            <span style="margin-left: 3px;padding:2px 3px;background: #a764a7;" >
                                                 <if condition="isset($builds[$rooms_vo['build_id']])">
                                                 <{$builds[$rooms_vo['build_id']]['buildname']|default=1}>
                                                 <else/>
@@ -331,9 +334,16 @@
                                             </span>
                                 </volist>
                             </div>
-                           <span style="position: absolute;left:282px;margin-top: -45px;z-index: 99999;color: #FFF;cursor: pointer;" class="show_divselect">▼</span>-->
-                            <div style="position: absolute;width: 158px;background-color: #FFF;line-height: normal;height: auto;padding-top: 5px;display: block;z-index:10 ;margin-left: 5px;border: 1px solid rgba(184, 184, 184, 0.62);" id="ld_div">
+                           <span style="float:right;margin-right: 5px;margin-top: -45px;z-index: 99999;color: #FFF;cursor: pointer;" class="show_divselect">▼</span>
+                            <div style="position: absolute;width: 158px;background-color: #FFF;line-height: normal;height: auto;padding-top: 5px;display: none;z-index:10 ;margin-left: 2px;border: 1px solid rgba(184, 184, 184, 0.62);" id="ld_div">
                                 <ul class="clearfix" style="width:156px;margin-left: 3px;margin-top: -7px" id="build_q">
+                                    <li class="fl  select-build-list-li-select" id="selectall" data-build-id="-999" style="height: 45px;line-height: 45px;width: 52px;">
+                                            <span class="fl bspan span-build-list-name-selected" id="span_build_id_-999" style="">
+                                                    <if condition="isset($builds[$rooms_vo['build_id']])">
+                                                    全部
+                                                    </if>
+                                            </span>
+                                    </li>
                                     <volist name="rooms" id="rooms_vo" key="rooms_k">
                                         <li class="fl  select-build-list-li-select" id="bli_<{$rooms_vo['build_id']}>"
                                             data-build-id="<{$rooms_vo['build_id']}>"
@@ -347,13 +357,7 @@
                                                     </span>
                                         </li>
                                     </volist>
-                                    <li class="fl  select-build-list-li-select" id="selectall" data-build-id="-999" style="height: 45px;line-height: 45px;width: 48px;">
-                                            <span class="fl bspan span-build-list-name-selected" id="span_build_id_-999" style="">
-                                                    <if condition="isset($builds[$rooms_vo['build_id']])">
-                                                    全部
-                                                    </if>
-                                            </span>
-                                    </li>
+                                   
                                 </ul>
                             </div>
                         </div>
