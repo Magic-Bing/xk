@@ -362,11 +362,13 @@
                                             <td style="padding-right:0">
                                                 <table  class="w_tab">
                                                     <tr >
-                                                        <td style="text-align:center;border:1px solid #fff;color:#FFF;font-weight:bold;height: 20px">
-                                                            <{$builds_vo['buildname']}><{$units_vo.unit|default=1}>单元</td>
+                                                        <td style="height: 20px">
+                                                            <div style="width: calc(100% - 4px);margin-left: 1px;height:auto;text-align:center;border:1px solid #fff;color:#FFF;font-weight:bold;">
+                                                                <{$builds_vo['buildname']}><{$units_vo.unit|default=1}>单元
+                                                            </div>
                                                     </tr>
                                                     <tr >
-                                                        <td style="border: 1px solid white;">
+                                                        <td>
                                                             <table  style="border-collapse: separate;border-spacing:1px;">
                                                                 <volist name="floors" id="floors_vo" key="floors_k">
                                                                     <if condition="$floors_vo['bld_id'] eq $builds_vo['id']">																		
@@ -475,8 +477,27 @@
             var loader=null;
             var numRun=null;
             var isend=null;
-
+            function launchFullscreen(element) {
+            //                console.log(element);
+                if(element.requestFullscreen) {
+                    element.requestFullscreen();
+                } else if(element.mozRequestFullScreen) {
+                    element.mozRequestFullScreen();
+                } else if(element.webkitRequestFullscreen) {
+                    element.webkitRequestFullscreen();
+                } else if(element.msRequestFullscreen) {
+                    element.msRequestFullscreen();
+                }
+            }
             $(document).ready(function() {
+//                layer.confirm('是否全屏显示？', {
+//                    title:'温馨提示',
+//                    btn: ['确认','取消'] //按钮
+//                }, function(index){
+//                    layer.close(index);
+//                    launchFullscreen(document.documentElement);
+//                }, function(){
+//                });
                 //调整TD的大小
                 var tab=$(".w_tab table");
 //                var t_height=1000;

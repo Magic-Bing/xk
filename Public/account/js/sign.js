@@ -2,6 +2,13 @@
  * Created by Administrator on 2018/1/22 0022.
  */
 var num=1;
+function user_ajax() {
+    var tr=$("#sample-table-choose .user-tr");
+    if(tr.length === 1){
+        tr.trigger('click');
+    }
+    // console.log(tr.length);
+}
 //分页公用方法
 function pageNum(txt,num) {
     // alert(txt);
@@ -165,13 +172,7 @@ $(function () {
     /*====================END=====================*/
     /*====================公用=====================*/
     //当用列表被ajax赋值后调用
-    function user_ajax() {
-        var tr=$("#sample-table-choose .user-tr");
-        if(tr.length === 1){
-            tr.trigger('click');
-        }
-        // console.log(tr.length);
-    }
+
     //tr的点击事件
     $(document).on("click",".user-tr",function (event) {
         event.stopPropagation();

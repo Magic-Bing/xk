@@ -92,6 +92,35 @@
     </form>
 </block>
 <block name="page_content">
+    <OBJECT ID="CVR_IDCard"  name="CVR_IDCard" CLASSID="CLSID:10946843-7507-44FE-ACE8-2B3483D179B7" width="0" height="0"></OBJECT>
+    <script type="text/javascript">
+
+        var iPort = CVR_IDCard.InitCommExt();
+        if (0 == iPort)
+        {
+            alert("连接设备失败");
+        }
+        var bRet = CVR_IDCard.BeginReadCard();
+        if (!bRet)
+        {
+            alert("启动读卡失败");
+        }
+    </script>
+    <script language="Javascript" event="OnReadCardInfo()" for="CVR_IDCard">
+        var zt=$("#sign-zt").text();
+        var CardNo = CVR_IDCard.CardNo();
+        $("#search-one").val(CardNo);
+        var pid=$('#project-not-sign').val();
+        var bid=$('#batch-one').val();
+        num=1;
+        var row=$('#new_rows').val();
+        $.post(sign.user_list,{pid:pid,bid:bid,search:CardNo,num:row,zt:zt},function (data) {
+            $("#user_list").html(data);
+            user_ajax();
+        });
+    </script>
+
+
     <span id="sign-zt" style="display: none"><{$zt}></span>
     <div class="col-sm-8 js-height" style="border: 1px solid #e8eef6;height: auto!important;">
         <div class="table-header" style="margin-top: 10px"  >
@@ -250,6 +279,7 @@
 </block>
 
 <block name="page_js">
+
     <script>
 
         $(function () {

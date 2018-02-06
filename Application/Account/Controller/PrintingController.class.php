@@ -130,7 +130,7 @@ class PrintingController extends  BaseController
 
         $str='<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"></head><body>';
         $str.=html_entity_decode($html);
-        $str.='</body></html>';
+        $str.='</body><script >window.print();</script></html>';
         $filename=time()."-mb.html";
         if($prid===0){
             if( ($new_file=fopen("Application/Account/View/Printing/".$filename,"w+")) === false){

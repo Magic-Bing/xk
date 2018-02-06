@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost_3306
+Source Server         : pp
 Source Server Version : 50553
 Source Host           : localhost:3306
-Source Database       : xk_hnhl
+Source Database       : beat_xk
 
 Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-01-31 15:43:40
+Date: 2018-02-06 09:47:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -71,7 +71,7 @@ CREATE TABLE `xk_build` (
 -- ----------------------------
 INSERT INTO `xk_build` VALUES ('1', '1', '1', 'LOFT', '0', '0');
 INSERT INTO `xk_build` VALUES ('2', '1', '1', 'SOHO', '0', '0');
-INSERT INTO `xk_build` VALUES ('3', '1', '1', '1栋', '1', '0');
+INSERT INTO `xk_build` VALUES ('3', '0', '1', '1栋', '1', '0');
 INSERT INTO `xk_build` VALUES ('4', '2', '2', '104栋', '104', '0');
 INSERT INTO `xk_build` VALUES ('14', '2', '2', '2栋', '2', '0');
 INSERT INTO `xk_build` VALUES ('7', '2', '2', '3栋', '3', '0');
@@ -422,6 +422,7 @@ INSERT INTO `xk_fun` VALUES ('41', '房间导入', '4', '1', '1', 'Jcsjroom/room
 INSERT INTO `xk_fun` VALUES ('42', '批次设置', '4', '1', '3', 'Jcsjpcset/index', null, null, '1', '0');
 INSERT INTO `xk_fun` VALUES ('43', '户型设置', '4', '1', '2', 'Hxset/index', null, null, '1', '0');
 INSERT INTO `xk_fun` VALUES ('44', '参数设置', '4', '1', '4', 'YwcsSet/index', null, null, '1', '0');
+INSERT INTO `xk_fun` VALUES ('45', '套打设置', '4', '1', '5', 'Printing/index', null, null, '1', '0');
 INSERT INTO `xk_fun` VALUES ('51', '用户资料设置', '5', '1', '1', 'Yhqxuser/index', null, null, '1', '0');
 INSERT INTO `xk_fun` VALUES ('52', '岗位用户管理', '5', '1', '2', 'Yhqxstation/index', null, null, '1', '0');
 INSERT INTO `xk_fun` VALUES ('53', '岗位数据权限', '5', '1', '3', 'Yhqxproj/index', null, null, '1', '0');
@@ -748,6 +749,25 @@ INSERT INTO `xk_order_house_phone_login` VALUES ('315', '2', 'M!T6g338OWDfIgwhOM
 INSERT INTO `xk_order_house_phone_login` VALUES ('316', '2', 'M!T6g318OWDfMgyhMMj*kL2MzIO0O0O', '6', '127.0.0.1', '1516785594', null);
 INSERT INTO `xk_order_house_phone_login` VALUES ('317', '2', 'M!T6g338OWDfIgwhOMD*gLwODUO0O0O', '6', '192.168.2.100', '1517305729', null);
 INSERT INTO `xk_order_house_phone_login` VALUES ('318', '2', 'M!T6g338OWDfIgwhOMD*gLwODUO0O0O', '6', '192.168.2.102', '1517306031', null);
+
+-- ----------------------------
+-- Table structure for `xk_print`
+-- ----------------------------
+DROP TABLE IF EXISTS `xk_print`;
+CREATE TABLE `xk_print` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pc_id` int(11) NOT NULL COMMENT '批次id',
+  `proj_id` int(11) NOT NULL COMMENT '项目id',
+  `name` varchar(50) NOT NULL COMMENT '中文别名',
+  `html_url` varchar(50) NOT NULL COMMENT 'html路径',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of xk_print
+-- ----------------------------
+INSERT INTO `xk_print` VALUES ('1', '2', '2', '欧城一批次模板', '1517880411-mb.html');
+INSERT INTO `xk_print` VALUES ('3', '2', '2', '欧城一批次two', '1517881074-mb.html');
 
 -- ----------------------------
 -- Table structure for `xk_prizes`
@@ -1287,7 +1307,7 @@ INSERT INTO `xk_room` VALUES ('274', '1', '0', '1', '1', '1', '14', '12', '1412'
 INSERT INTO `xk_room` VALUES ('275', '1', '0', '1', '1', '1', '15', '12', '1512', null, '41.87', '41.87', '0.00', '0.00', '0.00', '0', null, '0', null, '0', null, '0', null, '0.00');
 INSERT INTO `xk_room` VALUES ('276', '1', '0', '1', '1', '1', '16', '12', '1612', null, '41.87', '41.87', '0.00', '0.00', '0.00', '0', null, '0', null, '0', null, '0', null, '0.00');
 INSERT INTO `xk_room` VALUES ('277', '1', '0', '1', '1', '1', '17', '12', '1712', null, '41.87', '41.87', '0.00', '0.00', '0.00', '0', null, '0', null, '0', null, '0', null, '0.00');
-INSERT INTO `xk_room` VALUES ('278', '1', '0', '1', '1', '1', '18', '12', '1812', null, '41.87', '41.87', '0.00', '0.00', '0.00', '0', null, '0', null, '0', null, '0', null, '0.00');
+INSERT INTO `xk_room` VALUES ('278', '1', '0', '1', '1', '1', '18', '12', '1812', null, '41.87', '41.87', '0.00', '0.00', '0.00', '0', '0', '0', '', '1', '1517392359', '0', null, '0.00');
 INSERT INTO `xk_room` VALUES ('279', '1', '0', '1', '1', '1', '19', '12', '1912', null, '41.87', '41.87', '0.00', '0.00', '0.00', '0', null, '0', null, '0', null, '0', null, '0.00');
 INSERT INTO `xk_room` VALUES ('280', '1', '0', '1', '1', '1', '21', '12', '2112', null, '41.85', '41.85', '0.00', '0.00', '0.00', '0', null, '0', null, '0', null, '0', null, '0.00');
 INSERT INTO `xk_room` VALUES ('281', '1', '0', '1', '1', '1', '22', '12', '2212', null, '41.85', '41.85', '0.00', '0.00', '0.00', '0', null, '0', null, '0', null, '0', null, '0.00');
@@ -1313,7 +1333,7 @@ INSERT INTO `xk_room` VALUES ('300', '1', '0', '1', '1', '1', '16', '13', '1613'
 INSERT INTO `xk_room` VALUES ('301', '1', '0', '1', '1', '1', '17', '13', '1713', null, '41.87', '41.87', '0.00', '0.00', '0.00', '0', null, '0', null, '0', null, '0', null, '0.00');
 INSERT INTO `xk_room` VALUES ('302', '1', '0', '1', '1', '1', '18', '13', '1813', null, '41.87', '41.87', '0.00', '0.00', '0.00', '0', null, '0', null, '0', null, '0', null, '0.00');
 INSERT INTO `xk_room` VALUES ('303', '1', '0', '1', '1', '1', '19', '13', '1913', null, '41.87', '41.87', '0.00', '0.00', '0.00', '0', null, '0', null, '0', null, '0', null, '0.00');
-INSERT INTO `xk_room` VALUES ('304', '1', '0', '1', '1', '1', '21', '13', '2113', null, '41.85', '41.85', '0.00', '0.00', '0.00', '0', null, '0', null, '0', null, '0', null, '0.00');
+INSERT INTO `xk_room` VALUES ('304', '1', '0', '1', '1', '1', '21', '13', '2113', null, '41.85', '41.85', '0.00', '0.00', '0.00', '0', '0', '0', '', '1', '1517392539', '0', null, '0.00');
 INSERT INTO `xk_room` VALUES ('305', '1', '0', '1', '1', '1', '22', '13', '2213', null, '41.85', '41.85', '0.00', '0.00', '0.00', '0', null, '0', null, '0', null, '0', null, '0.00');
 INSERT INTO `xk_room` VALUES ('306', '1', '0', '1', '1', '1', '23', '13', '2313', null, '41.85', '41.85', '0.00', '0.00', '0.00', '0', null, '0', null, '0', null, '0', null, '0.00');
 INSERT INTO `xk_room` VALUES ('307', '1', '0', '1', '1', '1', '24', '13', '2413', null, '41.85', '41.85', '0.00', '0.00', '0.00', '0', null, '0', null, '0', null, '0', null, '0.00');
@@ -2030,7 +2050,7 @@ INSERT INTO `xk_room` VALUES ('1017', '3', '0', '1', '1', '1', '1', '4', '104', 
 INSERT INTO `xk_room` VALUES ('1018', '3', '0', '1', '1', '1', '2', '1', '201', 'A1', '94.00', '80.00', '8100.00', '11500.00', '761400.00', '0', null, '0', null, '0', null, '0', null, '0.00');
 INSERT INTO `xk_room` VALUES ('1019', '3', '0', '1', '1', '1', '2', '2', '202 ', 'A2', '95.00', '80.00', '8100.00', '11500.00', '769500.00', '0', null, '0', null, '0', null, '0', '18000000002', '0.00');
 INSERT INTO `xk_room` VALUES ('1020', '3', '0', '1', '1', '1', '2', '3', '203', 'A2', '96.00', '80.00', '8100.00', '11500.00', '777600.00', '0', null, '0', null, '0', null, '0', '18000000001', '0.00');
-INSERT INTO `xk_room` VALUES ('1021', '3', '0', '1', '1', '1', '2', '4', '204', 'A1', '97.00', '80.00', '8100.00', '11500.00', '785700.00', '0', '0', '0', '', '1', '1515460481', '0', null, '0.00');
+INSERT INTO `xk_room` VALUES ('1021', '3', '0', '1', '1', '1', '2', '4', '204', 'A1', '97.00', '80.00', '8100.00', '11500.00', '785700.00', '0', '0', '0', '', '1', '1517456317', '0', null, '0.00');
 INSERT INTO `xk_room` VALUES ('1022', '4', '0', '2', '2', '1', '1', '1', '101', 'Q3', '118.09', '96.20', '6900.00', '0.00', '814821.00', '0', null, '0', null, '0', null, '0', null, '0.00');
 INSERT INTO `xk_room` VALUES ('1023', '4', '0', '2', '2', '1', '1', '3', '103', 'Q2', '132.29', '107.77', '6900.00', '0.00', '912801.00', '0', null, '0', null, '0', null, '0', null, '0.00');
 INSERT INTO `xk_room` VALUES ('1024', '4', '0', '2', '2', '1', '1', '4', '104', 'Q2', '132.20', '107.70', '6900.00', '0.00', '912180.00', '0', null, '0', null, '0', null, '0', null, '0.00');
@@ -2426,7 +2446,7 @@ CREATE TABLE `xk_roomczlog` (
   `czusername` varchar(20) DEFAULT NULL COMMENT '操作人名称',
   `cstid` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=gb2312;
+) ENGINE=MyISAM AUTO_INCREMENT=51 DEFAULT CHARSET=gb2312;
 
 -- ----------------------------
 -- Records of xk_roomczlog
@@ -2475,6 +2495,12 @@ INSERT INTO `xk_roomczlog` VALUES ('41', '1275', '销控', '1517306064', '17', '
 INSERT INTO `xk_roomczlog` VALUES ('42', '210', '选房', '1517383920', '1', '超级管理员', '76');
 INSERT INTO `xk_roomczlog` VALUES ('43', '210', '取消选房', '1517383952', '1', '超级管理员', '0');
 INSERT INTO `xk_roomczlog` VALUES ('44', '233', '选房', '1517384032', '1', '超级管理员', '76');
+INSERT INTO `xk_roomczlog` VALUES ('45', '278', '选房', '1517392234', '1', '超级管理员', '78');
+INSERT INTO `xk_roomczlog` VALUES ('46', '278', '取消选房', '1517392360', '1', '超级管理员', '0');
+INSERT INTO `xk_roomczlog` VALUES ('47', '304', '选房', '1517392532', '1', '超级管理员', '78');
+INSERT INTO `xk_roomczlog` VALUES ('48', '304', '取消选房', '1517392539', '1', '超级管理员', '0');
+INSERT INTO `xk_roomczlog` VALUES ('49', '1021', '选房', '1517456294', '1', '超级管理员', '81');
+INSERT INTO `xk_roomczlog` VALUES ('50', '1021', '取消选房', '1517456317', '1', '超级管理员', '0');
 
 -- ----------------------------
 -- Table structure for `xk_roomtemp`
@@ -2654,18 +2680,28 @@ CREATE TABLE `xk_trade` (
   `createdbyid` int(11) DEFAULT NULL COMMENT '创建人id',
   `createdby` varchar(10) DEFAULT NULL COMMENT '创建人',
   `old_id` int(11) DEFAULT NULL,
+  `pay` varchar(10) NOT NULL COMMENT '付款方式',
+  `proportion` decimal(10,0) DEFAULT '0' COMMENT '比例',
+  `money` decimal(10,2) DEFAULT '0.00' COMMENT '金额',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=51 DEFAULT CHARSET=gb2312;
+) ENGINE=MyISAM AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xk_trade
 -- ----------------------------
-INSERT INTO `xk_trade` VALUES ('7', '138', '138', '3', '快速选房', '选房', '1', '1512887110', null, '', '3', '销控人员', null);
-INSERT INTO `xk_trade` VALUES ('8', '755', '755', '2', '快速选房', '选房', '1', '1513143136', null, '', '1', '管理员', null);
-INSERT INTO `xk_trade` VALUES ('45', '2', '1296', '100', '微信认购', '选房', '1', '1515053387', '0001', '', null, null, null);
-INSERT INTO `xk_trade` VALUES ('47', '3', '1263', '103', '微信认购', '选房', '1', '1515469608', '0002', '', null, null, null);
-INSERT INTO `xk_trade` VALUES ('48', '4', '1256', '97', '微信认购', '选房', '1', '1515480058', '0003', '', null, null, null);
-INSERT INTO `xk_trade` VALUES ('50', '233', '233', '76', '快速选房', '选房', '1', '1517384032', null, '', '1', '超级管理员', null);
+INSERT INTO `xk_trade` VALUES ('7', '138', '138', '3', '快速选房', '选房', '1', '1512887110', null, '', '3', '销控人员', null, '', '0', '0.00');
+INSERT INTO `xk_trade` VALUES ('8', '755', '755', '2', '快速选房', '选房', '1', '1513143136', null, '', '1', '管理员', null, '', '0', '0.00');
+INSERT INTO `xk_trade` VALUES ('45', '2', '1296', '100', '微信认购', '选房', '0', '1515053387', '0001', '', null, null, null, '', '0', '0.00');
+INSERT INTO `xk_trade` VALUES ('47', '3', '1263', '103', '微信认购', '选房', '0', '1515469608', '0002', '', null, null, null, '', '0', '0.00');
+INSERT INTO `xk_trade` VALUES ('48', '4', '1256', '97', '微信认购', '选房', '0', '1515480058', '0003', '', null, null, null, '', '0', '0.00');
+INSERT INTO `xk_trade` VALUES ('50', '233', '233', '76', '快速选房', '选房', '0', '1517384032', null, '', '1', '超级管理员', null, '', '0', '0.00');
+INSERT INTO `xk_trade` VALUES ('54', '4', '1256', '97', '微信认购', '选房', '0', '1515480058', '0003', '', null, null, '48', '', '0', '0.00');
+INSERT INTO `xk_trade` VALUES ('55', '4', '1256', '97', '微信认购', '认购', '1', '1515480058', '0003', '', null, null, '54', '按揭', '20', '182560.20');
+INSERT INTO `xk_trade` VALUES ('56', '3', '1263', '103', '微信认购', '认购', '1', '1515469608', '0002', '', null, null, '47', '一次性', '0', '0.00');
+INSERT INTO `xk_trade` VALUES ('57', '233', '233', '76', '快速选房', '选房', '1', '1517384032', null, '', '1', '超级管理员', '50', '', '0', '0.00');
+INSERT INTO `xk_trade` VALUES ('58', '2', '1296', '100', '微信认购', '认购', '0', '1515053387', '0001', '', null, null, '45', '公积金', '0', '0.00');
+INSERT INTO `xk_trade` VALUES ('59', '2', '1296', '100', '微信认购', '认购', '0', '1515053387', '0001', '', null, null, '58', '公积金', '15', '121500.00');
+INSERT INTO `xk_trade` VALUES ('60', '2', '1296', '100', '微信认购', '认购', '1', '1515053387', '0001', '', null, null, '59', '公积金', '15', '121500.00');
 
 -- ----------------------------
 -- Table structure for `xk_update_choose_log`
@@ -2913,11 +2949,13 @@ CREATE TABLE `xk_xsledset` (
   `bldidlist` varchar(100) NOT NULL DEFAULT '0',
   `bldnamelist` varchar(150) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xk_xsledset
 -- ----------------------------
+INSERT INTO `xk_xsledset` VALUES ('19', '2', '2', '9,13,14', '5栋,1栋,2栋');
+INSERT INTO `xk_xsledset` VALUES ('18', '2', '2', '4,7,8', '104栋,3栋,4栋');
 
 -- ----------------------------
 -- Table structure for `xk_yaohresult`

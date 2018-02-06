@@ -297,7 +297,7 @@
                 var tab=$(".w_tab table");
                if(tab.length<=2){//判断楼栋数量是否小于等于2
                   if(tab.find("tr:first").find("td").length<12){//判断楼栋一层所有的房间个数，如果小于12，限制宽度，避免拉长很难看
-                      $("#roomstable").css("width","700px").css("margin-left","calc(50% - 350px)")
+                      $("#roomstable").css("width","80%").css({left:'50%',position:'absolute',transform:'translate(-50%,0)'})
                   }
                }
 //                var t_height=1000;

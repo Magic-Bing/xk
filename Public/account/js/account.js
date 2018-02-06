@@ -228,92 +228,106 @@ $(function() {
         var tr=$(this).parents("tr");
         var vo=$.trim(tr.find("td").eq(5).text());
         $.post(xsgl_url.get_print,{pid:pid,bid:bid},function (data) {
-            if(data.length === 1 && vo !== '选房'){
-                // alert();
-                window.open(xsgl_url.show_print+"?name="+data[0]['html_url']);
+            // console.log(data.length);
+            if(data.length === 0){
+                layer_alert("该项目还没有套打模板，请设置后再打印！");
+                return false;
             }
-        },'json');
-        return false;
-
-
-
-        var pay=$.trim(tr.attr('data-pay'));
-        var tm=$.trim(tr.find("td").eq(7).text());
-        var bl=$.trim(tr.attr('data-bl'));
-        var je=$.trim(tr.attr('data-je'));
-        var id=tr.attr("data-id");
-        var price=tr.find("td").eq(8).text();
-        // console.log(pay);
-        price=Number(price.replace(/,/g,''));
-        layer.open({
-            title:['打印信息','text-align:center;margin-left:50px'],
-            type: 1,
-            skin: 'layui-layer-rim', //加上边框
-            // area: ['350px', 'auto'], //宽高
-            content:'' +
-            '<label style="float: left;margin-left: 10px;margin-top: 10px;width: 80%">选购状态：<select name="zt" id="zt" >' +
-            '<option '+(vo==='选房'?"selected":"")+'>选房</option>' +
-            '<option '+(vo==='认购'?"selected":"")+'>认购</option>' +
-            '<option '+(vo==='签约'?"selected":"")+'>签约</option>' +
-            '</select></label>' +
-            '<label style="float: left;margin-left: 10px;margin-top: 10px;'+(vo==='选房'?"display: none":"")+'" id="label-1">付款方式：<select  name="pay" id="pay" >' +
-            '<option '+(vo===''?"selected":"")+'>请选择付款方式</option>' +
-            '<option '+(pay==='一次性'?"selected":"")+'>一次性</option>' +
-            '<option '+(pay==='公积金'?"selected":"")+'>公积金</option>' +
-            '<option '+(pay==='按揭'?"selected":"")+'>按揭</option>' +
-            '<option '+(pay==='分期'?"selected":"")+'>分期</option>' +
-            '</select></label>' +
-            '<label style="float: left;margin-left: 10px;margin-top: 10px;'+(pay==='一次性' || pay===''?"display: none":"")+'" id="label-2">比例：' +
-            '<input type="number" name="proportion" id="proportion"  placeholder="输入比例" style="width: 110px" value="'+bl+'">' +
-            '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;金额：<input type="number" name="money" id="money"  placeholder="输入金额" style="width: 110px;" value="'+je+'">' +
-            '<input type="hidden" value="'+price+'"></label>' +
-            '<label style="float: left;margin-left: 10px;margin-top: 10px"><span style="float: left">选购时间：</span><input value="'+tm+'" type="text"  id="zt_time" placeholder="请选择时间" class="col-xs-8 col-sm-8 js-choose-activity-add-start-time" onfocus="WdatePicker({dateFmt:\'yyyy-MM-dd HH:mm:ss\',skin:\'twoer\'})"></label>'+
-            '',
-            btn:['取消','打印'],
-            btn2:function () {
-                var zt=$("#zt").val();//状态
-                var zt_time=$("#zt_time").val();//修改时间
-                var pay=$("#pay").val();//付款方式
-                var proportion=$("#proportion").val();
-                var money=$("#money").val();
-                if($.trim(zt_time)===''){
-                    layer_alert("时间不能为空！");
-                    return false;
+            if(data.length === 1 && vo !== '选房'){
+                window.open(xsgl_url.show_print+"?name="+data[0]['html_url']);
+            }else{
+                var str='<label style="float: left;margin-left: 10px;margin-top: 10px;width: 80%">选择模版：<select name="print" id="print" >';
+                str+='<option value="">请选择一个模板</option>';
+                for(var i=0;i<data.length;i++){
+                    str+='<option value="'+data[i]['html_url']+'">'+data[i]['name']+'</option>';
                 }
-                if(zt === '选房'){
-                    pay='';
-                }else{
-                    if($.trim(pay)==='请选择付款方式'){
-                        layer_alert("付款方式不能为空！");
-                        return false;
-                    } else if ($.trim(pay)==='一次性'){
-                        proportion=0;
-                        money=0;
-                    }else{
-                        if(money === ''){
-                            layer_alert("付款金额不能为空！");
+                str+='</select></label>';
+                var pay=$.trim(tr.attr('data-pay'));
+                var tm=$.trim(tr.find("td").eq(7).text());
+                var bl=$.trim(tr.attr('data-bl'));
+                var je=$.trim(tr.attr('data-je'));
+                var id=tr.attr("data-id");
+                var price=tr.find("td").eq(8).text();
+                // console.log(pay);
+                price=Number(price.replace(/,/g,''));
+                layer.open({
+                    title:['打印信息','text-align:center;margin-left:50px'],
+                    type: 1,
+                    skin: 'layui-layer-rim', //加上边框
+                    // area: ['350px', 'auto'], //宽高
+                    content:'' +
+                    '<label style="float: left;margin-left: 10px;margin-top: 10px;width: 80%">选购状态：<select name="zt" id="zt" >' +
+                    '<option '+(vo==='选房'?"selected":"")+'>选房</option>' +
+                    '<option '+(vo==='认购'?"selected":"")+'>认购</option>' +
+                    '<option '+(vo==='签约'?"selected":"")+'>签约</option>' +
+                    '</select></label>' +
+                    '<label style="float: left;margin-left: 10px;margin-top: 10px;'+(vo==='选房'?"display: none":"")+'" id="label-1">付款方式：<select  name="pay" id="pay" >' +
+                    '<option '+(vo===''?"selected":"")+'>请选择付款方式</option>' +
+                    '<option '+(pay==='一次性'?"selected":"")+'>一次性</option>' +
+                    '<option '+(pay==='公积金'?"selected":"")+'>公积金</option>' +
+                    '<option '+(pay==='按揭'?"selected":"")+'>按揭</option>' +
+                    '<option '+(pay==='分期'?"selected":"")+'>分期</option>' +
+                    '</select></label>' +
+                    '<label style="float: left;margin-left: 10px;margin-top: 10px;'+(pay==='一次性' || pay===''?"display: none":"")+'" id="label-2">比例：' +
+                    '<input type="number" name="proportion" id="proportion"  placeholder="输入比例" style="width: 110px" value="'+bl+'">' +
+                    '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;金额：<input type="number" name="money" id="money"  placeholder="输入金额" style="width: 110px;" value="'+je+'">' +
+                    '<input type="hidden" value="'+price+'"></label>' +
+                    '<label style="float: left;margin-left: 10px;margin-top: 10px"><span style="float: left">选购时间：</span><input value="'+tm+'" type="text"  id="zt_time" placeholder="请选择时间" class="col-xs-8 col-sm-8 js-choose-activity-add-start-time" onfocus="WdatePicker({dateFmt:\'yyyy-MM-dd HH:mm:ss\',skin:\'twoer\'})"></label>'+
+                    str+
+                    '',
+                    btn:['取消','打印'],
+                    btn2:function () {
+                        var print=$("#print").val();
+                        // console.log(print);
+                        if(print === ''){
+                            layer_alert("请选择一个模版！");
                             return false;
                         }
-                    }
-                }
-                var res={id:id,zt:zt,tm:zt_time,pay:pay,proportion:proportion,money:money};
-                // console.log(res);
-                $.ajax({
-                    type:"post",
-                    url:xsgl_url.update_zt,
-                    data:res,
-                    success:function (data) {
-                        if(data ==='true'){
-                            layer.msg("修改成功");
-                            window.location.reload();
-                        }else{
-                            layer.msg("修改失败，请刷新后重试！");
+                        var zt=$("#zt").val();//状态
+                        var zt_time=$("#zt_time").val();//修改时间
+                        var pay=$("#pay").val();//付款方式
+                        var proportion=$("#proportion").val();
+                        var money=$("#money").val();
+                        if($.trim(zt_time)===''){
+                            layer_alert("时间不能为空！");
+                            return false;
                         }
+                        if(zt === '选房'){
+                            pay='';
+                        }else{
+                            if($.trim(pay)==='请选择付款方式'){
+                                layer_alert("付款方式不能为空！");
+                                return false;
+                            } else if ($.trim(pay)==='一次性'){
+                                proportion=0;
+                                money=0;
+                            }else{
+                                if(money === ''){
+                                    layer_alert("付款金额不能为空！");
+                                    return false;
+                                }
+                            }
+                        }
+                        var res={id:id,zt:zt,tm:zt_time,pay:pay,proportion:proportion,money:money};
+                        // console.log(res);
+                        $.ajax({
+                            type:"post",
+                            url:xsgl_url.update_zt,
+                            data:res,
+                            success:function (data) {
+                                if(data ==='true'){
+                                    window.location.reload();
+                                    window.open(xsgl_url.show_print+"?name="+print);
+                                }else{
+                                    layer.msg("数据变更失败，请刷新后重试！");
+                                }
 
+                            }
+                        });
                     }
                 });
             }
-        });
+        },'json');
     });
     //比例算金额proportion
     $(document).on("input propertychange",'#proportion',function () {
