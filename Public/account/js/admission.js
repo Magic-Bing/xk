@@ -2,6 +2,14 @@
  * Created by Administrator on 2018/1/22 0022.
  */
 var num=1;
+//当用列表被ajax赋值后调用
+function user_ajax() {
+    var tr=$("#sample-table-choose .user-tr");
+    if(tr.length === 1){
+        tr.trigger('click');
+    }
+    // console.log(tr.length);
+}
 //分页公用方法
 function pageNum(txt,num) {
     // alert(txt);
@@ -40,16 +48,22 @@ $(function () {
         num=1;
         var row=$('#new_rows').val();
         $("#search-one").val('');
-        var op=$("#batch-one option[pid='"+id+"']");
+        var op=$("#hidden-select option[pid='"+id+"']");
+        var str="";
         if(op.length === 1){
-            $("#batch-one option").hide();
-            $("#batch-one").val(op.attr("value"));
-            op.show();
+            // alert(1);
+            str+="<option value='"+op.attr('value')+"' selected>"+op.text()+"</option>";
+            $("#batch-one").html(str);
         }else{
-            $("#batch-one option").hide();
-            op.show();
-            $("#batch-one option").eq(0).show();
-            $("#batch-one").val('');
+            str+="<option value=''>全部</option>";
+            if(op.length > 1) {
+                // alert(2);
+                for(var i=0;i<op.length;i++){
+                    str+="<option value='"+op.eq(i).attr('value')+"'>"+op.eq(i).text()+"</option>";
+                }
+            }
+            // alert(0);
+            $("#batch-one").html(str);
         }
         $.post(admission.user_list,{pid:id,num:row,zt:zt},function (data) {
             $("#user_list").html(data);
@@ -163,14 +177,7 @@ $(function () {
     });
     /*====================END=====================*/
     /*====================公用=====================*/
-    //当用列表被ajax赋值后调用
-    function user_ajax() {
-        var tr=$("#sample-table-choose .user-tr");
-        if(tr.length === 1){
-            tr.trigger('click');
-        }
-        // console.log(tr.length);
-    }
+
     //关闭弹出框
     $("#shadow,#off-alert").on("click",function () {
         $("#shadow").hide();

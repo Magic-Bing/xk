@@ -24,55 +24,28 @@ class RoomController extends BaseController
     public function index() 
 	{
 
-        $base = A('Account/Base');
+//        $base = A('Account/Base');
                // $user_where['userid'] = $this->get_user_id();
-        $uid=$this->get_user_id_acc();
-        $user_where['userid'] = $uid;
-        $Model = new \Think\Model();
-        $usertype=$Model ->query("select * from xk_user where id='" . $user_where['userid'] . "' ");
-        if (empty($usertype) || $usertype[0]['type']<2)
-           // $this->error('用户登录信息异常，请重新登录', U('login/index'));
-            redirect(U('account/login/index'), 0);
+        $search_project_id=I("pid",0,"intval");
+        $search_batch_id=I("bid",0,"intval");
+        $this->assign('search_project_id', $search_project_id);
 
-        $this->assign('usertype', $usertype[0]['type']);
-        $is_all=M()->table("xk_user")->field("is_all")->where("id=$uid")->find();
-        if((int)$is_all['is_all']===1){
-            $pids=M()->table("xk_project")->field("id")->find();
-            $project_ids[]=$pids['id'];
-        }else{
-            $user_project_list = D("Station")->getpProjectListByUserId($user_where['userid']);
-            $project_ids = array();
-            foreach ($user_project_list as $user_project_list_value) {
-                $project_ids[] = $user_project_list_value['proj_id'];
-            }
-        }
 		//项目列表
-		if (!empty($project_ids)) {
 			$Project = D('Common/Project');
 			$where11['status'] = 1;
-			$where11['id'] = array('in', $project_ids);
+			$where11['id'] = $search_project_id;
+			$where11[] = '999=999';
 			$project_list = $Project->getProjectList($where11, 'id DESC');
-		} else {
-			$project_list = array();
-		}
 		$this->assign('project', $project_list);
-
-		//获取搜索条件
-		//$search_info = "p1b1u5n1701";
-		$search_info = I('info', '', 'trim');
-		$search_project_id = get_search_id_by($search_info, 'p', $project_list[0]['id']);
-		$search_build_id = get_search_id_by($search_info, 'b');
-		$search_unit_id = get_search_id_by($search_info, 'u');
-		$search_room_no_id = get_search_id_by($search_info, 'n');
-		
-		$search = array(
-			'search_project_id' => $search_project_id,
-			'search_build_id' 	=> $search_build_id,
-			'search_unit_id' 	=> $search_unit_id,
-			'search_room_no_id' => $search_room_no_id,
-		);
-		$this->assign($search);
-
+        //当前用户的项目
+        $user_project_ids = $this->get_user_project_ids();
+        if (!in_array($search_project_id, $user_project_ids)) {
+            $this->error("你没有权限访问该项目的信息！");
+        }
+        $user_batch_ids = $this->get_user_batch_ids();
+        if (!in_array($search_batch_id, $user_batch_ids)) {
+            $this->error("你没有权限访问该批次的信息！");
+        }
 		//一共出售，
         $yg_count=M()->table("xk_roomList")->where("proj_id=$search_project_id AND is_xf=1 and is_dq=1")->count();
         $this->assign("yg_count",$yg_count);
@@ -84,10 +57,10 @@ class RoomController extends BaseController
 
         $this->assign("user_count",count($user_count));
 		//房间信息
-		$Room = D('Common/Room');
 		$Roomview = D('Common/Roomview');
 		$where['proj_id'] = $search_project_id;
-                $where['is_dq'] = 1;
+		$where['pc_id'] = $search_batch_id;
+//        $where['is_dq'] = 1;
 		$group_room_build = $Roomview->getRoomListGroupBy('bld_id', 'bld_id', 'id DESC', $where);
 		$group_room_unit = $Roomview->getRoomListGroupBy('bld_id, unit', 'bld_id, unit', 'cast(unit as SIGNED), id DESC', $where);
 		$group_room_floor = $Roomview->getRoomListGroupBy('bld_id, unit, floor', 'bld_id, unit, floor', 'id DESC', $where);

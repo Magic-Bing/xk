@@ -34,7 +34,7 @@ class XsglledController extends BaseController {
             $search_project_id = session("selected_project");
         }
 		$search_word = I('word', '', 'trim');
-                $search_batch_id = I('batch_id',0, 'intval');
+        $search_batch_id = I('batch_id',0, 'intval');
 		//设置当前搜索
 		$search = array(
 			'search_project_id' => $search_project_id,

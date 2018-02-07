@@ -107,75 +107,68 @@
                 </form>
             </div>
             <div id="csinfo">
-                <div class="kpms" data_setid="1" data_id="<{$list['kplx']['cs_id']|default=0}>">
-                    <span>开盘模式:</span> 
-                    <label><input type="radio"  name="kplx" value="0" <if condition="$list['kplx']['cs_value'] eq 0"> checked='checked' </if> > 电子开盘</label>
-                    <label><input type="radio"  name="kplx" value="1" <if condition="$list['kplx']['cs_value'] eq 1"> checked='checked' </if>> 微信开盘</label>
+                <div class="kpms" data_setid="<{$kpmsinfo['id']}>" data_id="<{$kpmsinfo['cs_id']|default=0}>">
+                    <div class="content">
+                        <span>开盘模式:</span> 
+                        <php>$tags = explode(';',$kpmsinfo['options']);</php>
+                        <volist name="tags" id="vo">
+                            <php>$ops = explode(',',$vo);if(empty($kpmsinfo['cs_value'])){$kpmsinfo['cs_value']=1; }</php>
+                            <label><input type="<{$kpmsinfo['cs_type']}>"  name="namems" class="kpmsradio" value="<{$ops[1]}>" <if condition="$ops[1] eq $kpmsinfo['cs_value']"> checked='checked' </if> > <{$ops[0]}></label>                     
+                        </volist>
+                    </div>
                 </div>
-                <div class="cstypediv dzkp">
+                <div class="cstypediv dzkp" style="display: <{$kpmsinfo['showdzkp']}>">
                     <div  class ="cstypetitle">◆ 电子开盘参数</div>
-                    <div class="lidiv" data_setid="2" data_id="<{$list['zdqd']['cs_id']|default=0}>">
-                        <div class="content">
-                            <span>自动签到:</span>  
-                            <label><input type="radio"  name="zdqd" value="0" <if condition="$list['zdqd']['cs_value'] eq 0"> checked='checked' </if> > 是</label>
-                            <label><input type="radio"  name="zdqd" value="1" <if condition="$list['zdqd']['cs_value'] eq 1"> checked='checked' </if> > 否</label>
-                        </div>
-                        <div class="remark"><label>[控制刷身份证是否自动签到]<label></div>
-                    </div>
-                    <div class="lidiv" data_setid="3" data_id="<{$list['isyh']['cs_id']|default=0}>">
-                        <div class="content">
-                            <span>是否摇号:</span> 
-                            <label><input type="radio"  name="isyh" value="0" <if condition="$list['isyh']['cs_value'] eq 0"> checked='checked' </if> > 是</label>
-                            <label><input type="radio"  name="isyh" value="1" <if condition="$list['isyh']['cs_value'] eq 1"> checked='checked' </if> > 否</label>
-                        </div>
-                        <div class="remark"><label>[控制是否开启摇号入场]<label></div>
-                    </div>
-                    <div class="lidiv"  data_setid="4" data_id="<{$list['zdrcsh']['cs_id']|default=0}>">
-                        <div class="content">
-                            <span>自动入场:</span>  
-                            <label><input type="radio"  name="zdrcsh" value="0" <if condition="$list['zdrcsh']['cs_value'] eq 0"> checked='checked' </if> > 是</label>
-                            <label><input type="radio"  name="zdrcsh" value="1" <if condition="$list['zdrcsh']['cs_value'] eq 1"> checked='checked' </if> > 否</label>
-                        </div>
-                         <div class="remark"><label>[控制刷身份证是否自动入场]<label></div>
-                    </div>
-                    <div class="lidiv"  data_setid="5" data_id="<{$list['showinfo']['cs_id']|default=0}>">
-                        <div class="content">
-                            <span >快速选房显示信息:</span>  
-                            <if condition="empty($list['showinfo'])" >
-                                <volist name="xfinfolist" id="xfinfolist_vo" key="xfinfolist_k">
-                                    <if condition="$xfinfolist_k lt 4">
-                                    <label style="margin-left: 10px;"><input name='showinfo' type="checkbox" class="showinfo" value="<{$xfinfolist_vo}>" checked='checked' > <{$xfinfolist_vo}></label> 
-                                    <else/>
-                                    <label style="margin-left: 10px;"><input name='showinfo' type="checkbox" class="showinfo" value="<{$xfinfolist_vo}>" > <{$xfinfolist_vo}></label> 
-                                    </if>
-                                </volist>
-                            <else />
-                                <volist name="xfinfolist" id="xfinfolist_vo" key="xfinfolist_k">
-                                    <if condition="in_array($xfinfolist_vo,$list['showinfo']['cs_value'])">  
-                                        <label style="margin-left: 10px;"><input name='showinfo' type="checkbox" class="showinfo" value="<{$xfinfolist_vo}>" checked='checked' > <{$xfinfolist_vo}></label> 
+                    <foreach name="dzkplist" item="list_vo" key="k">
+                        <div class="lidiv" data_setid="<{$list_vo['id']}>" data_id="<{$list_vo['cs_id']|default=0}>">
+                            <div class="content">
+                                <span><{$list_vo['cs_name']}>:</span>
+                                <php>$tags = explode(';',$list_vo['options']);</php>
+                                <volist name="tags" id="vo" key="vo_k">
+                                    <if condition="$list_vo['cs_type'] eq 'radio'">
+                                        <php>$ops = explode(',',$vo);if(empty($list_vo['cs_value'])){$list_vo['cs_value']=1;}</php>
+                                        <label><input type="<{$list_vo['cs_type']}>"  name="name<{$list_vo['id']}>" value="<{$ops[1]}>" <if condition="$ops[1] eq $list_vo['cs_value']"> checked='checked' </if> > <{$ops[0]}></label> 
                                     <else />
-                                        <label kkk="<{$list['showinfo'].cs_value}>" style="margin-left: 10px;"><input name='showinfo' type="checkbox" class="showinfo" value="<{$xfinfolist_vo}>" > <{$xfinfolist_vo}></label> 
-                                    </if> 
+                                        <if condition="empty($list_vo['cs_value'])">
+                                            <if condition="$vo_k lt 4">
+                                                <label style="margin-left: 10px;"><input name="name<{$list_vo['id']}>" type="<{$list_vo['cs_type']}>" class="showinfo" value="<{$vo}>" checked='checked' > <{$vo}></label> 
+                                            <else/>
+                                                <label style="margin-left: 10px;"><input name="name<{$list_vo['id']}>" type="<{$list_vo['cs_type']}>" class="showinfo" value="<{$vo}>" > <{$vo}></label> 
+                                            </if>
+                                        <else/>
+                                            <php>$yyinfo = explode(';',$list_vo['cs_value']);</php>
+                                            <if condition="in_array($vo,$yyinfo)">
+                                                <label style="margin-left: 10px;"><input name="name<{$list_vo['id']}>" type="<{$list_vo['cs_type']}>" class="showinfo" value="<{$vo}>" checked='checked' > <{$vo}></label> 
+                                            <else/>
+                                                <label style="margin-left: 10px;"><input name="name<{$list_vo['id']}>" type="<{$list_vo['cs_type']}>" class="showinfo" value="<{$vo}>" > <{$vo}></label> 
+                                            </if>
+                                        </if>
+                                    </if>                     
                                 </volist>
-                            </if>
+                            </div>
+                            <div class="remark"><label><{$list_vo['remark']}><label></div>
                         </div>
-                    </div>
-                    <div class="lidiv"  data_setid="6" data_id="<{$list['xftxpay']['cs_id']|default=0}>">
-                        <div class="content">
-                            <span>选房填写付款方式:</span>  
-                            <label><input type="radio"  name="xftxpay" value="0" <if condition="$list['xftxpay']['cs_value'] eq 0"> checked='checked' </if> > 是</label>
-                            <label><input type="radio"  name="xftxpay" value="1" <if condition="$list['xftxpay']['cs_value'] eq 1"> checked='checked' </if> > 否</label>
+                    </foreach>
+                </div>
+                
+                <div class="cstypediv wxkp" style="display: <{$kpmsinfo['showwxkp']}>">
+                    <div  class ="cstypetitle">◆ 微信开盘参数</div>
+                    <div class="lidiv"> 请到微信认购设置中配置</div>
+                    <!--<foreach name="wxkplist" item="list_vo" key="k">
+                        <div class="lidiv" data_setid="<{$list_vo['id']}>" data_id="<{$list_vo['cs_id']|default=0}>">
+                            <div class="content">
+                                <span><{$list_vo['cs_name']}>:</span>
+                                <php>$tags = explode(';',$list_vo['options']);</php>
+                                <volist name="tags" id="vo" key="vo_k">
+                                    <if condition="$list_vo['cs_type'] eq 'radio'">
+                                        <php>$ops = explode(',',$vo);if(empty($list_vo['cs_value'])){$list_vo['cs_value']=1;}</php>
+                                        <label><input type="<{$list_vo['cs_type']}>"  name="name<{$list_vo['id']}>" value="<{$ops[1]}>" <if condition="$ops[1] eq $list_vo['cs_value']"> checked='checked' </if> > <{$ops[0]}></label> 
+                                    </if>                     
+                                </volist>
+                            </div>
+                            <div class="remark"><label><{$list_vo['remark']}><label></div>
                         </div>
-                        <div class="remark"><label>[快速选房时是否需要填写付款方式]<label></div>
-                    </div>
-                    <div class="lidiv"  data_setid="7" data_id="<{$list['paybt']['cs_id']|default=0}>">
-                        <div class="content">
-                            <span>付款方式必填:</span>  
-                            <label><input type="radio"  name="paybt" value="0" <if condition="$list['paybt']['cs_value'] eq 0"> checked='checked' </if> > 是</label>
-                            <label><input type="radio"  name="paybt" value="1" <if condition="$list['paybt']['cs_value'] eq 1"> checked='checked' </if> > 否</label>
-                        </div>
-                        <div class="remark"><label>[控制打印认购书或交易录入时,付款方式是否必填]<label></div>
-                    </div>
+                    </foreach>-->
                 </div>
                 <hr style="border-top: 1px solid #e5e5e5;">
                 <button  id="update-mk" pid="<{$search_project_id}>" bid="<{$search_batch_id}>">保存</button>
@@ -209,12 +202,18 @@
                 }
             });
             
+            $(".kpmsradio").click(function(){
+                $xzms=$('#csinfo input[name="namems"]:checked ').val()
+                if($xzms==-1){ $(".dzkp").hide();$(".wxkp").show();}
+                else{$(".dzkp").show();$(".wxkp").hide();}
+            });
+            
             $("#update-mk").on("click",function () {
                 var input_checked=$("#csinfo input:radio:checked");
                 var input_checkbox=$("#csinfo input:checkbox:checked");
                 var pid=$(this).attr("pid");
                 var bid=$(this).attr("bid");
-                
+                               
                 if(input_checked.length===0){
                      layer_alert("参数未配置完!");
                      return false;
@@ -224,8 +223,8 @@
                     arr[1]=bid;
                     arr[2]=[];
                     for(var i=0;i<input_checked.length;i++){
-                        var cs_setid=input_checked.eq(i).parent().parent().attr("data_setid");
-                        var cs_id=input_checked.eq(i).parent().parent().attr("data_id");
+                        var cs_setid=input_checked.eq(i).parent().parent().parent().attr("data_setid");
+                        var cs_id=input_checked.eq(i).parent().parent().parent().attr("data_id");
                         arr[2][i]={"cs_value":input_checked.eq(i).val(),"pzcs_id":cs_setid,"id":cs_id,};
                     }
                     var strinfo="";
@@ -244,10 +243,13 @@
                         {
                             strinfo+=";"+input_checkbox.eq(i).val();
                         }
-                        cs_setid1=input_checkbox.eq(i).parent().parent().attr("data_setid");
-                        cs_id1=input_checkbox.eq(i).parent().parent().attr("data_id");
+                        cs_setid1=input_checkbox.eq(i).parent().parent().parent().attr("data_setid");
+                        cs_id1=input_checkbox.eq(i).parent().parent().parent().attr("data_id");
                     }
                     arr[2][input_checked.length]={"cs_value":strinfo,"pzcs_id":cs_setid1,"id":cs_id1};
+                    
+                    console.log(arr);
+                    return false;
                     
                     $.post("<{:U('YwcsSet/updateCsset')}>",{cslist:arr},function (data) {
                         layer_alert(data);

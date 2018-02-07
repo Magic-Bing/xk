@@ -30,7 +30,7 @@ class CstSignController extends BaseController
     public function index(){
         $zt=I("zt",0,"intval");
         $selected_project=session("selected_project");
-        $this->assign('selected_project', $selected_project);
+        $this->assign('selected_project', $selected_project?$selected_project:0);
         //当前用户的项目
         $user_project_ids = $this->get_user_project_ids();
         //获取项目列表
@@ -73,24 +73,24 @@ class CstSignController extends BaseController
         $b='';
         $s='';
         if($pid !== 0){
-            $p="AND project_id =$pid";
+            $p="AND c.project_id =$pid";
         }else{
-            $p="AND project_id in ($arr_str)";
+            $p="AND c.project_id in ($arr_str)";
         }
         if($bid !== 0){
-            $b="AND batch_id =$bid";
+            $b="AND c.batch_id =$bid";
         }
         if($search !== ''){
-            $s="AND (customer_name like '%$search%' OR like_p like '%".strencode($search)."%' OR like_c like '%".strencode($search)."%' )";
+            $s="AND (c.customer_name like '%$search%' OR c.like_p like '%".strencode($search)."%' OR c.like_c like '%".strencode($search)."%' )";
         }
         if($zt<2){
-            $z="AND is_sign=$zt";
+            $z="AND c.is_sign=$zt";
         }else{
             $z='';
         }
-        $count=M()->table("xk_choose")->where("1 = 1 $z $p $b $s")->count();
+        $count=M()->table("xk_choose c")->where("1 = 1 $z $p $b $s")->count();
         $all_page=ceil($count/$page_num);
-        $res=M()->table("xk_choose")->where("1 = 1 $z $p $b $s")->limit($page*$page_num,$page_num)->select();
+        $res=M()->table("xk_choose c")->field("c.*,p.id zid")->join('LEFT JOIN xk_pzcsvalue p ON p.project_id=c.project_id AND p.batch_id=c.batch_id AND p.pzcs_id=2 AND p.cs_value=-1')->where("1 = 1 $z $p $b $s")->limit($page*$page_num,$page_num)->select();
         $this->assign('page_num', $page_num);
         $this->assign('page', $page+1);
         $this->assign('pages', $page);

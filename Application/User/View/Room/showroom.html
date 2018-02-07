@@ -232,14 +232,13 @@
         display:block;
     }
     .hdxz_content{
-        margin: 50% 0 0 5%;
+        margin: 0 0 0 5%;
         transform: translate(0%, 0%);
         white-space: pre-line;
         text-align: justify;
         text-justify: inter-ideograph;
-        margin-top: 30px;
+        padding-top: 30px;
         overflow-y: hidden;
-        height: auto;
     }
     .hdxz_footer {
         position: fixed;
@@ -280,6 +279,8 @@
 }
 .tyyd{background:#eb3045;}
     </style>
+        <input type="hidden" id="refreshed" value="no">
+        <input type="hidden" id="is_aqyz" value="<{$event['is_aqyz']|default=0}>">
 	<div id="zz01" class="div-zz" ></div>
 	<div id="showsuccess" class="div-success" >
 		<div class="div-success-content">
@@ -798,10 +799,16 @@ $("body").on("click","#qrddbtn",function(){
     {
         return false;
     }
-    //xfqr($(this).attr("room_id"),eventId);
-    //$("#qrdddiv").hide();
-    //$(".div-zz").hide();
-    aqyz($(this).attr("room_id"));
+    if($("#is_aqyz").val()==1)
+    {
+        aqyz($(this).attr("room_id"));
+    }
+    else
+    {
+        xfqr($(this).attr("room_id"),eventId);
+        $("#qrdddiv").hide();
+        $(".div-zz").hide();
+    }
 });
 $("#checkbox_a1").click(function(){
     var isty=$("#checkbox_a1").is(':checked');
@@ -963,7 +970,7 @@ function showjsdjs(times)
                 if (times<0) 
                     times=0;
                 ms = Math.floor(times / 1000);
-                if(times == 0) {
+                if(times <=1000) {
                     clearInterval(countTime);
                     if (iswks==1)
                     {

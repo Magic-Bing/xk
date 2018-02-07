@@ -27,7 +27,7 @@ class AdmissionController extends BaseController
     public function index(){
         $zt=I("zt",0,"intval");
         $selected_project=session("selected_project");
-        $this->assign('selected_project', $selected_project);
+        $this->assign('selected_project', $selected_project?$selected_project:0);
         //当前用户的项目
         $user_project_ids = $this->get_user_project_ids();
         //获取项目列表
@@ -86,7 +86,7 @@ class AdmissionController extends BaseController
         }
         $count=M()->table("xk_choose c")->join("xk_yaohresult y ON y.cstid=c.id")->where("1 = 1 $z $p $b $s")->count();
         $all_page=ceil($count/$page_num);
-        $res=M()->table("xk_choose c")->field("c.*,y.group,y.no,y.createdtime")->join("xk_yaohresult y ON y.cstid=c.id")->where("y.is_yx = 1 $z $p $b $s")->limit($page*$page_num,$page_num)->select();
+        $res=M()->table("xk_choose c")->field("c.*,y.group,y.no,y.createdtime,p.id zid")->join("xk_yaohresult y ON y.cstid=c.id")->join('LEFT JOIN xk_pzcsvalue p ON p.project_id=c.project_id AND p.batch_id=c.batch_id AND p.pzcs_id=2 AND p.cs_value=-1')->where("y.is_yx = 1 $z $p $b $s")->limit($page*$page_num,$page_num)->select();
         $this->assign('page_num', $page_num);
         $this->assign('page', $page+1);
         $this->assign('pages', $page);

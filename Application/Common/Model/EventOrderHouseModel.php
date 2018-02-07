@@ -223,9 +223,9 @@ class EventOrderHouseModel extends Model
             return array('error_code'=>1,'info'=>'无活动ID');
 
         $eventRedisKey = "event_order_house_{$eventId}";
-        $eventFields = array('start_time','end_time','project_id','batch_id','name','maxcount','desc','mark','states','isyks','isdx','isysdl','is_show_discount');
+        $eventFields = array('start_time','end_time','project_id','batch_id','name','maxcount','desc','mark','states','isyks','isdx','isysdl','is_show_discount','is_aqyz');
 
-        $event = $this->getOne(array('id'=>$eventId),array('project_id','batch_id','name','start_time','end_time','states','maxcount','desc','mark','states','0 as isyks','0 as isdx','isysdl','is_show_discount'));
+        $event = $this->getOne(array('id'=>$eventId),array('project_id','batch_id','name','start_time','end_time','states','maxcount','desc','mark','states','0 as isyks','0 as isdx','isysdl','is_show_discount','is_aqyz'));
 
         if (empty($event))
             return array('error_code'=>1,'info'=>'无活动');

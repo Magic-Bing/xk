@@ -167,11 +167,11 @@
 	</div>
 	<div class="form-group">
 		<label class="col-sm-3 control-label no-padding-right" for="form-field-isysdl">
-			是否延时登录
+			延时登录
 		</label>
 
 		<div class="col-sm-9">
-			<label>
+			<label style="float: left;">
 				<eq name="choose_order_house['isysdl']" value="1">
 					<input name="isysdl" id="form-field-isysdl" class="ace ace-switch ace-switch-4" type="checkbox" checked="checked">
 					<else/>
@@ -183,28 +183,44 @@
 	</div>
 	<div class="form-group">
 		<label class="col-sm-3 control-label no-padding-right" for="form-field-is_show_discount">
-			是否显示优惠后总价
+			显示优惠后总价
 		</label>
 
 		<div class="col-sm-9">
-			<label>
+			<label style="float: left;">
 				<eq name="choose_order_house['is_show_discount']" value="1">
 					<input name="is_show_discount" id="form-field-is_show_discount" class="ace ace-switch ace-switch-4" type="checkbox" checked="checked">
 					<else/>
 					<input name="is_show_discount" id="form-field-is_show_discount" class="ace ace-switch ace-switch-4" type="checkbox">
 				</eq>
 				<span class="lbl"></span>
-			</label>
+			</label> 
 		</div>
 	</div>
         <div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-is_aqyz">
+			认购安全验证
+		</label>
+		<div class="col-sm-9">
+			<label style="float: left;">
+				<eq name="choose_order_house['is_aqyz']" value="1">
+					<input name="is_aqyz" id="form-field-is_aqyz" class="ace ace-switch ace-switch-4" type="checkbox" checked="checked">
+					<else/>
+					<input name="is_aqyz" id="form-field-is_aqyz" class="ace ace-switch ace-switch-4" type="checkbox">
+				</eq>
+				<span class="lbl"></span>
+			</label> 
+		</div>
+	</div>
+        
+        <div class="form-group">
 		<label class="col-sm-3 control-label no-padding-right" for="form-field-states">
 			<i class="icon-asterisk pink"></i> 
-			活动是否开启 
+			活动开启 
 		</label>
-		
+
 		<div class="col-sm-9">
-			<label>
+			<label style="float: left;">
 				<eq name="choose_order_house['states']" value="1">
 					<input name="states" id="form-field-states" class="ace ace-switch ace-switch-4 js-choose-order_house-edit-states" type="checkbox" checked="checked">
 				<else/>

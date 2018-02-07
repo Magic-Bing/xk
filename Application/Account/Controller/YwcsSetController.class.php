@@ -75,74 +75,38 @@ class YwcsSetController extends BaseController {
         $this->assign('project_list', $project_list);
         $this->assign('batch_list', $batch_list);
         
+        //开盘模式
+         $kpmsinfo=D("pzcs a")->field("a.*,b.id as bid,b.name as bname,b.proj_id as pid,cs.cs_value,cs.id as cs_id")
+                ->join("inner join xk_kppc b on 1=1")
+                ->join("left join (select * from xk_pzcsvalue cs where cs.batch_id=$search_batch_id and cs.project_id=$search_project_id ) cs on cs.pzcs_id=a.id")
+                ->where("a.yw_type='批次' and   b.id=$search_batch_id and b.proj_id=$search_project_id and a.group_id=0 ")
+                ->order("a.group_id,a.px")->select();
+        //电子开盘参数
+        $dzkp_cslist=D("pzcs a")->field("a.*,b.id as bid,b.name as bname,b.proj_id as pid,cs.cs_value,cs.id as cs_id")
+                ->join("inner join xk_kppc b on 1=1")
+                ->join("left join (select * from xk_pzcsvalue cs where cs.batch_id=$search_batch_id and cs.project_id=$search_project_id ) cs on cs.pzcs_id=a.id")
+                ->where("a.yw_type='批次' and   b.id=$search_batch_id and b.proj_id=$search_project_id and a.group_id=1 and 888=888")
+                ->order("a.group_id,a.px")->select();
+        //微信开盘参数
+        $wxkp_cslist=D("pzcs a")->field("a.*,b.id as bid,b.name as bname,b.proj_id as pid,cs.cs_value,cs.id as cs_id")
+                ->join("inner join xk_kppc b on 1=1")
+                ->join("left join (select * from xk_pzcsvalue cs where cs.batch_id=$search_batch_id and cs.project_id=$search_project_id ) cs on cs.pzcs_id=a.id")
+                ->where("a.yw_type='批次' and   b.id=$search_batch_id and b.proj_id=$search_project_id and a.group_id=2")
+                ->order("a.group_id,a.px")->select();
         
-
-        /*$p_ywcslist=D("pzcs a")->field("a.id,a.cs_name,a.cs_type,b.id as pid,b.name as pname")->join("inner join xk_project b on 1=1")->where(" a.yw_type='项目' and  b.id=$search_project_id")->select();*/
-        $b_ywcslist=D("pzcs a")->field("a.id,a.cs_name,a.cs_type,b.id as bid,b.name as bname,b.proj_id as pid")->join("inner join xk_kppc b on 1=1")->where("a.yw_type='批次' and   b.id=$search_batch_id and b.proj_id=$search_project_id")->order("a.id desc")->select();
+         if ($kpmsinfo[0]['cs_value']==-1){
+              $kpmsinfo[0]['showdzkp']="none";
+              $kpmsinfo[0]['showwxkp']="block";
+         }
+         else{
+             $kpmsinfo[0]['showdzkp']="block";
+             $kpmsinfo[0]['showwxkp']="none";
+         }
         
-        /*$p_values=D("pzcsvalue a")->where("a.batch_id=0 and a.project_id=$search_project_id")->select();*/
-        $b_values=D("pzcsvalue a")->where("a.batch_id=$search_batch_id and a.project_id=$search_project_id")->select();
-        
-       /* foreach($p_ywcslist as $k=>$pl)
-        {
-            foreach($p_values as $pv)
-            {
-                if($pl['id']==$pv['pzcs_id'] && $pl['pid']==$pv['project_id'])
-                {
-                    $p_ywcslist[$k]['cs_value']=$pv['cs_value'];
-                    break;
-                }
-            }
-        }*/
-        $list=array();
-        foreach($b_ywcslist as $k=>$bl)
-        {
-            foreach($b_values as $bv)
-            {
-                if($bl['id']==$bv['pzcs_id']  && $bl['pid']==$bv['project_id'] and $bl['bid']==$bv['batch_id'])
-                {
-                    
-                    //$b_ywcslist[$k]['cs_value']=$bv['cs_value'];
-                    switch ($bl["cs_name"])
-                    {
-                    case '开盘类型':
-                      $list['kplx']['cs_value']=$bv['cs_value'];
-                      $list['kplx']['cs_id']=$bv['id'];
-                      break;  
-                    case '自动签到':
-                      $list['zdqd']['cs_value']=$bv['cs_value'];
-                      $list['zdqd']['cs_id']=$bv['id'];
-                      break; 
-                    case '自动入场审核':
-                      $list['zdrcsh']['cs_value']=$bv['cs_value'];
-                      $list['zdrcsh']['cs_id']=$bv['id'];
-                      break;  
-                    case '是否摇号':
-                      $list['isyh']['cs_value']=$bv['cs_value'];
-                      $list['isyh']['cs_id']=$bv['id'];
-                      break; 
-                    case '快速选房显示信息':
-                      $karr=explode(";",$bv['cs_value']);
-                      $list['showinfo']['cs_value']=$karr;
-                      $list['showinfo']['cs_id']=$bv['id'];
-                      break; 
-                   case '选房时录入付款方式':
-                      $list['xftxpay']['cs_value']=$bv['cs_value'];
-                      $list['xftxpay']['cs_id']=$bv['id'];
-                      break; 
-                   case '付款方式必填':
-                      $list['paybt']['cs_value']=$bv['cs_value'];
-                      $list['paybt']['cs_id']=$bv['id'];
-                      break; 
-                    }
-                    break;
-                }
-            }
-        }
-        $this->assign('list', $list);
-        //快速选房显示内容选项
-        $xfinfolist=['标准总价','优惠后总价','建筑面积','建筑单价','套内面积','套内单价','户型'];
-        $this->assign('xfinfolist', $xfinfolist);
+        $this->assign('kpmsinfo', $kpmsinfo[0]); 
+        $this->assign('dzkplist', $dzkp_cslist);
+        $this->assign('wxkplist', $wxkp_cslist);
+        //$this->assign('cstype', array(1=>'电子开盘',2=>'微信开盘')); 
         $this->set_seo_title("参数设置");
         $this->display();
     }

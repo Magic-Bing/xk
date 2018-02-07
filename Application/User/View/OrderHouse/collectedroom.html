@@ -216,14 +216,13 @@ var condition = {
     }
     .hdxz_content{
         width: 90%;
-        margin: 50% 0 0 5%;
+        margin: 0 0 0 5%;
         transform: translate(0%, 0%);
         white-space: pre-line;
         text-align: justify;
         text-justify: inter-ideograph;
-        margin-top: 30px;
+        padding-top: 30px;
         overflow-y: hidden;
-        height: auto;
     }
     .hdxz_footer {
         position: fixed;
@@ -289,6 +288,7 @@ var condition = {
 }
 </style>
 <div id="zz01" class="div-zz" ></div>
+<input type="hidden" id="is_aqyz" value="<{$event['is_aqyz']|default=0}>">
 <div id="showsuccess" class="div-success" >
     <div class="div-success-content">
         <ul>
@@ -554,40 +554,38 @@ function renderCollection(collection) {
             
            total= fmoney(collection[i]['total'],2)
             
-            html = `<ul class="bxf-ul ${ulCss}" data-room-id="${collection[i]['id']}" px="${collection[i]['px']}">																				
-                    <li class=${liCss} style="float:left;width:14%;height:100%;">
-                            <div class="leftdiv">
-                                ${zwdiv}
-                                <i class="fa fa-arrow-up tzjt iup" aria-hidden="true" cid="${collection[i]['cid']}" apx="${collection[i]['px']}" style="${iuphide}"></i>
-                                <div class="${divStatus}" style="background: #f39900;">${divTxt}</div>
-                                <i class="fa fa-arrow-down tzjt idown" aria-hidden="true" cid="${collection[i]['cid']}" apx="${collection[i]['px']}" style="${idownhide}"></i>
-                            </div>
-                    </li>										
-                    <li style="float:left;width:70%;height:100%;">
-                    <a href="/User/room/showroom/info/${collection[i]['jminfo']}">
-                            <ul style="margin-left:5px;">
-                                    <li class="roominfo" style="height:24px;line-height:24px;padding: 4px 5px 0px 5px;font-size:13px;font-weight:bold;">
-                                    ${collection[i]['building_name']}-${collection[i]['unit']}单元-${collection[i]['floor']}层-${collection[i]['room']}												
-                                    </li>
-                                    <li class="roomarea" style="height:20px;line-height:20px;padding: 2px 5px 0px 5px;font-size:12px;">
-                                    <span class="roomhx" style="font-size:12px;font-weight:400;">户型：(${collection[i]['hx']})${collection[i]['hxmx']}</span>
-                                    &nbsp;&nbsp;${collection[i]['area']} ㎡
-                                    </li>
-                                    <li style="height:20px;line-height:20px;padding: 2px 5px 0px 5px;font-size:12px;">
-                                    售价：¥ <span class="roomtotal" style="font-weight:bold;">${total}</span>
-                                    <span class="qycode" style="display:none;">${collection[i]['qycode']}</span>
-                                    <span class="orderid" style="display:none;">${collection[i]['orderid']}</span>
-                                    </li>
-                            </ul>
-                    </a>
-                    </li>
-                    <li style="float:left;width:15%;height:100%;">
-                            <div style="line-height:25px;margin-top:25px;"><span class="buy-span ${spanCss}" >${spanTxt}</span></div>
-
-                    </li>
-                   
-            </ul>
-            <div class="delbtn">删除</div>`;
+            html = '<ul class="bxf-ul '+ ulCss + '" data-room-id="'+ collection[i]['id']+'" px="'+ collection[i]['px'] + '">'																				
+                  + '<li class="' + liCss + '" style="float:left;width:14%;height:100%;">'
+                  +         '<div class="leftdiv">'
+                  +              zwdiv
+                  +              '<i class="fa fa-arrow-up tzjt iup" aria-hidden="true" cid="' + collection[i]['cid'] + '" apx="' + collection[i]['px'] + '" style="' + iuphide + '"></i>'
+                  +              '<div class="' + divStatus + '" style="background: #f39900;">' + divTxt + '</div>'
+                  +             '<i class="fa fa-arrow-down tzjt idown" aria-hidden="true" cid="' + collection[i]['cid'] + '" apx="' + collection[i]['px']+ '" style="' + idownhide + '"></i>'
+                  +          '</div>'
+                  + '</li>'										
+                  + '<li style="float:left;width:70%;height:100%;">'
+                  + '<a href="/User/room/showroom/info/' + collection[i]['jminfo'] + '">'
+                  +         '<ul style="margin-left:5px;">'
+                  +                 '<li class="roominfo" style="height:24px;line-height:24px;padding: 4px 5px 0px 5px;font-size:13px;font-weight:bold;">'
+                  +                  collection[i]['building_name'] + '-' + collection[i]['unit'] + '单元-' + collection[i]['floor'] + '层-' + collection[i]['room']												
+                  +                 '</li>'
+                  +                 '<li class="roomarea" style="height:20px;line-height:20px;padding: 2px 5px 0px 5px;font-size:12px;">'
+                  +                 '<span class="roomhx" style="font-size:12px;font-weight:400;">户型：('+ collection[i]['hx'] + ')' + collection[i]['hxmx'] + '</span>'
+                  +                 '&nbsp;&nbsp;' + collection[i]['area'] + '㎡'
+                  +                 '</li>'
+                  +                 '<li style="height:20px;line-height:20px;padding: 2px 5px 0px 5px;font-size:12px;">'
+                  +                 '售价：¥ <span class="roomtotal" style="font-weight:bold;">' + total + '</span>'
+                  +                 '<span class="qycode" style="display:none;">'+ collection[i]['qycode'] + '</span>'
+                  +                 '<span class="orderid" style="display:none;">'+  collection[i]['orderid'] + '</span>'
+                  +                 '</li>'
+                  +         '</ul>'
+                  + '</a>'
+                  + '</li>'
+                  + '<li style="float:left;width:15%;height:100%;">'
+                  +          '<div style="line-height:25px;margin-top:25px;"><span class="buy-span ' + spanCss + '" >' + spanTxt + '</span></div>'
+                  + '</li>'
+            +'</ul>'
+            +'<div class="delbtn">删除</div>';
             root.append(html);
         }
         else if(collection[i]['orderid']===0)
@@ -629,36 +627,35 @@ function renderCollection(collection) {
             }
             total= fmoney(collection[i]['total'],2);
 
-            html = `<ul class="bxf-ul ${ulCss}" data-room-id="${collection[i]['id']}" px="${collection[i]['px']}">
-                                                                            <li class=${liCss} style="float:left;width:14%;height:100%;">
-                                                                                <div class="leftdiv">
-                                                                                    ${zwdiv}
-                                                                                    <i class="fa fa-arrow-up tzjt iup" aria-hidden="true" cid="${collection[i]['cid']}" apx="${collection[i]['px']}" style="${iuphide}"></i>
-                                                                                    <div class="${divStatus}">${divTxt}</div>
-                                                                                    <i class="fa fa-arrow-down tzjt idown" aria-hidden="true" cid="${collection[i]['cid']}" apx="${collection[i]['px']}" style="${idownhide}"></i>
-                                                                                </div>
-                                                                            </li>										
-                                                                            <li style="float:left;width:70%;height:100%;">
-                                                                            <a href="/User/room/showroom/info/${collection[i]['jminfo']}">
-                                                                                    <ul style="margin-left:5px;">
-                                                                                            <li class="roominfo" style="height:24px;line-height:24px;padding: 4px 5px 0px 5px;font-size:13px;font-weight:bold;">
-                                                                                            ${collection[i]['building_name']}-${collection[i]['unit']}单元-${collection[i]['floor']}层-${collection[i]['room']}
-                                                                                            </li>
-                                                                                            <li class="roomarea" style="height:20px;line-height:20px;padding: 2px 5px 0px 5px;font-size:12px;">
-                                                                                             <span class="roomhx" style="font-size:12px;font-weight:400;">户型：(${collection[i]['hx']})${collection[i]['hxmx']}</span>&nbsp;&nbsp;${collection[i]['area']} ㎡
-                                                                                            </li>
-                                                                                            <li style="height:20px;line-height:20px;padding: 2px 5px 0px 5px;font-size:12px;">
-                                                                                            售价：¥ <span class="roomtotal" style="font-weight:bold;">${total}</span>
-                                                                                            </li>
-                                                                                    </ul>
-                                                                            </a>
-                                                                            </li>
-                                                                            <li style="float:left;width:15%;height:100%;">
-                                                                                    <div style="line-height:25px;margin-top:25px;"><span class="buy-span ${spanCss}" isyx="${isyx}">${spanTxt}</span></div>
-
-                                                                            </li>
-                                                                    </ul>
-                                                                    <div class="delbtn">删除</div>`;
+            html = '<ul class="bxf-ul ' + ulCss + '" data-room-id="' + collection[i]['id'] + '" px="'+ collection[i]['px'] + '">'
+                   +  '<li class="' + liCss + '" style="float:left;width:14%;height:100%;">'
+                   +      '<div class="leftdiv">'
+                   +            zwdiv
+                   +            '<i class="fa fa-arrow-up tzjt iup" aria-hidden="true" cid="' + collection[i]['cid'] + '" apx="' + collection[i]['px'] + '" style="'+ iuphide + '"></i>'
+                   +                '<div class="' + divStatus + '">' + divTxt + '</div>'
+                   +                '<i class="fa fa-arrow-down tzjt idown" aria-hidden="true" cid="' + collection[i]['cid'] + '" apx="' + collection[i]['px'] + '" style="' + idownhide + '"></i>'
+                   +      '</div>'
+                   +  '</li>'									
+                   +  '<li style="float:left;width:70%;height:100%;">'
+                   +                '<a href="/User/room/showroom/info/' + collection[i]['jminfo'] + '">'
+                   +                    '<ul style="margin-left:5px;">'
+                   +                        '<li class="roominfo" style="height:24px;line-height:24px;padding: 4px 5px 0px 5px;font-size:13px;font-weight:bold;">'
+                   +                             collection[i]['building_name'] + '-' + collection[i]['unit'] + '单元-' + collection[i]['floor'] + '层-' + collection[i]['room']
+                   +                        '</li>'
+                   +                        '<li class="roomarea" style="height:20px;line-height:20px;padding: 2px 5px 0px 5px;font-size:12px;">'
+                   +                            '<span class="roomhx" style="font-size:12px;font-weight:400;">户型：(' + collection[i]['hx'] + ')' + collection[i]['hxmx'] + '</span>&nbsp;&nbsp;' + collection[i]['area'] + '㎡'
+                   +                         '</li>'
+                   +                        '<li style="height:20px;line-height:20px;padding: 2px 5px 0px 5px;font-size:12px;">'
+                   +                            '售价：¥ <span class="roomtotal" style="font-weight:bold;">' + total + '</span>'
+                   +                        '</li>'
+                   +                    '</ul>'
+                   +                '</a>'
+                   +   '</li>'
+                   +   '<li style="float:left;width:15%;height:100%;">'
+                   +         '<div style="line-height:25px;margin-top:25px;"><span class="buy-span '+ spanCss + '" isyx="'+ isyx + '">' + spanTxt + '</span></div>'
+                   +   '</li>'
+                   + '</ul>'
+                   + '<div class="delbtn">删除</div>';
 
             root.append(html);
         }
@@ -871,11 +868,17 @@ $("body").on("click","#qrddbtn",function(){
     {
         return false;
     }
-    /*xfqr($(this).attr("room_id"),eventId)
-    $("#qrdddiv").hide();
-    $(".div-zz").hide();*/
     
-    aqyz($(this).attr("room_id"));
+    if($("#is_aqyz").val()==1)
+    {
+        aqyz($(this).attr("room_id"));
+    }
+    else
+    {
+        xfqr($(this).attr("room_id"),eventId);
+        $("#qrdddiv").hide();
+        $(".div-zz").hide();
+    }
 });
 
 $("#aqyzclose").click(function(){

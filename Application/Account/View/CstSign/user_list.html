@@ -27,7 +27,12 @@
                     <td><{$vo.ywy}></td>
                     <td class="center">
                         <if condition="$vo.is_sign eq 0">
-                            <span class="sign-check" data-id="<{$vo.id}>" title="签到">✔</span>
+                            <empty name="vo.zid">
+                                <span class="sign-check card-<{:rsa_decode($vo['cardno'],getChoosekey())}>" data-id="<{$vo.id}>"   title="签到">✔</span>
+                                <else/>
+                                <span class="sign-check" data-id="<{$vo.id}>"   title="签到">✔</span>
+                            </empty>
+
                             <else/>
                             <span class="sign-cancel" data-id="<{$vo.id}>" title="取消"><i class="icon-undo"></i></span>
                         </if>

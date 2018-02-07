@@ -85,7 +85,7 @@ class ChooseViewModel extends BaseViewModel
         'user' => array(
             '_as' => 'us',
             'us.id' => 'us_id',
-            '_on' 	=> 'us.name = Choose.ywy',
+            '_on' 	=> 'us.mobile = Choose.ywyphone and us.cp_id=Project.cp_id',
             '_type' => 'LEFT'
         ),
 

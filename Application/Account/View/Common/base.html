@@ -182,7 +182,7 @@
 													<foreach name="fun" item="val"  key="kv">
 														<if condition="$val.parent_id eq $fun[$k]['id']">
 															<li fid="<{$val.id}>" pid="<{$val.parent_id}>">
-																<a href="/Account/<{$val.url}>" <if condition="$val.id eq 31">target="view_window"</if>>
+																<a href="/Account/<{$val.url}>">
 																	<i class="icon-double-angle-right"></i>
 																	<{$val.name}>
 																</a>

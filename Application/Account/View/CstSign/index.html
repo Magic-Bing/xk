@@ -78,6 +78,7 @@
             background-color: rgba(0,0,0,0)!important;
         }
     </style>
+
     <form action="index" method="post">
         <input type="hidden" name="zt" value="0">
         <button  class="two-dh <if condition='$zt eq 0'>a-selected</if>">未签到</button>
@@ -92,35 +93,43 @@
     </form>
 </block>
 <block name="page_content">
-    <OBJECT ID="CVR_IDCard"  name="CVR_IDCard" CLASSID="CLSID:10946843-7507-44FE-ACE8-2B3483D179B7" width="0" height="0"></OBJECT>
+    <if condition='$zt eq 0'>
+        <OBJECT ID="CVR_IDCard"  name="CVR_IDCard" CLASSID="CLSID:10946843-7507-44FE-ACE8-2B3483D179B7" width="0" height="0"></OBJECT>
     <script type="text/javascript">
 
         var iPort = CVR_IDCard.InitCommExt();
         if (0 == iPort)
         {
-            alert("连接设备失败");
+            layer.alert("连接身份证读卡设备失败!");
         }
         var bRet = CVR_IDCard.BeginReadCard();
         if (!bRet)
         {
-            alert("启动读卡失败");
+            layer.alert("启动读卡失败");
         }
     </script>
     <script language="Javascript" event="OnReadCardInfo()" for="CVR_IDCard">
         var zt=$("#sign-zt").text();
         var CardNo = CVR_IDCard.CardNo();
         $("#search-one").val(CardNo);
-        var pid=$('#project-not-sign').val();
-        var bid=$('#batch-one').val();
-        num=1;
-        var row=$('#new_rows').val();
-        $.post(sign.user_list,{pid:pid,bid:bid,search:CardNo,num:row,zt:zt},function (data) {
-            $("#user_list").html(data);
-            user_ajax();
-        });
+        var qd=$(".card-"+CardNo);
+//        console.log(qd.length);
+        if(qd.length===1){
+            qd.trigger("click");
+        }else{
+            var pid=$('#project-not-sign').val();
+            var bid=$('#batch-one').val();
+            num=1;
+            var row=$('#new_rows').val();
+            $.post(sign.user_list,{pid:pid,bid:bid,search:CardNo,num:row,zt:zt},function (data) {
+                $("#user_list").html(data);
+                user_ajax();
+            });
+        }
+
     </script>
 
-
+    </if>
     <span id="sign-zt" style="display: none"><{$zt}></span>
     <div class="col-sm-8 js-height" style="border: 1px solid #e8eef6;height: auto!important;">
         <div class="table-header" style="margin-top: 10px"  >
@@ -134,9 +143,7 @@
                                 项目
                                 <select name="project_id" class="choose-user-project-id" id="project-not-sign"
                                         style="width: auto;">
-                                    <if condition="count($project_list) gt 1">
                                         <option value="0">全部</option>
-                                    </if>
                                     <foreach name="project_list" item="vo" key="k">
                                         <option value="<{$vo.id}>"><{$vo.company_name}>--<{$vo.name}></option>
                                     </foreach>
@@ -145,10 +152,12 @@
                             <label>
                                 批次
                                 <select name="batch_id" class="choose-user-batch-id" id="batch-one"
-                                        style="width: 70px;">
+                                                  style="width: 70px;">
                                     <option value="">全部</option>
+                                </select>
+                                <select name="hidden" id="hidden-select" style="display: none">
                                     <foreach name="batch_list" item="vo" key="k">
-                                        <option value="<{$vo.id}>" pid="<{$vo.proj_id}>" style="display: none"><{$vo.name}></option>
+                                        <option value="<{$vo.id}>" pid="<{$vo.proj_id}>" ><{$vo.name}></option>
                                     </foreach>
                                 </select>
                             </label>

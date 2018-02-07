@@ -124,10 +124,6 @@ class OrderHouseController extends BaseController {
      * @author jxw
      */
     public function index() {
-        //$code=encrypt_url("eventId/2/rid/1272", getUrlkey());
-        //$code=geturl("BzZTIgtvDTMEJgFPADANdVJgCHxXcFU4VmYPIVc1VD9UNwo/", getUrlkey());
-        //$code=substr("BzZTIgtvDTMEJgFPADANdVJgCHxXcFU4VmYPIVc1VD9UNwo%2F", -3);
-        //print_r($code);
         
         $id=$this->getEventId();
         if(empty($id))
@@ -536,6 +532,8 @@ class OrderHouseController extends BaseController {
         $this->assign('eventId', cookie("eventId"));
         
         $this->assign('desc', $event['desc']);
+        
+        $this->assign('event', $event);
 
         //用户收藏的房间
         $this->assign('roomCollected', json_encode(array_values($roomCollected)));

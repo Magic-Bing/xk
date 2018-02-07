@@ -262,6 +262,7 @@ class WeixBuysetController extends BaseController {
         $obj['states']=I("states","","trim")?1:0;
         $obj['isysdl']=I("isysdl","","trim")?1:0;
         $obj['is_show_discount']=I("is_show_discount","","trim")?1:0;
+        $obj['is_aqyz']=I("is_aqyz","","trim")?1:0;
         $project = D("project")->field('cp_id,name')->where(array('id'=>$obj['project_id']))->find();
 
         if (empty($project['cp_id'])){
@@ -409,6 +410,7 @@ class WeixBuysetController extends BaseController {
         $obj['states']=I("states","","trim")?1:0;
         $obj['isysdl']=I("isysdl","","trim")?1:0;
         $obj['is_show_discount']=I("is_show_discount","","trim")?1:0;
+        $obj['is_aqyz']=I("is_aqyz","","trim")?1:0;
         $project = D("project")->field('cp_id,name')->where(array('id'=>$obj['project_id']))->find();
 
         if (empty($project['cp_id'])){

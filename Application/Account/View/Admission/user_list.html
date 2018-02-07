@@ -33,7 +33,11 @@
                     <td><{:date('Y-m-d h:i:s',$vo['createdtime'])}></td>
                     <td class="center">
                         <if condition="$vo.is_admission eq 0">
-                            <span class="sign-check" data-id="<{$vo.id}>" title="入场">✔</span>
+                            <empty name="vo.zid">
+                                <span class="sign-check card-<{:rsa_decode($vo['cardno'],getChoosekey())}>" data-id="<{$vo.id}>"   title="入场">✔</span>
+                                <else/>
+                                <span class="sign-check" data-id="<{$vo.id}>"   title="入场">✔</span>
+                            </empty>
                             <else/>
                             <span class="sign-cancel" data-id="<{$vo.id}>" title="取消"><i class="icon-undo"></i></span>
                         </if>
