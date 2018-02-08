@@ -82,7 +82,7 @@
 		</label>
 		
 		<div class="col-sm-9">
-			<input type="text" name="customer_phone" <if condition="$choose.room neq null"> disabled </if> value="<{:rsa_decode($choose['customer_phone'],getChoosekey())}>" id="form-field-customer-phone" placeholder="请填写客户手机" class="col-xs-10 col-sm-5 js-choose-user-edit-customer-phone">
+			<input type="text" name="customer_phone" <if condition="($choose.room neq null) OR ($choose.rid neq null)"> disabled </if> value="<{:rsa_decode($choose['customer_phone'],getChoosekey())}>" id="form-field-customer-phone" placeholder="请填写客户手机" class="col-xs-10 col-sm-5 js-choose-user-edit-customer-phone">
 			<span class="help-inline col-xs-12 col-sm-7">
 				<span class="middle">填写客户手机</span>
 			</span>

@@ -158,7 +158,7 @@
                 position: absolute;
                 top: 50%;
                 left: 50%;
-                transform: translate(15%,-16%);
+                transform: translate(15%,-50%);
                 width: 40%;
                 height: 460px;
                 /*overflow-y: auto;
@@ -234,7 +234,7 @@
                 position: absolute;
                 top: 50%;
                 left: 50%;
-                transform: translate(-50%,-20%); 
+                transform: translate(-50%,-50%); 
                 box-shadow:rgb(136, 136, 136) -5px 5px 15px;
                 background: rgb(255, 255, 255);
                 z-index:999;
@@ -343,7 +343,7 @@
                             </form>
                     </div>
                     <div style="float:left;width:55%;overflow-x:hidden;overflow-y:hidden">  
-                        <div class="tags" style="width:100%">
+                        <div class="tags" style="width:100%;min-height:75vh;">
                             <div id="tagstitle"></div>
                             <div id="tagscontent">
                                 <div id="con_one_1">
@@ -353,7 +353,7 @@
                                                 <tr>
                                                     <th align="center" style="width:20%">批次</th>
                                                     <th align="center" style="width:20%">状态</th>
-                                                    <th align="center" style="width:20%">当前批次</th>
+                                                    <!--<th align="center" style="width:20%">当前批次</th>-->
                                                     <th align="center" style="width:20%">平面图</th>
                                                     <th align="center" style="width:20%">操作</th>
                                                 </tr>
@@ -364,11 +364,11 @@
                                                     <tr class="tr_c selectpc pctr_<{$kppc_vo['id']}>" onmouseover="this.bgColor = '#F5F5F5';" onmouseout="this.bgColor = '#ffffff';" bgcolor="#ffffff" pcid="<{$kppc_vo['id']}>" data_id="<{$i}>" pid='<{$kppc_vo["proj_id"]}>'>
                                                         <td align="center"><{$kppc_vo['name']}></td> 
                                                         <td align="center"><{$kppc_vo['zt']}></td>
-                                                    <if condition="$kppc_vo['is_dq'] eq 0"> 
+                                                    <!--<if condition="$kppc_vo['is_dq'] eq 0"> 
                                                         <td align="center">否</td>
                                                         <else />
                                                         <td align="center">是</td>
-                                                    </if>
+                                                    </if>-->
                                                         <td align="center">
                                                             <a href="#" class="showImg" data-url="<{$kppc_vo['plan']}>">预览</a>
                                                         </td>
@@ -385,11 +385,11 @@
                                                     <tr class="tr_c  pctr_<{$kppc_vo['id']}>" onmouseover="this.bgColor = '#F5F5F5';" onmouseout="this.bgColor = '#ffffff';" bgcolor="#ffffff" pcid="<{$kppc_vo['id']}>" data_id="<{$i}>" pid='<{$kppc_vo["proj_id"]}>'>
                                                         <td align="center"><{$kppc_vo['name']}></td> 
                                                         <td align="center"><{$kppc_vo['zt']}></td>
-                                                    <if condition="$kppc_vo['is_dq'] eq 0"> 
+                                                    <!--<if condition="$kppc_vo['is_dq'] eq 0"> 
                                                         <td align="center">否</td>
                                                         <else />
                                                         <td align="center">是</td>
-                                                    </if>
+                                                    </if>-->
                                                     <td align="center">
                                                         <a href="#" class="showImg" data-url="<{$kppc_vo['plan']}>">预览</a>
                                                     </td>
@@ -425,7 +425,7 @@
                     </div>
                 </div>
                 <div style="float:left;width:41%;margin-left:4%;overflow-x:hidden;overflow-y:hidden;"> 
-                    <div class="tags" style="width:100%">
+                    <div class="tags" style="width:100%;min-height:75vh;">
                         <div id="tagstitle"></div>
                         <div id="tagscontent">
                             <div id="con_one_1">
@@ -481,7 +481,7 @@
                                 <td class="left">开盘时间</td>
                                 <td><input type="text" name="kptime" id="kptime" value="<{$pcinfo[0]['kptime']}>" class="skey" style="width:150px;"</td>
                             </tr>
-                            <tr onmouseover="this.bgColor = '#F5F5F5';" onmouseout="this.bgColor = 'ffffff';" bgcolor="ffffff">
+                            <!--<tr onmouseover="this.bgColor = '#F5F5F5';" onmouseout="this.bgColor = 'ffffff';" bgcolor="ffffff">
                                 <td class="left">当前批次</td>
                                 <td>
                         <if condition="$pcinfo[0]['is_dq'] eq 1"> 
@@ -496,7 +496,7 @@
                             <label for="dq_no" style="margin: -8px 10px 0 0;">否</label>
                         </if>
                         </td>
-                        </tr>
+                        </tr>-->
                         <tr onmouseover="this.bgColor = '#F5F5F5';" onmouseout="this.bgColor = 'ffffff';" bgcolor="ffffff">
                             <td class="left">是否启用</td>
                             <td>
@@ -678,7 +678,7 @@
                     alert(data.info);
                     return false;
                     }
-                    layer_alert("操作成功");
+                    gritter_alert_success("操作成功");
                     $("#trid_" + $id).remove();
                     //window.location.reload();
                     },
@@ -796,7 +796,7 @@
                             $onepc.eq(2).text("否");
                         }
                         
-                        layer_alert('更改成功！');
+                        gritter_alert_success('更改成功！');
                         window.location.reload();
                     },
                     error: function (data, status, e) {
@@ -899,7 +899,7 @@
                     }
                     $("#bldlistdiv").hide();
                     $("#zz_div").hide();
-                    layer_alert("操作成功");
+                    gritter_alert_success("操作成功");
                     showbldist($pcid, $projid);
                     },
                     error: function (data, status, e) {

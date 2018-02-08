@@ -56,7 +56,7 @@ class ChooseAnalysisController extends Base1Controller
                 $user_xf=M()->table("xk_choose c")->field("c.id,r.id rid,oh.id oid,c.customer_name,c.customer_phone")->join('xk_room r ON r.cstid=c.id')->join("( select * from xk_order_house_phone_login group by phone) oh ON oh.phone=c.customer_phone")->where("c.project_id={$projinfo['id']} AND c.batch_id={$projinfo['batch_id']}  $p $s")->select();
             }
         }
-        $tylelist=array( 1 => '全部客户',2 => '未登录',3 => '已登录',4 => '未选房',5 => '已选房');
+        $tylelist=array( 1 => '全部客户',2 => '未登录',3 => '已登录',4 => '已登录未选',5 => '已登录已选');
         $this->assign("tylelist",$tylelist);
         $this->assign("status",$status);
         $this->assign("user_xf",$user_xf);

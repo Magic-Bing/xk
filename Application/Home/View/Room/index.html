@@ -140,6 +140,25 @@
 </block>
 <block name="header_js_add">
     <script src="__COMMON__/js/jquery/masonry-docs.min.js"></script>
+    <OBJECT ID="CVR_IDCard"  name="CVR_IDCard" CLASSID="CLSID:10946843-7507-44FE-ACE8-2B3483D179B7" width="0" height="0" style="position: fixed"></OBJECT>
+    <script type="text/javascript">
+
+        var iPort = CVR_IDCard.InitCommExt();
+        if (0 == iPort)
+        {
+            layer.alert("连接身份证读卡设备失败!");
+        }
+        var bRet = CVR_IDCard.BeginReadCard();
+        if (!bRet)
+        {
+            layer.alert("启动读卡失败");
+        }
+    </script>
+    <script language="Javascript" event="OnReadCardInfo()" for="CVR_IDCard">
+        var zt=$("#sign-zt").text();
+        var CardNo = CVR_IDCard.CardNo();
+        $("#cardno1").val(CardNo).trigger("input").focus();
+    </script>
     <script type="text/javascript">
         $(function () {
             var $container = $('.masonry');
@@ -325,7 +344,7 @@
                         <div style="height:45px;margin-top: 5px;float: left;width: 162px;max-width: 162px;line-height: 45px;text-align: center;background: #f39900;margin-left: 3px;"><!--修改标记-->
                              <div style="width: 85%;height: 100%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;color: #FFF;text-align: left;padding-left: 5px;cursor: pointer;"  id="show_build" on="0">
                                 <volist name="rooms" id="rooms_vo" key="rooms_k">
-                                            <span style="margin-left: 3px;padding:2px 3px;background: #a764a7;" >
+                                            <span style="margin-left: 3px;padding:2px 0;" >
                                                 <if condition="isset($builds[$rooms_vo['build_id']])">
                                                 <{$builds[$rooms_vo['build_id']]['buildname']|default=1}>
                                                 <else/>
@@ -337,18 +356,18 @@
                            <span style="float:right;margin-right: 5px;margin-top: -45px;z-index: 99999;color: #FFF;cursor: pointer;" class="show_divselect">▼</span>
                             <div style="position: absolute;width: 158px;background-color: #FFF;line-height: normal;height: auto;padding-top: 5px;display: none;z-index:10 ;margin-left: 2px;border: 1px solid rgba(184, 184, 184, 0.62);" id="ld_div">
                                 <ul class="clearfix" style="width:156px;margin-left: 3px;margin-top: -7px" id="build_q">
-                                    <li class="fl  select-build-list-li-select" id="selectall" data-build-id="-999" style="height: 45px;line-height: 45px;width: 52px;">
+                                   <!-- <li class="fl  select-build-list-li-select" id="selectall" data-build-id="-999" style="height: 45px;line-height: 45px;width: 52px;">
                                             <span class="fl bspan span-build-list-name-selected" id="span_build_id_-999" style="">
                                                     <if condition="isset($builds[$rooms_vo['build_id']])">
                                                     全部
                                                     </if>
                                             </span>
-                                    </li>
+                                    </li>--><!--此代码是独栋显示用-->
                                     <volist name="rooms" id="rooms_vo" key="rooms_k">
                                         <li class="fl  select-build-list-li-select" id="bli_<{$rooms_vo['build_id']}>"
                                             data-build-id="<{$rooms_vo['build_id']}>"
-                                            style="height: 45px;line-height: 45px;width: 52px;">
-                                                    <span class="fl bspan span-build-list-name" id="span_build_id_<{$rooms_vo['build_id']}>" style="">
+                                            style="height: 45px;line-height: 45px;width: 52px;cursor: pointer">
+                                                    <span class="fl bspan span-build-list-name-selected" id="span_build_id_<{$rooms_vo['build_id']}>" style="">
                                                             <if condition="isset($builds[$rooms_vo['build_id']])">
                                                             <{$builds[$rooms_vo['build_id']]['buildname']|default=1}>
                                                             <else/>
@@ -370,7 +389,7 @@
                                            value="" placeholder="输入房号搜索" id="in1">
                                     <input style="width:100%;display: none;height: 100%;border: 0;background: rgba(255, 255, 255, 0.95);border-radius: 5px;" class="marketing-control-search-input" type="text"
                                            value="" placeholder="输入客户名称查找" id="in2">
-                                    <i class="icon-search nav-search-icon" style="right: 15px;position: absolute;margin-top: -31px;font-size: 18px;color: #eb5858;"></i>
+                                    <i class="icon-search nav-search-icon" style="right: 15px;position: absolute;top: 15px;font-size: 18px;color: #eb5858;"></i>
                                     <ul class="marketing-control-search-room-list"></ul>
                                 </span>
                             </div>

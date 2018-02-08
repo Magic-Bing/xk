@@ -199,21 +199,22 @@ $(function () {
         $("#ywy").val($.trim(td.eq(5).text()));
         $("#yphone").val($(this).attr('data-yp'));
         if(pd === 0){
-            $("#button-sign").show().attr("data-id",id);
+            $("#button-sign").show().attr("data-id",id).attr("data-name",$.trim(td.eq(1).text()));
             $("#sign-reset").hide();
         }else{
-            $("#sign-reset").show().attr("data-id",id);
+            $("#sign-reset").show().attr("data-id",id).attr("data-name",$.trim(td.eq(1).text()));
             $("#button-sign").hide();
         }
     });
     //签到
     $(document).on("click",'.sign-check,#button-sign',function () {
         var id=$(this).attr('data-id');
-        $.post(sign.sign,{id:id,zt:1},function (data) {
+        var name=$(this).attr('data-name');
+        $.post(sign.sign,{id:id,zt:1,name:name},function (data) {
             if(data === "true"){
                 layer_msg("签到成功！");
                 $("#batch-one").trigger("change");
-                $("#sign-reset").show().attr('data-id',$("#button-sign").attr('data-id'));
+                $("#sign-reset").show().attr('data-id',$("#button-sign").attr('data-id')).attr('data-name',$("#button-sign").attr('data-name'));
                 $("#button-sign").hide();
                 // setTimeout(function () {
                 //     window.location.reload();
@@ -226,12 +227,13 @@ $(function () {
     //取消签到
     $(document).on("click",'.sign-cancel,#sign-reset',function () {
         var id=$(this).attr('data-id');
-        $.post(sign.sign,{id:id,zt:0},function (data) {
+        var name=$(this).attr('data-name');
+        $.post(sign.sign,{id:id,zt:0,name:name},function (data) {
             if(data === "true"){
                 layer_msg("取消签到成功！");
                 $("#batch-one").trigger("change");
                 $("#sign-reset").hide();
-                $("#button-sign").show().attr('data-id',$("#sign-reset").attr('data-id'));;
+                $("#button-sign").show().attr('data-id',$("#sign-reset").attr('data-id')).attr('data-name',$("#sign-reset").attr('data-name'));
                 // setTimeout(function () {
                 //     window.location.reload();
                 // },1000)

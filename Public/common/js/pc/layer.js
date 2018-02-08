@@ -38,6 +38,8 @@ function layer_tip(content) {
 function layer_confirm(content, callBack) {
 	//询问框
 	layer.confirm(content, {
+                title:'提示',
+                icon:'warning',
 		btn: ['取消', '确认'], //按钮
 		skin: 'layui-layer-molv', //样式类名
 	}, function(index) {

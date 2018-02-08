@@ -462,9 +462,10 @@ class ChooseUserController extends BaseController {
             $this->assign('id', $id);
 
             //奖励信息
-            $Choose = D('Choose');
+//            $Choose = D('Choose');
 
-            $choose = $Choose->getOneById($id);
+            $choose = M()->table("xk_choose c")->field("c.*,r.id rid")->join("LEFT JOIN xk_room r ON r.cstid=c.id")->where("c.id=$id")->find();
+//            echo json_encode($choose);exit;
             if (empty($choose)) {
                 $this->error("信息不存在，请确认后重试！");
             }

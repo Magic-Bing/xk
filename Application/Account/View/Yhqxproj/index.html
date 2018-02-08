@@ -159,7 +159,7 @@ a{
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-20%,-20%);
+    transform: translate(-20%,-50%);
     width: 40%;
     height: 460px;
     /*overflow-y: hidden;
@@ -225,7 +225,7 @@ a{
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-20%); 
+    transform: translate(-50%,-50%); 
     box-shadow:rgb(136, 136, 136) -5px 5px 15px;
     background: rgb(255, 255, 255);
     display:none;
@@ -271,6 +271,10 @@ a{
     width: 16px;
     border:1px solid #ddd;
     border-radius: 3px;
+}
+.delete-no span{
+    background-color: #e7e7e7;color: #FFF;
+    cursor: not-allowed;
 }
 </style>
 <div class="row">
@@ -334,7 +338,7 @@ a{
                 </form>
             </div>
             <div style="float:left;width:41%;overflow-x:hidden;overflow-y:hidden">
-                <div class="tags" style="width:100%">
+                <div class="tags" style="width:100%;min-height:75vh;">
                     <div id="tagstitle"></div>
                     <div id="tagscontent">
                         <div id="con_one_1">
@@ -361,8 +365,8 @@ a{
                                                         <{$station_vo['name']}>
                                                     </td>
                                                     <td align="center" style="height:35px">
-                                                        <a style="margin-right: 5px;" class="edit_station_btn" href="javascript:void(0);" title="编辑" >
-                                                        <span style="padding: 3px 3px;background-color: #6fb3e0;color: #FFF;">
+                                                        <a style="margin-right: 5px;" class="delete-no" href="javascript:void(0);" title="编辑" >
+                                                        <span style="padding: 3px 3px;">
 								<i class="icon-edit bigger-120"></i>
                                                          </span>
                                                         </a>
@@ -388,11 +392,19 @@ a{
                                                         <{$station_vo['name']}>
                                                     </td>
                                                     <td align="center" style="height:35px">
-                                                        <a style="margin-right: 5px;" class="edit_station_btn" href="javascript:void(0);" title="编辑" >
-                                                        <span style="padding: 3px 3px;background-color: #6fb3e0;color: #FFF;">
-								<i class="icon-edit bigger-120"></i>
-                                                         </span>
-                                                        </a>
+                                                        <if condition="!empty($station_vo['projname'])">
+                                                            <a style="margin-right: 5px;" class="edit_station_btn" href="javascript:void(0);" title="编辑" >
+                                                            <span style="padding: 3px 3px;background-color: #6fb3e0;color: #FFF;">
+                                                                    <i class="icon-edit bigger-120"></i>
+                                                             </span>
+                                                            </a>
+                                                        <else/>
+                                                            <a style="margin-right: 5px;" class="delete-no" href="javascript:void(0);" title="编辑" >
+                                                            <span style="padding: 3px 3px;">
+                                                                    <i class="icon-edit bigger-120"></i>
+                                                            </span>
+                                                            </a>
+                                                        </if>
                                                         <a data-id="<{$station_vo['id']}>" class="delete-station" title="删除">
                                                     <span style="padding:3px 3px 3px 5px;margin-right:5px;background-color: #d15b47;color: #FFF;">
                                                         <i class="icon-trash bigger-120"></i>
@@ -422,7 +434,7 @@ a{
             </div>    
         </div>
         <div style="float:left;width:55%;margin-left:4%;overflow-x:hidden;overflow-y:hidden;"> 
-            <div class="tags" style="width:100%">
+            <div class="tags" style="width:100%;min-height: 75vh;">
                 <div id="tagstitle"></div>
                 <div id="tagscontent">
                     <div id="con_one_1">
@@ -614,10 +626,11 @@ a{
                             return false;
                     }
 		
-                    if (!confirm("是否从岗位中移除此项目批次权限？！"))
-                                    return false;
+                    /*if (!confirm("是否从岗位中移除此项目批次权限？"))
+                                    return false;*/
 
-                    var project_url = {stationdelpc: '<{:U("stationdelpc")}>',}		
+                var project_url = {stationdelpc: '<{:U("stationdelpc")}>',}
+                var callback = function(){
                     $.ajax({
                             url: project_url.stationdelpc,
                             data: {
@@ -635,7 +648,7 @@ a{
                                             alert(data.info);
                                             return false;
                                     }
-                                    layer_alert("操作成功");
+                                    gritter_alert_success("操作成功");
                                     $("#trid_"+ $id).remove();
                                     //window.location.reload();
                             },
@@ -643,6 +656,8 @@ a{
                                     layer_alert('提交连接失败！');
                             }
                     }); 
+                }
+                layer_confirm('是否从岗位中移除此项目批次权限？', callback);
             }
 	
             //岗位选择批次界面
@@ -744,7 +759,7 @@ a{
                                     }
                                     $("#userlistdiv").hide();
                                     $("#zz_div").hide();
-                                    layer_alert("操作成功");
+                                    gritter_alert_success("操作成功");
                                     showpclist($station_id,$cp_id);
                             },
                             error: function (data, status, e) {

@@ -32,7 +32,7 @@ class RoomattributeModel extends Model
 		$where = array(
 			'room_id' => $room_id
 		);
-		return $this->where($where)->field('room_id,sccount,round(djcount/2,0) as djcount,round(sscount/2,0) as sscount,mock_djcount,mock_sccount,mock_sscount')->find();
+		return $this->where($where)->field('room_id,sccount,round(djcount/2,0) as djcount,round(sscount,0) as sscount,mock_djcount,mock_sccount,mock_sscount')->find();
 	}
 	
 	
@@ -45,7 +45,7 @@ class RoomattributeModel extends Model
 	public function getAttributeList(
 		array $where = array(), 
 		$orderBy = 'id DESC',
-		$field = 'room_id,sccount,round(djcount/2,0) as djcount,round(sscount/2,0) as sscount,mock_djcount,mock_sccount,mock_sscount',
+		$field = 'room_id,sccount,round(djcount/2,0) as djcount,round(sscount,0) as sscount,mock_djcount,mock_sccount,mock_sscount',
 		$limit = '100'
 	) {		
 		return $this->field($field)

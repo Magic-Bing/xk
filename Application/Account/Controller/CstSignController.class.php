@@ -100,6 +100,90 @@ class CstSignController extends BaseController
         echo $this->fetch();
     }
 
+    //获取用户签到信息
+    public function auto_sign(){
+        if(!IS_AJAX){
+            $this->error("非法操作",U("index/index"));
+        }
+        $user_project_ids = $this->get_user_project_ids();
+        $user_project_ids=array_merge($user_project_ids);
+        $arr_str=implode(",",$user_project_ids);
+        $pid=I("pid",0,"intval");
+        $bid=I("bid",0,"intval");
+        $card=I("card",'',"trim");
+        $name=I("name",'',"trim");
+        if($pid !== 0){
+            $p="AND c.project_id =$pid";
+        }else{
+            $p="AND c.project_id in ($arr_str)";
+        }
+        if($bid !== 0){
+            $b="AND c.batch_id =$bid";
+        }else{
+            $b='';
+        }
+        if($card !== ''){
+            $s="AND (c.like_c like '%".strencode($card)."%' )";
+        }else{
+            $s='';
+        }
+        $res=M()->table("xk_choose c")->field("c.*,p.id zid")->join('LEFT JOIN xk_pzcsvalue p ON p.project_id=c.project_id AND p.batch_id=c.batch_id AND p.pzcs_id=2 AND p.cs_value=-1')->where("1 = 1  $p $b $s")->select();
+        if(empty($res)){
+           $this->error("不存在该客户！");
+        }else{
+            if(empty($res[0]['zid'])){
+                if(count($res)>1){
+                    $auto_cst=0;
+                    $auto_arr=[];
+                    for($i=0;$i<count($res);$i++){
+                        if(empty($res[$i]['is_sign'])){
+                            $auto_cst++;
+                            $auto_arr[]=$res[$i];
+                        }
+                    }
+                    if($auto_cst === 1){
+                        $this->success("auto_one");
+                    }elseif($auto_cst === 0){
+                        $name=M()->table("xk_choose2user_log")->where("choose_id={$res[0]['id']}")->order("id desc")->find();
+                        $this->success($name);
+                    }else{
+                        $t_conut=count($auto_arr);
+                        for($k=0;$k<$t_conut;$k++){
+                            $data['choose_id']=$auto_arr[$k]['id'];
+                            $data['user_id']=$this->get_user_id();
+                            $data['log_time']=time();
+                            $data['log_ip']=$this->getIP();
+                            $data['cst_name']=$name;
+                            $data['log_type']='签到';
+                            try{
+                                M()->table('xk_choose')->where("id={$auto_arr[$k]['id']}")->save(['is_sign'=>1,'sign_time' => time()]);
+                                M()->table("xk_choose2user_log")->add($data);
+                                M()->commit();
+                            }catch (\Think\Exception $e) {
+                                M()->rollback();
+                                $this->error("签到失败，请刷新重试！");
+                            }
+                        }
+                        $str="成功签到了".$t_conut.'条';
+                        $this->success($str);
+                    }
+                }else{
+                    if(empty($res[0]['is_sign'])){
+                        $this->success("auto_one");
+                    }else{
+                        $name=M()->table("xk_choose2user_log")->where("choose_id={$res[0]['id']}")->order("id desc")->find();
+                        $this->success($name);
+                    }
+                }
+            }else{
+                $this->success("not_auto");
+            }
+
+        }
+
+
+    }
+
     //签到和取消签到
     public  function sign(){
         if(!IS_AJAX){
@@ -109,6 +193,7 @@ class CstSignController extends BaseController
         M()->startTrans();//开启事务
         $id=I("id",0,'intval');
         $zt=I("zt",1,'intval');
+        $name=I("name",'','trim');
         if($zt===0){
             $data['log_type']='取消签到';
         }else{
@@ -118,6 +203,7 @@ class CstSignController extends BaseController
         $data['user_id']=$this->get_user_id();
         $data['log_time']=time();
         $data['log_ip']=$this->getIP();
+        $data['cst_name']=$name;
         try{
             M()->table('xk_choose')->where("id=$id")->save(['is_sign'=>$zt,'sign_time' => time()]);
             M()->table("xk_choose2user_log")->add($data);

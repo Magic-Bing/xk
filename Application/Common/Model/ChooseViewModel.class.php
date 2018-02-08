@@ -40,6 +40,8 @@ class ChooseViewModel extends BaseViewModel
 			'add_ip' 		=> 'add_ip',
             'ywy' 		=> 'ywy',
             'ywyphone' 		=> 'ywyphone',
+            'like_c' 		=> 'like_c',
+            'like_p' 		=> 'like_p',
 			'_type' => 'LEFT'
 		),
 		'Project' => array(

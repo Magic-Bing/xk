@@ -27,11 +27,10 @@ class TradeViewModel extends BaseViewModel {
             'isyx' => 'isyx',
             'code' => 'code',
             'tradetime' => 'trade_time',
-            'createdbyid' => 'createdbyid',
-            'createdby' => 'createdby',
             'pay' => 'pay',
             'proportion' => 'proportion',
-            'money' => 'money',
+            'createdbyid' => 'createdbyid',
+            'createdby' => 'createdby',
             '_type' => 'LEFT'
         ),
         'Roomlist' => array(
@@ -54,8 +53,6 @@ class TradeViewModel extends BaseViewModel {
         'Choose' => array(
             'customer_name' => 'cst_name',
             'customer_phone' => 'cst_phone',
-            'batch_id' => 'pcid',
-            'project_id' => 'xmid',
             'cardno' => 'cardno',
             'cyjno' => 'cyjno',
             'ywy' => 'ywy',

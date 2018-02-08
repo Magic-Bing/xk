@@ -28,13 +28,13 @@
                     <td class="center">
                         <if condition="$vo.is_sign eq 0">
                             <empty name="vo.zid">
-                                <span class="sign-check card-<{:rsa_decode($vo['cardno'],getChoosekey())}>" data-id="<{$vo.id}>"   title="签到">✔</span>
+                                <span class="sign-check card-<{:rsa_decode($vo['cardno'],getChoosekey())}>" data-id="<{$vo.id}>"  data-name="<{$vo.customer_name}>"  title="签到">✔</span>
                                 <else/>
-                                <span class="sign-check" data-id="<{$vo.id}>"   title="签到">✔</span>
+                                <span class="sign-check" data-id="<{$vo.id}>" data-name="<{$vo.customer_name}>"  title="签到">✔</span>
                             </empty>
 
                             <else/>
-                            <span class="sign-cancel" data-id="<{$vo.id}>" title="取消"><i class="icon-undo"></i></span>
+                            <span class="sign-cancel" data-id="<{$vo.id}>" data-name="<{$vo.customer_name}>" title="取消"><i class="icon-undo"></i></span>
                         </if>
                     </td>
                 </tr>

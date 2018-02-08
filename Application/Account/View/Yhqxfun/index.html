@@ -115,7 +115,7 @@
                 </select>
             </form>
         </div>
-        <div  style="border:1px solid #e8eef6;width: 25%;float: left;height:75vh; padding: 4px 6px;">
+        <div  style="border:1px solid #e8eef6;width: 25%;float: left;min-height:75vh; padding: 4px 6px;">
             <div style="width: 100%;padding:0;text-align: center" id="role">
                 <div style="line-height: 35px;height: 35px;background: #f2f2f2;color: #707070;font-weight: 700;border-bottom: 1px solid #ddd;">岗位名称</div>
                 <ul id="role-ul">
@@ -149,7 +149,7 @@
                 </ul>
             </div>
         </div>
-        <div style="border:1px solid #e8eef6;width: 72%;height: 75vh;float: left;margin-left: 3%;padding: 4px 6px;">
+        <div style="border:1px solid #e8eef6;width: 72%;min-height: 75vh;float: left;margin-left: 3%;padding: 4px 6px;">
             <div style="line-height: 35px;height: 35px;background: #f2f2f2;color: #707070;font-weight: 700;border-bottom: 1px solid #ddd;text-align: center;">功能权限</div>
             <div style="width: 100%;padding: 10px 0" id="fun">
                 <foreach name="one_mk" item="vo"  key="k">
@@ -226,10 +226,15 @@
                for(var i=0;i<input_checked.length;i++){
                     arr[i]={"fun_id":input_checked.eq(i).attr("fid"),"station_id":rid};
                }
-//               console.log(arr);return false;
+                //console.log(arr);return false;
                $.post("<{:U('Yhqxfun/updateFun')}>",{funs:arr},function (data) {
-                   layer_alert(data);
-//                   window.location.reload();
+                   //layer_alert(data);
+                    if (data.status === 0) {
+                        layer_alert(data);
+                    } else {
+                        gritter_alert_success(data);
+                    }
+                    // window.location.reload();
                });
            }
         });

@@ -111,22 +111,41 @@
     <script language="Javascript" event="OnReadCardInfo()" for="CVR_IDCard">
         var zt=$("#sign-zt").text();
         var CardNo = CVR_IDCard.CardNo();
-        $("#search-one").val(CardNo);
-        var qd=$(".card-"+CardNo);
-//        console.log(qd.length);
-        if(qd.length===1){
-            qd.trigger("click");
-        }else{
-            var pid=$('#project-not-sign').val();
-            var bid=$('#batch-one').val();
-            num=1;
-            var row=$('#new_rows').val();
-            $.post(sign.user_list,{pid:pid,bid:bid,search:CardNo,num:row,zt:zt},function (data) {
-                $("#user_list").html(data);
-                user_ajax();
-            });
-        }
+        var Name = CVR_IDCard.Name();
+        var pid=$('#project-not-sign').val();
+        var bid=$('#batch-one').val();
+        $.post(sign.auto_sign,{pid:pid,bid:bid,card:CardNo,name:Name},function (data) {
 
+           if(data.status === 0){
+                layer.alert(data.info,{
+                    title:'温馨提示'
+                });
+           }else{
+               if(typeof data.info === 'object'){
+                   layer.alert(data.info.cst_name+"已经签到过了。",{
+                       title:'温馨提示'
+                   });
+               }else{
+                   if(data.info === 'auto_one'){
+                       var qd=$(".card-"+CardNo);
+                       qd.trigger("click");
+                   }else if(data.info === 'not_auto'){
+                        num=1;
+                       $("#search-one").val(CardNo);
+                        var row=$('#new_rows').val();
+                        $.post(sign.user_list,{pid:pid,bid:bid,search:CardNo,num:row,zt:zt},function (data) {
+                            $("#user_list").html(data);
+                            user_ajax();
+                        });
+                   }else{
+                       $("#batch-one").trigger("change");
+                       layer.alert(data.info,{
+                           title:'温馨提示'
+                       });
+                   }
+               }
+           }
+        },'json');
     </script>
 
     </if>

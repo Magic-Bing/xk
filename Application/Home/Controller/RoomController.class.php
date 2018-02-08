@@ -558,7 +558,7 @@ class RoomController extends BaseController
 		}
 		
 		//条件
-		$search_info = I('info', '', 'trim');
+		$search_info = I('info','', 'trim');
                 $type = I('stype', '', 'trim');
                 $project_id = I('project_id', '', 'trim');
                 $room_id = I('room_id', '', 'trim');
@@ -580,15 +580,19 @@ class RoomController extends BaseController
                     $where['customer_name'] = $search_info;
                 }else if ($type==2)
                 {
-                    $where['customer_phone'] = $search_info;
+                    $where['like_p'] = strencode($search_info);
                 }else if ($type==3)
                 {
-                    $where['cardno'] = $search_info;
+                    $where['like_c'] = strencode($search_info);
                 }
                 $where['project_id'] = $project_id;
                 $where['batch_id'] = $batch_id;
 		$ChooseView = D('Common/ChooseView');
 		$csts = $ChooseView->getList($where, "*");
+		if(count($csts) >0){
+            $csts[0]['customer_phone']=rsa_decode($csts[0]['customer_phone'],getChoosekey());
+            $csts[0]['cardno']=rsa_decode($csts[0]['cardno'],getChoosekey());
+        }
                 $data=array();
                 if ( !empty($csts[0]['room_id'])&&$csts[0]['room_id']>0)
                 {
@@ -601,6 +605,7 @@ class RoomController extends BaseController
                 $data[1]=$csts;
 		
 		//获取相关信息
+
 		$this->success($data, U('room/index'));
 	}
         

@@ -246,7 +246,7 @@
                                 </td>
                                 <td>
                                     <{$vo['pname']|default=''}>
-                                    <notempty name="ledlist_vo.bname">
+                                    <notempty name="vo.kname">
                                         <span class="label label-sm label-primary arrowed arrowed-right"><{$vo.kname}></span>
                                     </notempty>
                                 </td>
@@ -386,8 +386,22 @@
             //点击删除按钮
             $(document).on("click",'.js-td-delete',function () {
                 var id=$(this).attr('data-id');
-                layer.confirm("是否删除模版，删除后不能恢复！", {title:'提示',icon:'warning',btn:['确认','取消']},function () {
-                        $.post("<{:U('/Account/Printing/delete_mb')}>",{id:id},function (data) {
+                
+                 var callback = function(){
+                     $.post("<{:U('/Account/Printing/delete_mb')}>",{id:id},function (data) {
+                            if (data.status === 0) {
+                                layer_alert(data.info);
+                            } else {
+                                gritter_alert_success(data.info);
+                                setTimeout(function () {
+                                    window.location.reload();
+                                }, 800);
+                            }
+                        });
+                 }
+                layer_confirm('是否删除模版，删除后不能恢复！', callback);
+                /*layer.confirm("是否删除模版，删除后不能恢复！", {title:'提示',icon:'warning',btn:['确认','取消']},function () {
+                    $.post("<{:U('/Account/Printing/delete_mb')}>",{id:id},function (data) {
                             if (data.status === 0) {
                                 layer_alert(data.info);
                             } else {
@@ -397,7 +411,8 @@
                                 }, 1000);
                             }
                         });
-                    });
+                        
+                    });*/
             });
 
             //分页跳转
