@@ -327,7 +327,7 @@ $(function() {
                             success:function (data) {
                                 if(data ==='true'){
                                     window.location.reload();
-                                    window.open(xsgl_url.show_print+"?name="+print);
+                                    window.open(xsgl_url.show_print+"?name="+print+"&id="+id);
                                 }else{
                                     layer.msg("数据变更失败，请刷新后重试！");
                                 }

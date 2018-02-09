@@ -2,37 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d93e351b-3e78-4fb4-bd62-b1a84d311097" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ThinkPHP/Common/beat_xk.sql" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/ChooseUserController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/ChooseUserController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/CstSignController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/CstSignController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/WeixBuyledController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/WeixBuyledController.class.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Account/View/Printing/1517880411-mb.html" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/PrintingController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/PrintingController.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/XsgllogController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/XsgllogController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/YhqxuserController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/YhqxuserController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Admission/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/Admission/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Admission/user_list.html" afterPath="$PROJECT_DIR$/Application/Account/View/Admission/user_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/ChooseUser/add.html" afterPath="$PROJECT_DIR$/Application/Account/View/ChooseUser/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Common/base.html" afterPath="$PROJECT_DIR$/Application/Account/View/Common/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Common/config.html" afterPath="$PROJECT_DIR$/Application/Account/View/Common/config.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/CstSign/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/CstSign/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Index/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/Index/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Jcsjroom/room.html" afterPath="$PROJECT_DIR$/Application/Account/View/Jcsjroom/room.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/WeixBuyled/led.html" afterPath="$PROJECT_DIR$/Application/Account/View/WeixBuyled/led.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/WeixBuylog/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/WeixBuylog/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/WeixBuyset/AnalyticalRoomHot.html" afterPath="$PROJECT_DIR$/Application/Account/View/WeixBuyset/AnalyticalRoomHot.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/WeixBuyset/edit.html" afterPath="$PROJECT_DIR$/Application/Account/View/WeixBuyset/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/WeixBuyset/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/WeixBuyset/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Xsglled/led.html" afterPath="$PROJECT_DIR$/Application/Account/View/Xsglled/led.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Xsgllog/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/Xsgllog/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/YaoHresult/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/YaoHresult/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/YaoHset/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/YaoHset/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/YwcsSet/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/YwcsSet/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Common/Model/TradeViewModel.class.php" afterPath="$PROJECT_DIR$/Application/Common/Model/TradeViewModel.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Public/account/js/account.js" afterPath="$PROJECT_DIR$/Public/account/js/account.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Public/account/js/admission.js" afterPath="$PROJECT_DIR$/Public/account/js/admission.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Public/account/js/sign.js" afterPath="$PROJECT_DIR$/Public/account/js/sign.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Public/common/js/jquery/circliful/js/jquery.circliful.js" afterPath="$PROJECT_DIR$/Public/common/js/jquery/circliful/js/jquery.circliful.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -53,49 +26,64 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuyset/index.html">
+      <file leaf-file-name="account.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Public/account/js/account.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="222" column="34" lean-forward="false" selection-start-line="222" selection-start-column="34" selection-end-line="222" selection-end-column="34" />
+            <state relative-caret-position="230">
+              <caret line="328" column="61" lean-forward="true" selection-start-line="328" selection-start-column="61" selection-end-line="328" selection-end-column="61" />
               <folding>
-                <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#1;n#block#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#1;n#block#1;n#!!top" expanded="true" />
-                <element signature="n#div#0;n#div#2;n#div#0;n#div#1;n#block#1;n#!!top" expanded="false" />
-                <element signature="n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#1;n#block#1;n#!!top" expanded="false" />
+                <marker date="1518170091894" expanded="true" signature="4292:4349" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="4389:4399" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="4628:4674" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="4628:4686" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="4778:4788" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="5205:5251" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="5205:5263" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="5430:5437" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="5430:5440" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="5556:5599" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="5556:5600" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="5712:5758" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="5712:5770" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="5785:5796" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="5824:5834" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="8549:8607" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="8654:8664" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="9638:9695" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="9736:9746" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="10051:10108" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="10051:10109" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="10200:10210" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="10682:10739" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="10682:10740" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="10915:10922" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="10915:10925" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="11049:11060" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="11049:11092" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="11049:11093" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="11221:11246" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="11221:11279" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="11294:11305" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="11526:11536" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="17739:17749" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="18208:18329" ph="..." />
+                <marker date="1518170091894" expanded="true" signature="18639:18764" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuylog/index.html">
+      <file leaf-file-name="XsgllogController.class.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Account/Controller/XsgllogController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="183" column="45" lean-forward="false" selection-start-line="183" selection-start-column="45" selection-end-line="183" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AnalyticalRoomHot.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuyset/AnalyticalRoomHot.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="506">
-              <caret line="22" column="55" lean-forward="false" selection-start-line="22" selection-start-column="55" selection-end-line="22" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Application/Account/View/Xsgllog/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="519">
-              <caret line="161" column="84" lean-forward="false" selection-start-line="161" selection-start-column="84" selection-end-line="161" selection-end-column="84" />
+            <state relative-caret-position="252">
+              <caret line="82" column="23" lean-forward="true" selection-start-line="82" selection-start-column="23" selection-end-line="82" selection-end-column="23" />
               <folding>
-                <element signature="n#style#0;n#span#0;n#div#0;n#td#10;n#tr#0;n#volist#0;n#if#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#block#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#if#0;n#div#0;n#td#10;n#tr#0;n#volist#0;n#if#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#block#1;n#!!top" expanded="true" />
+                <element signature="e#6997#10953#0#PHP" expanded="false" />
+                <element signature="e#11020#15320#0#PHP" expanded="false" />
+                <element signature="e#15390#16173#0#PHP" expanded="false" />
+                <element signature="e#16242#17099#0#PHP" expanded="false" />
+                <element signature="e#17217#19149#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -157,7 +145,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Public/common/js/layer/layer.js" />
         <option value="$PROJECT_DIR$/Application/Account/View/Xsglled/index.html" />
         <option value="$PROJECT_DIR$/Application/Account/View/Printing/1517540643-mb.html" />
         <option value="$PROJECT_DIR$/Application/Account/View/Printing/1517540741-mb.html" />
@@ -166,7 +153,6 @@
         <option value="$PROJECT_DIR$/Application/Account/View/Printing/1517544257-mb.html" />
         <option value="$PROJECT_DIR$/Public/kindeditor/kindeditor-all.js" />
         <option value="$PROJECT_DIR$/Application/Account/View/Printing/index.html" />
-        <option value="$PROJECT_DIR$/Application/Account/Controller/PrintingController.class.php" />
         <option value="$PROJECT_DIR$/Application/js.html" />
         <option value="$PROJECT_DIR$/Application/Account/View/Xsglled/led.html" />
         <option value="$PROJECT_DIR$/Application/Account/Controller/XsglledController.class.php" />
@@ -185,7 +171,6 @@
         <option value="$PROJECT_DIR$/Application/Account/View/Admission/user_list.html" />
         <option value="$PROJECT_DIR$/Application/Account/Controller/WeixBuyledController.class.php" />
         <option value="$PROJECT_DIR$/Application/Account/View/WeixBuyled/led.html" />
-        <option value="$PROJECT_DIR$/Application/Account/Controller/XsgllogController.class.php" />
         <option value="$PROJECT_DIR$/Application/Account/View/Index/index.html" />
         <option value="$PROJECT_DIR$/Application/Account/View/Common/base.html" />
         <option value="$PROJECT_DIR$/Public/account/js/sign.js" />
@@ -196,7 +181,6 @@
         <option value="$PROJECT_DIR$/Application/Account/View/Jcsjroom/room.html" />
         <option value="$PROJECT_DIR$/Application/Account/Controller/ChooseUserController.class.php" />
         <option value="$PROJECT_DIR$/Application/Account/View/ChooseUser/add.html" />
-        <option value="$PROJECT_DIR$/Public/account/js/account.js" />
         <option value="$PROJECT_DIR$/Application/Account/Controller/BaseController.class.php" />
         <option value="$PROJECT_DIR$/Application/Account/Controller/CstSignController.class.php" />
         <option value="$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php" />
@@ -208,6 +192,10 @@
         <option value="$PROJECT_DIR$/Application/Account/View/WeixBuylog/index.html" />
         <option value="$PROJECT_DIR$/Application/Account/View/WeixBuyset/AnalyticalRoomHot.html" />
         <option value="$PROJECT_DIR$/Application/Account/View/Xsgllog/index.html" />
+        <option value="$PROJECT_DIR$/Application/Account/Controller/PrintingController.class.php" />
+        <option value="$PROJECT_DIR$/Public/account/js/account.js" />
+        <option value="$PROJECT_DIR$/Application/Account/Controller/XsgllogController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Account/View/Printing/1518169942-mb.html" />
       </list>
     </option>
   </component>
@@ -265,7 +253,79 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Public" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yun_xk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yun_xk" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Public" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="account" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yun_xk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yun_xk" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Public" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="account" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yun_xk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yun_xk" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yun_xk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yun_xk" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Common" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -331,7 +391,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Xsgllog" />
+              <option name="myItemId" value="Printing" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -495,12 +555,12 @@
       <workItem from="1517898754000" duration="5991000" />
       <workItem from="1517965680513" duration="24274000" />
       <workItem from="1518052870335" duration="22806000" />
-      <workItem from="1518138873423" duration="23007000" />
+      <workItem from="1518138873423" duration="24588000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="318934000" />
+    <option name="totallyTimeSpent" value="320515000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -577,21 +637,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Application/Common/Common/xk.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="9" lean-forward="false" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/Common/sidebar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2001">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Home/View/Room/index - 副本.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2622">
@@ -822,17 +867,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/PrintingController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="25" column="29" lean-forward="false" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
-          <folding>
-            <element signature="e#410#3949#0#PHP" expanded="false" />
-            <element signature="e#3965#5680#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Account/View/ChooseUser/edit.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="805">
@@ -846,16 +880,6 @@
         <state relative-caret-position="592">
           <caret line="90" column="2" lean-forward="false" selection-start-line="90" selection-start-column="2" selection-end-line="90" selection-end-column="2" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/XsgllogController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1385">
-          <caret line="69" column="20" lean-forward="true" selection-start-line="69" selection-start-column="20" selection-end-line="69" selection-end-column="20" />
-          <folding>
-            <element signature="e#6631#10587#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -925,51 +949,6 @@
         <state relative-caret-position="508">
           <caret line="494" column="14" lean-forward="true" selection-start-line="494" selection-start-column="14" selection-end-line="494" selection-end-column="14" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Public/account/js/account.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="1165" column="82" lean-forward="false" selection-start-line="1165" selection-start-column="82" selection-end-line="1165" selection-end-column="82" />
-          <folding>
-            <marker date="1518164362313" expanded="true" signature="4292:4349" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="4389:4399" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="4628:4674" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="4628:4686" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="4778:4788" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="5205:5251" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="5205:5263" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="5430:5437" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="5430:5440" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="5556:5599" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="5556:5600" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="5712:5758" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="5712:5770" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="5785:5796" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="5824:5834" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="8549:8607" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="8654:8664" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="9638:9695" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="9736:9746" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="10051:10108" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="10051:10109" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="10200:10210" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="10682:10739" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="10682:10740" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="10915:10922" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="10915:10925" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="11049:11060" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="11049:11092" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="11049:11093" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="11221:11246" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="11221:11279" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="11294:11305" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="11526:11536" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="17729:17739" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="18198:18319" ph="..." />
-            <marker date="1518164362313" expanded="true" signature="18629:18754" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1112,21 +1091,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Common/Model/TradeViewModel.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="31" column="29" lean-forward="false" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuyset/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="222" column="34" lean-forward="false" selection-start-line="222" selection-start-column="34" selection-end-line="222" selection-end-column="34" />
           <folding>
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#1;n#block#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#1;n#block#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#1;n#block#1;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#1;n#block#1;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#2;n#div#0;n#div#1;n#block#1;n#!!top" expanded="false" />
             <element signature="n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#1;n#block#1;n#!!top" expanded="false" />
           </folding>
@@ -1141,6 +1112,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/PrintingController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="801">
+          <caret line="163" column="0" lean-forward="true" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
+          <folding>
+            <element signature="e#410#3949#0#PHP" expanded="false" />
+            <element signature="e#5713#5951#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/Printing/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-9729">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/Printing/1518169942-mb.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="38" lean-forward="false" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Common/Model/TradeViewModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="54" column="40" lean-forward="false" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/XsgllogController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="82" column="23" lean-forward="true" selection-start-line="82" selection-start-column="23" selection-end-line="82" selection-end-column="23" />
+          <folding>
+            <element signature="e#6997#10953#0#PHP" expanded="false" />
+            <element signature="e#11020#15320#0#PHP" expanded="false" />
+            <element signature="e#15390#16173#0#PHP" expanded="false" />
+            <element signature="e#16242#17099#0#PHP" expanded="false" />
+            <element signature="e#17217#19149#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuyset/AnalyticalRoomHot.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="506">
@@ -1151,11 +1171,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Account/View/Xsgllog/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
+        <state relative-caret-position="-2508">
           <caret line="161" column="84" lean-forward="false" selection-start-line="161" selection-start-column="84" selection-end-line="161" selection-end-column="84" />
           <folding>
             <element signature="n#style#0;n#span#0;n#div#0;n#td#10;n#tr#0;n#volist#0;n#if#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#block#1;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#if#0;n#div#0;n#td#10;n#tr#0;n#volist#0;n#if#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#block#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Public/account/js/account.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="328" column="61" lean-forward="true" selection-start-line="328" selection-start-column="61" selection-end-line="328" selection-end-column="61" />
+          <folding>
+            <marker date="1518170091894" expanded="true" signature="4292:4349" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="4389:4399" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="4628:4674" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="4628:4686" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="4778:4788" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="5205:5251" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="5205:5263" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="5430:5437" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="5430:5440" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="5556:5599" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="5556:5600" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="5712:5758" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="5712:5770" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="5785:5796" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="5824:5834" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="8549:8607" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="8654:8664" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="9638:9695" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="9736:9746" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="10051:10108" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="10051:10109" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="10200:10210" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="10682:10739" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="10682:10740" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="10915:10922" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="10915:10925" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="11049:11060" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="11049:11092" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="11049:11093" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="11221:11246" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="11221:11279" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="11294:11305" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="11526:11536" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="17739:17749" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="18208:18329" ph="..." />
+            <marker date="1518170091894" expanded="true" signature="18639:18764" ph="..." />
           </folding>
         </state>
       </provider>

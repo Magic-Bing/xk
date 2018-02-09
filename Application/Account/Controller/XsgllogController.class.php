@@ -75,7 +75,19 @@ class XsgllogController extends BaseController {
     }
     //显示打印页面
     public function show_print(){
-        $name=I('name');
+        $name=I('name','');
+        $id=I('id',0,'intval');
+        if(empty($name)){
+            $this->error("模板名称为空！");
+        }
+        if(empty($id)){
+            $this->error("不存在的记录！");
+        }
+        //用户信息视图
+        $TradeView = D('Common/TradeView');
+        $res = $TradeView->where("Trade.id=$id")->find();
+        $this->assign($res);
+//        echo json_encode($res);exit;
         $arr=explode(".",$name);
 //        echo json_encode($arr);exit;
         $this->display("Printing/".$arr[0]);

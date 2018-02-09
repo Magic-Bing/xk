@@ -157,7 +157,7 @@ class PrintingController extends  BaseController
                 }
                 $dname=M()->table('xk_print')->field("html_url")->where("id=$prid")->find();
                 unlink("Application/Account/View/Printing/".$dname['html_url']);
-                M()->table("xk_print")->where("id=$prid")->save(['html_url' => $filename]);
+                M()->table("xk_print")->where("id=$prid")->save(['html_url' => $filename,'name'=>$name]);
                 $this->success("修改成功！");
             }
         }
