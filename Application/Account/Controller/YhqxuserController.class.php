@@ -260,7 +260,7 @@ class YhqxuserController extends BaseController {
         $PHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(20);
         $PHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(20);
         $PHPExcel->getActiveSheet()->setCellValue('A1', '所属公司');
-        $PHPExcel->getActiveSheet()->setCellValue('B1', $cid);
+        $PHPExcel->getActiveSheet()->setCellValue('B1', rsa_encode($cid,getChoosekey()));
         $PHPExcel->getActiveSheet()->setCellValue('C1', '说明');
         $PHPExcel->getActiveSheet()->setCellValue('D1', "此行不可更改！");
         $PHPExcel->getActiveSheet()->setCellValue('A2', '用户名称');
@@ -346,7 +346,7 @@ class YhqxuserController extends BaseController {
         $data=$this->importGet($filename);
 //        echo json_encode($data);exit;
        $back_data=[];
-        $cid=$data[0];
+        $cid=rsa_decode($data[0],getChoosekey());
         unset($data[0]);
         $model=M();
         $data=array_merge($data);

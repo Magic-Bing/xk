@@ -47,7 +47,7 @@ class CstSignController extends BaseController
         } else {
             $user_batch_where['id'] = '-99999';
         }
-        $batch_list = D('Batch')->getList($user_batch_where, '*','id ASC');
+        $batch_list = D('Batch')->getList($user_batch_where, '*','id DESC');
         $this->assign('batch_list', $batch_list);
         $this->assign('zt', $zt);
         $this->display();
@@ -100,7 +100,7 @@ class CstSignController extends BaseController
         echo $this->fetch();
     }
 
-    //获取用户签到信息
+    //获取用户签到信息或者自动签到
     public function auto_sign(){
         if(!IS_AJAX){
             $this->error("非法操作",U("index/index"));
@@ -144,7 +144,7 @@ class CstSignController extends BaseController
                     if($auto_cst === 1){
                         $this->success("auto_one");
                     }elseif($auto_cst === 0){
-                        $name=M()->table("xk_choose2user_log")->where("choose_id={$res[0]['id']}")->order("id desc")->find();
+                        $name=M()->table("xk_choose2user_log")->where("choose_id={$res[0]['id']} AND log_type='签到'")->order("id desc")->find();
                         $this->success($name);
                     }else{
                         $t_conut=count($auto_arr);
@@ -164,19 +164,30 @@ class CstSignController extends BaseController
                                 $this->error("签到失败，请刷新重试！");
                             }
                         }
-                        $str="成功签到了".$t_conut.'条';
+                        $str="成功签到了".$t_conut.'个。';
                         $this->success($str);
                     }
                 }else{
                     if(empty($res[0]['is_sign'])){
                         $this->success("auto_one");
                     }else{
-                        $name=M()->table("xk_choose2user_log")->where("choose_id={$res[0]['id']}")->order("id desc")->find();
+                        $name=M()->table("xk_choose2user_log")->where("choose_id={$res[0]['id']} AND log_type='签到'")->order("id desc")->find();
                         $this->success($name);
                     }
                 }
             }else{
-                $this->success("not_auto");
+                $auto_cst=0;
+                for($i=0;$i<count($res);$i++){
+                    if(empty($res[$i]['is_sign'])){
+                        $auto_cst++;
+                    }
+                }
+                if($auto_cst === 0){
+                    $name=M()->table("xk_choose2user_log")->where("choose_id={$res[0]['id']} AND log_type='签到'")->order("id desc")->find();
+                    $this->success($name);
+                }else{
+                    $this->success("not_auto");
+                }
             }
 
         }

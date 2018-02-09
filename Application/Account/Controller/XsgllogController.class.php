@@ -71,7 +71,7 @@ class XsgllogController extends BaseController {
     public function get_print(){
         $pid=I('pid',0,'intval');
         $bid=I('bid',0,'intval');
-        echo json_encode(M()->table("xk_print")->where("proj_id=$pid AND pc_id=$bid")->select());
+        echo json_encode(M()->table("xk_print p")->field("p.*,v.id vid")->join("LEFT JOIN xk_pzcsvalue v ON p.proj_id=v.project_id AND p.pc_id=v.batch_id AND pzcs_id =7 AND cs_value=-1")->where("p.proj_id=$pid AND p.pc_id=$bid")->select());
     }
     //显示打印页面
     public function show_print(){
@@ -197,7 +197,7 @@ class XsgllogController extends BaseController {
 			$like_where['customer_name']  = array('like', '%'.$search_word.'%');
 			$like_where['customer_phone']  = array('like', '%'.$search_word.'%');
 			$like_where['roomlist.room']  = array('like', '%'.$search_word.'%');
-                        $like_where['trade.ywy']  = array('like', '%'.$search_word.'%');
+            $like_where['trade.ywy']  = array('like', '%'.$search_word.'%');
 			$like_where['_logic'] = 'or';
 			$where['_complex'] = $like_where;
 		}

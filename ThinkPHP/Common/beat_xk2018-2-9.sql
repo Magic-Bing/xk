@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-02-07 16:38:36
+Date: 2018-02-09 17:33:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -120,7 +120,7 @@ CREATE TABLE `xk_choose` (
 -- ----------------------------
 -- Records of xk_choose
 -- ----------------------------
-INSERT INTO `xk_choose` VALUES ('50', '1', '1', '姜', '18583229632', '123456789012345678', 'VIP001', '0', '0.00', '0.00', '0.00', '', '', '', null, '', '1', '1513149108', '127.0.0.1', '', '', '1513174078', '0', '', '', '0', '0', '0', '0');
+INSERT INTO `xk_choose` VALUES ('50', '1', '1', '姜', '18583229632', '123456789012345678', 'VIP001', '0', '0.00', '0.00', '0.00', '', '', null, null, '', '1', '1513149108', '127.0.0.1', '', '', '1513174078', '0', '', '', '0', '0', '0', '0');
 INSERT INTO `xk_choose` VALUES ('74', '1', '1', 'AAA1', '18000000001', '12345', '1', null, null, '0.00', '0.00', '', '', '1020', null, '', '1', '1513158412', '127.0.0.1', '', '', '0', '5', '', '', '0', '0', '0', '0');
 INSERT INTO `xk_choose` VALUES ('75', '1', '1', 'AAA2', '18000000002', '12345', '2', null, null, '0.00', '0.00', '', '', '1019', null, '', '0', '1513158412', '127.0.0.1', '', '', '0', '5', '', '', '1', '1517969525', '0', '0');
 INSERT INTO `xk_choose` VALUES ('76', '1', '1', 'AAA3', '18000000003', '12345', '3', null, null, '0.00', '0.00', '', '', null, null, '', '0', '1513158412', '127.0.0.1', '', '', '0', '5', '', '', '0', '0', '0', '0');
@@ -143,15 +143,15 @@ INSERT INTO `xk_choose` VALUES ('92', '1', '1', 'AAA19', '18000000019', '12345',
 INSERT INTO `xk_choose` VALUES ('93', '1', '1', 'AAA20', '18000000020', '12345', '20', null, null, '0.00', '0.00', '', '', null, null, '', '1', '1513158412', '127.0.0.1', '', '', '0', '15', '', '', '0', '0', '0', '0');
 INSERT INTO `xk_choose` VALUES ('94', '1', '1', 'AAA21', '18000000021', '12345', '21', null, null, '0.00', '0.00', '', '', null, null, '', '1', '1513158412', '127.0.0.1', '', '', '0', '15', '', '', '0', '0', '0', '0');
 INSERT INTO `xk_choose` VALUES ('95', '1', '1', 'AAA22', '18000000022', '12345', '22', null, null, '0.00', '0.00', '', '', null, null, '', '1', '1513158412', '127.0.0.1', '', '', '0', '15', '', '', '0', '0', '0', '0');
-INSERT INTO `xk_choose` VALUES ('97', '2', '2', '是是是', 'M!T6M328OWTfMg0hMMj*UL4NjUO0O0O', 'N!T6E3x8MWDfIg4hMMT*kL4NjA3MDY1OTEz', '1111', '0', '0.00', '0.00', '0.00', '', '', '1065', null, '', '1', '1513388299', '127.0.0.1', '', '', '0', '0', '53|54|56|53|50|52|51|57|54|51|49|', '51|49|57|53|54|48|55|48|54|56|57|49|56|50|48|49|49|53|', '1', '1517972095', '1', '1517976728');
-INSERT INTO `xk_choose` VALUES ('100', '2', '2', '姜姜姜', 'M!T6g318OWDfMgyhMMj*kL2MzIO0O0O', 'N!T6E3x8', '1112', '0', '0.00', '0.00', '0.00', '', '', null, null, '', '1', '1513753510', '127.0.0.1', '', '', '0', '30', '50|51|54|57|50|50|51|56|53|56|49|', '49|49|53|', '1', '1517971638', '0', '0');
-INSERT INTO `xk_choose` VALUES ('103', '2', '2', '薛01', 'M!T6g338OWDfIgwhOMD*gLwODUO0O0O', 'N!T6E3x8MWTfEgxhMMT*ELxMTExMTExMTEx', 'VIP01', '0', '0.00', '0.00', '0.00', '', '', '', null, '', '1', '1515115689', '192.168.2.99', '置业顾问1', '18111111111', '0', '0', '53|56|48|56|56|48|50|56|55|56|49|', '49|49|49|49|49|49|49|49|49|49|49|49|49|49|49|49|49|53|', '1', '1517909855', '1', '1517976559');
-INSERT INTO `xk_choose` VALUES ('107', '3', '3', '薛1', 'M!T6g338OWDfIgwhOMD*gLwODUO0O0O', 'M!T6I3z8', '12', '0', '0.00', '0.00', '0.00', '', '', '', null, '', '1', '1515468806', '192.168.2.103', '', '', '0', '0', '53|56|48|56|56|48|50|56|55|56|49|', '51|50|49|', '0', '0', '0', '0');
-INSERT INTO `xk_choose` VALUES ('108', '2', '2', '好好', 'M!T6M328OWTfMg0hMMj*UL4NjYO0O0O', 'N!T6E3w8NWDfAgzhMMT*kL4MjEyMDQwMzFY', 'VIP004', '0', '8000.00', '0.00', '0.00', '', '', null, null, '', '1', '1515737749', '127.0.0.1', '置业顾问1', '13898989898', '0', '10', '54|54|56|53|50|52|51|57|54|51|49|', '88|49|51|48|52|48|50|49|50|56|57|49|51|48|52|48|49|53|', '0', '1517910085', '0', '0');
-INSERT INTO `xk_choose` VALUES ('109', '2', '2', '张三', 'M!T6I3z8NWDfUg2hNMz*gL5MDAO0O0O', 'N!T6E3x8MWDfIg4hMMT*kL4NjA3MDY1OTE4', 'VIP888', '0', '0.00', '0.00', '0.00', '', '', '', null, '', '1', '1516177027', '127.0.0.1', '', '', '0', '0', '48|48|57|56|55|54|53|52|51|50|49|', '56|49|57|53|54|48|55|48|54|56|57|49|56|50|48|49|49|53|', '1', '1517909942', '0', '0');
-INSERT INTO `xk_choose` VALUES ('110', '2', '2', '李四', 'M!T6I3z8NWDfUg2hNMz*gL5MDEO0O0O', 'M!T6k358OWTfkg5hOMQ*O0O0OLO0O0O', 'VIP189', '0', '0.00', '0.00', '0.00', '', '', '', null, '', '1', '1516177219', '127.0.0.1', '', '', '0', '0', '49|48|57|56|55|54|53|52|51|50|49|', '57|57|57|57|57|57|49|', '0', '0', '0', '0');
-INSERT INTO `xk_choose` VALUES ('111', '2', '2', '王五', 'M!T6I3z8NWDfUg2hNMz*gL5MDIO0O0O', 'M!T6g338NWzfcg3hNMz*cLO0O0O', 'VIP187', '0', '0.00', '0.00', '0.00', '', '', '', null, '', '1', '1516177262', '127.0.0.1', '', '', '0', '0', '50|48|57|56|55|54|53|52|51|50|49|', '55|55|55|55|55|55|56|49|', '0', '0', '0', '0');
-INSERT INTO `xk_choose` VALUES ('112', '2', '2', 'ggg', 'M!T6I3z8NWDfUg2hNMz*gL5MDMO0O0O', 'M!T6c338NWzfcg3hNMz*cLO0O0O', 'VIP177', '0', '0.00', '0.00', '0.00', '', '', '', null, '', '1', '1516238027', '127.0.0.1', '', '', '0', '0', '51|48|57|56|55|54|53|52|51|50|49|', '55|55|55|55|55|55|55|49|', '0', '0', '0', '0');
+INSERT INTO `xk_choose` VALUES ('97', '2', '2', '是是是', 'M!T6M328OWTfMg0hMMj*UL4NjUO0O0O', 'N!T6E3x8MWDfIg4hMMT*kL4NjA3MDY1OTEz', '1111', '0', '0.00', '0.00', '0.00', '', '', '1065', null, '', '1', '1513388299', '127.0.0.1', '', '', '0', '0', '53|54|56|53|50|52|51|57|54|51|49|', '51|49|57|53|54|48|55|48|54|56|57|49|56|50|48|49|49|53|', '1', '1518160811', '1', '1518161192');
+INSERT INTO `xk_choose` VALUES ('100', '2', '2', '姜姜姜', 'M!T6g318OWDfMgyhMMj*kL2MzIO0O0O', 'N!T6E3x8', '1112', '0', '0.00', '0.00', '0.00', '', '', null, null, '', '1', '1513753510', '127.0.0.1', '', '', '0', '30', '50|51|54|57|50|50|51|56|53|56|49|', '49|49|53|', '1', '1517971638', '1', '1518141488');
+INSERT INTO `xk_choose` VALUES ('103', '2', '2', '薛01', 'M!T6g338OWDfIgwhOMD*gLwODUO0O0O', 'N!T6E3x8MWTfEgxhMMT*ELxMTExMTExMTEx', 'VIP01', '0', '0.00', '0.00', '0.00', '', '', null, null, '', '1', '1515115689', '192.168.2.99', '置业顾问1', '18111111111', '0', '0', '53|56|48|56|56|48|50|56|55|56|49|', '49|49|49|49|49|49|49|49|49|49|49|49|49|49|49|49|49|53|', '1', '1517909855', '1', '1517976559');
+INSERT INTO `xk_choose` VALUES ('107', '3', '3', '薛1', 'M!T6g338OWDfIgwhOMD*gLwODUO0O0O', 'M!T6I3z8', '12', '0', '0.00', '0.00', '0.00', '', '', null, null, '', '1', '1515468806', '192.168.2.103', '', '', '0', '0', '53|56|48|56|56|48|50|56|55|56|49|', '51|50|49|', '0', '0', '0', '0');
+INSERT INTO `xk_choose` VALUES ('108', '2', '2', '好好', 'M!T6M328OWTfMg0hMMj*UL4NjYO0O0O', 'N!T6E3w8NWDfAgzhMMT*kL4MjEyMDQwMzFY', 'VIP004', '0', '8000.00', '0.00', '0.00', '', '', null, null, '', '1', '1515737749', '127.0.0.1', '置业顾问1', '13898989898', '0', '10', '54|54|56|53|50|52|51|57|54|51|49|', '88|49|51|48|52|48|50|49|50|56|57|49|51|48|52|48|49|53|', '1', '1518139917', '1', '1518141993');
+INSERT INTO `xk_choose` VALUES ('109', '2', '2', '张三', 'M!T6I3z8NWDfUg2hNMz*gL5MDAO0O0O', 'N!T6E3x8MWDfIg4hMMT*kL4NjA3MDY1OTE4', 'VIP888', '0', '0.00', '0.00', '0.00', '', '', '1145', null, '', '1', '1516177027', '127.0.0.1', '', '', '0', '0', '48|48|57|56|55|54|53|52|51|50|49|', '56|49|57|53|54|48|55|48|54|56|57|49|56|50|48|49|49|53|', '1', '1517909942', '0', '0');
+INSERT INTO `xk_choose` VALUES ('110', '2', '2', '李四', 'M!T6I3z8NWDfUg2hNMz*gL5MDEO0O0O', 'N!T6E3w8NWDfAgzhMMT*kL4MjEyMDQwMzFY', 'VIP189', '0', '0.00', '0.00', '0.00', '', '', null, null, '', '1', '1516177219', '127.0.0.1', '', '', '0', '0', '49|48|57|56|55|54|53|52|51|50|49|', '88|49|51|48|52|48|50|49|50|56|57|49|51|48|52|48|49|53|', '0', '1518160768', '0', '1518142040');
+INSERT INTO `xk_choose` VALUES ('111', '2', '2', '王五', 'M!T6I3z8NWDfUg2hNMz*gL5MDIO0O0O', 'M!T6g338NWzfcg3hNMz*cLO0O0O', 'VIP187', '0', '0.00', '0.00', '0.00', '', '', null, null, '', '1', '1516177262', '127.0.0.1', '', '', '0', '0', '50|48|57|56|55|54|53|52|51|50|49|', '55|55|55|55|55|55|56|49|', '0', '1518073407', '0', '0');
+INSERT INTO `xk_choose` VALUES ('112', '2', '2', 'ggg', 'M!T6I3z8NWDfUg2hNMz*gL5MDMO0O0O', 'M!T6c338NWzfcg3hNMz*cLO0O0O', 'VIP177', '0', '0.00', '0.00', '0.00', '', '', null, null, '', '1', '1516238027', '127.0.0.1', '', '', '0', '0', '51|48|57|56|55|54|53|52|51|50|49|', '55|55|55|55|55|55|55|49|', '0', '1518076892', '1', '1518141492');
 
 -- ----------------------------
 -- Table structure for `xk_choose2user_log`
@@ -164,45 +164,103 @@ CREATE TABLE `xk_choose2user_log` (
   `user_id` int(11) NOT NULL COMMENT '操作人',
   `log_time` int(11) NOT NULL COMMENT '操作时间',
   `log_ip` varchar(20) NOT NULL COMMENT '操作ip',
+  `cst_name` varchar(20) NOT NULL COMMENT '签到人名字，或者入场人的名字',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xk_choose2user_log
 -- ----------------------------
-INSERT INTO `xk_choose2user_log` VALUES ('1', '97', '签到', '1', '1516950162', '127.0.0.1');
-INSERT INTO `xk_choose2user_log` VALUES ('2', '100', '签到', '1', '1516950514', '127.0.0.1');
-INSERT INTO `xk_choose2user_log` VALUES ('13', '100', '取消签到', '1', '1516951253', '127.0.0.1');
-INSERT INTO `xk_choose2user_log` VALUES ('14', '100', '签到', '1', '1516951256', '127.0.0.1');
-INSERT INTO `xk_choose2user_log` VALUES ('15', '100', '取消签到', '1', '1516951257', '127.0.0.1');
-INSERT INTO `xk_choose2user_log` VALUES ('16', '100', '签到', '1', '1516951259', '127.0.0.1');
-INSERT INTO `xk_choose2user_log` VALUES ('17', '100', '取消签到', '1', '1516951261', '127.0.0.1');
-INSERT INTO `xk_choose2user_log` VALUES ('18', '100', '签到', '1', '2147483647', '127.0.0.1');
-INSERT INTO `xk_choose2user_log` VALUES ('19', '100', '取消签到', '1', '1516951336', '11111111111111111111');
-INSERT INTO `xk_choose2user_log` VALUES ('20', '100', '签到', '1', '1516951957', '127.0.0.1');
-INSERT INTO `xk_choose2user_log` VALUES ('21', '100', '取消签到', '1', '1516951959', '127.0.0.1');
-INSERT INTO `xk_choose2user_log` VALUES ('22', '97', '入场', '1', '1516957826', '127.0.0.1');
-INSERT INTO `xk_choose2user_log` VALUES ('23', '97', '取消入场', '1', '1516957911', '127.0.0.1');
-INSERT INTO `xk_choose2user_log` VALUES ('24', '97', '入场', '1', '1517211319', '127.0.0.1');
-INSERT INTO `xk_choose2user_log` VALUES ('25', '100', '签到', '1', '1517909557', '127.0.0.1');
-INSERT INTO `xk_choose2user_log` VALUES ('26', '100', '取消签到', '1', '1517909562', '127.0.0.1');
-INSERT INTO `xk_choose2user_log` VALUES ('27', '100', '签到', '1', '1517909774', '127.0.0.1');
-INSERT INTO `xk_choose2user_log` VALUES ('28', '108', '签到', '1', '1517909786', '127.0.0.1');
-INSERT INTO `xk_choose2user_log` VALUES ('29', '103', '签到', '1', '1517909855', '127.0.0.1');
-INSERT INTO `xk_choose2user_log` VALUES ('30', '109', '签到', '1', '1517909891', '127.0.0.1');
-INSERT INTO `xk_choose2user_log` VALUES ('31', '109', '取消签到', '1', '1517909931', '127.0.0.1');
-INSERT INTO `xk_choose2user_log` VALUES ('32', '109', '签到', '1', '1517909942', '127.0.0.1');
-INSERT INTO `xk_choose2user_log` VALUES ('33', '97', '取消签到', '1', '1517910082', '127.0.0.1');
-INSERT INTO `xk_choose2user_log` VALUES ('34', '100', '取消签到', '1', '1517910084', '127.0.0.1');
-INSERT INTO `xk_choose2user_log` VALUES ('35', '108', '取消签到', '1', '1517910085', '127.0.0.1');
-INSERT INTO `xk_choose2user_log` VALUES ('36', '75', '签到', '1', '1517969525', '127.0.0.1');
-INSERT INTO `xk_choose2user_log` VALUES ('37', '100', '签到', '1', '1517971638', '127.0.0.1');
-INSERT INTO `xk_choose2user_log` VALUES ('38', '97', '签到', '1', '1517972095', '127.0.0.1');
-INSERT INTO `xk_choose2user_log` VALUES ('39', '97', '取消入场', '1', '1517976470', '127.0.0.1');
-INSERT INTO `xk_choose2user_log` VALUES ('40', '103', '入场', '1', '1517976559', '127.0.0.1');
-INSERT INTO `xk_choose2user_log` VALUES ('41', '97', '入场', '1', '1517976599', '127.0.0.1');
-INSERT INTO `xk_choose2user_log` VALUES ('42', '97', '取消入场', '1', '1517976612', '127.0.0.1');
-INSERT INTO `xk_choose2user_log` VALUES ('43', '97', '入场', '1', '1517976728', '127.0.0.1');
+INSERT INTO `xk_choose2user_log` VALUES ('1', '97', '签到', '1', '1516950162', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('2', '100', '签到', '1', '1516950514', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('13', '100', '取消签到', '1', '1516951253', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('14', '100', '签到', '1', '1516951256', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('15', '100', '取消签到', '1', '1516951257', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('16', '100', '签到', '1', '1516951259', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('17', '100', '取消签到', '1', '1516951261', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('18', '100', '签到', '1', '2147483647', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('19', '100', '取消签到', '1', '1516951336', '11111111111111111111', '');
+INSERT INTO `xk_choose2user_log` VALUES ('20', '100', '签到', '1', '1516951957', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('21', '100', '取消签到', '1', '1516951959', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('22', '97', '入场', '1', '1516957826', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('23', '97', '取消入场', '1', '1516957911', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('24', '97', '入场', '1', '1517211319', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('25', '100', '签到', '1', '1517909557', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('26', '100', '取消签到', '1', '1517909562', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('27', '100', '签到', '1', '1517909774', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('28', '108', '签到', '1', '1517909786', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('29', '103', '签到', '1', '1517909855', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('30', '109', '签到', '1', '1517909891', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('31', '109', '取消签到', '1', '1517909931', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('32', '109', '签到', '1', '1517909942', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('33', '97', '取消签到', '1', '1517910082', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('34', '100', '取消签到', '1', '1517910084', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('35', '108', '取消签到', '1', '1517910085', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('36', '75', '签到', '1', '1517969525', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('37', '100', '签到', '1', '1517971638', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('38', '97', '签到', '1', '1517972095', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('39', '97', '取消入场', '1', '1517976470', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('40', '103', '入场', '1', '1517976559', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('41', '97', '入场', '1', '1517976599', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('42', '97', '取消入场', '1', '1517976612', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('43', '97', '入场', '1', '1517976728', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('44', '108', '签到', '1', '1518070434', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('45', '108', '取消签到', '1', '1518070439', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('46', '111', '签到', '1', '1518073401', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('47', '111', '签到', '1', '1518073402', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('48', '111', '取消签到', '1', '1518073407', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('49', '112', '签到', '1', '1518076630', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('50', '112', '取消签到', '1', '1518076632', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('51', '112', '签到', '1', '1518076670', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('52', '112', '取消签到', '1', '1518076673', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('53', '112', '签到', '1', '1518076765', '127.0.0.1', 'ggg');
+INSERT INTO `xk_choose2user_log` VALUES ('54', '112', '取消签到', '1', '1518076844', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('55', '108', '签到', '1', '1518076857', '127.0.0.1', '好好');
+INSERT INTO `xk_choose2user_log` VALUES ('56', '108', '取消签到', '1', '1518076881', '127.0.0.1', '好好');
+INSERT INTO `xk_choose2user_log` VALUES ('57', '97', '取消签到', '1', '1518076883', '127.0.0.1', '是是是');
+INSERT INTO `xk_choose2user_log` VALUES ('58', '112', '签到', '1', '1518076890', '127.0.0.1', 'ggg');
+INSERT INTO `xk_choose2user_log` VALUES ('59', '112', '取消签到', '1', '1518076892', '127.0.0.1', 'ggg');
+INSERT INTO `xk_choose2user_log` VALUES ('60', '108', '签到', '1', '1518080950', '127.0.0.1', '好好');
+INSERT INTO `xk_choose2user_log` VALUES ('61', '108', '取消签到', '1', '1518081925', '127.0.0.1', '好好');
+INSERT INTO `xk_choose2user_log` VALUES ('62', '108', '签到', '1', '1518082157', '127.0.0.1', '好好');
+INSERT INTO `xk_choose2user_log` VALUES ('63', '108', '取消签到', '1', '1518082178', '127.0.0.1', '好好');
+INSERT INTO `xk_choose2user_log` VALUES ('64', '108', '签到', '1', '1518082849', '127.0.0.1', '好好');
+INSERT INTO `xk_choose2user_log` VALUES ('65', '110', '签到', '1', '1518082871', '127.0.0.1', '李四');
+INSERT INTO `xk_choose2user_log` VALUES ('66', '110', '取消签到', '1', '1518082910', '127.0.0.1', '李四');
+INSERT INTO `xk_choose2user_log` VALUES ('67', '110', '签到', '1', '1518082925', '127.0.0.1', '李四');
+INSERT INTO `xk_choose2user_log` VALUES ('68', '110', '取消签到', '1', '1518082964', '127.0.0.1', '李四');
+INSERT INTO `xk_choose2user_log` VALUES ('69', '108', '取消签到', '1', '1518082966', '127.0.0.1', '好好');
+INSERT INTO `xk_choose2user_log` VALUES ('70', '108', '', '1', '1518083559', '127.0.0.1', '姜学伟');
+INSERT INTO `xk_choose2user_log` VALUES ('71', '110', '', '1', '1518083559', '127.0.0.1', '姜学伟');
+INSERT INTO `xk_choose2user_log` VALUES ('72', '108', '取消签到', '1', '1518083599', '127.0.0.1', '好好');
+INSERT INTO `xk_choose2user_log` VALUES ('73', '110', '取消签到', '1', '1518083601', '127.0.0.1', '李四');
+INSERT INTO `xk_choose2user_log` VALUES ('74', '108', '签到', '1', '1518083651', '127.0.0.1', '姜学伟');
+INSERT INTO `xk_choose2user_log` VALUES ('75', '110', '签到', '1', '1518083651', '127.0.0.1', '姜学伟');
+INSERT INTO `xk_choose2user_log` VALUES ('76', '108', '取消签到', '1', '1518139904', '127.0.0.1', '好好');
+INSERT INTO `xk_choose2user_log` VALUES ('77', '110', '取消签到', '1', '1518139907', '127.0.0.1', '李四');
+INSERT INTO `xk_choose2user_log` VALUES ('78', '108', '签到', '1', '1518139917', '127.0.0.1', '姜学伟');
+INSERT INTO `xk_choose2user_log` VALUES ('79', '110', '签到', '1', '1518139917', '127.0.0.1', '姜学伟');
+INSERT INTO `xk_choose2user_log` VALUES ('80', '110', '入场', '1', '1518140635', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('81', '110', '取消入场', '1', '1518141224', '127.0.0.1', '');
+INSERT INTO `xk_choose2user_log` VALUES ('82', '110', '入场', '1', '1518141414', '127.0.0.1', '李四');
+INSERT INTO `xk_choose2user_log` VALUES ('83', '110', '取消入场', '1', '1518141437', '127.0.0.1', '李四');
+INSERT INTO `xk_choose2user_log` VALUES ('84', '97', '取消入场', '1', '1518141463', '127.0.0.1', '是是是');
+INSERT INTO `xk_choose2user_log` VALUES ('85', '100', '入场', '1', '1518141488', '127.0.0.1', '姜姜姜');
+INSERT INTO `xk_choose2user_log` VALUES ('86', '112', '入场', '1', '1518141492', '127.0.0.1', 'ggg');
+INSERT INTO `xk_choose2user_log` VALUES ('87', '108', '入场', '1', '1518141507', '127.0.0.1', '好好');
+INSERT INTO `xk_choose2user_log` VALUES ('88', '110', '入场', '1', '1518141510', '127.0.0.1', '李四');
+INSERT INTO `xk_choose2user_log` VALUES ('89', '108', '取消入场', '1', '1518141894', '127.0.0.1', '好好');
+INSERT INTO `xk_choose2user_log` VALUES ('90', '110', '取消入场', '1', '1518141897', '127.0.0.1', '李四');
+INSERT INTO `xk_choose2user_log` VALUES ('91', '108', '入场', '1', '1518141915', '127.0.0.1', '姜学伟2');
+INSERT INTO `xk_choose2user_log` VALUES ('92', '110', '入场', '1', '1518141915', '127.0.0.1', '姜学伟1');
+INSERT INTO `xk_choose2user_log` VALUES ('93', '108', '取消入场', '1', '1518141984', '127.0.0.1', '好好');
+INSERT INTO `xk_choose2user_log` VALUES ('94', '108', '入场', '1', '1518141993', '127.0.0.1', '好好');
+INSERT INTO `xk_choose2user_log` VALUES ('95', '110', '取消入场', '1', '1518142040', '127.0.0.1', '李四');
+INSERT INTO `xk_choose2user_log` VALUES ('96', '110', '取消签到', '1', '1518160768', '127.0.0.1', '李四');
+INSERT INTO `xk_choose2user_log` VALUES ('97', '97', '签到', '1', '1518160811', '127.0.0.1', '是是是');
+INSERT INTO `xk_choose2user_log` VALUES ('98', '97', '入场', '1', '1518160938', '127.0.0.1', '是是是');
+INSERT INTO `xk_choose2user_log` VALUES ('99', '97', '取消入场', '1', '1518161001', '127.0.0.1', '是是是');
+INSERT INTO `xk_choose2user_log` VALUES ('100', '97', '入场', '1', '1518161192', '127.0.0.1', '是是是');
 
 -- ----------------------------
 -- Table structure for `xk_choose_activity`
@@ -875,20 +933,26 @@ CREATE TABLE `xk_projoptions` (
 DROP TABLE IF EXISTS `xk_pzcs`;
 CREATE TABLE `xk_pzcs` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `cs_name` varchar(20) DEFAULT NULL,
-  `cs_type` varchar(10) NOT NULL DEFAULT '单选' COMMENT '0单选、1多选、2填写',
+  `cs_name` varchar(20) NOT NULL,
+  `cs_type` varchar(10) NOT NULL DEFAULT 'radio' COMMENT 'radio、checkbox、text',
+  `options` varchar(50) NOT NULL DEFAULT '是,1;否,0' COMMENT '选项',
+  `group_id` tinyint(1) unsigned zerofill NOT NULL DEFAULT '1' COMMENT '分组id; 0无，1电子开盘，2微信开盘',
   `yw_type` varchar(10) NOT NULL DEFAULT '批次' COMMENT '批次、项目、公司',
+  `px` tinyint(1) DEFAULT '0' COMMENT '排序',
+  `remark` varchar(70) DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xk_pzcs
 -- ----------------------------
-INSERT INTO `xk_pzcs` VALUES ('1', '开盘类型', 'radio', '批次');
-INSERT INTO `xk_pzcs` VALUES ('2', '自动签到', 'radio', '批次');
-INSERT INTO `xk_pzcs` VALUES ('4', '自动入场审核', 'radio', '批次');
-INSERT INTO `xk_pzcs` VALUES ('3', '是否摇号', 'radio', '批次');
-INSERT INTO `xk_pzcs` VALUES ('5', '快速选房显示信息', 'checkbox', '批次');
+INSERT INTO `xk_pzcs` VALUES ('1', '开盘类型', 'radio', '电子开盘,1;微信开盘,-1', '0', '批次', '0', '');
+INSERT INTO `xk_pzcs` VALUES ('2', '自动签到', 'radio', '是,1;否,-1', '1', '批次', '1', '[控制刷身份证是否自动签到]');
+INSERT INTO `xk_pzcs` VALUES ('4', '自动入场审核', 'radio', '是,1;否,-1', '1', '批次', '3', '[控制刷身份证是否自动入场]');
+INSERT INTO `xk_pzcs` VALUES ('3', '是否摇号', 'radio', '是,1;否,-1', '1', '批次', '2', '[控制是否开启摇号入场]');
+INSERT INTO `xk_pzcs` VALUES ('5', '快速选房显示信息', 'checkbox', '标准总价;优惠后总价;建筑面积;建筑单价;套内面积;套内单价;户型', '1', '批次', '6', null);
+INSERT INTO `xk_pzcs` VALUES ('7', '付款方式必填', 'radio', '是,1;否,-1', '1', '批次', '4', '[控制打印认购书或交易录入时,付款方式是否必填]');
+INSERT INTO `xk_pzcs` VALUES ('6', '选房时录入付款方式', 'radio', '是,1;否,-1', '1', '批次', '5', '[快速选房时是否需要填写付款方式]');
 
 -- ----------------------------
 -- Table structure for `xk_pzcsvalue`
@@ -902,31 +966,18 @@ CREATE TABLE `xk_pzcsvalue` (
   `project_id` int(10) DEFAULT NULL,
   `batch_id` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=84 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=147 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xk_pzcsvalue
 -- ----------------------------
-INSERT INTO `xk_pzcsvalue` VALUES ('63', '5', '标准总价;优惠后总价;建筑面积', null, '3', '3');
-INSERT INTO `xk_pzcsvalue` VALUES ('62', '4', '0', null, '3', '3');
-INSERT INTO `xk_pzcsvalue` VALUES ('83', '5', '标准总价;建筑面积;建筑单价', null, '2', '2');
-INSERT INTO `xk_pzcsvalue` VALUES ('82', '4', '0', null, '2', '2');
-INSERT INTO `xk_pzcsvalue` VALUES ('81', '3', '0', null, '2', '2');
-INSERT INTO `xk_pzcsvalue` VALUES ('80', '2', '1', null, '2', '2');
-INSERT INTO `xk_pzcsvalue` VALUES ('79', '1', '1', null, '2', '2');
-INSERT INTO `xk_pzcsvalue` VALUES ('61', '3', '0', null, '3', '3');
-INSERT INTO `xk_pzcsvalue` VALUES ('60', '2', '0', null, '3', '3');
-INSERT INTO `xk_pzcsvalue` VALUES ('59', '1', '0', null, '3', '3');
-INSERT INTO `xk_pzcsvalue` VALUES ('73', '5', '标准总价;优惠后总价;建筑面积', null, '1', '1');
-INSERT INTO `xk_pzcsvalue` VALUES ('72', '4', '0', null, '1', '1');
-INSERT INTO `xk_pzcsvalue` VALUES ('71', '3', '0', null, '1', '1');
-INSERT INTO `xk_pzcsvalue` VALUES ('70', '2', '0', null, '1', '1');
-INSERT INTO `xk_pzcsvalue` VALUES ('69', '1', '0', null, '1', '1');
-INSERT INTO `xk_pzcsvalue` VALUES ('64', '1', '0', null, '2', '4');
-INSERT INTO `xk_pzcsvalue` VALUES ('65', '2', '0', null, '2', '4');
-INSERT INTO `xk_pzcsvalue` VALUES ('66', '3', '0', null, '2', '4');
-INSERT INTO `xk_pzcsvalue` VALUES ('67', '4', '0', null, '2', '4');
-INSERT INTO `xk_pzcsvalue` VALUES ('68', '5', '标准总价;优惠后总价;建筑面积', null, '2', '4');
+INSERT INTO `xk_pzcsvalue` VALUES ('146', '5', '标准总价;建筑面积;建筑单价', null, '2', '2');
+INSERT INTO `xk_pzcsvalue` VALUES ('145', '6', '1', null, '2', '2');
+INSERT INTO `xk_pzcsvalue` VALUES ('144', '7', '-1', null, '2', '2');
+INSERT INTO `xk_pzcsvalue` VALUES ('143', '4', '1', null, '2', '2');
+INSERT INTO `xk_pzcsvalue` VALUES ('142', '3', '1', null, '2', '2');
+INSERT INTO `xk_pzcsvalue` VALUES ('141', '2', '1', null, '2', '2');
+INSERT INTO `xk_pzcsvalue` VALUES ('140', '1', '-1', null, '2', '2');
 
 -- ----------------------------
 -- Table structure for `xk_reward_log`
@@ -2200,7 +2251,7 @@ INSERT INTO `xk_room` VALUES ('1141', '4', '0', '2', '2', '1', '16', '4', '1604'
 INSERT INTO `xk_room` VALUES ('1142', '4', '0', '2', '2', '2', '16', '5', '1605', 'Q3', '118.09', '96.20', '6900.00', '0.00', '814821.00', '0', null, '0', null, '0', null, '0', null, '0.00');
 INSERT INTO `xk_room` VALUES ('1143', '4', '0', '2', '2', '2', '16', '6', '1606', 'Q3', '118.09', '96.20', '6900.00', '0.00', '814821.00', '0', null, '0', null, '0', null, '0', null, '0.00');
 INSERT INTO `xk_room` VALUES ('1144', '4', '0', '2', '2', '2', '16', '7', '1607', 'Q2', '132.29', '107.77', '6900.00', '0.00', '912801.00', '0', null, '0', null, '0', null, '0', null, '0.00');
-INSERT INTO `xk_room` VALUES ('1145', '4', '0', '2', '2', '2', '16', '8', '1608', 'Q2', '132.29', '107.77', '6900.00', '0.00', '912801.00', '0', null, '0', null, '0', null, '0', null, '0.00');
+INSERT INTO `xk_room` VALUES ('1145', '4', '0', '2', '2', '2', '16', '8', '1608', 'Q2', '132.29', '107.77', '6900.00', '0.00', '912801.00', '0', null, '0', null, '0', null, '0', '12345678900', '0.00');
 INSERT INTO `xk_room` VALUES ('1146', '4', '0', '2', '2', '1', '17', '1', '1701', 'Q3', '118.09', '96.20', '6900.00', '0.00', '814821.00', '0', null, '0', null, '0', null, '0', null, '0.00');
 INSERT INTO `xk_room` VALUES ('1147', '4', '0', '2', '2', '1', '17', '2', '1702', 'Q3', '118.09', '96.20', '6900.00', '0.00', '814821.00', '0', null, '0', null, '0', null, '0', null, '0.00');
 INSERT INTO `xk_room` VALUES ('1148', '4', '0', '2', '2', '1', '17', '3', '1703', 'Q2', '132.29', '107.77', '6900.00', '0.00', '912801.00', '0', null, '0', null, '0', null, '0', null, '0.00');
@@ -2710,7 +2761,7 @@ CREATE TABLE `xk_trade` (
   `proportion` decimal(10,0) DEFAULT '0' COMMENT '比例',
   `money` decimal(10,2) DEFAULT '0.00' COMMENT '金额',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=67 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xk_trade
@@ -2723,11 +2774,17 @@ INSERT INTO `xk_trade` VALUES ('48', '4', '1256', '97', '微信认购', '选房'
 INSERT INTO `xk_trade` VALUES ('50', '233', '233', '76', '快速选房', '选房', '0', '1517384032', null, '', '1', '超级管理员', null, '', '0', '0.00');
 INSERT INTO `xk_trade` VALUES ('54', '4', '1256', '97', '微信认购', '选房', '0', '1515480058', '0003', '', null, null, '48', '', '0', '0.00');
 INSERT INTO `xk_trade` VALUES ('55', '4', '1256', '97', '微信认购', '认购', '1', '1515480058', '0003', '', null, null, '54', '按揭', '20', '182560.20');
-INSERT INTO `xk_trade` VALUES ('56', '3', '1263', '103', '微信认购', '认购', '1', '1515469608', '0002', '', null, null, '47', '一次性', '0', '0.00');
-INSERT INTO `xk_trade` VALUES ('57', '233', '233', '76', '快速选房', '选房', '1', '1517384032', null, '', '1', '超级管理员', '50', '', '0', '0.00');
+INSERT INTO `xk_trade` VALUES ('56', '3', '1263', '103', '微信认购', '认购', '0', '1515469608', '0002', '', null, null, '47', '一次性', '0', '0.00');
+INSERT INTO `xk_trade` VALUES ('57', '233', '233', '76', '快速选房', '选房', '0', '1517384032', null, '', '1', '超级管理员', '50', '', '0', '0.00');
 INSERT INTO `xk_trade` VALUES ('58', '2', '1296', '100', '微信认购', '认购', '0', '1515053387', '0001', '', null, null, '45', '公积金', '0', '0.00');
 INSERT INTO `xk_trade` VALUES ('59', '2', '1296', '100', '微信认购', '认购', '0', '1515053387', '0001', '', null, null, '58', '公积金', '15', '121500.00');
 INSERT INTO `xk_trade` VALUES ('60', '2', '1296', '100', '微信认购', '认购', '1', '1515053387', '0001', '', null, null, '59', '公积金', '15', '121500.00');
+INSERT INTO `xk_trade` VALUES ('61', '233', '233', '76', '快速选房', '认购', '0', '1517384032', null, '', '1', '超级管理员', '57', '', '0', '0.00');
+INSERT INTO `xk_trade` VALUES ('62', '233', '233', '76', '快速选房', '认购', '1', '1517384032', null, '', '1', '超级管理员', '61', '', '0', '0.00');
+INSERT INTO `xk_trade` VALUES ('63', '3', '1263', '103', '微信认购', '认购', '0', '1515469608', '0002', '', null, null, '56', '', '0', '0.00');
+INSERT INTO `xk_trade` VALUES ('64', '3', '1263', '103', '微信认购', '认购', '0', '1515469608', '0002', '', null, null, '63', '', '0', '0.00');
+INSERT INTO `xk_trade` VALUES ('65', '3', '1263', '103', '微信认购', '认购', '0', '1515469608', '0002', '', null, null, '64', '一次性', '0', '0.00');
+INSERT INTO `xk_trade` VALUES ('66', '3', '1263', '103', '微信认购', '认购', '1', '1515469608', '0002', '', null, null, '65', '', '0', '0.00');
 
 -- ----------------------------
 -- Table structure for `xk_update_choose_log`
@@ -2746,7 +2803,7 @@ CREATE TABLE `xk_update_choose_log` (
   `update_time` int(11) NOT NULL,
   `update_ip` varchar(30) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xk_update_choose_log
@@ -2775,6 +2832,7 @@ INSERT INTO `xk_update_choose_log` VALUES ('27', '97', '13693425865', '511028198
 INSERT INTO `xk_update_choose_log` VALUES ('28', '109', '12345678900', '511028198607065913', 'VIP888', '12345678900', '511028198607065918', 'VIP888', '1', '1517969811', '127.0.0.1');
 INSERT INTO `xk_update_choose_log` VALUES ('29', '97', '13693425865', '511028198607065913', '1111', '13693425865', '511028198607065914', '1111', '1', '1517971970', '127.0.0.1');
 INSERT INTO `xk_update_choose_log` VALUES ('30', '97', '13693425865', '511028198607065914', '1111', '13693425865', '511028198607065913', '1111', '1', '1517972002', '127.0.0.1');
+INSERT INTO `xk_update_choose_log` VALUES ('31', '110', '12345678901', '1999999', 'VIP189', '12345678901', '51040319821204031X', 'VIP189', '1', '1518082234', '127.0.0.1');
 
 -- ----------------------------
 -- Table structure for `xk_user`
@@ -2792,7 +2850,7 @@ CREATE TABLE `xk_user` (
   `is_wx` tinyint(1) NOT NULL DEFAULT '0' COMMENT '微信认购权限',
   `is_all` tinyint(1) DEFAULT '0' COMMENT '1超级管理员',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='用户(职业顾问)表';
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='用户(职业顾问)表';
 
 -- ----------------------------
 -- Records of xk_user
@@ -2810,8 +2868,9 @@ INSERT INTO `xk_user` VALUES ('11', 'lip', '李攀', '18507459608', '14e1b600b1f
 INSERT INTO `xk_user` VALUES ('12', 'yangzq', '杨中钱', '15111511506', '14e1b600b1fd579f47433b88e8d85291', '1', '0', '0', '0', '0');
 INSERT INTO `xk_user` VALUES ('13', 'cuimm', '崔梅梅', '18507457007', '14e1b600b1fd579f47433b88e8d85291', '1', '0', '0', '0', '0');
 INSERT INTO `xk_user` VALUES ('14', 'zhouyy', '周钰妍', '18507459912', '14e1b600b1fd579f47433b88e8d85291', '1', '0', '0', '0', '0');
-INSERT INTO `xk_user` VALUES ('16', 'yyyy', 'yyyy', '6666', '14e1b600b1fd579f47433b88e8d85291', '1', '0', '1', '0', '0');
+INSERT INTO `xk_user` VALUES ('16', 'yyyy', 'yyyy', '6666', '14e1b600b1fd579f47433b88e8d85291', '1', '0', '0', '0', '0');
 INSERT INTO `xk_user` VALUES ('17', 'jl', '销售经理', '1234', '14e1b600b1fd579f47433b88e8d85291', '2', '0', '0', '0', '0');
+INSERT INTO `xk_user` VALUES ('18', '9527ks', '加密', '1881985718', '14e1b600b1fd579f47433b88e8d85291', '1', '0', '0', '0', '0');
 
 -- ----------------------------
 -- Table structure for `xk_user2prize`
@@ -3018,9 +3077,9 @@ INSERT INTO `xk_yaohresult` VALUES ('34', '97', '1', '1', '1', '10', '2', '2', '
 INSERT INTO `xk_yaohresult` VALUES ('35', '103', '1', '2', '2', '10', '2', '2', '1', '1', '1516266783', '超级管理员', '1');
 INSERT INTO `xk_yaohresult` VALUES ('36', '110', '1', '3', '3', '10', '2', '2', '0', '1', '1516266783', '超级管理员', '1');
 INSERT INTO `xk_yaohresult` VALUES ('37', '111', '1', '4', '4', '10', '2', '2', '0', '1', '1516266783', '超级管理员', '1');
-INSERT INTO `xk_yaohresult` VALUES ('38', '112', '1', '5', '5', '10', '2', '2', '0', '1', '1516266783', '超级管理员', '1');
-INSERT INTO `xk_yaohresult` VALUES ('39', '108', '2', '6', '1', '10', '2', '2', '0', '1', '1516344239', '超级管理员', '1');
-INSERT INTO `xk_yaohresult` VALUES ('40', '100', '2', '7', '2', '10', '2', '2', '0', '1', '1516344239', '超级管理员', '1');
+INSERT INTO `xk_yaohresult` VALUES ('38', '112', '1', '5', '5', '10', '2', '2', '1', '1', '1516266783', '超级管理员', '1');
+INSERT INTO `xk_yaohresult` VALUES ('39', '108', '2', '6', '1', '10', '2', '2', '1', '1', '1516344239', '超级管理员', '1');
+INSERT INTO `xk_yaohresult` VALUES ('40', '100', '2', '7', '2', '10', '2', '2', '1', '1', '1516344239', '超级管理员', '1');
 INSERT INTO `xk_yaohresult` VALUES ('41', '109', '2', '8', '3', '10', '2', '2', '0', '1', '1516344239', '超级管理员', '1');
 
 -- ----------------------------

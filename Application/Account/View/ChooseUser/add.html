@@ -21,10 +21,11 @@
 			<select class="col-xs-10 col-sm-5  js-choose-user-select-project-id js-choose-user-add-project-id"
 				name="project_id"
 				id="form-field-project-id"
-				data-placeholder="请选择项目"
-				data-first-title="请选择项目"
-				data-first-value='0'
+					data-placeholder="请选择项目"
+					data-first-title="请选择项目"
+					data-first-value="0"
 			>
+				<option value=""></option>
 				<foreach name="project_list" item="project_list_vo">
 					<if condition="$project_id eq $project_list_vo['id']">
 						<option value="<{$project_list_vo['id']}>" selected>

@@ -179,7 +179,7 @@ class WeixBuyledController extends BaseController {
     public function led()
     {
         $userid=$this->get_user_id();
-        $eid=I("eid","0",'intval');
+        $eid=I("eid",0,'intval');
         if($eid==0)
         {
             redirect(U('../login/index'),0);
@@ -462,6 +462,33 @@ class WeixBuyledController extends BaseController {
 
         //$this->show(json_encode($orderedRooms));
         $this->success(['成功',$orderedRooms]);
+    }
+    //单独获取活动倒计时(包含毫秒)
+    public function geteventdjs() {
+        if (!IS_AJAX)
+            $this->error('请求错误，请确认后重试！');
+
+        $id = I('id', 0, 'intval');
+        $eventOrderHouseModel = D('Common/EventOrderHouse');
+        //$event = $eventOrderHouseModel->getEventByEventId(geturl($id, getUrlkey())["eventId"]);
+        $event = $eventOrderHouseModel->getEventByEventId($id);
+        $dqhm = $this->getMillisecond();
+        if ($dqhm < $event['start_time'] * 1000) {//活动未开始时，返回活动开始倒计时time和整个活动时长time1
+            $time = $event['start_time'] * 1000 - $dqhm;
+            $time1 = $event['end_time'] - $event['start_time'];
+            $djsinfo['iswks'] = 1;
+            $djsinfo['time1'] = $time1;
+        } else {//活动已开始，返回的time和time1一样
+            if ($dqhm > $event['end_time'] * 1000) {
+                $time = 0;
+            } else {
+                $time = $event['end_time'] * 1000 - $dqhm;
+            }
+            $djsinfo['iswks'] = 0;
+            $djsinfo['time1'] = $time;
+        }
+        $djsinfo['time'] = $time;
+        $this->success(['成功', $djsinfo]);
     }
     
     //当前时间戳(包含毫秒)

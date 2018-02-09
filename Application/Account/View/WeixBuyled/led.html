@@ -285,6 +285,7 @@
             }
             #list_right_one{
                 position:absolute;height:95%;bottom:44px;
+                left:15px
             }
             .w_tab table{
                 width: 100%;
@@ -490,14 +491,14 @@
                 }
             }
             $(document).ready(function() {
-//                layer.confirm('是否全屏显示？', {
-//                    title:'温馨提示',
-//                    btn: ['确认','取消'] //按钮
-//                }, function(index){
-//                    layer.close(index);
-//                    launchFullscreen(document.documentElement);
-//                }, function(){
-//                });
+                layer.confirm('是否全屏显示？', {
+                    title:'温馨提示',
+                    btn: ['确认','取消'] //按钮
+                }, function(index){
+                    layer.close(index);
+                    launchFullscreen(document.documentElement);
+                }, function(){
+                });
                 //调整TD的大小
                 var tab=$(".w_tab table");
 //                var t_height=1000;
@@ -804,7 +805,7 @@
                 var $data = {
                     id: eventId
                 };
-                var $url = "<{:U('/User/OrderHouse/geteventdjs')}>";
+                var $url = "<{:U('/Account/WeixBuyled/geteventdjs')}>";
                 ajax_post_callback($url, $data, function (data, status) {
                     if (data.status==1) {
                         var djsinfo = data.info[1];
@@ -960,7 +961,7 @@
                       $(this).html(setNumDom(numToArr(num)));
                   }
                   runAnimate($(this));
-                }
+                };
                 //init
                 init($(this));
                 

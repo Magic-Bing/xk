@@ -212,6 +212,7 @@ $(function () {
         var name=$(this).attr('data-name');
         $.post(sign.sign,{id:id,zt:1,name:name},function (data) {
             if(data === "true"){
+                speckText("签到成功！");
                 layer_msg("签到成功！");
                 $("#batch-one").trigger("change");
                 $("#sign-reset").show().attr('data-id',$("#button-sign").attr('data-id')).attr('data-name',$("#button-sign").attr('data-name'));

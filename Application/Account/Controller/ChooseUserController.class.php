@@ -290,7 +290,7 @@ class ChooseUserController extends BaseController {
             }
         } else {
             //项目ID
-            $project_id = I('project_id', 0, 'intval');
+            $project_id = session("selected_project");
             $this->assign('project_id', $project_id);
 
             //用户的项目和项目批次
@@ -907,11 +907,11 @@ class ChooseUserController extends BaseController {
             $PHPExcel->getActiveSheet()->getColumnDimension('J')->setWidth(15);
             $PHPExcel->getActiveSheet()->getColumnDimension('K')->setWidth(30);
             $PHPExcel->getActiveSheet()->setCellValue('A1', '项目标识');
-            $PHPExcel->getActiveSheet()->setCellValue('B1', $project_id);
+            $PHPExcel->getActiveSheet()->setCellValue('B1', rsa_encode($project_id,  getChoosekey()));
             $PHPExcel->getActiveSheet()->setCellValue('C1', '项目名称');
             $PHPExcel->getActiveSheet()->setCellValue('D1', $project_name);
             $PHPExcel->getActiveSheet()->setCellValue('E1', '批次');
-            $PHPExcel->getActiveSheet()->setCellValue('F1', $batch_id);
+            $PHPExcel->getActiveSheet()->setCellValue('F1', rsa_encode($batch_id,  getChoosekey()));
             $PHPExcel->getActiveSheet()->setCellValue('G1', '说明');
             $PHPExcel->getActiveSheet()->setCellValue('H1', "此行不能修改！");
             $PHPExcel->getActiveSheet()->setCellValue('A2', '客户名称');

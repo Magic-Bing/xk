@@ -422,20 +422,18 @@ margin-top:100px;
                                                 导入数据
                                         </a>
                                 </li>
-                            <if condition="$projid gt 0">
                                 <li class="room-nav-edit-btn">
-                                    <a class="room-export-btn" href="/Account/Jcsjroom/exportfj/projid/<{$projid}>.html">
+                                    <a class="room-export-btn excel-out" href="/Account/Jcsjroom/exportfj/projid/<{$projid}>.html">
                                                 <i class="icon-cloud-download bigger-110"></i>
                                                 导出房间模板
                                         </a>
                                 </li>
                                  <li class="room-nav-edit-btn">
-                                        <a class="room-export-btn" href="/Account/Jcsjroom/exportcw/projid/<{$projid}>.html">
+                                        <a class="room-export-btn excel-out" href="/Account/Jcsjroom/exportcw/projid/<{$projid}>.html">
                                                 <i class="icon-cloud-download bigger-110"></i>
                                                 导出车位模板
                                         </a>
                                 </li>
-                            </if>
                             <li class="room-nav-edit-btn" style="float: right;
     margin-right: 18px;">
                                 <a class="room-export-btn" id="check-room" href="javascript:;">
@@ -495,6 +493,12 @@ margin-top:100px;
 <script type="text/javascript">
     var c_num="<{$p}>";
 $(function() {
+    $(document).on("click",".excel-out",function () {
+        if($("#projlist").val() === '0'){
+            layer_alert("请选择一个项目！");
+            return false;
+        }
+    });
     //批量删除
     $("#delete-batch").on("click",function () {
         var cd=$(".delete-bs:checked");

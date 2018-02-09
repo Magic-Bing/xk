@@ -248,13 +248,15 @@
                     }
                     arr[2][input_checked.length]={"cs_value":strinfo,"pzcs_id":cs_setid1,"id":cs_id1};
                     
-                    console.log(arr);
-                    return false;
-                    
                     $.post("<{:U('YwcsSet/updateCsset')}>",{cslist:arr},function (data) {
-                        layer_alert(data);
+                        if (data.status === 0) {
+                                    layer_alert(data);
+                                    return false;
+				} else {
+                                    gritter_alert_success('修改成功！');
+                                }
                     });
-            console.log(arr);
+                    //console.log(arr);
                 }
              });
         </script>

@@ -19,7 +19,7 @@
             size: 15, 
 			percent: 50,
             animationStep: 1.0,
-            counterClockWise: true,
+            counterClockWise: false,
         }, options );
 		
 		return this.each(function() {
@@ -34,7 +34,7 @@
 			var bgcolor = '';
 			var icon = '';
 			var animationstep = 0.0;
-			var counterClockWise = true;
+			var counterClockWise = false;
 
 			$(this).addClass('circliful');
 

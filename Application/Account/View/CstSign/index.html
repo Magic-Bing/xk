@@ -115,21 +115,25 @@
         var pid=$('#project-not-sign').val();
         var bid=$('#batch-one').val();
         $.post(sign.auto_sign,{pid:pid,bid:bid,card:CardNo,name:Name},function (data) {
-
            if(data.status === 0){
+               speckText(data.info);
                 layer.alert(data.info,{
                     title:'温馨提示'
                 });
            }else{
                if(typeof data.info === 'object'){
+//                 alert(1);
+                   speckText(data.info.cst_name+"已经签到过了。");
                    layer.alert(data.info.cst_name+"已经签到过了。",{
                        title:'温馨提示'
                    });
                }else{
+//                   alert(2);
                    if(data.info === 'auto_one'){
                        var qd=$(".card-"+CardNo);
                        qd.trigger("click");
                    }else if(data.info === 'not_auto'){
+//                       alert(4);
                         num=1;
                        $("#search-one").val(CardNo);
                         var row=$('#new_rows').val();
@@ -138,10 +142,10 @@
                             user_ajax();
                         });
                    }else{
+//                       alert(3);
                        $("#batch-one").trigger("change");
-                       layer.alert(data.info,{
-                           title:'温馨提示'
-                       });
+                       speckText(data.info);
+                       layer.msg(data.info);
                    }
                }
            }

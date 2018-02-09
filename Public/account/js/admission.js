@@ -200,22 +200,25 @@ $(function () {
         $("#admission-group p").eq(0).find('span').text($.trim(td.eq(6).text()));
         $("#admission-group p").eq(1).find('span').text($.trim(td.eq(7).text()));
         if(pd === 0){
-            $("#button-sign").show().attr("data-id",id);
+            $("#button-sign").show().attr("data-id",id).attr("data-name",$.trim(td.eq(1).text()));
             $("#sign-reset").hide();
         }else{
-            $("#sign-reset").show().attr("data-id",id);
+            $("#sign-reset").show().attr("data-id",id).attr("data-name",$.trim(td.eq(1).text()));
             $("#button-sign").hide();
         }
     });
+
     //入场
     $(document).on("click",'.sign-check,#button-sign',function (event) {
         event.stopPropagation();
         var id=$(this).attr('data-id');
-        $.post(admission.admission,{id:id,zt:1},function (data) {
+        var name=$(this).attr('data-name');
+        $.post(admission.admission,{id:id,zt:1,name:name},function (data) {
             if(data === "true"){
+                speckText("入场成功！");
                 layer_msg("入场成功！");
                 $("#batch-one").trigger("change");
-                $("#sign-reset").show().attr('data-id',$("#button-sign").attr('data-id'));
+                $("#sign-reset").show().attr('data-id',$("#button-sign").attr('data-id')).attr('data-name',$("#button-sign").attr('data-name'));
                 $("#button-sign").hide();
                 $("#shadow").hide();
                 $("#admission").hide();
@@ -231,12 +234,13 @@ $(function () {
     $(document).on("click",'.sign-cancel,#sign-reset',function (event) {
         event.stopPropagation();
         var id=$(this).attr('data-id');
-        $.post(admission.admission,{id:id,zt:0},function (data) {
+        var name=$(this).attr('data-name');
+        $.post(admission.admission,{id:id,zt:0,name:name},function (data) {
             if(data === "true"){
                 layer_msg("取消入场成功！");
                 $("#batch-one").trigger("change");
                 $("#sign-reset").hide();
-                $("#button-sign").show().attr('data-id',$("#sign-reset").attr('data-id'));
+                $("#button-sign").show().attr('data-id',$("#sign-reset").attr('data-id')).attr('data-name',$("#sign-reset").attr('data-name'));
                 $("#shadow").hide();
                 $("#admission").hide();
                 // setTimeout(function () {

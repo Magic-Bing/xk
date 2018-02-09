@@ -159,7 +159,7 @@
 							<td><{$list_vo.cst_name|default=''}></td>
 							<td><{:rsa_decode($list_vo['cst_phone'],getChoosekey())}></td>
                                                         <td><{$list_vo.source|default=''}></td>
-                                                        <td class="hidden-480">
+                                                        <td class="hidden-480 center">
 								<if condition="$list_vo.status eq '签约'">
 									<span class="label label-sm label-success update_zt" style="cursor: pointer" data-id="<{$list_vo.id}>">签约</span>
 								</if>
@@ -185,13 +185,13 @@
 							<td>
 								<{$list_vo.ywy|default=''}>
 							</td>
-							<td>
+							<td class="center">
 								<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-									<span class="print-log" data-bid="<{$list_vo.pcid}>" data-pid="<{$list_vo.xmid}>" style="color: #fff;background-color: #2db5ee;padding: 3px 2px 4px 5px;cursor: pointer;margin-right: 1px">
+									<span class="print-log" data-bid="<{$list_vo.pcid}>" data-pid="<{$list_vo.xmid}>" style="color: #fff;background-color: #2db5ee;padding: 3px 2px 4px 5px;cursor: pointer;margin-right: 3px">
 										打印
 									</span>
 									<if condition="$list_vo['isyx'] eq 1">
-									<button data-id="<{$list_vo.id}>" class="js-choose-user-circle-btn" title="作废" style="border-style: none;background-color: #ffb752;padding: 3px 11px">
+									<button data-id="<{$list_vo.id}>" class="js-choose-user-circle-btn" title="作废" style="border-style: none;background-color: #ffb752;padding: 3px 6px">
 										<i class="icon-ban-circle bigger-120" style="color: #FFF"> </i>
 									</button>
 										<else/>
