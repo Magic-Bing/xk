@@ -118,20 +118,20 @@ var condition = {
                                                        <li>
                                                             <php>$einfo = geturl($eventId, getUrlkey());  $jminfo=encrypt_url("eventId/".$einfo['eventId']."/oid/{$orderedRoom['id']}", getUrlkey());</php>
                                                             <a href="/User/OrderHouse/ordershow/info/<{$jminfo}>">
-                                                           <ul>
+                                                            <ul>
                                                                 <li style="font-weight:bold;font-size:16px;border-bottom:1px solid #eae9e9;padding:10px 0;">
-                                                                    <div style="float:left;width:70%">签约号：<{$orderedRoom.code}></div>
+                                                                    <div style="float:left;width:70%">选房号：(公测)<{$orderedRoom.code}></div>
                                                                     <div style="float:right;width:30%;text-align:right;color:#e0dfdf;">  》 </div>
                                                                 </li>
                                                                 <li>  
-                                                                    房间：<{$orderedRoom.project_name}>-<{$orderedRoom.buildname}>-<{$orderedRoom.unit}>单元-<{$orderedRoom.floor}>层-<{$orderedRoom.room_room}>
+                                                                    房间：<{$orderedRoom.project_name}>-<{$orderedRoom.build_name}>-<{$orderedRoom.unit_no}>单元-<{$orderedRoom.floor_no}>层-<{$orderedRoom.room_room}>
                                                                </li>
                                                                <li>售价：<{:number_format($orderedRoom['total'], 2)}></li>
                                                                <li  style="border-top:1px solid #eae9e9;"><{$orderedRoom.log_time|date="Y-m-d H:i:s",###}></li>
                                                                <!--<li>户型结构：(<{$room['hx']}>) <{$hxinfo.hxmx}></li>
                                                                <li>建筑面积：<{$room.area}></li><li>套内面积：<{$room.tnarea}></li>-->
-                                                           </ul>
-                                                           </a>    
+                                                            </ul>
+                                                            </a>    
                                                        </li>
                                                     </ul>
                                                     </foreach>    

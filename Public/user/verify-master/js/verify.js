@@ -813,7 +813,7 @@
         	});
         	
         	_this.$element.find('.verify-bar-area').css({'color': '#000', 'border-color': '#ddd'});
-			_this.$element.find('.verify-msg').text('验证失败');
+			_this.$element.find('.verify-msg').text('');
 			_this.$element.find('.verify-refresh').show();
         },
     	

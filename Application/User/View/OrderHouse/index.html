@@ -19,19 +19,21 @@ var condition = {
 <style>
         .common-header-unit-wrapper {
             overflow: hidden;
-            height: 40px;
-            /*background: rgba(102, 204, 255, 0.25);*/
+            /*height: 40px;
+            background: rgba(102, 204, 255, 0.25);*/
         }
         
         .common-header-unit {
             margin: 0;
             background: rgba(102, 204, 255, 0);
             border: 0; 
+            padding: 2px 0;
             display: flex;
         }
         .common-header-unit-info {
-            width: 75px;
             cursor: pointer;
+            width: 21%;
+            min-width: 70px;
         }
         .speedbuy-bg
 		{
@@ -65,36 +67,36 @@ var condition = {
 			height: 60px;
 			/* line-height: 60px; */
 			margin-left: 42%;
-			font-size: 18px;
+			font-size: 15px;
 			font-weight: bold;
 			color: #000;
 			margin-top: 10px;
 		}
 		.remark{
                     position: absolute;
-                    top: 65px;
+                    top: 66px;
                     left: 0;
-                    height: 40px;
+                    height: 30px;
                     text-align: center;
-                    line-height: 40px;
-                    width: 10%;
-                    font-size: 18px;
+                    line-height: 30px;
+                    width: 50px;
+                    font-size: 15px;
                     color: #BFBFBF;
                     font-weight: normal;
-                    background: #c7e7fb;
+                    background: #FFF;
 		}
                 .moreunit{
                     position: absolute;
-                    top: 65px;
+                    top: 66px;
                     right: 0;
-                    height: 40px;
+                    height: 30px;
                     text-align: center;
-                    line-height: 32px;
-                    width: 10%;
-                    font-size: 22px;
+                    line-height: 30px;
+                    width: 50px;
+                    font-size: 15px;
                     color: #BFBFBF;
                     font-weight: normal;
-                    background: #c7e7fb;
+                    background: #FFF;
 		}
                 
 		.speedbuy-content
@@ -126,7 +128,7 @@ var condition = {
 		.user-voucher-footer-tabs-btn{padding:8px 30px;background:#03a9f4;color:#D6D5D5;}
 		.user-voucher-footer-tabs-btn-select{background:#FFF;color:#03a9f4;font-weight:bold;}
 		.user-project-view-content-rooms {
-			top: 105px;
+			top: 97px;
 			bottom: 55px;
 		}
 		.ycwxrg
@@ -334,6 +336,23 @@ var condition = {
                     border-radius: 0px;
                     line-height: 22px;
                 }
+                .common-header-unit-info>a {
+                    margin: 4px 0px;
+                    border-radius: 0px;
+                    padding: 0 0;
+                    border-right: 1px solid #c9c9c9;
+                    color:#c9c9c9;
+                }
+                .common-header-unit-info-selected>a {
+                    background: #FFF;
+                    color: #000;
+                    font-weight: 700;
+                    border: 1px solid #FFF;
+                    border-right: 1px solid #c9c9c9;
+                }
+                .more-unit-info a{
+                    padding:5px 0;
+                }
     </style>
 	<div id="zz01" class="div-zz" ></div>
 	<div id="showsuccess" class="div-success" >
@@ -399,17 +418,17 @@ var condition = {
                                 <div class="roomduib js-user-project-view-content-search-compare-btn"><i class="fa fa-star-half-full weui-tabbar__icon"></i>对比</div>
                                 <div class="roomseach"><i class="fa fa-filter weui-tabbar__icon" style="padding:0px;font-size:15px;width:17px;"></i>筛选</div>
                                 <if condition="$iswks gt -1">
-                                    <div class="remark" ><a href="/User/OrderHouse/index/info/<{$eventId}>.html"><i class="fa fa-refresh" style="font-size: 18px;color:#607D8B;padding:5px;"></i></a></div>
-                                    <div class="moreunit" ><a href="javascript:;"><i class="fa fa-angle-down " style="font-size: 18px;color:#607D8B;padding:5px;"></i></a></div>
+                                    <div class="remark" ><a href="/User/OrderHouse/index/info/<{$eventId}>.html"><i class="fa fa-refresh" style="color:#c9c9c9;padding:5px;"></i></a></div>
+                                    <div class="moreunit" ><a href="javascript:;"><i class="fa fa-angle-double-down " style="color:#c9c9c9;padding:5px;"></i></a></div>
                                 </if>
                                 
 			</div>
 		</div>
                 <if condition="$iswks gt -1">
 		<!--<div id= "iscroller-wrapper2"  class="common-header-unit-wrapper js-common-header-unit-wrapper" style="display:block;width:85%">-->
-                <div style="width:100%;height:40px;background:rgba(102, 204, 255, 0.25);">
-                    <div  class="common-header-unit-wrapper js-common-header-unit-wrapper" style="display:block;width:750px;margin-left: 10%">
-                            <div class="clearfix common-header-unit">
+                <div  style="width:100%;height:30px;border-top: 1px solid #e7f0f9;background:#FFF">
+                    <div  class="common-header-unit-wrapper js-common-header-unit-wrapper" style="display:inline-block;margin-left:50px">
+                            <div class="clearfix common-header-unit" id="unit_s" style="width:calc(100% - 100px);overflow: hidden;white-space: nowrap;">
                                     <for start="0" end="count($buildings)" name="i">
                                             <for start="0" end="count($units[$i])" name="j">
                                                     <div id="b<{$buildings[$i][2]}>u<{$units[$i][$j][1]}>" class="fl common-header-unit-info js-common-header-unit-info <if condition='$j==0 && $i==0'>common-header-unit-info-selected</if>" data-build="<{$buildings[$i][2]}>" data-unit="<{$units[$i][$j][1]}>">
@@ -608,8 +627,10 @@ var condition = {
     <div id="moreunitdiv" style="position: absolute;top: 106px;width: calc(100% - 10px );background: rgb(201, 226, 249); padding: 10px 5px;display:none;z-index:502"></div>
 </block>
 <block name="footer_js">
-<link href="__COMMON__/js//jquery/iscroll/iscroll.css" type="text/css" rel="stylesheet"/>
+<link href="__COMMON__/js/jquery/iscroll/iscroll.css" type="text/css" rel="stylesheet"/>
 <script src="__COMMON__/js/jquery/iscroll/iscroll.js"></script>
+<link href="__COMMON__/js/jquery/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet"/>
+<script src="__COMMON__/js/jquery/perfect-scrollbar/perfect-scrollbar.js"></script>
 <script>
   document.addEventListener("visibilitychange", function(){
         if (document.visibilitychange!='hidden')
@@ -624,6 +645,19 @@ var iscroller_index,
 	pullDownOffset,
 	loadingStep = 0;//加载状态0默认，1显示加载状态，2执行加载数据，只有当为0时才能再次加载，这是防止过快拉动刷新
 
+
+$(function () {
+    var uts=$("#unit_s");
+    if((parseFloat($("#unit_s .common-header-unit-info-selected").offset().left)+parseFloat($("#unit_s .common-header-unit-info-selected").width()))>= (parseFloat(uts.width()) + 50)){
+                            $("#unit_s").perfectScrollbar();
+                            $("#unit_s").scrollLeft(parseFloat($("#unit_s .common-header-unit-info-selected").offset().left));
+                            $("#unit_s").perfectScrollbar('update');
+                        }else{
+                            $("#unit_s").perfectScrollbar();
+                        }
+});
+
+
 var iscroller_room2;
 var eventId = "<{$eventId}>";
 var rooms = <{$rooms}>;
@@ -633,15 +667,21 @@ var orderedRooms = <{$orderedRooms}>;
 var iswks=<{$iswks}>;
 
 $(document).ready(function() {
+    
+    if (orderedRoom.hasOwnProperty('code')){
+        $(".div-success-rgm").html('认购码：'+orderedRoom.code);
+	}
+        
     if(window.location.hash!="")
     {
         $(""+window.location.hash).click();
     }
-    if (orderedRoom.hasOwnProperty('code')){
-        $(".div-success-rgm").html('认购码：'+orderedRoom.code);
-	}
-
-	renderRoom(rooms);
+    else
+    {
+        renderRoom(rooms);
+    }
+        
+	
 	//renderCollection(collection);
         if (collection.length>0)
         {
@@ -663,7 +703,7 @@ $(document).ready(function() {
         $maxwidth=$(".common-header-unit-wrapper").parent().width()-$zbstart-$(".moreunit").width();
         $zb=0;
         $ulist=$(".common-header-unit-wrapper").find(".common-header-unit-info");
-        $zbend=$ulist.length*75;
+        $zbend=$ulist.length*70;
         if($zbend<=$maxwidth)
         {
             $(".moreunit").hide();
@@ -673,67 +713,6 @@ $(document).ready(function() {
             $(".moreunit").show();
         }
 });
-
-function renderCollection(collection) {
-    var root = $('.speedbuy-content-li');
-
-    var html = '';
-
-    for(var i = 0;i<collection.length;i++){
-
-        var ulCss = 'bxf-ds';
-        if(i%2===1 && i!==0){
-            ulCss = 'bxf-ss';
-        }
-
-        var liCss = 'sc-bxfy-btn';
-
-        var divStatus = 'del-div';
-        var divTxt = '删';
-
-        var spanCss = 'wxrgbuy-button';
-        var spanTxt = '认购';
-
-        if(collection[i]['status']==='1'){
-            spanCss = '';
-        }
-
-        if(orderedRoom.hasOwnProperty('room_id')&&orderedRoom['room_id']==collection[i]['id']){
-
-            liCss = 'show-suc-btn';
-
-            divStatus = 'show-suc-div';
-            divTxt = '查';
-
-            spanCss = 'buy-suc';
-            spanTxt = '成功';
-        }
-
-		html = `<ul class="bxf-ul ${ulCss}" data-room-id="${collection[i]['id']}">																				<li class=${liCss} style="float:left;width:14%;height:100%;">
-											<div class="${divStatus}">${divTxt}</div>
-											<div style="margin-top:-40px;height:55px;border-right:1px solid #2196F3;"></div>
-										</li>										<li style="float:left;width:70%;height:100%;">
-											<ul style="margin-left:15px;">
-												<li class="roominfo" style="height:24px;line-height:24px;padding: 4px 5px 0px 5px;font-size:13px;font-weight:bold;">
-												${collection[i]['building_name']}${collection[i]['unit']}单元-${collection[i]['floor']}${collection[i]['no']}												<span class="roomhx" style="font-size:12px;font-weight:400;">&nbsp;&nbsp;户型：${collection[i]['hx']}</span>
-												</li>
-												<li class="roomarea" style="height:20px;line-height:20px;padding: 2px 5px 0px 5px;font-size:12px;">
-												面积(㎡)：建筑 ${collection[i]['area']}&nbsp;&nbsp;套内 ${collection[i]['tnarea']}												</li>
-												<li style="height:20px;line-height:20px;padding: 2px 5px 0px 5px;font-size:12px;">
-												标准总价：¥ <span class="roomtotal" style="font-weight:bold;">${collection[i]['total']}</span>
-												</li>
-											</ul>
-										</li>
-										<li style="float:left;width:15%;height:100%;">
-											<div style="line-height:25px;margin-top:25px;"><span class="buy-span ${spanCss}" >${spanTxt}</span></div>
-
-										</li>
-									</ul>`;
-
-        root.append(html);
-    }
-
-}
 
 function renderRoom(rooms) {
     var table = $('.user-project-view-content-rooms-table>tbody');
@@ -775,28 +754,25 @@ function renderRoom(rooms) {
             //isSc='';
             //<a href="/User/room/showroom/id/${rooms[i].id}/eventId/${eventId}.html" class="user-project-view-content-rooms-room-a">
         }
-        li = `<li class="fl wm25">
-                <a href="/User/room/showroom/info/${rooms[i].jminfo}" class="user-project-view-content-rooms-room-a">
-                ${isSc}
-                    <div class="user-project-view-content-rooms-room-box ${collected}" id="room_${rooms[i].id}">
-
-                            <div class="user-project-view-content-rooms-room-name">
-                                    ${rooms[i].room}								
-                            </div>
-                            <div class="user-project-view-content-rooms-room-cost">
-                                    ¥${rooms[i].total}									
-                            </div>
-                    </div>
-                </a>
-
-                <div data-room-id="${rooms[i].id}" class="user-project-view-content-rooms-room-box-shadow js-user-project-view-content-rooms-room-box-shadow">
-                    <div class="user-project-view-content-rooms-room-box-shadow-info">
-                        <span class="user-project-view-content-rooms-room-box-shadow-info-select">
-                                <input class="user-project-view-content-rooms-room-select js-user-project-view-content-rooms-room-box-shadow user-project-view-content-rooms-room-select-${rooms[i].id}" data-room-id="${rooms[i].id}" type="checkbox" value="1">
-                        </span>
-                    </div>
-                </div>
-            </li>`;
+        li = '<li class="fl wm25"><a href="/User/room/showroom/info/' + rooms[i].jminfo + '" class="user-project-view-content-rooms-room-a">'
+             +  isSc 
+             +       '<div class="user-project-view-content-rooms-room-box '+ collected + '" id="room_'+ rooms[i].id + '">'
+             +              '<div class="user-project-view-content-rooms-room-name">'
+             +                       rooms[i].room								
+             +               '</div>'
+             +               '<div class="user-project-view-content-rooms-room-cost">'
+             +                       rooms[i].total									
+             +              '</div>'
+             +      '</div>'
+             +  '</a>'
+             +   '<div data-room-id="'+ rooms[i].id + '" class="user-project-view-content-rooms-room-box-shadow js-user-project-view-content-rooms-room-box-shadow">'
+             +       '<div class="user-project-view-content-rooms-room-box-shadow-info">'
+             +           '<span class="user-project-view-content-rooms-room-box-shadow-info-select">'
+             +                  '<input class="user-project-view-content-rooms-room-select js-user-project-view-content-rooms-room-box-shadow user-project-view-content-rooms-room-select-'+ rooms[i].id + '" data-room-id="' + rooms[i].id + '" type="checkbox" value="1">'
+            +            '</span>'
+            +        '</div>'
+            +    '</div>'
+            +'</li>';
 
         tempUlMark = rooms[i].floor;
         tempFloorMark = rooms[i].floor;
@@ -815,9 +791,9 @@ function renderRoom(rooms) {
 
             ul = $('<ul class="clearfix"></ul>');
 
-            td = $(`<td class="user-project-view-content-rooms-floor" data-floor-id="${floorMark}">${floorMark}F</td><td class="user-project-view-content-rooms-room" data-floor-id="${floorMark}"></td>`);
+            td = $('<td class="user-project-view-content-rooms-floor" data-floor-id="'+ floorMark + '">' + floorMark + 'F</td><td class="user-project-view-content-rooms-room" data-floor-id="'+ floorMark + '"></td>');
 
-            tr = $(`<tr></tr>`);
+            tr = $('<tr></tr>');
 
         }
 
@@ -1116,7 +1092,7 @@ $(".clearsearch").click(function(){
         else
         {
             $("#moreunitdiv").html($(".common-header-unit-wrapper").html());
-            $("#moreunitdiv").find(".common-header-unit").css("display","block");
+            $("#moreunitdiv").find(".common-header-unit").css("display","block").css("width","100%");
             $("#moreunitdiv").find("a").css("margin","10px 2px");
             $("#moreunitdiv").find(".common-header-unit-info").css("width","25%").removeClass("js-common-header-unit-info").addClass("more-unit-info");
 
@@ -1124,37 +1100,11 @@ $(".clearsearch").click(function(){
             $(".user-search-form-choose-option-shadow").show();
         }
     });
-    $("body").on("click",".more-unit-info",function(){
+      $("body").on("click",".more-unit-info",function(){
         $dqunit=$(this).attr("id");
         $("#moreunitdiv").html("");
         $("#moreunitdiv").hide(); 
         $(".js-user-search-form-choose-option-shadow").hide();
-        $zbstart=$(".remark").width();
-        $maxwidth=$(".common-header-unit-wrapper").parent().width()-$zbstart-$(".moreunit").width();
-        $zb=0;
-        $ulist=$(".common-header-unit-wrapper").find(".common-header-unit-info");
-        $zbend=$ulist.length*75;
-        for(var i=0;i<$ulist.length;i++)
-        {
-            if($ulist.eq(i).attr("id")==$dqunit)
-            {
-                $zb=i*75;
-                break;
-            }
-        }
-        
-        if ($zb+75<=$maxwidth)
-        {
-            $(".common-header-unit-wrapper").css("marginLeft",$zbstart);
-        }
-        else if($zbend-$zb>$maxwidth)
-        {
-            $(".common-header-unit-wrapper").css("marginLeft",($zb-$zbstart)*-1);
-        }
-        else
-        {
-            $(".common-header-unit-wrapper").css("marginLeft",($maxwidth-$zbend)+$zbstart);
-        }
         $("#"+$dqunit).click();
     });
 </script>

@@ -235,11 +235,25 @@
 										</div>
 									</td>
 								</tr>
-
+                                                                <tr>
+									<td class="saler-project-room-list-td1">
+										<span class="saler-project-room-list-td-title">
+											第①意向
+										</span>
+									</td>
+									
+									<volist name="rooms" id="rooms_vo" key="rooms_k">
+										<td class="saler-project-room-list-td2">
+											<span class="saler-project-room-list-td-content">
+												<{$room_attributes[$rooms_vo['id']]['first_count']|default='0'|intval}>
+											</span>
+										</td>
+									</volist>
+								</tr>
 								<tr>
 									<td class="saler-project-room-list-td1">
 										<span class="saler-project-room-list-td-title">
-											收藏次数
+											备选次数
 										</span>
 									</td>
 									
@@ -306,36 +320,38 @@
 	</div>
      <if condition="$type lt 3">
 	<div class="weui-tabbar">
-		<a href="<{:U('project/index', array('info' => set_search_ids(array('p' => $search_project_id))))}>" class="weui-tabbar__item ">
-							<span style="display: inline-block;position: relative;">
-								<i class="fa fa-list weui-tabbar__icon"></i>
-							</span>
-			<p class="weui-tabbar__label">房源列表</p>
-		</a>
-		<!--<a href="#" class="weui-tabbar__item weui-bar__item_on">
+		 <a href="<{:U('DataStatistics/index', array('info' => set_search_ids(array('p' => $search_hd_id))))}>" class="weui-tabbar__item1">
                             <span style="display: inline-block;position: relative;">
-                                <i class="fa fa-star-half-full weui-tabbar__icon" ></i>
+                                <i class="fa fa-home weui-tabbar__icon1"></i>
                             </span>
-			<p class="weui-tabbar__label">对比</p>
-		</a>-->
-		<a href="<{:U('hot/index', array('info' => set_search_ids(array('p' => $search_project_id))))}>" class="weui-tabbar__item">
+                    <p class="weui-tabbar__label1">首页</p>
+                </a>
+                <a href="<{:U('ChooseAnalysis/index', array('info' => set_search_ids(array('p' => $search_hd_id))))}>" class="weui-tabbar__item1 ">
+                            <span style="display: inline-block;position: relative;">
+                                    <i class="fa fa-group weui-tabbar__icon1"></i>
+                            </span>
+                    <p class="weui-tabbar__label1">客户分析</p>
+                </a>
+                <a href="javascript:;" class="weui-tabbar__item1 weui-bar__item_on1">
 							<span style="display: inline-block;position: relative;">
-								<i class="fa fa-bar-chart-o weui-tabbar__icon"></i>
+								<i class="fa fa-bar-chart weui-tabbar__icon1"></i>
 							</span>
-			<p class="weui-tabbar__label">房源热度</p>
-		</a>
-		<a href="/Saler/MyReport/index/p/<{$search_project_id}>" class="weui-tabbar__item">
-							<span style="display: inline-block;position: relative;">
-								<i class="fa fa-tachometer weui-tabbar__icon"></i>
-								<span class="weui-badge weui-badge_dot" style="position: absolute;top: 2px;right: 0px;display:none;"></span>
-							</span>
-			<p class="weui-tabbar__label">我的报表</p>
-		</a>
+                    <p class="weui-tabbar__label1">装户分析</p>
+                </a>
+                <a href="<{:U('MyReport/index', array('info' => set_search_ids(array('p' => $search_hd_id))))}>" class="weui-tabbar__item1 ">
+                            <span style="display: inline-block;position: relative;">
+                                <i class="fa fa-user-circle-o weui-tabbar__icon1"></i>
+                                <span class="weui-badge weui-badge_dot" style="position: absolute;top: 2px;right: 0px;display:none;"></span>
+                            </span>
+                    <p class="weui-tabbar__label1">我的</p>
+                </a>
 	</div>
      </if>
 </block>
 <block name="footer"></block>
 <block name="footer_js">
 <include file="Common@Common/Mobile/iscroll" iscroller_id="iscroller_compare" iscroller_select_id="iscroller-wrapper" />
+<script type="text/javascript">
+</script>
 </block>
 

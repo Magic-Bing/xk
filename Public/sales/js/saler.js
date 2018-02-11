@@ -84,6 +84,11 @@ $(function() {
 	//比对
 	$(".js-saler-project-view-content-selected-compare").click(function() {
 		var $select_room_list = $(".saler-project-view-content-rooms-room-select:checked");
+                if( $select_room_list.length<2)
+                {
+                     layer_alert("至少选择两个房源！");
+                    return false;
+                }
 		var pid=$(this).attr("pid");
 		var $room_ids = [];
 		for (var $i = 0; $i < $select_room_list.length; $i ++) {

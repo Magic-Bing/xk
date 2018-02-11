@@ -81,8 +81,10 @@ compare_room_two: '<{:U("compare/room2")}>',
                                 if ($urlpath.indexOf("compare")<0 && $urlpath.indexOf("privilege")<0)
                                 {
                                     if(!$first||$first=='null'||$first==null){
-                                        $.cookie('first_vist','1',{ expires: 1 });
+                                        //console.log("222");
+                                        $.cookie('first_vist','1',{ expires: 7 });
                                     }else{
+                                        //console.log("333");
                                         $.cookie('first_vist',null);
                                         window.location.href=window.location.protocol+"//"+window.location.host+window.location.pathname+'?time='+((new Date()).getTime())+window.location.hash;
                                     }

@@ -29,7 +29,7 @@ class RoomController extends BaseController
         $search_project_id=I("pid",0,"intval");
         $search_batch_id=I("bid",0,"intval");
         $this->assign('search_project_id', $search_project_id);
-
+        $uid=$this->get_user_id();
 		//项目列表
 			$Project = D('Common/Project');
 			$where11['status'] = 1;
@@ -46,6 +46,25 @@ class RoomController extends BaseController
         if (!in_array($search_batch_id, $user_batch_ids)) {
             $this->error("你没有权限访问该批次的信息！");
         }
+//        echo $uid;exit;
+        //查询参数权限
+        //取消选房权限
+        $all_auth=M()->table("xk_user")->where("id=$uid")->find();
+        if($all_auth['is_all'] == 1){
+            $this->assign('reset','1');
+        }else{
+            $reset= M()->table("xk_station2user s")->join('xk_fun_station f ON f.station_id=s.station_id')->where("s.userid=$uid AND f.fun_id=34")->find();
+            $this->assign('reset',$reset?'1':'2');
+        }
+
+        //付款方式权限
+        $pay_auth=M()->table("xk_pzcsvalue")->field("id")->where("project_id =$search_project_id AND batch_id=$search_batch_id AND pzcs_id=7 AND cs_value=-1")->find();
+        //诚意金编号权限
+        $num_auth=M()->table("xk_pzcsvalue")->field("id")->where("project_id =$search_project_id AND batch_id=$search_batch_id AND pzcs_id=9 AND cs_value=-1")->find();
+//        $info_auth=explode(";",$info_auth);
+        $this->assign('pay_auth', $pay_auth['id']);
+        $this->assign('num_auth', $num_auth['id']);
+
 		//一共出售，
         $yg_count=M()->table("xk_roomList")->where("proj_id=$search_project_id AND is_xf=1 and is_dq=1")->count();
         $this->assign("yg_count",$yg_count);
@@ -245,13 +264,14 @@ class RoomController extends BaseController
 			$time = '';
 		}
         $room['xftime']=$time;
+		$room['phone']=rsa_decode($room['phone'],getChoosekey());
+		$room['cardno']=rsa_decode($room['cardno'],getChoosekey());
 		//获取相关信息
 		$this->success($room, U('room/index'));
 	}
 
 	/**
 	 * 确认选房
-	 *
 	 * @create 2016-8-22
 	 * @author zlw
 	 */
@@ -350,7 +370,6 @@ class RoomController extends BaseController
 	
 	/**
 	 * 确认选房 - 后置操作方法
-	 *
 	 * @create 2016-10-14
 	 * @author zlw
 	 */

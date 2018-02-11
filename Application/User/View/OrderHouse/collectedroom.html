@@ -257,7 +257,7 @@ var condition = {
     font-size: 16px;
     background: #bdbcbd;
 }
-.tyyd{background:#eb3045;}
+.tyyd{background:#eb3045;cursor: pointer;}
 
 .delbtn{
     position: absolute;
@@ -297,7 +297,7 @@ var condition = {
             <li >售价：¥<span class="div-success-total"></span></li>
         </ul>
         <div>
-            <div class="div-success-rgm">签约号：<{$wxrg['sjm']}></div>
+            <div class="div-success-rgm">选房号：<{$wxrg['sjm']}></div>
             <div class="div-success-sm">请按流程办理认购手续，谢谢配合！</div>
             <div class="div-success-remark">选房信息会以短信形式发送到您的手机！</div>
         </div>
@@ -582,7 +582,7 @@ function renderCollection(collection) {
                   + '</a>'
                   + '</li>'
                   + '<li style="float:left;width:15%;height:100%;">'
-                  +          '<div style="line-height:25px;margin-top:25px;"><span class="buy-span ' + spanCss + '" >' + spanTxt + '</span></div>'
+                  +          '<div style="line-height:25px;margin-top:25px;"><span class="buy-span ' + spanCss + '"  showurl=/User/OrderHouse/ordershow/info/' + collection[i]['oinfo'] + '>' + spanTxt + '</span></div>'
                   + '</li>'
             +'</ul>'
             +'<div class="delbtn">删除</div>';
@@ -964,7 +964,7 @@ function xfqr(room_id,eventId)
         $('#loading').show();
         ajax_post_callback($url, $data, function (data, status) {
             if (data.status==1) {
-                $(".div-success-rgm").html('签约号：' + data.info[1]);
+                $(".div-success-rgm").html('选房号：' + data.info[1]);
                 $(".div-success-no").text($("#showroom").text());
                 $(".div-success-area").text($("#showhx").text());
                 $(".div-success-total").text($("#showtotal").text());
@@ -972,10 +972,11 @@ function xfqr(room_id,eventId)
                 $(".div-zz").show();
                 $('.weui-badge_dot').show();
                 var $hrefurl="/User/OrderHouse/ordershow/info/" + data.info[3] + "";
-                var $html='<a href=' + $hrefurl + '><div class="show-suc-div">查</div><div style="margin-top:-40px;height:55px;border-right:1px solid #2196F3;"></div></a>';
+                //var $html='<a href=' + $hrefurl + '><div class="show-suc-div">查</div><div style="margin-top:-40px;height:55px;border-right:1px solid #2196F3;"></div></a>';
                 var $dqys=$("#libtn_"+room_id);
                 $dqys.text("成功").removeClass("wxrgbuy-button").addClass("buy-suc");
-                $dqys.parent().parent().parent().children(":first").removeClass("sc-bxfy-btn").addClass("show-suc-btn1").html($html);
+                //$dqys.parent().parent().parent().children(":first").removeClass("sc-bxfy-btn").addClass("show-suc-btn1").html($html);
+                $dqys.parent().parent().parent().children(":first").find(".px-div").css("background","#f39900");
                 $(".div-success-ddinfo").find("a").attr("href",$hrefurl);
                 orderedRooms = data.info[2];
                 renderRoom(orderedRooms);  
@@ -1160,6 +1161,14 @@ $(document).ready(function(e) {
     //调整排序
     //升fa-arrow-up
     $(document).on("click",".fa-arrow-up",function (){
+        $dqi=$(this);
+        var nowTime = new Date().getTime();
+        var clickTime = $(this).attr("ctime");
+        if( clickTime != 'undefined' && (nowTime - clickTime < 1000)){
+            return false;
+        }else{
+            $(this).attr("ctime",nowTime);
+        }    
         var $dqul=$(this).parent().parent().parent();
         var $prevul=$dqul.prev().prev();
         var $onedel=$dqul.prev();
@@ -1171,98 +1180,169 @@ $(document).ready(function(e) {
         if(Number(apx)==1){
             return false;
         }
-        $.ajax({
-            type:"post",
-            url:orderHouse.update_px,
-            data:{cid:id,apx:apx,pd:"sx"},
-            success:function (data) {
-                if(data=="false"){
-                    layer_alert("调整失败，请刷新后重试！");
-                }else{
-                    $dqul.css("border-color",'red');
-                    $prevul.before($dqul);
-                    $dqul.after($onedel);
-                    $dqul.attr("px",Number(apx)-1);
-                    $dqul.find(".px-div").text(Number(apx)-1);
-                    $dqul.find("i").attr("apx",Number(apx)-1);
-                    
-                    $prevul.attr("px",apx);
-                    $prevul.find(".px-div").text(apx);
-                    $prevul.find("i").attr("apx",apx);
-                    
-                    if(Number(apx)==2)
-                    {
-                        $dqul.find(".fa-arrow-up").parent().prepend("<div id='zwdiv' style='height:28px'></div>") 
-                        $dqul.find(".fa-arrow-up").hide();
-                        $dqul.find(".fa-arrow-down").show();
-                        
-                        $prevul.find("#zwdiv").remove();
-                        $prevul.find("i").show(); 
-                    }
-                    else if(Number(apx)==len)
-                    {
-                        $prevul.find(".fa-arrow-up").show();
-                        $prevul.find(".fa-arrow-down").hide();
-                        $dqul.find("i").show();
-                    }
-                    setTimeout("hfcolor()",2000);
-                }
-            }
-        });
+        
+        //克隆一个用于做动画的元素
+        var $dhdiv =$("<div id='showdhdiv' style='position:absolute;z-index:99999999;width: 99%;margin: auto;background: #FFF;border: 1px solid red;'></div>").append($dqul.clone());
+        //$dhdiv.find("i").hide();
+        $("#iscroller-scroller").prepend($dhdiv);
+        var $zb = $dqul.offset();
+        var $cstop=($dqi.attr("apx")-1) * 82 + 5;
+        $dhdiv.find(".bxf-ul").css("border","0").css("margin-top",0);
+        $dhdiv.css("width",$dqul.width());
+        $dhdiv.css("top",$cstop).css("opacity",0.7).css("left",$zb.left).show();
+        
+        $dhdiv.animate({top:$cstop - 81,opacity:1},700).fadeOut(1); 
+        setTimeout(function () {
+           $dhdiv.remove();
+        }, 800); 
+        
+        setTimeout(function () {
+            $.ajax({
+                type:"post",
+                url:orderHouse.update_px,
+                data:{cid:id,apx:apx,pd:"sx"},
+                success:function (data) {
+                    if(data=="false"){
+                        layer_alert("调整失败，请刷新后重试！");
+                    }else{
+                        $dqul.css("border-color",'red');
+                        $prevul.before($dqul);
+                        $dqul.after($onedel);
+                        $dqul.attr("px",Number(apx)-1);
+                        $dqul.find(".px-div").text(Number(apx)-1);
+                        $dqul.find("i").attr("apx",Number(apx)-1);
 
+                        $prevul.attr("px",apx);
+                        $prevul.find(".px-div").text(apx);
+                        $prevul.find("i").attr("apx",apx);
+
+                        if(Number(apx)==2)
+                        {
+                            if(len>2)
+                            {
+                                console.log("6666");
+                                $dqul.find(".fa-arrow-up").parent().prepend("<div id='zwdiv' style='height:28px'></div>") 
+                                $dqul.find(".fa-arrow-up").hide();
+                                $dqul.find(".fa-arrow-down").show();
+
+                                $prevul.find("#zwdiv").remove();
+                                $prevul.find("i").show(); 
+                            }
+                            else
+                            {
+                                $dqul.find(".fa-arrow-up").parent().prepend("<div id='zwdiv' style='height:28px'></div>") 
+                                $dqul.find(".fa-arrow-up").hide();
+                                $dqul.find(".fa-arrow-down").show();
+
+                                $prevul.find("#zwdiv").remove();
+                                $prevul.find(".fa-arrow-up").show();
+                                $prevul.find(".fa-arrow-down").hide();
+                            }
+                        }
+                        else if(Number(apx)==len)
+                        {
+                            $prevul.find(".fa-arrow-up").show();
+                            $prevul.find(".fa-arrow-down").hide();
+                            $dqul.find("i").show();
+                        }
+                        setTimeout("hfcolor()",1000);
+                    }
+                }
+            });
+        },500);
     });
     
     //降
     $(document).on("click",".fa-arrow-down",function (){
+        $dqi=$(this);
+        var nowTime = new Date().getTime();
+        var clickTime = $(this).attr("ctime");
+        if( clickTime != 'undefined' && (nowTime - clickTime < 1000)){
+            return false;
+        }else{
+            $(this).attr("ctime",nowTime);
+        }    
         var $dqul=$(this).parent().parent().parent();
         var $nextul=$dqul.next().next();
-        var $onedel=$dqul.next();
-        var id=$(this).attr("cid");
-        var apx=$(this).attr("apx");
+         var $onedel=$dqul.next();
+         var id=$dqi.attr("cid");
+         var apx=$dqi.attr("apx");
 
-        var allul= $(".speedbuy-content").find(".bxf-ul");
-        var len=allul.length;
-        allul.css("border-color",'#cecfd1');
-        if(Number(apx)==len){
-            return false;
-        }
-        $.ajax({
-            type:"post",
-            url:orderHouse.update_px,
-            data:{cid:id,apx:apx,pd:"jx"},
-            success:function (data) {
-                if(data=="false"){
-                    layer_alert("调整失败，请刷新后重试！");
-                }else{
-                    $dqul.css("border-color",'red');
-                    $nextul.next().after($dqul);
-                    $dqul.after($onedel);
-                    $dqul.attr("px",Number(apx)+1);
-                    $dqul.find(".px-div").text(Number(apx)+1);
-                    $dqul.find("i").attr("apx",Number(apx)+1);
-                    
-                    $nextul.attr("px",apx);
-                    $nextul.find(".px-div").text(apx);
-                    $nextul.find("i").attr("apx",apx);
-                    
-                    if(Number(apx)==len-1)
-                    {
-                        $dqul.find(".fa-arrow-up").show();
-                        $dqul.find(".fa-arrow-down").hide();
-                        $nextul.find("i").show();
+         var allul= $(".speedbuy-content").find(".bxf-ul");
+         var len=allul.length;
+         allul.css("border-color",'#cecfd1');
+         if(Number(apx)==len){
+             return false;
+         }
+        
+        //克隆一个用于做动画的元素
+        var $dhdiv =$("<div id='showdhdiv' style='position:absolute;z-index:99999999;width: 99%;margin: auto;background: #FFF;border: 1px solid red;'></div>").append($dqul.clone());
+        //$dhdiv.find("i").hide();
+        $("#iscroller-scroller").prepend($dhdiv);
+        var $zb = $dqul.offset();
+        var $cstop=($dqi.attr("apx")-1) * 82 + 5;
+        $dhdiv.find(".bxf-ul").css("border","0").css("margin-top",0);
+        $dhdiv.css("width",$dqul.width());
+        $dhdiv.css("top",$cstop).css("opacity",0.7).css("left",$zb.left).show();
+        
+        
+        $dhdiv.animate({top:$cstop + 81,opacity:1},700).fadeOut(1); 
+        setTimeout(function () {
+           $dhdiv.remove();
+        }, 800); 
+
+        setTimeout(function () {
+            $.ajax({
+                type:"post",
+                url:orderHouse.update_px,
+                data:{cid:id,apx:apx,pd:"jx"},
+                success:function (data) {
+                    if(data=="false"){
+                        layer_alert("调整失败，请刷新后重试！");
+                    }else{
+                        $dqul.css("border-color",'red');
+                        $nextul.next().after($dqul);
+                        $dqul.after($onedel);
+                        $dqul.attr("px",Number(apx)+1);
+                        $dqul.find(".px-div").text(Number(apx)+1);
+                        $dqul.find("i").attr("apx",Number(apx)+1);
+
+                        $nextul.attr("px",apx);
+                        $nextul.find(".px-div").text(apx);
+                        $nextul.find("i").attr("apx",apx);
+
+                        if(Number(apx)==len-1)
+                        {
+                            if(len>2)
+                            {
+                                $dqul.find(".fa-arrow-up").show();
+                                $dqul.find(".fa-arrow-down").hide();
+                                $nextul.find("i").show();
+                            }
+                            else
+                            { 
+                                $dqul.find(".fa-arrow-up").show();
+                                $dqul.find(".fa-arrow-down").hide();
+                                $dqul.find("#zwdiv").remove();
+                                $nextul.find(".fa-arrow-down").show();
+                                $nextul.find(".fa-arrow-up").hide();
+                                $nextul.find(".fa-arrow-up").parent().prepend("<div id='zwdiv' style='height:28px'></div>");
+                            }
+                        }
+                        else if(Number(apx)==1)
+                        {
+                            $dqul.find("#zwdiv").remove();
+                            $dqul.find("i").show();                      
+                            $nextul.find(".fa-arrow-down").show();
+                            $nextul.find(".fa-arrow-up").hide();
+                            $nextul.find(".fa-arrow-up").parent().prepend("<div id='zwdiv' style='height:28px'></div>") 
+                        } 
+                        $dqul.show();
+                        setTimeout("hfcolor()",1000);
                     }
-                    else if(Number(apx)==1)
-                    {
-                        $dqul.find("#zwdiv").remove();
-                        $dqul.find("i").show();                      
-                        $nextul.find(".fa-arrow-down").show();
-                        $nextul.find(".fa-arrow-up").hide();
-                        $nextul.find(".fa-arrow-up").parent().prepend("<div id='zwdiv' style='height:28px'></div>") 
-                    } 
-                    setTimeout("hfcolor()",2000);
                 }
-            }
-        });
+            });
+        },500);
     });
     
     function hfcolor()

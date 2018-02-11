@@ -277,7 +277,7 @@
     font-size: 16px;
     background: #bdbcbd;
 }
-.tyyd{background:#eb3045;}
+.tyyd{background:#eb3045;cursor: pointer;}
     </style>
         <input type="hidden" id="refreshed" value="no">
         <input type="hidden" id="is_aqyz" value="<{$event['is_aqyz']|default=0}>">
@@ -290,7 +290,7 @@
 				<li >售价：¥<span class="div-success-total"></span></li>
 			</ul>
 			<div>
-				<div class="div-success-rgm">签约号：<{$wxrg['sjm']}></div>
+				<div class="div-success-rgm">选房号：<{$wxrg['sjm']}></div>
 				<div class="div-success-sm">请按流程办理认购手续，谢谢配合！</div>
 				<div class="div-success-remark">选房信息会以短信形式发送到您的手机！</div>
 			</div>
@@ -892,7 +892,7 @@ function xfqr(room_id,eventId)
         $('#loading').show();
         ajax_post_callback($url, $data, function (data, status) {
             if (data.status==1) {
-                $(".div-success-rgm").html('签约号：' + data.info[1]);
+                $(".div-success-rgm").html('选房号：' + data.info[1]);
                 $(".div-success-no").text($("#showroom").text());
                 $(".div-success-area").text($("#showhx").text());
                 $(".div-success-total").text($("#showtotal").text());

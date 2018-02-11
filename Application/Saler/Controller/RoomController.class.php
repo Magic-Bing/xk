@@ -10,7 +10,7 @@ use Think\Cache\Driver\Redis;
  * @create 2016-9-1
  * @author zlw
  */
-class RoomController extends BaseController 
+class RoomController extends Base1Controller 
 {
 
 	
@@ -86,12 +86,10 @@ class RoomController extends BaseController
                 if($orderwx)
                 {
                     $this->assign('iswx', 1);
-                    print_r(1);
                 }
                 else
                 {
                     $this->assign('iswx', 0);
-                    print_r(0);
                 }
 		
 		//热力指数
@@ -100,7 +98,7 @@ class RoomController extends BaseController
 		$this->assign('type', session("type"));
                 
                 //第一意向
-                $first_count=M()->table('xk_cst2rooms cr')->where("cr.room_id=$id")->group("cr.room_id")->count();
+                $first_count=M()->table('xk_cst2rooms cr')->where("cr.room_id=$id and px=1")->group("cr.room_id")->count();
                 $this->assign('first_count', $first_count);
 
 		//更改点击

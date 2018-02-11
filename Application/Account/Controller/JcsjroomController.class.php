@@ -41,12 +41,31 @@ class JcsjroomController extends BaseController {
 //         if(!IS_POST){
 //             $this->error("非法操作！");
 //         }
+        
+        //当前用户有权限查看的项目
+        $user_project_ids = $this->get_user_project_ids();
+        //当前用户有权限查看的批次
+        $user_batch_ids = $this->get_user_batch_ids();
+        
+        //当前项目
         if(isset($_POST['projid'])){
             $search_project_id = I('projid', 0, 'intval');
-            session("selected_project",$search_project_id);
-        }else{
+        }
+        else{
             $search_project_id = session("selected_project");
         }
+        
+        if ($search_project_id != 0) {
+            if (!in_array($search_project_id, $user_project_ids)) {
+                $this->error("你没有权限访问该项目的信息！");
+            }
+            else
+            {
+                 session("selected_project",$search_project_id);
+            }
+        }
+        
+
         $projid = $search_project_id;
         $Model = new \Think\Model();
 		
@@ -75,13 +94,14 @@ class JcsjroomController extends BaseController {
 			$where .=" and a.room like '%". $room ."%' " ;
             $this->assign('room', $room); 
 		}
-        $user_project_ids = $this->get_user_project_ids();
-
+        $strproj=implode(",", $user_project_ids);
+        $strpc=implode(",", $user_batch_ids);
+        
         if (!empty($projid)) {
-            if(!in_array($projid,$user_project_ids)){
-                $this->error("非法操作！",'/Account/Jcsjroom/room');
-            }
-            $where .=" and a.proj_id = $projid" ;
+            $where .=" and a.proj_id = $projid and  b.pc_id in('" . str_replace(",","','", $strpc) . "')" ;
+        }else
+        {
+            $where .=" and b.pc_id in('" . str_replace(",","','", $strpc) . "')" ;
         }
         if($excel===1){
             $roomlist=$Model->query("SELECT concat_ws('-',c.name,b.buildname,a.unit,a.room) dz,a.hx,a.area,Format(a.price,2) p1,a.tnarea,Format(a.tnprice,2) p2,Format(a.total,2) p3,Format(a.discount,2) p4,CASE WHEN a.is_xf=0 THEN  '待售' ELSE  '已售' END zt FROM xk_room a left join xk_build b on a.bld_id=b.id left join xk_project c on a.proj_id=c.id ".$where  . "  order by a.id asc ");
@@ -179,7 +199,11 @@ class JcsjroomController extends BaseController {
 				'price' => '8000',
 				'tnprice' => '10500',
 				'total' => '810000',
-				'discount' => '800000',
+                'discount' => '800000',
+				'ycx_price' => '820000',
+				'fq_price' => '830000',
+				'aj_price' => '840000',
+				'gjj_price' => '850000',
 			),
 			array(
 				'buildname' => '6栋',
@@ -193,6 +217,10 @@ class JcsjroomController extends BaseController {
 				'tnprice' => '11500',
 				'total' => '910000',
                 'discount' => '900000',
+                'ycx_price' => '920000',
+                'fq_price' => '930000',
+                'aj_price' => '940000',
+                'gjj_price' => '950000',
 			),
 		);
 		
@@ -210,6 +238,10 @@ class JcsjroomController extends BaseController {
             $data[$k]['tnprice'] 	= $rooms_info['tnprice'];
             $data[$k]['total'] 		= $rooms_info['total'];
             $data[$k]['discount'] 	= $rooms_info['discount'];
+            $data[$k]['ycx_price'] 	= $rooms_info['ycx_price'];
+            $data[$k]['fq_price'] 	= $rooms_info['fq_price'];
+            $data[$k]['aj_price'] 	= $rooms_info['aj_price'];
+            $data[$k]['gjj_price'] 	= $rooms_info['gjj_price'];
         }
 		
 		//获取项目信息
@@ -238,6 +270,10 @@ class JcsjroomController extends BaseController {
 				'套内单价',
 				'标准总价',
 				'优惠总价',
+				'一次性总价',
+				'分期总价',
+				'按揭总价',
+				'公积金总价',
 			),
 		);
 		
@@ -268,6 +304,10 @@ class JcsjroomController extends BaseController {
 				'area' => '9',
 				'price' => '8000',
 				'total' => '72000',
+                'ycx_price' => '72000',
+                'fq_price' => '73000',
+                'aj_price' => '74000',
+                'gjj_price' => '75000',
 			),
 			array(
 				'buildname' => '-2层',
@@ -276,6 +316,10 @@ class JcsjroomController extends BaseController {
 				'area' => '16',
 				'price' => '8000',
 				'total' => '128000',
+                'ycx_price' => '128000',
+                'fq_price' => '129000',
+                'aj_price' => '130000',
+                'gjj_price' => '131000',
 			),
 		);
 		
@@ -288,6 +332,10 @@ class JcsjroomController extends BaseController {
             $data[$k]['area']  		= $rooms_info['area'];
             $data[$k]['price'] 		= $rooms_info['price'];
             $data[$k]['total'] 		= $rooms_info['total'];
+            $data[$k]['ycx_price'] 	= $rooms_info['ycx_price'];
+            $data[$k]['fq_price'] 	= $rooms_info['fq_price'];
+            $data[$k]['aj_price'] 	= $rooms_info['aj_price'];
+            $data[$k]['gjj_price'] 	= $rooms_info['gjj_price'];
         }
 		
 		//获取项目信息
@@ -311,6 +359,10 @@ class JcsjroomController extends BaseController {
 				'面积',
 				'单价',
 				'总价',
+                '一次性总价',
+                '分期总价',
+                '按揭总价',
+                '公积金总价',
 			),
 		);
 		
@@ -581,7 +633,7 @@ class JcsjroomController extends BaseController {
     {  
         if (empty($projid)||$projid==0)
         {
-            $this->error('项目标识有误,请重新导出模板11');
+            $this->error('项目标识有误,请重新导出模板1');
         }
         $Modelr = new \Think\Model(); 
         $projinfo=$Modelr->query("SELECT a.* FROM xk_project a where a.id=" .$projid. " and 66=66 " );
@@ -618,20 +670,22 @@ class JcsjroomController extends BaseController {
                 $info[$k-2]['pc_id']=-99;
                 $info[$k-2]['bld_id']=-99;
                 $info[$k-2]['cp_id']=$projinfo[0]['cp_id'];
-                
                 $info[$k-2]['buildname'] = $v['A']."";
                 $info[$k-2]['unit'] = $v['B'];
                 $info[$k-2]['floor'] = (string)$v['C'];
                 $info[$k-2]['no'] = (int)$v['D'];
                 $info[$k-2]['room'] =  (string)$v['C']. (string)$v['D'];
                 $info[$k-2]['hx'] = $v['E'];
-                
                 $info[$k-2]['area'] = $v['F'];
                 $info[$k-2]['tnarea'] = $v['G'];
                 $info[$k-2]['price'] = $v['H'];
                 $info[$k-2]['tnprice'] = $v['I'];
                 $info[$k-2]['total'] = $v['J'];
                 $info[$k-2]['discount'] = $v['K'];
+                $info[$k-2]['ycx_price'] = $v['L'];
+                $info[$k-2]['fq_price'] = $v['M'];
+                $info[$k-2]['gjj_price'] = $v['O'];
+                $info[$k-2]['aj_price'] = $v['N'];
                 $info[$k-2]['isadd'] = 1;
                 $rooms->add($info[$k-2]);
             }
@@ -642,20 +696,22 @@ class JcsjroomController extends BaseController {
         //判断是否为新增房间
         $SQL="update  xk_roomtemp a,xk_room b set a.isadd=0,room_id=b.id where  a.proj_id=b.proj_id and a.bld_id=b.bld_id and a.unit=b.unit and a.floor=b.floor and a.no=b.no ";
         M()->execute($SQL);
-        
+
         $roomadd=$Modelr->query("SELECT a.* FROM xk_roomtemp a where  isadd=1 " );
+//        echo json_encode($roomadd);exit;
         if (!empty($roomadd) && count($roomadd)>0)
         {
             //新增房间
-            $SQLadd="insert into xk_room (proj_id,pc_id,bld_id,cp_id,unit,floor,no,room,hx,area,tnarea,price,tnprice,total,discount) ";
-            $SQLadd.=" select proj_id,pc_id,bld_id,cp_id,unit,floor,no,room,hx,area,tnarea,price,tnprice,total,discount from xk_roomtemp where isadd=1 ";
+            $SQLadd="insert into xk_room (proj_id,pc_id,bld_id,cp_id,unit,floor,no,room,hx,area,tnarea,price,tnprice,total,discount,ycx_price,fq_price,gjj_price,aj_price) ";
+            $SQLadd.=" select proj_id,pc_id,bld_id,cp_id,unit,floor,no,room,hx,area,tnarea,price,tnprice,total,discount,ycx_price,fq_price,gjj_price,aj_price from xk_roomtemp where isadd=1 ";
             $resultadd=M()->execute($SQLadd);
         }
+//        echo '123';exit;
         $roomup=$Modelr->query("SELECT a.* FROM xk_roomtemp a where  isadd = 0 " );
         if (!empty($roomup) && count($roomup)>0)
         {
             //更新房间信息
-            $SQLup="update  xk_room a,xk_roomtemp b set a.hx=b.hx,a.area=b.area, a.tnarea=b.tnarea, a.price=b.price, a.tnprice=b.tnprice,a.total=b.total,a.discount=b.discount  where a.id=b.room_id and  b.room_id<>0 and b.isadd=0 ";
+            $SQLup="update  xk_room a,xk_roomtemp b set a.hx=b.hx,a.area=b.area, a.tnarea=b.tnarea, a.price=b.price, a.tnprice=b.tnprice,a.total=b.total,a.discount=b.discount,a.ycx_price=b.ycx_price,a.fq_price=b.fq_price,a.gjj_price=b.gjj_price,a.aj_price=b.aj_price  where a.id=b.room_id and  b.room_id<>0 and b.isadd=0 ";
             $resultup=M()->execute($SQLup);
         }
         $this->success('房间导入成功', 'room?cz=user&projid='.$projid);
@@ -718,6 +774,10 @@ class JcsjroomController extends BaseController {
                 $info[$k-2]['price'] = (float)$v['E'];
                 $info[$k-2]['tnprice'] = (float)$v['E'];
                 $info[$k-2]['total'] = (float)$v['F'];
+                $info[$k-2]['ycx_price'] = $v['G'];
+                $info[$k-2]['fq_price'] = $v['H'];
+                $info[$k-2]['gjj_price'] = $v['I'];
+                $info[$k-2]['aj_price'] = $v['J'];
                 $info[$k-2]['isadd'] = 1;
                 $rooms->add($info[$k-2]);
             }
@@ -733,15 +793,15 @@ class JcsjroomController extends BaseController {
         if (!empty($roomadd) && count($roomadd)>0)
         {
             //新增车位
-            $SQLadd="insert into xk_room (proj_id,pc_id,bld_id,cp_id,unit,floor,no,room,hx,area,tnarea,price,tnprice,total) ";
-            $SQLadd.=" select proj_id,pc_id,bld_id,cp_id,unit,floor,no,room,hx,area,tnarea,price,tnprice,total from xk_roomtemp where isadd=1 ";
+            $SQLadd="insert into xk_room (proj_id,pc_id,bld_id,cp_id,unit,floor,no,room,hx,area,tnarea,price,tnprice,total,ycx_price,fq_price,gjj_price,aj_price) ";
+            $SQLadd.=" select proj_id,pc_id,bld_id,cp_id,unit,floor,no,room,hx,area,tnarea,price,tnprice,total,ycx_price,fq_price,gjj_price,aj_price from xk_roomtemp where isadd=1 ";
             $resultadd=M()->execute($SQLadd);
         }
         $roomup=$Modelr->query("SELECT a.* FROM xk_roomtemp a where  isadd = 0 " );
         if (!empty($roomup) && count($roomup)>0)
         {
             //更新车位信息
-            $SQLup="update  xk_room a,xk_roomtemp b set a.hx=b.hx,a.area=b.area, a.tnarea=b.tnarea, a.price=b.price, a.tnprice=b.tnprice,a.total=b.total  where a.id=b.room_id and  b.room_id<>0 and b.isadd=0 ";
+            $SQLup="update  xk_room a,xk_roomtemp b set a.hx=b.hx,a.area=b.area, a.tnarea=b.tnarea, a.price=b.price, a.tnprice=b.tnprice,a.total=b.total,a.ycx_price=b.ycx_price,a.fq_price=b.fq_price,a.gjj_price=b.gjj_price,a.aj_price=b.aj_price  where a.id=b.room_id and  b.room_id<>0 and b.isadd=0 ";
             $resultup=M()->execute($SQLup);
         }
         $this->success('车位导入成功', 'room?cz=user&projid='.$projid);

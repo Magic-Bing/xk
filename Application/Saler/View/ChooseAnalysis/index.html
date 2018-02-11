@@ -38,16 +38,16 @@
                     border-radius: 3px;	
 		}
                 .yxf{
-                    color: #ff6058;
-                    border: 1px solid #ff6058;
+                    color: #09bb07;
+                    border: 1px solid #09bb07;
                 }
                 .ydl{
-                    color: #ff6058;
-                    border: 1px solid #ff6058;
+                    color: #09bb07;
+                    border: 1px solid #09bb07;
                 }
                 .wxf{
-                    color:#ffc534;
-                    border: 1px solid #ffc534;
+                    color:#ff6058;
+                    border: 1px solid #ff6058;
                 }
                 .wdl{
                     color:#33ccff;
@@ -84,7 +84,7 @@
 			</div>
 			<div class="fl wm50 common-header-content js-common-header-content">
 				<span class="common-header-content-box-no-arrow">
-					<span class="common-header-content-box-name"><{$projinfo.pname}></span>
+					<span class="common-header-content-box-name">客户分析</span>
 				</span>
 			</div>
 			<div class="fr wm10 common-header-right" style="padding-top: 3%">
@@ -145,7 +145,7 @@
 							<if condition="count($user_xf) egt 1">
 								<foreach name="user_xf" item="vo" key="k">
 										<tr data-id="<{$vo.id}>">
-											<td align="left" class="wm40" style="padding-left: 15px">
+											<td align="left" class="wm40" style="padding: 5px 0 3px 15px;color:#000">
 												<p><{$vo.customer_name}></p>
 												<p><{:rsa_decode($vo['customer_phone'],getChoosekey())}></p>
 											</td>

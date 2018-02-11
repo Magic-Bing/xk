@@ -9,7 +9,7 @@ namespace Saler\Controller;
  * @create 2016-8-26
  * @author zlw
  */
-class ProjectController extends BaseController 
+class ProjectController extends Base1Controller 
 {
 
 	
@@ -35,6 +35,9 @@ class ProjectController extends BaseController
 		}
 		$this->assign('new_projects', $new_project_list);
 		
+                $isws=I("isws",0,"intval");
+                $this->assign('isws', $isws);
+                
 		//分析
 		$search_info = I('info', '', 'trim');
         $search_hd_id = get_search_id_by($search_info, 'p', $project_list[0]['id']);
@@ -59,6 +62,10 @@ class ProjectController extends BaseController
 		$Roomview = D('Common/Roomview');
 		$where['proj_id'] = $search_project_id;
 		$where['pc_id'] = $projinfo['batch_id'];
+                if(!empty($isws) && $isws>0)
+                {
+                    $where['is_xf']=0;
+                }
 		$group_room_build = $Roomview->getRoomListGroupBy('bld_id', 'bld_id', 'bld_id, id', $where);
 		$group_room_unit = $Roomview->getRoomListGroupBy('bld_id, unit', 'bld_id, unit', 'bld_id, unit, id', $where);
 
@@ -78,7 +85,11 @@ class ProjectController extends BaseController
 		$where['proj_id'] = $search_project_id;
 		$where['bld_id'] = $search_build_id;
 		$where['unit'] = $search_unit_id;
-        $where['pc_id'] = $projinfo['batch_id'];
+                $where['pc_id'] = $projinfo['batch_id'];
+                if(!empty($isws) && $isws>0)
+                {
+                    $where['is_xf']=0;
+                }
 		$group_room_floor = $Roomview->getRoomListGroupBy('floor', 'floor DESC', 'cast(floor as SIGNED) DESC', $where);
 		$this->assign('floors', $group_room_floor);
 		
@@ -127,6 +138,12 @@ class ProjectController extends BaseController
 		$where['proj_id'] = $search_project_id;
 		$where['bld_id'] = $search_build_id;
 		$where['unit'] = $search_unit_id;
+                
+                if(!empty($isws) && $isws>0)
+                {
+                    $where['is_xf']=0;
+                }
+                
 //		$where['px_id'] = $projinfo['batch_id'];
 		//$room_list = D("Common/Room")->getRoomList($where, 'floor DESC, no ASC');
 		$room_list = D("Common/Room")->getRoomListJoinAttribute($where, 'floor DESC, no ASC');

@@ -263,7 +263,7 @@ $(function () {
         var $li = $(".marketing-control-search-room-list li");
         if ($li.length > 0) {
             var a = -1;
-            $("body").on("keydown", "#in1", function () {
+            $(document).on("keydown", "#in1", function () {
                 if (event.keyCode == 38) {
                     if (a != 0 && a != -1) {
                         a--;
@@ -342,7 +342,7 @@ $(function () {
                         }
                         $(".marketing-control-search-room-list").show();
                         var a = -1;
-                        $("body").on("keydown", "#in2", function () {
+                        $(document).on("keydown", "#in2", function () {
 
                             if (event.keyCode == 38) {
                                 if (a != 0 && a != -1) {
@@ -390,7 +390,7 @@ $(function () {
     });
 
     //移到搜索框
-    $("body").on("mouseover", ".marketing-control-search-input", function () {
+    $(document).on("mouseover", ".marketing-control-search-input", function () {
         var $li = $(".marketing-control-search-room-list li");
         if ($li.length > 0) {
             $(".marketing-control-search-room-list").show();
@@ -611,7 +611,7 @@ $(function () {
     // });
 
     //显示楼栋
-    $("body").on("click", "#show_build", function () {
+    $(document).on("click", "#show_build", function () {
         var pd = $(this).attr("on");
         if (Number(pd) == 0) {
             $("#ld_div").show();
@@ -621,12 +621,12 @@ $(function () {
             $(this).attr("on", "0");
         }
     });
-    $("body").on("click", ".show_divselect", function () {
+    $(document).on("click", ".show_divselect", function () {
         $(this).prev().click();
     });
 
     //切换搜索模式
-    $("body").on("click", "#qh_ss", function () {
+    $(document).on("click", "#qh_ss", function () {
         var pd = $(this).attr("on");
         $(".marketing-control-search-room-list").html("");
         if (Number(pd) == 0) {
@@ -640,7 +640,7 @@ $(function () {
         }
     });
     //选中
-    $("body").on('click', '.js-marketing-control-content-rooms-box-room-num', function () {
+    $(document).on('click', '.js-marketing-control-content-rooms-box-room-num', function () {
         $("#xfcgys").hide();
         //$("#ystitle").hide();
         $("#xftitle").hide();
@@ -679,7 +679,9 @@ $(function () {
         showfqz($room_id);
         var room_str = $("#spanid_" + $room_id).attr("infolist");
         var room_arr = room_str.split("|");
-        if (Number(room_arr[1]) == 0) {
+        // console.log(room_str);
+        // console.log(room_arr);
+        if (Number(room_arr[1]) === 0) {
             $("#tb").hide();
             $(".marketing-control-room-info-" + 'zt').val("待售");
             $("#pdz1").show();
@@ -690,6 +692,48 @@ $(function () {
             $("#roominfo1").val($roominfo);
             $("#ppf input").prop("readonly", false);
             $("#ystitle").hide();
+            $("#room-qt>ul>li").hide();
+            if(Number(room_arr[2])!==0){
+                $(".jzmj").show();
+                $("#jzmj").val(room_arr[2]);
+            }
+            if(Number(room_arr[3])!==0){
+                $(".tnmj").show();
+                $("#tnmj").val(room_arr[2]);
+            }
+            if(Number(room_arr[4])!==0){
+                $(".jz-price").show();
+                $("#jz-price").val($.formatMoney(room_arr[4],2));
+            }
+            if(Number(room_arr[5])!==0){
+                $(".tn-price").show();
+                $("#tn-price").val($.formatMoney(room_arr[5],2));
+            }
+            if(Number(room_arr[6])!==0){
+                $(".all-price").show();
+                $("#all-price").val($.formatMoney(room_arr[6],2));
+            }
+            if(Number(room_arr[10])!==0){
+                $(".ycx-price").show();
+                $("#ycx-price").val($.formatMoney(room_arr[10],2));
+            }
+            if(Number(room_arr[11])!==0){
+                $(".fq-price").show();
+                $("#fq-price").val($.formatMoney(room_arr[11],2));
+            }
+            if(Number(room_arr[12])!==0){
+                $(".aj-price").show();
+                $("#aj-price").val($.formatMoney(room_arr[12],2));
+            }
+            if(Number(room_arr[13])!==0){
+                $(".gjj-price").show();
+                $("#gjj-price").val($.formatMoney(room_arr[13],2));
+            }
+            if(Number(room_arr[14])!==0){
+                $(".yh-price").show();
+                $("#yh-price").val($.formatMoney(room_arr[14],2));
+            }
+
         } else {
             $("#tb").show();
             $(".marketing-control-room-info-" + 'zt');
@@ -704,7 +748,47 @@ $(function () {
             $('#cardno1').val(room_arr[11]).attr("readonly", "readonly");
             // $("#roominfo1").val(room_arr[12]+"单元-"+room_arr[13]+"层-"+room_arr[14]);
             $("#roominfo1").val($roominfo);
-
+            $("#room-qt>ul>li").hide();
+            if(Number(room_arr[2])!==0){
+                $(".jzmj").show();
+                $("#jzmj").val(room_arr[2]);
+            }
+            if(Number(room_arr[3])!==0){
+                $(".tnmj").show();
+                $("#tnmj").val(room_arr[2]);
+            }
+            if(Number(room_arr[4])!==0){
+                $(".jz-price").show();
+                $("#jz-price").val($.formatMoney(room_arr[4],2));
+            }
+            if(Number(room_arr[5])!==0){
+                $(".tn-price").show();
+                $("#tn-price").val($.formatMoney(room_arr[5],2));
+            }
+            if(Number(room_arr[6])!==0){
+                $(".all-price").show();
+                $("#all-price").val($.formatMoney(room_arr[6],2));
+            }
+            if(Number(room_arr[15])!==0){
+                $(".ycx-price").show();
+                $("#ycx-price").val($.formatMoney(room_arr[15],2));
+            }
+            if(Number(room_arr[16])!==0){
+                $(".fq-price").show();
+                $("#fq-price").val($.formatMoney(room_arr[16],2));
+            }
+            if(Number(room_arr[17])!==0){
+                $(".aj-price").show();
+                $("#aj-price").val($.formatMoney(room_arr[17],2));
+            }
+            if(Number(room_arr[18])!==0){
+                $(".gjj-price").show();
+                $("#gjj-price").val($.formatMoney(room_arr[18],2));
+            }
+            if(Number(room_arr[19])!==0){
+                $(".yh-price").show();
+                $("#yh-price").val($.formatMoney(room_arr[19],2));
+            }
         }
         // $(".marketing-control-room-info-" + 'id').val($room_id);
 
@@ -762,8 +846,10 @@ $(function () {
                     $("#ystitle").show();
                     $(".marketing-control-content-room-info-option").css("height", "106px");
                     //用户权限控制
-                    if ($("#usertype").val() > 2) {
+                    if (Number($.trim($("#usertype").val())) === 1) {
                         $(".marketing-control-content-room-cancel").show();
+                    }else{
+                        $(".marketing-control-content-room-cancel").hide();
                     }
                     $(".marketing-control-content-room-confirm").hide();
                     $(".marketing-control-content-room-confirm-btn").attr("disabled", true);
@@ -1399,7 +1485,14 @@ function showfqz($id) {
         $("#roominfo1").attr("data_id", $id);
 
         $("#div-qzxfdhk").fadeIn(300);
-        $("#vip1").val("").focus();
+        var qx=$("#num_auth").text();
+        // console.log(typeof  qx);
+        if(qx === '' || qx === undefined){
+            $("#vip1").val("").focus();
+        }else{
+            $("#phone1").val("").focus();
+        }
+
         $("#cstname1").val("");
         $("#phone1").val("");
         $("#cardno1").val("");

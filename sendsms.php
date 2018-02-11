@@ -6,13 +6,13 @@ $servername = "rm-wz93ji56k9zc58jr5lo.mysql.rds.aliyuncs.com";
 $username = "yunxk_zs";
 $password = "Yunxk_zs1209";
 //用于测试
-/*$servername = "127.0.0.1";
+$servername = "127.0.0.1";
 $username = "root";
-$password = "SLyun-xk21";*/
+$password = "SLyun-xk21";
 
-$dsn = "mysql:dbname=xk;host=$servername;charset=UTF8";
+//$dsn = "mysql:dbname=xk;host=$servername;charset=UTF8";
 //用于测试
-//$dsn = "mysql:dbname=xk_hnhl;host=$servername;charset=UTF8";
+$dsn = "mysql:dbname=xk_hnhl;host=$servername;charset=UTF8";
 
 function percentEncode($string) {
     $string = urlencode ( $string );
@@ -40,7 +40,7 @@ while ($isauto)
     {
         $conn = new Pdo($dsn, $username, $password);
 
-        $sql = 'select id,code,sms_send,belong_phone,belong_real_name,build_name,unit_no,room_room from xk_order_house_order where sms_send = 0';
+        $sql = 'select id,code,sms_send,belong_phone,belong_real_name,project_name,build_name,unit_no,room_room from xk_order_house_order where sms_send = 0';
 
         foreach ($conn->query($sql,PDO::FETCH_ASSOC) as $item)
         {
@@ -60,12 +60,12 @@ while ($isauto)
                 'SignatureNonce' => uniqid (),
                 'Timestamp' => gmdate ( 'Y-m-d\TH:i:s\Z' ),
                 'Action' => 'SendSms',
-                'TemplateCode' => 'SMS_117300158',
+                'TemplateCode' => 'SMS_125117045',
                 'PhoneNumbers' => $item['belong_phone'],
                 'TemplateParam' => json_encode([
                     'cstname'=>$item['belong_real_name']
-                    ,'mcode'=>$item['code']
-                    ,'rinfo'=>"${item['build_name']}${item['unit_no']}单元${item['room_room']}"
+                    ,'rinfo'=>"${item['project_name']}${item['build_name']}${item['unit_no']}单元${item['room_room']}"
+                    ,'code'=>$item['code']        
                 ])
             );
 

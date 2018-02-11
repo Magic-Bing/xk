@@ -1,10 +1,7 @@
 ﻿<extend name="Common/base" />
 <block name="header">
     <link rel="stylesheet" href="/Public/common/css/font-awesome-4.7.0/css/font-awesome.css">
-    <script src="/Public/sales/js/highcharts.js"></script>
-    <script src="/Public/sales/js/exporting.js"></script>
-    <script src="/Public/sales/js/highcharts-3d.js"></script>
-    <script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
+   
     <style>
         .weui-tabbar{
             display: -webkit-box;
@@ -175,6 +172,8 @@
         .saler-project-view-content-rooms-room-area {
             font-size: 10px;
             text-align: left;
+            width: 90%;
+            margin: auto;
         }
         .saler-project-view-content-rooms-box td.saler-project-view-content-rooms-floor {
             width: 28px;
@@ -251,7 +250,7 @@
             margin-right: 15px;
             color: #999;
         }
-        #show-gd{
+        #show-gd,#zw-gd{
             display: inline-block;
             background-color: #ffffff;
             color: #c9c9c9;
@@ -296,23 +295,24 @@
     </if>
     <div class="saler-project-view-header-wrapper">
         <div class="clearfix saler-project-view-header" style="background:#FFF;border:1px solid #03a9f4;">
-                <div>
-                    <div class="fl wm25 saler-project-view-header-return">
-                        <span class="saler-project-view-header-return-box return-btn">
-                            <a href="javascript:void(0);" class="saler-project-view-header-return-btn">返回</a>
-                        </span>
-                    </div>
-                    <div class="fl wm50 saler-project-view-header-content">
-                        <span class="saler-project-view-header-content-box-no-arrow">
-                            <span class="saler-project-view-header-content-box-name"><{$projinfo.pname}></span>
-                        </span>
-                    </div>
-                    <div class="fr wm10 saler-project-view-header-right">
-                        <a href="" onclick="window.location.reload()" class="saler-project-header-reload-btn js-saler-project-header-reload-btn saler-project-header-reload-a">
-                            <i class="icon-refresh  bigger-230 " style="color: #c1c1c1;font-size: 18px"></i>
-                        </a>
-                    </div>
+            <div class="fl wm25 arrow-left common-header-return">
+                <span class="common-header-return-box return-btn">
+                    <a href="javascript:void(0);" class="common-header-return-btn">返回</a>
+                </span>
+            </div>
+            <div class="fl wm50 common-header-content js-common-header-content">
+                <span class="common-header-content-box-no-arrow">
+                    <span class="common-header-content-box-name">装户分析</span>
+                </span>
+            </div>
+            <div class="fr wm10 common-header-right" style="padding-top: 3%">
+                <div class="common-header-reload">
+                    <a href="" onclick="window.location.reload()" class="saler-project-header-reload-btn js-saler-project-header-reload-btn saler-project-header-reload-a">
+                        <i class="icon-refresh  bigger-230 " style="color: #c1c1c1;font-size: 18px"></i>
+                        <!--<img src="/Public/common/img/refresh.png" style="width: 15px;height: 15px">-->
+                    </a>
                 </div>
+            </div>
             <div class="fl wm100 bqydiv">
                 <div class="fl up-center gy" id="room-xk">
                     <a href="<{:U('Project/index', array('info' => set_search_ids(array('p' => $project_id))))}>">
@@ -367,7 +367,11 @@
                         </volist>
                 </div>
                 <if condition="$project_num gt 4">
-                    <button id="show-gd" ><i class="fa fa-angle-double-down" aria-hidden="true" style="font-size:15px;"></i></button>
+                    <button id="show-gd" >
+                            <i class="fa fa-angle-double-down" aria-hidden="true" style="font-size:15px;"></i>
+                    </button>
+                    <else/>
+                    <button id="zw-gd" ></button>
                 </if>
             </if>
         </div>
@@ -443,7 +447,7 @@
 
                                                 <h1 style="font-size: 16px;background-color: #FFF;padding: 5px;letter-spacing: 1px">
                                                     <div style="position: absolute;right: 10px;z-index: 99999;font-size: 12px;font-weight: 400;">
-                                                        <i class="fa fa-stop" style="color:rgba(255, 188, 23, 0.69);"></i>房源  <i class="fa fa-stop" style="margin-left: 5px;color:rgba(255, 67, 52, 0.69);"></i>收藏
+                                                        <i class="fa fa-stop" style="color:rgba(255, 188, 23, 0.69);"></i>房源  <i class="fa fa-stop" style="margin-left: 5px;color:rgba(255, 67, 52, 0.69);"></i>备选
                                                     </div>
                                                     <span style="padding: 0 2px;background: #ff7d73;margin-right: 10px;"> </span>
                                                     楼栋动态供需单
@@ -500,7 +504,11 @@
                                                         </table>
                                                     </div>
                                                 </div>
-
+                                                
+    <script src="/Public/sales/js/highcharts.js"></script>
+    <script src="/Public/sales/js/exporting.js"></script>
+    <script src="/Public/sales/js/highcharts-3d.js"></script>
+    <script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
                                                 <script>
                                                     //    var chart = null;//用于环形图中间标题显示
                                                     $(function () {
@@ -582,7 +590,7 @@
                                                             c.tooltip.shared = false;
                                                             c.tooltip.refresh(lastPoint);
                                                         });
-                                                        //楼栋下房间收藏柱状图
+                                                        //楼栋下房间备选柱状图
                                                         $('#container-build').highcharts({
                                                             colors: "rgba(255,188,23,0.69);rgba(255, 67, 52, 0.69)".split(";"),
                                                             credits:{
@@ -627,7 +635,7 @@
                                                             name: '房源',
                                                             data: <{:json_encode($arr_room_count)}>
                                                     }, {
-                                                            name: '收藏',
+                                                            name: '备选',
                                                                 data:  <{:json_encode($arr_sc_count)}> //直接放数组是不行的，必须转成json格式
                                                         }],
                                                         legend: {
@@ -679,7 +687,7 @@
                                                             name: '房源',
                                                             data: <{:json_encode($hx_room_count)}>
                                                     }, {
-                                                            name: '收藏',
+                                                            name: '备选',
                                                                 data:  <{:json_encode($hx_sc_count)}> //直接放数组是不行的，必须转成json格式
                                                         }],
                                                         legend: {
@@ -783,7 +791,7 @@
                                 name: '房源',
                                 data:data[1]
                         }, {
-                                name: '收藏',
+                                name: '备选',
                                 data:data[2]   //直接放数组是不行的，必须转成json格式
                             }]
                         });

@@ -32,6 +32,10 @@
         #sample-table-2_length label{
             margin-left: 10px;
         }
+        .label-sc{
+            background-color: #fff!important;
+            color: #000!important;
+        }
     </style>
 
 </block>
@@ -211,16 +215,16 @@
                             <!--</td>-->
                             <td class="center">
                                 <eq name="choose_activity_vo['is_show_discount']" value="1">
-                                <span >开启</span>
+                                <span class="label label-sm label-sc">开启</span>
                             <else/>
-                            <span>关闭</span>
+                            <span class="label label-sm label-sc" >关闭</span>
                             </eq>
                             </td>
                             <td class="hidden-480">
                                 <eq name="choose_activity_vo['states']" value="1">
-                                <span >启用</span>
+                                <span class="label label-sm label-sc">启用</span>
                             <else/>
-                            <span >关闭</span>
+                            <span class="label label-sm label-sc">关闭</span>
                             </eq>
                             </td>
                             <td style="text-align: center;width:75px">

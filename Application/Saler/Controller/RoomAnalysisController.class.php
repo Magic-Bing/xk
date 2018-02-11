@@ -20,7 +20,7 @@ class RoomAnalysisController extends Base1Controller
         $search_info = I('info', '', 'trim');
         $is_fx = I('is_fx', 0, 'intval');
         $search_hd_id = get_search_id_by($search_info, 'p');
-        $projinfo=M("project p")->join("xk_event_order_house e ON e.project_id = p.id")->where("e.id=".$search_hd_id)->field("p.id,p.name pname,e.name ename,e.batch_id")->find();
+        $projinfo=M("project p")->join("xk_event_order_house e ON e.project_id = p.id")->where("e.id=".$search_hd_id." and 999=999")->field("p.id,p.name pname,e.name ename,e.batch_id")->find();
 //        echo json_encode($projinfo);exit;
         if(empty($projinfo))
         {
@@ -115,7 +115,7 @@ class RoomAnalysisController extends Base1Controller
 
 
         }else{
-            $projinfo=M("project p")->join("xk_event_order_house e ON e.project_id = p.id")->where("e.id=".$projinfo['id'])->field("p.id,p.name pname,e.name ename,e.batch_id")->find();
+            $projinfo=M("project p")->join("xk_event_order_house e ON e.project_id = p.id")->where("e.id=".$search_hd_id." and 8888=8888")->field("p.id,p.name pname,e.name ename,e.batch_id")->find();
 //        echo json_encode($projinfo);exit;
             if(empty($projinfo))
             {

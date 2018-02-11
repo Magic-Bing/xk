@@ -32,10 +32,10 @@
         }
     </style>
 	<div style="width:100%;height:100%;background-size:100%;">
-            <div style="width:100%">
-                <img src="<{$event['loginimg']}>" original="<{$event['loginimg']}>" style="width:100%;height:auto;max-height: 200px;margin-left: 0px;margin-top: 0px;" >
+            <div style="width:100%;text-align: center;">
+                <img src="<{$event['loginimg']}>" original="<{$event['loginimg']}>" style="width:100%;height:auto;max-height: 200px;min-height: 150px;margin-left: 0px;margin-top: 0px;" >
             </div>
-            <div style="position: absolute; margin-top: 25px;width: 100%;height: 50%;z-index:111;background: #f7fcf5;">
+            <div style="position: absolute; margin-top: 25px;width: 100%;height: 35%;z-index:111;background: #f7fcf5;    bottom: 50%;transform: translate(0%, 50%);">
                 <div style="width:100%;text-align: center;font-weight: bold;color: #ea5458; font-size: 15px;"><{$projname}>在线选房</div>
                 <div style="position: absolute;left:15%;width: 70%;line-height: 80px">
                     <input type="tel" placeholder="请输入手机号码" value="" data-selector="phone" style="width:96%;" />
@@ -48,8 +48,8 @@
                 <div style="position: absolute;background:#FFF;height:65%;width:100%;bottom:0px;overflow-y: scroll;">
                     <div style="position: fixed;background: #FFF;text-align:center;width:100%;padding:15px 0;border-bottom:1px solid #f7f7f7;font-size:16px;font-weight:bold;">活动须知</div>
                     <!--<div id="closehdxz" style="position: absolute;right:3%;top:6px;height:40px;width:40px;border-radius:50%;line-height:40px;text-align:center;font-size: 22px;">×</div>-->
-                    <div style="width:88%;margin: 10px auto;line-height: 30px;white-space:pre-line;margin-top:40px;margin-bottom: 55px;text-align: justify;text-justify: inter-ideograph;" id="desc">
-                        <a ontouchstart = "return false;"><{$desc}></a>
+                    <div style="width:88%;margin: 10px auto;line-height: 30px;white-space:pre-line;margin-top:40px;margin-bottom: 30px;text-align: justify;text-justify: inter-ideograph;" id="desc">
+                        <div><{$desc}></div>
                     </div>
                     <div style="position: fixed;bottom:0px;height:50px;line-height: 50px;width:100%;border-top: 1px solid #e6e6e6;background: #FFF;">
                         <a href="/User/OrderHouse/logout/id/<{$eventId}>"><div style="float:left;width:50%;text-align:center;color:#000;">不同意</div></a><div id="tyhdxz" style="float:left;width:50%;text-align:center;background: #df3b3e;color: #FFF;cursor:pointer;">同意</div>
@@ -57,7 +57,7 @@
                 </div>
             </div>
 	</div>
-        <div style="position: absolute;bottom: 2%;width: 100%;text-align: center;color:#9E9E9E;font-size: 11px;z-index:110;">Powered by 云销控</div>
+        <div style="position: fixed;bottom: 2%;width: 100%;text-align: center;color:#9E9E9E;font-size: 11px;z-index:110;">Powered by 云销控</div>
 </block>
 
 <block name="footer_js">

@@ -14,6 +14,10 @@
             padding: 15px 5px 20px 5px;
             margin-bottom: 10px;
         }
+        
+        h1,h2{
+            color: #515151;
+        }
 		#content-tab{
 			padding: 0 10px;
 		}
@@ -136,7 +140,8 @@
 
 		}
                 .endtr{
-                    margin-bottom: 10px;
+                    margin-bottom: 20px;
+                    border-bottom: 1px dashed #f4f4f4;
                 }
                 .scgs{
                     float:right;margin-right: 2px;
@@ -154,21 +159,23 @@
                     color:#999999;
                 }
                 .yxf{
-                    color: #ff6058;
-                    border: 1px solid #ff6058;
+                    color: #09bb07;
+                    border: 1px solid #09bb07;
                 }
-                
                 .ydl{
-                    color: #ff6058;
-                    border: 1px solid #ff6058;
+                    color: #09bb07;
+                    border: 1px solid #09bb07;
                 }
                 .wxf{
-                    color:#ffc534;
-                    border: 1px solid #ffc534;
+                    color:#ff6058;
+                    border: 1px solid #ff6058;
                 }
                 .wdl{
                     color:#33ccff;
                     border: 1px solid #33ccff;
+                }
+                .yyd{
+                    color:#515151
                 }
     </style>
 	<div class="common-header-wrapper">
@@ -206,7 +213,7 @@
 						<div class="fl wm100" id="content-tab">
 							<div class="fl wm100">
 								<h1><!--<i class="fa fa-user iyellow"> </i>--> 
-                                                                    <{$user_info.cname}>
+                                                                    <i class="fa fa-id-card-o iyellow"></i> <{$user_info.cname}>
                                                                     <if condition="($user_info.rid neq null) AND ($user_info.oid neq null)"><span class="xf-zt yxf">已选房</span><else/><span class="xf-zt wxf">未选房</span></if>  
                                                                     <if condition="($user_info.oid neq null)"><span class="xf-zt ydl">已登录</span><else/><span class="xf-zt wdl">未登录</span></if> 
                                                                     
@@ -252,7 +259,7 @@
 										<tr>
 											<td>
                                                                                               <a href="<{:U('room/index', array('id' =>$vo['id'],'hid'=> $project_id))}>" style="color:#999999">
-												<p class="fl wm100 sm-font">
+												<p class="fl wm100 sm-font yyd">
 													<if condition="$vo.first_count egt 3">
 														<span class="hot-one"></span> 热度：高
 														<elseif condition="$vo.first_count eq 2"/>
@@ -264,7 +271,7 @@
 														<else/>
 														<span class="hot-five"></span> 热度：低
 													</if>
-													<span class="fr">第<{$k+1}>意向</span>
+													<span class="fr yyd">第<{$k+1}>意向</span>
 												</p>
 												<h2><{$vo.bname}>-<{$vo.unit}>单元-<{$vo.room}></h2>
 												<p class="font-hs endtr"><{$vo.hxmx}> / <{$vo.area}>㎡ / <{:number_format($vo['total'])}> 元  <span class="scgs"> <i class="fa fa-heart-o"></i> <{$vo.sc_count}> &nbsp;<span class="ft">①</span> <{$vo.first_count}></span></p>

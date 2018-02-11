@@ -32,7 +32,7 @@ class ChooseUserController extends BaseController {
     }
 
     /**
-     * 竞价选房
+     * 客户信息
      *
      * @create 2016-12-26
      * @author zlw
@@ -841,7 +841,7 @@ class ChooseUserController extends BaseController {
             $excels[$key] = array_change_key_case($excels[$key], CASE_UPPER);
         }
 
-//        echo json_encode($excels);exit;
+        //echo json_encode($excels);exit;
 
         $key_arr = [];
         for ($k = 0; $k < count($excels); $k++) {

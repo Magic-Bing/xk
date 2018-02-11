@@ -301,6 +301,7 @@ class OrderHouseController extends BaseController {
         $redis->connect(C('REDIS_HOST'));
         if (count($orderedRooms) > 0) {
             foreach ($orderedRooms as $key => $orderedRoom) {
+                
                 $room = $redis->hGetAll("event_order_house_{$id}_room_{$orderedRoom['room_id']}");
                 if ($room) {
                     $orderedRooms[$key]['total'] = $room['total'];
@@ -849,6 +850,7 @@ class OrderHouseController extends BaseController {
             $this->success(['预购成功', $obj['code'], $orderedRooms,   encrypt_url("eventId/{$eventId}/oid/{$oid}", getUrlkey())]);
             
         } else {//允许购买多套
+         /*   
             if (empty($ids) || $ids == 0) {
                 $this->error('房间ID不能为空，请确认后重试!');
             }
@@ -990,6 +992,7 @@ class OrderHouseController extends BaseController {
             } else {
                 $this->error('所选房源全部已售，抢购失败!');
             }
+            */
         }
     }
 
@@ -1321,7 +1324,7 @@ class OrderHouseController extends BaseController {
           $req->setSmsTemplateCode("SMS_45440004");
           //$resp = $c->execute($req);
           //$arr = $this->objectArray($resp);
-         */
+        */
 
         //阿里短信服务
         //$sms = new Alisms();

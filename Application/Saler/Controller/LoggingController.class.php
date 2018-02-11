@@ -86,6 +86,7 @@ class LoggingController extends Controller
         public function logout() 
 	{
 		session('USER_ID', null);
+                cookie('hdname', null);
                 //$this->success('退出成功！', U('../logging/index'));
 		redirect(U('logging/index'),0);
 	}

@@ -28,7 +28,7 @@ $(function () {
     });
     //调整排序
     //升fa-arrow-up
-    $(document).on("click",".fa-angle-double-up",function (){
+    $(document).on("click",".fa-angle-double-up1",function (){
         
         var $dqul=$(this).parent().parent().parent();
         var $prevul=$dqul.prev();
@@ -76,7 +76,7 @@ $(function () {
 
     });
     //降
-    $(document).on("click",".fa-angle-double-down",function (){
+    $(document).on("click",".fa-angle-double-down1",function (){
         var $dqul=$(this).parent().parent().parent();
         var $nextul=$dqul.next();
         var id=$(this).attr("cid");
@@ -1000,8 +1000,9 @@ $(".closediv").click(function(){
         $(".div-success-no").text($thiz.find(".roominfo").text());
         $(".div-success-area").text($thiz.find(".roomarea").text());
         $(".div-success-total").text($thiz.find(".roomtotal").text());
-        $(".div-success-rgm").text("签约码："+$thiz.find(".qycode").text());
-        $(".div-success-ddinfo").find("a").attr("href",$thiz.find(".show-suc-btn1").find("a").attr("href")); 
+        $(".div-success-rgm").text("选房号："+$thiz.find(".qycode").text());
+        //$(".div-success-ddinfo").find("a").attr("href",$thiz.find(".show-suc-btn1").find("a").attr("href"));
+        $(".div-success-ddinfo").find("a").attr("href",$(this).attr("showurl"));
         $(".div-success").show();
         $(".div-zz").show();
     });
@@ -1092,41 +1093,7 @@ $(".closediv").click(function(){
         $(".div-zz").show();
         $("#qrdddiv").show();
         location.hash = "qrdd";
-        /*var $data = {
-            room_id: $room_id,
-            eventId: eventId
-        };
-        var $url = orderHouse.add;
-        $('#loading').show();
-        ajax_post_callback($url, $data, function (data, status) {
-            if (data.info[1] && data.info[1] != "人" && data.info !="房间已被认购") {
-                $(".div-success-rgm").html('认购码：' + data.info[1]);
-                $(".div-success-no").text($thiz.find(".roominfo").text());
-                $(".div-success-area").text($thiz.find(".roomarea").text());
-                $(".div-success-total").text($thiz.find(".roomtotal").text());
-                $(".div-success").show();
-                $(".div-zz").show();
-                
-                var $html='<a href="/User/OrderHouse/ordershow/id/'+eventId+'.html"><div class="show-suc-div">查</div><div style="margin-top:-40px;height:55px;border-right:1px solid #2196F3;"></div></a>';
-                $thiz.children(":first").removeClass("sc-bxfy-btn").addClass("show-suc-btn1").html($html);
-                $dqys.text("成功").removeClass("wxrgbuy-button").addClass("buy-suc");
-                
-                orderedRooms = data.info[2];
-                renderRoom(orderedRooms);
-                
-            } else {
-                var $data = {
-                    eventId: eventId
-                };
-                ajax_post_callback('/user/OrderHouse/getAllOrderedRooms', $data, function (data, status) {
-                    orderedRooms = data.info[1];
-                    renderRoom(orderedRooms);
-                });
-                layer_alert(data.info);
-            }
-        });
-
-        return false;*/
+        
     });
 
     //房间中直接微信认购

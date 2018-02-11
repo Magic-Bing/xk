@@ -136,6 +136,60 @@
         {
             display: inline-block;
         }
+        .hidden{
+            display: none;
+        }
+        #room-qt{
+            position: absolute;
+            z-index: 1001;
+            width: 570px;
+            /* height: 120px; */
+            background: rgb(0, 188, 212);
+            border-radius: 10px;
+            display: none;
+            -webkit-box-shadow: 0 0 10px rgba(5, 74, 83, 0.95);
+            -moz-box-shadow: 0 0 10px rgba(5, 74, 83, 0.95);
+            box-shadow: 0 0 10px rgba(5, 74, 83, 0.95);
+            padding: 25px 0 25px 25px;
+            top:50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #room-qt>p{
+            width: 100%;
+            text-align: right;
+            top: -9px;
+            position: absolute;
+            right: 5px;
+        }
+        #room-qt>p>span{
+            font-size: 30px;
+            font-weight: bold;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        #shadow-div{
+            position: absolute;
+            background-color: rgba(0,0,0,0.5);
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            display: none
+        }
+        .qzxf-input-title-mx{
+            padding: 5px 0;
+            width: 18%;
+            color: #FFF;
+            font-weight: 700;
+        }
+        #room-qt>ul>li{
+            display: none;
+        }
+        #room-qt>ul>li input{
+           width: 150px;
+           padding: 2px 5px;
+        }
     </style>
 </block>
 <block name="header_js_add">
@@ -221,7 +275,7 @@
                 var $pid=$(this).attr("pid");
                $(".sprojlist").val($pid).change();
             });
-            
+
             /*$("#build_q").on("mouseover","li",function(){
                 $(this).find("span").css("font-weight","700");
             });
@@ -234,6 +288,67 @@
 </block>
 
 <block name="content">
+    <!--隐藏的权限参数-->
+    <span class="hidden" id="pay_auth"><{$pay_auth}></span>
+    <span class="hidden" id="num_auth"><{$num_auth}></span>
+    <!--END-->
+    <!--遮罩层，通用-->
+    <div  id="shadow-div"></div>
+    <div></div>
+    <!--END-->
+    <!--显示房间其他参数的弹出层-->
+        <div id="room-qt">
+            <p><span id="hide-qt">×</span></p>
+            <ul style="width:100%;float: left">
+                <li class="fl qzxf-input-title-mx jzmj">建筑面积</li>
+                <li class="fl wm32 jzmj" style="padding:5px 0"><input id="jzmj" class="border-sizing marketing-control-content-room-box-input" type="text" readonly value="" ></li>
+                <li class="fl qzxf-input-title-mx jz-price">标准建筑总价</li>
+                <li class="fl wm32 jz-price" style="padding:5px 0"><input id="jz-price" class="border-sizing marketing-control-content-room-box-input" type="text" readonly value="" ></li>
+                <li class="fl qzxf-input-title-mx all-price">标准总价</li>
+                <li class="fl wm32 all-price" style="padding:5px 0" ><input id="all-price" class="border-sizing marketing-control-content-room-box-input" type="text" readonly value="" ></li>
+                <li class="fl qzxf-input-title-mx ycx-price" >一次性付款总价</li>
+                <li class="fl wm32 ycx-price" style="padding:5px 0">
+                    <input id="ycx-price" class="border-sizing marketing-control-content-room-box-input"  type="text"  >
+                </li>
+                <li class="fl qzxf-input-title-mx aj-price">按揭付款总价</li>
+                <li class="fl wm32 aj-price" style="padding:5px 0">
+                    <input id="aj-price"  class="border-sizing marketing-control-content-room-box-input"  type="text"  />
+                </li>
+
+                <li class="fl qzxf-input-title-mx tnmj">套内面积</li>
+                <li class="fl wm32 tnmj" style="padding:5px 0"><input id="tnmj" class="border-sizing marketing-control-content-room-box-input" type="text" readonly value="" ></li>
+                <li class="fl qzxf-input-title-mx tn-price">标准套内总价</li>
+                <li class="fl wm32 tn-price" style="padding:5px 0"><input id="tn-price" class="border-sizing marketing-control-content-room-box-input" type="text" readonly value="" ></li>
+                <li class="fl qzxf-input-title-mx yh-price">优惠后总价</li>
+                <li class="fl wm32 yh-price" style="padding:5px 0" ><input id="yh-price" class="border-sizing marketing-control-content-room-box-input" type="text" readonly value="" ></li>
+                <li class="fl qzxf-input-title-mx fq-price" >分期付款总价</li>
+                <li class="fl wm32 fq-price" style="padding:5px 0">
+                    <input id="fq-price" class="border-sizing marketing-control-content-room-box-input"  type="text"  >
+                </li>
+                <li class="fl qzxf-input-title-mx gjj-price">公积金付款总价</li>
+                <li class="fl wm32 gjj-price" style="padding:5px 0">
+                    <input id="gjj-price"  class="border-sizing marketing-control-content-room-box-input"  type="text"  />
+                </li>
+            </ul>
+            <!--<ul style="width:50%;float: left" >-->
+                <!--<li class="fl qzxf-input-title-mx tnmj" >套内面积</li>-->
+                <!--<li class="fl wm65 tnmj" style="padding:5px 0">-->
+                    <!--<input   class="search-input-kh" type="text" id="tnmj"  style="border:0;width: 80%;;padding: 2px 5px 3px 5px"/>-->
+                <!--</li>-->
+                <!--<li class="fl qzxf-input-title-mx tn-price">标准套内总价</li>-->
+                <!--<li class="fl wm65 tn-price" style="padding:5px 0"><input id="tn-price"  class="search-input-kh" type="text"-->
+                                                                 <!--style="border:0;width: 80%;;padding: 2px 5px 3px 5px"/></li>-->
+                <!--<li class="fl qzxf-input-title-mx yh-price">优惠后总价</li>-->
+                <!--<li class="fl wm65 yh-price" style="padding:5px 0"><input id="yh-price"  class="search-input-kh" type="text"-->
+                                                                 <!--style="border:0;width: 80%;;padding: 2px 5px 3px 5px"/></li>-->
+                <!--<li class="fl qzxf-input-title-mx fq-price">分期付款总价</li>-->
+                <!--<li class="fl wm65 fq-price" style="padding:5px 0"><input id="fq-price" class="search-input-kh" type="text"-->
+                                                                 <!--style="border:0;width: 80%;;padding: 2px 5px 3px 5px"/></li>-->
+                <!--<li class="fl qzxf-input-title-mx gjj-price">公积金付款总价</li>-->
+                <!--<li class="fl wm65 gjj-price" style="padding:5px 0"><input id="gjj-price" class="search-input-kh" type="text" style="border:0;width: 80%;;padding: 2px 5px 3px 5px"/></li>-->
+            <!--</ul>-->
+        </div>
+    <!--END-->
     <div class="pwd_edit_div" >
         <input type="hidden" id="user_id" value="<{$user_info['id']}>">
         <div class="pwd_edit_title">修改密码</div>
@@ -253,28 +368,41 @@
 -ms-transform:rotate(-30deg); 	/* IE 9 */
 -moz-transform:rotate(-30deg); 	/* Firefox */
 -webkit-transform:rotate(-30deg); /* Safari 和 Chrome */
--o-transform:rotate(-30deg);right: 30px;top:20px;" id="tb">
+-o-transform:rotate(-30deg);right: 30px;top:20px;z-index: 1002" id="tb">
                 <div style="width: 100%;height: 100%;background-color: red;color: #FFF;font-weight: bold;font-size: 16px;text-align: center;line-height: 30px;">已&nbsp;售</div>
             </div>
             <div  id="xftitle" style="width: 70px;height: 30px;border: 2px solid #f39900;position: absolute;padding: 5px;transform:rotate(7deg);display: none;
 -ms-transform:rotate(-30deg); 	/* IE 9 */
 -moz-transform:rotate(-30deg); 	/* Firefox */
 -webkit-transform:rotate(-30deg); /* Safari 和 Chrome */
--o-transform:rotate(-30deg);right: 30px;top:20px;" id="tb">
+-o-transform:rotate(-30deg);right: 30px;top:20px;z-index: 1002" id="tb">
                 <div  style="width: 100%;height: 100%;background-color: #f39900;color: #FFF;font-weight: bold;font-size: 15px;text-align: center;line-height: 30px;">选房成功</div>
             </div>
             <ul style="width:100%;margin-top:10px;float: left">
                 <li class="fl qzxf-input-title" style="margin-left: 14px;width:82px ">房间编号</li>
-                <li class="fl wm65" style="padding:5px 0"><input id="roominfo1" type="text" style="border:0;color:red;width: 423px;font-weight: bold;font-size: 17px;padding: 2px 5px;margin-left: -8px" readonly/></li>
+                <li class="fl " style="padding:5px 0;width: calc(100% - 96px);">
+                    <input id="roominfo1" type="text" style="border:0;color:red;width: 368px;font-weight: bold;font-size: 17px;padding: 2px 5px;margin-left: -8px" readonly>
+                    <button style="width: 50px;height:29px;border-style: none;line-height: 32px;position: absolute;margin-left: 5px;background-color: #FFF;color: #7d43ea;font-weight: bold;cursor: pointer" id="room-tc">详情</button>
+                </li>
             </ul>
             <input class="marketing-control-room-info-id" type="hidden" style="display:none;" value="">
             <input class="marketing-control-room-info-is-sf" type="hidden" style="display:none;" value="0">
             <!--<input type="hidden" class="border-sizing marketing-control-content-room-box-input marketing-control-room-info-cstid" value="">-->
             <ul style="width:45%;float: left">
+                <li class="fl qzxf-input-title"><label for="select-pay">付款方式</label></li>
+                <li class="fl wm65" style="padding:5px 0;">
+                    <select name="" id="select-pay" <if condition="!empty($pay_auth)"> disabled </if> class="border-sizing marketing-control-content-room-box-input marketing-control-room-info-pay" style="width: 138px;padding: 2px 5px">
+                        <option value="">请选择付款方式</option>
+                        <option value="一次性">一次性</option>
+                        <option value="公积金">公积金</option>
+                        <option value="按揭">按揭</option>
+                        <option value="分期">分期</option>
+                    </select>
+                </li>
                 <li class="fl qzxf-input-title">售价</li>
                 <li class="fl wm65" style="padding:5px 0"><input class="border-sizing marketing-control-content-room-box-input marketing-control-room-info-total" type="text" readonly value="" style="width: 138px;padding: 2px 5px"></li>
-                <li class="fl qzxf-input-title">面积</li>
-                <li class="fl wm65" style="padding:5px 0"><input class="border-sizing marketing-control-content-room-box-input marketing-control-room-info-area" type="text" readonly value="" style="width: 138px;padding: 2px 5px"></li>
+                <!--<li class="fl qzxf-input-title">面积</li>-->
+                <!--<li class="fl wm65" style="padding:5px 0"><input class="border-sizing marketing-control-content-room-box-input marketing-control-room-info-area" type="text" readonly value="" style="width: 138px;padding: 2px 5px"></li>-->
                 <li class="fl qzxf-input-title">户型</li>
                 <li class="fl wm65" style="padding:5px 0"><input class="border-sizing marketing-control-content-room-box-input marketing-control-room-info-hx" type="text" readonly value="" style="width: 138px;padding: 2px 5px"></li>
                 <li class="fl qzxf-input-title" id="pdz">状态</li>
@@ -287,7 +415,7 @@
                 <input type="hidden" id="cstid1" value="">
                 <li class="fl qzxf-input-title">诚意金编号</li>
                 <li class="fl wm65" style="padding:5px 0">
-                    <input id="vip1" class="search-input-kh" type="text" style="border:0;width: 80%;;padding: 2px 5px 3px 5px"/>
+                    <input id="vip1" class="search-input-kh" <if condition="!empty($num_auth)"> disabled </if> type="text"  style="border:0;width: 80%;;padding: 2px 5px 3px 5px"/>
                 </li>
                 <li class="fl qzxf-input-title">客户名称</li>
                 <li class="fl wm65" style="padding:5px 0"><input id="cstname1" class="search-input-kh" type="text"
@@ -302,14 +430,14 @@
             <div style="position: relative;clear: both;margin-top: 200px;margin-bottom: 243px">
             <button  style="width: 82px;float: left;padding: 5px 0;border-radius:5px;margin-left: 15px ;margin-bottom:0;color: #FFF;background-color: #c1c1c1;cursor: pointer" onclick="hidefqz()">关闭</button>
             <div class="tac marketing-control-content-room-cancel" style="display:none;margin-bottom: 2px;margin-right: 8px;" >
-                <a href="javascript:void(0);" class="marketing-control-content-room-option-btn marketing-control-content-room-cancel-btn" style="color: red;">取消选房</a>
+                <a href="javascript:void(0);" class="marketing-control-content-room-option-btn marketing-control-content-room-cancel-btn" >取消选房</a>
                 </div>
                 <div class="tac marketing-control-content-room-confirm" style="display:none;margin-bottom: 2px;margin-right: 8px" >
-                <a href="javascript:void(0);" class="marketing-control-content-room-option-btn marketing-control-content-room-confirm-btn" style="color: red;">确认选房</a>
+                <a href="javascript:void(0);" class="marketing-control-content-room-option-btn marketing-control-content-room-confirm-btn" >确认选房</a>
                 </div>
         </div>
         </div>
-        <input type="hidden" id="usertype" value="<{$usertype}>">
+        <input type="hidden" id="usertype" value="<{$reset}>">
         <div class="marketing-control" style="margin: 0;padding: 0">
             <div class="marketing-control-content-wrapper">
                 <div class="clearfix marketing-control-content" style="height:100%;width:100% ;min-width: 1024px">
@@ -513,7 +641,7 @@
                                                                                                             <{$room_item.room|default=1}>
                                                                                                             <span id="spanid_<{$room_item.id|default=1}>"
                                                                                                                   style="dispaly:none"
-                                                                                                                  infolist="<{$room_item.hx}>|<{$room_item.is_xf}>|<{$room_item.area}>|<{$room_item.tnarea}>|<{$room_item.price}>|<{$room_item.tnprice}>|<{$room_item.total}>|<{$room_item.cstname}>|<{$room_item.xftime1}>|<{$room_item.cyjno}>|<{$room_item.phone}>|<{$room_item.cardno}>|<{$room_item.unit}>|<{$room_item.floor}>|<{$room_item.room}>"></span>
+                                                                                                                  infolist="<{$room_item.hx}>|<{$room_item.is_xf}>|<{$room_item.area}>|<{$room_item.tnarea}>|<{$room_item.price}>|<{$room_item.tnprice}>|<{$room_item.total}>|<{$room_item.cstname}>|<{$room_item.xftime1}>|<{$room_item.cyjno}>|<{:rsa_decode($room_item['phone'],getChoosekey())}>|<{:rsa_decode($room_item['cardno'],getChoosekey())}>|<{$room_item.unit}>|<{$room_item.floor}>|<{$room_item.room}>|<{$room_item.ycx_price}>|<{$room_item.fq_price}>|<{$room_item.aj_price}>|<{$room_item.gjj_price}>|<{$room_item.discount}>"></span>
                                                                                                         </td>
                                                                                                         <else/>
                                                                                                         <td no="<{$room_item.no|default=1}>"
@@ -523,7 +651,7 @@
                                                                                                             <{$room_item.room|default=1}>
                                                                                                             <span id="spanid_<{$room_item.id|default=1}>"
                                                                                                                   style="dispaly:none"
-                                                                                                                  infolist="<{$room_item.hx}>|<{$room_item.is_xf}>|<{$room_item.area}>|<{$room_item.tnarea}>|<{$room_item.price}>|<{$room_item.tnprice}>|<{$room_item.total}>|<{$room_item.unit}>|<{$room_item.floor}>|<{$room_item.room}>"></span>
+                                                                                                                  infolist="<{$room_item.hx}>|<{$room_item.is_xf}>|<{$room_item.area}>|<{$room_item.tnarea}>|<{$room_item.price}>|<{$room_item.tnprice}>|<{$room_item.total}>|<{$room_item.unit}>|<{$room_item.floor}>|<{$room_item.room}>|<{$room_item.ycx_price}>|<{$room_item.fq_price}>|<{$room_item.aj_price}>|<{$room_item.gjj_price}>|<{$room_item.discount}>"></span>
                                                                                                         </td>
                                                                                                     </if>
                                                                                                 </if>
@@ -602,6 +730,17 @@
                 }
             });
 */
+
+        //点击阴影层，隐藏额外参数显示框
+            $(document).on("click",'#shadow-div,#hide-qt',function () {
+                $("#room-qt").hide();
+                $("#shadow-div").hide();
+            });
+            //点击详情显示额外参数
+            $('#room-tc').on("click",function () {
+                $("#room-qt").show();
+                $("#shadow-div").show();
+            });
             //用户状态里面的下拉悬停效果
             $("#update_user li").on("mouseover",function () {
                 $(this).css("background-color","#62a8d1");

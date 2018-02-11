@@ -310,7 +310,7 @@ class RoomModel extends Model
             room.no,
             room.room,
             room.hx,
-            attr.djcount,
+            round(attr.djcount/2,0) as djcount,
             attr.sccount,
             attr.sscount
         FROM

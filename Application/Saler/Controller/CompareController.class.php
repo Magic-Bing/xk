@@ -9,7 +9,7 @@ namespace Saler\Controller;
  * @create 2016-9-1
  * @author zlw
  */
-class CompareController extends BaseController 
+class CompareController extends Base1Controller 
 {
 
 	
@@ -66,13 +66,15 @@ class CompareController extends BaseController
 		foreach ($room_old_attributes as $room_attributes_key => $room_attribute) {
                         $room_attribute['hot_num']=$this->roomrlzs($room_attribute, $rooms[0]['proj_id']);  
                         $room_attributes[$room_attribute['room_id']] = $room_attribute;
+                        $first_count=M()->table('xk_cst2rooms cr')->where("cr.room_id=". $room_attribute['room_id'] ." and px=1")->group("cr.room_id")->count();
+                        $room_attributes[$room_attribute['room_id']]['first_count'] = $first_count;
 		}
                  
 		$this->assign('room_attributes', $room_attributes);
 		
 		//更改比对数据
 		foreach ($ids as $ids_key => $ids_value) {
-			D("Common/Roomattribute")->editAttributeCompareByRoomId(2, $ids_value);
+			D("Common/Roomattribute")->editAttributeCompareByRoomId(1, $ids_value);
 		}
 		
 		//项目
@@ -96,7 +98,7 @@ class CompareController extends BaseController
 		$this->assign('builds', $build_list);
                 $this->assign('type', session("type"));
 		
-		$this->set_seo_title($project_list[$rooms[0]['proj_id']]['name']);
+//		$this->set_seo_title($project_list[$rooms[0]['proj_id']]['name']);
         $this->display();
 	}	
 	

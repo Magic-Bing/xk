@@ -9,7 +9,7 @@ namespace Saler\Controller;
  * @create 2016-9-2
  * @author zlw
  */
-class SearchController extends BaseController 
+class SearchController extends Base1Controller 
 {
 
 	/**

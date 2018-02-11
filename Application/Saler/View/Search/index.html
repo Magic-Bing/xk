@@ -173,7 +173,7 @@
 				<div class="clearfix saler-search-form">
 					<div class="fl wm65 saler-search-form-input">
 						<div class="saler-search-form-input-box">
-							<input class="border-sizing saler-search-form-input-box-input js-saler-search-form-input-box-input" type="text" value="" placeholder="搜索户型、楼层、房号">
+							<input class="border-sizing saler-search-form-input-box-input js-saler-search-form-input-box-input" type="text" value="" placeholder="搜索户型、楼层、房号" >
 						</div>
 					</div>
 					
@@ -290,7 +290,7 @@
                             </span>
 			<p class="weui-tabbar__label1">客户分析</p>
 		</a>
-		<a href="<{:U('RoomAnalysis/index', array('info' => set_search_ids(array('p' => $search_hd_id))))}>" class="weui-tabbar__item1">
+		<a href="<{:U('RoomAnalysis/index', array('info' => set_search_ids(array('p' => $search_hd_id))))}>" class="weui-tabbar__item1 weui-bar__item_on1">
 							<span style="display: inline-block;position: relative;">
 								<i class="fa fa-bar-chart weui-tabbar__icon1"></i>
 							</span>
@@ -309,9 +309,10 @@
 <block name="footer_js">
 <script>
 $(function() {
-	$(".js-saler-search-form-input-box-input").focus();
-
+    $(".js-saler-search-form-input-box-input").focus();
+       //$(".saler-search-form-input-box").find(".js-saler-search-form-input-box-input").trigger("click").focus()
 });
+
 </script>
 
 <include file="Common@Common/Mobile/iscroll" iscroller_id="iscroller_search" iscroller_select_id="iscroller-wrapper" />

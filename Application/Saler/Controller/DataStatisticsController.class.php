@@ -29,12 +29,27 @@ class DataStatisticsController extends Base1Controller
         $hd_id=$search_hd_id;
         $projinfo=M("project p")->join("xk_event_order_house e ON e.project_id = p.id")->where("e.id=".$hd_id)->field("p.id,p.name pname,e.name ename,e.batch_id")->find();
 //        echo json_encode($projinfo);exit;
+        
         if(empty($projinfo))
         {
             session("USER_ID",null);
             $this->error('系统异常，请重新登录！', U('logging/index'));
         }
         $this->assign('project_id', $hd_id);
+        
+        //保存活动名称
+        if(empty(cookie("hdname")))
+        {
+            cookie("hdname",$projinfo['pname']."-微信选房");
+        }
+        else
+        {
+            if(cookie("hdname")<> $projinfo['pname']."-微信选房")
+            {
+                 cookie("hdname",$projinfo['pname']."-微信选房");
+            }
+        }
+        
         //户型销售计算
         $where['proj_id'] = $projinfo['id'];
         $where['pc_id'] = $projinfo['batch_id'];
@@ -177,6 +192,7 @@ class DataStatisticsController extends Base1Controller
         $this->assign('projinfo', $projinfo);
         $this->assign('project_id', $projinfo['id']);
         $this->assign('search_hd_id', $search_hd_id);
+        $this->set_seo_title(cookie("hdname"));
         $this->display();
     }
 }

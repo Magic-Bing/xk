@@ -23,7 +23,7 @@ class Base1Controller extends CommonBaseController
 	public function _initialize()
 	{
 		parent::_initialize();
-		$this->set_seo_title(C('WEIXIN_TITLE'));
+		$this->set_seo_title(cookie("hdname"));
 		if (!$this->is_login()) {
 			//$this->error('你还没有登录！', U('logging/index'));
                         redirect( U('logging/index'),0);

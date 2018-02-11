@@ -39,7 +39,7 @@ function get_user_room_list() {
     //     area : [0,0],
     //     total : [0,0],
     //     hx : ''
-	condition.level[0] = $.trim( $(".user-search-form-choose-option-floor-start").val() ) == '' ? 0 : $(".user-search-form-choose-option-floor-start").val();
+    condition.level[0] = $.trim( $(".user-search-form-choose-option-floor-start").val() ) == '' ? 0 : $(".user-search-form-choose-option-floor-start").val();
     condition.level[1] = $.trim( $(".user-search-form-choose-option-floor-end").val() ) == '' ? 0 : $(".user-search-form-choose-option-floor-end").val();
 
     condition.area[0] = $.trim( $(".user-search-form-choose-option-area-start").val() ) == '' ? 0 : $(".user-search-form-choose-option-area-start").val();
@@ -69,21 +69,6 @@ function get_user_room_list() {
     {
         $(".roomseach").addClass("roomseach_selected")
     }
-    
-	/*$.ajax({
-		url: orderHouse.room,
-		data: {
-            condition
-		},
-		type: 'POST',
-		dataType: 'JSON',
-		success: (data, status) => {
-			renderRoom(data);
-		},
-		error: (data, status, e) => {
-			layer_alert('提交连接失败！');
-		}
-	}); */
         var $url = orderHouse.room;
         var $data = {
             condition:condition
@@ -133,38 +118,5 @@ $(document).on('click','.js-common-header-unit-info',function () {
             $(".js-user-project-view-content-search-compare-btn").click();
         }
     $(this).addClass('common-header-unit-info-selected').siblings().removeClass('common-header-unit-info-selected');
-    
-    //定位选中的楼栋单元
-        $(".js-user-search-form-choose-option-shadow").hide();
-        $zbstart=$(".remark").width();
-        $maxwidth=$(".common-header-unit-wrapper").parent().width()-$zbstart-$(".moreunit").width();
-        $zb=0;
-        $ulist=$(".common-header-unit-wrapper").find(".common-header-unit-info");
-        $zbend=$ulist.length*75;
-        if($zbend>$maxwidth)
-        {
-            $(".moreunit").show();
-            for(var i=0;i<$ulist.length;i++)
-            {
-                if($ulist.eq(i).hasClass("common-header-unit-info-selected"))
-                {
-                    $zb=i*75;
-                    break;
-                }
-            }
-
-            if ($zb+75<=$maxwidth)
-            {
-                $(".common-header-unit-wrapper").css("marginLeft",$zbstart);
-            }
-            else if($zbend-$zb>$maxwidth)
-            {
-                $(".common-header-unit-wrapper").css("marginLeft",($zb-$zbstart)*-1);
-            }
-            else
-            {
-                $(".common-header-unit-wrapper").css("marginLeft",($maxwidth-$zbend)+$zbstart);
-            }
-        }
 });
 
