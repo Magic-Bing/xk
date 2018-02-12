@@ -307,28 +307,27 @@
             <ul style="width:100%;float: left">
                 <li class="fl qzxf-input-title-mx jzmj">建筑面积</li>
                 <li class="fl wm32 jzmj" style="padding:5px 0"><input id="jzmj" class="border-sizing marketing-control-content-room-box-input" type="text" readonly value="" ></li>
-                <li class="fl qzxf-input-title-mx jz-price">标准建筑总价</li>
+                <li class="fl qzxf-input-title-mx tnmj">套内面积</li>
+                <li class="fl wm32 tnmj" style="padding:5px 0"><input id="tnmj" class="border-sizing marketing-control-content-room-box-input" type="text" readonly value="" ></li>
+                <li class="fl qzxf-input-title-mx jz-price">标准建筑单价</li>
                 <li class="fl wm32 jz-price" style="padding:5px 0"><input id="jz-price" class="border-sizing marketing-control-content-room-box-input" type="text" readonly value="" ></li>
+                <li class="fl qzxf-input-title-mx tn-price">标准套内单价</li>
+                <li class="fl wm32 tn-price" style="padding:5px 0"><input id="tn-price" class="border-sizing marketing-control-content-room-box-input" type="text" readonly value="" ></li>
                 <li class="fl qzxf-input-title-mx all-price">标准总价</li>
                 <li class="fl wm32 all-price" style="padding:5px 0" ><input id="all-price" class="border-sizing marketing-control-content-room-box-input" type="text" readonly value="" ></li>
+                <li class="fl qzxf-input-title-mx yh-price">优惠后总价</li>
+                <li class="fl wm32 yh-price" style="padding:5px 0" ><input id="yh-price" class="border-sizing marketing-control-content-room-box-input" type="text" readonly value="" ></li>
                 <li class="fl qzxf-input-title-mx ycx-price" >一次性付款总价</li>
                 <li class="fl wm32 ycx-price" style="padding:5px 0">
                     <input id="ycx-price" class="border-sizing marketing-control-content-room-box-input"  type="text"  >
                 </li>
-                <li class="fl qzxf-input-title-mx aj-price">按揭付款总价</li>
-                <li class="fl wm32 aj-price" style="padding:5px 0">
-                    <input id="aj-price"  class="border-sizing marketing-control-content-room-box-input"  type="text"  />
-                </li>
-
-                <li class="fl qzxf-input-title-mx tnmj">套内面积</li>
-                <li class="fl wm32 tnmj" style="padding:5px 0"><input id="tnmj" class="border-sizing marketing-control-content-room-box-input" type="text" readonly value="" ></li>
-                <li class="fl qzxf-input-title-mx tn-price">标准套内总价</li>
-                <li class="fl wm32 tn-price" style="padding:5px 0"><input id="tn-price" class="border-sizing marketing-control-content-room-box-input" type="text" readonly value="" ></li>
-                <li class="fl qzxf-input-title-mx yh-price">优惠后总价</li>
-                <li class="fl wm32 yh-price" style="padding:5px 0" ><input id="yh-price" class="border-sizing marketing-control-content-room-box-input" type="text" readonly value="" ></li>
                 <li class="fl qzxf-input-title-mx fq-price" >分期付款总价</li>
                 <li class="fl wm32 fq-price" style="padding:5px 0">
                     <input id="fq-price" class="border-sizing marketing-control-content-room-box-input"  type="text"  >
+                </li>
+                <li class="fl qzxf-input-title-mx aj-price">按揭付款总价</li>
+                <li class="fl wm32 aj-price" style="padding:5px 0">
+                    <input id="aj-price"  class="border-sizing marketing-control-content-room-box-input"  type="text"  />
                 </li>
                 <li class="fl qzxf-input-title-mx gjj-price">公积金付款总价</li>
                 <li class="fl wm32 gjj-price" style="padding:5px 0">
@@ -396,13 +395,18 @@
             <ul style="width:45%;float: left">
                 <li class="fl qzxf-input-title"><label for="select-pay">付款方式</label></li>
                 <li class="fl wm65" style="padding:5px 0;">
-                    <select name="" id="select-pay" <if condition="!empty($pay_auth)"> disabled </if> class="border-sizing marketing-control-content-room-box-input marketing-control-room-info-pay" style="width: 138px;padding: 2px 5px">
-                        <option value="">请选择付款方式</option>
-                        <option value="一次性">一次性</option>
-                        <option value="公积金">公积金</option>
-                        <option value="按揭">按揭</option>
-                        <option value="分期">分期</option>
-                    </select>
+                    <if condition="!empty($pay_auth)">
+                        <input class="border-sizing marketing-control-content-room-box-input" type="text" disabled  style="width: 138px;padding: 2px 5px">
+                        <else/>
+                        <select name="" id="select-pay" class="border-sizing marketing-control-content-room-box-input marketing-control-room-info-pay" style="width: 138px;padding: 2px 5px">
+                            <option value="">请选择付款方式</option>
+                            <option value="一次性">一次性</option>
+                            <option value="公积金">公积金</option>
+                            <option value="按揭">按揭</option>
+                            <option value="分期">分期</option>
+                        </select>
+                    </if>
+
                 </li>
                 <li class="fl qzxf-input-title">售价</li>
                 <li class="fl wm65" style="padding:5px 0"><input class="border-sizing marketing-control-content-room-box-input marketing-control-room-info-total" type="text" readonly value="" style="width: 138px;padding: 2px 5px"></li>

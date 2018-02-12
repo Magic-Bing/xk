@@ -3,7 +3,7 @@
     <style>
         .two-dh {
             display: inline-block;
-            background-color: #ccc;
+            background-color: #fff;
             color: #585858;
             width: 100px;
             height: 30px;
@@ -12,7 +12,8 @@
             letter-spacing: 2px;
             border-radius: 5px;
             margin-left: calc((100% - 300px) / 4);
-            border-style: none;
+            /*border-style: none;*/
+            border:1px solid #ccc;
         }
 
         .a-selected {
@@ -82,14 +83,17 @@
     <form action="index" method="post">
         <input type="hidden" name="zt" value="0">
         <button  class="two-dh <if condition='$zt eq 0'>a-selected</if>">未签到</button>
+
     </form>
     <form action="index" method="post">
         <input type="hidden" name="zt" value="1">
     <button class="two-dh th  <if condition='$zt eq 1'>a-selected</if>">已签到</button>
+
     </form>
     <form action="index" method="post">
         <input type="hidden" name="zt" value="2">
     <button class="two-dh th  <if condition='$zt eq 2'>a-selected</if>">全部</button>
+
     </form>
 </block>
 <block name="page_content">

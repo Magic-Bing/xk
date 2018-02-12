@@ -471,15 +471,18 @@ $(function () {
                         $("#phone1").val($csts[0].customer_phone);
                         $("#cardno1").val($csts[0].cardno);
                      }else{
-                         var str="<div style='text-align: center;width: 100%;'>";
+                         var str="";
                          for(var i=0;i<$csts.length;i++){
-                             str+="<label style='display: block'><input type='radio' name='card' value='"+i+"'>&nbsp;"+$csts[i].customer_name+'&nbsp;&nbsp;'+$csts[i].cardno+"</label>";
+                             str+="<label style='display: block;white-space: nowrap;margin-top: 5px;overflow: hidden;text-overflow: ellipsis;text-align: left' title='"+$csts[i].customer_name+"("+$csts[i].cardno+")'><input type='radio' name='card'  value='"+i+"'>&nbsp;"+$csts[i].customer_name+"("+$csts[i].cardno+")</label>";
                          }
-                         str+="</div>";
+                         // str+="</div>";
                          layer.confirm(str, {
                              btn: ['取消', '确认'], //按钮
                              skin: 'layui-layer-qz',
-                             shade: [0.5, 'black']
+                             shade: [0.5, 'black'],
+                             title:'请选择客户',
+                             area:'315px',
+                             shadeClose:true
                          }, function (index) {
                              layer.close(index);
                          }, function () {
