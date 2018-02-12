@@ -720,6 +720,7 @@ $(function () {
         showfqz($room_id);
         var room_str = $("#spanid_" + $room_id).attr("infolist");
         var room_arr = room_str.split("|");
+        var qx_two=$("#pay_auth").text();//付款方式是否必填
         // console.log(room_str);
         // console.log(room_arr);
         if (Number(room_arr[1]) === 0) {
@@ -775,7 +776,12 @@ $(function () {
                 $(".yh-price").show();
                 $("#yh-price").val($.formatMoney(room_arr[14],2));
             }
-
+            if(qx_two === '' || qx_two === undefined){
+                $(".ycx-price-one input").val($.formatMoney(room_arr[10],2));
+                $(".fq-price-one input").val($.formatMoney(room_arr[11],2));
+                $(".aj-price-one input").val($.formatMoney(room_arr[12],2));
+                $(".gjj-price-one input").val($.formatMoney(room_arr[13],2));
+            }
         } else {
             $("#tb").show();
             $(".marketing-control-room-info-" + 'zt');
@@ -831,7 +837,16 @@ $(function () {
                 $(".yh-price").show();
                 $("#yh-price").val($.formatMoney(room_arr[19],2));
             }
+            if(qx_two === '' || qx_two === undefined){
+                $(".ycx-price-one input").val($.formatMoney(room_arr[15],2));
+                $(".fq-price-one input").val($.formatMoney(room_arr[16],2));
+                $(".aj-price-one input").val($.formatMoney(room_arr[17],2));
+                $(".gjj-price-one input").val($.formatMoney(room_arr[18],2));
+            }
         }
+
+        // console.log(typeof  qx);
+
         // $(".marketing-control-room-info-" + 'id').val($room_id);
 
         $(".marketing-control-room-info-" + 'hx').val(room_arr[0]);
@@ -875,6 +890,16 @@ $(function () {
                 // $($text_pre + 'tnprice').val($room['tnprice']);
                 $($text_pre + 'total').val($.formatMoney($room['total'], 2));
                 if ($room['is_xf'] == 1) {
+                    $(".hidden-li").hide();
+                    if($room['pay'] === '一次性'){
+                        $(".ycx-price-one").show();
+                    }else if($room['pay'] === '分期'){
+                        $(".fq-price-one").show();
+                    }else if($room['pay'] === '按揭'){
+                        $(".aj-price-one").show();
+                    }else if($room['pay'] === '公积金'){
+                        $(".gjj-price-one").show();
+                    }
                     $("#roominfo1").val($room['buildname'] + "-" + $room['unit'] + "单元-" + $room['floor'] + "层-" + $room['room']);
                     $("#select-pay").val($room['pay']);
                     // hidefqz();
@@ -1057,7 +1082,22 @@ $(function () {
 
         return false;
     });
-
+    //付款方式选择
+    $(document).on("change","#select-pay",function () {
+        var vo=$(this).val();
+        $(".hidden-li").hide();
+        if(vo === '一次性'){
+            $(".ycx-price-one").show();
+        }else if(vo === '分期'){
+            $(".fq-price-one").show();
+        }else if(vo === '按揭'){
+            $(".aj-price-one").show();
+        }else if(vo === '公积金'){
+            $(".gjj-price-one").show();
+        }else{
+            $(".out-price").show();
+        }
+    });
     //关闭弹出框
     // $("body").on("click","#close_tc",function () {
     // 	alert();
