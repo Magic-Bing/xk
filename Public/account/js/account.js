@@ -403,7 +403,7 @@ $(function() {
         if(!divTop.is(e.target) && divTop.has(e.target).length === 0 &&!divTop1.is(e.target) && divTop1.has(e.target).length === 0){
             divTop1.hide()
         }
-    })
+    });
 	//预定房间模糊查询
     $(document).on("input","#q_room_id",function (){
 		var rm=$(this).attr("room");

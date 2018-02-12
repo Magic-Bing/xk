@@ -464,13 +464,51 @@ $(function () {
                 var $csts = data.info[1];
                 if ($csts.length > 0) {
                     // console.log(JSON.stringify($csts));
-                    // if ($csts.length === 1) {
+                     if ($csts.length === 1) {
                         $("#cstid1").val($csts[0].id);
                         $("#vip1").val($csts[0].cyjno);
                         $("#cstname1").val($csts[0].customer_name);
                         $("#phone1").val($csts[0].customer_phone);
                         $("#cardno1").val($csts[0].cardno);
-                    // }
+                     }else{
+                         var str="<div style='text-align: center;width: 100%;'>";
+                         for(var i=0;i<$csts.length;i++){
+                             str+="<label style='display: block'><input type='radio' name='card' value='"+i+"'>&nbsp;"+$csts[i].customer_name+'&nbsp;&nbsp;'+$csts[i].cardno+"</label>";
+                         }
+                         str+="</div>";
+                         layer.confirm(str, {
+                             btn: ['取消', '确认'], //按钮
+                             skin: 'layui-layer-qz',
+                             shade: [0.5, 'black']
+                         }, function (index) {
+                             layer.close(index);
+                         }, function () {
+                             var vo=$("input[name='card']:checked").val();
+                             if(vo === undefined){
+                                 layer_alert_two("请选择一个身份证！",function () {
+                                     $("#cardno1").trigger("input");
+                                 })
+                             }else{
+                                vo=Number(vo);
+                                 $("#cstid1").val($csts[vo].id);
+                                 $("#vip1").val($csts[vo].cyjno);
+                                 $("#cstname1").val($csts[vo].customer_name);
+                                 $("#phone1").val($csts[vo].customer_phone);
+                                 $("#cardno1").val($csts[vo].cardno);
+                             }
+                         });
+                         // layer.open({
+                         //     title:['温馨提示','color:#fff;background-color:#ff9610'],
+                         //     type: 1,
+                         //     area: ['250px', 'auto'], //宽高
+                         //     content:str,
+                         //     btn:['取消','确定'],
+                         //     btn2:function () {
+                         //
+                         //     }
+                         // });
+                        // console.log($csts);
+                     }
                 }
                 else {
                     // console.log($stype);
@@ -684,6 +722,7 @@ $(function () {
         if (Number(room_arr[1]) === 0) {
             $("#tb").hide();
             $(".marketing-control-room-info-" + 'zt').val("待售");
+            $("#select-pay").val("");
             $("#pdz1").show();
             $("#pdz").show();
             $("#pdt").hide();
@@ -793,10 +832,10 @@ $(function () {
         // $(".marketing-control-room-info-" + 'id').val($room_id);
 
         $(".marketing-control-room-info-" + 'hx').val(room_arr[0]);
-        $(".marketing-control-room-info-" + 'area').val(room_arr[2]);
-        $(".marketing-control-room-info-" + 'tnarea').val(room_arr[3]);
-        $(".marketing-control-room-info-" + 'price').val(room_arr[4]);
-        $(".marketing-control-room-info-" + 'tnprice').val(room_arr[5]);
+        // $(".marketing-control-room-info-" + 'area').val(room_arr[2]);
+        // $(".marketing-control-room-info-" + 'tnarea').val(room_arr[3]);
+        // $(".marketing-control-room-info-" + 'price').val(room_arr[4]);
+        // $(".marketing-control-room-info-" + 'tnprice').val(room_arr[5]);
         $(".marketing-control-room-info-" + 'total').val($.formatMoney(room_arr[6], 2));
         // return false;
 
@@ -811,6 +850,7 @@ $(function () {
             type: 'POST',
             dataType: 'JSON',
             success: function (data, status) {
+                // console.log(data);
                 if (typeof(data.status) == 'undefined') {
                     layer_alert_two('请求失败，请重试！');
                     return false;
@@ -823,15 +863,17 @@ $(function () {
                 // alert(JSON.stringify($room));
                 var $text_pre = ".marketing-control-room-info-";
                 $($text_pre + 'id').val($room_id);
-                $($text_pre + 'name').val($roominfo);
+
+                // $($text_pre + 'name').val($roominfo);
                 $($text_pre + 'hx').val(($room['hxmx'] ? $room['hx'] + "(" + $room['hxmx'] + ")" : $room['hx']));
-                $($text_pre + 'area').val($room['area']);
-                $($text_pre + 'tnarea').val($room['tnarea']);
-                $($text_pre + 'price').val($room['price']);
-                $($text_pre + 'tnprice').val($room['tnprice']);
+                // $($text_pre + 'area').val($room['area']);
+                // $($text_pre + 'tnarea').val($room['tnarea']);
+                // $($text_pre + 'price').val($room['price']);
+                // $($text_pre + 'tnprice').val($room['tnprice']);
                 $($text_pre + 'total').val($.formatMoney($room['total'], 2));
                 if ($room['is_xf'] == 1) {
                     $("#roominfo1").val($room['buildname'] + "-" + $room['unit'] + "单元-" + $room['floor'] + "层-" + $room['room']);
+                    $("#select-pay").val($room['pay']);
                     // hidefqz();
                     $("#pdz").hide();
                     $("#pdz1").hide();
@@ -1026,23 +1068,33 @@ $(function () {
         var $cstid = $("#cstid1").val();
         var $cjyno = $("#vip1").val();
         var $room_name = $("#roominfo1").val();
+        var pay = $("#select-pay").val();
         var $is_sf = $(".marketing-control-room-info-is-sf").val();
         if ($is_sf == '1') {
             layer_alert_two('该房间已经选择过，请选择其他房间！');
             return false;
         }
-
-        if ($cjyno == '') {
-            layer_alert_two('诚意金编号不能为空！');
-            return false;
+        var qx=$("#num_auth").text();
+        var qx_two=$("#pay_auth").text();
+        // console.log(typeof  qx);
+        if(qx === '' || qx === undefined){
+            if ($cjyno === '' || $cjyno === undefined) {
+                layer_alert_two('诚意金编号不能为空！');
+                return false;
+            }
         }
-
-        if ($room_id == '') {
+        if(qx_two === '' || qx_two === undefined){
+            if (pay === '' || pay === undefined) {
+                layer_alert_two('付款方式不能为空！');
+                return false;
+            }
+        }
+        if ($room_id === '' || $room_id === undefined) {
             layer_alert_two('房间信息不存在！');
             return false;
         }
 
-        if ($cstid == '' || $cstid == 0) {
+        if ($cstid === '' || Number($cstid) === 0) {
             layer_alert_two('客户信息错误！');
             return false;
         }
@@ -1051,7 +1103,8 @@ $(function () {
             data: {
                 id: $room_id,
                 cstname: $cstname,
-                cstid: $cstid
+                cstid: $cstid,
+                pay:pay
             },
             type: 'POST',
             dataType: 'JSON',

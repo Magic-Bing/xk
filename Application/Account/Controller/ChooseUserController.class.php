@@ -835,13 +835,16 @@ class ChooseUserController extends BaseController {
         //定义默认数据
         //获取数据库同一批次的数据
         $sql_arr = M()->table("xk_choose")->field("customer_name A,customer_phone B,cardno C,cyjno D,money E,row_number F,ywy G,ywyphone H,room I,ys_time J")->where("project_id=$project_id AND batch_id=$batch_id")->select();
-
+        for($i=0;$i<count($sql_arr);$i++){
+            $sql_arr[$i]['b']=rsa_decode($sql_arr[$i]['b'],getChoosekey());
+            $sql_arr[$i]['c']=rsa_decode($sql_arr[$i]['c'],getChoosekey());
+        }
         $excels = array_merge($b_excel, $sql_arr);
         foreach ($excels as $key => $value) {
             $excels[$key] = array_change_key_case($excels[$key], CASE_UPPER);
         }
 
-        //echo json_encode($excels);exit;
+//        echo json_encode($excels);exit;
 
         $key_arr = [];
         for ($k = 0; $k < count($excels); $k++) {
@@ -1450,5 +1453,6 @@ class ChooseUserController extends BaseController {
             exit;
         }
     }
+
 
 }

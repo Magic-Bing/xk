@@ -190,6 +190,11 @@
            width: 150px;
            padding: 2px 5px;
         }
+        /*.layui-layer-btn1{*/
+            /*background-color: rgb(255, 150, 16)!important;*/
+            /*color: #fff!important;*/
+            /*border: 0!important;*/
+        /*}*/
     </style>
 </block>
 <block name="header_js_add">
@@ -641,7 +646,7 @@
                                                                                                             <{$room_item.room|default=1}>
                                                                                                             <span id="spanid_<{$room_item.id|default=1}>"
                                                                                                                   style="dispaly:none"
-                                                                                                                  infolist="<{$room_item.hx}>|<{$room_item.is_xf}>|<{$room_item.area}>|<{$room_item.tnarea}>|<{$room_item.price}>|<{$room_item.tnprice}>|<{$room_item.total}>|<{$room_item.cstname}>|<{$room_item.xftime1}>|<{$room_item.cyjno}>|<{:rsa_decode($room_item['phone'],getChoosekey())}>|<{:rsa_decode($room_item['cardno'],getChoosekey())}>|<{$room_item.unit}>|<{$room_item.floor}>|<{$room_item.room}>|<{$room_item.ycx_price}>|<{$room_item.fq_price}>|<{$room_item.aj_price}>|<{$room_item.gjj_price}>|<{$room_item.discount}>"></span>
+                                                                                                                  infolist="<{$room_item.hx}>|<{$room_item.is_xf}>|<{$room_item.area}>|<{$room_item.tnarea}>|<{$room_item.price}>|<{$room_item.tnprice}>|<{$room_item.total}>|<{$room_item.cstname}>|<{$room_item.xftime1}>|<{$room_item.cyjno}>|<{:rsa_decode($room_item['phone'],getChoosekey())}>|<{:rsa_decode($room_item['cardno'],getChoosekey())}>|<{$room_item.unit}>|<{$room_item.floor}>|<{$room_item.room}>|<{$room_item.ycx_price}>|<{$room_item.fq_price}>|<{$room_item.aj_price}>|<{$room_item.gjj_price}>|<{$room_item.discount}>|<{$room_item.pay}>"></span>
                                                                                                         </td>
                                                                                                         <else/>
                                                                                                         <td no="<{$room_item.no|default=1}>"

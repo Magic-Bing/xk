@@ -100,7 +100,7 @@ class RoomviewModel extends Model
 		$where = array(
 			'xk_roomlist.id' => $id
 		);
-		return $this->field("xk_roomlist.*,xk_hxset.hxmx")->join("LEFT JOIN xk_hxset ON xk_hxset.hx=xk_roomlist.hx")->where($where)->find();
+		return $this->field("xk_roomlist.*,xk_hxset.hxmx,xk_trade.pay")->join("LEFT JOIN xk_hxset ON xk_hxset.hx=xk_roomlist.hx")->join("LEFT JOIN xk_trade ON xk_trade.room_id=xk_roomlist.id")->where($where)->find();
 	}
 	
 } 

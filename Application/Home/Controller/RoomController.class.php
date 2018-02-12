@@ -290,7 +290,8 @@ class RoomController extends BaseController
 		
 		$cstname = I('cstname', '', 'trim');
         $cstid = I('cstid', '', 'trim');
-		
+        $pay = I('pay', '', 'trim');
+
 		//当前房间
 		$room = D("Room")->getRoomById($id);
 		if (empty($room)) {
@@ -339,6 +340,7 @@ class RoomController extends BaseController
                         ,'ywy'=> ''
                         ,'createdbyid'=> $user_id
                         ,'createdby'=> $user['name']
+                        ,'pay'=> $pay
                     );
                     D("Trade")->add($obj);
                     //房间操作日志表
@@ -609,8 +611,15 @@ class RoomController extends BaseController
 		$ChooseView = D('Common/ChooseView');
 		$csts = $ChooseView->getList($where, "*");
 		if(count($csts) >0){
-            $csts[0]['customer_phone']=rsa_decode($csts[0]['customer_phone'],getChoosekey());
-            $csts[0]['cardno']=rsa_decode($csts[0]['cardno'],getChoosekey());
+		    if(count($csts) ==1){
+                $csts[0]['customer_phone']=rsa_decode($csts[0]['customer_phone'],getChoosekey());
+                $csts[0]['cardno']=rsa_decode($csts[0]['cardno'],getChoosekey());
+            }else{
+                for($i=0;$i<count($csts);$i++){
+                    $csts[$i]['customer_phone']=rsa_decode($csts[$i]['customer_phone'],getChoosekey());
+                    $csts[$i]['cardno']=rsa_decode($csts[$i]['cardno'],getChoosekey());
+                }
+            }
         }
                 $data=array();
                 if ( !empty($csts[0]['room_id'])&&$csts[0]['room_id']>0)
