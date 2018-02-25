@@ -2043,11 +2043,18 @@ $(function() {
             ks = ks / 1000;
            var js = Date.parse(new Date(end_time));
            js = js / 1000;
+           // console.log(ks);
+           // console.log(js);
            if(js<ks){
            gritter_alert('结束时间不能小于开始时间！');
            // btn.button('reset');
             return false;
            }
+        if(js===ks){
+            gritter_alert('结束时间不能等于开始时间！');
+            // btn.button('reset');
+            return false;
+        }
         var url = order_house.edit;
         var data=new FormData($("#wx-edit-from")[0]);
         $.ajax({
@@ -2100,7 +2107,11 @@ $(function() {
            // btn.button('reset');
             return false;
            }
-        
+        if(js===ks){
+            gritter_alert('结束时间不能等于开始时间！');
+            // btn.button('reset');
+            return false;
+        }
         // return false;
         var url = order_house.add;
         var data=new FormData($("#wx_add_form")[0]);
@@ -2231,7 +2242,7 @@ $(function() {
                     layer_alert(data['info']);
                     return false;
                 } else {
-                    layer_alert('删除成功！');
+                    // layer_alert('删除成功！');
 
                     setTimeout(function() {
                         window.location.reload();

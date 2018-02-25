@@ -259,6 +259,7 @@ class WeixBuysetController extends BaseController {
         foreach ($fields as $item) {
             $obj[$item] = I("post.{$item}");
         }
+        $obj['is_short_message']=I("short","","trim")?1:0;
         $obj['states']=I("states","","trim")?1:0;
         $obj['isysdl']=I("isysdl","","trim")?1:0;
         $obj['is_show_discount']=I("is_show_discount","","trim")?1:0;
@@ -407,6 +408,7 @@ class WeixBuysetController extends BaseController {
         foreach ($fields as $item) {
             $obj[$item] = I("post.{$item}");
         }
+        $obj['is_short_message']=I("short","","trim")?1:0;
         $obj['states']=I("states","","trim")?1:0;
         $obj['isysdl']=I("isysdl","","trim")?1:0;
         $obj['is_show_discount']=I("is_show_discount","","trim")?1:0;

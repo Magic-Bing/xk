@@ -124,8 +124,8 @@ class RoomAnalysisController extends Base1Controller
             }
             $pid=$projinfo['id'];
             $bid=$projinfo['batch_id'];
-            //楼栋套数和收长次数数据
-            $bld_list=M()->table("xk_roomlist r")->field('r.bld_id bid,r.buildname name,SUM(CASE WHEN cr.id IS NOT NULL  THEN 1 ELSE 0 END) sc_count,count(r.id) all_count')->join("LEFT JOIN xk_cst2rooms cr ON cr.room_id=r.id")->where("r.proj_id=$pid AND r.pc_id=$bid")->order("r.buildcode ASC")->group('r.bld_id')->select();
+            //楼栋套数和收藏次数数据
+            $bld_list=M()->table("xk_roomlist r")->field('r.bld_id bid,r.buildname name,SUM(CASE WHEN cr.id IS NOT NULL  THEN gs ELSE 0 END) sc_count,count(r.id) all_count')->join("LEFT JOIN (select room_id,id,count(1) as gs from xk_cst2rooms group by room_id) cr ON cr.room_id=r.id")->where("r.proj_id=$pid AND r.pc_id=$bid and 7777=7777")->order("r.buildcode ASC")->group('r.bld_id')->select();
             $arr_name=[];
             $arr_room_count=[];
             $arr_sc_count=[];
@@ -149,7 +149,7 @@ class RoomAnalysisController extends Base1Controller
             $this->assign('new_units', $group_room_unit);
             $this->assign('group_room_build', $group_room_build);
 
-            $hx_list=M()->table("xk_roomlist r")->field('r.hx,SUM(CASE WHEN cr.id IS NOT NULL  THEN 1 ELSE 0 END) sc_count,count(r.id) all_count')->join("LEFT JOIN xk_cst2rooms cr ON cr.room_id=r.id")->where("r.proj_id=$pid AND r.pc_id=$bid")->order("r.hx ASC")->group('r.hx')->select();
+            $hx_list=M()->table("xk_roomlist r")->field('r.hx,SUM(CASE WHEN cr.id IS NOT NULL  THEN gs ELSE 0 END) sc_count,count(r.id) all_count')->join("LEFT JOIN (select room_id,id,count(1) as gs from xk_cst2rooms group by room_id) cr ON cr.room_id=r.id")->where("r.proj_id=$pid AND r.pc_id=$bid")->order("r.hx ASC")->group('r.hx')->select();
             $hx_name=[];
             $hx_room_count=[];
             $hx_sc_count=[];
@@ -214,7 +214,7 @@ class RoomAnalysisController extends Base1Controller
         $pid=$projinfo['id'];
         $bid=$projinfo['batch_id'];
         //楼栋套数和收长次数数据
-        $bld_list=M()->table("xk_roomlist r")->field('r.bld_id bid,r.buildname name,SUM(CASE WHEN cr.id IS NOT NULL  THEN 1 ELSE 0 END) sc_count,count(r.id) all_count')->join("LEFT JOIN xk_cst2rooms cr ON cr.room_id=r.id")->where("r.proj_id=$pid AND r.pc_id=$bid")->order("r.buildcode ASC")->group('r.bld_id')->select();
+        $bld_list=M()->table("xk_roomlist r")->field('r.bld_id bid,r.buildname name,SUM(CASE WHEN cr.id IS NOT NULL  THEN gs ELSE 0 END) sc_count,count(r.id) all_count')->join("LEFT JOIN (select room_id,id,count(1) as gs from xk_cst2rooms group by room_id) cr ON cr.room_id=r.id")->where("r.proj_id=$pid AND r.pc_id=$bid")->order("r.buildcode ASC")->group('r.bld_id')->select();
         $arr_name=[];
         $arr_room_count=[];
         $arr_sc_count=[];
@@ -238,7 +238,7 @@ class RoomAnalysisController extends Base1Controller
             $this->assign('new_units', $group_room_unit);
             $this->assign('group_room_build', $group_room_build);
 
-        $hx_list=M()->table("xk_roomlist r")->field('r.hx,SUM(CASE WHEN cr.id IS NOT NULL  THEN 1 ELSE 0 END) sc_count,count(r.id) all_count')->join("LEFT JOIN xk_cst2rooms cr ON cr.room_id=r.id")->where("r.proj_id=$pid AND r.pc_id=$bid")->order("r.hx ASC")->group('r.hx')->select();
+        $hx_list=M()->table("xk_roomlist r")->field('r.hx,SUM(CASE WHEN cr.id IS NOT NULL  THEN gs ELSE 0 END) sc_count,count(r.id) all_count')->join("LEFT JOIN (select room_id,id,count(1) as gs from xk_cst2rooms group by room_id) cr ON cr.room_id=r.id")->where("r.proj_id=$pid AND r.pc_id=$bid")->order("r.hx ASC")->group('r.hx')->select();
         $hx_name=[];
         $hx_room_count=[];
         $hx_sc_count=[];
@@ -303,7 +303,7 @@ class RoomAnalysisController extends Base1Controller
             $arr=explode("-",$vo);
             $b="AND r.bld_id={$arr[0]}";
         }
-        $hx_list=M()->table("xk_roomlist r")->field('r.hx,SUM(CASE WHEN cr.id IS NOT NULL  THEN 1 ELSE 0 END) sc_count,count(r.id) all_count')->join("LEFT JOIN xk_cst2rooms cr ON cr.room_id=r.id")->where("r.proj_id=$pid AND r.pc_id=$bid $b")->order("r.hx ASC")->group('r.hx')->select();
+        $hx_list=M()->table("xk_roomlist r")->field('r.hx,SUM(CASE WHEN cr.id IS NOT NULL  THEN gs ELSE 0 END) sc_count,count(r.id) all_count')->join("LEFT JOIN (select room_id,id,count(1) as gs from xk_cst2rooms group by room_id) cr ON cr.room_id=r.id")->where("r.proj_id=$pid AND r.pc_id=$bid $b")->order("r.hx ASC")->group('r.hx')->select();
         $hx_name=[];
         $hx_room_count=[];
         $hx_sc_count=[];

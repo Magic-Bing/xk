@@ -33,7 +33,7 @@
             margin-left: 10px;
         }
         .label-sc{
-            background-color: #fff!important;
+            background-color: #fff0!important;
             color: #000!important;
         }
     </style>
@@ -154,8 +154,8 @@
                                 每人允许备选房间
                             </th>
                             <!--<th>延时登录</th>-->
-                            <th>是否显示优惠后价格</th>
-                            <th class="hidden-480">状态</th>
+                            <!--<th>是否显示优惠后价格</th>-->
+                            <th class="hidden-480">活动状态</th>
                             <th>操作</th>
                         </tr>
                     </thead>
@@ -213,14 +213,14 @@
                             <!--<span class="label label-sm label-warning">关闭</span>-->
                             <!--</eq>-->
                             <!--</td>-->
-                            <td class="center">
+                            <!--<td class="center">
                                 <eq name="choose_activity_vo['is_show_discount']" value="1">
                                 <span class="label label-sm label-sc">开启</span>
                             <else/>
                             <span class="label label-sm label-sc" >关闭</span>
                             </eq>
-                            </td>
-                            <td class="hidden-480">
+                            </td>-->
+                            <td class="hidden-480" style="text-align: center;">
                                 <eq name="choose_activity_vo['states']" value="1">
                                 <span class="label label-sm label-sc">启用</span>
                             <else/>

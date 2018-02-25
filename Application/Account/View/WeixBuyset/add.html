@@ -194,6 +194,18 @@
 			</label>
 		</div>
 	</div>
+	<div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-phone-states">
+			<!--<i class="icon-asterisk pink"></i>-->
+			手机短信验证
+		</label>
+		<div class="col-sm-9">
+			<label style="float: left;">
+				<input name="short" id="form-field-phone-states" class="ace ace-switch ace-switch-4 js-choose-order_house-add-phone-states" type="checkbox" checked="checked">
+				<span class="lbl"></span>
+			</label>
+		</div>
+	</div>
         <div class="form-group">
 		<label class="col-sm-3 control-label no-padding-right" for="form-field-states">
 			<i class="icon-asterisk pink"></i> 
@@ -267,7 +279,8 @@ $(function() {
 </script>
 
 <script type="text/javascript">	
-$(function() {	
+$(function() {
+
 	$(".js-choose-order_house-select-project-id").chosen({
 		no_results_text: "没有找到",
 		allow_single_de: true	

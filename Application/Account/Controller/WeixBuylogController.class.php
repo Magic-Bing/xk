@@ -82,7 +82,7 @@ class WeixBuylogController extends BaseController {
         //$limit = $Page->firstRow . ',' . $Page->listRows;
 
         $choose_activity_list = $orderHouseOrderModel->getList(
-            $where, "*,FROM_UNIXTIME( log_time,'%Y-%m-%d  %H:%i') as log_time1", 'log_time DESC, id DESC'
+            $where, "*,FROM_UNIXTIME( log_time,'%Y-%m-%d  %H:%i:%s') as log_time1", 'log_time asc, id DESC'
         );
         import("Org.Util.PHPExcel");
         import("Org.Util.PHPExcel.Writer.Excel5");
@@ -91,8 +91,9 @@ class WeixBuylogController extends BaseController {
         //创建PHPExcel对象，注意，不能少了\
         $objPHPExcel = new \PHPExcel();
         $filename = '微信认购记录-'.time().".xls";
-        $objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(20);
-        $objPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(20);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(30);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(20);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(22);
         $objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(20);
         $objPHPExcel->getActiveSheet()->getColumnDimension('H')->setWidth(20);
         $objPHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth(20);
@@ -105,21 +106,21 @@ class WeixBuylogController extends BaseController {
         $objPHPExcel->getActiveSheet()->getStyle("G")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
         $objPHPExcel->getActiveSheet()->getStyle("H")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
         $objPHPExcel->getActiveSheet()->getStyle()->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-        $objPHPExcel->getActiveSheet()->setCellValue('A1', 'ID');
+        $objPHPExcel->getActiveSheet()->setCellValue('A1', '序号');
         $objPHPExcel->getActiveSheet()->setCellValue('B1', '项目');
         $objPHPExcel->getActiveSheet()->setCellValue('C1', '批次');
         $objPHPExcel->getActiveSheet()->setCellValue('D1', '房间');
         $objPHPExcel->getActiveSheet()->setCellValue('E1', '姓名');
         $objPHPExcel->getActiveSheet()->setCellValue('F1', '手机');
-        $objPHPExcel->getActiveSheet()->setCellValue('G1', '认购码');
-        $objPHPExcel->getActiveSheet()->setCellValue('H1', '认购时间');
+        $objPHPExcel->getActiveSheet()->setCellValue('G1', '选房码');
+        $objPHPExcel->getActiveSheet()->setCellValue('H1', '选房时间');
 
 
         for ($k =0; $k < count($choose_activity_list); $k++) {
-            $objPHPExcel->getActiveSheet()->setCellValue('A'.($k+2),$choose_activity_list[$k]['id']);
+            $objPHPExcel->getActiveSheet()->setCellValue('A'.($k+2),$k+1);
             $objPHPExcel->getActiveSheet()->setCellValue('B'.($k+2),$choose_activity_list[$k]['project_name']);
             $objPHPExcel->getActiveSheet()->setCellValue('C'.($k+2),$choose_activity_list[$k]['batch_name']);
-            $objPHPExcel->getActiveSheet()->setCellValue('D'.($k+2),$choose_activity_list[$k]['build_name']."-".$choose_activity_list[$k]['unit_no']."单元-".$choose_activity_list[$k]['floor_no']."层-".$choose_activity_list[$k]['room_no']);
+            $objPHPExcel->getActiveSheet()->setCellValue('D'.($k+2),$choose_activity_list[$k]['build_name']."-".$choose_activity_list[$k]['unit_no']."单元-".$choose_activity_list[$k]['floor_no']."层-".$choose_activity_list[$k]['room_room']);
             $objPHPExcel->getActiveSheet()->setCellValue('E'.($k+2),$choose_activity_list[$k]['belong_real_name']);
             $objPHPExcel->getActiveSheet()->setCellValueExplicit('F'.($k+2),$choose_activity_list[$k]['belong_phone'],\PHPExcel_Cell_DataType::TYPE_STRING);
             $objPHPExcel->getActiveSheet()->setCellValueExplicit('G'.($k+2),$choose_activity_list[$k]['code'],\PHPExcel_Cell_DataType::TYPE_STRING);

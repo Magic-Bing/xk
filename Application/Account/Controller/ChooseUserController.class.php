@@ -204,9 +204,49 @@ class ChooseUserController extends BaseController {
     public function updateStatus() {
         $status = I("status", 0, "intval");
         $id = I("id", 0, "intval");
-        $res = M()->table("xk_choose")->where("id=$id")->save(["status" => $status]);
-        echo $res ? "true" : "false";
-        exit;
+        
+        if(empty($id))
+        {
+            echo '客户信息错误！';
+            exit;
+        }
+        
+        $choose=D("Choose");
+        $cstinfo=$choose->find($id);
+        if(empty($cstinfo))
+        {
+            echo '客户信息错误！';
+            exit;
+        }
+        $event = M()->table("xk_event_order_house")
+                    ->where("states=1 and project_id={$cstinfo['project_id']} and batch_id={$cstinfo['batch_id']} and unix_timestamp(now())<= end_time and unix_timestamp(now())>=start_time")
+                    ->find();
+        $phone= rsa_decode($cstinfo['customer_phone'],getChoosekey());     
+        if($event)
+        {
+            try{
+                $redis = new Redis();
+                $redis->hSet("dlsx_order_house_{$event['id']}_{$phone}", 'status', $status); 
+                $choose->startTrans();
+                $res = $choose->where("id=$id")->save(["status" => $status]);
+                $choose->commit();
+            }
+            catch (\Exception $e) {
+                $redis->hSet("dlsx_order_house_{$event['id']}_{$phone}", 'status', $cstinfo['status']); 
+                $choose->rollback();
+                echo false;
+                exit;
+            }
+            echo true;
+            exit;
+        }
+        else
+        {
+            $res = $choose->where("id=$id")->save(["status" => $status]);
+            echo $res ? "true" : "false";
+            exit;
+        }
+        
     }
 
     /**
@@ -279,7 +319,7 @@ class ChooseUserController extends BaseController {
             $data['ywyphone'] = $ywyphone;
             //$data['password'] = $password;
             $data['remark'] = $remark;
-            $data['status'] = $status;
+            $data['status'] = 1;
             $data['add_time'] = time();
             $data['add_ip'] = get_client_ip(0, true);
             $chech_has_add = $Choose->addOne($data);
@@ -403,6 +443,7 @@ class ChooseUserController extends BaseController {
             if ($pd) {
                 $this->error("电话或者身份证或者诚意金编号已存在，请修改后再提交！");
             }
+            
             $where['id'] = $id;
             $data['name'] = $name;
             $data['project_id'] = $project_id;
@@ -425,31 +466,45 @@ class ChooseUserController extends BaseController {
             $data['ywyphone'] = $ywyphone;
             //$data['password'] = $password;		
             $data['remark'] = $remark;
-            $data['status'] = $status;
-            $pds = M()->table("xk_choose")->where("id=$id AND customer_phone='$customer_phone' AND cardno='$cardno' AND cyjno='$cyjno'")->find();
+            //$data['status'] = $status;
+            $pds = $Choose->where("id=$id AND customer_phone='$customer_phone' AND cardno='$cardno' AND cyjno='$cyjno'")->find();
+            $zy = $Choose->field("project_id,batch_id,customer_phone choose_phone,cardno choose_card,cyjno choose_cyjno")->where("id=$id")->find();
+            $event = M()->table("xk_event_order_house")
+                    ->where("states=1 and project_id={$zy['project_id']} and batch_id={$zy['batch_id']} and unix_timestamp(now())<= end_time and unix_timestamp(now())>=start_time")
+                    ->find();
+            
             if (!$pds) {
-                $zy = M()->table("xk_choose")->field("customer_phone choose_phone,cardno choose_card,cyjno choose_cyjno")->where("id=$id")->find();
-                $zy['choose_phone'] = rsa_decode($zy['choose_phone'],  getChoosekey());
-                $zy['choose_card'] = rsa_decode($zy['choose_card'],  getChoosekey());
-                $zy['new_phone'] = $customer_phone;
-                $zy['new_card'] = $cardno;
-                $zy['new_cyjno'] = $cyjno;
-                $zy['choose_id'] = $id;
-                $zy['update_time'] = time();
-                $zy['update_ip'] = $this->getIP();
-                $zy['update_user'] = $this->get_user_id();
-                M()->table("xk_update_choose_log")->add($zy);
+                $zy1['choose_phone'] = rsa_decode($zy['choose_phone'],  getChoosekey());
+                $zy1['choose_card'] = rsa_decode($zy['choose_card'],  getChoosekey());
+                $zy1['new_phone'] = $customer_phone;
+                $zy1['new_card'] = $cardno;
+                $zy1['new_cyjno'] = $cyjno;
+                $zy1['choose_id'] = $id;
+                $zy1['update_time'] = time();
+                $zy1['update_ip'] = $this->getIP();
+                $zy1['update_user'] = $this->get_user_id();
+                M()->table("xk_update_choose_log")->add($zy1);
             }
             $chech_has_edit = $Choose->editOne($where, $data);
             if (false === $chech_has_edit) {
                 $this->error("更改失败，请稍后重试！");
             } else {
-                if ($data['status'] == 1) {
+                if ($data['status'] == 1 && $event) {
                     try {
                         $redisDriver = new Redis();
                         $redisDriver->del("order_house_{$data['customer_phone']}_loginerror");
                     } catch (Exception $e) {
-                        $this->success("恭喜你，更改成功！", '');
+                        
+                    }
+                }
+                $oldphone=rsa_decode($zy['choose_phone'],  getChoosekey());
+                if($customer_phone<>$oldphone && $event)
+                {
+                    try{
+                        $redisDriver = new Redis();
+                        $redisDriver->del("dlsx_order_house_{$event['id']}_{$oldphone}"); 
+                    }catch (Exception $e) {
+                        
                     }
                 }
                 $this->success("恭喜你，更改成功！", '');
@@ -555,23 +610,45 @@ class ChooseUserController extends BaseController {
 
         $Choose = D('Choose');
 
-        $choose = $Choose->getOneById($id);
-        if (empty($choose)) {
+        $cstinfo = $Choose->getOneById($id);
+        if (empty($cstinfo)) {
             $this->success("删除成功！");
         }
 
-        $project_id = $choose['project_id'];
-        $batch_id = $choose['batch_id'];
+        $project_id = $cstinfo['project_id'];
+        $batch_id = $cstinfo['batch_id'];
 
         $user_project_ids = $this->get_user_project_ids();
         $user_batch_ids = $this->get_user_batch_ids();
 
-        if (!in_array($project_id, $user_project_ids) || !in_array($batch_id, $user_batch_ids)
-        ) {
+        if (!in_array($project_id, $user_project_ids) || !in_array($batch_id, $user_batch_ids)) {
             $this->error("删除失败，你不能删除该信息！");
         }
-
-        $check_has_delete = $Choose->deleteOneById($id);
+        
+        $event = M()->table("xk_event_order_house")
+                    ->where("states=1 and project_id={$cstinfo['project_id']} and batch_id={$cstinfo['batch_id']} and unix_timestamp(now())<= end_time and unix_timestamp(now())>=start_time")
+                    ->find();
+        $phone= rsa_decode($cstinfo['customer_phone'],getChoosekey());     
+        if($event)
+        {
+            try{
+                $redis = new Redis();
+                //$redis->hset("dlsx_order_house_{$event['id']}_{$phone}", 'status', 0);
+                $redis->del("dlsx_order_house_{$event['id']}_{$phone}"); 
+                $Choose->startTrans();
+                $check_has_delete = $Choose->deleteOneById($id);
+                $Choose->commit();
+            }
+            catch (\Exception $e) {
+                $redis->hSet("dlsx_order_house_{$event['id']}_{$phone}", 'status', $cstinfo['status']); 
+                $Choose->rollback();
+                $this->error("删除失败，请确认后重试！");
+            }
+        }
+        else
+        {
+            $check_has_delete = $Choose->deleteOneById($id);
+        }
         if (false === $check_has_delete) {
             $this->error("删除失败，请确认后重试！");
         }
@@ -642,7 +719,7 @@ class ChooseUserController extends BaseController {
             $this->error("关闭失败，请选择要关闭的用户信息！");
         }
         $Choose = D('Choose');
-        foreach ($ids as $id) {
+        foreach ($ids as $id) {            
             $Choose->where("id=$id")->save(["status" => 0]);
         }
 
@@ -791,7 +868,7 @@ class ChooseUserController extends BaseController {
      * @create 2016-12-26
      * @author zlw
      */
-    public function import() {
+     public function import() {
         if (!IS_POST) {
             $this->error("访问错误，请确认后重试！");
         }
@@ -1325,13 +1402,15 @@ class ChooseUserController extends BaseController {
                     }
                     $evrnt_status = $event_r['isyks'];
                     //原来已有预定房间则需要先清空，再插入本次数据
-                    //活动未开始(第一个客户未开始点击认购)不能直接显示为已售，只需要加入预定房间中即可
+                    //活动未开始(第一个客户未开始点击认购)不能直接显示为已售，只需要加入预定房间中且修改房间预定手机即可
                     if($choose['room'])
                     {
                         $redis->hSet("event_order_house_{$eventId}_room_order_member", $k,$rid);
+                        $redis->hSet("event_order_house_{$eventId}_room_{$rid}", 'schedule_phone', rsa_decode($choose['customer_phone'],  getChoosekey()));
                     }  else {
                         $redis->hSet("event_order_house_{$eventId}_room_order_member", $j, $rid);
                         $redis->expire("event_order_house_{$eventId}_room_order_member", $expire_time);
+                        $redis->hSet("event_order_house_{$eventId}_room_{$rid}", 'schedule_phone', rsa_decode($choose['customer_phone'],  getChoosekey()));
                     }
                     if ($evrnt_status > 0) {
                         try {
@@ -1453,6 +1532,5 @@ class ChooseUserController extends BaseController {
             exit;
         }
     }
-
 
 }

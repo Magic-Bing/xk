@@ -89,6 +89,13 @@ class OrderHouseController extends BaseController {
                     if(!$chooselog||$chooselog['status']==0){//用户已禁用
                         $this->logout();
                     }
+                }else
+                {
+                    $dqev =D("EventOrderHouse")->where("id={$eid}")->find();
+                    if($dqev['states']==0)
+                    {
+                        $this->logout();
+                    }
                 }
             }
             
@@ -770,8 +777,9 @@ class OrderHouseController extends BaseController {
             } else {
                 $this->error('请稍后重试22！');
             }
-
+            
             $maxcode = $redis->get("event_order_house_{$eventId}_maxcode") + 1;
+            $redis->set("event_order_house_{$eventId}_maxcode", $maxcode);
             if ($maxcode < 1000)
                 $newmaxcode = '0' . $maxcode;
             if ($maxcode < 100)
@@ -811,7 +819,7 @@ class OrderHouseController extends BaseController {
                     //,'code'=> sprintf('%02s',$room['build_id']).sprintf('%02s',$room['unit']).sprintf('%02s',$room['floor']).$room['no'].sprintf('%06s',rand(0,999999))
                     //,'code'=> date("mdh",time()).$eventId.$id
                     , 'code' => $newmaxcode
-                    , 'log_time' => time()
+                    , 'log_time' => getMillisecond()
                     , 'is_checked' => 0
                     , 'order_id' => date('Ymd') . $hdcode . $order_id
                 );
@@ -823,8 +831,8 @@ class OrderHouseController extends BaseController {
                     $redis->sAdd("event_order_house_{$eventId}_room_ordered", $id);
                     //添加已经购买的人员
                     $redis->sAdd("event_order_house_{$eventId}_room_order_phone", $phone);
-                    $redis->set("event_order_house_{$eventId}_maxcode", $maxcode);
-                    $redis->hSet("dlsx_order_house_{$eventId}_{$cphone}", 'yrgcount', $yrgcount + 1);
+                    
+                    //$redis->hSet("dlsx_order_house_{$eventId}_{$cphone}", 'yrgcount', $yrgcount + 1);
                     $orderHouseOrderModel->startTrans();
                     $oid = $orderHouseOrderModel->add($obj);
                     $roomd = D('Room');
@@ -839,7 +847,7 @@ class OrderHouseController extends BaseController {
                     $redis->hSet("event_order_house_{$eventId}_room_{$id}", 'status', 0);
                     $redis->sRem("event_order_house_{$eventId}_room_ordered", $id);
                     $redis->sRem("event_order_house_{$eventId}_room_order_phone", $phone);
-                    $redis->hSet("dlsx_order_house_{$eventId}_{$cphone}", 'yrgcount', $yrgcount);
+                    //$redis->hSet("dlsx_order_house_{$eventId}_{$cphone}", 'yrgcount', $yrgcount);
                     $orderHouseOrderModel->rollback();
                     $this->error('请稍后重试！');
                 }
@@ -1279,7 +1287,7 @@ class OrderHouseController extends BaseController {
         }
         $event = D('Common/EventOrderHouse')->getOneById($eventId);
         if ($event['states'] < 1) {
-            $this->error('活动准备中，请稍后');
+            $this->error('活动尚未开始，敬请期待');
         }
         $jmphone=rsa_encode($phone,getChoosekey());//加密
         $where = ['project_id' => $event['project_id'], 'batch_id' => $event['batch_id'], 'customer_phone' => $jmphone];
@@ -1327,11 +1335,16 @@ class OrderHouseController extends BaseController {
         */
 
         //阿里短信服务
-        //$sms = new Alisms();
-        //$status1 = $sms->send_verify($phone, $code);
-        $status1 = true;
+        if ($event['is_short_message'] < 1) {
+            $status1 = true;
+        }else{
+            $sms = new Alisms();
+            $status1 = $sms->send_verify($phone, $code);
+        }
+
+
         if ($status1) {
-            cookie("order_house_code", $code);
+            cookie("order_house_code", $code,300);
             cookie('phone', $jmphone);
             cookie("realName", $realName);
             cookie("chooseuid", $chooseinfo['id']);
@@ -1342,9 +1355,13 @@ class OrderHouseController extends BaseController {
             //$redisDriver->hSet("dlsx_order_house_{$eventId}_{$phone}",'maxcount',$chooseinfo['maxcount']);
             $redisDriver->hSet("dlsx_order_house_{$eventId}_{$phone}", 'maxcount', 3);
             $redisDriver->expire("dlsx_order_house_{$eventId}_{$phone}", 60 * 60 * 6);
+            if ($event['is_short_message'] < 1) {
+                $this->success($code);
+            }else{
+                $this->success('验证码发送中，请稍等...');
+            }
 
-            $this->success($code);
-            //$this->success('验证码发送中，请稍等...');
+
         } else {
             $this->error($sms->error);
         }
@@ -1365,7 +1382,7 @@ class OrderHouseController extends BaseController {
         }
         $event = D('Common/EventOrderHouse')->getOneById($eventId);
         if ($event['states'] < 1) {
-            $this->error('活动准备中，请稍后');
+            $this->error('活动尚未开始，敬请期待');
         }
         if (empty($phone)) {
             $this->error('请填写手机号码');
@@ -1403,23 +1420,15 @@ class OrderHouseController extends BaseController {
         $data = [
             'event_id' => $eventId
             , 'phone' => $jmphone
-            , 'customer_id' => $this->get_customer_id()
+            , 'customer_id' => cookie("chooseuid")
             , 'logintime' =>time()
             , 'logip'=>$this->getIP()
         ];
-
-        $orderHousePhoneModel->add($data);
-
-        session('privilege', 1);
-        //session("order_house_code",cookie("order_house_code"));
-        session("phone", cookie('phone'));
-        session("realName", cookie("realName"));
-        session("chooseuid", cookie("chooseuid"));
-
+        $order_house_code=cookie('order_house_code');
         $redisDriver->del("order_house_{$phone}_loginerror");
-        cookie('order_house_code', NULL);
 
         //客户购买房源个数控制
+        /*
         $where = array('belong_phone' => cookie('phone'), 'project_id' => $event['project_id'], 'batch_id' => $event['batch_id'], 'eventId' => $eventId, '888=888');
         $ygmroom = D('OrderHouseOrder')->getList($where);
         if ($ygmroom) {
@@ -1428,8 +1437,27 @@ class OrderHouseController extends BaseController {
             $yrgcount = 0;
         }
         $redisDriver->hSet("dlsx_order_house_{$eventId}_{$phone}", 'yrgcount', $yrgcount);
+        */
         
-        $redisDriver->hSet("dlsx_order_house_{$eventId}_{$phone}", 'status', 1);
+        try{
+            session('privilege', 1);
+            session("phone", cookie('phone'));
+            session("realName", cookie("realName"));
+            session("chooseuid", cookie("chooseuid"));
+            cookie('order_house_code', NULL);
+            $redisDriver->hSet("dlsx_order_house_{$eventId}_{$phone}", 'status', 1);
+            $orderHousePhoneModel->startTrans();
+            $orderHousePhoneModel->add($data);
+            $orderHousePhoneModel->commit();
+        }  catch (\Exception $e) {
+            session('privilege', 0);
+            session("phone", NULL);
+            session("realName", NULL);
+            session("chooseuid", NULL);
+            cookie('order_house_code', $order_house_code,300);
+            $orderHousePhoneModel->rollback();
+            $this->error('登录失败，请重试！');
+        }
         $this->success("验证成功",__CONTROLLER__."/index/info/".cookie('eventId'));
     }
 

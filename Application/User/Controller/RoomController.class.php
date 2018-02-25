@@ -46,6 +46,14 @@ class RoomController extends BaseController
                         $this->logout();
                     }
                 }
+                else
+                {
+                    $dqev =D("EventOrderHouse")->where("id={$eid}")->find();
+                    if($dqev['states']==0)
+                    {
+                        $this->logout();
+                    }
+                }
             }
             else
             {

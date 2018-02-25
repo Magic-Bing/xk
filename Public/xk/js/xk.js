@@ -1304,11 +1304,11 @@ $(function () {
                 dataType: 'JSON',
                 success: function (data, status) {
                     // alert(JSON.stringify(data));
-                    if (typeof(data.status) == 'undefined') {
+                    if (typeof(data.status) === 'undefined') {
                         layer_alert_two('请求失败，请重试！');
                         return false;
                     }
-                    if (data.status == false) {
+                    if (data.status === 0) {
                         layer_alert_two(data.info);
                         return false;
                     }

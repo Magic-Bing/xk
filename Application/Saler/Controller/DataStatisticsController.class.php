@@ -80,9 +80,9 @@ class DataStatisticsController extends Base1Controller
         //先查询权限情况
         $pd_user=M()->table("xk_station2user su")->join("xk_fun_station fs ON fs.station_id=su.station_id")->where("userid=$uid AND fs.fun_id=101")->find();
         if($pd_user){//当$pd_user不为空的时候查看所有客户
-            $user_xf=M()->table("xk_choose c")->field("count(1) zrs,SUM(CASE WHEN oh.id IS NULL THEN 0 ELSE 1 END) ydl,SUM(CASE WHEN oh.id IS NULL THEN 1 ELSE 0 END) wdl,SUM(CASE WHEN oh.id IS  NOT NULL AND r.id IS NOT NULL THEN 1 ELSE 0 END) yxf,SUM(CASE WHEN oh.id IS  NOT NULL AND r.id IS NULL THEN 1 ELSE 0 END) wxf")->join('LEFT JOIN xk_room r ON r.cstid=c.id')->join("LEFT JOIN ( select * from xk_order_house_phone_login group by phone)  oh ON oh.phone=c.customer_phone")->where("c.project_id={$projinfo['id']} AND c.batch_id={$projinfo['batch_id']}")->find();
+            $user_xf=M()->table("xk_choose c")->field("count(1) zrs,SUM(CASE WHEN oh.id IS NULL THEN 0 ELSE 1 END) ydl,SUM(CASE WHEN oh.id IS NULL THEN 1 ELSE 0 END) wdl,SUM(CASE WHEN oh.id IS  NOT NULL AND r.id IS NOT NULL THEN 1 ELSE 0 END) yxf,SUM(CASE WHEN oh.id IS  NOT NULL AND r.id IS NULL THEN 1 ELSE 0 END) wxf")->join('LEFT JOIN xk_room r ON r.cstid=c.id')->join("LEFT JOIN ( select * from xk_order_house_phone_login  where event_id={$search_hd_id} group by phone)  oh ON oh.phone=c.customer_phone")->where("c.project_id={$projinfo['id']} AND c.batch_id={$projinfo['batch_id']}")->find();
         }else{
-            $user_xf=M()->table("xk_choose c")->field("count(1) zrs,SUM(CASE WHEN oh.id IS NULL THEN 0 ELSE 1 END) ydl,SUM(CASE WHEN oh.id IS NULL THEN 1 ELSE 0 END) wdl,SUM(CASE WHEN oh.id IS  NOT NULL AND r.id IS NOT NULL THEN 1 ELSE 0 END) yxf,SUM(CASE WHEN oh.id IS  NOT NULL AND r.id IS NULL THEN 1 ELSE 0 END) wxf")->join('LEFT JOIN xk_room r ON r.cstid=c.id')->join("LEFT JOIN ( select * from xk_order_house_phone_login group by phone) oh ON oh.phone=c.customer_phone")->where("c.project_id={$projinfo['id']} AND c.batch_id={$projinfo['batch_id']} AND c.ywy='{$userinfo['name']}'")->find();
+            $user_xf=M()->table("xk_choose c")->field("count(1) zrs,SUM(CASE WHEN oh.id IS NULL THEN 0 ELSE 1 END) ydl,SUM(CASE WHEN oh.id IS NULL THEN 1 ELSE 0 END) wdl,SUM(CASE WHEN oh.id IS  NOT NULL AND r.id IS NOT NULL THEN 1 ELSE 0 END) yxf,SUM(CASE WHEN oh.id IS  NOT NULL AND r.id IS NULL THEN 1 ELSE 0 END) wxf")->join('LEFT JOIN xk_room r ON r.cstid=c.id')->join("LEFT JOIN ( select * from xk_order_house_phone_login where event_id={$search_hd_id} group by phone) oh ON oh.phone=c.customer_phone")->where("c.project_id={$projinfo['id']} AND c.batch_id={$projinfo['batch_id']} AND c.ywy='{$userinfo['name']}'")->find();
         }
         $this->assign('user_xf', $user_xf);
         unset( $field, $orderBy);
@@ -103,13 +103,16 @@ class DataStatisticsController extends Base1Controller
             foreach ($hx_list as $hx) {
                 if ($hx['saled_total'] != 0) {
                     $hx['percent'] = round(($hx['saled_total']/$hx['total'])*100);
-                    $rates[] = $hx;
                 }
+                else
+                {
+                     $hx['percent']=0;
+                }
+                $rates[] = $hx; 
             }
         }
 
         //$rates = list_sort_by($rates, 'percent', 'desc');
-
         $this->assign('rates', $rates);
 
         //置业顾问排名

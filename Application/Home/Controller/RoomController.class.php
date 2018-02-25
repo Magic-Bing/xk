@@ -40,11 +40,11 @@ class RoomController extends BaseController
         //当前用户的项目
         $user_project_ids = $this->get_user_project_ids();
         if (!in_array($search_project_id, $user_project_ids)) {
-            $this->error("你没有权限访问该项目的信息！");
+            $this->error("你没有权限访问该项目的信息！", U('Account/index'));
         }
         $user_batch_ids = $this->get_user_batch_ids();
         if (!in_array($search_batch_id, $user_batch_ids)) {
-            $this->error("你没有权限访问该批次的信息！");
+            $this->error("你没有权限访问该批次的信息！", U('Account/index'));
         }
 //        echo $uid;exit;
         //查询参数权限
@@ -402,7 +402,15 @@ class RoomController extends BaseController
 		if (!IS_AJAX) {
 			$this->error('请求错误，请确认后重试！', U('room/index'));
 		}
-		
+		$uid=$this->get_user_id();
+        //取消选房权限
+        $all_auth=M()->table("xk_user")->where("id=$uid")->find();
+        if($all_auth['is_all'] != 1){
+            $reset= M()->table("xk_station2user s")->join('xk_fun_station f ON f.station_id=s.station_id')->where("s.userid=$uid AND f.fun_id=34")->find();
+            if(!$reset){
+                $this->error('你没有权限取消房间，请刷新后重试！', U('room/index'));
+            }
+        }
 		//获取ID
 		$id = I('id', 0, 'intval');
 		if (empty($id) || $id == 0) {

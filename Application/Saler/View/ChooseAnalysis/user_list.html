@@ -2,7 +2,7 @@
     <if condition="count($user_xf) egt 1">
         <foreach name="user_xf" item="vo" key="k">
             <tr data-id="<{$vo.id}>">
-                <td align="left" class="wm40" style="padding-left: 15px">
+                <td align="left" class="wm40" style="padding: 5px 0 3px 15px;color:#000">
                     <p><{$vo.customer_name}></p>
                     <p><{:rsa_decode($vo['customer_phone'],getChoosekey())}></p>
                 </td>

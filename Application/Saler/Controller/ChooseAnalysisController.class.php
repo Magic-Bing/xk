@@ -45,15 +45,15 @@ class ChooseAnalysisController extends Base1Controller
             $this->error('数据异常，请重新登录！', U('logging/index'));
         }else{
             if($status===1){
-                $user_xf=M()->table("xk_choose c")->field("c.id,r.id rid,oh.id oid,c.customer_name,c.customer_phone")->join('LEFT JOIN xk_room r ON r.cstid=c.id')->join("LEFT JOIN ( select * from xk_order_house_phone_login group by phone) oh ON oh.phone=c.customer_phone")->where("c.project_id={$projinfo['id']} AND c.batch_id={$projinfo['batch_id']} $p $s")->select();
+                $user_xf=M()->table("xk_choose c")->field("c.id,r.id rid,oh.id oid,c.customer_name,c.customer_phone")->join('LEFT JOIN xk_room r ON r.cstid=c.id')->join("LEFT JOIN ( select * from xk_order_house_phone_login  where event_id={$search_hd_id} group by phone) oh ON oh.phone=c.customer_phone")->where("c.project_id={$projinfo['id']} AND c.batch_id={$projinfo['batch_id']} $p $s")->select();
             }elseif($status===2){
-                $user_xf=M()->table("xk_choose c")->field("c.id,r.id rid,oh.id oid,c.customer_name,c.customer_phone")->join('LEFT JOIN xk_room r ON r.cstid=c.id')->join("LEFT JOIN ( select * from xk_order_house_phone_login group by phone) oh ON oh.phone=c.customer_phone")->where("c.project_id={$projinfo['id']} AND c.batch_id={$projinfo['batch_id']} AND oh.id IS NULL $p $s")->select();
+                $user_xf=M()->table("xk_choose c")->field("c.id,r.id rid,oh.id oid,c.customer_name,c.customer_phone")->join('LEFT JOIN xk_room r ON r.cstid=c.id')->join("LEFT JOIN ( select * from xk_order_house_phone_login  where event_id={$search_hd_id} group by phone) oh ON oh.phone=c.customer_phone")->where("c.project_id={$projinfo['id']} AND c.batch_id={$projinfo['batch_id']} AND oh.id IS NULL $p $s")->select();
             }elseif($status===3){
-                $user_xf=M()->table("xk_choose c")->field("c.id,r.id rid,oh.id oid,c.customer_name,c.customer_phone")->join('LEFT JOIN xk_room r ON r.cstid=c.id')->join("( select * from xk_order_house_phone_login group by phone) oh ON oh.phone=c.customer_phone")->where("c.project_id={$projinfo['id']} AND c.batch_id={$projinfo['batch_id']} $p $s")->select();
+                $user_xf=M()->table("xk_choose c")->field("c.id,r.id rid,oh.id oid,c.customer_name,c.customer_phone")->join('LEFT JOIN xk_room r ON r.cstid=c.id')->join("( select * from xk_order_house_phone_login  where event_id={$search_hd_id} group by phone) oh ON oh.phone=c.customer_phone")->where("c.project_id={$projinfo['id']} AND c.batch_id={$projinfo['batch_id']} $p $s")->select();
             }elseif($status===4){
-                $user_xf=M()->table("xk_choose c")->field("c.id,r.id rid,oh.id oid,c.customer_name,c.customer_phone")->join('LEFT JOIN xk_room r ON r.cstid=c.id')->join("( select * from xk_order_house_phone_login group by phone) oh ON oh.phone=c.customer_phone")->where("c.project_id={$projinfo['id']} AND c.batch_id={$projinfo['batch_id']} AND r.id IS NULL $p $s")->select();
+                $user_xf=M()->table("xk_choose c")->field("c.id,r.id rid,oh.id oid,c.customer_name,c.customer_phone")->join('LEFT JOIN xk_room r ON r.cstid=c.id')->join("( select * from xk_order_house_phone_login  where event_id={$search_hd_id} group by phone) oh ON oh.phone=c.customer_phone")->where("c.project_id={$projinfo['id']} AND c.batch_id={$projinfo['batch_id']} AND r.id IS NULL $p $s")->select();
             } else{
-                $user_xf=M()->table("xk_choose c")->field("c.id,r.id rid,oh.id oid,c.customer_name,c.customer_phone")->join('xk_room r ON r.cstid=c.id')->join("( select * from xk_order_house_phone_login group by phone) oh ON oh.phone=c.customer_phone")->where("c.project_id={$projinfo['id']} AND c.batch_id={$projinfo['batch_id']}  $p $s")->select();
+                $user_xf=M()->table("xk_choose c")->field("c.id,r.id rid,oh.id oid,c.customer_name,c.customer_phone")->join('xk_room r ON r.cstid=c.id')->join("( select * from xk_order_house_phone_login  where event_id={$search_hd_id} group by phone) oh ON oh.phone=c.customer_phone")->where("c.project_id={$projinfo['id']} AND c.batch_id={$projinfo['batch_id']}  $p $s")->select();
             }
         }
         $tylelist=array( 1 => '全部客户',2 => '未登录',3 => '已登录',4 => '已登录未选',5 => '已登录已选');
@@ -82,13 +82,13 @@ class ChooseAnalysisController extends Base1Controller
         field("c.customer_name cname,c.customer_phone cphone,c.cardno,c.ywy,c.cyjno,b.buildname bname,r.unit,r.room,r.hx,r.area,r.total,r.id rid,o.id oid,o.logintime,oho.log_time")->
         join("LEFT JOIN xk_room r ON r.cstid=c.id")->
         join("LEFT JOIN xk_build b ON b.id=r.bld_id")->
-        join("LEFT JOIN xk_order_house_phone_login o ON o.phone=c.customer_phone")->
+        join("LEFT JOIN xk_order_house_phone_login o ON o.phone=c.customer_phone and o.event_id={$project}")->
         join("LEFT JOIN xk_order_house_order oho ON oho.belong_uid=c.id")->
         where("c.id=$cid")->find();
         //房间收藏信息
         $sc_room=M()->table('xk_cst2rooms cr')->
         field("b.buildname bname,r.id,r.unit,r.room,r.area,r.total,h.hxmx,count(crs.id) sc_count,SUM(CASE WHEN crs.px=1 THEN 1 ELSE 0 END) first_count")->
-        join("xk_cst2rooms crs ON cr.room_id=crs.room_id")->
+        join("xk_cst2rooms crs ON cr.room_id=crs.room_id ")->
         join("xk_room r ON r.id=cr.room_id")->
         join("xk_build b ON b.id=r.bld_id")->
         join("xk_hxset h ON h.hx=r.hx")->where("cr.cst_id=$cid")->order("cr.px")->group("cr.id")->select();
