@@ -64,8 +64,15 @@ class BaseController extends CommonBaseController
 	{
 		if (!session('?ACCOUNT_ID')) {
                     //$this->error('你还没有登录，正在跳转到登录页面', U('login/index'));
-                    redirect(U('../login/index'),0);
-		}
+            redirect(U('../login/index'),0);
+		}else{
+		  $id=session('ACCOUNT_ID');
+		  $pd=M()->table("xk_user")->where("id=$id")->find();
+		  if(!$pd){
+              session('ACCOUNT_ID', null);
+              redirect(U('../login/index'),0);
+          }
+        }
     }	
 	
 	/**

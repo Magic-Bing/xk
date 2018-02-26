@@ -68,8 +68,6 @@
             data.phone = $.trim($("input[data-selector='phone']").val());
             data.eventId = '<{$eventId}>';
             var pd="<{$event['is_short_message']}>";
-            alert(pd);
-            console.log(pd);
             ajax_post_callback('<{:U("send_sms_code")}>', data, function(data) {
                 if (data.status == 0) {
                     layer_alert(data['info']);

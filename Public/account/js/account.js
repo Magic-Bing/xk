@@ -206,6 +206,8 @@ $(function() {
             $("#label-1").show();
         }else{
             $("#label-1").hide();
+            $("#label-2").hide();
+            $('#pay').val('');
         }
     });
     //弹出框，里面付款方式状态的下拉事件
@@ -230,11 +232,16 @@ $(function() {
                 layer_alert("该项目还没有套打模板，请设置后再打印！");
                 return false;
             }
+            var id=tr.attr("data-id");
             if(data.length === 1 && vo !== '选房'){
-                window.open(xsgl_url.show_print+"?name="+data[0]['html_url']);
+                window.open(xsgl_url.show_print+"?name="+data[0]['html_url']+"&id="+id);
             }else{
                 var str='<label style="float: left;margin-left: 27px;margin-top: 10px;width: 90%;">选择模版：<select name="print" id="print"  style="width: 70%">';
-                str+='<option value="">请选择一个模板</option>';
+                if(data.length === 1){
+                    str+='';
+                }else{
+                    str+='<option value="">请选择一个模板</option>';
+                }
                 for(var i=0;i<data.length;i++){
                     str+='<option value="'+data[i]['html_url']+'">'+data[i]['name']+'</option>';
                 }
@@ -243,7 +250,6 @@ $(function() {
                 var tm=$.trim(tr.find("td").eq(7).text());
                 var bl=$.trim(tr.attr('data-bl'));
                 var je=$.trim(tr.attr('data-je'));
-                var id=tr.attr("data-id");
                 var price=tr.find("td").eq(8).text();
                 // console.log(pay);
                 price=Number(price.replace(/,/g,''));
