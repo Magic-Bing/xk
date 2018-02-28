@@ -253,7 +253,6 @@ class OrderHouseController extends BaseController {
 
     //我的订单列表
     public function myorder() {
-        //echo $this->getMillisecond();
         $id=$this->getEventId();
         if(empty($id))
         {
@@ -832,8 +831,7 @@ class OrderHouseController extends BaseController {
                     //,'code'=> sprintf('%02s',$room['build_id']).sprintf('%02s',$room['unit']).sprintf('%02s',$room['floor']).$room['no'].sprintf('%06s',rand(0,999999))
                     //,'code'=> date("mdh",time()).$eventId.$id
                     , 'code' => $newmaxcode
-                    //, 'log_time' => $this->getMillisecond()
-                    , 'log_time' => time()
+                    , 'log_time' => $this->getMillisecond()
                     , 'is_checked' => 0
                     , 'order_id' => date('Ymd') . $hdcode . $order_id
                 );
@@ -1349,12 +1347,9 @@ class OrderHouseController extends BaseController {
         */
 
         //阿里短信服务
-        if ($event['is_short_message'] < 1) {
-            $status1 = true;
-        }else{
-            $sms = new Alisms();
-            $status1 = $sms->send_verify($phone, $code);
-			  }
+        //$sms = new Alisms();
+        //$status1 = $sms->send_verify($phone, $code);
+        $status1 = true;
         if ($status1) {
             cookie("order_house_code", $code,300);
             cookie('phone', $jmphone);
@@ -1367,11 +1362,9 @@ class OrderHouseController extends BaseController {
             //$redisDriver->hSet("dlsx_order_house_{$eventId}_{$phone}",'maxcount',$chooseinfo['maxcount']);
             $redisDriver->hSet("dlsx_order_house_{$eventId}_{$phone}", 'maxcount', 3);
             $redisDriver->expire("dlsx_order_house_{$eventId}_{$phone}", 60 * 60 * 6);
-	          if ($event['is_short_message'] < 1) {
-                $this->success($code);
-            }else{
-                $this->success('验证码发送中，请稍等...');
-            }				
+
+            $this->success($code);
+            //$this->success('验证码发送中，请稍等...');
         } else {
             $this->error($sms->error);
         }

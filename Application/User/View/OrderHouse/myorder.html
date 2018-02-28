@@ -95,7 +95,7 @@ var condition = {
                             </div>
                         </div>
                         <ul class="userinfo-ul">
-                            <li>认筹单号：<{$userinfo['cyjno']}></li>
+                            <li>诚意单号：<{$userinfo['cyjno']}></li>
                             <li>置业顾问：<{$userinfo['ywy']}></li>
                             <li>联系电话：<{$userinfo['ywyphone']}></li>
                         </ul>
@@ -127,7 +127,7 @@ var condition = {
                                                                     房间：<{$orderedRoom.project_name}>-<{$orderedRoom.build_name}>-<{$orderedRoom.unit_no}>单元-<{$orderedRoom.floor_no}>层-<{$orderedRoom.room_room}>
                                                                </li>
                                                                <li>售价：<{:number_format($orderedRoom['total'], 2)}></li>
-                                                               <li  style="border-top:1px solid #eae9e9;"><{$orderedRoom.log_time|date="Y-m-d H:i:s",###}></li>
+                                                               <li  style="border-top:1px solid #eae9e9;"><{:date("Y-m-d H:i:s",$orderedRoom['log_time'])}></li>
                                                                <!--<li>户型结构：(<{$room['hx']}>) <{$hxinfo.hxmx}></li>
                                                                <li>建筑面积：<{$room.area}></li><li>套内面积：<{$room.tnarea}></li>-->
                                                             </ul>

@@ -48,7 +48,6 @@ class LoggingController extends Controller
 	 */
     public function check() 
 	{
-
 		if (!IS_AJAX) {
 			$this->error('请求错误，请确认后重试！', U('logging/index'));
 		}
@@ -64,12 +63,28 @@ class LoggingController extends Controller
                 if ($user[0]['password'] != md5(md5($password))) {
 			$this->error('用户名或者密码错误！', U('logging/index'));
 		}
-        $pd=$Model->table("xk_station2user su")->join("xk_station2proj sp ON su.station_id=sp.station_id")->where("su.userid={$user[0]['id']}")->find();
-//        echo json_encode($pd);exit;
+		//判断开盘模式
+
+        $pd=$Model->table("xk_station2user su")->field("su.id,p.id pid")->
+        join("xk_station2pc sp ON su.station_id=sp.station_id")->
+        join("LEFT JOIN xk_pzcsvalue p ON p.project_id=sp.proj_id AND p.batch_id=sp.pc_id AND p.pzcs_id=1 AND cs_value=-1")->
+        where("su.userid={$user[0]['id']}")->select();
         if($pd) {
             session('USER_ID', $user[0]['id']);
             session('type', $user[0]['type']);
-            $this->success(U('index/index'));
+            $bl=false;
+            for($i=0;$len=count($pd),$i<$len;$i++){
+                if(!$pd[$i]['pid']){
+                    $bl=true;
+                    break;
+                }
+            }
+            if($bl){
+                $this->success(U('index/dz_page'));
+            }else{
+                $this->success(U('index/index'));
+            }
+
         }else{
             $this->error('该账号没有数据权限，无法查看！', U('logging/index'));
         }

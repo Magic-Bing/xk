@@ -71,6 +71,7 @@
 						<label>分组序号 <input type="number" name="px" required placeholder="请输入分组序号"></label>
 					</div>
 				<div class="modal-footer">
+					<button type="button" class="btn btn-default reset-yh"  style="float: left;display: none">取消预设</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 					<button type="submit" class="btn btn-primary" >提交</button>
 				</div>
@@ -247,6 +248,7 @@
 		    var pid=$(this).attr("data-pid");
 		    var bid=$(this).attr("data-bid");
             $("#old-set").hide().find('span').text('');
+            $(".reset-yh").hide().attr("data-id",'');
 		    mt.find("input[type='hidden']").eq(0).val(cid);
 		    mt.find("input[type='hidden']").eq(1).val(0);
 		    mt.find("input[type='hidden']").eq(2).val(pid);
@@ -260,6 +262,7 @@
             var yid=$(this).attr("data-yid");
             var pid=$(this).attr("data-pid");
             var bid=$(this).attr("data-bid");
+            $(".reset-yh").show().attr("data-id",yid);
             var vo=$(this).text();
             $("#old-set").show().find('span').text(vo);
             mt.find("input[type='hidden']").eq(0).val(cid);
@@ -268,7 +271,21 @@
             mt.find("input[type='hidden']").eq(3).val(bid);
             mt.modal("show");
         });
+		//取消预设
+        $(".reset-yh").on("click",function () {
+            var yid=$(this).attr("data-id");
+            $.post("/Account/YaoHuser/reset",{yid:yid},function (data) {
+                if(data.status===0){
+                    layer_alert(data.info);
+                }else{
+                    layer_msg(data.info);
+                    setTimeout(function () {
+                        window.location.reload();
+                    },2000)
+                }
 
+            },'json');
+        });
 		//提交
 		$("#form-yh").on("submit",function () {
 		    $.post("/Account/YaoHuser/add",$(this).serialize(),function (data) {

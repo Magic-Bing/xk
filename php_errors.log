@@ -6,3 +6,6 @@
 [29-Sep-2017 11:52:19 PRC] PHP Fatal error:  Can't use function return value in write context in C:\WWW_xk\Application\User\Controller\OrderHouseController.class.php on line 1104
 [30-Sep-2017 14:50:33 PRC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\WWW_xk\Application\Account\Controller\WeixBuylogController.class.php on line 272
 [30-Sep-2017 14:51:06 PRC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\WWW_xk\Application\Account\Controller\WeixBuylogController.class.php on line 272
+[26-Feb-2018 15:21:45 PRC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\WWW_hnhl\Application\User\Controller\OrderHouseController.class.php on line 788
+[26-Feb-2018 15:22:02 PRC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\WWW_hnhl\Application\User\Controller\OrderHouseController.class.php on line 788
+[26-Feb-2018 15:23:04 PRC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\WWW_hnhl\Application\User\Controller\OrderHouseController.class.php on line 788

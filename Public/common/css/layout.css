@@ -49,7 +49,7 @@
 }
 .common-header {
 	background: #ffffff;
-	border: 1px solid #03a9f4;
+	/*border-bottom: 1px solid #03a9f4;*/
 	font-size: 15px;
 	font-weight: bold;
     color: #03A9F4;

@@ -205,4 +205,18 @@ class YaoHuserController extends BaseController
         }
 
     }
+
+    /*
+     * 取消预设
+     * qzb
+     * 2018-2-28*/
+    public function reset(){
+        $id=I("yid",0,"intval");
+        $pd=M()->table("xk_yaohuser")->where("id=$id")->delete();
+        if($pd){
+            $this->success("取消成功");
+        }else{
+            $this->error("取消失败，请重试！");
+        }
+    }
 }

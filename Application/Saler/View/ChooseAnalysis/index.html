@@ -97,7 +97,7 @@
 			</div>
 
 		</div>
-		<div class="fl wm100" style="background-color: #FFF;padding: 5px 0 0 0;">
+		<div class="fl wm100" style="background-color: #FFF;padding: 5px 0 0 0;  margin-top: 2px;">
 			<form action="" method="post" id="condition-form">
 			<div class="fl" style="margin-left: 10px;">
 				<label for="user-type"></label>
@@ -145,9 +145,9 @@
 							<if condition="count($user_xf) egt 1">
 								<foreach name="user_xf" item="vo" key="k">
 										<tr data-id="<{$vo.id}>">
-											<td align="left" class="wm40" style="padding: 5px 0 3px 15px;color:#000">
-												<p><{$vo.customer_name}></p>
-												<p><{:rsa_decode($vo['customer_phone'],getChoosekey())}></p>
+											<td align="left" class="wm40" style="padding: 5px 0 3px 15px;">
+                                                                                            <p  style="color:#000;"><{$vo.customer_name}></p>
+                                                                                            <p><{:rsa_decode($vo['customer_phone'],getChoosekey())}></p>
 											</td>
 											<td class="wm25"><if condition="($vo.oid neq null)"><span class="xf-status ydl">已登录</span><else/><span class="xf-status wdl">未登录</span></if></td>
                                                                                         <td class="wm20"><if condition="($vo.rid neq null) AND ($vo.oid neq null)"><span class="xf-status yxf">已选房</span><else/><span class="xf-status wxf">未选房</span></if></td>

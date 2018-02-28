@@ -663,17 +663,22 @@ class YaoHsetController extends BaseController {
             if($ys_yh){
                 $s=0;
                 for($i=0;$i<$cc;$i++){
-                    for($k=0;$k<count($ys_yh);$k++){
-                        if($ys_yh[$k]['yh_group_px'] == ($i+1)){
-                            $new_rand_list[$i]=$ys_yh[$k];
-                            unset($ys_yh[$k]);
-                            $ys_yh=array_merge($ys_yh);
-                            break;
-                        }else{
-                            $new_rand_list[$i]=$list[$rand_list[$s]];
-                            $s++;
-                            break;
+                    if($ys_yh){
+                        for($k=0;$k<count($ys_yh);$k++){
+                            if($ys_yh[$k]['yh_group_px'] == ($i+1)){
+                                $new_rand_list[$i]=$ys_yh[$k];
+                                unset($ys_yh[$k]);
+                                $ys_yh=array_merge($ys_yh);
+                                break;
+                            }else{
+                                $new_rand_list[$i]=$list[$rand_list[$s]];
+                                $s++;
+                                break;
+                            }
                         }
+                    }else{
+                        $new_rand_list[$i]=$list[$rand_list[$s]];
+                        $s++;
                     }
                 }
             }else{

@@ -3,6 +3,13 @@
 <block name="header">
     <link rel="stylesheet" href="/Public/common/css/font-awesome-4.7.0/css/font-awesome.css">
     <style>
+        body{
+            background: rgb(231, 240, 249);
+        }
+        .sales-statistics-content {
+            bottom: 0;
+            top: 43px;
+        }
         .saler-statistics-content-unit-info {
             padding-top: 20px;
         }
@@ -252,7 +259,7 @@
                                                                     <p style="font-size: 14px;color: #ff6058;margin: 5px 0;">还没有选择房间...</p>
 								</if>
 								
-								<h1><i class="fa fa-list-ol igreen"> </i> 收藏房源(<php>echo count($sc_room);</php>)</h1>
+								<h1><i class="fa fa-list-ol igreen"> </i> 备选房源(<php>echo count($sc_room);</php>)</h1>
 								<table id="room-tab">
 									<if condition="count($sc_room) gt 0">
 									<foreach name="sc_room" item="vo" key="k">

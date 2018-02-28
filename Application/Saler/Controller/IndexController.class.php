@@ -18,8 +18,6 @@ class IndexController extends BaseController {
 	 */
 
 
-
-
     public function index() 
 	{
 		$user_where['userid'] = $this->get_user_id();
@@ -49,38 +47,48 @@ class IndexController extends BaseController {
             $this -> assign('projects', $activity);
             $this -> display(":index/indexone");
         }
-//		echo json_encode($activity);exit;
-		/*//项目列表
-		if (!empty($project_ids)) {
-			$Project = D('Common/Project');
-			$where['status'] = 1;
-			$where['id'] = array('in', $project_ids);
-			$project_list = $Project -> getProjectList($where, 'id ASC');
-		} else {
-			$project_list = array();
-		}
-		$type=session('type');
-		if(count($project_list)==1)
-		{
-		    if($type>=3){
-                redirect( U('saler/statistics/index',array('info' => set_search_ids(array('p' => $project_list[0]['id'])))));
-            }else{
-                redirect( U('saler/project/index',array('info' => set_search_ids(array('p' => $project_list[0]['id'])))));
-            }
-		}
-		else
-		 {
-             $this -> assign('userinfo', $userinfo[0]);
-             $this -> assign('projects', $project_list);
-             $this -> set_seo_title("项目列表");
-             if($type>=3){
-                 $this -> display(":index/indexone");
-             }else{
-                 $this -> display();
-             }
-
-		 }*/
 	}
+
+	/*
+	 * 电子开盘批次个数判断
+	 * qzb
+	 * 2018-2-28*/
+        public function dz_page(){
+            $uid=$this->get_user_id();
+            $Model = new \Think\Model();
+            $userinfo=$Model->query("SELECT * FROM xk_user WHERE id=". $uid ." limit 1" );
+            if (empty($userinfo) || count($userinfo)<1)
+                $this->error('用户登录信息异常,请重新登录！', U('logging/index'));
+            //获取有权限查看的项目
+            $pd=$Model->table("xk_station2user su")->field("su.id,sp.proj_id,sp.pc_id,k.name,p.id pid")->
+            join("xk_station2pc sp ON su.station_id=sp.station_id")->
+            join("xk_kppc k ON k.id=sp.pc_id")->
+            join("LEFT JOIN xk_pzcsvalue p ON p.project_id=sp.proj_id AND p.batch_id=sp.pc_id AND p.pzcs_id=1 AND cs_value=-1")->
+            where("su.userid=".$uid)->select();
+            $count=0;
+            $pid=$pd[0]['proj_id'];
+            $pc=[];
+            for($i=0;$len=count($pd),$i<$len;$i++){
+                if(!$pd[$i]['pid']){
+                    $pc[$i]['id']=$pd[$i]['pc_id'];
+                    $pc[$i]['name']=$pd[$i]['name'];
+                    $count++;
+                }
+            }
+            if($count===1)
+            {
+                //只有一个活动时，直接前往首页
+                redirect( U('saler/DataStatistics/dz_index',array('p' =>$pid,'b' =>$pd[0]['pc_id'] )));
+            }
+            else
+            {
+                //多个活动时，前往活动列表让用户选择
+                $this -> assign('userinfo', $userinfo[0]);
+                $this -> assign('pid', $pid);
+                $this -> assign('pc', $pc);
+                $this -> display();
+            }
+        }
 
 	/**
 	 * 修改密码

@@ -323,19 +323,14 @@ $(function() {
 		ajax_post_callback($url, $data, function(data) {
 			// console.log(data);
 			// return false;
-			if (data.status == 0) {
-                                //showerror(data['info']);
+			if (data.status === 0) {
 				layer_alert(data['info']);
 				$(".authent").hide();
 				$("#dlk").addClass("container");
 				$("#dlk").removeClass("container1");
 				$(".form").show();
 			} else {
-				//layer_alert("登录成功！");
-				//setTimeout(function() {
-					//location.href = saler_url.index;
-                                        location.href = data['info'];			
-				//}, 300);
+				location.href = data['info'];
 			}
 		});
 	});
