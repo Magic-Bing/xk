@@ -25,11 +25,13 @@
 				data-placeholder="请选择项目"
 				data-first-title="请选择项目"
 				data-first-value='0'
+					data-value="<{$project_id}>"
 			>
 				<foreach name="project_list" item="project_list_vo">
-					<option value="<{$project_list_vo['id']}>">
-						<{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
-					</option>
+						<option value="<{$project_list_vo['id']}>">
+							<{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
+						</option>
+
 				</foreach> 
 			</select>
 		</div>
@@ -287,7 +289,7 @@ $(function() {
 	}).change(function() {
 		setTimeout(function() {
 			$(".js-choose-order_house-select-batch-id").trigger("chosen:updated");
-		}, 500);;
+		}, 500);
 	}); 
 	/*$(".js-choose-order_house-select-batch-id").chosen({
 		no_results_text: "没有找到",

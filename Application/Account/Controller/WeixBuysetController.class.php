@@ -161,7 +161,7 @@ class WeixBuysetController extends BaseController {
 
     public function display_add(){
         //项目ID
-        $project_id = I('project_id', 0, 'intval');
+        $project_id = session("selected_project");
         $this->assign('project_id', $project_id);
 
         //用户的项目和项目批次
@@ -216,7 +216,6 @@ class WeixBuysetController extends BaseController {
                 );
             }
         }
-
         $project_json = urldecode(json_encode($project_new_list));
         $this->assign('project_json', $project_json);
 

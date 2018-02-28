@@ -224,6 +224,8 @@ $(function() {
     $(document).on("click",".print-log",function (){
         var pid=$(this).attr("data-pid");
         var bid=$(this).attr("data-bid");
+        var pvid=$(this).attr("data-pvid");
+
         var tr=$(this).parents("tr");
         var vo=$.trim(tr.find("td").eq(5).text());
         $.post(xsgl_url.get_print,{pid:pid,bid:bid},function (data) {
@@ -233,12 +235,15 @@ $(function() {
                 return false;
             }
             var id=tr.attr("data-id");
-            if(data.length === 1 && vo !== '选房'){
+            if(data.length === 1 && vo !== '选房' ){
                 window.open(xsgl_url.show_print+"?name="+data[0]['html_url']+"&id="+id);
             }else{
                 var str='<label style="float: left;margin-left: 27px;margin-top: 10px;width: 90%;">选择模版：<select name="print" id="print"  style="width: 70%">';
-                if(data.length === 1){
+                if(data.length === 1 && pvid === ''){
                     str+='';
+                }else if(data.length === 1 && pvid !== ''){
+                    window.open(xsgl_url.show_print+"?name="+data[0]['html_url']+"&id="+id);
+                    return false;
                 }else{
                     str+='<option value="">请选择一个模板</option>';
                 }
@@ -260,11 +265,11 @@ $(function() {
                     // area: ['350px', 'auto'], //宽高
                     content:'' +
                     '<label style="float: left;margin-left: 27px;margin-top: 10px;width: 90%">选购状态：<select name="zt" id="zt"  style="width: 70%">' +
-                    '<option '+(vo==='选房'?"selected":"")+'>选房</option>' +
-                    '<option '+(vo==='认购'?"selected":"")+'>认购</option>' +
+                    '<option '+(vo==='选房' && pvid !=='' ?"selected":"")+'>选房</option>' +
+                    '<option '+(vo==='认购' || pvid ===''?"selected":"")+'>认购</option>' +
                     '<option '+(vo==='签约'?"selected":"")+'>签约</option>' +
                     '</select></label>' +
-                    '<label style="float: left;margin-left: 27px;margin-top: 10px;width: 90%;'+(vo==='选房'?"display: none":"")+'" id="label-1">付款方式：<select  name="pay" id="pay"  style="width: 70%">' +
+                    '<label style="float: left;margin-left: 27px;margin-top: 10px;width: 90%;'+(vo==='选房' && pvid !==''?"display: none":"")+'" id="label-1">付款方式：<select  name="pay" id="pay"  style="width: 70%">' +
                     '<option value=""'+(vo===''?"selected":"")+'>请选择付款方式</option>' +
                     '<option '+(pay==='一次性'?"selected":"")+'>一次性</option>' +
                     '<option '+(pay==='公积金'?"selected":"")+'>公积金</option>' +
@@ -275,7 +280,7 @@ $(function() {
                     '<input type="number" name="proportion" id="proportion"  placeholder="输入比例" style="width: 70%" value="'+bl+'">' +
                     '<br/>贷款金额：<input type="number" name="money" id="money"  placeholder="输入金额" style="width: 70%;margin-top: 15px;margin-bottom: 0" value="'+je+'">' +
                     '<input type="hidden" value="'+price+'"></label>' +
-                    '<label style="float: left;margin-left: 27px;margin-top: 10px;width: 90%;"><span style="float: left">选购时间：</span><input value="'+tm+'" type="text"  id="zt_time" placeholder="请选择时间" class="col-xs-8 col-sm-8 js-choose-activity-add-start-time" onfocus="WdatePicker({dateFmt:\'yyyy-MM-dd HH:mm:ss\',skin:\'twoer\'})" style="width: 70%"></label>'+
+                    '<label style="float: left;margin-left: 27px;margin-top: 10px;width: 90%;"><span style="float: left">选购时间：</span><input value="'+(vo==='选房' && pvid ==='' ?"":tm)+'" type="text"  id="zt_time" placeholder="请选择时间" class="col-xs-8 col-sm-8 js-choose-activity-add-start-time" onfocus="WdatePicker({dateFmt:\'yyyy-MM-dd HH:mm:ss\',skin:\'twoer\'})" style="width: 70%"></label>'+
                     str+
                     '',
                     btn:['取消','打印'],
@@ -296,7 +301,12 @@ $(function() {
                             return false;
                         }
                         if(zt === '选房'){
-                            pay='';
+                            if(pvid === ''){
+                                layer_alert("付款方式为必填项，请更改你的选房状态！");
+                                return false;
+                            }else{
+                                pay='';
+                            }
                         }else{
                             if(data[0]['vid'] === null){
                                 if($.trim(pay)===''){

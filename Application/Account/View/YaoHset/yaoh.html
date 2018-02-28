@@ -129,7 +129,7 @@
                                 </if>  
                             </li>
                         </ul>
-                        <ul class="cstul" style="width: 100%;margin-top:5px;line-height: 45px;font-size:15px;display: black;">
+                        <ul class="cstul" style="width: 100%;margin-top:5px;line-height: 45px;font-size:15px;display: block;">
                             <php>$i=0;</php>
                             <for start="$i" end="$yaohset['mzgs']">
                             <php>$dqno=$yaohset['dqmaxno'] + $i + 1;</php>
@@ -241,9 +241,9 @@
                     if (data['status'] != 1) {
                         //layer(data['info']);
                     } else { 
-                        console.log(data.info[1]);
+//                        console.log(data.info[1]);
                         csts=data.info[1];
-                        endYh(); 
+                        endYh();
                     }
                 });
                 

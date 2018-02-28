@@ -50,6 +50,7 @@ class RoomController extends BaseController
         //查询参数权限
         //取消选房权限
         $all_auth=M()->table("xk_user")->where("id=$uid")->find();
+        $this->assign('user_info',$all_auth);
         if($all_auth['is_all'] == 1){
             $this->assign('reset','1');
         }else{

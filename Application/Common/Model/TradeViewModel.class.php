@@ -61,6 +61,11 @@ class TradeViewModel extends BaseViewModel {
             'ywy' => 'ywy',
             'ywyphone' => 'ywyphone',
             '_on' => 'Trade.cst_id = Choose.id',
+            '_type' => 'LEFT'
+        ),
+        'pzcsvalue' => array(
+            'id' => 'pvid',
+            '_on' => 'pzcsvalue.project_id = Choose.project_id and pzcsvalue.batch_id = Choose.batch_id and pzcsvalue.pzcs_id=7 and pzcsvalue.cs_value=-1',
         ),
     );
 

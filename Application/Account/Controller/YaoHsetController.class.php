@@ -633,7 +633,7 @@ class YaoHsetController extends BaseController {
         {
             $this->error("系统错误，请稍后重试！");
         }
-        $list=D("ChooseUser")->join(" left join xk_yaohresult s on xk_choose.id=s.cstid")->field('xk_choose.id,xk_choose.customer_name,xk_choose.customer_phone,xk_choose.cardno,xk_choose.cyjno')->where(" xk_choose.project_id={$yaohset['project_id']} and xk_choose.batch_id={$yaohset['batch_id']} and xk_choose.status=1 and s.id is null")->select();
+        $list=D("ChooseUser")->join(" left join xk_yaohresult s on xk_choose.id=s.cstid")->join("LEFT JOIN  xk_yaohuser y ON y.cst_id=xk_choose.id")->field('xk_choose.id,xk_choose.customer_name,xk_choose.customer_phone,xk_choose.cardno,xk_choose.cyjno')->where(" xk_choose.project_id={$yaohset['project_id']} and xk_choose.batch_id={$yaohset['batch_id']} and xk_choose.status=1 and s.id is null and y.id is null")->select();
         if(empty($list))
         {
             $this->error("系统错误，请稍后重试！");
@@ -641,20 +641,54 @@ class YaoHsetController extends BaseController {
         $count = count($list);
         $rand_list=range(0, $count-1);
         $rcount=$yaohset['mzgs'];
+        $zdg=$yaohset['dqmaxgroup']+1;
+        $ys_yh=M()->table("xk_choose c")->field('c.id,c.customer_name,c.customer_phone,c.cardno,c.cyjno,y.yh_group_px')->join("xk_yaohuser y ON y.cst_id = c.id")->where("c.project_id={$yaohset['project_id']} and c.batch_id={$yaohset['batch_id']} and y.yh_group=$zdg")->order("y.yh_group_px ASC")->select();
         $status=1;
-        if ($rcount>$count)
+        if ($rcount>($count+count($ys_yh)))
         {
-            $rcount=$count;
+            $rcount=($count+count($ys_yh));
             $status=-1;
         }
-        $rand_list = array_rand($rand_list, $rcount);
+        //查询预设的分组
+
+        $cc=$rcount;
+        if($rcount === count($ys_yh)){
+            $new_rand_list=$ys_yh;
+        }else{
+            if($ys_yh) {
+                $rcount = $rcount - count($ys_yh);
+            }
+            $rand_list = array_rand($rand_list, $rcount);
+            $new_rand_list=[];
+            if($ys_yh){
+                $s=0;
+                for($i=0;$i<$cc;$i++){
+                    for($k=0;$k<count($ys_yh);$k++){
+                        if($ys_yh[$k]['yh_group_px'] == ($i+1)){
+                            $new_rand_list[$i]=$ys_yh[$k];
+                            unset($ys_yh[$k]);
+                            $ys_yh=array_merge($ys_yh);
+                            break;
+                        }else{
+                            $new_rand_list[$i]=$list[$rand_list[$s]];
+                            $s++;
+                            break;
+                        }
+                    }
+                }
+            }else{
+                for($i=0;$i<$cc;$i++){
+                    $new_rand_list[$i]=$list[$rand_list[$i]];
+                }
+            }
+
+        }
+
         $user=D(User)->find(session('ACCOUNT_ID'));
-        foreach( $rand_list as $k =>$onecst){
-            $cstlist[$k]=$list[$onecst];
-            $cstlist[$k]['customer_phone']=rsa_decode($cstlist[$k]['customer_phone'],  getChoosekey());
-            $cstlist[$k]['cardno']=rsa_decode($cstlist[$k]['cardno'],  getChoosekey());
-            
-            $data[$k]['cstid']=$list[$onecst]['id'];
+        foreach( $new_rand_list as $k =>$onecst){
+            $new_rand_list[$k]['customer_phone']=rsa_decode($onecst['customer_phone'],  getChoosekey());
+            $new_rand_list[$k]['cardno']=rsa_decode($onecst['cardno'],  getChoosekey());
+            $data[$k]['cstid']=$onecst['id'];
             $data[$k]['group']=$yaohset['dqmaxgroup']+1;
             $data[$k]['no']=$yaohset['dqmaxno']+$k+1;
             $data[$k]['pxingroup']=$k+1;
@@ -666,7 +700,7 @@ class YaoHsetController extends BaseController {
             $data[$k]['createdbyid']=$user['id'];
         }
         $data1['dqmaxgroup']=$yaohset['dqmaxgroup']+1;
-        $data1['dqmaxno']=$yaohset['dqmaxno']+$rcount;
+        $data1['dqmaxno']=$yaohset['dqmaxno']+$cc;
         $data1['status']=$status;
         $YaoHresult=D("YaoHresult");
         try {
@@ -674,7 +708,7 @@ class YaoHsetController extends BaseController {
             $YaoHresult->addAll($data);
             D("YaoHset")->editOneById($yaohset['id'],$data1);
             $YaoHresult->commit();
-            $this->success(["成功",$cstlist]);
+            $this->success(["成功",$new_rand_list]);
         }catch (\Exception $e) {
             $YaoHresult->rollback();
             $this->error("系统错误，请稍后重试！");
