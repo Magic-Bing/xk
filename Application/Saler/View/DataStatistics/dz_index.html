@@ -161,7 +161,7 @@
 				<div id="iscroller-scroller" class="iscroller-scroller-style" >
 					<div class="saler-statistics-list-box" >
 						<!--房源状况-->
-                                                 <a href="<{:U('project/index', array('info' => set_search_ids(array('p' => $search_hd_id))))}>" >
+                                                 <a href="<{:U('project/dz_index', array('p' => $pid,'b'=>$bid ))}>" >
 						<div class="clearfix saler-saled-content-rate-list" style="background-color: #26c1df;padding:  5px 0 0 0 ;height: 160px;">
 							<p style="margin-left: 5%;color: #fff;font-size:13px;font-weight:500;">推售总房源 <{$household['zgs']}> 套</p>
 							<div class="fl wm35 saler-saled-content-rate-img" style=" position: absolute;left: 50%;transform: translate(-50%);">
@@ -221,47 +221,48 @@
 							
 						</div>
                                                 </a>
-						<!--用户选房情况和登录情况-->
+						<!--用户选房情况和签到情况-->
 						<div class="clearfix saler-saled-content-rate-list" id="user-info">
                                                         <p style="color:#e46c0a;padding-left: 5px;font-size:16px;font-weight: 700;border-bottom: 1px solid #ddd;">
                                                             <i class="fa fa-user" aria-hidden="true"></i>&nbsp;客户状态分布
                                                         </p>
 							<table class="wm100">
 								<tr style="height: 46px;">
-									<td colspan="3" align="center" class="all-user">客户总数<span><{$user_xf.zrs}></span>人，选房转化率<span><{:round($user_xf['yxf']/$user_xf['zrs']*100,2)}></span>%</td>
+									<td colspan="3" align="center" class="all-user">客户总数<span><{$user_xf.zrs}></span>人，选房转化率<span><{:round($user_xf['sign_selected']/$user_xf['zrs']*100,2)}></span>%</td>
 								</tr>
 								<tr>
 									<td colspan="3" style="height: 5px;background-color: #fff"></td>
 								</tr>
 								<tr>
-									<td class="not-login" style="padding-top: 5px" >未登录</td>
+									<td class="not-login" style="padding-top: 5px" >未签到</td>
 									<th></th>
-									<td class="login" style="padding-top: 5px" >已登录</td>
+									<td class="login" style="padding-top: 5px" >已签到</td>
 								</tr>
 								<tr>
-									<td class="not-login"><span><{$user_xf.wdl|default='0'}>人</span></td>
+									<td class="not-login"><span><{$user_xf.no_sign|default='0'}>人</span></td>
 									<th></th>
-									<td class="login"><span><{$user_xf.ydl|default='0'}>人</span></td>
+									<td class="login"><span><{$user_xf.yes_sign|default='0'}>人</span></td>
 								</tr>
 								<tr>
 									<td colspan="3" style="height: 5px;background-color: #fff"></td>
 								</tr>
 								<tr >
-									<td style="padding-top: 5px" class="login-not-xf">已登录未选</td>
+									<td style="padding-top: 5px" class="login-not-xf">已签到未选</td>
 									<th></th>
-									<td style="padding-top: 5px" class="login-xf">已登录已选</td>
+									<td style="padding-top: 5px" class="login-xf">已签到已选</td>
 								</tr>
 								<tr>
-									<td class="login-not-xf"><span><{$user_xf.wxf|default='0'}>人</span></td>
+									<td class="login-not-xf"><span><{$user_xf.sign_select|default='0'}>人</span></td>
 									<th></th>
-									<td class="login-xf"><span><{$user_xf.yxf|default='0'}>人</span></td>
+									<td class="login-xf"><span><{$user_xf.sign_selected|default='0'}>人</span></td>
 								</tr>
 							</table>
 						</div>
+
 						<!--户型销售排名-->
 						<div class="clearfix saler-saled-content-rate-list" id="hx-rank">
                                                         <p style="color:#eb5858;padding-left: 5px;font-size:16px;font-weight: 700;border-bottom: 1px solid #ddd;">
-							<!--<p style="color: #ffffff;background: #eb5858;">-->
+						<!--<p style="color: #ffffff;background: #eb5858;">-->
                                                             <i class="fa fa-building-o" aria-hidden="true"></i>&nbsp;房间户型销售排名
                                                         </p>
 
@@ -383,19 +384,19 @@
                             </span>
                             <p class="weui-tabbar__label1">首页</p>
                         </a>
-                        <a href="<{:U('ChooseAnalysis/index', array('info' => set_search_ids(array('p' => $search_hd_id))))}>" class="weui-tabbar__item1">
+                        <a href="<{:U('ChooseAnalysis/dz_index', array('p' => $pid,'b'=>$bid ))}>" class="weui-tabbar__item1">
                             <span style="display: inline-block;position: relative;">
                                     <i class="fa fa-group weui-tabbar__icon1"></i>
                             </span>
                             <p class="weui-tabbar__label1">客户分析</p>
                         </a>
-						<a href="<{:U('RoomAnalysis/index', array('info' => set_search_ids(array('p' => $search_hd_id))))}>" class="weui-tabbar__item1">
+						<a href="<{:U('Project/dz_index', array('p' => $pid,'b'=>$bid ))}>" class="weui-tabbar__item1">
 							<span style="display: inline-block;position: relative;">
 								<i class="fa fa-bar-chart weui-tabbar__icon1"></i>
 							</span>
-							<p class="weui-tabbar__label1">装户分析</p>
+							<p class="weui-tabbar__label1">房源销控</p>
 						</a>
-                        <a href="<{:U('MyReport/index', array('info' => set_search_ids(array('p' => $search_hd_id))))}>" class="weui-tabbar__item1">
+                        <a href="<{:U('MyReport/dz_index', array('p' => $pid,'b'=>$bid ))}>" class="weui-tabbar__item1">
                             <span style="display: inline-block;position: relative;">
                                 <i class="fa fa-user-circle-o weui-tabbar__icon1"></i>
                                 <span class="weui-badge weui-badge_dot" style="position: absolute;top: 2px;right: 0px;display:none;"></span>

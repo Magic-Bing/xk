@@ -2,7 +2,7 @@
 <html>
 
 	<head>
-		<title><block name="seo_title"><{$seo_title|default='微信开盘数据统计'}></block></title>
+		<title><block name="seo_title"><{$seo_title|default='数据统计'}></block></title>
 		<meta name="keywords" content="<block name='seo_keywords'><{$seo_keywords|default='置业顾问'}></block>"/>
 		<meta name="description" content="<block name='seo_description'><{$seo_description|default='置业顾问'}></block>"/>
 		<meta charset="utf-8">
@@ -48,19 +48,21 @@
 					room_index: '<{:U("room/index")}>',
 					project_room_compare: '<{:U("compare/room")}>',
 					search: '<{:U("search/index")}>',
+					search_dz: '<{:U("search/dz_index")}>',
 					hot_sale: '<{:U("hot/index")}>',
 					login: '<{:U("logging/check")}>',
-                                        login1: '<{:U("logging1/check")}>',
+					login1: '<{:U("logging1/check")}>',
 					logout: '<{:U("logging/logout")}>',
 					project_index: '<{:U("project/index")}>',
+					project_dz_index: '<{:U("project/dz_index")}>',
                     getNotBuy: '<{:U("MyReport/getNotBuy")}>',
-				}
+				};
 				var search_url = {
 					room: '<{:U("search/room")}>',
-				}
+				};
 				var saler_hot = {
 
-				}
+				};
 				var saler_event_house ={
                     room: '<{:U("EventOrderHouse/hot")}>'
 					,login : '<{:U("EventOrderHouse/check")}>'

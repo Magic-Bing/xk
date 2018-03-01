@@ -215,7 +215,6 @@ $(function() {
 				.animate({"right": "-350px"}, function() {
 					$(this).hide();
 				});
-				
 			$choose_option_shadow.hide();
 			$thiz.removeClass("saler-search-form-choose-btn-click");
 		} else {
@@ -264,7 +263,6 @@ $(function() {
 	//搜索 - 销售情况切换
 	$(".saler-search-filter-sale").change(function() {
 		get_search_room_list(search_url.room,"dtj");
-		
 		return false;
 	});
 	

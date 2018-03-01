@@ -47,8 +47,40 @@ class SearchController extends Base1Controller
 		$this->assign('hx_list', $hx_list);
         $this->display();		
 	}
-	
-	
+
+    public function dz_index()
+    {
+        //分析
+        $pid = I('p', 0, 'intval');
+        $bid = I('b', 0, 'trim');
+        $this->assign('pid', $pid);
+        $this->assign('bid', $bid);
+        $projinfo=M()->table("xk_kppc k")->field("k.*,p.name pname")->join("xk_project p ON p.id=k.proj_id")->where("k.proj_id=".$pid." AND k.id=".$bid)->find();
+//        echo $pid."-".$bid;exit;
+        if(empty($projinfo))
+        {
+            session("USER_ID",null);
+            $this->error('系统异常，请重新登录！', U('logging/index'));
+        }
+
+
+        $this->assign('pid',$pid );
+        $this->assign('bid',$bid );
+
+        $where['proj_id'] = $pid;
+        $where['pc_id'] = $bid;
+
+        //楼栋
+        $Buildview = D('Common/Buildview');
+        $build_list = $Buildview->getBuildList($where, 'buildname ASC');
+        $this->assign('build_list', $build_list);
+
+        //户型
+        $Roomview = D('Common/Roomview');
+        $hx_list = $Roomview->getRoomListGroupBy('hx, proj_id', 'hx', 'hx ASC', $where);
+        $this->assign('hx_list', $hx_list);
+        $this->display();
+    }
 	/**
 	 * 搜索房间并返回信息
 	 *
@@ -85,7 +117,11 @@ class SearchController extends Base1Controller
 			$this->error("项目不存在，请重试！", U('search/index'));
 		}
 		$where['proj_id'] = $project_id;
-		
+        $bid = I('bid',0, 'intval');
+        if(!empty($bid)){
+            $where['pc_id'] = $bid;
+        }
+
 		//是否购买
 		$is_xf = I('is_xf', '', 'trim');
 		if (strtolower($is_xf) != 'all') {

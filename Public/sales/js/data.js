@@ -54,6 +54,7 @@ function get_search_room_list($url,$type) {
 		$build_ids.push($($build_list[$i]).attr("data-id"));
 	}
 	var $project_id = $(".saler-search-project-id").attr("data-id");
+	var bid = $(".saler-search-project-id").attr("data-bid");
 	var $floor_start = $(".saler-search-form-choose-option-floor-start").val();
 	var $floor_end = $(".saler-search-form-choose-option-floor-end").val();
 	
@@ -85,6 +86,7 @@ function get_search_room_list($url,$type) {
 			info: $input_str,
 			project_id: $project_id,
 			is_xf: $is_xf,
+			bid: bid,
 			build_ids: $build_ids.join(','),
 			floor_start: $floor_start,
 			floor_end: $floor_end,
