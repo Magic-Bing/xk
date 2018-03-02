@@ -162,7 +162,7 @@
 			<div class="saler-search-form-choose-option-footer">
 				<div class="saler-search-form-choose-option-footer-btns">
 						<span class="rs">清空</span>
-						<span class="qr js-saler-search-form-choose-option-footer-btn">查找</span>
+						<span class="qr js-saler-search-form-choose-option-footer-btn-dz">查找</span>
 				</div>
 			</div>
 		</div>
@@ -201,13 +201,13 @@
 						<div class="saler-search-filter-tabs-box">
 							<div class="saler-search-filter-tabs-labels">
 								<label class="saler-search-filter-tabs-label">
-									<input class="saler-search-filter-sale saler-search-filter-tabs-all" type="radio" value="all" name="saler-search-filter-sale" >所有
+									<input class="saler-search-filter-sale-dz saler-search-filter-tabs-all" type="radio" value="all" name="saler-search-filter-sale" >所有
 								</label>
 								<label class="saler-search-filter-tabs-label">
-									<input class="saler-search-filter-sale saler-search-filter-tabs-no-sale" type="radio" value="-1" name="saler-search-filter-sale" checked="1">待售
+									<input class="saler-search-filter-sale-dz saler-search-filter-tabs-no-sale" type="radio" value="-1" name="saler-search-filter-sale" checked="1">待售
 								</label>
 								<label class="saler-search-filter-tabs-label">
-									<input class="saler-search-filter-sale saler-search-filter-tabs-has-sale" type="radio" value="1" name="saler-search-filter-sale">已售
+									<input class="saler-search-filter-sale-dz saler-search-filter-tabs-has-sale" type="radio" value="1" name="saler-search-filter-sale">已售
 								</label>
 							</div>
 						</div>
@@ -309,6 +309,30 @@
 <block name="footer_js">
 <script>
 $(function() {
+    //搜索 - 销售情况切换
+    $(".saler-search-filter-sale-dz").change(function() {
+        get_search_room_list_dz(search_url.dz_room,"dtj");
+        return false;
+    });
+
+    //搜索 - 确认
+    $(".js-saler-search-form-choose-option-footer-btn-dz").click(function() {
+        $("#shadow").hide();
+        $(".js-saler-search-form-choose-option")
+            .animate({"right": "-350px"}, function() {
+                $(this).hide();
+            });
+        $(".js-saler-search-form-choose-btn").removeClass("saler-search-form-choose-btn-click");
+        get_search_room_list_dz(search_url.dz_room,"dtj1");
+
+        return false;
+    });
+    //搜索 - 查看房间详情
+    $(document).on('click', '.js-saler-search-filter-table-tr-dz', function() {
+        var $room_id = $(this).attr("data-id");
+        var $url = saler_url.room_dz_index + '?id=' + $room_id+"&p=<{$pid}>&b=<{$bid}>";
+        window.location.href = $url;
+    });
     $(".js-saler-search-form-input-box-input").focus();
        //$(".saler-search-form-input-box").find(".js-saler-search-form-input-box-input").trigger("click").focus()
 });

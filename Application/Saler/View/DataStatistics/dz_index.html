@@ -314,11 +314,11 @@
 						<!--置业顾问销售排名，根据权限判断是否显示-->
 						<if condition="$res neq null">
 							<div class="clearfix saler-saled-content-rate-list" id="gw-rank">
-                                                                <p style="padding-left: 5px;font-size:16px;font-weight: 700;border-bottom: 1px solid #ddd;">
-                                                                    <i class="fa fa fa-id-badge" aria-hidden="true"></i>&nbsp;置业顾问销售排名
-                                                                </p>
+										<p style="padding-left: 5px;font-size:16px;font-weight: 700;border-bottom: 1px solid #ddd;">
+											<i class="fa fa fa-id-badge" aria-hidden="true" style="display: inline-block;width: 10%"></i><span style="display: inline-block;width: 45%;text-align: center;cursor: pointer" id="gw-c">置业顾问销售排名</span><span id="xc-c" style="display: inline-block;width: 45%;text-align: center;cursor: pointer">现场销控排名</span>
+										</p>
 								<volist name="res" id="val" key="prizes_k">
-									<div class="saler-saled-lottery-prizes-list saler-saled-lottery-prizes-list<elt name='prizes_k' value='5'><{$prizes_k}><else/><{$prizes_k-5}></elt>">
+									<div class="saler-saled-lottery-prizes-list gw saler-saled-lottery-prizes-list<elt name='prizes_k' value='5'><{$prizes_k}><else/><{$prizes_k-5}></elt>" >
 										<div class="saler-saled-lottery-prize">
 											<div class="saler-saled-lottery-prize-title">
 												<div class="saler-saled-lottery-prize-title-box">
@@ -364,6 +364,48 @@
 										</div>
 									</div>
 								</volist>
+								<foreach name="xc" item="vo" key="prizes_k">
+									<div class="saler-saled-lottery-prizes-list xc saler-saled-lottery-prizes-list<elt name='prizes_k' value='5'><{$prizes_k}><else/><{$prizes_k-5}></elt>" id="xc" style="display: none">
+										<div class="saler-saled-lottery-prize">
+											<div class="saler-saled-lottery-prize-title">
+												<div class="saler-saled-lottery-prize-title-box">
+										<span class="saler-saled-lottery-prize-title-square">
+											<span class="saler-saled-lottery-prize-title-square-info"></span>
+										</span>
+													<span class="saler-saled-lottery-prize-title-info">
+											<{$vo.czusername}>
+										</span>
+												</div>
+											</div>
+											<div class="clearfix saler-saled-lottery-prize-content">
+												<div class="fl wm32 saler-saled-lottery-prize-jackpot">
+													<div class="saler-saled-lottery-prize-content-title saler-saled-lottery-prize-jackpot-title">
+														套数
+													</div>
+													<div class="saler-saled-lottery-prize-content-info saler-saled-lottery-prize-jackpot-info">
+														<{$vo.all_count}>
+													</div>
+												</div>
+												<div class="fl wm36 saler-saled-lottery-prize-send">
+													<div class="saler-saled-lottery-prize-content-title saler-saled-lottery-prize-send-title">
+														金额（万）
+													</div>
+													<div class="saler-saled-lottery-prize-content-info saler-saled-lottery-prize-send-info">
+														<{:round($vo['price']/1000,2)}>
+													</div>
+												</div>
+												<div class="fl wm32 saler-saled-lottery-prize-residual">
+													<div class="saler-saled-lottery-prize-content-title saler-saled-lottery-prize-residual-title">
+														销售占比
+													</div>
+													<div class="saler-saled-lottery-prize-content-info saler-saled-lottery-prize-residual-info">
+														<?php echo round(($vo['all_count']/$ct)*100,2)."%"; ?>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</foreach>
 							</div>
 						</if>
 
@@ -406,23 +448,31 @@
                     </div>
 <script>
     $(function() {
+        $("#gw-c").on("click",function () {
+			$(".gw").show();
+			$(".xc").hide();
+        });
+        $("#xc-c").on("click",function () {
+            $(".xc").show();
+            $(".gw").hide();
+        });
         //圆形统计
         $('.rate-state').circliful();
         
 	$(".all-user").on("click",function () {
-            window.location.href="<{:U('/Saler/ChooseAnalysis/index/info/p'.$search_hd_id.'/status/1')}>";
+            window.location.href="<{:U('/Saler/ChooseAnalysis/dz_index/p/'.$pid.'/b/'.$bid.'/status/1')}>";
         });
         $(".login").on("click",function () {
-            window.location.href="<{:U('/Saler/ChooseAnalysis/index/info/p'.$search_hd_id.'/status/3')}>";
+            window.location.href="<{:U('/Saler/ChooseAnalysis/dz_index/p/'.$pid.'/b/'.$bid.'/status/3')}>";
         });
         $(".not-login").on("click",function () {
-            window.location.href="<{:U('/Saler/ChooseAnalysis/index/info/p'.$search_hd_id.'/status/2')}>";
+            window.location.href="<{:U('/Saler/ChooseAnalysis/dz_index/p/'.$pid.'/b/'.$bid.'/status/2')}>";
         });
         $(".login-not-xf").on("click",function () {
-            window.location.href="<{:U('/Saler/ChooseAnalysis/index/info/p'.$search_hd_id.'/status/4')}>";
+            window.location.href="<{:U('/Saler/ChooseAnalysis/dz_index/p/'.$pid.'/b/'.$bid.'/status/4')}>";
         });
         $(".login-xf").on("click",function () {
-            window.location.href="<{:U('/Saler/ChooseAnalysis/index/info/p'.$search_hd_id.'/status/5')}>";
+            window.location.href="<{:U('/Saler/ChooseAnalysis/dz_index/p/'.$pid.'/b/'.$bid.'/status/5')}>";
         });
     });
 </script>

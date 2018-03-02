@@ -1,0 +1,567 @@
+﻿<extend name="Common/base" />
+<block name="header">
+    <link rel="stylesheet" href="/Public/common/css/font-awesome-4.7.0/css/font-awesome.css">
+   
+    <style>
+        .weui-tabbar{
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            position: absolute;
+            z-index: 500;
+            bottom: 0;
+            width: 100%;
+            background-color: #ffffff;
+            border-top: 1px solid #e6e6e6;
+        }
+        .weui-tabbar__item {
+            display: block;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+            padding: 2px 0 0;
+            font-size: 0;
+            color: #999999;
+            text-align: center;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+        .weui-bar__item_on
+        {
+            color:#09BB07;
+        }
+        .weui-badge {
+            display: inline-block;
+            width: 15px;
+            border-radius: 18px;
+            background-color: #F43530;
+            color: #FFFFFF;
+            line-height: 1.2;
+            text-align: center;
+            font-size: 12px;
+            vertical-align: middle;
+        }
+        .weui-badge_dot {
+            width: 9px;
+            height: 9px;
+        }
+
+        .weui-tabbar__icon {
+            display: inline-block;
+            width: 27px;
+            font-size: 20px;
+            padding: 0 0 0 0;
+        }
+        .weui-tabbar__label {
+            text-align: center;
+            color: #999999;
+            font-size: 10px;
+            line-height: 1.8;
+        }
+        .weui-bar__item_on .weui-tabbar__label
+        {
+            color:#09BB07;
+        }
+        .js-saler-project-view-content-search-compare-btn{
+            background-color: #FFF;margin-top: -2px;padding: 2px 8px 2px 8px ;border-radius: 5px;display: inline;height:25px
+        }
+        .saler-project-view-content-search-compare-btn-click .weui-tabbar__label{
+            color:#03a9f4;
+        }
+        .saler-project-view-header-unit-info {
+            width: 21%;
+            min-width: 70px;
+            text-align: center;
+            font-size: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+           
+        }
+        .hidden-list .saler-project-view-header-unit-info {
+            width: 25%;
+            text-align: center;
+            font-size: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .saler-project-view-header-unit-info a{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin: 1px 0px;
+            border-right: 1px solid #c9c9c9;
+        }
+        .saler-project-view-header-unit-info-selected > a {
+            background:  #fff;
+            color: #000;
+            font-weight: bold;
+            border: 1px solid #fff;
+            border-right: 1px solid #c9c9c9;
+        }
+        .saler-project-view-header-unit-info .morea{
+             margin: 10px 2px;
+             padding:5px 0px;
+        }
+        .hidden-list{
+            position: fixed;
+            display: none;
+            background-color: #e7f0f9;
+            /*background-color: #fff;*/
+            z-index: 99999;
+            padding: 5px 5px 0 5px;
+            top:113px;
+            width:calc(100% - 10px);
+        }
+        #shadow-list{
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            position: fixed;
+            z-index: 88888;
+            display: none;
+            cursor: pointer;
+        }
+        .up-center{
+            text-align: center;
+            height: 33px;
+            line-height: 33px;
+            font-weight: 400;
+            font-size: 13px;
+        }
+        .bqydiv{
+            margin-top: 43px;
+            height: 34px;
+            white-space: nowrap;
+            z-index: 100;
+            position: absolute;
+            display: flex;
+            background: #ffffff;
+            border-bottom: 1px solid #f2f2f2;
+        }
+        .bl{
+            cursor: pointer;
+            font-weight: 700;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+        }
+        .gy{
+            cursor: pointer;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+        }
+        .gy span{
+            height: 25px;
+            margin-top: 4px;
+            line-height: 25px;
+            color: #797979;
+        }
+        .bl span{
+            height: 25px;
+            margin-top: 4px;
+            line-height: 25px;
+            color: #333;
+            padding: 8px 5px;
+            border-bottom: 2px solid #333;
+        }
+        
+        .saler-project-view-content-rooms-room-name {
+            font-size: 10px;
+            text-align: center;
+            font-weight: 700;
+        }
+        .saler-project-view-content-rooms-room-area {
+            font-size: 10px;
+            text-align: left;
+            width: 90%;
+            margin: auto;
+        }
+        .saler-project-view-content-rooms-box td.saler-project-view-content-rooms-floor {
+            width: 28px;
+            background: #e4e4e4;
+            border: 1px solid #FFF;
+            font-weight: 700;
+            color: #333;
+            font-size: 13px;
+            text-align: center;
+            padding: 5px 3px;
+        }
+     
+        .hot-one{
+            background-color: #f25741;
+        }
+        .hot-two{
+            background-color: #ff9353
+        }
+        .hot-three{
+            background-color: rgba(255, 188, 23, 0.69);
+        }
+        .hot-four{
+            background-color: rgba(45, 202, 94, 0.53);
+        }
+        .hot-five{
+            background-color: #6aba6e;
+        }
+        .saler-project-view-content-rooms-room-box-one {
+            font-size: 10px;
+            border-width: 1px;
+            margin: 3px 4px;
+            padding: 0 5px;
+        }
+        .room-li{
+            border-right: 1px solid #fff;
+            border-top: 1px solid #fff;
+            width: calc(25% - 1px);
+            font-weight: bold;
+        }
+        .hot-one-span{
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #f25741;
+        }
+        .hot-two-span{
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #ff9353;
+        }
+        .hot-three-span{
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: rgba(255, 188, 23, 0.69);
+        }
+        .hot-four-span{
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: rgba(45, 202, 94, 0.53);
+        }
+        .hot-five-span{
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #6aba6e;
+        }
+        #build-list{
+            border-style: none;
+            border: 0;
+            background-color: rgba(203,203,203,0);
+            margin-right: 15px;
+            color: #999;
+        }
+        #show-gd,#zw-gd{
+            display: inline-block;
+            background-color: #ffffff;
+            color: #c9c9c9;
+            cursor: pointer;
+            width: 50px;
+            position: fixed;
+            z-index: 101;
+            height: 32px;
+            top:78px;
+            left: calc(100% - 50px);
+            font-size:12px;
+        }
+        .saler-project-view-header-unit-info > a{
+            padding: 0;
+        }
+        
+
+    </style>
+    <div id="shadow-list">
+
+    </div>
+    <div class="saler-project-view-header-wrapper">
+        <div class="clearfix saler-project-view-header" style="background:#FFF;border:0px">
+            <div class="fl wm25 arrow-left common-header-return">
+                <span class="common-header-return-box return-btn">
+                    <a href="javascript:void(0);" class="common-header-return-btn">返回</a>
+                </span>
+            </div>
+            <div class="fl wm50 common-header-content js-common-header-content">
+                <span class="common-header-content-box-no-arrow">
+                    <span class="common-header-content-box-name">销售统计</span>
+                </span>
+            </div>
+            <div class="fr wm10 common-header-right" style="padding-top: 3%">
+                <div class="common-header-reload">
+                    <a href="" onclick="window.location.reload()" class="saler-project-header-reload-btn js-saler-project-header-reload-btn saler-project-header-reload-a">
+                        <i class="icon-refresh  bigger-230 " style="color: #c1c1c1;font-size: 18px"></i>
+                        <!--<img src="/Public/common/img/refresh.png" style="width: 15px;height: 15px">-->
+                    </a>
+                </div>
+            </div>
+            <div class="fl wm100 bqydiv">
+                <div class="fl up-center gy" id="room-xk">
+                    <a href="<{:U('Project/dz_index', array('p' => $pid,'b' => $bid ))}>">
+                        <span >房源销控</span>
+                    </a>
+                </div>
+                <div class="fl up-center bl" id="room-img">
+                    <a href="<{:U('RoomAnalysis/dz_index', array('p' => $pid,'b' => $bid ))}>">
+                        <span >销售统计</span>
+                    </a>
+                </div>
+            </div>
+                <!--开启滚动条添加id="unit_s"-->
+        </div>
+    </div>
+</block>
+
+<block name="content">
+    <div class="saler-project-view-base saler-project-id" data-project-id="<{$project['id']|default=0}>" data-build-id="<{$search_build_id|default=0}>" data-unit-id="<{$search_unit_id|default=0}>">
+        <div class="saler-project-view-content-wrapper">
+            <div class="saler-project-view-content">
+
+                    <div class="clearfix saler-project-view-content-tabs" style="margin-top: 95px;">
+
+                        </div>
+                    <div id="iscroller-wrapper" class="saler-project-view-content-rooms iscroller-rooms iscroller-style" style="top: 79px;">
+                                    <div id="iscroller-scroller" class="saler-project-view-content-rooms-box iscroller-rooms-scroller iscroller-scroller-style">
+                                        <div id="pullDown" style="display:none;">
+                                            <span class="clearfix pull-down-box">
+                                                <span class="pullDownIcon"></span>
+                                                <span class="pullDownLabel">下拉刷新...</span>
+                                            </span>
+                                        </div>
+                                        <div class="wm100" id="img-html">
+                                                <h1 style="font-size: 16px;background-color: #FFF;padding: 5px;letter-spacing: 1px">
+                                                    <div style="position: absolute;right: 10px;z-index: 99999;font-size: 12px;font-weight: 400;">
+                                                        <i class="fa fa-stop" style="color:rgba(255, 188, 23, 0.69);"></i>房源总数  <i class="fa fa-stop" style="margin-left: 5px;color:rgba(255, 67, 52, 0.69);"></i>已售
+                                                    </div>
+                                                    <span style="padding: 0 2px;background: #ff7d73;margin-right: 10px;"> </span>
+                                                    楼栋动态销售情况
+                                                </h1>
+                                                <div id="container-build" style="min-width:100%;height:200px;margin-bottom: 10px;"></div>
+                                                <h1 class="fl wm100" style="font-size: 16px;background-color:#FFF;padding: 5px;letter-spacing: 1px">
+                                                    <span style="padding: 0 2px;background: #ff7d73;margin-right: 10px;"> </span>
+                                                    户型动态销售情况
+                                                    <select  id="build-list" class="fr">
+                                                        <option value="">全部</option>
+                                                        <volist name="group_room_build" id="vo" key="k">
+                                                            <option value="<{$vo['bld_id']}>"><{$vo['buildname']}></option>
+                                                        </volist>
+                                                    </select>
+                                                </h1>
+                                                <div id="container-hx" style="min-width:100%;height:200px;margin-bottom: 10px;"></div>
+
+    <script src="/Public/sales/js/highcharts.js"></script>
+    <script src="/Public/sales/js/exporting.js"></script>
+    <script src="/Public/sales/js/highcharts-3d.js"></script>
+    <script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
+                                                <script>
+                                                    //    var chart = null;//用于环形图中间标题显示
+                                                    $(function () {
+                                                        //楼栋下房间备选柱状图
+                                                        $('#container-build').highcharts({
+                                                            colors: "rgba(255,188,23,0.69);rgba(255, 67, 52, 0.69)".split(";"),
+                                                            credits:{
+                                                                enabled: 0//是否显示右下角的超链接
+                                                            },
+                                                            chart: {
+                                                                type: 'column'
+                                                            },
+                                                            title: {
+                                                                text: ''
+                                                            },
+                                                            exporting:{
+                                                                enabled:false //用来设置是否显示‘打印’,'导出'等功能按钮，不设置时默认为显示
+                                                            },
+                                                            xAxis: {
+                                                                categories: <{:json_encode($arr_name)}>,
+                                                        crosshair: true
+                                                    },
+                                                        yAxis: {//左侧提示标题
+                                                            min: 0,
+                                                                title: {
+                                                                text: ''
+                                                            }
+                                                        },
+                                                        tooltip: {
+                                                            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                                                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                                            '<td style="padding:0"><b>{point.y:1f} </b></td></tr>',
+                                                                footerFormat: '</table>',
+                                                                shared: true,
+                                                                useHTML: true
+                                                        },
+                                                        plotOptions: {
+                                                            column: {
+                                                                borderWidth: 0,
+                                                                    dataLabels:{
+                                                                    enabled:true, // dataLabels设为true
+                                                                }
+                                                            }
+                                                        },
+                                                        series: [{
+                                                            name: '房源总数',
+                                                            data: <{:json_encode($arr_room_count)}>
+                                                    }, {
+                                                            name: '已售',
+                                                                data:  <{:json_encode($arr_sc_count)}> //直接放数组是不行的，必须转成json格式
+                                                        }],
+                                                        legend: {
+                                                            enabled: false
+                                                        }
+                                                    });
+                                                        //户型分组柱状图
+                                                        $('#container-hx').highcharts({
+                                                            colors: "rgba(255,188,23,0.69);rgba(255, 67, 52, 0.69)".split(";"),
+                                                            credits:{
+                                                                enabled: 0//是否显示右下角的超链接
+                                                            },
+                                                            chart: {
+                                                                type: 'column'
+                                                            },
+                                                            title: {
+                                                                text: ''
+                                                            },
+                                                            exporting:{
+                                                                enabled:false //用来设置是否显示‘打印’,'导出'等功能按钮，不设置时默认为显示
+                                                            },
+                                                            xAxis: {
+                                                                categories: <{:json_encode($hx_name)}>,
+                                                        crosshair: true
+                                                    },
+                                                        yAxis: {//左侧提示标题
+                                                            min: 0,
+                                                                title: {
+                                                                text: ''
+                                                            }
+                                                        },
+                                                        tooltip: {
+                                                            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                                                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                                            '<td style="padding:0"><b>{point.y:1f} </b></td></tr>',
+                                                                footerFormat: '</table>',
+                                                                shared: true,
+                                                                useHTML: true
+                                                        },
+                                                        plotOptions: {
+                                                            column: {
+                                                                borderWidth: 0,
+                                                                    dataLabels:{
+                                                                    enabled:true, // dataLabels设为true
+                                                                }
+                                                            }
+                                                        },
+                                                        series: [{
+                                                            name: '房源总数',
+                                                            data: <{:json_encode($hx_room_count)}>
+                                                    }, {
+                                                            name: '已售',
+                                                                data:  <{:json_encode($hx_sc_count)}> //直接放数组是不行的，必须转成json格式
+                                                        }],
+                                                        legend: {
+                                                            enabled: false
+                                                        }
+                                                    });
+                                                    });
+
+                                                </script>
+
+                                        </div>
+
+                                        <div class="block60 room-bottom-block" style="display:none;"></div>
+                                    </div>
+                                </div>
+
+    <div class="weui-tabbar1">
+        <a href="<{:U('DataStatistics/dz_index', array('p' => $pid,'b' => $bid ))}>" class="weui-tabbar__item1">
+                            <span style="display: inline-block;position: relative;">
+                                <i class="fa fa-home weui-tabbar__icon1"></i>
+                            </span>
+            <p class="weui-tabbar__label1">首页</p>
+        </a>
+        <a href="<{:U('ChooseAnalysis/dz_index', array('p' => $pid,'b' => $bid ))}>" class="weui-tabbar__item1 ">
+                            <span style="display: inline-block;position: relative;">
+                                    <i class="fa fa-group weui-tabbar__icon1"></i>
+                            </span>
+            <p class="weui-tabbar__label1">客户分析</p>
+        </a>
+        <a href="<{:U('Project/dz_index', array('p' => $pid,'b' => $bid ))}>" class="weui-tabbar__item1 weui-bar__item_on1">
+							<span style="display: inline-block;position: relative;">
+								<i class="fa fa-bar-chart weui-tabbar__icon1"></i>
+							</span>
+            <p class="weui-tabbar__label1">房源销控</p>
+        </a>
+        <a href="<{:U('MyReport/dz_index', array('p' => $pid,'b' => $bid ))}>" class="weui-tabbar__item1 ">
+                            <span style="display: inline-block;position: relative;">
+                                <i class="fa fa-user-circle-o weui-tabbar__icon1"></i>
+                                <span class="weui-badge weui-badge_dot" style="position: absolute;top: 2px;right: 0px;display:none;"></span>
+                            </span>
+            <p class="weui-tabbar__label1">我的</p>
+        </a>
+    </div>
+    </div>
+                    </div>
+            </div>
+            </block>
+            <block name="footer"></block>>
+            <block name="footer_js">
+
+                <link href="__COMMON__/js/jquery/iscroll/iscroll.css" type="text/css" rel="stylesheet" />
+                <script src="__PUBLIC__/common/js/jquery/iscroll/iscroll.js"></script>
+                <script>
+
+
+                    //下拉框change事件
+                    $(document).on('change',"#build-list",function () {
+                        var val=$(this).val();
+                        $.post("<{:U('/Saler/RoomAnalysis/getHxCountDz')}>",{'p':"<{$pid}>",'b':"<{$bid}>",'vo':val},function (data) {
+                            $('#container-hx').highcharts({
+                                colors: "rgba(255,188,23,0.69);rgba(255, 67, 52, 0.69)".split(";"),
+                                credits:{
+                                    enabled: 0//是否显示右下角的超链接
+                                },
+                                chart: {
+                                    type: 'column'
+                                },
+                                title: {
+                                    text: ''
+                                },
+                                exporting:{
+                                    enabled:false //用来设置是否显示‘打印’,'导出'等功能按钮，不设置时默认为显示
+                                },
+                                xAxis: {
+                                    categories:data[0] ,
+                                    crosshair: true
+                        },
+                            yAxis: {//左侧提示标题
+                                min: 0,
+                                    title: {
+                                    text: ''
+                                }
+                            },
+                            tooltip: {
+                                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                '<td style="padding:0"><b>{point.y:1f} </b></td></tr>',
+                                    footerFormat: '</table>',
+                                    shared: true,
+                                    useHTML: true
+                            },
+                            plotOptions: {
+                                column: {
+                                    borderWidth: 0,
+                                    dataLabels:{
+                                        enabled:true, // dataLabels设为true
+                                    }
+                                }
+                            },
+                            series: [{
+                                name: '房源总数',
+                                data:data[1]
+                        }, {
+                                name: '已售',
+                                data:data[2]   //直接放数组是不行的，必须转成json格式
+                            }]
+                        });
+                        },'json');
+                    });
+
+
+                </script>
+
+            </block>

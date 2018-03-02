@@ -60,7 +60,7 @@ $(function() {
 	});
 	
 	//选中
-	$("body").on("click", ".js-saler-project-view-content-rooms-room-box-shadow", function() {
+	$(document).on("click", ".js-saler-project-view-content-rooms-room-box-shadow", function() {
 		var $room_id = $(this).attr("data-room-id");
                 
                  var $room_checked_num = $(".saler-project-view-content-rooms-room-select:checked").length;

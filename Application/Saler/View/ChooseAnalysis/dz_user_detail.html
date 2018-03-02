@@ -1,0 +1,302 @@
+<extend name="Common/base" />
+
+<block name="header">
+    <link rel="stylesheet" href="/Public/common/css/font-awesome-4.7.0/css/font-awesome.css">
+    <style>
+        body{
+            background: rgb(231, 240, 249);
+        }
+        .sales-statistics-content {
+            bottom: 0;
+            top: 43px;
+        }
+        .saler-statistics-content-unit-info {
+            padding-top: 20px;
+        }
+        .saler-statistics-content-unit-box {
+            position: relative;
+            height: 130px;
+        }
+        .saler-statistics-content-price-title {
+            padding: 15px 5px 20px 5px;
+            margin-bottom: 10px;
+        }
+        
+        h1,h2{
+            color: #515151;
+        }
+		#content-tab{
+			padding: 0 10px;
+		}
+		h1{
+			    padding: 10px 0 5px 0;
+                            font-size: 16px;
+                            font-weight: bold;
+                            margin-top: 10px;
+                            margin-bottom: 5px;
+                            border-bottom: 1px solid #f4f4f4;
+                            border-top: 4px solid #ececec;
+                            width: 95%;
+		}
+                .saler-statistics-list-box h1:first-child{
+                     padding: 5px 0 5px 0;
+                     border-top: 0px;
+                }
+		h2{
+			font-size: 15px;
+			font-weight: bold;
+			margin-top: 5px;
+		}
+		h1 .xf-zt{
+			padding: 1px 3px;
+			border-radius: 3px;
+			font-weight: normal;
+			font-size: 12px;
+                        float: right;
+                        margin-right: 10px;
+		}
+                .call-phone{
+                    position: fixed;
+                    padding: 10px;
+                    z-index: 999999;
+                    right: 5%;
+                    top: 105px;
+                }
+		.call-phone i{
+                        color: #FFF;
+                        cursor: pointer;
+                        font-size: 17px;
+                        width: 22px;
+                        height: 22px;
+                        line-height: 22px;
+                        text-align: center;
+                        background: #09bb07;
+                        border-radius: 50%;
+		}
+		#user-info{
+			width: 95%;
+			margin-top: 5px;
+			margin-bottom: 5px;
+                        line-height:22px;
+		}
+		#room-tab{
+			 width: 95%;
+			 margin-top: 10px;
+			 margin-bottom: 10px;
+		 }
+		#room-tab tr{
+			margin-bottom:10px;
+		}
+		#user-info td{
+			text-align: left;
+			font-weight: bold;
+                        font-size:13px;
+		}
+		#user-info i{
+			color: #999999;
+		}
+		.hs{
+			color: #999999;
+			padding-left: 5px;
+			font-weight: normal!important;
+		}
+		hr{
+			width: 95%;
+			background-color: rgba(193,193,193,0.3);
+			border-color: rgba(193,193,193,0.3);
+			margin-top: 5px;
+		}
+		.font-hs{
+			color: #999999;
+			font-size: 12px;
+		}
+		.sm-font{
+			font-size: 12px;
+		}
+		.hot-one{
+			display: inline-block;
+			width: 8px;
+			height: 8px;
+			background-color: rgba(255, 67, 52, 0.69);
+		}
+		.hot-two{
+			display: inline-block;
+			width: 8px;
+			height: 8px;
+			background-color: rgba(255, 159, 98, 0.69);
+		}
+		.hot-three{
+			display: inline-block;
+			width: 8px;
+			height: 8px;
+			background-color: rgba(255, 188, 23, 0.69);
+		}
+		.hot-four{
+			display: inline-block;
+			width: 8px;
+			height: 8px;
+			background-color: rgba(45, 202, 94, 0.53);
+		}
+		.hot-five{
+			display: inline-block;
+			width: 8px;
+			height: 8px;
+			background-color: rgba(56, 156, 13, 0.73);
+		}
+		.ft{
+
+		}
+                .endtr{
+                    margin-bottom: 20px;
+                    border-bottom: 1px dashed #f4f4f4;
+                }
+                .scgs{
+                    float:right;margin-right: 2px;
+                }
+                .ired{
+                    color:#ff6058;
+                }
+                .iyellow{
+                    color:#f8a659;
+                }
+                .igreen{
+                    color:#0ba1b4;
+                }
+                html{
+                    color:#999999;
+                }
+                .yxf{
+                    color: #09bb07;
+                    border: 1px solid #09bb07;
+                }
+                .ydl{
+                    color: #09bb07;
+                    border: 1px solid #09bb07;
+                }
+                .wxf{
+                    color:#ff6058;
+                    border: 1px solid #ff6058;
+                }
+                .wdl{
+                    color:#33ccff;
+                    border: 1px solid #33ccff;
+                }
+                .yyd{
+                    color:#515151
+                }
+    </style>
+	<div class="common-header-wrapper">
+		<div class="clearfix common-header sales-statistics-header">
+			<div class="fl wm25 arrow-left common-header-return">
+				<span class="common-header-return-box return-btn">
+					<a href="javascript:void(0);" class="common-header-return-btn">返回</a>
+				</span>
+			</div>
+			<div class="fl wm50 common-header-content js-common-header-content">
+				<span class="common-header-content-box-no-arrow">
+					<span class="common-header-content-box-name">客户详情</span>
+				</span>
+			</div>
+			<div class="fr wm10 common-header-right" style="padding-top: 3%">
+				<div class="common-header-reload">
+					<a href="" onclick="window.location.reload()" class="saler-project-header-reload-btn js-saler-project-header-reload-btn saler-project-header-reload-a">
+						<i class="icon-refresh  bigger-230 " style="color: #c1c1c1;font-size: 18px"></i>
+						<!--<img src="/Public/common/img/refresh.png" style="width: 15px;height: 15px">-->
+					</a>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</block>
+
+<block name="content">
+	<div class="common-content sales-statistics-content">
+		<div class="saler-statistics-content-wrapper">
+			<div id="iscroller-wrapper" class="iscroller-style saler-statistics-list-wrapper" style="bottom:43px;background-color: #fff;">
+				<div id="iscroller-scroller" class="iscroller-scroller-style" >
+					<div class="saler-statistics-list-box" >
+						<div class="fl wm100" id="content-tab">
+							<div class="fl wm100">
+								<h1><!--<i class="fa fa-user iyellow"> </i>--> 
+                                                                    <i class="fa fa-id-card-o iyellow"></i> <{$user_info.cname}>
+                                                                    <if condition="$user_info.rid neq null"><span class="xf-zt yxf">已选房</span><else/><span class="xf-zt wxf">未选房</span></if>
+                                                                    <if condition="$user_info.is_sign eq 1"><span class="xf-zt ydl">已签到</span><else/><span class="xf-zt wdl">未签到</span></if>
+                                                                    
+                                                                    <a href="tel:<{:rsa_decode($user_info['cphone'],getChoosekey())}>" class="call-phone" data-num="<{:rsa_decode($user_info['cphone'],getChoosekey())}>"><i class="fa fa-phone"></i></a>
+                                                                </h1>
+								<table id="user-info">
+									<tr>
+										<td class="wm20" style="width:60px">手机号码</td>
+										<td class="hs"><{:rsa_decode($user_info['cphone'],getChoosekey())}></td>
+									</tr>
+									<tr>
+										<td>证件号码</td>
+										<td class="hs"><{:rsa_decode($user_info['cardno'],getChoosekey())}></td>
+									</tr>
+									<tr>
+										<td>诚意单号</td>
+										<td class="hs"><{$user_info['cyjno']}></td>
+									</tr>
+									<tr>
+										<td>置业顾问</td>
+										<td class="hs"><{$user_info['ywy']?$user_info['ywy']:'无'}></td>
+									</tr>
+									<tr>
+										<td>签到时间</td>
+										<td class="hs"><{$user_info['is_sign']==1?date('Y-m-d h:i:s',$user_info['sign_time']):'未签到'}></td>
+									</tr>
+								</table>
+								<h1><i class="fa fa-envelope-open-o ired"> </i> 所选房间</h1>
+								<if condition="$user_info.rid neq null">
+                                                                    <a href="<{:U('room/dz_index', array('id' =>$user_info['rid'],'p'=> $pid,'b'=>$bid))}>" style="color:#999999">
+                                                                        <h2><{$user_info.bname}>-<{$user_info.unit}>单元-<{$user_info.room}></h2>
+                                                                        <p  class="font-hs" >房间信息：￥<{:number_format($user_info['total'],2)}>元  &nbsp;&nbsp;&nbsp;      <if condition="$user_info['hx'] neq null">(<{$user_info.hx}>)</if><{$user_info.area}>㎡</p>
+                                                                        <p class="font-hs" >选房时间：<{:date('Y-m-d h:i:s',$user_info['cztime'])}></p>
+                                                                        <p class="font-hs" >选房人员：<{$user_info['czusername']}></p>
+                                                                    </a>
+								<else/>
+                                                                    <p style="font-size: 14px;color: #ff6058;margin: 5px 0;">还没有选择房间...</p>
+								</if>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</block>
+<block name="footer_js">
+<include file="Common@Common/Mobile/iscroll" iscroller_id="iscroller_statistics" iscroller_select_id="iscroller-wrapper" />
+<div class="weui-tabbar1">
+	<a href="<{:U('DataStatistics/dz_index', array('p' => $pid,'b' => $bid ))}>" class="weui-tabbar__item1">
+                            <span style="display: inline-block;position: relative;">
+                                <i class="fa fa-home weui-tabbar__icon1"></i>
+                            </span>
+		<p class="weui-tabbar__label1">首页</p>
+	</a>
+	<a href="<{:U('ChooseAnalysis/dz_index', array('p' => $pid,'b' => $bid ))}>" class="weui-tabbar__item1 weui-bar__item_on1">
+                            <span style="display: inline-block;position: relative;">
+                                    <i class="fa fa-group weui-tabbar__icon1"></i>
+                            </span>
+		<p class="weui-tabbar__label1">客户分析</p>
+	</a>
+	<a href="<{:U('Project/dz_index', array('p' => $pid,'b' => $bid ))}>" class="weui-tabbar__item1">
+							<span style="display: inline-block;position: relative;color:#999999">
+								<i class="fa fa-bar-chart weui-tabbar__icon1"></i>
+							</span>
+		<p class="weui-tabbar__label1">装户分析</p>
+	</a>
+	<a href="<{:U('MyReport/dz_index', array('p' => $pid,'b' => $bid ))}>" class="weui-tabbar__item1">
+                            <span style="display: inline-block;position: relative;">
+                                <i class="fa fa-user-circle-o weui-tabbar__icon1"></i>
+                                <span class="weui-badge weui-badge_dot" style="position: absolute;top: 2px;right: 0px;display:none;"></span>
+                            </span>
+		<p class="weui-tabbar__label1">我的</p>
+	</a>
+                    </div>  
+
+</block>
+

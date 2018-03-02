@@ -70,7 +70,67 @@ class ChooseAnalysisController extends Base1Controller
         }
 
     }
+    /*
+     * 显示客户分析页面
+     * qzb
+     * 2018-3-2*/
+    public function dz_index(){
+        $status=I("status",1,"intval");
+        $search=I("search",'',"trim");
+        $uid=$this->get_user_id();
+        $pid = I('p', 0, 'intval');
+        $bid = I('b', 0, 'trim');
+        $this->assign('pid', $pid);
+        $this->assign('bid', $bid);
+        $projinfo=M()->table("xk_kppc k")->field("k.*,p.name pname")->join("xk_project p ON p.id=k.proj_id")->where("k.proj_id=".$pid." AND k.id=".$bid)->find();
+//        echo $pid."-".$bid;exit;
+        if(empty($projinfo))
+        {
+            session("USER_ID",null);
+            $this->error('系统异常，请重新登录！', U('logging/index'));
+        }
+        $userinfo = M()->table("xk_user")->where("id=$uid")->find();
+        $pd_user=M()->table("xk_station2user su")->join("xk_fun_station fs ON fs.station_id=su.station_id")->where("userid=$uid AND fs.fun_id=101")->find();
+        if(!empty($search)){
+            $s="AND (c.customer_name like '%{$search}%' OR c.like_p like '%".strencode($search)."%')";
+        }else{
+            $s="";
+        }
+        if($pd_user){
+            $p="";
+        }else{
+            $p=" AND c.ywy='{$userinfo['name']}'";
+        }
+        $user_xf="";
+        if(empty($status)){
+            $this->error('数据异常，请重新登录！', U('logging/index'));
+        }else{
+            if($status===1){
+                $user_xf=M()->table("xk_choose c")->field("c.id,r.id rid,c.customer_name,c.customer_phone,c.is_sign")->join('LEFT JOIN xk_room r ON r.cstid=c.id')->where("c.project_id=$pid AND c.batch_id=$bid $p $s")->select();
+            }elseif($status===2){
+                $user_xf=M()->table("xk_choose c")->field("c.id,r.id rid,c.customer_name,c.customer_phone,c.is_sign")->join('LEFT JOIN xk_room r ON r.cstid=c.id')->where("c.project_id=$pid AND c.batch_id=$bid AND c.is_sign=0 $p $s")->select();
+            }elseif($status===3){
+                $user_xf=M()->table("xk_choose c")->field("c.id,r.id rid,c.customer_name,c.customer_phone,c.is_sign")->join('LEFT JOIN xk_room r ON r.cstid=c.id')->where("c.project_id=$pid AND c.batch_id=$bid AND c.is_sign=1 $p $s")->select();
+            }elseif($status===4){
+                $user_xf=M()->table("xk_choose c")->field("c.id,r.id rid,c.customer_name,c.customer_phone,c.is_sign")->join('LEFT JOIN xk_room r ON r.cstid=c.id')->where("c.project_id=$pid AND c.batch_id=$bid AND c.is_sign=1 AND r.id IS NULL $p $s")->select();
+            } else{
+                $user_xf=M()->table("xk_choose c")->field("c.id,r.id rid,c.customer_name,c.customer_phone,c.is_sign")->join('xk_room r ON r.cstid=c.id')->where("c.project_id=$pid AND c.batch_id=$bid AND c.is_sign=1 $p $s")->select();
+            }
+        }
+        $tylelist=array( 1 => '全部客户',2 => '未签到',3 => '已签到',4 => '已签到未选',5 => '已签到已选');
+        $this->assign("tylelist",$tylelist);
+        $this->assign("status",$status);
+        $this->assign("user_xf",$user_xf);
+        $this->assign('projinfo', $projinfo);
 
+
+        if(IS_AJAX){
+            echo $this->fetch("ChooseAnalysis/dz_user_list");
+        }else{
+            $this->display();
+        }
+
+    }
     //客户详情页面
     public function user_detail(){
         //if(!IS_POST)
@@ -95,6 +155,35 @@ class ChooseAnalysisController extends Base1Controller
 //        echo json_encode($sc_room);exit;
         $this->assign('sc_room',$sc_room);
         $this->assign('project_id',$project);
+        $this->assign('user_info',$user_info);
+        $this->display();
+    }
+    /*
+     * 客户详情页面
+     * qzb
+     * 2018-3-2*/
+    public function dz_user_detail(){
+        //if(!IS_POST)
+        //$this->error("非法操作",U("index/index"));
+        $cid=I("cid",0,"intval");
+        $pid = I('p', 0, 'intval');
+        $bid = I('b', 0, 'trim');
+        $this->assign('pid', $pid);
+        $this->assign('bid', $bid);
+        $projinfo=M()->table("xk_kppc k")->field("k.*,p.name pname")->join("xk_project p ON p.id=k.proj_id")->where("k.proj_id=".$pid." AND k.id=".$bid)->find();
+//        echo $pid."-".$bid;exit;
+        if(empty($projinfo))
+        {
+            session("USER_ID",null);
+            $this->error('系统异常，请重新登录！', U('logging/index'));
+        }
+        //用户信息及房间选定，及选房时间，登录时间
+        $user_info=M()->table("xk_choose c")->
+        field("c.customer_name cname,c.customer_phone cphone,c.cardno,c.ywy,c.cyjno,c.is_sign,c.sign_time,b.buildname bname,r.unit,r.room,r.hx,r.area,r.total,r.id rid,rl.czusername,rl.cztime")->
+        join("LEFT JOIN xk_room r ON r.cstid=c.id")->
+        join("LEFT JOIN (select Max(id) id,czusername,room_id,cztime from xk_roomczlog where cztype='选房' group by room_id) rl ON r.id=rl.room_id")->
+        join("LEFT JOIN xk_build b ON b.id=r.bld_id")->
+        where("c.id=$cid")->find();
         $this->assign('user_info',$user_info);
         $this->display();
     }

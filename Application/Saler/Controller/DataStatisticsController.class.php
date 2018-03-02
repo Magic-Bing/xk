@@ -188,7 +188,7 @@ class DataStatisticsController extends Base1Controller
 		';
         $hx = M()->table("xk_roomlist")->field($field)->
         where($where)->find();
-
+        $cs_count=$hx['sold'];
         //总销售占总数的的统计
         $household['percent'] 	 = round(($hx['sold'] / $hx['all_count']) * 100,2);
         $household['selt'] 		 = $hx['sold'];
@@ -240,22 +240,21 @@ class DataStatisticsController extends Base1Controller
 
         //$rates = list_sort_by($rates, 'percent', 'desc');
         $this->assign('rates', $rates);
-
         //置业顾问排名
         $pd_user=M()->table("xk_station2user su")->join("xk_fun_station fs ON fs.station_id=su.station_id")->where("userid=$uid AND fs.fun_id=102")->find();
         if($pd_user){
             $res=$Model->query("select count(1) cou,round(sum(total)/10000,2) mon,concat(a.ywy,'(',a.ywyphone,')' ) as czusername FROM xk_choose a inner join xk_room b on a.id=b.cstid where b.is_xf=1 and a.project_id=$pid AND a.batch_id=$bid group by a.ywy order by count(1) desc");
-            $count=0;
-            for($i=0;$i<count($res);$i++){
-                $count+=(int)$res[$i]['cou'];
-            }
-            $this->assign("ct",$count);
+            $xc=$Model->query("SELECT MAX(rl.id) id,czusername,count(1) all_count,SUM(r.total) price from xk_roomlist r INNER JOIN xk_roomczlog rl ON r.id=rl.room_id where r.proj_id=$pid AND r.pc_id=$bid AND r.is_xf=1 GROUP BY rl.czusername");
+            $this->assign("ct",$cs_count);
             $this->assign("res",$res);
+            $this->assign("xc",$xc);
         }else{
             $this->assign("ct",null);
             $this->assign("res",null);
+            $this->assign("xc",null);
         }
-//        $this->assign('search_hd_id', $search_hd_id);
+        //现场销控排名
+
         $this->set_seo_title(cookie("hdname"));
         $this->display();
     }

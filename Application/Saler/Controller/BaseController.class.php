@@ -47,7 +47,8 @@ class BaseController extends CommonBaseController
 	 */
 	public function _empty()
 	{
-		$this->error('方法不存在！', U('index/index'));
+            session('USER_ID', null);
+            $this->error('错误的操作，请重新登录！', U('Logging/index'));
     }
 	
 	

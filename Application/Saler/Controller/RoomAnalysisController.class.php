@@ -12,7 +12,7 @@ namespace Saler\Controller;
 
 class RoomAnalysisController extends Base1Controller
 {
-    //装户分析
+    //装户分析微信端
     public  function index(){
 
 
@@ -197,7 +197,65 @@ class RoomAnalysisController extends Base1Controller
 //        echo $is_fx;exit;
         $this->display();
     }
+    /*
+     * 装户分析电子开盘端
+     * qzb
+     * 2018-3-2*/
+    public  function dz_index(){
 
+        //分析
+        $pid = I('p', 0, 'intval');
+        $bid = I('b', 0, 'trim');
+        $this->assign('pid', $pid);
+        $this->assign('bid', $bid);
+        $projinfo=M()->table("xk_kppc k")->field("k.*,p.name pname")->join("xk_project p ON p.id=k.proj_id")->where("k.proj_id=".$pid." AND k.id=".$bid)->find();
+        if(empty($projinfo))
+        {
+            session("USER_ID",null);
+            $this->error('数据异常，请重新登录！', U('logging/index'));
+        }
+            //楼栋套数和收藏次数数据
+            $bld_list=M()->table("xk_roomlist r")->field('r.bld_id bid,r.buildname name,SUM(CASE WHEN r.is_xf=1  THEN 1 ELSE 0 END) cs,count(r.id) all_count')->where("r.proj_id=$pid AND r.pc_id=$bid ")->order("r.buildcode ASC")->group('r.bld_id')->select();
+            $arr_name=[];
+            $arr_room_count=[];
+            $arr_sc_count=[];
+            for($i=0;$i<count($bld_list);$i++){
+                $arr_name[]=$bld_list[$i]['name'];
+                $arr_room_count[]=(int)$bld_list[$i]['all_count'];
+                $arr_sc_count[]=(int)$bld_list[$i]['cs'];
+            }
+            $this->assign("arr_name",$arr_name);
+            $this->assign("arr_room_count",$arr_room_count);
+            $this->assign("arr_sc_count",$arr_sc_count);
+            //户型分组柱状图
+            //户型下拉框的值
+            $Roomview = D('Common/Roomview');
+            $where['proj_id'] = $pid;
+            $where['pc_id'] = $bid;
+            $group_room_build = $Roomview->getRoomListGroupBy('bld_id,buildname', 'bld_id', 'bld_id, id', $where);
+            $group_room_unit = $Roomview->getRoomListGroupBy('bld_id, unit', 'bld_id, unit', 'bld_id, unit, id', $where);
+            //数据格式化
+//            echo json_encode($group_room_build);exit;
+            $this->assign('new_units', $group_room_unit);
+            $this->assign('group_room_build', $group_room_build);
+
+            $hx_list=M()->table("xk_roomlist r")->field('r.hx,SUM(CASE WHEN r.is_xf=1  THEN 1 ELSE 0 END) sc_count,count(r.id) all_count')->where("r.proj_id=$pid AND r.pc_id=$bid")->order("r.hx ASC")->group('r.hx')->select();
+            $hx_name=[];
+            $hx_room_count=[];
+            $hx_sc_count=[];
+            for($i=0;$i<count($hx_list);$i++){
+                $hx_name[]="".$hx_list[$i]['hx'];
+                $hx_room_count[]=(int)$hx_list[$i]['all_count'];
+                $hx_sc_count[]=(int)$hx_list[$i]['sc_count'];
+            }
+            $this->assign("hx_name",$hx_name);
+            $this->assign("hx_room_count",$hx_room_count);
+            $this->assign("hx_sc_count",$hx_sc_count);
+
+        $this->assign('projinfo', $projinfo);
+//        echo $is_fx;exit;
+        $this->display();
+    }
     //装户统计图形页面，ajax返回页面
     public function imgPage(){
         if(!IS_AJAX){
@@ -304,6 +362,47 @@ class RoomAnalysisController extends Base1Controller
             $b="AND r.bld_id={$arr[0]}";
         }
         $hx_list=M()->table("xk_roomlist r")->field('r.hx,SUM(CASE WHEN cr.id IS NOT NULL  THEN gs ELSE 0 END) sc_count,count(r.id) all_count')->join("LEFT JOIN (select room_id,id,count(1) as gs from xk_cst2rooms group by room_id) cr ON cr.room_id=r.id")->where("r.proj_id=$pid AND r.pc_id=$bid $b")->order("r.hx ASC")->group('r.hx')->select();
+        $hx_name=[];
+        $hx_room_count=[];
+        $hx_sc_count=[];
+        for($i=0;$i<count($hx_list);$i++){
+            $hx_name[]="户型:".$hx_list[$i]['hx'];
+            $hx_room_count[]=(int)$hx_list[$i]['all_count'];
+            $hx_sc_count[]=(int)$hx_list[$i]['sc_count'];
+        }
+        $data[]=$hx_name;
+        $data[]=$hx_room_count;
+        $data[]=$hx_sc_count;
+        echo json_encode($data);exit;
+    }
+
+    /*
+    * 户型柱状图，下拉框返回值,电子开盘
+    * qzb
+    * 2018-3-2*/
+    public function getHxCountDz(){
+        if(!IS_AJAX){
+            session("USER_ID",null);
+            $this->error('非法操作！', U('logging/index'));
+        }
+        $vo=I("vo",'','trim');
+        $pid = I('p', 0, 'intval');
+        $bid = I('b', 0, 'trim');
+        $this->assign('pid', $pid);
+        $this->assign('bid', $bid);
+        $projinfo=M()->table("xk_kppc k")->field("k.*,p.name pname")->join("xk_project p ON p.id=k.proj_id")->where("k.proj_id=".$pid." AND k.id=".$bid)->find();
+        if(empty($projinfo))
+        {
+            session("USER_ID",null);
+            $this->error('数据异常，请重新登录！', U('logging/index'));
+        }
+        if($vo==""){
+            $b="";
+        }else{
+            $arr=explode("-",$vo);
+            $b="AND r.bld_id={$arr[0]}";
+        }
+        $hx_list=M()->table("xk_roomlist r")->field('r.hx,SUM(CASE WHEN r.is_xf=1  THEN 1 ELSE 0 END) sc_count,count(r.id) all_count')->where("r.proj_id=$pid AND r.pc_id=$bid $b")->order("r.hx ASC")->group('r.hx')->select();
         $hx_name=[];
         $hx_room_count=[];
         $hx_sc_count=[];

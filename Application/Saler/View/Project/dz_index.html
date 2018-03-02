@@ -254,7 +254,7 @@
                     </a>
                 </div>
                 <div class="fl up-center gy" id="room-img">
-                    <a href="<{:U('RoomAnalysis/dz_index', array('p' => $pid,'b' => $bid,'is_tj' =>1 ))}>">
+                    <a href="<{:U('RoomAnalysis/dz_index', array('p' => $pid,'b' => $bid))}>">
                         <span >销售统计</span>
                     </a>
                 </div>
@@ -377,7 +377,7 @@
                                                 </span>
                                             </div>
                                             <div class="saler-project-view-content-selected-contrasts-wrapper">
-                                                <div pid="<{$search_hd_id}>" class="saler-project-view-content-selected-contrasts js-saler-project-view-content-selected-compare">
+                                                <div  class="saler-project-view-content-selected-contrasts js-saler-project-view-content-selected-compare-dz">
                                                     <span class="saler-project-view-content-selected-contrasts-btn">
                                                         开始对比
                                                     </span>
@@ -441,6 +441,27 @@
                     }
 //                    console.log(window.name);
                     $(function () {
+                        //比对
+                        $(".js-saler-project-view-content-selected-compare-dz").click(function() {
+                            var $select_room_list = $(".saler-project-view-content-rooms-room-select:checked");
+                            if( $select_room_list.length<2)
+                            {
+                                layer_alert("至少选择两个房源！");
+                                return false;
+                            }
+                            var $room_ids = [];
+                            for (var $i = 0; $i < $select_room_list.length; $i ++) {
+                                $room_ids.push($($select_room_list[$i]).attr("data-room-id"));
+                            }
+
+                            var $room_ids_str = $room_ids.join(",");
+                            if ($room_ids_str == '') {
+                                layer_alert("请选择要对比的房源！");
+                                return false;
+                            }
+
+                            window.location.href = saler_url.project_room_compare_dz + '?ids=' + $room_ids_str+"&p=<{$pid}>&b=<{$bid}>";
+                        });
                         //搜索框跳转
                         $(".saler-project-view-content-search-input-dz").focus(function() {
                             var $project_id = $(".saler-project-id").attr("data-project-id");
