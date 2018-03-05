@@ -45,8 +45,12 @@ class MyReportController extends BaseController
             }
             $arr_string=implode(",",$project_ids);
             //获取有权限查看的活动
-            $activity=M()->table("xk_station2pc sp")->field("e.id,e.name")->join("xk_event_order_house e ON e.project_id=sp.proj_id AND e.batch_id=sp.pc_id")->where("sp.proj_id in({$arr_string})")->group("e.id")->select();
-            $this->assign('user_project_list', $activity);
+            $pd=M()->table("xk_station2user su")->field("su.id,p.id pid,sp.proj_id,sp.pc_id,e.id eid")->
+            join("xk_station2pc sp ON su.station_id=sp.station_id")->
+            join("LEFT JOIN xk_event_order_house e ON e.project_id=sp.proj_id AND e.batch_id=sp.pc_id")->
+            join("LEFT JOIN xk_pzcsvalue p ON p.project_id=sp.proj_id AND p.batch_id=sp.pc_id AND p.pzcs_id=1 AND cs_value=-1")->
+            where("su.userid=$uid")->count();
+            $this->assign('count', $pd);
             $this->assign('user', $user);
             $this->assign('search_hd_id', $hid);
             $this->display();
@@ -75,18 +79,12 @@ class MyReportController extends BaseController
         }
             $user = M()->table("xk_user")->where("id=$uid")->find();
             $user_where['userid']=$uid;
-        $pd=M()->table("xk_station2user su")->field("su.id,sp.proj_id,sp.pc_id,k.name,p.id pid")->
+        $pd=M()->table("xk_station2user su")->field("su.id,p.id pid,sp.proj_id,sp.pc_id,e.id eid")->
         join("xk_station2pc sp ON su.station_id=sp.station_id")->
-        join("xk_kppc k ON k.id=sp.pc_id")->
+        join("LEFT JOIN xk_event_order_house e ON e.project_id=sp.proj_id AND e.batch_id=sp.pc_id")->
         join("LEFT JOIN xk_pzcsvalue p ON p.project_id=sp.proj_id AND p.batch_id=sp.pc_id AND p.pzcs_id=1 AND cs_value=-1")->
-        where("su.userid=".$uid)->select();
-        $count=0;
-        for($i=0;$len=count($pd),$i<$len;$i++){
-            if(!$pd[$i]['pid']){
-                $count++;
-            }
-        }
-        $this->assign('count', $count);
+        where("su.userid=$uid")->count();
+        $this->assign('count', $pd);
         $this->assign('user', $user);
         $this->display();
     }

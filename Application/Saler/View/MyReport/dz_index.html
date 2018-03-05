@@ -105,13 +105,13 @@
             </li>
             <if condition="$count gt 1">
                 <li style="float:left; width:50%;margin-top: 20%;">
-                    <a href="/Saler/index/dz_page.html">
-                        <span class="djbtn"><i class="fa fa-reply-all" ></i> 活动切换</span>
+                    <a href="/Saler/index/dz_index.html">
+                        <span class="djbtn"><i class="fa fa-reply-all" ></i> 项目切换</span>
                     </a>
                 </li>
             <else />
                 <li style="float:left; width:50%;margin-top: 20%;">
-                    <span class="djbtn" style="background:#ddd"><i class="fa fa-reply-all" ></i> 活动切换</span>
+                    <span class="djbtn" style="background:#ddd"><i class="fa fa-reply-all" ></i> 项目切换</span>
                 </li>
             </if>
         </ul>
@@ -121,13 +121,13 @@
     <div class="weui-tabbar">
         <div class="weui-tabbar1">
             <a href="<{:U('DataStatistics/dz_index', array('p' => $pid,'b' => $bid ))}>" class="weui-tabbar__item1">
-                            <span style="display: inline-block;position: relative;">
+                            <span style="display: inline-block;position: relative;color:#999999">
                                 <i class="fa fa-home weui-tabbar__icon1"></i>
                             </span>
                 <p class="weui-tabbar__label1">首页</p>
             </a>
             <a href="<{:U('ChooseAnalysis/dz_index', array('p' => $pid,'b' => $bid ))}>" class="weui-tabbar__item1 ">
-                            <span style="display: inline-block;position: relative;">
+                            <span style="display: inline-block;position: relative;color:#999999">
                                     <i class="fa fa-group weui-tabbar__icon1"></i>
                             </span>
                 <p class="weui-tabbar__label1">客户分析</p>
@@ -136,7 +136,7 @@
 							<span style="display: inline-block;position: relative;color:#999999">
 								<i class="fa fa-bar-chart weui-tabbar__icon1"></i>
 							</span>
-                <p class="weui-tabbar__label1">装户分析</p>
+                <p class="weui-tabbar__label1">房源销控</p>
             </a>
             <a href="javascript:;" class="weui-tabbar__item1 weui-bar__item_on1">
                             <span style="display: inline-block;position: relative;color:#09BB07" >

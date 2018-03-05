@@ -1,0 +1,46 @@
+﻿<extend name="Common/base" />
+
+<block name="header">
+	<div class="saler-project-header-wrapper">
+		<span class="saler-project-header">
+			请选择
+		</span>
+		<span>
+			<a href="/saler/logging/logout.html" class="a-logout" style="">注销</a>
+		</span>
+	</div>
+</block>
+
+<block name="content">
+	<div class="base">
+		<div class="saler-project-content-wrapper">
+			<div class="saler-project-content">
+				<ul class="saler-project-content-list">
+					<if condition="count($hd) gt 0">
+						<p style="font-weight: bold;text-align: center;color: #00be67">微信开盘</p>
+						<volist name="hd" id="vo" key="k">
+							<li class="saler-project-content-li">
+								<a href="../../saler/DataStatistics/index/info/p<{$vo.id}>" class="saler-project-content-a">
+										<{$vo.name|default="项目"}>
+										<input style="float:right;margin-right:5px" type="radio" name="xzproj" class="js_xzproj_radio"/>
+								</a>
+							</li>
+						</volist>
+					</if>
+					<if condition="count($pc) gt 0">
+						<p style="font-weight: bold;text-align: center;margin-top: 10px;color: #00be67">电子开盘</p>
+						<volist name="pc" id="projects_vo" key="projects_k">
+							<li class="saler-project-content-li">
+								<a href="<{:U('saler/DataStatistics/dz_index',array('p' => $projects_vo['pid'],'b' => $projects_vo['id'] ))}>" class="saler-project-content-a">
+									<{$projects_vo.name|default="项目"}>
+									<input style="float:right;margin-right:5px" type="radio" name="xzproj" class="js_xzproj_radio"/>
+								</a>
+							</li>
+						</volist>
+					</if>
+				</ul>
+			</div>
+		</div>
+	<div>
+</block>
+<block name="footer"></block>

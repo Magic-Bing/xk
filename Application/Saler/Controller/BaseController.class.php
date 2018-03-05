@@ -38,7 +38,17 @@ class BaseController extends CommonBaseController
             }
         }
 	}
-  
+
+	/*
+	 * 删除二位数组中的一维数组
+	 * 2018-3-5
+	 * qzb*/
+    function unique($arr) {
+        foreach($arr as $k => $v) $arr[$k] = serialize($v);
+        $arr = array_unique($arr);
+        foreach($arr as $k => $v) $arr[$k] = unserialize($v);
+        return $arr;
+    }
 	/**
 	 * 空方法
 	 *

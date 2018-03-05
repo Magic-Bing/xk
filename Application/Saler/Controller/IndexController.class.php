@@ -11,13 +11,11 @@ namespace Saler\Controller;
 class IndexController extends BaseController {
 
 	/**
-	 * 首页
+	 * 微信选房首页
 	 *
 	 * @create 2016-8-25
 	 * @author zlw
 	 */
-
-
     public function index() 
 	{
 		$user_where['userid'] = $this->get_user_id();
@@ -90,6 +88,45 @@ class IndexController extends BaseController {
             }
         }
 
+    /*
+	 * 电子开盘和微信开盘合并，让用户自行选择
+	 * qzb
+	 * 2018-3-5*/
+    public function dz_index(){
+        $uid=$this->get_user_id();
+        $Model = new \Think\Model();
+        $userinfo=$Model->query("SELECT * FROM xk_user WHERE id=". $uid ." limit 1" );
+        if (empty($userinfo) || count($userinfo)<1)
+            $this->error('用户登录信息异常,请重新登录！', U('logging/index'));
+        //获取有权限查看的项目
+        $pd=$Model->table("xk_station2user su")->field("su.id,sp.proj_id,sp.pc_id,k.name,p.id pid,e.id eid,e.name ename")->
+        join("xk_station2pc sp ON su.station_id=sp.station_id")->
+        join("xk_kppc k ON k.id=sp.pc_id")->
+        join("LEFT JOIN xk_event_order_house e ON e.project_id=sp.proj_id AND e.batch_id=sp.pc_id")->
+        join("LEFT JOIN xk_pzcsvalue p ON p.project_id=sp.proj_id AND p.batch_id=sp.pc_id AND p.pzcs_id=1 AND cs_value=-1")->
+        where("su.userid=".$uid)->select();
+//        echo json_encode($pd);exit;
+        $pc=[];
+        $hd=[];
+        for($i=0;$len=count($pd),$i<$len;$i++){
+            if($pd[$i]['pid']){
+                $hd[$i]['id']=$pd[$i]['eid'];
+                $hd[$i]['name']=$pd[$i]['ename'];
+            }else{
+                $pc[$i]['id']=$pd[$i]['pc_id'];
+                $pc[$i]['pid']=$pd[$i]['proj_id'];
+                $pc[$i]['name']=$pd[$i]['name'];
+            }
+        }
+        $pc=$this->unique($pc);
+        $hd=$this->unique($hd);
+        //多个活动时，前往活动列表让用户选择
+        $this -> assign('userinfo', $userinfo[0]);
+        $this -> assign('pc', $pc);
+        $this -> assign('hd', $hd);
+        $this -> display();
+    }
+
 	/**
 	 * 修改密码
 	 * @author wxh
@@ -106,7 +143,6 @@ class IndexController extends BaseController {
 				session('USER_ID', null);
 				$this->success('修改成功！', U('logging/index'));
 			}
-
 		} else {
 			$data = $user -> where("id = " . $_SESSION['USER_ID']) -> select();
 			$this -> assign("data", $data[0]);

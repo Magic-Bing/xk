@@ -245,13 +245,17 @@ class DataStatisticsController extends Base1Controller
         if($pd_user){
             $res=$Model->query("select count(1) cou,round(sum(total)/10000,2) mon,concat(a.ywy,'(',a.ywyphone,')' ) as czusername FROM xk_choose a inner join xk_room b on a.id=b.cstid where b.is_xf=1 and a.project_id=$pid AND a.batch_id=$bid group by a.ywy order by count(1) desc");
             $xc=$Model->query("SELECT MAX(rl.id) id,czusername,count(1) all_count,SUM(r.total) price from xk_roomlist r INNER JOIN xk_roomczlog rl ON r.id=rl.room_id where r.proj_id=$pid AND r.pc_id=$bid AND r.is_xf=1 GROUP BY rl.czusername");
+            $xk=$Model->query("SELECT MAX(rl.id) id,czusername,count(1) all_count,SUM(r.total) price from xk_roomlist r INNER JOIN xk_roomczlog rl ON r.id=rl.room_id where r.proj_id=$pid AND r.pc_id=$bid AND r.is_xf=1 AND rl.cstid =0 GROUP BY rl.room_id");
+//            echo json_encode($xk);exit;
             $this->assign("ct",$cs_count);
             $this->assign("res",$res);
             $this->assign("xc",$xc);
+            $this->assign("xk",$xk);
         }else{
             $this->assign("ct",null);
             $this->assign("res",null);
             $this->assign("xc",null);
+            $this->assign("xk",null);
         }
         //现场销控排名
 

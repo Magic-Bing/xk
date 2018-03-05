@@ -315,7 +315,7 @@
 						<if condition="$res neq null">
 							<div class="clearfix saler-saled-content-rate-list" id="gw-rank">
 										<p style="padding-left: 5px;font-size:16px;font-weight: 700;border-bottom: 1px solid #ddd;">
-											<i class="fa fa fa-id-badge" aria-hidden="true" style="display: inline-block;width: 10%"></i><span style="display: inline-block;width: 45%;text-align: center;cursor: pointer" id="gw-c">置业顾问销售排名</span><span id="xc-c" style="display: inline-block;width: 45%;text-align: center;cursor: pointer">现场销控排名</span>
+											<i class="fa fa fa-id-badge" aria-hidden="true" style="display: inline-block;width: 10%;color: #00b050"></i><span style="display: inline-block;width: 45%;text-align: center;cursor: pointer;color: #00b050" id="gw-c">置业顾问销售排名</span><span id="xc-c" style="display: inline-block;width: 45%;text-align: center;cursor: pointer">现场销控排名</span>
 										</p>
 								<volist name="res" id="val" key="prizes_k">
 									<div class="saler-saled-lottery-prizes-list gw saler-saled-lottery-prizes-list<elt name='prizes_k' value='5'><{$prizes_k}><else/><{$prizes_k-5}></elt>" >
@@ -364,8 +364,50 @@
 										</div>
 									</div>
 								</volist>
+								<if condition="count($xk) gt 0">
+									<div class="saler-saled-lottery-prizes-list gw"  >
+										<div class="saler-saled-lottery-prize">
+											<div class="saler-saled-lottery-prize-title">
+												<div class="saler-saled-lottery-prize-title-box">
+										<span class="saler-saled-lottery-prize-title-square">
+											<span class="saler-saled-lottery-prize-title-square-info" style="background-color: #3e97eb"></span>
+										</span>
+													<span class="saler-saled-lottery-prize-title-info">
+											销控
+										</span>
+												</div>
+											</div>
+											<div class="clearfix saler-saled-lottery-prize-content">
+												<div class="fl wm32 saler-saled-lottery-prize-jackpot">
+													<div class="saler-saled-lottery-prize-content-title saler-saled-lottery-prize-jackpot-title">
+														套数
+													</div>
+													<div class="saler-saled-lottery-prize-content-info saler-saled-lottery-prize-jackpot-info" style="color: #3e97eb">
+														<{$xk[0]['all_count']}>
+													</div>
+												</div>
+												<div class="fl wm36 saler-saled-lottery-prize-send">
+													<div class="saler-saled-lottery-prize-content-title saler-saled-lottery-prize-send-title">
+														金额（万）
+													</div>
+													<div class="saler-saled-lottery-prize-content-info saler-saled-lottery-prize-send-info" style="color: #3e97eb">
+														<{:round($xk[0]['price']/10000,2)}>
+													</div>
+												</div>
+												<div class="fl wm32 saler-saled-lottery-prize-residual">
+													<div class="saler-saled-lottery-prize-content-title saler-saled-lottery-prize-residual-title">
+														销售占比
+													</div>
+													<div class="saler-saled-lottery-prize-content-info saler-saled-lottery-prize-residual-info" style="color: #3e97eb">
+														<?php echo round(($xk[0]['all_count']/$ct)*100,2)."%"; ?>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</if>
 								<foreach name="xc" item="vo" key="prizes_k">
-									<div class="saler-saled-lottery-prizes-list xc saler-saled-lottery-prizes-list<elt name='prizes_k' value='5'><{$prizes_k}><else/><{$prizes_k-5}></elt>" id="xc" style="display: none">
+									<div class="saler-saled-lottery-prizes-list xc saler-saled-lottery-prizes-list<elt name='prizes_k' value='5'><{$prizes_k}><else/><{$prizes_k-5}></elt>"  style="display: none">
 										<div class="saler-saled-lottery-prize">
 											<div class="saler-saled-lottery-prize-title">
 												<div class="saler-saled-lottery-prize-title-box">
@@ -391,7 +433,7 @@
 														金额（万）
 													</div>
 													<div class="saler-saled-lottery-prize-content-info saler-saled-lottery-prize-send-info">
-														<{:round($vo['price']/1000,2)}>
+														<{:round($vo['price']/10000,2)}>
 													</div>
 												</div>
 												<div class="fl wm32 saler-saled-lottery-prize-residual">
@@ -449,10 +491,14 @@
 <script>
     $(function() {
         $("#gw-c").on("click",function () {
+            $(this).css("color","#00b050");
+            $("#xc-c").css("color","#515151");
 			$(".gw").show();
 			$(".xc").hide();
         });
         $("#xc-c").on("click",function () {
+            $(this).css("color","#00b050");
+            $("#gw-c").css("color","#515151");
             $(".xc").show();
             $(".gw").hide();
         });

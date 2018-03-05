@@ -560,7 +560,41 @@
                         });
                         },'json');
                     });
-
+                    function loaded() {
+                        pullDownEl = document.getElementById('pullDown');
+                        pullDownOffset = pullDownEl.offsetHeight;
+                        setTimeout(function () {
+                            iscroller_project = new iScroll("iscroller-wrapper", {
+                                bounce: true,
+                                checkDOMChanges: true,
+                                onBeforeScrollStart: function (e) {
+                                    var target = e.target;
+                                    while (target.nodeType != 1) {
+                                        target = target.parentNode;
+                                    }
+                                    if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA') {
+                                        e.preventDefault();
+                                    }
+                                },
+                            });
+                        }, 100);
+                        setTimeout(function () {
+                            document.getElementById('iscroller-wrapper').style.left = '0';
+                            pullDownEl.style.display = 'none';
+                        }, 200);
+                    }
+                    /**
+                     * 下拉刷新 （自定义实现此方法）
+                     * iscroller_project.refresh();
+                     * // 数据加载完成后，调用界面更新方法
+                     */
+//
+                    document.addEventListener('touchmove', function (e) {
+                        e.preventDefault();
+                    }, false);
+                    document.addEventListener('DOMContentLoaded', function () {
+                        setTimeout(loaded, 200);
+                    }, false);
 
                 </script>
 
