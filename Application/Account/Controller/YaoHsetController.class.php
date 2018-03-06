@@ -138,7 +138,13 @@ class YaoHsetController extends BaseController {
         );
         foreach ($list as $k=>$item )
         {
-            $cstcount=D("Choose")->where(" project_id={$item['project_id']} and batch_id={$item['batch_id']} and status=1")->count();
+            $pd=M()->table("xk_pzcsvalue")->where("project_id={$item['project_id']} and batch_id={$item['batch_id']} and pzcs_id=10 and cs_value=-1 ")->find();
+            if($pd){
+                $cstcount=D("Choose")->where(" project_id={$item['project_id']} and batch_id={$item['batch_id']} and status=1")->count();
+            }else{
+                $cstcount=D("Choose")->where(" project_id={$item['project_id']} and batch_id={$item['batch_id']} and status=1 and is_sign=1")->count();
+            }
+
             $list[$k]['cstcount']=$cstcount;
             $yyhcount=D("Choose")->join("inner join xk_yaohresult s on xk_choose.id=s.cstid")->where(" xk_choose.project_id={$item['project_id']} and xk_choose.batch_id={$item['batch_id']} and xk_choose.status=1")->count();
             $list[$k]['yyhcount']=$yyhcount;
@@ -200,7 +206,13 @@ class YaoHsetController extends BaseController {
        
         //所有有效客户
         //$cstlist=D("ChooseUser")->field('id,customer_name,customer_phone,cardno,cyjno')->where(" project_id={$yaohset['project_id']} and batch_id={$yaohset['batch_id']} and status=1")->select();
-        $cstlist=D("ChooseUser")->join(" left join xk_yaohresult s on xk_choose.id=s.cstid")->field('xk_choose.id,xk_choose.customer_name,xk_choose.customer_phone,xk_choose.cardno,xk_choose.cyjno')->where(" xk_choose.project_id={$yaohset['project_id']} and xk_choose.batch_id={$yaohset['batch_id']} and xk_choose.status=1 and s.id is null")->select();
+        $pd=M()->table("xk_pzcsvalue")->where("project_id={$yaohset['project_id']} and batch_id={$yaohset['batch_id']} and pzcs_id=10 and cs_value=-1 ")->find();
+        if($pd){
+            $cstlist=D("ChooseUser")->join(" left join xk_yaohresult s on xk_choose.id=s.cstid")->field('xk_choose.id,xk_choose.customer_name,xk_choose.customer_phone,xk_choose.cardno,xk_choose.cyjno')->where(" xk_choose.project_id={$yaohset['project_id']} and xk_choose.batch_id={$yaohset['batch_id']} and xk_choose.status=1 and s.id is null")->select();
+        }else{
+            $cstlist=D("ChooseUser")->join(" left join xk_yaohresult s on xk_choose.id=s.cstid")->field('xk_choose.id,xk_choose.customer_name,xk_choose.customer_phone,xk_choose.cardno,xk_choose.cyjno')->where(" xk_choose.project_id={$yaohset['project_id']} and xk_choose.batch_id={$yaohset['batch_id']} and xk_choose.is_sign=1 and xk_choose.status=1 and s.id is null")->select();
+        }
+
         foreach( $cstlist as $k =>$onecst){
             $cstlist[$k]['customer_phone']=rsa_decode($onecst['customer_phone'],  getChoosekey());
             $cstlist[$k]['cardno']=rsa_decode($onecst['cardno'],  getChoosekey());
@@ -633,7 +645,13 @@ class YaoHsetController extends BaseController {
         {
             $this->error("系统错误，请稍后重试！");
         }
-        $list=D("ChooseUser")->join(" left join xk_yaohresult s on xk_choose.id=s.cstid")->join("LEFT JOIN  xk_yaohuser y ON y.cst_id=xk_choose.id")->field('xk_choose.id,xk_choose.customer_name,xk_choose.customer_phone,xk_choose.cardno,xk_choose.cyjno')->where(" xk_choose.project_id={$yaohset['project_id']} and xk_choose.batch_id={$yaohset['batch_id']} and xk_choose.status=1 and s.id is null and y.id is null")->select();
+        $pd=M()->table("xk_pzcsvalue")->where("project_id={$yaohset['project_id']} and batch_id={$yaohset['batch_id']} and pzcs_id=10 and cs_value=-1 ")->find();
+        if($pd){
+            $list=D("ChooseUser")->join(" left join xk_yaohresult s on xk_choose.id=s.cstid")->join("LEFT JOIN  xk_yaohuser y ON y.cst_id=xk_choose.id")->field('xk_choose.id,xk_choose.customer_name,xk_choose.customer_phone,xk_choose.cardno,xk_choose.cyjno')->where(" xk_choose.project_id={$yaohset['project_id']} and xk_choose.batch_id={$yaohset['batch_id']} and xk_choose.status=1 and s.id is null and y.id is null")->select();
+        }else{
+            $list=D("ChooseUser")->join(" left join xk_yaohresult s on xk_choose.id=s.cstid")->join("LEFT JOIN  xk_yaohuser y ON y.cst_id=xk_choose.id")->field('xk_choose.id,xk_choose.customer_name,xk_choose.customer_phone,xk_choose.cardno,xk_choose.cyjno')->where(" xk_choose.project_id={$yaohset['project_id']} and xk_choose.batch_id={$yaohset['batch_id']} and xk_choose.status=1 and xk_choose.is_sign=1 and s.id is null and y.id is null")->select();
+        }
+
         if(empty($list))
         {
             $this->error("系统错误，请稍后重试！");
@@ -642,7 +660,11 @@ class YaoHsetController extends BaseController {
         $rand_list=range(0, $count-1);
         $rcount=$yaohset['mzgs'];
         $zdg=$yaohset['dqmaxgroup']+1;
-        $ys_yh=M()->table("xk_choose c")->field('c.id,c.customer_name,c.customer_phone,c.cardno,c.cyjno,y.yh_group_px')->join("xk_yaohuser y ON y.cst_id = c.id")->where("c.project_id={$yaohset['project_id']} and c.batch_id={$yaohset['batch_id']} and y.yh_group=$zdg")->order("y.yh_group_px ASC")->select();
+        if($pd) {
+            $ys_yh = M()->table("xk_choose c")->field('c.id,c.customer_name,c.customer_phone,c.cardno,c.cyjno,y.yh_group_px')->join("xk_yaohuser y ON y.cst_id = c.id")->where("c.project_id={$yaohset['project_id']} and c.batch_id={$yaohset['batch_id']} and y.yh_group=$zdg")->order("y.yh_group_px ASC")->select();
+        }else{
+            $ys_yh = M()->table("xk_choose c")->field('c.id,c.customer_name,c.customer_phone,c.cardno,c.cyjno,y.yh_group_px')->join("xk_yaohuser y ON y.cst_id = c.id")->where("c.project_id={$yaohset['project_id']} and c.batch_id={$yaohset['batch_id']} and y.yh_group=$zdg and c.is_sign=1")->order("y.yh_group_px ASC")->select();
+        }
         $status=1;
         if ($rcount>($count+count($ys_yh)))
         {

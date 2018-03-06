@@ -86,7 +86,7 @@ class AdmissionController extends BaseController
         }
         $count=M()->table("xk_choose c")->join("xk_yaohresult y ON y.cstid=c.id")->where("1 = 1 $z $p $b $s")->count();
         $all_page=ceil($count/$page_num);
-        $res=M()->table("xk_choose c")->field("c.*,y.group,y.no,y.createdtime,p.id zid")->join("xk_yaohresult y ON y.cstid=c.id")->join('LEFT JOIN xk_pzcsvalue p ON p.project_id=c.project_id AND p.batch_id=c.batch_id AND p.pzcs_id=4 AND p.cs_value=-1')->where("y.is_yx = 1 $z $p $b $s")->limit($page*$page_num,$page_num)->select();
+        $res=M()->table("xk_choose c")->field("c.*,y.`group`,y.no,y.createdtime,p.id zid")->join("xk_yaohresult y ON y.cstid=c.id")->join('LEFT JOIN xk_pzcsvalue p ON p.project_id=c.project_id AND p.batch_id=c.batch_id AND p.pzcs_id=4 AND p.cs_value=-1')->where("y.is_yx = 1 $z $p $b $s")->limit($page*$page_num,$page_num)->select();
         $this->assign('page_num', $page_num);
         $this->assign('page', $page+1);
         $this->assign('pages', $page);
@@ -153,6 +153,8 @@ class AdmissionController extends BaseController
                             try{
                                 M()->table('xk_choose')->where("id={$auto_arr[$k]['id']}")->save(['is_admission'=>1,'admission_time' => time()]);
                                 M()->table("xk_choose2user_log")->add($data);
+                                $print_arr=M()->table("xk_choose c")->field("c.customer_name,c.customer_phone,r.no")->join("xk_yaohresult r ON r.cstid=c.id")->where("c.id=".$auto_arr[$k]['id'])->find();
+//                              $this->cloudPrint($data);//打印小票
                                 M()->commit();
                             }catch (\Think\Exception $e) {
                                 M()->rollback();
@@ -214,6 +216,10 @@ class AdmissionController extends BaseController
             M()->table('xk_choose')->where("id=$id")->save(['is_admission'=>$zt,'admission_time' => time()]);
             M()->table('xk_yaohresult')->where("cstid=$id")->save(['status'=>$zt]);
             M()->table("xk_choose2user_log")->add($data);
+            if($zt!==0){
+              $print_arr=M()->table("xk_choose c")->field("c.customer_name,c.customer_phone,r.no")->join("xk_yaohresult r ON r.cstid=c.id")->where("c.id=".$id)->find();
+//            $this->cloudPrint($print_arr);//打印小票
+            }
             M()->commit();
             echo 'true';
         }catch (\Think\Exception $e) {
@@ -325,5 +331,84 @@ class AdmissionController extends BaseController
         header('Pragma: public'); // HTTP/1.0
         $objWriter->save('php://output');
         exit;
+    }
+
+    //YLY打印
+    function liansuo_post($url,$data){ // 模拟提交数据函数
+        $curl = curl_init(); // 启动一个CURL会话
+        curl_setopt($curl, CURLOPT_URL, $url); // 要访问的地址
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0); // 对认证证书来源的检测
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 1); // 从证书中检查SSL加密算法是否存在
+        curl_setopt($curl, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']); // 模拟用户使用的浏览
+        curl_setopt($curl, CURLOPT_HTTPHEADER, array('Expect:')); //解决数据包大不能提交
+        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1); // 使用自动跳转
+        curl_setopt($curl, CURLOPT_AUTOREFERER, 1); // 自动设置Referer
+        curl_setopt($curl, CURLOPT_POST, 1); // 发送一个常规的Post请求
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data); // Post提交的数据包
+        curl_setopt($curl, CURLOPT_COOKIEFILE, $GLOBALS['cookie_file']); // 读取上面所储存的Cookie信息
+        curl_setopt($curl, CURLOPT_TIMEOUT, 30); // 设置超时限制防止死循
+        curl_setopt($curl, CURLOPT_HEADER, 0); // 显示返回的Header区域内容
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1); // 获取的信息以文件流的形式返回
+
+        $tmpInfo = curl_exec($curl); // 执行操作
+        if (curl_errno($curl)) {
+            echo 'Errno'.curl_error($curl);
+        }
+        curl_close($curl); // 关键CURL会话
+        return $tmpInfo; // 返回数据
+    }
+
+    function generateSign($params, $apiKey, $msign)
+    {
+        //所有请求参数按照字母先后顺序排
+        ksort($params);
+        //定义字符串开始所包括的字符串
+        $stringToBeSigned = $apiKey;
+        //把所有参数名和参数值串在一起
+        foreach ($params as $k => $v)
+        {
+            $stringToBeSigned .= urldecode($k.$v);
+        }
+        unset($k, $v);
+        //定义字符串结尾所包括的字符串
+        $stringToBeSigned .= $msign;
+        //使用MD5进行加密，再转化成大写
+        return strtoupper(md5($stringToBeSigned));
+    }
+
+//打印示例
+    function cloudPrint($data)
+    {
+        $data['tm']=date("Y-m-d h:i:s",time());
+        $machine_code = '4004506696';//打印机终端号
+        $mKey= '4br5spxrcpr2';//打印机秘钥
+        //打印内容
+        $msg="";
+        $data['customer_phone']=rsa_decode($data['customer_phone'],getChoosekey());
+        $msg .='@@2·   【入场小票】\n\n';
+        $msg .="客户:{$data['customer_name']}\n";
+        $msg .="手机:{$data['customer_phone']}\n";
+        $msg .="入场号:{$data['no']}\n";
+        $msg .="入场时间:{$data['tm']}\n";
+
+
+        $partner= '4472';
+        $apiKey= '2ea43a0eb8644e2b4f1e1ee67f945cc80c412fcc';
+        $ti = time();
+        $params = array(
+            'partner'=>$partner,
+            'machine_code'=>$machine_code,
+            'time'=>$ti
+        );
+        $sign = $this->generateSign($params,$apiKey,$mKey);
+        $params['sign'] = $sign;
+        $params['content'] = $msg;
+        $url = 'http://open.10ss.net:8888';//打印接口端点
+        $p = '';
+        foreach ($params as $k => $v) {
+            $p .= $k.'='.$v.'&';
+        }
+        $data = rtrim($p, '&');
+        $isprint=$this->liansuo_post($url,$data);
     }
 }
