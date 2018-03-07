@@ -84,10 +84,31 @@ class AdmissionController extends BaseController
         }else{
             $z='';
         }
-        $count=M()->table("xk_choose c")->join("xk_yaohresult y ON y.cstid=c.id")->where("1 = 1 $z $p $b $s")->count();
+        $pd=M()->table("xk_pzcsvalue")->where("project_id=$pid AND batch_id=$bid AND pzcs_id=11")->find();
+        if(empty($pd) || $pd['cs_value']==1){
+            $pd_num=1;
+            $count=M()->table("xk_choose c")->join("xk_yaohresult y ON y.cstid=c.id")->where("1 = 1 $z $p $b $s")->count();
+            $res=M()->table("xk_choose c")->field("c.*,y.`group`,y.no,y.createdtime,p.id pid")->
+            join("xk_yaohresult y ON y.cstid=c.id")->
+            join('LEFT JOIN xk_pzcsvalue p ON p.project_id=c.project_id AND p.batch_id=c.batch_id AND p.pzcs_id=4 AND p.cs_value=-1')->
+            where("y.is_yx = 1 $z $p $b $s")->order("y.no ASC")->limit($page*$page_num,$page_num)->select();
+        }elseif ($pd['cs_value']==2){
+            $pd_num=2;
+            $count=M()->table("xk_choose c")->where("1 = 1 $z $p $b $s")->count();
+            $res=M()->table("xk_choose c")->field("c.*,p.id pid")->
+            join('LEFT JOIN xk_pzcsvalue p ON p.project_id=c.project_id AND p.batch_id=c.batch_id AND p.pzcs_id=4 AND p.cs_value=-1')->
+            where("1=1 $z $p $b $s")->order("c.cyjno ASC")->limit($page*$page_num,$page_num)->select();
+        }else{
+            $pd_num=3;
+            $count=M()->table("xk_choose c")->where("c.is_sign=1 $z $p $b $s")->count();
+            $res=M()->table("xk_choose c")->field("c.*,p.id pid")->
+            join('LEFT JOIN xk_pzcsvalue p ON p.project_id=c.project_id AND p.batch_id=c.batch_id AND p.pzcs_id=4 AND p.cs_value=-1')->
+            where("c.is_sign=1 $z $p $b $s")->order("c.sign_time ASC")->limit($page*$page_num,$page_num)->select();
+        }
         $all_page=ceil($count/$page_num);
-        $res=M()->table("xk_choose c")->field("c.*,y.`group`,y.no,y.createdtime,p.id zid")->join("xk_yaohresult y ON y.cstid=c.id")->join('LEFT JOIN xk_pzcsvalue p ON p.project_id=c.project_id AND p.batch_id=c.batch_id AND p.pzcs_id=4 AND p.cs_value=-1')->where("y.is_yx = 1 $z $p $b $s")->limit($page*$page_num,$page_num)->select();
+        $this->assign('pd_num', $pd_num);
         $this->assign('page_num', $page_num);
+//        echo $all_page;exit;
         $this->assign('page', $page+1);
         $this->assign('pages', $page);
         $this->assign('count', $count);
@@ -122,7 +143,15 @@ class AdmissionController extends BaseController
         }else{
             $s='';
         }
-        $res=M()->table("xk_choose c")->field("c.*,p.id zid")->join('LEFT JOIN xk_pzcsvalue p ON p.project_id=c.project_id AND p.batch_id=c.batch_id AND p.pzcs_id=4 AND p.cs_value=-1')->where("1 = 1  $p $b $s")->select();
+        $pd=M()->table("xk_pzcsvalue")->where("project_id=$pid AND batch_id=$bid AND pzcs_id=11")->find();
+        if(empty($pd) || $pd['cs_value']==1){
+            $res=M()->table("xk_choose c")->field("c.*,p.id zid")->join("xk_yaohresult r ON r.cstid=c.id")->join('LEFT JOIN xk_pzcsvalue p ON p.project_id=c.project_id AND p.batch_id=c.batch_id AND p.pzcs_id=4 AND p.cs_value=-1')->where("1=1 $p $b $s")->select();
+        }elseif ($pd['cs_value']==2){
+            $res=M()->table("xk_choose c")->field("c.*,p.id zid")->join('LEFT JOIN xk_pzcsvalue p ON p.project_id=c.project_id AND p.batch_id=c.batch_id AND p.pzcs_id=4 AND p.cs_value=-1')->where("1 = 1  $p $b $s")->select();
+        }else{
+            $res=M()->table("xk_choose c")->field("c.*,p.id zid")->join('LEFT JOIN xk_pzcsvalue p ON p.project_id=c.project_id AND p.batch_id=c.batch_id AND p.pzcs_id=4 AND p.cs_value=-1')->where("c.is_sign = 1  $p $b $s")->select();
+        }
+
         if(empty($res)){
             $this->error("不存在该客户！");
         }else{

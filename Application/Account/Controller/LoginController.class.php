@@ -82,6 +82,7 @@ class LoginController extends Controller
 		session('ACCOUNT_ID', $user['id']);
                 session('ACCOUNT_TYPE', $user['type']);
                 session('selected_project','');
+                session('selected_company','');
 
 		$this->success('登录成功！', U('index/index'));		
     }
@@ -96,6 +97,7 @@ class LoginController extends Controller
 	{
 		session('ACCOUNT_ID', null);
         session('selected_project',null);
+        session('selected_company',null);
 		//$this->success('退出成功！', U('login/index'));
                 redirect(U('../login/index'),0);
 	}

@@ -252,7 +252,7 @@
                     <p></p>
             </div>
             <div id="admission-group">
-                <p>摇号 &nbsp; <span></span></p>
+                <p><span></span></p>
                 <p class="p2">第 <span>几</span> 位</p>
             </div>
         </div>
@@ -274,7 +274,7 @@
                                 项目
                                 <select name="project_id" class="choose-user-project-id" id="project-not-sign"
                                         style="width: auto;">
-                                        <option value="0">全部</option>
+                                        <option value="0">请选择项目</option>
                                     <foreach name="project_list" item="vo" key="k">
                                         <option value="<{$vo.id}>"><{$vo.company_name}>--<{$vo.name}></option>
                                     </foreach>
@@ -284,7 +284,7 @@
                                 批次
                                 <select name="batch_id" class="choose-user-batch-id" id="batch-one"
                                         style="width: 70px;">
-                                    <option value="">全部</option>
+                                    <option value="">请选择批次</option>
                                 </select>
                                 <select name="hidden" id="hidden-select" style="display: none">
                                     <foreach name="batch_list" item="vo" key="k">
@@ -305,7 +305,53 @@
             </div>
             <div class="row">
                 <div class="col-sm-12" id="user_list">
+                    <table id="sample-table-choose" class="table table-striped table-bordered table-hover dataTable">
+                        <thead>
+                        <tr>
+                            <th class="center hidden-480" style="min-width: 20px">
+                                序号
+                            </th>
+                            <th>客户姓名</th>
+                            <th>
+                                <i class="icon-phone bigger-110 hidden-480"></i>
+                                客户手机
+                            </th>
+                            <th>身份证号码</th>
+                            <th>诚意单号</th>
+                            <th>置业顾问</th>
+                            <th>分组</th>
+                            <th>入场序号</th>
+                            <th>生成时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="11" class="center">请先选择项目和批次...</td>
+                            </tr>
+                        <tr>
+                            <td colspan="11">
+                                <button class="btn btn-xs btn-primary" style="float: right" id="check_user1">
+                                    <i class="icon-cloud-download bigger-110"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
 
+                    </table>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="dataTables_info" id="sample-table-2_info">
+                                第 <input id="new_page" type="tel" value="0" style="width:30px" class="tzpage"> 页/ <span id="all_page">0</span>
+                                页，每页<input
+                                    id="new_rows" type="tel" value="10" style="width:30px" class="tzrows"> 条/共 <span id="all_count">0</span> 条
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                        </div>
+                    </div>
+                </div>
                 </div>
             </div>
         </div>

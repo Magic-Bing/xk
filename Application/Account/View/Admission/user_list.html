@@ -10,11 +10,16 @@
             客户手机
         </th>
         <th>身份证号码</th>
-        <th>诚意金编号</th>
+        <th>诚意单号</th>
         <th>置业顾问</th>
-        <th>分组</th>
-        <th>入场序号</th>
-        <th>生成时间</th>
+        <if condition="$pd_num eq 1">
+            <th>分组</th>
+            <th>入场序号</th>
+            <th>生成时间</th>
+            <elseif condition="$pd_num eq 3" />
+            <th>签到时间</th>
+        </if>
+
         <th>操作</th>
     </tr>
     </thead>
@@ -28,9 +33,13 @@
                     <td><{:rsa_decode($vo['cardno'],getChoosekey())}></td>
                     <td><{$vo.cyjno}></td>
                     <td><{$vo.ywy}></td>
-                    <td>第<{$vo.group}>组</td>
-                    <td><{$vo.no}></td>
-                    <td><{:date('Y-m-d h:i:s',$vo['createdtime'])}></td>
+                    <if condition="$pd_num eq 1">
+                        <td>第<{$vo.group}>组</td>
+                        <td><{$vo.no}></td>
+                        <td><{:date('Y-m-d h:i:s',$vo['createdtime'])}></td>
+                        <elseif condition="$pd_num eq 3" />
+                        <td><{:date('Y-m-d h:i:s',$vo['sign_time'])}></td>
+                    </if>
                     <td class="center">
                         <if condition="$vo.is_admission eq 0">
                             <empty name="vo.zid">

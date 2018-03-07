@@ -27,7 +27,12 @@ class YhqxfunController extends BaseController
         $Model=M();
         $uid=$this->get_user_id();
         $is_all=$Model->table("xk_user")->field("is_all")->where("id=$uid")->find();
-        $compid = I('compid');
+        if(isset($_POST['compid'])){
+            $compid = I('compid', 0, 'intval');
+            session("selected_company",$compid);
+        }else{
+            $compid = session("selected_company");
+        }
         $companys = $this->get_user_company();
         if (empty($compid) || $compid==0)
         {

@@ -34,7 +34,12 @@ class YhqxstationController extends BaseController {
      */
     public function index() {
         $Model = new \Think\Model();
-        $compid = I('compid');
+        if(isset($_POST['compid'])){
+            $compid = I('compid', 0, 'intval');
+            session("selected_company",$compid);
+        }else{
+            $compid = session("selected_company");
+        }
         $companys = $this->get_user_company();
         if (empty($compid) || $compid==0)
         {

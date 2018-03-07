@@ -45,17 +45,18 @@ $(function () {
     //选择项目
     $("#project-not-sign").on('change',function () {
         var id=$(this).val();
-        num=1;
-        var row=$('#new_rows').val();
-        $("#search-one").val('');
+        // num=1;
+        // var row=$('#new_rows').val();
+        // $("#search-one").val('');
         var op=$("#hidden-select option[pid='"+id+"']");
         var str="";
         if(op.length === 1){
             // alert(1);
             str+="<option value='"+op.attr('value')+"' selected>"+op.text()+"</option>";
             $("#batch-one").html(str);
+            $("#batch-one").trigger('change');
         }else{
-            str+="<option value=''>全部</option>";
+            str+="<option value='0'>请选择批次</option>";
             if(op.length > 1) {
                 // alert(2);
                 for(var i=0;i<op.length;i++){
@@ -65,16 +66,20 @@ $(function () {
             // alert(0);
             $("#batch-one").html(str);
         }
-        $.post(admission.user_list,{pid:id,num:row,zt:zt},function (data) {
-            $("#user_list").html(data);
-            user_ajax();
-        });
+        // $.post(admission.user_list,{pid:id,num:row,zt:zt},function (data) {
+        //     $("#user_list").html(data);
+        //     user_ajax();
+        // });
     });
     // $("#project-not-sign").trigger('change');
     //选择批次
     $("#batch-one").on('change',function () {
         var pid=$('#project-not-sign').val();
         var bid=$('#batch-one').val();
+        if(Number(bid) === 0){
+            $("#user_list").html('<table id="sample-table-choose" class="table table-striped table-bordered table-hover dataTable"><thead> <tr> <th class="center hidden-480" style="min-width: 20px"> 序号 </th> <th>客户姓名</th> <th> <i class="icon-phone bigger-110 hidden-480"></i> 客户手机 </th> <th>身份证号码</th> <th>诚意单号</th> <th>置业顾问</th> <th>分组</th> <th>入场序号</th> <th>生成时间</th> <th>操作</th> </tr> </thead> <tbody> <tr><td colspan="11" class="center">请先选择项目和批次...</td> </tr> <tr> <td colspan="11"> <button class="btn btn-xs btn-primary" style="float: right" id="check_user1"> <i class="icon-cloud-download bigger-110"></i> </button> </td> </tr> </tbody> </table><div class="row"> <div class="col-sm-6"> <div class="dataTables_info" id="sample-table-2_info">第 <input id="new_page" type="tel" value="0" style="width:30px" class="tzpage"> 页/ <span id="all_page">0</span>页，每页<input id="new_rows" type="tel" value="10" style="width:30px" class="tzrows"> 条/共 <span id="all_count">0</span> 条 </div> </div> <div class="col-sm-6"> </div> </div> </div>');
+            return false;
+        }
         num=1;
         var row=$('#new_rows').val();
         $("#search-one").val('');
@@ -92,6 +97,12 @@ $(function () {
         num=1;
         var row=$('#new_rows').val();
         if(event.keyCode === 13){
+            if(Number(bid) === 0){
+                $(this).val('');
+                $(this).blur();
+                layer_alert("请先选择项目和批次！");
+                return false;
+            }
             $.post(admission.user_list,{pid:pid,bid:bid,search:search,num:row,zt:zt},function (data) {
                 $("#user_list").html(data);
                 user_ajax();
@@ -109,12 +120,12 @@ $(function () {
         if(Number(row) < 1){
             layer_alert("查询的条数不能小于1！");
             $('#new_rows').blur();
-            $('#new_rows').val(2);
+            $('#new_rows').val(10);
             return false;
         }else if(isNaN(Number(row))){
             layer_alert("请输入数字类型！");
             $('#new_rows').blur();
-            $('#new_rows').val(2);
+            $('#new_rows').val(10);
             return false;
         }
         var all_count=$("#all_count").text();

@@ -37,11 +37,16 @@ class YhqxuserController extends BaseController {
         $Model = new \Think\Model(); 
         $companys = $this->get_user_company();
         //查询
+        if(isset($_POST['cp_id'])){
+            $cp_id = I('cp_id', 0, 'intval');
+            session("selected_company",$cp_id);
+        }else{
+            $cp_id = session("selected_company");
+        }
         $where = " where a.is_all<>1 ";
         $name=I("name","","trim");
         $code=I("code","","trim");
         $mobile=I("mobile","","trim");
-        $cp_id=I("cp_id",0,"intval");
         if (!empty($name) && $name<>"")
            $where .=" and a.name like '%". $name ."%' " ;
         if (!empty($code) && $code<>"")

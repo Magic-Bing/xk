@@ -2,11 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d93e351b-3e78-4fb4-bd62-b1a84d311097" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/Account/Controller/index.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/YaoHsetController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/YaoHsetController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/YwcsSet/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/YwcsSet/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/LoginController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/LoginController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/YhqxfunController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/YhqxfunController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/YhqxprojController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/YhqxprojController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/YhqxstationController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/YhqxstationController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/YhqxuserController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/YhqxuserController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Admission/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/Admission/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Admission/user_list.html" afterPath="$PROJECT_DIR$/Application/Account/View/Admission/user_list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Public/account/js/admission.js" afterPath="$PROJECT_DIR$/Public/account/js/admission.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,31 +32,31 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="account.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Public/account/js/account.js">
+      <file leaf-file-name="ChooseUserController.class.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Account/Controller/ChooseUserController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="460">
+              <caret line="50" column="9" lean-forward="false" selection-start-line="45" selection-start-column="6" selection-end-line="50" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AdmissionController.class.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php">
+      <file leaf-file-name="LoginController.class.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Account/Controller/LoginController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="187" column="13" lean-forward="true" selection-start-line="187" selection-start-column="13" selection-end-line="187" selection-end-column="13" />
+            <state relative-caret-position="519">
+              <caret line="97" column="36" lean-forward="false" selection-start-line="97" selection-start-column="36" selection-end-line="97" selection-end-column="36" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Application/Account/View/YwcsSet/index.html">
+      <file leaf-file-name="snake.html" pinned="false" current-in-tab="true">
+        <entry file="file://$USER_HOME$/Desktop/snake/snake.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="577">
-              <caret line="135" column="49" lean-forward="true" selection-start-line="135" selection-start-column="49" selection-end-line="135" selection-end-column="49" />
+            <state relative-caret-position="1485">
+              <caret line="69" column="124" lean-forward="false" selection-start-line="69" selection-start-column="124" selection-end-line="69" selection-end-column="124" />
               <folding />
             </state>
           </provider>
@@ -124,16 +129,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Application/Common/Conf/config.php" />
-        <option value="$PROJECT_DIR$/Application/Account/View/WeixBuyset/edit.html" />
-        <option value="$PROJECT_DIR$/Application/User/Controller/OrderHouseController.class.php" />
-        <option value="$PROJECT_DIR$/Public/xk/js/xk.js" />
-        <option value="$PROJECT_DIR$/Application/Account/Controller/BaseController.class.php" />
-        <option value="$PROJECT_DIR$/Application/User/View/OrderHouse/privilege.html" />
-        <option value="$PROJECT_DIR$/Application/Account/View/Xsgllog/index.html" />
-        <option value="$PROJECT_DIR$/Application/Common/Model/TradeViewModel.class.php" />
-        <option value="$PROJECT_DIR$/Public/account/js/account.js" />
-        <option value="$PROJECT_DIR$/Application/Home/Controller/RoomController.class.php" />
         <option value="$PROJECT_DIR$/Application/Account/Controller/WeixBuysetController.class.php" />
         <option value="$PROJECT_DIR$/Application/Account/View/WeixBuyset/add.html" />
         <option value="$PROJECT_DIR$/Application/Account/View/YaoHset/yaoh.html" />
@@ -171,10 +166,20 @@
         <option value="$PROJECT_DIR$/Application/Saler/Controller/LoggingController.class.php" />
         <option value="$PROJECT_DIR$/Public/sales/js/saler.js" />
         <option value="$PROJECT_DIR$/Application/Account/View/YwcsSet/index.html" />
-        <option value="$PROJECT_DIR$/Application/Account/View/Admission/index.html" />
         <option value="$PROJECT_DIR$/Application/Account/Controller/YaoHsetController.class.php" />
-        <option value="$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php" />
         <option value="$USER_HOME$/Desktop/1485.txt" />
+        <option value="$PROJECT_DIR$/Application/智障衰.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/Admission/index.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/Admission/user_list.html" />
+        <option value="$PROJECT_DIR$/Public/account/js/admission.js" />
+        <option value="$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Account/Controller/LoginController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Account/Controller/YhqxprojController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Account/Controller/YhqxstationController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Account/Controller/YhqxuserController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Account/Controller/YhqxfunController.class.php" />
+        <option value="$PROJECT_DIR$/Application/snake.html" />
+        <option value="$USER_HOME$/Desktop/snake/snake.html" />
       </list>
     </option>
   </component>
@@ -191,7 +196,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1924" />
+    <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
   <component name="ProjectView">
@@ -231,149 +236,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Public" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Public" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="account" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Public" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="account" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Account" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Account" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="View" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Account" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="View" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="YwcsSet" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Account" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controller" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -391,15 +254,15 @@
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\project\yun_xk\ThinkPHP\Common" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\project\yun_xk\Application\Saler\View\Index" />
       <recent name="D:\project\yun_xk\Application\Saler\View\ChooseAnalysis" />
       <recent name="D:\project\yun_xk\Application\Saler\View\Compare" />
       <recent name="D:\project\yun_xk\Application\Saler\View\MyReport" />
       <recent name="D:\project\yun_xk\Application\Saler\View\RoomAnalysis" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\project\yun_xk\ThinkPHP\Common" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -529,18 +392,20 @@
       <workItem from="1519953007039" duration="22179000" />
       <workItem from="1520212269954" duration="20798000" />
       <workItem from="1520299019696" duration="14473000" />
-      <workItem from="1520323167174" duration="5099000" />
+      <workItem from="1520323167174" duration="5714000" />
+      <workItem from="1520386298307" duration="8829000" />
+      <workItem from="1520396491455" duration="13881000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="514569000" />
+    <option name="totallyTimeSpent" value="537894000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1924" height="1056" extended-state="1" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18884121" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11567164" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1335837" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -634,76 +499,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Application/Common/View/Common/Mobile/iscroll.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Common/View/Common/Mobile/success.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Common/View/Common/Pc/exception.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2415">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Saler/View/Compare/room.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Saler/View/Common/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="50" column="63" lean-forward="false" selection-start-line="50" selection-start-column="63" selection-end-line="50" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Saler/View/Compare/dz_room.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Saler/Controller/CompareController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1462">
-          <caret line="157" column="6" lean-forward="false" selection-start-line="157" selection-start-column="6" selection-end-line="157" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Saler/Controller/Base1Controller.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="36" column="9" lean-forward="false" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Saler/Controller/ProjectController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="185" column="32" lean-forward="false" selection-start-line="185" selection-start-column="32" selection-end-line="185" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Saler/View/ChooseAnalysis/user_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Saler/View/ChooseAnalysis/user_detail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -942,48 +737,188 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Public/account/js/account.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/1485.txt" />
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/YwcsSet/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="119" column="47" lean-forward="false" selection-start-line="119" selection-start-column="47" selection-end-line="119" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/智障衰.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/智障衰.html" />
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/Admission/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="82">
+          <caret line="213" column="38" lean-forward="true" selection-start-line="213" selection-start-column="38" selection-end-line="213" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Public/account/js/admission.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="215" column="28" lean-forward="true" selection-start-line="215" selection-start-column="28" selection-end-line="215" selection-end-column="28" />
+        <state relative-caret-position="450">
+          <caret line="95" column="38" lean-forward="false" selection-start-line="95" selection-start-column="38" selection-end-line="95" selection-end-column="38" />
+          <folding>
+            <element signature="n#!!block;n#user_ajax#0" expanded="false" />
+            <element signature="n#!!block;n#pageNum#0" expanded="false" />
+            <element signature="e#1897#1967#0" expanded="false" />
+            <element signature="e#4344#5293#0" expanded="false" />
+            <element signature="e#5347#6382#0" expanded="false" />
+            <element signature="e#6447#6895#0" expanded="false" />
+            <element signature="e#7067#7135#0" expanded="false" />
+            <element signature="e#7207#8296#0" expanded="false" />
+            <element signature="e#8380#9208#0" expanded="false" />
+            <element signature="e#9293#10097#0" expanded="false" />
+            <element signature="e#10154#10393#0" expanded="false" />
+            <marker date="1520407534166" expanded="true" signature="2465:2480" ph="..." />
+            <marker date="1520407534166" expanded="true" signature="2818:2830" ph="..." />
+            <marker date="1520407534166" expanded="true" signature="3082:3092" ph="..." />
+            <marker date="1520407534166" expanded="true" signature="3195:3205" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Account/View/Admission/user_list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="31" column="32" lean-forward="false" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/Admission/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="275" column="61" lean-forward="true" selection-start-line="275" selection-start-column="61" selection-end-line="275" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Public/account/js/account.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="552">
+          <caret line="45" column="46" lean-forward="true" selection-start-line="45" selection-start-column="46" selection-end-line="45" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Desktop/1485.txt" />
     <entry file="file://$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="187" column="13" lean-forward="true" selection-start-line="187" selection-start-column="13" selection-end-line="187" selection-end-column="13" />
+        <state relative-caret-position="828">
+          <caret line="405" column="5" lean-forward="true" selection-start-line="405" selection-start-column="5" selection-end-line="405" selection-end-column="5" />
+          <folding>
+            <element signature="e#416#1507#0#PHP" expanded="false" />
+            <element signature="e#1526#4609#0#PHP" expanded="false" />
+            <element signature="e#4635#9530#0#PHP" expanded="false" />
+            <element signature="e#9549#10837#0#PHP" expanded="false" />
+            <element signature="e#10857#17216#0#PHP" expanded="false" />
+            <element signature="e#17234#18462#0#PHP" expanded="false" />
+            <element signature="e#18468#18936#0#PHP" expanded="false" />
+            <element signature="e#18949#20054#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/LoginController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="519">
+          <caret line="97" column="36" lean-forward="false" selection-start-line="97" selection-start-column="36" selection-end-line="97" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/YwcsSet/index.html">
+    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/ChooseUserController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="577">
-          <caret line="135" column="49" lean-forward="true" selection-start-line="135" selection-start-column="49" selection-end-line="135" selection-end-column="49" />
+        <state relative-caret-position="460">
+          <caret line="50" column="9" lean-forward="false" selection-start-line="45" selection-start-column="6" selection-end-line="50" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/YhqxstationController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="40" column="47" lean-forward="false" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="47" />
+          <folding>
+            <marker date="1520410944266" expanded="true" signature="1084:1149" ph="SELECT a.* F... xk_company" />
+            <marker date="1520410944266" expanded="true" signature="1258:1315" ph="SELECT a.* F... xk_company" />
+            <marker date="1520410944266" expanded="true" signature="1446:1566" ph="select name xk_project" />
+            <marker date="1520410944266" expanded="true" signature="1446:1747" ph="select name " />
+            <marker date="1520410944266" expanded="true" signature="1593:1706" ph="select b.nam... xk_station" />
+            <marker date="1520410944266" expanded="true" signature="1874:2057" ph="SELECT a.*,b... xk_station2user" />
+            <marker date="1520410944266" expanded="true" signature="2740:2859" ph="SELECT a.*,b... xk_station" />
+            <marker date="1520410944266" expanded="true" signature="4283:4482" ph="SELECT a.*,b... xk_station2user" />
+            <marker date="1520410944266" expanded="true" signature="4589:4799" ph="SELECT a.* F... xk_user" />
+            <marker date="1520410944266" expanded="true" signature="4628:4675" ph="select * fro... xk_station2user" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/YhqxuserController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="43" column="46" lean-forward="false" selection-start-line="43" selection-start-column="46" selection-end-line="43" selection-end-column="46" />
+          <folding>
+            <marker date="1520410944225" expanded="true" signature="1626:1711" ph="SELECT b.nam... xk_user" />
+            <marker date="1520410944225" expanded="true" signature="2010:2137" ph="SELECT b.nam... xk_user" />
+            <marker date="1520410944225" expanded="true" signature="5382:5436" ph="SELECT a.* F... xk_user" />
+            <marker date="1520410944225" expanded="true" signature="5602:5657" ph="SELECT a.* F... xk_user" />
+            <marker date="1520410944225" expanded="true" signature="6349:6424" ph="SELECT a.* F... xk_user" />
+            <marker date="1520410944225" expanded="true" signature="6590:6666" ph="SELECT a.* F... xk_user" />
+            <marker date="1520410944225" expanded="true" signature="19568:19694" ph="SELECT b.nam... xk_user" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/YhqxprojController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="598">
+          <caret line="41" column="9" lean-forward="true" selection-start-line="36" selection-start-column="7" selection-end-line="41" selection-end-column="9" />
+          <folding>
+            <marker date="1520410944180" expanded="true" signature="1067:1132" ph="SELECT a.* F... xk_company" />
+            <marker date="1520410944180" expanded="true" signature="1240:1297" ph="SELECT a.* F... xk_company" />
+            <marker date="1520410944180" expanded="true" signature="1415:1535" ph="select name xk_project" />
+            <marker date="1520410944180" expanded="true" signature="1415:1716" ph="select name " />
+            <marker date="1520410944180" expanded="true" signature="1562:1675" ph="select b.nam... xk_station" />
+            <marker date="1520410944180" expanded="true" signature="1841:1950" ph="SELECT a.* F... xk_station2sjqx" />
+            <marker date="1520410944180" expanded="true" signature="2626:2745" ph="SELECT a.*,b... xk_station" />
+            <marker date="1520410944180" expanded="true" signature="4251:4388" ph="SELECT a.* F... xk_station2sjqx" />
+            <marker date="1520410944180" expanded="true" signature="4532:4888" ph="SELECT a.* F... *" />
+            <marker date="1520410944180" expanded="true" signature="4549:4668" ph="select pc.*,... xk_kppc" />
+            <marker date="1520410944180" expanded="true" signature="4685:4732" ph="select * fro... xk_station2sjqx" />
+            <marker date="1520410944180" expanded="true" signature="4967:5302" ph="SELECT a.* F... *" />
+            <marker date="1520410944180" expanded="true" signature="4984:5103" ph="select pc.*,... xk_kppc" />
+            <marker date="1520410944180" expanded="true" signature="5120:5167" ph="select * fro... xk_station2sjqx" />
+            <marker date="1520410944180" expanded="true" signature="5754:5798" ph="SELECT a.* F... xk_station2pc" />
+            <marker date="1520410944180" expanded="true" signature="6216:6422" ph="SELECT a.* F... xk_station2proj" />
+            <marker date="1520410944180" expanded="true" signature="6261:6306" ph="select * fro... xk_station2pc" />
+            <marker date="1520410944180" expanded="true" signature="7624:7712" ph="SELECT a.* F... xk_station2proj" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/YhqxfunController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="40" column="42" lean-forward="false" selection-start-line="40" selection-start-column="42" selection-end-line="40" selection-end-column="42" />
+          <folding>
+            <marker date="1520411026522" expanded="true" signature="1058:1178" ph="select name xk_project" />
+            <marker date="1520411026522" expanded="true" signature="1058:1359" ph="select name " />
+            <marker date="1520411026522" expanded="true" signature="1205:1318" ph="select b.nam... xk_station" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/snake.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="16" lean-forward="false" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/snake/snake.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1485">
+          <caret line="69" column="124" lean-forward="false" selection-start-line="69" selection-start-column="124" selection-end-line="69" selection-end-column="124" />
           <folding />
         </state>
       </provider>
