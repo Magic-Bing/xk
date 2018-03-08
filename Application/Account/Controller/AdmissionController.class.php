@@ -280,11 +280,23 @@ class AdmissionController extends BaseController
             $s="AND (c.customer_name like '%$search%' OR c.like_p like '%".strencode($search)."%' OR c.like_c like '%".strencode($search)."%' )";
         }
         if($zt<2){
-            $z="AND c.is_sign=$zt";
+            $z="AND c.is_admission=$zt";
         }else{
             $z='';
         }
-        $res=M()->table("xk_choose c")->field("c.customer_name,c.customer_phone,c.cardno,c.cyjno,c.ywy,c.is_admission,y.group,y.no,y.createdtime")->join("xk_yaohresult y ON y.cstid=c.id")->where("y.is_yx = 1 $z $p $b $s")->select();
+        $pd=M()->table("xk_pzcsvalue")->where("project_id=$pid AND batch_id=$bid AND pzcs_id=11")->find();
+        if(empty($pd) || $pd['cs_value']==1){
+            $pd_num=1;
+            $res=M()->table("xk_choose c")->field("c.customer_name,c.customer_phone,c.cardno,c.cyjno,c.ywy,c.is_admission,y.group,y.no,y.createdtime")->join("xk_yaohresult y ON y.cstid=c.id")->where("y.is_yx = 1 $z $p $b $s")->select();
+        }elseif ($pd['cs_value']==2){
+            $pd_num=2;
+            $res=M()->table("xk_choose c")->field("c.customer_name,c.customer_phone,c.cardno,c.cyjno,c.ywy,c.is_admission")->where("1 = 1 $z $p $b $s")->order("c.cyjno ASC")->select();
+
+        }else{
+            $pd_num=3;
+            $res=M()->table("xk_choose c")->field("c.customer_name,c.customer_phone,c.cardno,c.cyjno,c.ywy,c.is_admission")->where("c.is_sign = 1 $z $p $b $s")->order("c.sign_time ASC")->select();
+        }
+
         import("Org.Util.PHPExcel");
         import("Org.Util.PHPExcel.Writer.Excel5");
         import("Org.Util.PHPExcel.IOFactory.php");
@@ -303,7 +315,7 @@ class AdmissionController extends BaseController
         $objPHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(30);
         $objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(15);
         $objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(15);
-        $objPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(15);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(17);
         $objPHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth(15);
         $objPHPExcel->getActiveSheet()->getColumnDimension('H')->setWidth(20);
         $objPHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(15);
@@ -322,10 +334,18 @@ class AdmissionController extends BaseController
         $objPHPExcel->getActiveSheet()->setCellValue('C1', '身份证号码');
         $objPHPExcel->getActiveSheet()->setCellValue('D1', '诚意金编号');
         $objPHPExcel->getActiveSheet()->setCellValue('E1', '置业顾问');
-        $objPHPExcel->getActiveSheet()->setCellValue('F1', '分组');
-        $objPHPExcel->getActiveSheet()->setCellValue('G1', '入场序号');
-        $objPHPExcel->getActiveSheet()->setCellValue('H1', '生成时间');
-        $objPHPExcel->getActiveSheet()->setCellValue('I1', '状态');
+        if($pd_num===1){
+            $objPHPExcel->getActiveSheet()->setCellValue('F1', '分组');
+            $objPHPExcel->getActiveSheet()->setCellValue('G1', '入场序号');
+            $objPHPExcel->getActiveSheet()->setCellValue('H1', '生成时间');
+            $objPHPExcel->getActiveSheet()->setCellValue('I1', '状态');
+        }elseif ($pd_num===2){
+            $objPHPExcel->getActiveSheet()->setCellValue('F1', '状态');
+        }else{
+            $objPHPExcel->getActiveSheet()->setCellValue('F1', '签到时间');
+            $objPHPExcel->getActiveSheet()->setCellValue('G1', '状态');
+        }
+
         for ($k = 0; $k < count($res); $k++) {
             if($res[$k]['is_admission'] == 0){
                 $p="未入场";
@@ -338,10 +358,18 @@ class AdmissionController extends BaseController
             $objPHPExcel->getActiveSheet()->setCellValueExplicit('C' . ($k + 2), rsa_decode($res[$k]['cardno'], getChoosekey()), \PHPExcel_Cell_DataType::TYPE_STRING);
             $objPHPExcel->getActiveSheet()->setCellValue('D' . ($k + 2), $res[$k]['cyjno']);
             $objPHPExcel->getActiveSheet()->setCellValue('E' . ($k + 2), $res[$k]['ywy']);
-            $objPHPExcel->getActiveSheet()->setCellValue('F' . ($k + 2), $res[$k]['group']);
-            $objPHPExcel->getActiveSheet()->setCellValue('G' . ($k + 2), $res[$k]['no']);
-            $objPHPExcel->getActiveSheet()->setCellValue('H' . ($k + 2), date('Y-m-d h:i:s',$res[$k]['createdtime']));
-            $objPHPExcel->getActiveSheet()->setCellValue('I' . ($k + 2), $p);
+            if($pd_num===1){
+                $objPHPExcel->getActiveSheet()->setCellValue('F' . ($k + 2), $res[$k]['group']);
+                $objPHPExcel->getActiveSheet()->setCellValue('G' . ($k + 2), $res[$k]['no']);
+                $objPHPExcel->getActiveSheet()->setCellValue('H' . ($k + 2), date('Y-m-d h:i:s',$res[$k]['createdtime']));
+                $objPHPExcel->getActiveSheet()->setCellValue('I' . ($k + 2), $p);
+            }elseif ($pd_num===2){
+                $objPHPExcel->getActiveSheet()->setCellValue('F' . ($k + 2), $p);
+            }else{
+                $objPHPExcel->getActiveSheet()->setCellValue('F' . ($k + 2), date('Y-m-d h:i:s',$res[$k]['sign_time']));
+                $objPHPExcel->getActiveSheet()->setCellValue('G' . ($k + 2), $p);
+            }
+
         }
 
         $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
