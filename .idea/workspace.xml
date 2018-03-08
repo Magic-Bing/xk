@@ -2,16 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d93e351b-3e78-4fb4-bd62-b1a84d311097" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/70178600-be3a-4930-99c5-435672e11257/_metadata_/metadata" afterPath="$PROJECT_DIR$/.idea/dataSources/70178600-be3a-4930-99c5-435672e11257/_metadata_/metadata" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/LoginController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/LoginController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/YhqxfunController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/YhqxfunController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/YhqxprojController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/YhqxprojController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/YhqxstationController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/YhqxstationController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/YhqxuserController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/YhqxuserController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Admission/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/Admission/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Admission/user_list.html" afterPath="$PROJECT_DIR$/Application/Account/View/Admission/user_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Public/account/js/admission.js" afterPath="$PROJECT_DIR$/Public/account/js/admission.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/ChooseUserController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/ChooseUserController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/JcsjroomController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/JcsjroomController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/WeixBuysetController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/WeixBuysetController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/ChooseUser/add.html" afterPath="$PROJECT_DIR$/Application/Account/View/ChooseUser/add.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/ChooseUser/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/ChooseUser/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Jcsjroom/room.html" afterPath="$PROJECT_DIR$/Application/Account/View/Jcsjroom/room.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/WeixBuyset/AnalyticalCustomerCollectedOrdered.html" afterPath="$PROJECT_DIR$/Application/Account/View/WeixBuyset/AnalyticalCustomerCollectedOrdered.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/WeixBuyset/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/WeixBuyset/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Public/account/js/account.js" afterPath="$PROJECT_DIR$/Public/account/js/account.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -35,28 +36,133 @@
       <file leaf-file-name="ChooseUserController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Account/Controller/ChooseUserController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="50" column="9" lean-forward="false" selection-start-line="45" selection-start-column="6" selection-end-line="50" selection-end-column="9" />
-              <folding />
+            <state relative-caret-position="-1799">
+              <caret line="415" column="28" lean-forward="false" selection-start-line="415" selection-start-column="28" selection-end-line="415" selection-end-column="28" />
+              <folding>
+                <element signature="e#637#6356#0#PHP" expanded="false" />
+                <element signature="e#6375#7922#0#PHP" expanded="false" />
+                <element signature="e#7928#8001#0#PHP" expanded="false" />
+                <element signature="e#8006#14226#0#PHP" expanded="false" />
+                <element signature="e#14310#23267#0#PHP" expanded="false" />
+                <element signature="e#14871#15099#0#PHP" expanded="false" />
+                <element signature="e#23351#25319#0#PHP" expanded="false" />
+                <element signature="e#25405#26492#0#PHP" expanded="false" />
+                <element signature="e#26514#26928#0#PHP" expanded="false" />
+                <element signature="e#26934#27336#0#PHP" expanded="false" />
+                <element signature="e#27415#29164#0#PHP" expanded="false" />
+                <element signature="e#29253#30955#0#PHP" expanded="false" />
+                <element signature="e#31007#31398#0#PHP" expanded="false" />
+                <element signature="e#43029#45151#0#PHP" expanded="false" />
+                <element signature="e#45288#54956#0#PHP" expanded="false" />
+                <element signature="e#55030#55974#0#PHP" expanded="false" />
+                <element signature="e#56048#63131#0#PHP" expanded="false" />
+                <element signature="e#63150#66565#0#PHP" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LoginController.class.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Application/Account/Controller/LoginController.class.php">
+      <file leaf-file-name="account.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Public/account/js/account.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="519">
-              <caret line="97" column="36" lean-forward="false" selection-start-line="97" selection-start-column="36" selection-end-line="97" selection-end-column="36" />
-              <folding />
+            <state relative-caret-position="633">
+              <caret line="1212" column="11" lean-forward="false" selection-start-line="1208" selection-start-column="4" selection-end-line="1212" selection-end-column="11" />
+              <folding>
+                <element signature="e#318#1336#0" expanded="false" />
+                <element signature="e#1444#1712#0" expanded="false" />
+                <element signature="e#2036#2526#0" expanded="false" />
+                <element signature="e#17609#22602#0" expanded="false" />
+                <element signature="e#22978#23725#0" expanded="false" />
+                <element signature="e#23793#24200#0" expanded="false" />
+                <element signature="e#33821#34356#0" expanded="false" />
+                <element signature="e#34429#34964#0" expanded="false" />
+                <element signature="e#35022#35557#0" expanded="false" />
+                <element signature="e#35621#36129#0" expanded="false" />
+                <element signature="e#36200#36957#0" expanded="false" />
+                <element signature="e#37043#37150#0" expanded="false" />
+                <element signature="e#37253#37796#0" expanded="false" />
+                <element signature="e#37881#37988#0" expanded="false" />
+                <element signature="e#38092#39312#0" expanded="false" />
+                <element signature="e#39421#40466#0" expanded="false" />
+                <element signature="e#40539#41050#0" expanded="false" />
+                <element signature="e#41129#42156#0" expanded="false" />
+                <element signature="e#45401#48675#0" expanded="false" />
+                <marker date="1520489585259" expanded="true" signature="4292:4349" ph="..." />
+                <marker date="1520489585259" expanded="true" signature="4389:4399" ph="..." />
+                <marker date="1520489585259" expanded="true" signature="4628:4686" ph="..." />
+                <marker date="1520489585259" expanded="true" signature="4778:4788" ph="..." />
+                <marker date="1520489585259" expanded="true" signature="5205:5263" ph="..." />
+                <marker date="1520489585259" expanded="true" signature="5430:5440" ph="..." />
+                <marker date="1520489585259" expanded="true" signature="5556:5600" ph="..." />
+                <marker date="1520489585259" expanded="true" signature="5712:5770" ph="..." />
+                <marker date="1520489585259" expanded="true" signature="5785:5796" ph="..." />
+                <marker date="1520489585259" expanded="true" signature="5824:5834" ph="..." />
+                <marker date="1520489585259" expanded="true" signature="8709:8767" ph="..." />
+                <marker date="1520489585259" expanded="true" signature="8814:8824" ph="..." />
+                <marker date="1520489585259" expanded="true" signature="10070:10127" ph="..." />
+                <marker date="1520489585259" expanded="true" signature="10168:10178" ph="..." />
+                <marker date="1520489585259" expanded="true" signature="10512:10570" ph="..." />
+                <marker date="1520489585259" expanded="true" signature="10675:10685" ph="..." />
+                <marker date="1520489585259" expanded="true" signature="11157:11215" ph="..." />
+                <marker date="1520489585259" expanded="true" signature="11390:11400" ph="..." />
+                <marker date="1520489585259" expanded="true" signature="11524:11568" ph="..." />
+                <marker date="1520489585259" expanded="true" signature="11696:11754" ph="..." />
+                <marker date="1520489585259" expanded="true" signature="11769:11780" ph="..." />
+                <marker date="1520489585259" expanded="true" signature="12031:12041" ph="..." />
+                <marker date="1520489585259" expanded="true" signature="18473:18483" ph="..." />
+                <marker date="1520489585259" expanded="true" signature="18942:19063" ph="..." />
+                <marker date="1520489585259" expanded="true" signature="19373:19498" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="snake.html" pinned="false" current-in-tab="true">
-        <entry file="file://$USER_HOME$/Desktop/snake/snake.html">
+      <file leaf-file-name="JcsjroomController.class.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Application/Account/Controller/JcsjroomController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1485">
-              <caret line="69" column="124" lean-forward="false" selection-start-line="69" selection-start-column="124" selection-end-line="69" selection-end-column="124" />
+            <state relative-caret-position="643">
+              <caret line="735" column="40" lean-forward="true" selection-start-line="735" selection-start-column="40" selection-end-line="735" selection-end-column="40" />
+              <folding>
+                <element signature="e#5679#8409#0#PHP" expanded="false" />
+                <element signature="e#8479#10713#0#PHP" expanded="false" />
+                <element signature="e#10785#15067#0#PHP" expanded="false" />
+                <marker date="1520497494764" expanded="true" signature="2765:3108" ph="SELECT conca... xk_room" />
+                <marker date="1520497494764" expanded="true" signature="4043:4148" ph="SELECT a.* F... xk_room" />
+                <marker date="1520497494764" expanded="true" signature="4538:4705" ph="SELECT a.*,b... xk_room" />
+                <marker date="1520497494764" expanded="true" signature="4538:4744" ph="SELECT a.*,b... xk_room" />
+                <marker date="1520497494764" expanded="true" signature="4676:4705" ph="SELECT a.*,b... xk_room" />
+                <marker date="1520497494764" expanded="true" signature="18768:18831" ph="SELECT a.* F... xk_project" />
+                <marker date="1520497494764" expanded="true" signature="19150:19247" ph="SELECT a.* F... xk_build" />
+                <marker date="1520497494764" expanded="true" signature="21099:21237" ph="update xk_ro... " />
+                <marker date="1520497494764" expanded="true" signature="21303:21462" ph="update xk_ro... " />
+                <marker date="1520497494764" expanded="true" signature="21528:21572" ph="SELECT a.* F... xk_roomtemp" />
+                <marker date="1520497494764" expanded="true" signature="21722:21871" ph="insert into xk_room... " />
+                <marker date="1520497494764" expanded="true" signature="21898:22063" ph="select proj_... xk_roomtemp" />
+                <marker date="1520497494764" expanded="true" signature="22182:22228" ph="SELECT a.* F... xk_roomtemp" />
+                <marker date="1520497494764" expanded="true" signature="22334:22634" ph="update xk_ro... " />
+                <marker date="1520497494764" expanded="true" signature="23030:23093" ph="SELECT a.* F... xk_project" />
+                <marker date="1520497494764" expanded="true" signature="23412:23509" ph="SELECT a.* F... xk_build" />
+                <marker date="1520497494764" expanded="true" signature="25399:25537" ph="update xk_ro... " />
+                <marker date="1520497494764" expanded="true" signature="25603:25781" ph="update xk_ro... " />
+                <marker date="1520497494764" expanded="true" signature="25854:25898" ph="SELECT a.* F... xk_roomtemp" />
+                <marker date="1520497494764" expanded="true" signature="26005:26145" ph="insert into xk_room... " />
+                <marker date="1520497494764" expanded="true" signature="26172:26328" ph="select proj_... xk_roomtemp" />
+                <marker date="1520497494764" expanded="true" signature="26420:26466" ph="SELECT a.* F... xk_roomtemp" />
+                <marker date="1520497494764" expanded="true" signature="26572:26850" ph="update xk_ro... " />
+                <marker date="1520497494764" expanded="true" signature="27327:27364" ph="SELECT a.* F... xk_room" />
+                <marker date="1520497494764" expanded="true" signature="27533:27574" ph="SELECT a.* F... xk_room" />
+                <marker date="1520497494764" expanded="true" signature="29066:29105" ph="SELECT bld_i... xk_room" />
+                <marker date="1520497494764" expanded="true" signature="29278:29319" ph="SELECT a.* F... xk_room" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="room.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Account/View/Jcsjroom/room.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="483">
+              <caret line="376" column="30" lean-forward="true" selection-start-line="376" selection-start-column="30" selection-end-line="376" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -74,8 +180,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>isws</find>
-      <find>search_info</find>
       <find>get_project_room_list</find>
       <find>js-saler-isws_btn</find>
       <find>projinfo</find>
@@ -104,6 +208,8 @@
       <find>cloudPrint</find>
       <find>auto_sign</find>
       <find>$yyinfo</find>
+      <find>row_number</find>
+      <find>js-choose-user-excel-export</find>
     </findStrings>
     <replaceStrings>
       <replace>&lt;</replace>
@@ -129,16 +235,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Application/Account/Controller/WeixBuysetController.class.php" />
-        <option value="$PROJECT_DIR$/Application/Account/View/WeixBuyset/add.html" />
-        <option value="$PROJECT_DIR$/Application/Account/View/YaoHset/yaoh.html" />
-        <option value="$PROJECT_DIR$/Application/Account/Controller/YaoHuserController.class.php" />
-        <option value="$PROJECT_DIR$/Application/Account/View/YaoHuser/index.html" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/70178600-be3a-4930-99c5-435672e11257/console.sql" />
-        <option value="$PROJECT_DIR$/Application/Saler/View/Index/dz_page.html" />
-        <option value="$PROJECT_DIR$/Application/Saler/Controller/ProjectController.class.php" />
-        <option value="$PROJECT_DIR$/Application/Saler/View/Project/room.html" />
-        <option value="$PROJECT_DIR$/Application/Saler/Controller/SearchController.class.php" />
         <option value="$PROJECT_DIR$/Application/Saler/View/Search/dz_room.html" />
         <option value="$PROJECT_DIR$/Application/Saler/Controller/RoomController.class.php" />
         <option value="$PROJECT_DIR$/Application/Saler/View/Search/dz_index.html" />
@@ -172,14 +268,24 @@
         <option value="$PROJECT_DIR$/Application/Account/View/Admission/index.html" />
         <option value="$PROJECT_DIR$/Application/Account/View/Admission/user_list.html" />
         <option value="$PROJECT_DIR$/Public/account/js/admission.js" />
-        <option value="$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php" />
         <option value="$PROJECT_DIR$/Application/Account/Controller/LoginController.class.php" />
         <option value="$PROJECT_DIR$/Application/Account/Controller/YhqxprojController.class.php" />
         <option value="$PROJECT_DIR$/Application/Account/Controller/YhqxstationController.class.php" />
         <option value="$PROJECT_DIR$/Application/Account/Controller/YhqxuserController.class.php" />
         <option value="$PROJECT_DIR$/Application/Account/Controller/YhqxfunController.class.php" />
         <option value="$PROJECT_DIR$/Application/snake.html" />
+        <option value="$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php" />
         <option value="$USER_HOME$/Desktop/snake/snake.html" />
+        <option value="$PROJECT_DIR$/Public/account/js/functions.js" />
+        <option value="$PROJECT_DIR$/Application/Account/View/ChooseUser/add.html" />
+        <option value="$PROJECT_DIR$/Public/account/js/account.js" />
+        <option value="$PROJECT_DIR$/Application/Account/Controller/ChooseUserController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Account/View/WeixBuyset/index.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/Jcsjroom/room.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/ChooseUser/index.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/WeixBuyset/AnalyticalCustomerCollectedOrdered.html" />
+        <option value="$PROJECT_DIR$/Application/Account/Controller/WeixBuysetController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Account/Controller/JcsjroomController.class.php" />
       </list>
     </option>
   </component>
@@ -196,7 +302,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
+    <option name="width" value="1924" />
     <option name="height" value="1056" />
   </component>
   <component name="ProjectView">
@@ -214,6 +320,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -240,10 +347,75 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yun_xk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yun_xk" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Account" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yun_xk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yun_xk" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Account" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="View" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yun_xk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yun_xk" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Account" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="View" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Jcsjroom" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -394,22 +566,30 @@
       <workItem from="1520299019696" duration="14473000" />
       <workItem from="1520323167174" duration="5714000" />
       <workItem from="1520386298307" duration="8829000" />
-      <workItem from="1520396491455" duration="13881000" />
+      <workItem from="1520396491455" duration="14711000" />
+      <workItem from="1520471762824" duration="20610000" />
     </task>
+    <task id="LOCAL-00001" summary="入场审核导出修改">
+      <created>1520477627031</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1520477627031</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="537894000" />
+    <option name="totallyTimeSpent" value="559334000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1924" height="1056" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11567164" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18508583" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1335837" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329718" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329718" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -490,78 +670,16 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="入场审核导出修改" />
+    <option name="LAST_COMMIT_MESSAGE" value="入场审核导出修改" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="10" />
+      <option name="time" value="11" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Application/Saler/View/ChooseAnalysis/user_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Common/Model/RoomLogModel.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="149" column="34" lean-forward="false" selection-start-line="149" selection-start-column="30" selection-end-line="149" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/RoomController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="339" column="42" lean-forward="false" selection-start-line="339" selection-start-column="38" selection-end-line="339" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Saler/View/Project/dz_index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="401" column="83" lean-forward="false" selection-start-line="401" selection-start-column="65" selection-end-line="401" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Saler/View/ChooseAnalysis/dz_user_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="279" column="125" lean-forward="false" selection-start-line="279" selection-start-column="125" selection-end-line="279" selection-end-column="125" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Saler/View/ChooseAnalysis/dz_user_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="48" lean-forward="true" selection-start-line="9" selection-start-column="48" selection-end-line="9" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Saler/Controller/ChooseAnalysisController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="565">
-          <caret line="181" column="190" lean-forward="false" selection-start-line="181" selection-start-column="190" selection-end-line="181" selection-end-column="190" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Saler/View/DataStatistics/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3459">
-          <caret line="141" column="65" lean-forward="true" selection-start-line="141" selection-start-column="65" selection-end-line="141" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Saler/View/ChooseAnalysis/dz_index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="188" column="82" lean-forward="false" selection-start-line="188" selection-start-column="82" selection-end-line="188" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Saler/View/ChooseAnalysis/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
@@ -737,13 +855,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Public/account/js/account.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Desktop/1485.txt" />
     <entry file="file://$PROJECT_DIR$/Application/Account/View/YwcsSet/index.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -764,7 +875,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="82">
           <caret line="213" column="38" lean-forward="true" selection-start-line="213" selection-start-column="38" selection-end-line="213" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -772,23 +882,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
           <caret line="95" column="38" lean-forward="false" selection-start-line="95" selection-start-column="38" selection-end-line="95" selection-end-column="38" />
-          <folding>
-            <element signature="n#!!block;n#user_ajax#0" expanded="false" />
-            <element signature="n#!!block;n#pageNum#0" expanded="false" />
-            <element signature="e#1897#1967#0" expanded="false" />
-            <element signature="e#4344#5293#0" expanded="false" />
-            <element signature="e#5347#6382#0" expanded="false" />
-            <element signature="e#6447#6895#0" expanded="false" />
-            <element signature="e#7067#7135#0" expanded="false" />
-            <element signature="e#7207#8296#0" expanded="false" />
-            <element signature="e#8380#9208#0" expanded="false" />
-            <element signature="e#9293#10097#0" expanded="false" />
-            <element signature="e#10154#10393#0" expanded="false" />
-            <marker date="1520407534166" expanded="true" signature="2465:2480" ph="..." />
-            <marker date="1520407534166" expanded="true" signature="2818:2830" ph="..." />
-            <marker date="1520407534166" expanded="true" signature="3082:3092" ph="..." />
-            <marker date="1520407534166" expanded="true" signature="3195:3205" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -796,40 +889,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="552">
           <caret line="45" column="46" lean-forward="true" selection-start-line="45" selection-start-column="46" selection-end-line="45" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="828">
-          <caret line="405" column="5" lean-forward="true" selection-start-line="405" selection-start-column="5" selection-end-line="405" selection-end-column="5" />
-          <folding>
-            <element signature="e#416#1507#0#PHP" expanded="false" />
-            <element signature="e#1526#4609#0#PHP" expanded="false" />
-            <element signature="e#4635#9530#0#PHP" expanded="false" />
-            <element signature="e#9549#10837#0#PHP" expanded="false" />
-            <element signature="e#10857#17216#0#PHP" expanded="false" />
-            <element signature="e#17234#18462#0#PHP" expanded="false" />
-            <element signature="e#18468#18936#0#PHP" expanded="false" />
-            <element signature="e#18949#20054#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/LoginController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
-          <caret line="97" column="36" lean-forward="false" selection-start-line="97" selection-start-column="36" selection-end-line="97" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/ChooseUserController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="50" column="9" lean-forward="false" selection-start-line="45" selection-start-column="6" selection-end-line="50" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -907,19 +966,236 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/snake.html">
+    <entry file="file://$PROJECT_DIR$/Application/snake.html" />
+    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/LoginController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="16" lean-forward="false" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="16" />
+        <state relative-caret-position="496">
+          <caret line="97" column="36" lean-forward="false" selection-start-line="97" selection-start-column="36" selection-end-line="97" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/Desktop/snake/snake.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1485">
-          <caret line="69" column="124" lean-forward="false" selection-start-line="69" selection-start-column="124" selection-end-line="69" selection-end-column="124" />
+        <state relative-caret-position="611">
+          <caret line="122" column="49" lean-forward="false" selection-start-line="122" selection-start-column="49" selection-end-line="122" selection-end-column="49" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="317" column="76" lean-forward="false" selection-start-line="317" selection-start-column="76" selection-end-line="317" selection-end-column="76" />
+          <folding>
+            <element signature="e#416#1507#0#PHP" expanded="false" />
+            <element signature="e#1526#4609#0#PHP" expanded="false" />
+            <element signature="e#4635#9530#0#PHP" expanded="false" />
+            <element signature="e#9549#10837#0#PHP" expanded="false" />
+            <element signature="e#18621#19849#0#PHP" expanded="false" />
+            <element signature="e#19855#20323#0#PHP" expanded="false" />
+            <element signature="e#20336#21441#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuyset/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1449">
+          <caret line="222" column="45" lean-forward="false" selection-start-line="222" selection-start-column="45" selection-end-line="222" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/ChooseUser/add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/ChooseUser/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="251" column="45" lean-forward="false" selection-start-line="251" selection-start-column="45" selection-end-line="251" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuyset/AnalyticalCustomerCollectedOrdered.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="29" column="48" lean-forward="false" selection-start-line="29" selection-start-column="48" selection-end-line="29" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/WeixBuysetController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="604" column="46" lean-forward="false" selection-start-line="604" selection-start-column="46" selection-end-line="604" selection-end-column="46" />
+          <folding>
+            <element signature="e#452#4989#0#PHP" expanded="false" />
+            <element signature="e#4995#7501#0#PHP" expanded="false" />
+            <element signature="e#7511#9893#0#PHP" expanded="false" />
+            <element signature="e#9899#12945#0#PHP" expanded="false" />
+            <element signature="e#12950#15571#0#PHP" expanded="false" />
+            <element signature="e#15577#16109#0#PHP" expanded="false" />
+            <element signature="e#16115#17511#0#PHP" expanded="false" />
+            <element signature="e#17653#17891#0#PHP" expanded="false" />
+            <element signature="e#17946#18190#0#PHP" expanded="false" />
+            <element signature="e#18245#18564#0#PHP" expanded="false" />
+            <element signature="e#18583#19635#0#PHP" expanded="false" />
+            <element signature="e#21848#22722#0#PHP" expanded="false" />
+            <element signature="e#22818#31572#0#PHP" expanded="false" />
+            <marker date="1520495849577" expanded="true" signature="19820:21381" ph="SELECT choos... xk_choose" />
+            <marker date="1520495849577" expanded="true" signature="20837:20879" ph="SELECT * FRO... xk_cst2rooms" />
+            <marker date="1520495849577" expanded="true" signature="22001:22583" ph="SELECT choos... xk_choose" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Public/account/js/functions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="13" column="25" lean-forward="true" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuyset/AnalyticalRoomHot.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3864">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Public/account/js/account.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="633">
+          <caret line="1212" column="11" lean-forward="false" selection-start-line="1208" selection-start-column="4" selection-end-line="1212" selection-end-column="11" />
+          <folding>
+            <element signature="e#318#1336#0" expanded="false" />
+            <element signature="e#1444#1712#0" expanded="false" />
+            <element signature="e#2036#2526#0" expanded="false" />
+            <element signature="e#17609#22602#0" expanded="false" />
+            <element signature="e#22978#23725#0" expanded="false" />
+            <element signature="e#23793#24200#0" expanded="false" />
+            <element signature="e#33821#34356#0" expanded="false" />
+            <element signature="e#34429#34964#0" expanded="false" />
+            <element signature="e#35022#35557#0" expanded="false" />
+            <element signature="e#35621#36129#0" expanded="false" />
+            <element signature="e#36200#36957#0" expanded="false" />
+            <element signature="e#37043#37150#0" expanded="false" />
+            <element signature="e#37253#37796#0" expanded="false" />
+            <element signature="e#37881#37988#0" expanded="false" />
+            <element signature="e#38092#39312#0" expanded="false" />
+            <element signature="e#39421#40466#0" expanded="false" />
+            <element signature="e#40539#41050#0" expanded="false" />
+            <element signature="e#41129#42156#0" expanded="false" />
+            <element signature="e#45401#48675#0" expanded="false" />
+            <marker date="1520489585259" expanded="true" signature="4292:4349" ph="..." />
+            <marker date="1520489585259" expanded="true" signature="4389:4399" ph="..." />
+            <marker date="1520489585259" expanded="true" signature="4628:4686" ph="..." />
+            <marker date="1520489585259" expanded="true" signature="4778:4788" ph="..." />
+            <marker date="1520489585259" expanded="true" signature="5205:5263" ph="..." />
+            <marker date="1520489585259" expanded="true" signature="5430:5440" ph="..." />
+            <marker date="1520489585259" expanded="true" signature="5556:5600" ph="..." />
+            <marker date="1520489585259" expanded="true" signature="5712:5770" ph="..." />
+            <marker date="1520489585259" expanded="true" signature="5785:5796" ph="..." />
+            <marker date="1520489585259" expanded="true" signature="5824:5834" ph="..." />
+            <marker date="1520489585259" expanded="true" signature="8709:8767" ph="..." />
+            <marker date="1520489585259" expanded="true" signature="8814:8824" ph="..." />
+            <marker date="1520489585259" expanded="true" signature="10070:10127" ph="..." />
+            <marker date="1520489585259" expanded="true" signature="10168:10178" ph="..." />
+            <marker date="1520489585259" expanded="true" signature="10512:10570" ph="..." />
+            <marker date="1520489585259" expanded="true" signature="10675:10685" ph="..." />
+            <marker date="1520489585259" expanded="true" signature="11157:11215" ph="..." />
+            <marker date="1520489585259" expanded="true" signature="11390:11400" ph="..." />
+            <marker date="1520489585259" expanded="true" signature="11524:11568" ph="..." />
+            <marker date="1520489585259" expanded="true" signature="11696:11754" ph="..." />
+            <marker date="1520489585259" expanded="true" signature="11769:11780" ph="..." />
+            <marker date="1520489585259" expanded="true" signature="12031:12041" ph="..." />
+            <marker date="1520489585259" expanded="true" signature="18473:18483" ph="..." />
+            <marker date="1520489585259" expanded="true" signature="18942:19063" ph="..." />
+            <marker date="1520489585259" expanded="true" signature="19373:19498" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/Jcsjroom/room.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="376" column="30" lean-forward="true" selection-start-line="376" selection-start-column="30" selection-end-line="376" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/ChooseUserController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1799">
+          <caret line="415" column="28" lean-forward="false" selection-start-line="415" selection-start-column="28" selection-end-line="415" selection-end-column="28" />
+          <folding>
+            <element signature="e#637#6356#0#PHP" expanded="false" />
+            <element signature="e#6375#7922#0#PHP" expanded="false" />
+            <element signature="e#7928#8001#0#PHP" expanded="false" />
+            <element signature="e#8006#14226#0#PHP" expanded="false" />
+            <element signature="e#14310#23267#0#PHP" expanded="false" />
+            <element signature="e#14871#15099#0#PHP" expanded="false" />
+            <element signature="e#23351#25319#0#PHP" expanded="false" />
+            <element signature="e#25405#26492#0#PHP" expanded="false" />
+            <element signature="e#26514#26928#0#PHP" expanded="false" />
+            <element signature="e#26934#27336#0#PHP" expanded="false" />
+            <element signature="e#27415#29164#0#PHP" expanded="false" />
+            <element signature="e#29253#30955#0#PHP" expanded="false" />
+            <element signature="e#31007#31398#0#PHP" expanded="false" />
+            <element signature="e#43029#45151#0#PHP" expanded="false" />
+            <element signature="e#45288#54956#0#PHP" expanded="false" />
+            <element signature="e#55030#55974#0#PHP" expanded="false" />
+            <element signature="e#56048#63131#0#PHP" expanded="false" />
+            <element signature="e#63150#66565#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/JcsjroomController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="643">
+          <caret line="735" column="40" lean-forward="true" selection-start-line="735" selection-start-column="40" selection-end-line="735" selection-end-column="40" />
+          <folding>
+            <element signature="e#5679#8409#0#PHP" expanded="false" />
+            <element signature="e#8479#10713#0#PHP" expanded="false" />
+            <element signature="e#10785#15067#0#PHP" expanded="false" />
+            <marker date="1520497494764" expanded="true" signature="2765:3108" ph="SELECT conca... xk_room" />
+            <marker date="1520497494764" expanded="true" signature="4043:4148" ph="SELECT a.* F... xk_room" />
+            <marker date="1520497494764" expanded="true" signature="4538:4705" ph="SELECT a.*,b... xk_room" />
+            <marker date="1520497494764" expanded="true" signature="4538:4744" ph="SELECT a.*,b... xk_room" />
+            <marker date="1520497494764" expanded="true" signature="4676:4705" ph="SELECT a.*,b... xk_room" />
+            <marker date="1520497494764" expanded="true" signature="18768:18831" ph="SELECT a.* F... xk_project" />
+            <marker date="1520497494764" expanded="true" signature="19150:19247" ph="SELECT a.* F... xk_build" />
+            <marker date="1520497494764" expanded="true" signature="21099:21237" ph="update xk_ro... " />
+            <marker date="1520497494764" expanded="true" signature="21303:21462" ph="update xk_ro... " />
+            <marker date="1520497494764" expanded="true" signature="21528:21572" ph="SELECT a.* F... xk_roomtemp" />
+            <marker date="1520497494764" expanded="true" signature="21722:21871" ph="insert into xk_room... " />
+            <marker date="1520497494764" expanded="true" signature="21898:22063" ph="select proj_... xk_roomtemp" />
+            <marker date="1520497494764" expanded="true" signature="22182:22228" ph="SELECT a.* F... xk_roomtemp" />
+            <marker date="1520497494764" expanded="true" signature="22334:22634" ph="update xk_ro... " />
+            <marker date="1520497494764" expanded="true" signature="23030:23093" ph="SELECT a.* F... xk_project" />
+            <marker date="1520497494764" expanded="true" signature="23412:23509" ph="SELECT a.* F... xk_build" />
+            <marker date="1520497494764" expanded="true" signature="25399:25537" ph="update xk_ro... " />
+            <marker date="1520497494764" expanded="true" signature="25603:25781" ph="update xk_ro... " />
+            <marker date="1520497494764" expanded="true" signature="25854:25898" ph="SELECT a.* F... xk_roomtemp" />
+            <marker date="1520497494764" expanded="true" signature="26005:26145" ph="insert into xk_room... " />
+            <marker date="1520497494764" expanded="true" signature="26172:26328" ph="select proj_... xk_roomtemp" />
+            <marker date="1520497494764" expanded="true" signature="26420:26466" ph="SELECT a.* F... xk_roomtemp" />
+            <marker date="1520497494764" expanded="true" signature="26572:26850" ph="update xk_ro... " />
+            <marker date="1520497494764" expanded="true" signature="27327:27364" ph="SELECT a.* F... xk_room" />
+            <marker date="1520497494764" expanded="true" signature="27533:27574" ph="SELECT a.* F... xk_room" />
+            <marker date="1520497494764" expanded="true" signature="29066:29105" ph="SELECT bld_i... xk_room" />
+            <marker date="1520497494764" expanded="true" signature="29278:29319" ph="SELECT a.* F... xk_room" />
+          </folding>
         </state>
       </provider>
     </entry>
