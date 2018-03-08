@@ -1027,6 +1027,7 @@ $(function() {
                 }else if(data.hasOwnProperty("in_all")){
                     layer.closeAll();
                     layer_msg('全部导入成功');
+                    window.location.reload();
                 }else{
                     layer_msg(data.info);
                 }
@@ -1205,11 +1206,11 @@ $(function() {
 			//btn.button('reset');
 			//return false;
 		}
-		if ($cyjno === '' || $cyjno === undefined) {
+	/*	if ($cyjno === '' || $cyjno === undefined) {
 			gritter_alert('诚意金编号不能为空！');
 			// btn.button('reset');
 			return false;
-		}
+		}*/
 		var $data = {
 			project_id: $project_id,
 			batch_id: $batch_id,
@@ -1310,11 +1311,11 @@ $(function() {
 			//btn.button('reset');
 			//return false;
 		}
-		if ($cyjno == '' || $cyjno == undefined) {
-			gritter_alert('诚意金编号不能为空！');
-			// btn.button('reset');
-			return false;
-		}
+		// if ($cyjno == '' || $cyjno == undefined) {
+		// 	gritter_alert('诚意金编号不能为空！');
+		// 	// btn.button('reset');
+		// 	return false;
+		// }
 		
 		var $data = {
 			id: $id,
@@ -1343,7 +1344,8 @@ $(function() {
 		
 		ajax_post_callback($url, $data, function(data, status) {
 			// btn.button('reset');
-			
+			// console.log(data);
+			// return false;
 			if (data['status'] != 1) {
 				gritter_alert(data['info']);
 				return false;

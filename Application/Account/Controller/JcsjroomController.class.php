@@ -105,7 +105,7 @@ class JcsjroomController extends BaseController {
         }
         if($excel===1){
             $roomlist=$Model->query("SELECT concat_ws('-',c.name,b.buildname,a.unit,a.room) dz,a.hx,a.area,Format(a.price,2) p1,a.tnarea,Format(a.tnprice,2) p2,Format(a.total,2) p3,Format(a.discount,2) p4,CASE WHEN a.is_xf=0 THEN  '待售' ELSE  '已售' END zt FROM xk_room a left join xk_build b on a.bld_id=b.id left join xk_project c on a.proj_id=c.id ".$where  . "  order by a.id asc ");
-            $this->exportExcel("房间数据",['head'=>['房间名称','户型','建筑面积','建筑单价','套内面积','套内单价','标准总价','优惠总价','销售状态']],$roomlist,0);
+            $this->exportExcel("房间数据",['head'=>['房间名称','户型','建筑面积','建筑单价','套内面积','套内单价','标准总价','优惠hou总价','销售状态']],$roomlist,0);
         }
         //可选项目取值
 
@@ -139,8 +139,8 @@ class JcsjroomController extends BaseController {
 
             //房间列表
             $limit = 'limit '.$Page->firstRow.','.$Page->listRows;
-            $roomlist=$Model->query("SELECT a.*,b.buildname,c.name as projname FROM xk_room a left join xk_build b on a.bld_id=b.id left join xk_project c on a.proj_id=c.id ".$where ."  order by a.id asc ".$limit );
-			
+            $roomlist=$Model->query('SELECT a.*,b.buildname,c.name as projname FROM xk_room a left join xk_build b on a.bld_id=b.id left join xk_project c on a.proj_id=c.id ' .$where . 'order by a.id asc '.$limit );
+
             $this->assign('projid', $projid); 
             $p = I('p', '1', 'intval');
             $this->assign('p', $p);
@@ -148,9 +148,9 @@ class JcsjroomController extends BaseController {
             $this->assign('page_show', $page_show); 
             $this->assign('count', $count);
             $this->assign('listRows', $listRows);;
-            $this->assign('roomlist', $roomlist); 
+            $this->assign('roomlist', $roomlist);
 
-        $this->set_seo_title("房间导入");
+        $this->set_seo_title("房间管理");
         $this->display();
      }
      
@@ -723,7 +723,7 @@ class JcsjroomController extends BaseController {
     {  
         if (empty($projid)||$projid==0)
         {
-            $this->error('项目标识有误,请重新导出模板11');
+            $this->error('项目标识有误,请重新导出模板');
         }
         $Modelr = new \Think\Model(); 
         $projinfo=$Modelr->query("SELECT a.* FROM xk_project a where a.id=" .$projid. " and 66=66 " );

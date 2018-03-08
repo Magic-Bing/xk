@@ -345,6 +345,7 @@ margin-top:100px;
                                 <span class="lbl"></span>
                             </label>
                         </th>
+						<th align="center">序号</th>
 						<th align="center">房间名称</th>
 						<th align="center">户型</th>
 						<th align="center">建筑面积</th>
@@ -360,7 +361,7 @@ margin-top:100px;
                       </tr>
                     </thead> 
                      <tbody id="roomlisttb">
-                      <foreach name="roomlist" item="roomlist_vo">
+                      <foreach name="roomlist" item="roomlist_vo" key="k">
                       <tr class="s_out" onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="#ffffff"> 
                         <td align="center" >
                             <label>
@@ -368,6 +369,7 @@ margin-top:100px;
                                 <span class="lbl"></span>
                             </label>
                         </td>
+                          <td class="center"><{:($p-1)*$listRows+$k+1}></td>
 						<td align="left">
                                                     <a href="<{:U('jcsjroom/edit', array('id' => $roomlist_vo['id']))}>" style="text-decoration: underline;">
                                                             <{$roomlist_vo['projname']}>-<{$roomlist_vo['buildname']}>-<{$roomlist_vo['unit']}>-<{$roomlist_vo['room']}>

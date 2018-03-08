@@ -600,13 +600,13 @@ class WeixBuysetController extends BaseController {
             xk_user user ON user.cp_id = project.cp_id                               
                 AND user.NAME=choose.ywy
                 LEFT JOIN
-            xk_order_house_phone_login login ON login.phone = choose.customer_phone  
+            xk_order_house_phone_login login ON login.customer_id = choose.id  
                 LEFT JOIN
-            xk_cst2rooms collection ON collection.cst_id = choose.id
+            (SELECT * FROM xk_cst2rooms ORDER BY px ASC) collection ON collection.cst_id = choose.id
                 LEFT JOIN
-            xk_order_house_order `order` on `order`.belong_phone = login.phone       
+            xk_order_house_order `order` on `order`.belong_uid = choose.id       
                 LEFT JOIN
-            xk_room collection_room on collection_room.id = collection.room_id       
+            xk_room collection_room on collection_room.id = collection.room_id 
                 LEFT JOIN
             xk_build building on building.id = collection_room.bld_id                      
         WHERE

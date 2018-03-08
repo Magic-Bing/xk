@@ -27,7 +27,11 @@
 				<{:rsa_decode($item['customer_phone'],getChoosekey())}>
 			</td>
 			<td>
-				已选房
+				<if condition="$item['build_name'] neq null">
+					已选房
+					<else/>
+					未选房
+				</if>
 			</td>
 			<td>
 				<{$item.build_name|default='无'}>

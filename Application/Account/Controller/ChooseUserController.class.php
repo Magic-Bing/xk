@@ -264,7 +264,6 @@ class ChooseUserController extends BaseController {
             $customer_phone = I('customer_phone', '', 'trim');
             $cardno = I('cardno', '', 'trim');
             $cyjno = I('cyjno', '', 'trim');
-            $row_number = I('row_number', 0, 'intval');
             $money = I('money', 0, 'trim');
             $ys_time = I('ys_time', 0, 'intval');
             /* $area = I('area', 0, 'trim');
@@ -278,8 +277,7 @@ class ChooseUserController extends BaseController {
             $remark = I('remark', '', 'trim');
             $status = I('status', '', 'trim');
 
-            if ($project_id == 0 || empty($customer_name) || empty($customer_phone) || empty($cyjno)
-            ) {
+            if ($project_id == 0 || empty($customer_name) || empty($customer_phone)) {
                 $this->error("信息不能为空，请确认后重试！");
             }
 
@@ -292,11 +290,28 @@ class ChooseUserController extends BaseController {
             if (!in_array($project_id, $user_project_ids)) {
                 $this->error("项目错误，请选择正确的项目！");
             }
-
+            $cd=strencode($cardno);
+            $c1="OR like_c='$cd'";
+            $p=strencode($customer_phone);
+            $p1="like_p='$p'";
+            if($cyjno){
+                $cn1='OR cyjno='.$cyjno;
+            }else{
+                $cn1='';
+            }
             $Choose = D('Choose');
-            $pd = $Choose->where("project_id=$project_id AND batch_id=$batch_id AND (customer_phone=$customer_phone OR cardno='$cardno' OR cyjno='$cyjno')")->find();
+            $pd = $Choose->where("project_id=$project_id AND batch_id=$batch_id AND ($p1 $c1 $cn1)")->find();
             if ($pd) {
-                $this->error("电话或者身份证或者诚意金编号已存在，请修改后再提交！");
+                if($pd['like_p'] == $p){
+                    $this->error("电话已存在，请修改后再提交！");
+                }
+                if($pd['like_c'] == $cd){
+                    $this->error("身份证已存在，请修改后再提交！");
+                }
+                if($pd['cyjno'] == $cyjno){
+                    $this->error("诚意单号已存在，请修改后再提交！");
+                }
+
             }
             $data['name'] = $name;
             $data['project_id'] = $project_id;
@@ -307,7 +322,6 @@ class ChooseUserController extends BaseController {
             $data['like_p'] = strencode($customer_phone);
             $data['like_c'] = strencode($cardno);
             $data['cyjno'] = $cyjno;
-            $data['row_number'] = $row_number;
             $data['money'] = $money;
             $data['ys_time'] = $ys_time;
             /* $data['area'] = $area;		
@@ -409,7 +423,6 @@ class ChooseUserController extends BaseController {
             $customer_phone = I('customer_phone', '', 'trim');
             $cardno = I('cardno', '', 'trim');
             $cyjno = I('cyjno', '', 'trim');
-            $row_number = I('row_number', 0, 'intval');
             $money = I('money', 0, 'trim');
             $ys_time = I('ys_time', 0, 'intval');
             /* $area = I('area', 0, 'trim');
@@ -423,8 +436,7 @@ class ChooseUserController extends BaseController {
             $remark = I('remark', '', 'trim');
             $status = I('status', '', 'trim');
 
-            if ($id == 0 || $project_id == 0 || empty($customer_name) || empty($customer_phone) || empty($cyjno)
-            ) {
+            if ($id == 0 || $project_id == 0 || empty($customer_name) || empty($customer_phone)) {
                 $this->error("信息不能为空，请确认后重试！");
             }
 
@@ -437,11 +449,33 @@ class ChooseUserController extends BaseController {
             if (!in_array($project_id, $user_project_ids)) {
                 $this->error("项目错误，请选择正确的项目！");
             }
-
+            $cd=strencode($cardno);
+            $c1="OR like_c='$cd'";
+            $c2="AND like_c='$cd'";
+            $p=strencode($customer_phone);
+            $p1="like_p='$p'";
+            $p2="AND like_p='$p'";
+            if($cyjno){
+                $cn1='OR cyjno='.$cyjno;
+                $cn2='AND cyjno='.$cyjno;
+            }else{
+                $cn1='';
+                $cn2='';
+            }
             $Choose = D('Choose');
-            $pd = $Choose->where("project_id=$project_id AND batch_id=$batch_id AND id<>$id AND (customer_phone=$customer_phone OR cardno='$cardno' OR cyjno='$cyjno')")->find();
+            $pd = $Choose->where("project_id=$project_id AND batch_id=$batch_id AND id<>$id AND ($p1 $c1 $cn1)")->find();
+//            echo json_encode($pd);exit;
             if ($pd) {
-                $this->error("电话或者身份证或者诚意金编号已存在，请修改后再提交！");
+                if($pd['like_p'] == $p){
+                    $this->error("电话已存在，请修改后再提交！");
+                }
+                if($pd['like_c'] == $cd){
+                    $this->error("身份证已存在，请修改后再提交！");
+                }
+                if($pd['cyjno'] == $cyjno){
+                    $this->error("诚意单号已存在，请修改后再提交！");
+                }
+
             }
             
             $where['id'] = $id;
@@ -454,7 +488,6 @@ class ChooseUserController extends BaseController {
             $data['like_p'] = strencode($customer_phone);
             $data['like_c'] = strencode($cardno);
             $data['cyjno'] = $cyjno;
-            $data['row_number'] = $row_number;
             $data['money'] = $money;
             $data['ys_time'] = $ys_time;
             /* $data['area'] = $area;		
@@ -467,7 +500,7 @@ class ChooseUserController extends BaseController {
             //$data['password'] = $password;		
             $data['remark'] = $remark;
             //$data['status'] = $status;
-            $pds = $Choose->where("id=$id AND customer_phone='$customer_phone' AND cardno='$cardno' AND cyjno='$cyjno'")->find();
+            $pds = $Choose->where("id=$id $p2 $c2 $cn2")->find();
             $zy = $Choose->field("project_id,batch_id,customer_phone choose_phone,cardno choose_card,cyjno choose_cyjno")->where("id=$id")->find();
             $event = M()->table("xk_event_order_house")
                     ->where("states=1 and project_id={$zy['project_id']} and batch_id={$zy['batch_id']} and unix_timestamp(now())<= end_time and unix_timestamp(now())>=start_time")
@@ -911,7 +944,7 @@ class ChooseUserController extends BaseController {
 
         //定义默认数据
         //获取数据库同一批次的数据
-        $sql_arr = M()->table("xk_choose")->field("customer_name A,customer_phone B,cardno C,cyjno D,money E,row_number F,ywy G,ywyphone H,room I,ys_time J")->where("project_id=$project_id AND batch_id=$batch_id")->select();
+        $sql_arr = M()->table("xk_choose")->field("customer_name A,customer_phone B,cardno C,cyjno D,money E,ywy F,ywyphone G,room H,ys_time I")->where("project_id=$project_id AND batch_id=$batch_id")->select();
         for($i=0;$i<count($sql_arr);$i++){
             $sql_arr[$i]['b']=rsa_decode($sql_arr[$i]['b'],getChoosekey());
             $sql_arr[$i]['c']=rsa_decode($sql_arr[$i]['c'],getChoosekey());
@@ -926,7 +959,11 @@ class ChooseUserController extends BaseController {
         $key_arr = [];
         for ($k = 0; $k < count($excels); $k++) {
             for ($i = 0; $i < $k; $i++) {
-                if ((string) $excels[$k]['B'] === (string) $excels[$i]['B'] || (string) $excels[$k]['C'] === (string) $excels[$i]['C'] || (string) $excels[$k]['D'] === (string) $excels[$i]['D']) {
+                if ((string) $excels[$k]['B'] === (string) $excels[$i]['B'] || (string) $excels[$k]['C'] === (string) $excels[$i]['C'] ) {
+                    $key_arr[] = $k;
+                    $key_arr[] = $i;
+                }
+                if ( (string) $excels[$k]['D'] === (string) $excels[$i]['D'] && !empty((string)$excels[$k]['D']) && !empty((string)$excels[$i]['D']) ) {
                     $key_arr[] = $k;
                     $key_arr[] = $i;
                 }
@@ -999,22 +1036,20 @@ class ChooseUserController extends BaseController {
             $PHPExcel->getActiveSheet()->setCellValue('C2', '身份证号码');
             $PHPExcel->getActiveSheet()->setCellValue('D2', "诚意金编号");
             $PHPExcel->getActiveSheet()->setCellValue('E2', '诚意金金额');
-            $PHPExcel->getActiveSheet()->setCellValue('F2', '排号顺序');
-            $PHPExcel->getActiveSheet()->setCellValue('G2', '置业顾问');
-            $PHPExcel->getActiveSheet()->setCellValue('H2', '置业顾问电话');
-            $PHPExcel->getActiveSheet()->setCellValue('I2', '意向房间');
-            $PHPExcel->getActiveSheet()->setCellValue('J2', '选房延迟时间');
+            $PHPExcel->getActiveSheet()->setCellValue('F2', '置业顾问');
+            $PHPExcel->getActiveSheet()->setCellValue('G2', '置业顾问电话');
+            $PHPExcel->getActiveSheet()->setCellValue('H2', '意向房间');
+            $PHPExcel->getActiveSheet()->setCellValue('I2', '选房延迟时间');
             for ($i = 0; $i < count($repeat_arr); $i++) {
                 $PHPExcel->getActiveSheet()->setCellValueExplicit("A" . ($i + 3), $repeat_arr[$i]['A'], \PHPExcel_Cell_DataType::TYPE_STRING);
                 $PHPExcel->getActiveSheet()->setCellValueExplicit("B" . ($i + 3), $repeat_arr[$i]['B'], \PHPExcel_Cell_DataType::TYPE_STRING);
                 $PHPExcel->getActiveSheet()->setCellValueExplicit("C" . ($i + 3), $repeat_arr[$i]['C'], \PHPExcel_Cell_DataType::TYPE_STRING);
                 $PHPExcel->getActiveSheet()->setCellValueExplicit("D" . ($i + 3), $repeat_arr[$i]['D'], \PHPExcel_Cell_DataType::TYPE_STRING);
                 $PHPExcel->getActiveSheet()->setCellValueExplicit("E" . ($i + 3), $repeat_arr[$i]['E'], \PHPExcel_Cell_DataType::TYPE_STRING);
-                $PHPExcel->getActiveSheet()->setCellValueExplicit("F" . ($i + 3), $repeat_arr[$i]['F'], \PHPExcel_Cell_DataType::TYPE_STRING);
+                $PHPExcel->getActiveSheet()->setCellValue("F" . ($i + 3), $repeat_arr[$i]['F']);
                 $PHPExcel->getActiveSheet()->setCellValue("G" . ($i + 3), $repeat_arr[$i]['G']);
                 $PHPExcel->getActiveSheet()->setCellValue("H" . ($i + 3), $repeat_arr[$i]['H']);
                 $PHPExcel->getActiveSheet()->setCellValue("I" . ($i + 3), $repeat_arr[$i]['I']);
-                $PHPExcel->getActiveSheet()->setCellValue("J" . ($i + 3), $repeat_arr[$i]['J']);
             }
 
             $objWriter = \PHPExcel_IOFactory::createWriter($PHPExcel, 'Excel5');
@@ -1045,11 +1080,10 @@ class ChooseUserController extends BaseController {
                 'like_c' => strencode($excel['C']),
                 'cyjno' => (string) $excel['D'],
                 'money' => $excel['E'],
-                'row_number' => $excel['F'],
-                'ywy' => (string) $excel['G'],
-                'ywyphone' => (string) $excel['H'],
-                'room' => $excel['I'],
-                'ys_time' => (int) $excel['J'],
+                'ywy' => (string) $excel['F'],
+                'ywyphone' => (string) $excel['G'],
+                'room' => $excel['H'],
+                'ys_time' => (int) $excel['I'],
                 'remark' => '', //备注
                 'add_time' => time(),
                 'add_ip' => get_client_ip(0, true),
@@ -1118,7 +1152,6 @@ class ChooseUserController extends BaseController {
                 array('身份证号码', '_bold' => true, '_wd' => 30),
                 array('诚意金编号', '_bold' => true, '_wd' => 15),
                 array('诚意金金额', '_bold' => true, '_wd' => 15),
-                array('排号顺序', '_bold' => true, '_wd' => 15),
                 array('置业顾问', '_wd' => 15),
                 array('置业顾问电话', '_wd' => 20),
                 array('意向房间', '_wd' => 20),

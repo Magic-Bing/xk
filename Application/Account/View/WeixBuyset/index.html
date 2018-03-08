@@ -171,9 +171,7 @@
                                     </label>
                                 </td>
                                 <td class="hidden-480">
-                                    <span class="label-sm">
                                         <{$choose_activity_vo.project_name|default=''}>
-                                    </span>
 
                             <if condition="!empty($choose_activity_vo['batch_name'])">
                                 <span class="label label-sm label-primary arrowed arrowed-right"><{$choose_activity_vo.batch_name}></span>
@@ -222,9 +220,9 @@
                             </td>-->
                             <td class="hidden-480" style="text-align: center;">
                                 <eq name="choose_activity_vo['states']" value="1">
-                                <span class="label label-sm label-sc">启用</span>
+                                <span class="  label-sc">启用</span>
                             <else/>
-                            <span class="label label-sm label-sc">关闭</span>
+                            <span class="  label-sc">关闭</span>
                             </eq>
                             </td>
                             <td style="text-align: center;width:75px">
