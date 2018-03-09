@@ -54,7 +54,60 @@ $(function() {
         var img=$("#hx-img");
         img.hide();
     });
+    /*房间导入2018-3-9*/
+    //用户信息 - 导入excel - 提交
+    $(document).on('click', ".js-choose-room-excel-import-tpl-btn-room", function() {
+        var $form = $(this).parent().parent().parent();
+        var $formData = new FormData($form[0]);
 
+        var options = {
+            url: $form.attr('action'),
+            type: 'POST',
+            dataType: 'JSON',
+            async: false,
+            cache: false,
+            data: $formData,
+            // 告诉jQuery不要去处理发送的数据
+            processData : false,
+            // 告诉jQuery不要去设置Content-Type请求头
+            contentType : false,
+            success: function (data) {
+                if (data['status'] === 0) {
+                    layer_alert(data['info']);
+                    return false;
+                } else {
+                    console.log(data);
+                  if(data['info']['correct_count'] === 0){
+                      $("#layui-layer100001").hide();
+                      layer_alert("全部数据异常,点击确认后自动下载异常数据！",function () {
+                          layer_close_all();
+                          $(".layui-layer-shade").hide();
+                          window.open("http://"+window.location.host+"/"+data['info']['error_url']);
+                      })
+                  }else if(data['info']['error_count'] === 0){
+                      $("#layui-layer100001").hide();
+                      layer_alert("一共"+data['info']['correct_count']+"条，添加成功"+data['info']['add']+"条，修改成功"+data['info']['update']+"条.",function () {
+                          window.location.reload();
+                      });
+                  }else{
+                      $("#layui-layer100001").hide();
+                      layer_alert("一共"+(data['info']['correct_count']+data['info']['error_count'])+"条，添加成功"+data['info']['add']+"条，修改成功"+data['info']['update']+"条,存在异常数据"+data['info']['error_count']+"条，确认后自动下载",function () {
+                          layer_close_all();
+                          $(".layui-layer-shade").hide();
+                          window.open("http://"+window.location.host+"/"+data['info']['error_url']);
+                          window.location.reload();
+                      })
+                  }
+
+                }
+            },
+            error: function () {
+                gritter_alert("导入失败，请确认后重试！");
+            }
+        };
+        $.ajax(options);
+        return false;
+    });
 
 	/*         END            */
 	/*2017-09 qzb*/
@@ -1059,13 +1112,11 @@ $(function() {
             // 告诉jQuery不要去设置Content-Type请求头
             contentType : false,
             success: function (data) {
-                // console.log(data);
                 if (data['status'] != 1) {
                     layer_alert(data['info']);
                     return false;
                 } else {
                     gritter_alert_success('导入成功！');
-
                     setTimeout(function() {
                         window.location.reload();
                     }, 200);
@@ -1080,6 +1131,7 @@ $(function() {
 
         return false;
     });
+
 
 	//用户信息 - 删除
 	$(".js-choose-user-delete-btn").on('click', function() {
