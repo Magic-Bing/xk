@@ -105,7 +105,7 @@ class JcsjroomController extends BaseController {
         }
         if($excel===1){
             $roomlist=$Model->query("SELECT concat_ws('-',c.name,b.buildname,a.unit,a.room) dz,a.hx,a.area,Format(a.price,2) p1,a.tnarea,Format(a.tnprice,2) p2,Format(a.total,2) p3,Format(a.discount,2) p4,CASE WHEN a.is_xf=0 THEN  '待售' ELSE  '已售' END zt FROM xk_room a left join xk_build b on a.bld_id=b.id left join xk_project c on a.proj_id=c.id ".$where  . "  order by a.id asc ");
-            $this->exportExcel("房间数据",['head'=>['房间名称','户型','建筑面积','建筑单价','套内面积','套内单价','标准总价','优惠hou总价','销售状态']],$roomlist,0);
+            $this->exportExcel("房间数据",['head'=>['房间名称','户型','建筑面积','建筑单价','套内面积','套内单价','标准总价','优惠后总价','销售状态']],$roomlist,0);
         }
         //可选项目取值
 
@@ -168,7 +168,7 @@ class JcsjroomController extends BaseController {
         $this->assign('id', $id);
         $roominfo=D('Roomview')->getOneById($id);
         $this->assign('roominfo', $roominfo);
-        $this->set_seo_title("房间导入");
+        $this->set_seo_title("房间管理");
         $this->display();
     }
      
@@ -614,7 +614,20 @@ class JcsjroomController extends BaseController {
                        if (stristr($buildlist,$data[$currentRow]['A'])<=0) $buildlist.=$data[$currentRow]['A']."|";
                    }
                 }else{
+                    if(
+                        empty($currentSheet->getCell('A'.$currentRow)->getValue()) ||
+                        empty($currentSheet->getCell('B'.$currentRow)->getValue()) ||
+                        empty($currentSheet->getCell('C'.$currentRow)->getValue()) ||
+                        empty($currentSheet->getCell('D'.$currentRow)->getValue()) ||
+                        empty($currentSheet->getCell('E'.$currentRow)->getValue()) ||
+                        empty($currentSheet->getCell('F'.$currentRow)->getValue())
 
+                    ){
+                        $error[$currentRow-3][$currentColumn]=$currentSheet->getCell($address)->getValue();
+                    }else{
+                        $data[$currentRow][$currentColumn]=(string)$currentSheet->getCell($address)->getValue();
+                        if (stristr($buildlist,$data[$currentRow]['A'])<=0) $buildlist.=$data[$currentRow]['A']."|";
+                    }
                 }
             }
         }
@@ -635,7 +648,13 @@ class JcsjroomController extends BaseController {
         }
         if ($mbtype=="车位模板")
         {
-            $this->save_importcw($data,$projid,$buildlist);
+            if($result['error_count']>0){
+                $result['error_url']=$this->car_error($error,$pid,$pname);
+                if($result['correct_count']===0){
+                    $this->success($result);
+                }
+            }
+            $this->save_importcw($data,$projid,$buildlist,$result,$projinfo);
         }
         else
         {
@@ -762,6 +781,100 @@ class JcsjroomController extends BaseController {
         $objWriter->save($filePath);
         return 'Uploads/room/error/' . $filename;
     }
+    //车位导入异常数据
+    public function car_error($data,$pid,$pname){
+        import("Org.Util.PHPExcel");
+        import("Org.Util.PHPExcel.Writer.Excel5");
+        import("Org.Util.PHPExcel.IOFactory.php");
+
+        //创建PHPExcel对象，注意，不能少了\
+        $PHPExcel = new \PHPExcel();
+        //激活表格
+        $filename = "error_car" . date('YmdHis') . ".xls";
+        $PHPExcel->getActiveSheet()->getStyle("A")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $PHPExcel->getActiveSheet()->getStyle("B")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $PHPExcel->getActiveSheet()->getStyle("C")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $PHPExcel->getActiveSheet()->getStyle("D")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $PHPExcel->getActiveSheet()->getStyle("E")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $PHPExcel->getActiveSheet()->getStyle("F")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $PHPExcel->getActiveSheet()->getStyle("G")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $PHPExcel->getActiveSheet()->getStyle("H")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $PHPExcel->getActiveSheet()->getStyle("I")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $PHPExcel->getActiveSheet()->getStyle("J")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $PHPExcel->getActiveSheet()->getStyle()->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $PHPExcel->getActiveSheet()->getStyle('A1:I1')->getFill()->setFillType(\PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('00dc93d5');
+        $PHPExcel->getActiveSheet()->getStyle("A2:J2")->applyFromArray(
+            array(
+                'font'    => array (
+                    'bold'      => true,
+                ),
+                'borders' => array (
+                    'top'     => array (
+                        'style' => \PHPExcel_Style_Border::BORDER_THIN
+                    )
+                ),
+                'fill' => array (
+                    'type'       => \PHPExcel_Style_Fill::FILL_GRADIENT_LINEAR ,
+                    'rotation'   => 90,
+                    'startcolor' => array (
+                        'argb' => 'FFA0A0A0'
+                    ),
+                    'endcolor'   => array (
+                        'argb' => 'FFFFFFFF'
+                    )
+                )
+            )
+        );
+        $PHPExcel->getActiveSheet()->getStyle("A2:J2")
+            ->getFill()
+            ->setFillType(\PHPExcel_Style_Fill::FILL_SOLID)
+            ->getStartColor()
+            ->setRGB('EBE7DC');
+        $PHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(15);
+        $PHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(15);
+        $PHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(15);
+        $PHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(15);
+        $PHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(15);
+        $PHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(15);
+        $PHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth(15);
+        $PHPExcel->getActiveSheet()->getColumnDimension('H')->setWidth(15);
+        $PHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(15);
+        $PHPExcel->getActiveSheet()->getColumnDimension('J')->setWidth(15);
+        $PHPExcel->getActiveSheet()->setCellValue('A1', '项目标识');
+        $PHPExcel->getActiveSheet()->setCellValue('B1', $pid);
+        $PHPExcel->getActiveSheet()->setCellValue('C1', '车位模版');
+        $PHPExcel->getActiveSheet()->setCellValue('D1', '项目名称');
+        $PHPExcel->getActiveSheet()->setCellValue('E1', $pname);
+        $PHPExcel->getActiveSheet()->setCellValue('G1', '说明');
+        $PHPExcel->getActiveSheet()->setCellValue('H1', "此行不能修改！");
+        $PHPExcel->getActiveSheet()->setCellValue('A2', '楼层');
+        $PHPExcel->getActiveSheet()->setCellValue('B2', '车位号');
+        $PHPExcel->getActiveSheet()->setCellValue('C2', '车位类型');
+        $PHPExcel->getActiveSheet()->setCellValue('D2', "面积");
+        $PHPExcel->getActiveSheet()->setCellValue('E2', '单价');
+        $PHPExcel->getActiveSheet()->setCellValue('F2', '总价');
+        $PHPExcel->getActiveSheet()->setCellValue('G2', '一次性总价');
+        $PHPExcel->getActiveSheet()->setCellValue('H2', '分期总价');
+        $PHPExcel->getActiveSheet()->setCellValue('I2', '按揭总价');
+        $PHPExcel->getActiveSheet()->setCellValue('J2', '公积金总价');
+        for ($i = 0; $i < count($data); $i++) {
+            $PHPExcel->getActiveSheet()->setCellValue("A" . ($i + 3), $data[$i]['A']);
+            $PHPExcel->getActiveSheet()->setCellValue("B" . ($i + 3), $data[$i]['B']);
+            $PHPExcel->getActiveSheet()->setCellValue("C" . ($i + 3), $data[$i]['C']);
+            $PHPExcel->getActiveSheet()->setCellValue("D" . ($i + 3), $data[$i]['D']);
+            $PHPExcel->getActiveSheet()->setCellValue("E" . ($i + 3), $data[$i]['E']);
+            $PHPExcel->getActiveSheet()->setCellValue("F" . ($i + 3), $data[$i]['F']);
+            $PHPExcel->getActiveSheet()->setCellValue("G" . ($i + 3), $data[$i]['G']);
+            $PHPExcel->getActiveSheet()->setCellValue("H" . ($i + 3), $data[$i]['H']);
+            $PHPExcel->getActiveSheet()->setCellValue("I" . ($i + 3), $data[$i]['I']);
+            $PHPExcel->getActiveSheet()->setCellValue("J" . ($i + 3), $data[$i]['J']);
+        }
+
+        $objWriter = \PHPExcel_IOFactory::createWriter($PHPExcel, 'Excel5');
+        $filePath = './Uploads/room/cw_error/' . $filename;
+        $objWriter->save($filePath);
+        return 'Uploads/room/cw_error/' . $filename;
+    }
     //保存导入数据
     public function save_import($data,$projid,$buildlist,$result,$projinfo)
     {
@@ -805,8 +918,16 @@ class JcsjroomController extends BaseController {
                 $info[$k]['tnarea'] = $v['G'];
                 $info[$k]['price'] = $v['H'];
                 $info[$k]['tnprice'] = $v['I'];
-                $info[$k]['total'] = $v['J'];
-                $info[$k]['discount'] = $v['K'];
+                if(empty( $v['J'])){
+                    $info[$k]['total'] = $v['K'];
+                }else{
+                    $info[$k]['total'] = $v['J'];
+                }
+                if(empty( $v['K'])){
+                    $info[$k]['discount'] = $v['J'];
+                }else{
+                    $info[$k]['discount'] = $v['K'];
+                }
                 $info[$k]['ycx_price'] = $v['L'];
                 $info[$k]['fq_price'] = $v['M'];
                 $info[$k]['gjj_price'] = $v['O'];
@@ -849,18 +970,10 @@ class JcsjroomController extends BaseController {
     }
     
     //保存车位导入数据
-    public function save_importcw($data,$projid,$buildlist)
+    public function save_importcw($data,$projid,$buildlist,$result,$projinfo)
     {  
-        if (empty($projid)||$projid==0)
-        {
-            $this->error('项目标识有误,请重新导出模板');
-        }
-        $Modelr = new \Think\Model(); 
-        $projinfo=$Modelr->query("SELECT a.* FROM xk_project a where a.id=" .$projid. " and 66=66 " );
-        if (empty($projinfo)||count($projinfo)==0)
-        {
-            $this->error('项目标识有误,请重新导出模板');
-        }
+
+        $Modelr = new \Think\Model();
         //生成楼栋信息
         $buildlist=rtrim($buildlist, "|");
         $bulids=explode("|",$buildlist);
@@ -891,14 +1004,12 @@ class JcsjroomController extends BaseController {
                 $info[$k-2]['pc_id']=-99;
                 $info[$k-2]['bld_id']=-99;
                 $info[$k-2]['cp_id']=$projinfo[0]['cp_id'];
-                
                 $info[$k-2]['buildname'] = $v['A']."";
                 $info[$k-2]['unit'] = "1";
                 $info[$k-2]['floor'] = "1";
                 $info[$k-2]['no'] = $k;
                 $info[$k-2]['room'] = (string)$v['B'];//车位的房间号可能是按照顺序号生成
                 $info[$k-2]['hx'] = (string)$v['C'];
-                
                 $info[$k-2]['area'] = (float)$v['D'];
                 $info[$k-2]['tnarea'] = (float)$v['D'];
                 $info[$k-2]['price'] = (float)$v['E'];
@@ -920,6 +1031,8 @@ class JcsjroomController extends BaseController {
         M()->execute($SQL);
         
         $roomadd=$Modelr->query("SELECT a.* FROM xk_roomtemp a where  isadd=1 " );
+        $resultadd=0;
+        $resultup=0;
         if (!empty($roomadd) && count($roomadd)>0)
         {
             //新增车位
@@ -934,8 +1047,9 @@ class JcsjroomController extends BaseController {
             $SQLup="update  xk_room a,xk_roomtemp b set a.hx=b.hx,a.area=b.area, a.tnarea=b.tnarea, a.price=b.price, a.tnprice=b.tnprice,a.total=b.total,a.ycx_price=b.ycx_price,a.fq_price=b.fq_price,a.gjj_price=b.gjj_price,a.aj_price=b.aj_price  where a.id=b.room_id and  b.room_id<>0 and b.isadd=0 ";
             $resultup=M()->execute($SQLup);
         }
-        $this->success('车位导入成功', 'room?cz=user&projid='.$projid);
-
+        $result['add']=$resultadd;
+        $result['update']=$resultup;
+        $this->success($result);
     }
     
     //删除单个房间
@@ -980,19 +1094,36 @@ class JcsjroomController extends BaseController {
         }
         else
         {
-            $total= I('total');
-            $area = I('area');
-            $price = I('price');
-            $tnarea = I('tnarea');
-            $tnprice = I('tnprice');
-            $discount = I('discount');
+            $total= I('total',0);
+            $area = I('area',0);
+            $price = I('price',0);
+            $tnarea = I('tnarea',0);
+            $tnprice = I('tnprice',0);
+            $discount = I('discount',0);
+            $gjj_price = I('gjj_price',0);
+            $fq_price = I('fq_price',0);
+            $ycx_price = I('ycx_price',0);
+            $aj_price = I('aj_price',0);
 
-            $data['total'] = $total;
+
+            if(empty($total) || $total==="0.00"){
+                $data['total'] = $discount;
+            }else{
+                $data['total'] = $total;
+            }
             $data['area'] = $area;
             $data['price'] = $price;
             $data['tnarea'] = $tnarea;
             $data['tnprice'] = $tnprice;
-            $data['discount'] = $discount;
+            if(empty($discount) || $discount==="0.00" ){
+                $data['discount'] = $total;
+            }else{
+                $data['discount'] = $discount;
+            }
+            $data['gjj_price'] = $gjj_price;
+            $data['fq_price'] = $fq_price;
+            $data['ycx_price'] = $ycx_price;
+            $data['aj_price'] = $aj_price;
 //            echo json_encode($data);exit;
             $model = M("Room");  
             $chech_has_edit =$model->where('id='.$id)->save($data);

@@ -448,16 +448,17 @@ class WeixBuyledController extends BaseController {
 
         $event = $redis->hGetAll("event_order_house_{$eventId}");
         
-        if (!empty($event) && time()>$event['start_time'] &&time()<$event['end_time'])
+        //if (!empty($event) && time()>$event['start_time'] &&time()<$event['end_time'])
+        if (!empty($event) )
         {
             $eventOrderHouseModel = D('Common/EventOrderHouse');
             $orderedRooms = $eventOrderHouseModel->getAllOrderedRoomInRedis($eventId);
         }
-        else
-        {
-            $event1=M("event_order_house")->find($eventId);
-            $orderedRooms=M()->query("select * from xk_roomlist where proj_id=" . $event1['project_id'] . " and pc_id=" . $event1['batch_id'] ." order by xftime");
-        }
+        //else
+        //{
+        //    $event1=M("event_order_house")->find($eventId);
+        //    $orderedRooms=M()->query("select * from xk_roomlist where proj_id=" . $event1['project_id'] . " and pc_id=" . $event1['batch_id'] ." order by xftime");
+        //}
         $orderedRooms = empty($orderedRooms)?[]:$orderedRooms;
 
         //$this->show(json_encode($orderedRooms));
@@ -475,7 +476,7 @@ class WeixBuyledController extends BaseController {
         $dqhm = $this->getMillisecond();
         if ($dqhm < $event['start_time'] * 1000) {//活动未开始时，返回活动开始倒计时time和整个活动时长time1
             $time = $event['start_time'] * 1000 - $dqhm;
-            $time1 = $event['end_time'] - $event['start_time'];
+            $time1=$event['end_time']*1000-$event['start_time']*1000;
             $djsinfo['iswks'] = 1;
             $djsinfo['time1'] = $time1;
         } else {//活动已开始，返回的time和time1一样

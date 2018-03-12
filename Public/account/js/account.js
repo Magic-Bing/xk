@@ -55,7 +55,7 @@ $(function() {
         img.hide();
     });
     /*房间导入2018-3-9*/
-    //用户信息 - 导入excel - 提交
+    //房间导入 - 导入excel - 提交
     $(document).on('click', ".js-choose-room-excel-import-tpl-btn-room", function() {
         var $form = $(this).parent().parent().parent();
         var $formData = new FormData($form[0]);
@@ -2379,6 +2379,33 @@ $(function() {
         var $tnarea = $("#tnarea").val();
         var $tnprice = $("#tnprice").val();
         var discount =$("#form-field-discount").val();
+        var gjj_price =$("#gjj_price").val();
+        var aj_price =$("#aj_price").val();
+        var fq_price =$("#fq_price").val();
+        var ycx_price =$("#ycx_price").val();
+        console.log(discount);
+        console.log($total);
+        if(
+            ($total === "" || $total ==="0" || $total ==="0.00") &&
+            (discount === "" || discount ==="0" || discount ==="0.00")
+        ){
+            gritter_alert('标准总价和优惠后总价不能同时为空！');
+            return false;
+        }
+        if(
+            ($area === "" || $area ==="0" || $area ==="0.00") &&
+            ($tnarea === "" || $tnarea ==="0" || $tnarea ==="0.00")
+        ){
+            gritter_alert('建筑面积和套内面积不能同时为空！');
+            return false;
+        }
+        if(
+            ($price === "" || $price ==="0" || $price ==="0.00") &&
+            ($tnprice === "" || $tnprice ==="0" || $tnprice ==="0.00")
+        ){
+            gritter_alert('建筑单价和套内单价不能同时为空！');
+            return false;
+        }
 		var $data = {
                     id: $id,
                     total: $total,

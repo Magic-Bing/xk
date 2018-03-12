@@ -327,9 +327,9 @@
             <div id="roomdiv">
                 <div id="divtable">
                     <div style="width:100%;height:45px;display:none;" >
-                        <div style="display: none;">
+                        <div style="display: block;">
                             <span class="a" id="djstemp"><{$time}></span>秒<span class="b"></span>
-                            <span id="djstemp1" style="display:none;"><{$time1}></span>
+                            <span id="djstemp1" style="display:block;"><{$time1}></span>
                         </div>
                         <ul class="djs-ul">
                             <li>
@@ -694,7 +694,7 @@
                         height: yscount/roomcount * jezgd
                 },600);
                 //显示待售房间数量
-                console.log(parseInt(roomcount)-parseInt(yscount));
+                //console.log(parseInt(roomcount)-parseInt(yscount));
                 numRun1.resetData(parseInt(roomcount)-parseInt(yscount));
                 loader.draw(xsqhl);
             }
@@ -760,7 +760,7 @@
                             {
                                 if(iswks==1)
                                 {
-                                    if(times <= 11010 && isshowdjs)
+                                    if(times <= 11010 )
                                     {
                                         isshowdjs=false;
                                         $("#dsjdiv").find("video").trigger("play");
@@ -810,6 +810,7 @@
                     if (data.status==1) {
                         var djsinfo = data.info[1];
                         iswks=djsinfo['iswks'];
+alert(iswks);
                         $("#djstemp").text(djsinfo['time']);
                         $("#djstemp1").text(djsinfo['time1']);
                         showjsdjs(djsinfo['time']);

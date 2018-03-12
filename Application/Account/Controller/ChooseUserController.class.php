@@ -290,23 +290,18 @@ class ChooseUserController extends BaseController {
             if (!in_array($project_id, $user_project_ids)) {
                 $this->error("项目错误，请选择正确的项目！");
             }
-            $cd=strencode($cardno);
-            $c1="OR like_c='$cd'";
             $p=strencode($customer_phone);
             $p1="like_p='$p'";
             if($cyjno){
-                $cn1='OR cyjno='.$cyjno;
+                $cn1="OR cyjno='$cyjno";
             }else{
                 $cn1='';
             }
             $Choose = D('Choose');
-            $pd = $Choose->where("project_id=$project_id AND batch_id=$batch_id AND ($p1 $c1 $cn1)")->find();
+            $pd = $Choose->where("project_id=$project_id AND batch_id=$batch_id AND ($p1  $cn1)")->find();
             if ($pd) {
                 if($pd['like_p'] == $p){
                     $this->error("电话已存在，请修改后再提交！");
-                }
-                if($pd['like_c'] == $cd){
-                    $this->error("身份证已存在，请修改后再提交！");
                 }
                 if($pd['cyjno'] == $cyjno){
                     $this->error("诚意单号已存在，请修改后再提交！");
@@ -450,27 +445,23 @@ class ChooseUserController extends BaseController {
                 $this->error("项目错误，请选择正确的项目！");
             }
             $cd=strencode($cardno);
-            $c1="OR like_c='$cd'";
             $c2="AND like_c='$cd'";
             $p=strencode($customer_phone);
             $p1="like_p='$p'";
             $p2="AND like_p='$p'";
             if($cyjno){
-                $cn1='OR cyjno='.$cyjno;
-                $cn2='AND cyjno='.$cyjno;
+                $cn1="OR cyjno='$cyjno'";
+                $cn2="AND cyjno='$cyjno'";
             }else{
                 $cn1='';
                 $cn2='';
             }
             $Choose = D('Choose');
-            $pd = $Choose->where("project_id=$project_id AND batch_id=$batch_id AND id<>$id AND ($p1 $c1 $cn1)")->find();
+            $pd = $Choose->where("project_id=$project_id AND batch_id=$batch_id AND id<>$id AND ($p1  $cn1)")->find();
 //            echo json_encode($pd);exit;
             if ($pd) {
                 if($pd['like_p'] == $p){
                     $this->error("电话已存在，请修改后再提交！");
-                }
-                if($pd['like_c'] == $cd){
-                    $this->error("身份证已存在，请修改后再提交！");
                 }
                 if($pd['cyjno'] == $cyjno){
                     $this->error("诚意单号已存在，请修改后再提交！");
@@ -953,14 +944,18 @@ class ChooseUserController extends BaseController {
         foreach ($excels as $key => $value) {
             $excels[$key] = array_change_key_case($excels[$key], CASE_UPPER);
         }
-
 //        echo json_encode($excels);exit;
-
         $key_arr = [];
         for ($k = 0; $k < count($excels); $k++) {
             for ($i = 0; $i < $k; $i++) {
-                if ((string) $excels[$k]['B'] === (string) $excels[$i]['B'] || (string) $excels[$k]['C'] === (string) $excels[$i]['C'] ) {
+                if ((string) $excels[$k]['B'] === (string) $excels[$i]['B']  ) {
                     $key_arr[] = $k;
+                    $key_arr[] = $i;
+                }
+                if (empty((string) $excels[$k]['B'])) {
+                    $key_arr[] = $k;
+                }
+                if (empty((string) $excels[$i]['B'])) {
                     $key_arr[] = $i;
                 }
                 if ( (string) $excels[$k]['D'] === (string) $excels[$i]['D'] && !empty((string)$excels[$k]['D']) && !empty((string)$excels[$i]['D']) ) {
