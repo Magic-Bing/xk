@@ -228,12 +228,12 @@
                                                                 </h1>
 								<table id="user-info">
 									<tr>
-										<td class="wm20" style="width:60px">手机号码</td>
-										<td class="hs"><{:rsa_decode($user_info['cphone'],getChoosekey())}></td>
+										<td class="wm20" style="width:60px;color: #000">手机号码</td>
+										<td class="hs" style="color: #000"><{:rsa_decode($user_info['cphone'],getChoosekey())}></td>
 									</tr>
 									<tr>
-										<td>证件号码</td>
-										<td class="hs"><{:rsa_decode($user_info['cardno'],getChoosekey())}></td>
+										<td style="color: #000">证件号码</td>
+										<td class="hs" style="color: #000"><{:rsa_decode($user_info['cardno'],getChoosekey())}></td>
 									</tr>
 									<tr>
 										<td>诚意单号</td>
@@ -249,10 +249,11 @@
 									</tr>
 								</table>
 								<h1><i class="fa fa-envelope-open-o ired"> </i> 所选房间</h1>
-								<if condition="($user_info.rid neq null) AND ($user_info.oid neq null)">
+								<if condition="($user_info.rid neq null) AND ($user_info.oid neq null) AND ($user_info.oho_id neq null)">
                                                                     <a href="<{:U('room/index', array('id' =>$user_info['rid'],'hid'=> $project_id))}>" style="color:#999999">
                                                                         <h2><{$user_info.bname}>-<{$user_info.unit}>单元-<{$user_info.room}></h2>
                                                                         <p  class="font-hs" >房间信息：￥<{:number_format($user_info['total'],2)}>元  &nbsp;&nbsp;&nbsp;      <if condition="$user_info['hx'] neq null">(<{$user_info.hx}>)</if><{$user_info.area}>㎡</p>
+                                                                        <p class="font-hs" >&nbsp;&nbsp;&nbsp;选房号：<{$user_info['code']}></p>
                                                                         <p class="font-hs" >选房时间：<{:date('Y-m-d h:i:s',$user_info['log_time'])}></p>
                                                                     </a>
 								<else/>

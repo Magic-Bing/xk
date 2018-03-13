@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d93e351b-3e78-4fb4-bd62-b1a84d311097" name="Default" comment="优化">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/70178600-be3a-4930-99c5-435672e11257/_metadata_/metadata" afterPath="$PROJECT_DIR$/.idea/dataSources/70178600-be3a-4930-99c5-435672e11257/_metadata_/metadata" />
+    <list default="true" id="d93e351b-3e78-4fb4-bd62-b1a84d311097" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/JcsjroomController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/JcsjroomController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Jcsjroom/room.html" afterPath="$PROJECT_DIR$/Application/Account/View/Jcsjroom/room.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Public/account/js/account.js" afterPath="$PROJECT_DIR$/Public/account/js/account.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Saler/Controller/ChooseAnalysisController.class.php" afterPath="$PROJECT_DIR$/Application/Saler/Controller/ChooseAnalysisController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Saler/Controller/DataStatisticsController.class.php" afterPath="$PROJECT_DIR$/Application/Saler/Controller/DataStatisticsController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Saler/View/ChooseAnalysis/dz_index.html" afterPath="$PROJECT_DIR$/Application/Saler/View/ChooseAnalysis/dz_index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Saler/View/ChooseAnalysis/dz_user_detail.html" afterPath="$PROJECT_DIR$/Application/Saler/View/ChooseAnalysis/dz_user_detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Saler/View/ChooseAnalysis/index.html" afterPath="$PROJECT_DIR$/Application/Saler/View/ChooseAnalysis/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Saler/View/ChooseAnalysis/user_detail.html" afterPath="$PROJECT_DIR$/Application/Saler/View/ChooseAnalysis/user_detail.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,206 +29,80 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ChooseUserController.class.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Application/Account/Controller/ChooseUserController.class.php">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Saler/View/ChooseAnalysis/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2842">
-              <caret line="1044" column="51" lean-forward="false" selection-start-line="1044" selection-start-column="51" selection-end-line="1044" selection-end-column="51" />
+            <state relative-caret-position="368">
+              <caret line="99" column="94" lean-forward="false" selection-start-line="99" selection-start-column="94" selection-end-line="99" selection-end-column="94" />
               <folding>
-                <element signature="e#637#6356#0#PHP" expanded="false" />
-                <element signature="e#6375#7922#0#PHP" expanded="false" />
-                <element signature="e#7928#8001#0#PHP" expanded="false" />
-                <element signature="e#8006#14226#0#PHP" expanded="false" />
-                <element signature="e#14310#23267#0#PHP" expanded="false" />
-                <element signature="e#14871#15099#0#PHP" expanded="false" />
-                <element signature="e#23351#25319#0#PHP" expanded="false" />
-                <element signature="e#25405#26492#0#PHP" expanded="false" />
-                <element signature="e#26514#26928#0#PHP" expanded="false" />
-                <element signature="e#26934#27336#0#PHP" expanded="false" />
-                <element signature="e#27415#29164#0#PHP" expanded="false" />
-                <element signature="e#29253#30955#0#PHP" expanded="false" />
-                <element signature="e#31007#31398#0#PHP" expanded="false" />
-                <element signature="e#43029#45151#0#PHP" expanded="false" />
-                <element signature="e#45288#54956#0#PHP" expanded="false" />
-                <element signature="e#55030#55974#0#PHP" expanded="false" />
-                <element signature="e#56048#63131#0#PHP" expanded="false" />
-                <element signature="e#63150#66565#0#PHP" expanded="false" />
+                <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#block#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#i#0;n#a#0;n#div#0;n#div#2;n#div#0;n#div#0;n#block#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="account.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Public/account/js/account.js">
+      <file leaf-file-name="dz_index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Saler/View/ChooseAnalysis/dz_index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="58" column="84" lean-forward="false" selection-start-line="58" selection-start-column="84" selection-end-line="58" selection-end-column="84" />
+            <state relative-caret-position="575">
+              <caret line="99" column="94" lean-forward="false" selection-start-line="99" selection-start-column="94" selection-end-line="99" selection-end-column="94" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Saler/View/DataStatistics/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-4830">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataStatisticsController.class.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Application/Saler/Controller/DataStatisticsController.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="414">
+              <caret line="88" column="59" lean-forward="false" selection-start-line="88" selection-start-column="59" selection-end-line="88" selection-end-column="59" />
               <folding>
-                <element signature="e#318#1336#0" expanded="false" />
-                <element signature="e#1444#1712#0" expanded="false" />
-                <element signature="e#1789#1846#0" expanded="false" />
-                <element signature="e#1980#4213#0" expanded="false" />
-                <element signature="e#4402#4892#0" expanded="false" />
-                <element signature="e#4967#5181#0" expanded="false" />
-                <element signature="e#5261#5348#0" expanded="false" />
-                <element signature="e#5356#5366#0" expanded="false" />
-                <element signature="e#5572#5967#0" expanded="false" />
-                <element signature="e#6033#9712#0" expanded="false" />
-                <element signature="e#9783#10031#0" expanded="false" />
-                <element signature="e#10116#10313#0" expanded="false" />
-                <element signature="e#10376#17666#0" expanded="false" />
-                <element signature="e#17759#18104#0" expanded="false" />
-                <element signature="e#18182#18537#0" expanded="false" />
-                <element signature="e#18608#19582#0" expanded="false" />
-                <element signature="e#19629#19909#0" expanded="false" />
-                <element signature="e#19975#24968#0" expanded="false" />
-                <element signature="e#24975#25025#0" expanded="false" />
-                <element signature="e#25126#25279#0" expanded="false" />
-                <element signature="e#25344#26091#0" expanded="false" />
-                <element signature="e#26159#26566#0" expanded="false" />
-                <element signature="e#30791#30797#0" expanded="false" />
-                <element signature="e#31226#31785#0" expanded="false" />
-                <element signature="e#31836#32170#0" expanded="false" />
-                <element signature="e#32209#32544#0" expanded="false" />
-                <element signature="e#32600#32981#0" expanded="false" />
-                <element signature="e#33049#33575#0" expanded="false" />
-                <element signature="e#33644#34283#0" expanded="false" />
-                <element signature="e#34347#34816#0" expanded="false" />
-                <element signature="e#34937#35966#0" expanded="false" />
-                <element signature="e#36187#36722#0" expanded="false" />
-                <element signature="e#36795#37330#0" expanded="false" />
-                <element signature="e#37388#37923#0" expanded="false" />
-                <element signature="e#37987#38495#0" expanded="false" />
-                <element signature="e#38566#39323#0" expanded="false" />
-                <element signature="e#39409#39516#0" expanded="false" />
-                <element signature="e#39619#40162#0" expanded="false" />
-                <element signature="e#40247#40354#0" expanded="false" />
-                <element signature="e#40458#41678#0" expanded="false" />
-                <element signature="e#41787#42793#0" expanded="false" />
-                <element signature="e#42867#43378#0" expanded="false" />
-                <element signature="e#43457#44484#0" expanded="false" />
-                <element signature="e#44559#47653#0" expanded="false" />
-                <element signature="e#47729#51003#0" expanded="false" />
-                <element signature="e#51145#51311#0" expanded="false" />
-                <element signature="e#51385#51525#0" expanded="false" />
-                <element signature="e#51604#53911#0" expanded="false" />
-                <element signature="e#53991#56497#0" expanded="false" />
-                <element signature="e#56574#57065#0" expanded="false" />
-                <element signature="e#57148#58045#0" expanded="false" />
-                <element signature="e#58195#58403#0" expanded="false" />
-                <element signature="e#58492#58818#0" expanded="false" />
-                <element signature="e#58899#60822#0" expanded="false" />
-                <element signature="e#60962#61150#0" expanded="false" />
-                <element signature="e#61229#61525#0" expanded="false" />
-                <element signature="e#61600#62086#0" expanded="false" />
-                <element signature="e#62156#62645#0" expanded="false" />
-                <element signature="e#62713#63193#0" expanded="false" />
-                <element signature="e#63271#64148#0" expanded="false" />
-                <element signature="e#64290#64483#0" expanded="false" />
-                <element signature="e#64564#64867#0" expanded="false" />
-                <element signature="e#64948#66894#0" expanded="false" />
-                <element signature="e#67028#67175#0" expanded="false" />
-                <element signature="e#67239#71130#0" expanded="false" />
-                <element signature="e#71191#76258#0" expanded="false" />
-                <element signature="e#76344#77050#0" expanded="false" />
-                <element signature="e#77140#78304#0" expanded="false" />
-                <element signature="e#78389#79494#0" expanded="false" />
-                <element signature="e#79578#81473#0" expanded="false" />
-                <marker date="1520588922956" expanded="true" signature="6658:6715" ph="..." />
-                <marker date="1520588922956" expanded="true" signature="6755:6765" ph="..." />
-                <marker date="1520588922956" expanded="true" signature="6994:7052" ph="..." />
-                <marker date="1520588922956" expanded="true" signature="7144:7154" ph="..." />
-                <marker date="1520588922956" expanded="true" signature="7571:7629" ph="..." />
-                <marker date="1520588922956" expanded="true" signature="7796:7806" ph="..." />
-                <marker date="1520588922956" expanded="true" signature="7922:7966" ph="..." />
-                <marker date="1520588922956" expanded="true" signature="8078:8136" ph="..." />
-                <marker date="1520588922956" expanded="true" signature="8151:8162" ph="..." />
-                <marker date="1520588922956" expanded="true" signature="8190:8200" ph="..." />
-                <marker date="1520588922956" expanded="true" signature="11075:11133" ph="..." />
-                <marker date="1520588922956" expanded="true" signature="11180:11190" ph="..." />
-                <marker date="1520588922956" expanded="true" signature="12436:12493" ph="..." />
-                <marker date="1520588922956" expanded="true" signature="12534:12544" ph="..." />
-                <marker date="1520588922956" expanded="true" signature="12878:12936" ph="..." />
-                <marker date="1520588922956" expanded="true" signature="13041:13051" ph="..." />
-                <marker date="1520588922956" expanded="true" signature="13523:13581" ph="..." />
-                <marker date="1520588922956" expanded="true" signature="13756:13766" ph="..." />
-                <marker date="1520588922956" expanded="true" signature="13890:13934" ph="..." />
-                <marker date="1520588922956" expanded="true" signature="14062:14120" ph="..." />
-                <marker date="1520588922956" expanded="true" signature="14135:14146" ph="..." />
-                <marker date="1520588922956" expanded="true" signature="14397:14407" ph="..." />
-                <marker date="1520588922956" expanded="true" signature="20839:20849" ph="..." />
-                <marker date="1520588922956" expanded="true" signature="21308:21429" ph="..." />
-                <marker date="1520588922956" expanded="true" signature="21739:21864" ph="..." />
+                <marker date="1520921549109" expanded="true" signature="5750:6029" ph="select count... xk_choose" />
+                <marker date="1520921549109" expanded="true" signature="11468:11715" ph="select count... xk_choose" />
+                <marker date="1520921549109" expanded="true" signature="11750:11959" ph="SELECT MAX(r... xk_roomlist" />
+                <marker date="1520921549109" expanded="true" signature="11994:12216" ph="SELECT MAX(r... xk_roomlist" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JcsjroomController.class.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Application/Account/Controller/JcsjroomController.class.php">
+      <file leaf-file-name="user_detail.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Saler/View/ChooseAnalysis/user_detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="762" column="16" lean-forward="false" selection-start-line="762" selection-start-column="16" selection-end-line="762" selection-end-column="16" />
+            <state relative-caret-position="552">
+              <caret line="251" column="123" lean-forward="false" selection-start-line="251" selection-start-column="123" selection-end-line="251" selection-end-column="123" />
               <folding>
-                <element signature="e#637#5166#0#PHP" expanded="false" />
-                <element signature="e#5260#5597#0#PHP" expanded="false" />
-                <element signature="e#5876#6720#0#PHP" expanded="false" />
-                <element signature="e#8471#10705#0#PHP" expanded="false" />
-                <element signature="e#10777#15059#0#PHP" expanded="false" />
-                <element signature="e#15086#15838#0#PHP" expanded="false" />
-                <element signature="e#31906#36097#0#PHP" expanded="false" />
-                <element signature="e#36120#37045#0#PHP" expanded="false" />
-                <element signature="e#37056#38072#0#PHP" expanded="false" />
-                <element signature="e#38089#38665#0#PHP" expanded="false" />
-                <marker date="1520587842922" expanded="true" signature="2765:3108" ph="SELECT conca... xk_room" />
-                <marker date="1520587842922" expanded="true" signature="4043:4148" ph="SELECT a.* F... xk_room" />
-                <marker date="1520587842922" expanded="true" signature="4538:4705" ph="SELECT a.*,b... xk_room" />
-                <marker date="1520587842922" expanded="true" signature="4538:4744" ph="SELECT a.*,b... xk_room" />
-                <marker date="1520587842922" expanded="true" signature="4676:4705" ph="SELECT a.*,b... xk_room" />
-                <marker date="1520587842922" expanded="true" signature="17277:17340" ph="SELECT a.* F... xk_project" />
-                <marker date="1520587842922" expanded="true" signature="28232:28329" ph="SELECT a.* F... xk_build" />
-                <marker date="1520587842922" expanded="true" signature="30133:30271" ph="update xk_ro... " />
-                <marker date="1520587842922" expanded="true" signature="30337:30496" ph="update xk_ro... " />
-                <marker date="1520587842922" expanded="true" signature="30562:30606" ph="SELECT a.* F... xk_roomtemp" />
-                <marker date="1520587842922" expanded="true" signature="30799:30948" ph="insert into xk_room... " />
-                <marker date="1520587842922" expanded="true" signature="30975:31140" ph="select proj_... xk_roomtemp" />
-                <marker date="1520587842922" expanded="true" signature="31260:31306" ph="SELECT a.* F... xk_roomtemp" />
-                <marker date="1520587842922" expanded="true" signature="31412:31712" ph="update xk_ro... " />
-                <marker date="1520587842922" expanded="true" signature="32147:32210" ph="SELECT a.* F... xk_project" />
-                <marker date="1520587842922" expanded="true" signature="32529:32626" ph="SELECT a.* F... xk_build" />
-                <marker date="1520587842922" expanded="true" signature="34516:34654" ph="update xk_ro... " />
-                <marker date="1520587842922" expanded="true" signature="34720:34898" ph="update xk_ro... " />
-                <marker date="1520587842922" expanded="true" signature="34971:35015" ph="SELECT a.* F... xk_roomtemp" />
-                <marker date="1520587842922" expanded="true" signature="35122:35262" ph="insert into xk_room... " />
-                <marker date="1520587842922" expanded="true" signature="35289:35445" ph="select proj_... xk_roomtemp" />
-                <marker date="1520587842922" expanded="true" signature="35537:35583" ph="SELECT a.* F... xk_roomtemp" />
-                <marker date="1520587842922" expanded="true" signature="35689:35967" ph="update xk_ro... " />
-                <marker date="1520587842922" expanded="true" signature="36444:36481" ph="SELECT a.* F... xk_room" />
-                <marker date="1520587842922" expanded="true" signature="36650:36691" ph="SELECT a.* F... xk_room" />
-                <marker date="1520587842922" expanded="true" signature="38183:38222" ph="SELECT bld_i... xk_room" />
-                <marker date="1520587842922" expanded="true" signature="38395:38436" ph="SELECT a.* F... xk_room" />
+                <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#block#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#block#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#1;n#table#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#block#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#1;n#table#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#block#1;n#!!top" expanded="true" />
+                <element signature="e#8710#8716#0" expanded="true" />
+                <element signature="e#8716#8722#0" expanded="true" />
+                <element signature="e#8722#8728#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="room.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Application/Account/View/Jcsjroom/room.html">
+      <file leaf-file-name="ChooseAnalysisController.class.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Saler/Controller/ChooseAnalysisController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="483" column="93" lean-forward="false" selection-start-line="483" selection-start-column="93" selection-end-line="483" selection-end-column="93" />
+            <state relative-caret-position="1149">
+              <caret line="134" column="34" lean-forward="false" selection-start-line="134" selection-start-column="34" selection-end-line="134" selection-end-column="34" />
               <folding>
-                <element signature="e#15964#16086#0" expanded="false" />
-                <element signature="e#16146#17046#0" expanded="false" />
-                <element signature="e#17095#17227#0" expanded="false" />
-                <element signature="e#17274#17363#0" expanded="false" />
-                <element signature="e#17402#17450#0" expanded="false" />
-                <element signature="e#17502#18093#0" expanded="false" />
-                <element signature="e#18347#18955#0" expanded="false" />
-                <element signature="e#19029#19244#0" expanded="false" />
-                <element signature="e#19302#19765#0" expanded="false" />
-                <element signature="e#19822#21162#0" expanded="false" />
-                <element signature="e#21201#21529#0" expanded="false" />
+                <element signature="e#5764#8830#0#PHP" expanded="false" />
+                <element signature="e#8848#10353#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -244,8 +120,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>js-saler-isws_btn</find>
-      <find>projinfo</find>
       <find>cou</find>
       <find>saler-project-view-content-search-input</find>
       <find>saler-search-project-id</find>
@@ -274,6 +148,8 @@
       <find>row_number</find>
       <find>js-choose-user-excel-export</find>
       <find>js-choose-room-excel-import-tpl-btn</find>
+      <find>js-room-select-box</find>
+      <find>Jcsj_room_url</find>
     </findStrings>
     <replaceStrings>
       <replace>&lt;</replace>
@@ -302,10 +178,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Application/Saler/Controller/RoomController.class.php" />
-        <option value="$PROJECT_DIR$/Application/Saler/View/Search/dz_index.html" />
-        <option value="$PROJECT_DIR$/Public/sales/js/data.js" />
-        <option value="$PROJECT_DIR$/Application/Saler/View/Room/dz_index.html" />
         <option value="$PROJECT_DIR$/Application/Saler/Controller/RoomAnalysisController.class.php" />
         <option value="$PROJECT_DIR$/Application/Saler/View/Common/base.html" />
         <option value="$PROJECT_DIR$/Application/Saler/View/Project/dz_index.html" />
@@ -313,11 +185,7 @@
         <option value="$PROJECT_DIR$/Application/Saler/Controller/CompareController.class.php" />
         <option value="$PROJECT_DIR$/Application/Saler/Controller/Base1Controller.class.php" />
         <option value="$PROJECT_DIR$/Application/Saler/View/ChooseAnalysis/dz_user_list.html" />
-        <option value="$PROJECT_DIR$/Application/Saler/Controller/ChooseAnalysisController.class.php" />
-        <option value="$PROJECT_DIR$/Application/Saler/View/ChooseAnalysis/dz_user_detail.html" />
-        <option value="$PROJECT_DIR$/Application/Saler/View/ChooseAnalysis/dz_index.html" />
         <option value="$PROJECT_DIR$/Application/Saler/View/RoomAnalysis/dz_index.html" />
-        <option value="$PROJECT_DIR$/Application/Saler/Controller/DataStatisticsController.class.php" />
         <option value="$PROJECT_DIR$/Application/Saler/View/DataStatistics/dz_index.html" />
         <option value="$PROJECT_DIR$/Application/Saler/View/Index/dz_index.html" />
         <option value="$PROJECT_DIR$/Application/Saler/View/MyReport/index.html" />
@@ -341,18 +209,26 @@
         <option value="$PROJECT_DIR$/Application/Account/Controller/YhqxfunController.class.php" />
         <option value="$PROJECT_DIR$/Application/snake.html" />
         <option value="$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php" />
-        <option value="$USER_HOME$/Desktop/snake/snake.html" />
         <option value="$PROJECT_DIR$/Public/account/js/functions.js" />
-        <option value="$PROJECT_DIR$/Application/Account/View/ChooseUser/add.html" />
-        <option value="$PROJECT_DIR$/Application/Account/Controller/ChooseUserController.class.php" />
         <option value="$PROJECT_DIR$/Application/Account/View/WeixBuyset/index.html" />
         <option value="$PROJECT_DIR$/Application/Account/View/ChooseUser/index.html" />
         <option value="$PROJECT_DIR$/Application/Account/View/WeixBuyset/AnalyticalCustomerCollectedOrdered.html" />
         <option value="$PROJECT_DIR$/Application/Account/Controller/WeixBuysetController.class.php" />
         <option value="$USER_HOME$/Desktop/shouy.css" />
         <option value="$PROJECT_DIR$/Application/Account/View/Jcsjroom/room.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/Jcsjroom/edit.html" />
         <option value="$PROJECT_DIR$/Application/Account/Controller/JcsjroomController.class.php" />
         <option value="$PROJECT_DIR$/Public/account/js/account.js" />
+        <option value="$PROJECT_DIR$/Application/Account/View/ChooseUser/edit.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/ChooseUser/add.html" />
+        <option value="$PROJECT_DIR$/Application/Account/Controller/ChooseUserController.class.php" />
+        <option value="$USER_HOME$/Desktop/snake/snake.html" />
+        <option value="$PROJECT_DIR$/Application/Saler/View/ChooseAnalysis/index.html" />
+        <option value="$PROJECT_DIR$/Application/Saler/View/ChooseAnalysis/dz_index.html" />
+        <option value="$PROJECT_DIR$/Application/Saler/View/ChooseAnalysis/dz_user_detail.html" />
+        <option value="$PROJECT_DIR$/Application/Saler/Controller/ChooseAnalysisController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Saler/View/ChooseAnalysis/user_detail.html" />
+        <option value="$PROJECT_DIR$/Application/Saler/Controller/DataStatisticsController.class.php" />
       </list>
     </option>
   </component>
@@ -369,7 +245,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
+    <option name="width" value="1924" />
     <option name="height" value="1056" />
   </component>
   <component name="ProjectView">
@@ -387,8 +263,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -411,92 +285,6 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Uploads" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Uploads" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="room" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Public" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Public" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="account" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Public" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="account" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Application" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -515,7 +303,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Account" />
+              <option name="myItemId" value="Saler" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -533,7 +321,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Account" />
+              <option name="myItemId" value="Saler" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -555,7 +343,33 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Account" />
+              <option name="myItemId" value="Saler" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="View" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ChooseAnalysis" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yun_xk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yun_xk" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Saler" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -565,6 +379,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -575,15 +391,15 @@
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\project\yun_xk\ThinkPHP\Common" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\project\yun_xk\Application\Saler\View\Index" />
       <recent name="D:\project\yun_xk\Application\Saler\View\ChooseAnalysis" />
       <recent name="D:\project\yun_xk\Application\Saler\View\Compare" />
       <recent name="D:\project\yun_xk\Application\Saler\View\MyReport" />
       <recent name="D:\project\yun_xk\Application\Saler\View\RoomAnalysis" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\project\yun_xk\ThinkPHP\Common" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -717,7 +533,10 @@
       <workItem from="1520386298307" duration="8829000" />
       <workItem from="1520396491455" duration="14711000" />
       <workItem from="1520471762824" duration="20610000" />
-      <workItem from="1520558818427" duration="22521000" />
+      <workItem from="1520558818427" duration="22747000" />
+      <workItem from="1520817146643" duration="1704000" />
+      <workItem from="1520819857603" duration="20550000" />
+      <workItem from="1520904105315" duration="9848000" />
     </task>
     <task id="LOCAL-00001" summary="入场审核导出修改">
       <created>1520477627031</created>
@@ -733,20 +552,34 @@
       <option name="project" value="LOCAL" />
       <updated>1520501752713</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="房间导入控制，错误导出异常数据，导入条数">
+      <created>1520589464158</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1520589464158</updated>
+    </task>
+    <task id="LOCAL-00004" summary="房间导入控制，错误导出异常数据，导入条数">
+      <created>1520848552945</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1520848552945</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="583439000" />
+    <option name="totallyTimeSpent" value="615767000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1924" height="1056" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18603411" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18776824" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329718" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1335837" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329718" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32104123" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329718" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -829,7 +662,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="入场审核导出修改" />
     <MESSAGE value="优化" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化" />
+    <MESSAGE value="房间导入控制，错误导出异常数据，导入条数" />
+    <option name="LAST_COMMIT_MESSAGE" value="房间导入控制，错误导出异常数据，导入条数" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -838,76 +672,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Application/Saler/View/RoomAnalysis/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="749">
-          <caret line="870" column="30" lean-forward="true" selection-start-line="831" selection-start-column="19" selection-end-line="870" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Saler/View/RoomAnalysis/dz_index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="590" column="21" lean-forward="false" selection-start-line="590" selection-start-column="21" selection-end-line="590" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Saler/View/DataStatistics/dz_index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="435" column="82" lean-forward="false" selection-start-line="435" selection-start-column="82" selection-end-line="435" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Saler/Controller/DataStatisticsController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="248" column="41" lean-forward="false" selection-start-line="248" selection-start-column="41" selection-end-line="248" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Saler/View/Index/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Saler/View/Index/indexone.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="37" column="119" lean-forward="false" selection-start-line="37" selection-start-column="61" selection-end-line="37" selection-end-column="119" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Saler/View/Index/dz_page.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="505">
-          <caret line="25" column="126" lean-forward="false" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="126" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Saler/View/Index/dz_index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="19" column="85" lean-forward="false" selection-start-line="19" selection-start-column="85" selection-end-line="19" selection-end-column="85" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Saler/View/MyReport/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2461">
-          <caret line="107" column="45" lean-forward="false" selection-start-line="107" selection-start-column="45" selection-end-line="107" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Saler/Controller/IndexController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="805">
-          <caret line="104" column="101" lean-forward="false" selection-start-line="104" selection-start-column="7" selection-end-line="104" selection-end-column="101" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Saler/Controller/BaseController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="347">
@@ -996,13 +760,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="673">
           <caret line="319" column="42" lean-forward="true" selection-start-line="319" selection-start-column="10" selection-end-line="319" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/Common/config.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="643">
-          <caret line="80" column="13" lean-forward="false" selection-start-line="80" selection-start-column="4" selection-end-line="80" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1118,13 +875,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/snake.html" />
-    <entry file="file://$USER_HOME$/Desktop/snake/snake.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="611">
-          <caret line="122" column="49" lean-forward="false" selection-start-line="122" selection-start-column="49" selection-end-line="122" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
@@ -1145,13 +895,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1449">
           <caret line="222" column="45" lean-forward="false" selection-start-line="222" selection-start-column="45" selection-end-line="222" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/ChooseUser/add.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1216,91 +959,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Desktop/shouy.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="14" column="19" lean-forward="true" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
-          <folding>
-            <marker date="1520580612276" expanded="true" signature="1893:1933" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/Desktop/shouy.css" />
     <entry file="file://$PROJECT_DIR$/Application/Account/View/Jcsjroom/room.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="483" column="93" lean-forward="false" selection-start-line="483" selection-start-column="93" selection-end-line="483" selection-end-column="93" />
-          <folding>
-            <element signature="e#15964#16086#0" expanded="false" />
-            <element signature="e#16146#17046#0" expanded="false" />
-            <element signature="e#17095#17227#0" expanded="false" />
-            <element signature="e#17274#17363#0" expanded="false" />
-            <element signature="e#17402#17450#0" expanded="false" />
-            <element signature="e#17502#18093#0" expanded="false" />
-            <element signature="e#18347#18955#0" expanded="false" />
-            <element signature="e#19029#19244#0" expanded="false" />
-            <element signature="e#19302#19765#0" expanded="false" />
-            <element signature="e#19822#21162#0" expanded="false" />
-            <element signature="e#21201#21529#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="8349">
+          <caret line="363" column="56" lean-forward="false" selection-start-line="363" selection-start-column="56" selection-end-line="363" selection-end-column="56" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/JcsjroomController.class.php">
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/Common/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="762" column="16" lean-forward="false" selection-start-line="762" selection-start-column="16" selection-end-line="762" selection-end-column="16" />
-          <folding>
-            <element signature="e#637#5166#0#PHP" expanded="false" />
-            <element signature="e#5260#5597#0#PHP" expanded="false" />
-            <element signature="e#5876#6720#0#PHP" expanded="false" />
-            <element signature="e#8471#10705#0#PHP" expanded="false" />
-            <element signature="e#10777#15059#0#PHP" expanded="false" />
-            <element signature="e#15086#15838#0#PHP" expanded="false" />
-            <element signature="e#31906#36097#0#PHP" expanded="false" />
-            <element signature="e#36120#37045#0#PHP" expanded="false" />
-            <element signature="e#37056#38072#0#PHP" expanded="false" />
-            <element signature="e#38089#38665#0#PHP" expanded="false" />
-            <marker date="1520587842922" expanded="true" signature="2765:3108" ph="SELECT conca... xk_room" />
-            <marker date="1520587842922" expanded="true" signature="4043:4148" ph="SELECT a.* F... xk_room" />
-            <marker date="1520587842922" expanded="true" signature="4538:4705" ph="SELECT a.*,b... xk_room" />
-            <marker date="1520587842922" expanded="true" signature="4538:4744" ph="SELECT a.*,b... xk_room" />
-            <marker date="1520587842922" expanded="true" signature="4676:4705" ph="SELECT a.*,b... xk_room" />
-            <marker date="1520587842922" expanded="true" signature="17277:17340" ph="SELECT a.* F... xk_project" />
-            <marker date="1520587842922" expanded="true" signature="28232:28329" ph="SELECT a.* F... xk_build" />
-            <marker date="1520587842922" expanded="true" signature="30133:30271" ph="update xk_ro... " />
-            <marker date="1520587842922" expanded="true" signature="30337:30496" ph="update xk_ro... " />
-            <marker date="1520587842922" expanded="true" signature="30562:30606" ph="SELECT a.* F... xk_roomtemp" />
-            <marker date="1520587842922" expanded="true" signature="30799:30948" ph="insert into xk_room... " />
-            <marker date="1520587842922" expanded="true" signature="30975:31140" ph="select proj_... xk_roomtemp" />
-            <marker date="1520587842922" expanded="true" signature="31260:31306" ph="SELECT a.* F... xk_roomtemp" />
-            <marker date="1520587842922" expanded="true" signature="31412:31712" ph="update xk_ro... " />
-            <marker date="1520587842922" expanded="true" signature="32147:32210" ph="SELECT a.* F... xk_project" />
-            <marker date="1520587842922" expanded="true" signature="32529:32626" ph="SELECT a.* F... xk_build" />
-            <marker date="1520587842922" expanded="true" signature="34516:34654" ph="update xk_ro... " />
-            <marker date="1520587842922" expanded="true" signature="34720:34898" ph="update xk_ro... " />
-            <marker date="1520587842922" expanded="true" signature="34971:35015" ph="SELECT a.* F... xk_roomtemp" />
-            <marker date="1520587842922" expanded="true" signature="35122:35262" ph="insert into xk_room... " />
-            <marker date="1520587842922" expanded="true" signature="35289:35445" ph="select proj_... xk_roomtemp" />
-            <marker date="1520587842922" expanded="true" signature="35537:35583" ph="SELECT a.* F... xk_roomtemp" />
-            <marker date="1520587842922" expanded="true" signature="35689:35967" ph="update xk_ro... " />
-            <marker date="1520587842922" expanded="true" signature="36444:36481" ph="SELECT a.* F... xk_room" />
-            <marker date="1520587842922" expanded="true" signature="36650:36691" ph="SELECT a.* F... xk_room" />
-            <marker date="1520587842922" expanded="true" signature="38183:38222" ph="SELECT bld_i... xk_room" />
-            <marker date="1520587842922" expanded="true" signature="38395:38436" ph="SELECT a.* F... xk_room" />
-          </folding>
+        <state relative-caret-position="-4633">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/Common/config.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="47" column="12" lean-forward="false" selection-start-line="47" selection-start-column="12" selection-end-line="47" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/Jcsjroom/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="9" column="47" lean-forward="false" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="47" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Public/account/js/account.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="58" column="84" lean-forward="false" selection-start-line="58" selection-start-column="84" selection-end-line="58" selection-end-column="84" />
+        <state relative-caret-position="9269">
+          <caret line="2387" column="11" lean-forward="false" selection-start-line="2387" selection-start-column="11" selection-end-line="2387" selection-end-column="11" />
           <folding>
             <element signature="e#318#1336#0" expanded="false" />
             <element signature="e#1444#1712#0" expanded="false" />
             <element signature="e#1789#1846#0" expanded="false" />
-            <element signature="e#1980#4213#0" expanded="false" />
             <element signature="e#4402#4892#0" expanded="false" />
             <element signature="e#4967#5181#0" expanded="false" />
             <element signature="e#5261#5348#0" expanded="false" />
@@ -1365,60 +1062,213 @@
             <element signature="e#71191#76258#0" expanded="false" />
             <element signature="e#76344#77050#0" expanded="false" />
             <element signature="e#77140#78304#0" expanded="false" />
-            <element signature="e#78389#79494#0" expanded="false" />
-            <element signature="e#79578#81473#0" expanded="false" />
-            <marker date="1520588922956" expanded="true" signature="6658:6715" ph="..." />
-            <marker date="1520588922956" expanded="true" signature="6755:6765" ph="..." />
-            <marker date="1520588922956" expanded="true" signature="6994:7052" ph="..." />
-            <marker date="1520588922956" expanded="true" signature="7144:7154" ph="..." />
-            <marker date="1520588922956" expanded="true" signature="7571:7629" ph="..." />
-            <marker date="1520588922956" expanded="true" signature="7796:7806" ph="..." />
-            <marker date="1520588922956" expanded="true" signature="7922:7966" ph="..." />
-            <marker date="1520588922956" expanded="true" signature="8078:8136" ph="..." />
-            <marker date="1520588922956" expanded="true" signature="8151:8162" ph="..." />
-            <marker date="1520588922956" expanded="true" signature="8190:8200" ph="..." />
-            <marker date="1520588922956" expanded="true" signature="11075:11133" ph="..." />
-            <marker date="1520588922956" expanded="true" signature="11180:11190" ph="..." />
-            <marker date="1520588922956" expanded="true" signature="12436:12493" ph="..." />
-            <marker date="1520588922956" expanded="true" signature="12534:12544" ph="..." />
-            <marker date="1520588922956" expanded="true" signature="12878:12936" ph="..." />
-            <marker date="1520588922956" expanded="true" signature="13041:13051" ph="..." />
-            <marker date="1520588922956" expanded="true" signature="13523:13581" ph="..." />
-            <marker date="1520588922956" expanded="true" signature="13756:13766" ph="..." />
-            <marker date="1520588922956" expanded="true" signature="13890:13934" ph="..." />
-            <marker date="1520588922956" expanded="true" signature="14062:14120" ph="..." />
-            <marker date="1520588922956" expanded="true" signature="14135:14146" ph="..." />
-            <marker date="1520588922956" expanded="true" signature="14397:14407" ph="..." />
-            <marker date="1520588922956" expanded="true" signature="20839:20849" ph="..." />
-            <marker date="1520588922956" expanded="true" signature="21308:21429" ph="..." />
-            <marker date="1520588922956" expanded="true" signature="21739:21864" ph="..." />
+            <element signature="e#80548#82443#0" expanded="false" />
+            <marker date="1520835428448" expanded="true" signature="6658:6715" ph="..." />
+            <marker date="1520835428448" expanded="true" signature="6755:6765" ph="..." />
+            <marker date="1520835428448" expanded="true" signature="6994:7052" ph="..." />
+            <marker date="1520835428448" expanded="true" signature="7144:7154" ph="..." />
+            <marker date="1520835428448" expanded="true" signature="7571:7629" ph="..." />
+            <marker date="1520835428448" expanded="true" signature="7796:7806" ph="..." />
+            <marker date="1520835428448" expanded="true" signature="7922:7966" ph="..." />
+            <marker date="1520835428448" expanded="true" signature="8078:8136" ph="..." />
+            <marker date="1520835428448" expanded="true" signature="8151:8162" ph="..." />
+            <marker date="1520835428448" expanded="true" signature="8190:8200" ph="..." />
+            <marker date="1520835428448" expanded="true" signature="11075:11133" ph="..." />
+            <marker date="1520835428448" expanded="true" signature="11180:11190" ph="..." />
+            <marker date="1520835428448" expanded="true" signature="12436:12493" ph="..." />
+            <marker date="1520835428448" expanded="true" signature="12534:12544" ph="..." />
+            <marker date="1520835428448" expanded="true" signature="12878:12936" ph="..." />
+            <marker date="1520835428448" expanded="true" signature="13041:13051" ph="..." />
+            <marker date="1520835428448" expanded="true" signature="13523:13581" ph="..." />
+            <marker date="1520835428448" expanded="true" signature="13756:13766" ph="..." />
+            <marker date="1520835428448" expanded="true" signature="13890:13934" ph="..." />
+            <marker date="1520835428448" expanded="true" signature="14062:14120" ph="..." />
+            <marker date="1520835428448" expanded="true" signature="14135:14146" ph="..." />
+            <marker date="1520835428448" expanded="true" signature="14397:14407" ph="..." />
+            <marker date="1520835428448" expanded="true" signature="20839:20849" ph="..." />
+            <marker date="1520835428448" expanded="true" signature="21308:21429" ph="..." />
+            <marker date="1520835428448" expanded="true" signature="21739:21864" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/JcsjroomController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2576">
+          <caret line="1098" column="34" lean-forward="false" selection-start-line="1098" selection-start-column="34" selection-end-line="1098" selection-end-column="34" />
+          <folding>
+            <element signature="e#637#5164#0#PHP" expanded="false" />
+            <element signature="e#5258#5595#0#PHP" expanded="false" />
+            <element signature="e#5668#8399#0#PHP" expanded="false" />
+            <element signature="e#5874#6718#0#PHP" expanded="false" />
+            <element signature="e#8469#10703#0#PHP" expanded="false" />
+            <element signature="e#10775#15057#0#PHP" expanded="false" />
+            <element signature="e#15084#15836#0#PHP" expanded="false" />
+            <element signature="e#15854#21063#0#PHP" expanded="false" />
+            <element signature="e#21083#29107#0#PHP" expanded="false" />
+            <element signature="e#29127#35042#0#PHP" expanded="false" />
+            <element signature="e#35060#39290#0#PHP" expanded="false" />
+            <element signature="e#39315#43249#0#PHP" expanded="false" />
+            <element signature="e#43272#44197#0#PHP" expanded="false" />
+            <element signature="e#45867#46443#0#PHP" expanded="false" />
+            <marker date="1520824757094" expanded="true" signature="2765:3108" ph="SELECT conca... xk_room" />
+            <marker date="1520824757094" expanded="true" signature="4041:4146" ph="SELECT a.* F... xk_room" />
+            <marker date="1520824757094" expanded="true" signature="4536:4703" ph="SELECT a.*,b... xk_room" />
+            <marker date="1520824757094" expanded="true" signature="4536:4742" ph="SELECT a.*,b... xk_room" />
+            <marker date="1520824757094" expanded="true" signature="4674:4703" ph="SELECT a.*,b... xk_room" />
+            <marker date="1520824757094" expanded="true" signature="17275:17338" ph="SELECT a.* F... xk_project" />
+            <marker date="1520824757094" expanded="true" signature="35374:35471" ph="SELECT a.* F... xk_build" />
+            <marker date="1520824757094" expanded="true" signature="37542:37680" ph="update xk_ro... " />
+            <marker date="1520824757094" expanded="true" signature="37746:37905" ph="update xk_ro... " />
+            <marker date="1520824757094" expanded="true" signature="37971:38015" ph="SELECT a.* F... xk_roomtemp" />
+            <marker date="1520824757094" expanded="true" signature="38208:38357" ph="insert into xk_room... " />
+            <marker date="1520824757094" expanded="true" signature="38384:38549" ph="select proj_... xk_roomtemp" />
+            <marker date="1520824757094" expanded="true" signature="38669:38715" ph="SELECT a.* F... xk_roomtemp" />
+            <marker date="1520824757094" expanded="true" signature="38821:39121" ph="update xk_ro... " />
+            <marker date="1520824757094" expanded="true" signature="39634:39731" ph="SELECT a.* F... xk_build" />
+            <marker date="1520824757094" expanded="true" signature="41587:41725" ph="update xk_ro... " />
+            <marker date="1520824757094" expanded="true" signature="41791:41969" ph="update xk_ro... " />
+            <marker date="1520824757094" expanded="true" signature="42042:42086" ph="SELECT a.* F... xk_roomtemp" />
+            <marker date="1520824757094" expanded="true" signature="42236:42376" ph="insert into xk_room... " />
+            <marker date="1520824757094" expanded="true" signature="42403:42559" ph="select proj_... xk_roomtemp" />
+            <marker date="1520824757094" expanded="true" signature="42651:42697" ph="SELECT a.* F... xk_roomtemp" />
+            <marker date="1520824757094" expanded="true" signature="42803:43081" ph="update xk_ro... " />
+            <marker date="1520824757094" expanded="true" signature="43596:43633" ph="SELECT a.* F... xk_room" />
+            <marker date="1520824757094" expanded="true" signature="43802:43843" ph="SELECT a.* F... xk_room" />
+            <marker date="1520824757094" expanded="true" signature="45961:46000" ph="SELECT bld_i... xk_room" />
+            <marker date="1520824757094" expanded="true" signature="46173:46214" ph="SELECT a.* F... xk_room" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Account/Controller/ChooseUserController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2842">
-          <caret line="1044" column="51" lean-forward="false" selection-start-line="1044" selection-start-column="51" selection-end-line="1044" selection-end-column="51" />
+        <state relative-caret-position="1380">
+          <caret line="682" column="7" lean-forward="false" selection-start-line="682" selection-start-column="7" selection-end-line="682" selection-end-column="7" />
           <folding>
             <element signature="e#637#6356#0#PHP" expanded="false" />
             <element signature="e#6375#7922#0#PHP" expanded="false" />
             <element signature="e#7928#8001#0#PHP" expanded="false" />
-            <element signature="e#8006#14226#0#PHP" expanded="false" />
-            <element signature="e#14310#23267#0#PHP" expanded="false" />
-            <element signature="e#14871#15099#0#PHP" expanded="false" />
-            <element signature="e#23351#25319#0#PHP" expanded="false" />
-            <element signature="e#25405#26492#0#PHP" expanded="false" />
-            <element signature="e#26514#26928#0#PHP" expanded="false" />
-            <element signature="e#26934#27336#0#PHP" expanded="false" />
-            <element signature="e#27415#29164#0#PHP" expanded="false" />
-            <element signature="e#29253#30955#0#PHP" expanded="false" />
-            <element signature="e#31007#31398#0#PHP" expanded="false" />
-            <element signature="e#43029#45151#0#PHP" expanded="false" />
-            <element signature="e#45288#54956#0#PHP" expanded="false" />
-            <element signature="e#55030#55974#0#PHP" expanded="false" />
-            <element signature="e#56048#63131#0#PHP" expanded="false" />
-            <element signature="e#63150#66565#0#PHP" expanded="false" />
+            <element signature="e#8006#14039#0#PHP" expanded="false" />
+            <element signature="e#10659#10816#0#PHP" expanded="false" />
+            <element signature="e#14123#22931#0#PHP" expanded="false" />
+            <element signature="e#14684#14912#0#PHP" expanded="false" />
+            <element signature="e#23015#24983#0#PHP" expanded="false" />
+            <element signature="e#25069#26156#0#PHP" expanded="false" />
+            <element signature="e#26178#26592#0#PHP" expanded="false" />
+            <element signature="e#26598#27000#0#PHP" expanded="false" />
+            <element signature="e#27079#28828#0#PHP" expanded="false" />
+            <element signature="e#28917#30619#0#PHP" expanded="false" />
+            <element signature="e#30671#31062#0#PHP" expanded="false" />
+            <element signature="e#31149#42769#0#PHP" expanded="false" />
+            <element signature="e#42855#44977#0#PHP" expanded="false" />
+            <element signature="e#45114#54782#0#PHP" expanded="false" />
+            <element signature="e#54856#55800#0#PHP" expanded="false" />
+            <element signature="e#55874#62957#0#PHP" expanded="false" />
+            <element signature="e#62976#66391#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/ChooseUser/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2737">
+          <caret line="119" column="0" lean-forward="false" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/snake/snake.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="726">
+          <caret line="169" column="7" lean-forward="true" selection-start-line="169" selection-start-column="7" selection-end-line="169" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/ChooseUser/add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="760">
+          <caret line="111" column="19" lean-forward="true" selection-start-line="109" selection-start-column="12" selection-end-line="111" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Saler/View/ChooseAnalysis/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="99" column="94" lean-forward="false" selection-start-line="99" selection-start-column="94" selection-end-line="99" selection-end-column="94" />
+          <folding>
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#block#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#a#0;n#div#0;n#div#2;n#div#0;n#div#0;n#block#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Saler/View/ChooseAnalysis/dz_index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="99" column="94" lean-forward="false" selection-start-line="99" selection-start-column="94" selection-end-line="99" selection-end-column="94" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Saler/View/DataStatistics/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4830">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Saler/View/ChooseAnalysis/dz_user_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="229" column="40" lean-forward="true" selection-start-line="229" selection-start-column="40" selection-end-line="229" selection-end-column="40" />
+          <folding>
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#block#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#block#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#1;n#table#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#block#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#1;n#table#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#block#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Saler/View/ChooseAnalysis/user_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="251" column="123" lean-forward="false" selection-start-line="251" selection-start-column="123" selection-end-line="251" selection-end-column="123" />
+          <folding>
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#block#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#block#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#1;n#table#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#block#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#1;n#table#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#block#1;n#!!top" expanded="true" />
+            <element signature="e#8710#8716#0" expanded="true" />
+            <element signature="e#8716#8722#0" expanded="true" />
+            <element signature="e#8722#8728#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Saler/Controller/ChooseAnalysisController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1149">
+          <caret line="134" column="34" lean-forward="false" selection-start-line="134" selection-start-column="34" selection-end-line="134" selection-end-column="34" />
+          <folding>
+            <element signature="e#5764#8830#0#PHP" expanded="false" />
+            <element signature="e#8848#10353#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Saler/Controller/DataStatisticsController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="88" column="59" lean-forward="false" selection-start-line="88" selection-start-column="59" selection-end-line="88" selection-end-column="59" />
+          <folding>
+            <marker date="1520921549109" expanded="true" signature="5750:6029" ph="select count... xk_choose" />
+            <marker date="1520921549109" expanded="true" signature="11468:11715" ph="select count... xk_choose" />
+            <marker date="1520921549109" expanded="true" signature="11750:11959" ph="SELECT MAX(r... xk_roomlist" />
+            <marker date="1520921549109" expanded="true" signature="11994:12216" ph="SELECT MAX(r... xk_roomlist" />
           </folding>
         </state>
       </provider>

@@ -139,7 +139,7 @@ class ChooseAnalysisController extends Base1Controller
         $project=I("project",0,"intval");//此为活动id，不是项目id
         //用户信息及房间选定，及选房时间，登录时间
         $user_info=M()->table("xk_choose c")->
-        field("c.customer_name cname,c.customer_phone cphone,c.cardno,c.ywy,c.cyjno,b.buildname bname,r.unit,r.room,r.hx,r.area,r.total,r.id rid,o.id oid,o.logintime,oho.log_time")->
+        field("c.customer_name cname,c.customer_phone cphone,c.cardno,c.ywy,c.cyjno,b.buildname bname,r.unit,r.room,r.hx,r.area,r.total,r.id rid,o.id oid,o.logintime,oho.log_time,oho.code,oho.id oho_id")->
         join("LEFT JOIN xk_room r ON r.cstid=c.id")->
         join("LEFT JOIN xk_build b ON b.id=r.bld_id")->
         join("LEFT JOIN xk_order_house_phone_login o ON o.phone=c.customer_phone and o.event_id={$project}")->
