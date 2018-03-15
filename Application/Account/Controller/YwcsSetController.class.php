@@ -26,10 +26,14 @@ class YwcsSetController extends BaseController {
      * @create 2017-05-04
      * @author jxw
      */
-    public function index() { 
-        
+    public function index() {
         //项目ID
-        $search_project_id = I('project_id', 0, 'intval');
+        if(isset($_POST['project_id'])){
+            $search_project_id = I('project_id', 0, 'intval');
+            session("selected_project",$search_project_id);
+        }else{
+            $search_project_id = session("selected_project");
+        }
         //批次ID
         $search_batch_id = I('batch_id',0, 'intval');
         

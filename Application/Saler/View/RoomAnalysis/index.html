@@ -447,7 +447,7 @@
 
                                                 <h1 style="font-size: 16px;background-color: #FFF;padding: 5px;letter-spacing: 1px">
                                                     <div style="position: absolute;right: 10px;z-index: 99999;font-size: 12px;font-weight: 400;">
-                                                        <i class="fa fa-stop" style="color:rgba(255, 188, 23, 0.69);"></i>房源  <i class="fa fa-stop" style="margin-left: 5px;color:rgba(255, 67, 52, 0.69);"></i>备选
+                                                        <i class="fa fa-stop" style="color:rgba(255, 188, 23, 0.69);"></i>房源  <i class="fa fa-stop" style="margin-left: 5px;color:rgba(255, 67, 52, 0.69);"></i>第一意向
                                                     </div>
                                                     <span style="padding: 0 2px;background: #ff7d73;margin-right: 10px;"> </span>
                                                     楼栋动态供需单
@@ -635,7 +635,7 @@
                                                             name: '房源',
                                                             data: <{:json_encode($arr_room_count)}>
                                                     }, {
-                                                            name: '备选',
+                                                            name: '第一意向',
                                                                 data:  <{:json_encode($arr_sc_count)}> //直接放数组是不行的，必须转成json格式
                                                         }],
                                                         legend: {
@@ -687,7 +687,7 @@
                                                             name: '房源',
                                                             data: <{:json_encode($hx_room_count)}>
                                                     }, {
-                                                            name: '备选',
+                                                            name: '第一意向',
                                                                 data:  <{:json_encode($hx_sc_count)}> //直接放数组是不行的，必须转成json格式
                                                         }],
                                                         legend: {
@@ -791,7 +791,7 @@
                                 name: '房源',
                                 data:data[1]
                         }, {
-                                name: '备选',
+                                name: '第一意向',
                                 data:data[2]   //直接放数组是不行的，必须转成json格式
                             }]
                         });

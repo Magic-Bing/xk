@@ -228,7 +228,7 @@
                                                         </p>
 							<table class="wm100">
 								<tr style="height: 46px;">
-									<td colspan="3" align="center" class="all-user">客户总数<span><{$user_xf.zrs}></span>人，选房转化率<span><{:round($user_xf['yxf']/$user_xf['zrs']*100,2)}></span>%</td>
+									<td colspan="3" align="center" class="all-user">客户总数<span><{$user_xf.zrs}></span>人，选房转化率<span><if condition="empty($user_xf['yxf'])">0<else/><{:round($user_xf['yxf']/$user_xf['zrs']*100,2)}></if></span>%</td>
 								</tr>
 								<tr>
 									<td colspan="3" style="height: 5px;background-color: #fff"></td>

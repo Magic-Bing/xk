@@ -156,7 +156,10 @@
 								</td>
 								<td class="saler-project-room-info-td2"  colspan="3">
 									<span class="saler-project-room-info-content">
-                                                                            <{:number_format($room['total'], 2)}>元
+										<if condition="!empty($room['total'])">
+											 <{:number_format($room['total'], 2)}>元
+										</if>
+
 									</span>
 								</td>
 							</tr>
@@ -168,7 +171,10 @@
 								</td>
 								<td class="saler-project-room-info-td2">
 									<span class="saler-project-room-info-content">
-										<{$room.area|intval}>
+										<if condition="$room['area'] neq '0.00'">
+												<{$room.area|intval}>
+										</if>
+
 									</span>
 								</td>
 								<td class="saler-project-room-info-td3">
@@ -178,7 +184,9 @@
 								</td>
 								<td class="saler-project-room-info-td4">
 									<span class="saler-project-room-info-content">
+											<if condition="$room['price'] neq '0.00'">
 										<{:number_format($room['price'], 2)}>元/㎡
+											</if>
 									</span>
 								</td>
 							</tr>
@@ -190,7 +198,10 @@
 								</td>
 								<td class="saler-project-room-info-td2">
 									<span class="saler-project-room-info-content">
-										<{$room.tnarea|intval}>
+										<if condition="$room['tnarea'] neq '0.00'">
+												<{$room.tnarea|intval}>
+										</if>
+
 									</span>
 								</td>
 								<td class="saler-project-room-info-td3">
@@ -200,7 +211,9 @@
 								</td>
 								<td class="saler-project-room-info-td4">
 									<span class="saler-project-room-info-content">
-										<{:number_format($room['tnprice'], 2)}>元/㎡
+											<if condition="$room['tnprice'] neq '0.00'">
+												<{:number_format($room['tnprice'], 2)}>元/㎡
+											</if>
 									</span>
 								</td>
 							</tr>

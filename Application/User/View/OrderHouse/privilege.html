@@ -49,7 +49,36 @@
                     <div style="position: fixed;background: #FFF;text-align:center;width:100%;padding:15px 0;border-bottom:1px solid #f7f7f7;font-size:16px;font-weight:bold;">活动须知</div>
                     <!--<div id="closehdxz" style="position: absolute;right:3%;top:6px;height:40px;width:40px;border-radius:50%;line-height:40px;text-align:center;font-size: 22px;">×</div>-->
                     <div style="width:88%;margin: 10px auto;line-height: 30px;white-space:pre-line;margin-top:40px;margin-bottom: 30px;text-align: justify;text-justify: inter-ideograph;" id="desc">
-                        <div><{$desc}></div>
+                        <div>
+                            <{$desc}>
+                            <p id="phone" style="
+                                line-height:  normal;
+                                margin-top: 15px;
+                                white-space:  normal;border-top: 1px solid #c9c9c9;padding: 10px 0 0 0;
+                            ">
+                                电话号码： <span></span>
+                            </p>
+                            <p id="card" style="
+                                line-height:  normal;
+                                white-space: nowrap;
+                                margin-top: -25px;
+                            ">
+                                证件号码： <span></span>
+                            </p>
+                            <label style="
+                                line-height:  normal;
+                                white-space: nowrap;
+                                display: block;
+                                margin-top: -25px;
+                            ">
+                                <input type="checkbox" name="xz" id="ts_yn" style="
+                                    line-height:  normal;
+                                    display: inline;
+                                    width: 15px;
+                                ">
+                                我以阅读该协议
+                                </label>
+                        </div>
                     </div>
                     <div style="position: fixed;bottom:0px;height:50px;line-height: 50px;width:100%;border-top: 1px solid #e6e6e6;background: #FFF;">
                         <a href="/User/OrderHouse/logout/id/<{$eventId}>"><div style="float:left;width:50%;text-align:center;color:#000;">不同意</div></a><div id="tyhdxz" style="float:left;width:50%;text-align:center;background: #df3b3e;color: #FFF;cursor:pointer;">同意</div>
@@ -111,6 +140,8 @@
             } else if(data.status == 1) {
 //                console.log(data.url);
                 $("#tyhdxz").attr('url',data.url);
+                $("#card").find("span").text(data['info']['card']);
+                $("#phone").find("span").text(data['info']['phone']);
                 $("#hdxz").show();
                 //layer_tip(data.info);
                 //setTimeout(function () {
@@ -125,8 +156,13 @@
         {
              $("#hdxz").hide();
              return false;
-        }   
-        window.location.href=$("#tyhdxz").attr('url');
+        }
+        if($("#ts_yn").is(":checked")){
+            window.location.href=$("#tyhdxz").attr('url');
+        }else{
+            layer_alert("请勾选我已阅读协议！");
+        }
+
     });
         
 /*

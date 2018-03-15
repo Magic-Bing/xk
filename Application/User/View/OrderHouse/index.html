@@ -833,7 +833,7 @@ function loaded() {
 					e.preventDefault();
 				}
 			},
-			topOffset: pullDownOffset,
+			/*topOffset: pullDownOffset,
 			onRefresh: function () {
 				if (pullDownEl.className.match('loading')) {
 					//pullDownEl.className = '';
@@ -869,7 +869,7 @@ function loaded() {
 					
 					loadingStep = 2;
 				}
-			},
+			},*/
 		});
                 /*iscroller_room2 = new iScroll("iscroller-wrapper2", {
 			bounce: true,
@@ -901,6 +901,7 @@ function loaded() {
  * iscroller_index.refresh();      
  * // 数据加载完成后，调用界面更新方法
  */
+/*
 function pullDownAction () {
     setTimeout(function () {
 
@@ -912,19 +913,20 @@ function pullDownAction () {
         $(".user-header-return").hide();
 
         get_user_room_list();
-		
+
 	pullDownEl.style.display = 'none';
-		
+
         iscroller_index.refresh();
-		
+
 	loadingStep = 0;
         $(".user-project-view-content-selected-num").text(0);
         if ( $(".js-user-project-view-content-search-compare-btn").hasClass("user-project-view-content-search-compare-btn-click"))
         {
             $(".js-user-project-view-content-search-compare-btn").click();
         }
-    }, 1000);  
+    }, 1000);
 }
+*/
 
 document.addEventListener('touchmove', function (e) { 
 	e.preventDefault(); 

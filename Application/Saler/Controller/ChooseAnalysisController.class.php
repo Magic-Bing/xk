@@ -45,15 +45,45 @@ class ChooseAnalysisController extends Base1Controller
             $this->error('数据异常，请重新登录！', U('logging/index'));
         }else{
             if($status===1){
-                $user_xf=M()->table("xk_choose c")->field("c.id,r.id rid,oh.id oid,c.customer_name,c.customer_phone")->join('LEFT JOIN xk_room r ON r.cstid=c.id')->join("LEFT JOIN ( select * from xk_order_house_phone_login  where event_id={$search_hd_id} group by phone) oh ON oh.phone=c.customer_phone")->where("c.project_id={$projinfo['id']} AND c.batch_id={$projinfo['batch_id']} $p $s")->order("case when oid is null then 0 else 1 end ,case when rid is null then 0 else 1 end ,c.id")->select();
+                $user_xf=M()->table("xk_choose c")->
+                field("c.id,r.id rid,oh.id oid,c.customer_name,c.customer_phone")->
+                join('LEFT JOIN xk_room r ON r.cstid=c.id')->
+                join("LEFT JOIN ( select * from xk_order_house_phone_login  where event_id={$search_hd_id} group by phone) oh ON oh.phone=c.customer_phone")->
+                where("c.project_id={$projinfo['id']} AND c.batch_id={$projinfo['batch_id']} AND c.status=1 $p $s")->
+                order("case when oid is null then 0 else 1 end ,case when rid is null then 0 else 1 end ,c.cyjno,c.id")->
+                select();
             }elseif($status===2){
-                $user_xf=M()->table("xk_choose c")->field("c.id,r.id rid,oh.id oid,c.customer_name,c.customer_phone")->join('LEFT JOIN xk_room r ON r.cstid=c.id')->join("LEFT JOIN ( select * from xk_order_house_phone_login  where event_id={$search_hd_id} group by phone) oh ON oh.phone=c.customer_phone")->where("c.project_id={$projinfo['id']} AND c.batch_id={$projinfo['batch_id']} AND oh.id IS NULL $p $s")->order("case when oid is null then 0 else 1 end ,case when rid is null then 0 else 1 end ,c.id")->select();
+                $user_xf=M()->table("xk_choose c")->
+                field("c.id,r.id rid,oh.id oid,c.customer_name,c.customer_phone")->
+                join('LEFT JOIN xk_room r ON r.cstid=c.id')->
+                join("LEFT JOIN ( select * from xk_order_house_phone_login  where event_id={$search_hd_id} group by phone) oh ON oh.phone=c.customer_phone")->
+                where("c.project_id={$projinfo['id']} AND c.batch_id={$projinfo['batch_id']} AND c.status=1 AND oh.id IS NULL $p $s")->
+                order("case when oid is null then 0 else 1 end ,case when rid is null then 0 else 1 end ,c.cyjno,c.id")->
+                select();
             }elseif($status===3){
-                $user_xf=M()->table("xk_choose c")->field("c.id,r.id rid,oh.id oid,c.customer_name,c.customer_phone")->join('LEFT JOIN xk_room r ON r.cstid=c.id')->join("( select * from xk_order_house_phone_login  where event_id={$search_hd_id} group by phone) oh ON oh.phone=c.customer_phone")->where("c.project_id={$projinfo['id']} AND c.batch_id={$projinfo['batch_id']} $p $s")->order("case when oid is null then 0 else 1 end ,case when rid is null then 0 else 1 end ,c.id")->select();
+                $user_xf=M()->table("xk_choose c")->
+                field("c.id,r.id rid,oh.id oid,c.customer_name,c.customer_phone")->
+                join('LEFT JOIN xk_room r ON r.cstid=c.id')->
+                join("( select * from xk_order_house_phone_login  where event_id={$search_hd_id} group by phone) oh ON oh.phone=c.customer_phone")->
+                where("c.project_id={$projinfo['id']} AND c.batch_id={$projinfo['batch_id']} AND c.status=1 $p $s")->
+                order("case when oid is null then 0 else 1 end ,case when rid is null then 0 else 1 end ,c.cyjno,c.id")->
+                select();
             }elseif($status===4){
-                $user_xf=M()->table("xk_choose c")->field("c.id,r.id rid,oh.id oid,c.customer_name,c.customer_phone")->join('LEFT JOIN xk_room r ON r.cstid=c.id')->join("( select * from xk_order_house_phone_login  where event_id={$search_hd_id} group by phone) oh ON oh.phone=c.customer_phone")->where("c.project_id={$projinfo['id']} AND c.batch_id={$projinfo['batch_id']} AND r.id IS NULL $p $s")->order("case when oid is null then 0 else 1 end ,case when rid is null then 0 else 1 end ,c.id")->select();
+                $user_xf=M()->table("xk_choose c")->
+                field("c.id,r.id rid,oh.id oid,c.customer_name,c.customer_phone")->
+                join('LEFT JOIN xk_room r ON r.cstid=c.id')->
+                join("( select * from xk_order_house_phone_login  where event_id={$search_hd_id} group by phone) oh ON oh.phone=c.customer_phone")->
+                where("c.project_id={$projinfo['id']} AND c.batch_id={$projinfo['batch_id']} AND c.status=1 AND r.id IS NULL $p $s")->
+                order("case when oid is null then 0 else 1 end ,case when rid is null then 0 else 1 end ,c.cyjno,c.id")->
+                select();
             } else{
-                $user_xf=M()->table("xk_choose c")->field("c.id,r.id rid,oh.id oid,c.customer_name,c.customer_phone")->join('xk_room r ON r.cstid=c.id')->join("( select * from xk_order_house_phone_login  where event_id={$search_hd_id} group by phone) oh ON oh.phone=c.customer_phone")->where("c.project_id={$projinfo['id']} AND c.batch_id={$projinfo['batch_id']}  $p $s")->select();
+                $user_xf=M()->table("xk_choose c")->
+                field("c.id,r.id rid,oh.id oid,c.customer_name,c.customer_phone")->
+                join('xk_room r ON r.cstid=c.id')->
+                join("( select * from xk_order_house_phone_login  where event_id={$search_hd_id} group by phone) oh ON oh.phone=c.customer_phone")->
+                where("c.project_id={$projinfo['id']} AND c.batch_id={$projinfo['batch_id']} AND c.status=1  $p $s")->
+                order("c.cyjno,c.id")->
+                select();
             }
         }
         $tylelist=array( 1 => '全部客户',2 => '未登录',3 => '已登录',4 => '已登录未选',5 => '已登录已选');
@@ -106,15 +136,40 @@ class ChooseAnalysisController extends Base1Controller
             $this->error('数据异常，请重新登录！', U('logging/index'));
         }else{
             if($status===1){
-                $user_xf=M()->table("xk_choose c")->field("c.id,r.id rid,c.customer_name,c.customer_phone,c.is_sign")->join('LEFT JOIN xk_room r ON r.cstid=c.id')->where("c.project_id=$pid AND c.batch_id=$bid $p $s")->select();
+                $user_xf=M()->table("xk_choose c")->
+                field("c.id,r.id rid,c.customer_name,c.customer_phone,c.is_sign")->
+                join('LEFT JOIN xk_room r ON r.cstid=c.id')->
+                where("c.project_id=$pid AND c.batch_id=$bid AND c.status=1 $p $s ")->
+                order("case when c.is_sign=0 then 0 else 1 end ,case when rid is null then 0 else 1 end ,c.cyjno,c.id")->
+                select();
             }elseif($status===2){
-                $user_xf=M()->table("xk_choose c")->field("c.id,r.id rid,c.customer_name,c.customer_phone,c.is_sign")->join('LEFT JOIN xk_room r ON r.cstid=c.id')->where("c.project_id=$pid AND c.batch_id=$bid AND c.is_sign=0 $p $s")->select();
+                $user_xf=M()->table("xk_choose c")->
+                field("c.id,r.id rid,c.customer_name,c.customer_phone,c.is_sign")->
+                join('LEFT JOIN xk_room r ON r.cstid=c.id')->
+                where("c.project_id=$pid AND c.batch_id=$bid AND c.status=1 AND c.is_sign=0 $p $s")->
+                order("case when c.is_sign=0 then 0 else 1 end ,case when rid is null then 0 else 1 end ,c.cyjno,c.id")->
+                select();
             }elseif($status===3){
-                $user_xf=M()->table("xk_choose c")->field("c.id,r.id rid,c.customer_name,c.customer_phone,c.is_sign")->join('LEFT JOIN xk_room r ON r.cstid=c.id')->where("c.project_id=$pid AND c.batch_id=$bid AND c.is_sign=1 $p $s")->select();
+                $user_xf=M()->table("xk_choose c")->
+                field("c.id,r.id rid,c.customer_name,c.customer_phone,c.is_sign")->
+                join('LEFT JOIN xk_room r ON r.cstid=c.id')->
+                where("c.project_id=$pid AND c.batch_id=$bid AND c.status=1 AND c.is_sign=1 $p $s")->
+                order("case when c.is_sign=0 then 0 else 1 end ,case when rid is null then 0 else 1 end ,c.cyjno,c.id")->
+                select();
             }elseif($status===4){
-                $user_xf=M()->table("xk_choose c")->field("c.id,r.id rid,c.customer_name,c.customer_phone,c.is_sign")->join('LEFT JOIN xk_room r ON r.cstid=c.id')->where("c.project_id=$pid AND c.batch_id=$bid AND c.is_sign=1 AND r.id IS NULL $p $s")->select();
+                $user_xf=M()->table("xk_choose c")->
+                field("c.id,r.id rid,c.customer_name,c.customer_phone,c.is_sign")->
+                join('LEFT JOIN xk_room r ON r.cstid=c.id')->
+                where("c.project_id=$pid AND c.batch_id=$bid AND c.status=1 AND c.is_sign=1 AND r.id IS NULL $p $s")->
+                order("case when c.is_sign=0 then 0 else 1 end ,case when rid is null then 0 else 1 end ,c.cyjno,c.id")->
+                select();
             } else{
-                $user_xf=M()->table("xk_choose c")->field("c.id,r.id rid,c.customer_name,c.customer_phone,c.is_sign")->join('xk_room r ON r.cstid=c.id')->where("c.project_id=$pid AND c.batch_id=$bid AND c.is_sign=1 $p $s")->select();
+                $user_xf=M()->table("xk_choose c")->
+                field("c.id,r.id rid,c.customer_name,c.customer_phone,c.is_sign")->
+                join('xk_room r ON r.cstid=c.id')->
+                where("c.project_id=$pid AND c.batch_id=$bid AND c.is_sign=1 AND c.status=1 $p $s")->
+                order("c.cyjno,c.id")->
+                select();
             }
         }
         $tylelist=array( 1 => '全部客户',2 => '未签到',3 => '已签到',4 => '已签到未选',5 => '已签到已选');
