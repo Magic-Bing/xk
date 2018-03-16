@@ -1468,7 +1468,10 @@ class OrderHouseController extends BaseController {
             $orderHousePhoneModel->rollback();
             $this->error('登录失败，请重试！');
         }
-        $this->success("验证成功",__CONTROLLER__."/index/info/".cookie('eventId'));
+        $res=M()->table("xk_choose")->field("cardno,customer_phone")->where('id='.cookie("chooseuid"))->find();
+        $data_res['phone']=rsa_decode($res['customer_phone'],getChoosekey());
+        $data_res['card']=rsa_decode($res['cardno'],getChoosekey());
+        $this->success($data_res,__CONTROLLER__."/index/info/".cookie('eventId'));
     }
 
     public function logout() {

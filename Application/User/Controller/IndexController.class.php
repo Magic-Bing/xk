@@ -1,175 +1,262 @@
 <?php
 
 namespace User\Controller;
-
-
+use Think\Controller;
 /**
  * 首页
  *
  * @create 2016-8-22
  * @author zlw
  */
-class IndexController extends BaseController 
+class IndexController extends Controller
 {
-	/**
-	 * 构造方法
-	 *
-	 * @create 2016-11-16
-	 * @author zlw
-	 */
-	public function _initialize()
-	{
-		//设置项目相关
-		$this->set_project();
-		//$this->wx_login();
-		parent::_initialize();
-	}
-        
-	
-	/**
-	 * 设置项目相关
-	 *
-	 * @create 2016-11-16
-	 * @author zlw
-	 */
-	protected function set_project()
-	{
-		$search_info = I('info', '', 'trim');
-		
-		$project_id = get_search_id_by($search_info, 'p', '');
-		if (!empty($project_id)) {
-			D('Weixin', 'Logic')->setProjectId($project_id);
-		}
-	}
-	
-	/**
+
+
+	/*
+	 * 电子开盘客户端登录
+	 * 2018-3-16
+	 * qzb*/
+
+	public function login()
+    {
+        $info=I('info','','trim');
+        $arr=explode("b",$info);
+        if(count($arr)!==2){
+            $this->error("请输入正确的登录地址！");
+        }
+        $bid=(int)$arr[1];
+        $arr1=explode("p",$arr[0]);
+        $pid=(int)$arr1[1];
+        if(empty($pid) || empty($bid)){
+            $this->error("无效的参数！");
+        }
+        $pd=M()->table("xk_pzcsvalue")->where('project_id='.$pid.' AND batch_id='.$bid.' AND pzcs_id=1 AND cs_value=-1')->find();
+        if($pd){
+            $this->error("错误的项目类型！");
+        }
+        session_start();
+        session("pid",$pid);
+        session("bid",$bid);
+        $this->display();
+    }
+
+    /**
+     * 电子开盘 短信发送页面
+     * 2018-3-16
+     * qzb
+     */
+    public function send_sms_code() {
+        if (!IS_AJAX) {
+            $this->error('请求错误，请确认后重试');
+        }
+        $phone = I("phone", 0,"trim");
+        $pid = session("pid");
+        $bid = session("bid");
+        if (empty($phone)) {
+            $this->error('请填写手机号码');
+        }
+        if (empty($phone) || strlen($phone) != 11) {
+            $this->error('请填写正确的手机号码');
+        }
+        $jmphone=rsa_encode($phone,getChoosekey());//加密
+        $where = ['project_id' => $pid, 'batch_id' => $bid, 'customer_phone' => $jmphone];
+        $chooseinfo = D('Common/choose')->field('customer_name,id,status')->where($where)->find();
+        if (!$chooseinfo) {
+            $this->error('你还未参与此项目');
+        }
+        if ($chooseinfo['status'] < 1) {
+            $this->error('账号未启用，请联系管理员！');
+        }
+        $code = sprintf("%6s", rand(100000, 999999));
+        //阿里短信服务
+        if(!empty(cookie("order_house_code"))){
+            $this->error('5分钟内不能重复获取！');
+        }
+            cookie("order_house_code", $code,300);
+            cookie('phone', $jmphone);
+            cookie("realName", $chooseinfo['customer_name']);
+            cookie("chooseuid", $chooseinfo['id']);
+            $this->success($code);
+//        $sms = new Alisms();
+//        $status1 = $sms->send_verify($phone, $code);
+//        if ($status1) {
+//            cookie("order_house_code", $code,300);
+//            cookie('phone', $jmphone);
+//            cookie("realName", $realName);
+//            cookie("chooseuid", $chooseinfo['id']);
+//            $this->success('验证码发送中，请稍等...');
+//        } else {
+//            $this->error($sms->error);
+//        }
+    }
+
+    /*
+     * 验证账号
+     * 2018-3-16
+     * qzb*/
+    public function check(){
+        if (!IS_AJAX) {
+            $this->error('请求错误，请确认后重试！');
+        }
+        $phone = I('post.phone', 0);
+        $code = I('post.code', 0);
+        $pid = session("pid");
+        $bid = session("bid");
+        if (empty($phone)) {
+            $this->error('请填写手机号码');
+        }
+        if (strlen($phone) != 11) {
+            $this->error('请填写正确的手机号码');
+        }
+        $jmphone=rsa_encode($phone,getChoosekey());//加密
+        if (cookie('phone') != $jmphone || empty(cookie('order_house_code'))) {
+            $this->error('请先获取验证码');
+        }
+        if (empty($code)) {
+            $this->error('请填写验证码');
+        }
+        if ($code != cookie('order_house_code') && cookie('phone') == $jmphone) {
+            $this->error('请填写正确的验证码');
+        }
+        session("phone", cookie('phone'));
+        session("realName", cookie("realName"));
+        session("dz_uid", cookie("chooseuid"));
+        cookie('order_house_code', NULL);
+        $this->success("验证成功",__CONTROLLER__."/index");
+    }
+
+    public function is_login(){
+        $uid=session("dz_uid");
+        if(empty($uid)){
+            $this->display(":Index/error");
+            exit;
+        }
+    }
+    /**
 	 * 首页
 	 *
 	 * @create 2016-8-22
 	 * @author zlw
 	 */
     public function index() 
-	{		
-		//分析
-		$search_info = I('info', '', 'trim');
-		$this->assign("info",$search_info);
+	{
+	    $this->is_login();
 
-		$search_project_id = get_search_id_by($search_info, 'p');
-        $count=$this->get_bx_count($search_project_id);
-        $this->assign("cou",$count);
-        $this->assign("eventId",$search_project_id);
-		if( !empty($search_project_id)&& $search_project_id>0)
-		{
-			 $model = new \Think\Model();
-			 $pclst=$model->query("select * from xk_kppc a where a.proj_id='". $search_project_id ."' and is_dq=1 order by id desc limit 1 ");
-			 cookie('pc_id',$pclst[0]['id']);
-			 cookie('proj_id',$pclst[0]['proj_id']);
-		}
+        $Project = D('Common/Project');
+        $pid = session("pid");
+        $bid = session("bid");
+        //项目
+        $uid=session("dz_uid");
+        $isws=I("isws",0,"intval");
+        $this->assign('isws', $isws);
+        $search_info = I('info', '', 'trim');
+        $this->assign('pid', $pid);
+        $this->assign('bid', $bid);
+        $projinfo=M()->table("xk_kppc k")->field("k.*,p.name pname")->join("xk_project p ON p.id=k.proj_id")->where("k.proj_id=".$pid." AND k.id=".$bid)->find();
+//        echo $pid."-".$bid;exit;
+        
+        //归类
+        $Roomview = D('Common/Roomview');
+        $where['proj_id'] = $pid;
+        $where['pc_id'] = $bid;
+        if(!empty($isws) && $isws>0)
+        {
+            $where['is_xf']=0;
+        }
+        $group_room_build = $Roomview->getRoomListGroupBy('bld_id', 'bld_id', 'bld_id, id', $where);
+        $group_room_unit = $Roomview->getRoomListGroupBy('bld_id, unit', 'bld_id, unit', 'bld_id, unit, id', $where);
 
-		//归类
-		$Room = D('Common/Room');
-		$Roomview = D('Common/Roomview');
-		$where['proj_id'] = $search_project_id;
-		$where['is_dq'] = 1;
-		$group_room_build = $Roomview->getRoomListGroupBy('bld_id', 'bld_id', 'bld_id, id', $where);
-		$group_room_unit = $Roomview->getRoomListGroupBy('bld_id, unit', 'bld_id, unit', 'bld_id, unit, id', $where);
+        //数据格式化
+        $new_group_room_unit = array();
+        foreach ($group_room_unit as $group_room_unit_key => $group_room_unit_value) {
+            $new_group_room_unit[$group_room_unit_value['bld_id']][] = $group_room_unit_value;
+        }
+        $this->assign('new_units', $new_group_room_unit);
 
-		//数据格式化
-		$new_group_room_unit = array();
-		foreach ($group_room_unit as $group_room_unit_key => $group_room_unit_value) {
-			$new_group_room_unit[$group_room_unit_value['bld_id']][] = $group_room_unit_value;
-		}
-		$this->assign('new_units', $new_group_room_unit);
-		$this->assign('units', array_merge($new_group_room_unit));
+        //分析
+        $search_build_id = get_search_id_by($search_info, 'b', $group_room_build[0]['bld_id']);
+        $search_unit_id = get_search_id_by($search_info, 'u', $new_group_room_unit[$search_build_id][0]['unit']);
 
-		//分析
-		$search_build_id = get_search_id_by($search_info, 'b', $group_room_build[0]['bld_id']);
-		$search_unit_id = get_search_id_by($search_info, 'u', $new_group_room_unit[$search_build_id][0]['unit']);
+        //获取楼层
+        unset($where);
+        $where['proj_id'] = $pid;
+        $where['bld_id'] = $search_build_id;
+        $where['unit'] = $search_unit_id;
+        $where['pc_id'] = $bid;
+        if(!empty($isws) && $isws>0)
+        {
+            $where['is_xf']=0;
+        }
+        $group_room_floor = $Roomview->getRoomListGroupBy('floor', 'floor DESC', 'cast(floor as SIGNED) DESC', $where);
+        $this->assign('floors', $group_room_floor);
 
-		//获取楼层
-		unset($where);
-		$where['proj_id'] = $search_project_id;
-		$where['bld_id'] = $search_build_id;
-		$where['unit'] = $search_unit_id;
-		$group_room_floor = $Room->getRoomListGroupBy('floor', 'floor DESC', 'id DESC', $where);
-		$this->assign('floors', $group_room_floor);
+        //设置当前搜索
+        $search = array(
+            'pid' => $pid,
+            'search_build_id' 	=> $search_build_id,
+            'search_unit_id' 	=> $search_unit_id,
+        );
+        $this->assign($search);
 
-		//设置当前搜索
-		$search = array(
-			'search_project_id' => $search_project_id,
-			'search_build_id' 	=> $search_build_id,
-			'search_unit_id' 	=> $search_unit_id,
-		);
-		$this->assign($search);
+        //条件
+        $search_info = array(
+            'p' => $pid,
+            'b' => $search_build_id,
+            'u' => $search_unit_id,
+        );
+        $this->assign('search_info', $search_info);
 
-		//户型
-		//$Room = D('Common/Room');
-		$Roomview = D('Common/Roomview');
-		$hx_list = $Roomview->getRoomListGroupBy('hx, proj_id', 'hx', 'hx ASC', array('proj_id' => $search_project_id));
-		$this->assign('hx_list', $hx_list);
+        //获取项目
+        $project_info = $Project->getProjectById($pid);
+        $this->assign('project', $project_info);
 
-		//项目
-		$Project = D('Common/Project');
-		
-		//获取项目
-		$project_info = $Project->getProjectById($search_project_id);
-		$this->assign('project', $project_info);
+        //获取相关楼栋
+        $build_ids = array();
+        foreach ($group_room_build as $group_room_build_k => $group_room_build_v) {
+            $build_ids[] = $group_room_build_v['bld_id'];
+        }
 
-		//获取相关楼栋
-		$build_ids = array();
-		foreach ($group_room_build as $group_room_build_k => $group_room_build_v) {
-			$build_ids[] = $group_room_build_v['bld_id'];
-		}
+        if (!empty($build_ids)) {
+            $Build = D('Common/Build');
+            $where['id'] = array('in', $build_ids);
+            $build_list = $Build->getBuildList($where, 'buildname, id DESC');
+        } else {
+            $build_list = array();
+        }
 
-		if (!empty($build_ids)) {
-			$Build = D('Common/Build');
-			$where['id'] = array('in', $build_ids);
-			$build_list = $Build->getBuildList($where, 'cast(buildname as SIGNED), id DESC');
-		} else {
-			$build_list = array();
-		}
+        $build_new_list = array();
+        foreach ($build_list as $key => $build) {
+            $build_new_list[$build['id']] = $build;
+        }
+        $this->assign('builds', $build_new_list);
 
-		$build_new_list = array();
-		foreach ($build_list as $key => $build) {
-			$build_new_list[$build['id']] = $build;
-		}
-		$this->assign('builds', $build_new_list);
-		$this->assign('buildings', array_merge($build_new_list));
-//        echo json_encode($build_new_list);exit;
-		//房间
-		unset($where);
-		$where['proj_id'] = $search_project_id;
-		$where['bld_id'] = $search_build_id;
-		$where['unit'] = $search_unit_id;
-		$room_list = D("Common/Room")->getRoomListJoinAttribute($where, 'floor DESC, no ASC');
+        //房间
+        unset($where);
+        $where['proj_id'] = $pid;
+        $where['bld_id'] = $search_build_id;
+        $where['unit'] = $search_unit_id;
+        if(!empty($isws) && $isws>0)
+        {
+            $where['is_xf']=0;
+        }
 
-		$new_room_list = array();
-		$room_ids = array();
-		foreach ($room_list as $room_list_key => $room_list_value) {
-			$new_room_list[$room_list_value['floor']][] = $room_list_value;
-			$room_ids[] = $room_list_value['id'];
-		}
-		$this->assign('rooms', $new_room_list);
-//        echo json_encode($group_room_floor);
-//        echo json_encode($new_room_list);exit;
-		//收藏
-		unset($where);
-		$collection_room_ids = array();
-		if (count($room_list)>1)
-		{
-			$where['cst_id'] 	= $this->get_customer_id();
-			$where['room_id'] 	= array('in', $room_ids);
-			$room_collection = D('Common/Collection')->getList($where);
-			foreach ($room_collection as $room_collection_key => $room_collection_value) {
-				$collection_room_ids[] = $room_collection_value['room_id'];
-			}
-		}		
-		$this->assign('collection_room_ids', $collection_room_ids);
-//        echo json_encode($build_new_list);
-//        echo json_encode($new_group_room_unit);
-//        exit;
-		$this->set_seo_title($project_info['name']);
-        $this->display();
+
+        $room_list = D("Common/Room")->getRoomListJoinAttribute($where, 'floor DESC, no ASC');
+
+        $new_room_list = array();
+        foreach ($room_list as $room_list_key => $room_list_value) {
+            $new_room_list[$room_list_value['floor']][] = $room_list_value;
+        }
+        $b_name=M()->table("xk_build")->field("buildname")->where("id=$search_build_id")->find();
+        $this->assign('rooms', $new_room_list);
+        $this->assign("b_name",$b_name);
+        $this->assign("projinfo",$projinfo);
+        if (IS_AJAX) {
+            $room_list = $this->fetch('room');
+            $this->success($room_list, U('index/index'));
+        } else {
+            $this->display();
+        }
     }
 
     /**
