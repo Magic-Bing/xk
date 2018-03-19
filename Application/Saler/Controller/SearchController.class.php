@@ -47,7 +47,12 @@ class SearchController extends Base1Controller
 		$this->assign('hx_list', $hx_list);
         $this->display();		
 	}
-
+    /**
+     * 电子开盘搜索页面
+     *
+     * @create 2018-3
+     * @author qzb
+     */
     public function dz_index()
     {
         //分析

@@ -132,11 +132,21 @@ class IndexController extends Controller
             exit;
         }
     }
+    /*
+     * 获取收藏房源的数量
+     *
+     * 2018-3-19
+     * qzb*/
+    public function getSc(){
+        $uid=session("dz_uid");
+        $count=M()->table("xk_cst2rooms")->where('cst_id='.$uid)->count();
+        return $count;
+    }
     /**
-	 * 首页
+	 * 电子开盘客户手机端首页
 	 *
-	 * @create 2016-8-22
-	 * @author zlw
+	 * @create 2018-3-16
+	 * @author qzb
 	 */
     public function index() 
 	{
@@ -241,7 +251,7 @@ class IndexController extends Controller
         }
 
 
-        $room_list = D("Common/Room")->getRoomListJoinAttribute($where, 'floor DESC, no ASC');
+        $room_list = D("Common/Room")->getRoomListChoose($where, 'floor DESC, no ASC');
 
         $new_room_list = array();
         foreach ($room_list as $room_list_key => $room_list_value) {
@@ -251,14 +261,164 @@ class IndexController extends Controller
         $this->assign('rooms', $new_room_list);
         $this->assign("b_name",$b_name);
         $this->assign("projinfo",$projinfo);
-        if (IS_AJAX) {
-            $room_list = $this->fetch('room');
-            $this->success($room_list, U('index/index'));
-        } else {
-            $this->display();
+        $this->assign("cou",$this->getSc());
+        $this->display();
+    }
+
+
+    /**
+     * 电子开盘房间详情
+     *
+     * @create 2018-3-19
+     * @author qzb
+     */
+    public function room_detail()
+    {
+        $this->is_login();
+        //权限查询
+        //先查询权限情况
+        $uid=session("dz_uid");
+        $id = I('id', '', 'intval');
+        if (empty($id) || $id == 0) {
+            $this->error("ID不能为空，请访问其他房间！", U("user/index/index"));
+        }
+
+        $room = D("Common/Roomview")->getOneById($id);//
+        if (empty($room)) {
+            $this->error("房间信息不存在，请访问其他房间！", U("user/index/index"));
+        }
+        $this->assign('room', $room);
+        $this->assign('room_id', $id);
+        //楼栋
+        $build = D("Common/Build")->getBuildById($room['bld_id']);
+        $this->assign('build', $build);
+        //房间属性
+        $room_attribute = D("Common/Roomattribute")->getAttributeListByRoomId($id);
+        $this->assign('room_attribute', $room_attribute);
+        //户型信息
+        $hxwhere = [
+            'fields' => '*'
+            , 'where' => [
+                'project_id' => $room['proj_id']
+                , 'batch_id' => $room['pc_id']
+                , 'hx' => $room['hx']
+                , '2=2'
+            ]
+        ];
+        $hxinfo = D('hxset')->find($hxwhere);
+        $this->assign('hxinfo', $hxinfo);
+        //热力指数
+        $hot_num = $this -> roomrlzs($room_attribute,$room['proj_id']);
+        $this->assign('hot_num', $hot_num);
+        //第一意向
+        $first_count=M()->table('xk_cst2rooms cr')->where("cr.room_id=$id and px=1")->group("cr.room_id")->count();
+        $this->assign('first_count', $first_count);
+        //是否收藏
+        $crid=M()->table("xk_cst2rooms")->field("id")->where('cst_id='.$uid.' AND room_id='.$id)->find();
+        $this->assign("crid",$crid);
+        $this->assign("cou",$this->getSc());
+        $this->display();
+    }
+    //计算房间热力指数得分(5为满分)
+    public function roomrlzs($room_attribute,$project_id)
+    {
+        $Model = new \Think\Model();
+        $zgs=$Model->query("select sum(djcount)/count(1) as zdj,sum(sscount)/count(1) as zss,sum(sccount)/count(1) as zsc from xk_roomattribute a left join xk_roomlist b on a.room_id=b.id where b.proj_id='".$project_id ."' and b.is_dq=1 and 66=66");
+        $djcount=$room_attribute['djcount'];
+        $sscount=$room_attribute['sscount'];
+        $sccount=$room_attribute['sccount'];
+
+        $zdjcount=$zgs[0]['zdj'];
+        $zsscount=$zgs[0]['zss'];
+        $zsccount=$zgs[0]['zsc'];
+        if (empty($zdjcount)||$zdjcount==0)
+        {
+            $djcount=1;
+            $zdjcount=1;
+        }
+        if (empty($zsscount)||$zsscount==0)
+        {
+            $sscount=1;
+            $zsscount=1;
+        }
+        if (empty($zsccount)||$zsccount==0)
+        {
+            $sccount=1;
+            $zsccount=1;
+        }
+        $num=round(($djcount/$zdjcount*0.2 + $sscount/$zsscount*0.3 + $sccount/$zsccount*0.5) * 5,0);
+        if ($num>5)
+            $num=5;
+        return $num;
+    }
+
+    /*
+     * 添加备选
+     * 2018-3-19
+     * qzb
+     * */
+    public function add_bx(){
+        $id=I("id",0,"intval");
+        $uid=session("dz_uid");
+        $pid = session("pid");
+       $px=M()->table("xk_cst2rooms")->field("max(px) px")->where("cst_id=$uid AND proj_id=$pid")->find();
+       $data['cst_id']=$uid;
+       $data['proj_id']=$pid;
+       $data['sctime']=time();
+       $data['room_id']=$id;
+       $data['px']=(int)$px['px']+1;
+       $pd=M()->table("xk_cst2rooms")->add($data);
+       if($pd){
+            $this->success("添加成功");
+       }else{
+           $this->success("添加失败，请刷新后重试！");
+       }
+
+    }
+    /*
+     * 删除备选
+     * 2018-3-19
+     * qzb
+     * */
+    public function delete_bx(){
+        $id=I("id",0,"intval");
+        $uid=session("dz_uid");
+        $px=M()->table("xk_cst2rooms")->field("px")->where('cst_id='.$uid.' AND room_id='.$id)->find();
+        $pd=M()->table("xk_cst2rooms")->where('cst_id='.$uid.' AND room_id='.$id)->delete();
+        if($pd){
+            M()->execute("update xk_cst2rooms set px=px-1 WHERE cst_id=$uid AND px>{$px['px']}");
+            $this->success("取消成功");
+        }else{
+            $this->success("取消失败，请刷新后重试！");
         }
     }
 
+    /**
+     * 电子开盘搜索页面-客户端
+     *
+     * @create 2018-3
+     * @author qzb
+     */
+    public function search()
+    {
+        $this->is_login();
+        $uid=session("dz_uid");
+        $pid = session("pid");
+        $bid = session("bid");
+        $where['proj_id'] = $pid;
+        $where['pc_id'] = $bid;
+
+        //楼栋
+        $Buildview = D('Common/Buildview');
+        $build_list = $Buildview->getBuildList($where, 'buildname ASC');
+        $this->assign('build_list', $build_list);
+        //户型
+        $Roomview = D('Common/Roomview');
+        $hx_list = $Roomview->getRoomListGroupBy('hx, proj_id', 'hx', 'hx ASC', $where);
+        $this->assign('hx_list', $hx_list);
+        $this->assign("cou",$this->getSc());
+        $this->display();
+    }
     /**
      * 房间列表
      *
@@ -456,6 +616,65 @@ class IndexController extends Controller
         $room_list = $this->fetch();
 
         $this->success($room_list, U('index/index'));
+    }
+
+
+
+    /**
+     * 电子开盘房间比对-客户端
+     *
+     * @create 2018-3-2
+     * @author qzb
+     */
+    public function dz_room()
+    {
+        $this->is_login();
+        $ids = I('ids', '', 'trim');
+        if (empty($ids)) {
+            $this->error("房间选择不能为空，请重试！", U("saler/project/index"));
+        }
+        $ids = explode(',', $ids);
+        $where['id'] = array('in', $ids);
+
+        //获取房间列表
+        $rooms = D("Common/Room")->getRoomList($where, 'no ASC');
+        if (empty($rooms)) {
+            $this->error("房间信息不存在，请重试！", U("saler/project/index"));
+        }
+        $this->assign('rooms', $rooms);
+        //房间个数
+        $rooms_count = count($rooms);
+        $this->assign('rooms_count', $rooms_count);
+
+        //获取房间属性列表
+        $where1['room_id'] = array('in', $ids);
+        $room_old_attributes = D("Common/Roomattribute")->getAttributeList($where1, 'room_id ASC');
+        $room_attributes = array();
+        foreach ($room_old_attributes as $room_attributes_key => $room_attribute) {
+            $room_attributes[$room_attribute['room_id']] = $room_attribute;
+            $first_count=M()->table('xk_cst2rooms cr')->where("cr.room_id=". $room_attribute['room_id'] ." and px=1")->group("cr.room_id")->count();
+            $room_attributes[$room_attribute['room_id']]['first_count'] = $first_count;
+        }
+
+        $this->assign('room_attributes', $room_attributes);
+
+        //更改比对数据
+        foreach ($ids as $ids_key => $ids_value) {
+            D("Common/Roomattribute")->editAttributeCompareByRoomId(1, $ids_value);
+        }
+
+
+
+        //楼栋
+        $old_build_list = D('Common/Build')->getBuildList(array(), 'buildname, id DESC');
+
+        $build_list = array();
+        foreach ($old_build_list as $build_key => $build) {
+            $build_list[$build['id']] = $build;
+        }
+        $this->assign('builds', $build_list);
+        $this->assign("cou",$this->getSc());
+        $this->display();
     }
 
 

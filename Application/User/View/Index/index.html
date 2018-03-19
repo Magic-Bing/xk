@@ -4,6 +4,14 @@
 	<link href="__PUBLIC__/sales/css/saler.css" type="text/css" rel="stylesheet"/>
 	<link rel="stylesheet" href="/Public/common/css/font-awesome-4.7.0/css/font-awesome.css">
 	<style>
+		.saler-project-view-content-selected-wrapper {
+			position: absolute;
+			bottom: 55px;
+			right: 5px;
+			width: auto;
+			z-index: 25;
+			display: none;
+		}
 		.saler-project-view-content-search-input-dz {
 			height: 25px;
 			width: 293%;
@@ -91,23 +99,13 @@
 		{
 			color:#09BB07;
 		}
-		.weui-badge {
-			display: inline-block;
-			width: 15px;
-			border-radius: 18px;
-			background-color: #F43530;
-			color: #FFFFFF;
-			line-height: 1.2;
-			text-align: center;
-			font-size: 12px;
-			vertical-align: middle;
-		}
+
 		.weui-badge_dot {
 			width: 9px;
 			height: 9px;
 		}
 
-		.weui-tabbar__icon {
+		.weui-tabbar__icon_b {
 			display: inline-block;
 			width: 27px;
 			font-size: 20px;
@@ -215,13 +213,13 @@
 			<volist name="new_units[$builds_vo['id']]" id="units_vo" key="units_k">
 				<if condition="($builds_vo['id'] eq $search_build_id) AND ($units_vo['unit'] eq $search_unit_id)">
 					<div class="saler-project-view-header-unit-info saler-project-view-header-unit-info-selected fl" style="display: inline-block">
-						<a class="morea" href="<{:U('project/dz_index', array('info' => set_search_ids(array( 'b' => $builds_vo['id'], 'u' => $units_vo['unit'])),'isws' => $isws,'p'=>$pid,'b'=>$bid))}>">
+						<a class="morea" href="<{:U('index/index', array('info' => set_search_ids(array( 'b' => $builds_vo['id'], 'u' => $units_vo['unit'])),'isws' => $isws))}>">
 							<{$builds_vo[ 'buildname']}><if condition="$units_vo['unit'] neq 0"><{$units_vo[ 'unit']}>单元</if>
 						</a>
 					</div>
 					<else />
 					<div class=" saler-project-view-header-unit-info fl" style="display: inline-block">
-						<a class="morea" href="<{:U('project/dz_index', array('info' => set_search_ids(array( 'b' => $builds_vo['id'], 'u' => $units_vo['unit'])),'isws' => $isws,'p'=>$pid,'b'=>$bid))}>">
+						<a class="morea" href="<{:U('index/index', array('info' => set_search_ids(array( 'b' => $builds_vo['id'], 'u' => $units_vo['unit'])),'isws' => $isws))}>">
 							<{$builds_vo[ 'buildname']}><if condition="$units_vo['unit'] neq 0"><{$units_vo[ 'unit']}>单元</if>
 						</a>
 					</div>
@@ -238,13 +236,13 @@
 					<volist name="new_units[$builds_vo['id']]" id="units_vo" key="units_k">
 						<if condition="($builds_vo['id'] eq $search_build_id) AND ($units_vo['unit'] eq $search_unit_id)">
 							<div class="saler-project-view-header-unit-info saler-project-view-header-unit-info-selected" style="display: inline-block">
-								<a href="<{:U('project/dz_index', array('info' => set_search_ids(array('b' => $builds_vo['id'], 'u' => $units_vo['unit'])),isws => $isws,'p'=>$pid,'b'=>$bid))}>">
+								<a href="<{:U('index/index', array('info' => set_search_ids(array('b' => $builds_vo['id'], 'u' => $units_vo['unit'])),isws => $isws))}>">
 									<{$builds_vo[ 'buildname']}><if condition="$units_vo['unit'] neq 0"><{$units_vo[ 'unit']}>单元</if>
 								</a>
 							</div>
 							<else />
 							<div class=" saler-project-view-header-unit-info" style="display: inline-block">
-								<a href="<{:U('project/dz_index', array('info' => set_search_ids(array( 'b' => $builds_vo['id'], 'u' => $units_vo['unit'])),isws => $isws,'p'=>$pid,'b'=>$bid))}>">
+								<a href="<{:U('index/index', array('info' => set_search_ids(array( 'b' => $builds_vo['id'], 'u' => $units_vo['unit'])),isws => $isws))}>">
 									<{$builds_vo[ 'buildname']}><if condition="$units_vo['unit'] neq 0"><{$units_vo[ 'unit']}>单元</if>
 								</a>
 							</div>
@@ -271,15 +269,13 @@
 						<div class="fl wm100 saler-project-view-content-search-box" >
 							<input class="fr border-sizing saler-project-view-content-search-input-dz" type="text" value="" placeholder="搜索" style="width: calc(100% - 116px);display: inline;height: 30px;margin-top: 2px;margin-left: 5px">
 							<button  class="fl weui-tabbar__item js-saler-project-view-content-search-compare-btn" style="min-width: 53px;height: 30px;margin-top: 2px;">
-								<span class="weui-tabbar__label" style="font-size:12px;"><i class="fa fa-star-half-full weui-tabbar__icon" style="width: auto;font-size: 14px;"></i>对比</span>
+								<span class="weui-tabbar__label" style="font-size:12px;"><i class="fa fa-star-half-full weui-tabbar__icon_b" style="width: auto;font-size: 14px;"></i>对比</span>
 							</button>
 							<button  class="fl weui-tabbar__item js-saler-isws_btn <if condition='$isws gt 0'> showws </if>"  isws="<{$isws}>" style="min-width: 53px;height: 30px;margin-top: 2px;margin-left: 4px;">
-								<span class="weui-tabbar__label" style="font-size:12px;"><i class="fa fa-filter weui-tabbar__icon" style="width: auto;font-size: 14px;"></i>未售</span>
+								<span class="weui-tabbar__label" style="font-size:12px;"><i class="fa fa-filter weui-tabbar__icon_b" style="width: auto;font-size: 14px;"></i>未售</span>
 							</button>
 						</div>
-
 					</div>
-
 
 					<div id="iscroller-wrapper" class="saler-project-view-content-rooms iscroller-rooms iscroller-style" style="top: 70px;">
 						<div id="iscroller-scroller" class="saler-project-view-content-rooms-box iscroller-rooms-scroller iscroller-scroller-style">
@@ -301,9 +297,9 @@
 											<ul class="clearfix">
 												<volist name="rooms[$floors_vo['floor']]" id="rooms_vo" key="rooms_k">
 													<li class="fl wm25">
-														<a href="<{:U('room/dz_index', array('id' => $rooms_vo['id'],'p'=>$pid,'b'=>$bid))}>" class="saler-project-view-content-rooms-room-a">
-															<if condition="!empty($rooms_vo['djcount'])">
-																<i class="saler-project-hot"></i>
+														<a href="<{:U('index/room_detail', array('id' => $rooms_vo['id']))}>" class="saler-project-view-content-rooms-room-a">
+															<if condition="!empty($rooms_vo['crid'])">
+																<i class="fa fa-heart" style="color:#21b384;position: absolute;top:7px;right: 7px"></i>
 															</if>
 															<div class="saler-project-view-content-rooms-room-box <if condition=" $rooms_vo[ 'is_xf'] eq 1 ">saler-project-view-content-rooms-room-box-selected</if>">
 															<div class="saler-project-view-content-rooms-room-name">
@@ -334,11 +330,9 @@
 						</tr>
 						</volist>
 						</table>
-
 						<div class="block60 room-bottom-block" style="display:none;"></div>
 					</div>
 				</div>
-
 				<div class="saler-project-view-content-selected-wrapper js-saler-project-view-content-selected-wrapper">
 					<div class="saler-project-view-content-selected">
 						<div class="saler-project-view-content-selected-info">
@@ -366,24 +360,17 @@
 	<div class="weui-tabbar">
 		<a href="/User/index/index.html" class="weui-tabbar__item weui-bar__item weui-bar__item_on">
             <span style="display: inline-block;position: relative;">
-                <i class="fa fa-list weui-tabbar__icon" ></i>
+                <i class="fa fa-list weui-tabbar__icon" style="font-size: 20px"></i>
             </span>
 			<p class="weui-tabbar__label">房源列表</p>
 		</a>
 
 		<a href="/User/index/collectedroom.html" class="weui-tabbar__item">
             <span style="display: inline-block;position: relative;">
-                <i class="fa fa-heart-o weui-tabbar__icon" ></i>
+                <i class="fa fa-heart-o weui-tabbar__icon" style="font-size: 20px"></i>
                 <span class="weui-badge user-project-view-content-gwc-num" style="position: absolute;top: 2px;right: -10px"><{$cou}></span>
             </span>
 			<p class="weui-tabbar__label">备选房源</p>
-		</a>
-
-		<a id="rd"  href="/user/hot/index.html" class="weui-tabbar__item ">
-                <span style="display: inline-block;position: relative;">
-                <i class="fa fa-bar-chart-o weui-tabbar__icon" ></i>
-            </span>
-			<p class="weui-tabbar__label">房源热度</p>
 		</a>
 	</div>
 </block>
@@ -405,6 +392,55 @@
             $(".hidden-list").hide();
         });
         $(function () {
+            //房源对比
+            $(".js-saler-project-view-content-search-compare-btn").click(function() {
+                var $thiz = $(this);
+                if ($thiz.hasClass("saler-project-view-content-search-compare-btn-click")) {
+                    $(".js-saler-project-view-content-selected-wrapper")
+                        .animate({"right": "-66px"}, function() {
+                            $(this).hide();
+                        });
+
+                    $(".js-saler-project-view-content-rooms-room-box-shadow").fadeOut("fast");
+
+                    $thiz.removeClass("saler-project-view-content-search-compare-btn-click");
+
+                    $(".room-bottom-block").hide();
+                } else {
+                    $(".room-bottom-block").show();
+                    $(".js-saler-project-view-content-selected-wrapper")
+                        .css({"right": "-66px"})
+                        .show()
+                        .animate({"right": "5px"});
+                    $(".js-saler-project-view-content-rooms-room-box-shadow").fadeIn("fast");
+
+                    var $room_checked_num = $(".saler-project-view-content-rooms-room-select:checked").length;
+                    $(".saler-project-view-content-selected-num").text($room_checked_num);
+
+                    $thiz.addClass("saler-project-view-content-search-compare-btn-click");
+                }
+
+            });
+            //选中
+            $(document).on("click", ".js-saler-project-view-content-rooms-room-box-shadow", function() {
+                var $room_id = $(this).attr("data-room-id");
+
+                var $room_checked_num = $(".saler-project-view-content-rooms-room-select:checked").length;
+
+                var $room_checked = $(".saler-project-view-content-rooms-room-select-" + $room_id);
+                if (!$room_checked.is(":checked")) {
+                    if($room_checked_num>=5)
+                    {
+                        layer_alert("每次最多只能对比5个");
+                        return false;
+                    }
+                    $room_checked.prop("checked", true);
+                } else {
+                    $room_checked.prop("checked", false);
+                }
+                var $room_checked_num = $(".saler-project-view-content-rooms-room-select:checked").length;
+                $(".saler-project-view-content-selected-num").text($room_checked_num);
+            });
             //比对
             $(".js-saler-project-view-content-selected-compare-dz").click(function() {
                 var $select_room_list = $(".saler-project-view-content-rooms-room-select:checked");
@@ -424,15 +460,17 @@
                     return false;
                 }
 
-                window.location.href = saler_url.project_room_compare_dz + '?ids=' + $room_ids_str+"&p=<{$pid}>&b=<{$bid}>";
+                window.location.href ='<{:U("index/dz_room")}>?ids=' + $room_ids_str;
             });
             //搜索框跳转
             $(".saler-project-view-content-search-input-dz").focus(function() {
-                var $project_id = $(".saler-project-id").attr("data-project-id");
-                var url = saler_url.search_dz + "?p=<{$pid}>&b=<{$bid}>" ;
-                window.location.href = url;
+                window.location.href = '<{:U("user/index/search")}>';
             });
-
+			window.pd=false;
+			if(window.pd){
+			    window.location.reload();
+                window.pd=false;
+			}
             var uts=$("#unit_s");
             if((parseFloat($("#unit_s .saler-project-view-header-unit-info-selected").offset().left)+parseFloat($("#unit_s .saler-project-view-header-unit-info-selected").width()))>= parseFloat(uts.width())){
                 uts.perfectScrollbar();
