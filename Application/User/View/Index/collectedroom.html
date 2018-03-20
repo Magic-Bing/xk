@@ -1,7 +1,4 @@
 ﻿<extend name="Common/base" />
-
-
-
 <block name="header">
 <style>
         .speedbuy-bg
@@ -51,8 +48,8 @@
 		.speedbuy-content
 		{
 			height:100%;
-                        width:99%;
-                        margin:auto;
+                width:99%;
+                margin:auto;
 			/*background:#91AEC5;*/
 			margin-top:1px;
 			display:block;
@@ -62,11 +59,11 @@
                         /*font-weight:bold;*/
                         color:#c6c3c3;
                         background:#FFF;
-                        /*border:1px solid red;*/
+                        border:1px solid #7d7a7b;
                         border-radius:50%;
-			-webkit-box-shadow: 0 0 8px #7d7a7b;
-			-moz-box-shadow: 0 0 8px #7d7a7b;
-			box-shadow: 0 0 8px #7d7a7b;
+			/*-webkit-box-shadow: 0 0 8px #7d7a7b;*/
+			/*-moz-box-shadow: 0 0 8px #7d7a7b;*/
+			/*box-shadow: 0 0 8px #7d7a7b;*/
 		}
 		.buy-span
 		{
@@ -186,7 +183,6 @@
                 }
                 
     </style>
-    <span style="display: none" id="xmid"><{$id}></span>
 	<div style="width: 100%;padding: 10px">
         <h2 class="fl" style="color: grey;font-size: 15px;line-height: 17px;margin-top: 5px;"><i class="fa fa-heart" aria-hidden="true" style="color: #09BB07;"></i>&nbsp;您已选择<span id="num"><{:count($res)}></span>套备选房源<br><span style="color: rgba(165,165,165,0.45);font-size: 10px;line-height: 10px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过上、下箭头可调整意向房源顺序</span></h2>
     </div>
@@ -208,7 +204,7 @@
                             </a>
                         </li>
                         <li style="float:left;width:70%;height:100%;">
-                        <a href="<{:U('room/index', array('id' => $vo['rid']))}>">
+                        <a href="<{:U('index/room_detail', array('id' => $vo['rid']))}>">
                         <ul style="margin-left:15px;">
                             <li class="roominfo" style="height:24px;line-height:24px;padding: 4px 5px 0px 5px;font-size:13px;font-weight:bold;">
                             <{$vo.bname}>-<{$vo.unit}>单元-<{$vo.floor}>层-<{$vo.room}>
@@ -227,15 +223,15 @@
                             <!--<div style="position: absolute;background-color: black;color: #FFF;width: 20px;height: 20px;margin-top: 30px"><{$k+1}></div>-->
                         <if condition="$k gt 0">
                             <if condition="$k lt count($res)-1">
-                                <p style="margin-top: 0px;"><i class="fa fa-angle-double-up tzjt" aria-hidden="true" cid="<{$vo.id}>" apx="<{$vo.px}>" style="cursor: pointer"></i></p>
-                                <p style="margin-top: 20px;"><i class="fa fa-angle-double-down tzjt" aria-hidden="true" cid="<{$vo.id}>" apx="<{$vo.px}>" style="cursor: pointer"></i></p>
+                                <p style="margin-top: 0px;"><i class="fa fa-angle-double-up fa-angle-double-up1 tzjt" aria-hidden="true" cid="<{$vo.id}>" apx="<{$vo.px}>" style="cursor: pointer"></i></p>
+                                <p style="margin-top: 20px;"><i class="fa fa-angle-double-down fa-angle-double-down1 tzjt" aria-hidden="true" cid="<{$vo.id}>" apx="<{$vo.px}>" style="cursor: pointer"></i></p>
                             <else/>
-                                <p style="margin-top: 0px;"><i class="fa fa-angle-double-up tzjt" aria-hidden="true" cid="<{$vo.id}>" apx="<{$vo.px}>" style="cursor: pointer"></i></p>
-                                <p style="margin-top: 20px;display:none"><i class="fa fa-angle-double-down tzjt" aria-hidden="true" cid="<{$vo.id}>" apx="<{$vo.px}>" style="cursor: pointer"></i></p>
+                                <p style="margin-top: 0px;"><i class="fa fa-angle-double-up fa-angle-double-up1 tzjt" aria-hidden="true" cid="<{$vo.id}>" apx="<{$vo.px}>" style="cursor: pointer"></i></p>
+                                <p style="margin-top: 20px;display:none"><i class="fa fa-angle-double-down fa-angle-double-down1 tzjt" aria-hidden="true" cid="<{$vo.id}>" apx="<{$vo.px}>" style="cursor: pointer"></i></p>
                             </if>
                         <else/>
-                            <p style="margin-top: 0px;display:none"><i class="fa fa-angle-double-up tzjt" aria-hidden="true" cid="<{$vo.id}>" apx="<{$vo.px}>" style="cursor: pointer"></i></p>
-                            <p style="margin-top: 45px;"><i class="fa fa-angle-double-down tzjt" aria-hidden="true" cid="<{$vo.id}>" apx="<{$vo.px}>" style="cursor: pointer"></i></p>
+                            <p style="margin-top: 0px;display:none"><i class="fa fa-angle-double-up fa-angle-double-up1 tzjt" aria-hidden="true" cid="<{$vo.id}>" apx="<{$vo.px}>" style="cursor: pointer"></i></p>
+                            <p style="margin-top: 45px;"><i class="fa fa-angle-double-down fa-angle-double-down1 tzjt" aria-hidden="true" cid="<{$vo.id}>" apx="<{$vo.px}>" style="cursor: pointer"></i></p>
                         </if>
                         </li>
                     </ul>
@@ -249,26 +245,21 @@
 </block>
 <block name="footer">
     <div class="weui-tabbar">
-        <a href="/User/index/index/info/p<{$id}>.html" class="weui-tabbar__item ">
+        <a href="/User/index/index.html" class="weui-tabbar__item  ">
             <span style="display: inline-block;position: relative;">
-                <i class="fa fa-list weui-tabbar__icon" ></i>
+                <i class="fa fa-list weui-tabbar__icon" style="font-size: 20px"></i>
             </span>
             <p class="weui-tabbar__label">房源列表</p>
         </a>
-        <a href="#" onclick="window.location.reload();" class="weui-tabbar__item weui-bar__item_on">
+
+        <a href="/User/index/collectedroom.html" class="weui-tabbar__item weui-bar__item weui-bar__item_on">
             <span style="display: inline-block;position: relative;">
-                <i class="fa fa-heart weui-tabbar__icon" ></i>
+                <i class="fa fa-heart-o weui-tabbar__icon" style="font-size: 20px"></i>
                 <span class="weui-badge user-project-view-content-gwc-num" style="position: absolute;top: 2px;right: -10px"><{:count($res)}></span>
             </span>
             <p class="weui-tabbar__label">备选房源</p>
         </a>
 
-        <a id="rd" onclick="document.getElementById('rd').style.color=document.getElementById('rd').style.color=='peru' ? '':'peru';" href="/user/hot/index/info/p<{$id}>.html" class="weui-tabbar__item">
-                <span style="display: inline-block;position: relative;">
-                <i class="fa fa-bar-chart-o weui-tabbar__icon" ></i>
-            </span>
-            <p class="weui-tabbar__label">房源热度</p>
-        </a>
     </div>
 </block>
 <block name="footer_js">
