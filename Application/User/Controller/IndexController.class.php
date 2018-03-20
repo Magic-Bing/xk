@@ -10,8 +10,6 @@ use Think\Controller;
  */
 class IndexController extends Controller
 {
-
-
 	/*
 	 * 电子开盘客户端登录
 	 * 2018-3-16
@@ -67,6 +65,10 @@ class IndexController extends Controller
         if ($chooseinfo['status'] < 1) {
             $this->error('账号未启用，请联系管理员！');
         }
+        $yh=M()->table("xk_yaohresult")->where('cstid='.$chooseinfo['id'].' AND is_yx=1')->find();
+        if (!$yh) {
+            $this->error('你还未参与摇号');
+        }
         $code = sprintf("%6s", rand(100000, 999999));
         //阿里短信服务
         if(!empty(cookie("order_house_code"))){
@@ -118,9 +120,11 @@ class IndexController extends Controller
         if ($code != cookie('order_house_code') && cookie('phone') == $jmphone) {
             $this->error('请填写正确的验证码');
         }
+        $pname=M()->table("xk_project")->where("id=$pid")->find();
         session("phone", cookie('phone'));
         session("realName", cookie("realName"));
         session("dz_uid", cookie("chooseuid"));
+        session("pname", $pname['name']);
         cookie('order_house_code', NULL);
         $this->success("验证成功",__CONTROLLER__."/index");
     }
@@ -139,7 +143,7 @@ class IndexController extends Controller
      * qzb*/
     public function getSc(){
         $uid=session("dz_uid");
-        $count=M()->table("xk_cst2rooms")->where('cst_id='.$uid)->count();
+        $count=M()->table("xk_cst2rooms")->where('cst_id='.$uid.' AND eventId =0')->count();
         return $count;
     }
     /**
@@ -314,7 +318,7 @@ class IndexController extends Controller
         $first_count=M()->table('xk_cst2rooms cr')->where("cr.room_id=$id and px=1")->group("cr.room_id")->count();
         $this->assign('first_count', $first_count);
         //是否收藏
-        $crid=M()->table("xk_cst2rooms")->field("id")->where('cst_id='.$uid.' AND room_id='.$id)->find();
+        $crid=M()->table("xk_cst2rooms")->field("id")->where('cst_id='.$uid.' AND room_id='.$id.' AND eventId=0')->find();
         $this->assign("crid",$crid);
         $this->assign("cou",$this->getSc());
         $this->display();
@@ -358,6 +362,9 @@ class IndexController extends Controller
      * qzb
      * */
     public function add_bx(){
+        if (!IS_AJAX) {
+            $this->error('请求错误，请确认后重试！', U('index/index'));
+        }
         $id=I("id",0,"intval");
         $uid=session("dz_uid");
         $pid = session("pid");
@@ -381,6 +388,9 @@ class IndexController extends Controller
      * qzb
      * */
     public function delete_bx(){
+        if (!IS_AJAX) {
+            $this->error('请求错误，请确认后重试！', U('index/index'));
+        }
         $id=I("id",0,"intval");
         $uid=session("dz_uid");
         $px=M()->table("xk_cst2rooms")->field("px")->where('cst_id='.$uid.' AND room_id='.$id)->find();
@@ -419,13 +429,165 @@ class IndexController extends Controller
         $this->assign("cou",$this->getSc());
         $this->display();
     }
+
+    /**
+     * 搜索房间并返回信息-电子开盘
+     *
+     * @create 2018-3-2
+     * @author qzb
+     */
+    public function search_room()
+    {
+        if (!IS_AJAX) {
+            $this->error('请求错误，请确认后重试！', U('index/index'));
+        }
+        //条件
+        $pid = session("pid");
+        $bid = session("bid");
+        $search_info = I('info', '', 'trim');
+        $type = I('type', '', 'trim');
+        if (empty($search_info) && $type=="ptss") {
+            $this->error('搜索条件不能为空，请确认后重试！');
+        }
+        $this->assign('search_info', $search_info);
+
+        if (!empty($search_info) && $search_info<>"")
+        {
+            //当前房间
+            $map['room'] 	= array('like', '%' . $search_info . '%');
+            $map['hx']  	= array('like', '%' . $search_info . '%');
+            $map['floor']  	= array('like', '%' . $search_info . '%');
+            $map['_logic']  = 'or';
+            $where['_complex'] = $map;
+        }
+        //项目
+        $project_id = $pid;
+        $where['proj_id'] = $project_id;
+        $where['pc_id'] = $bid;
+        //是否购买
+        $is_xf = I('is_xf', '', 'trim');
+        if (strtolower($is_xf) != 'all') {
+            if (intval($is_xf) == 1) {
+                $where['is_xf'] = 1;
+            } else {
+                $where['is_xf'] = 0;
+            }
+        }
+
+        //楼栋
+        $build_ids = I('build_ids', '', 'trim');
+        if (!empty($build_ids)) {
+            $where['bld_id'] = array('in', explode(',', $build_ids));
+        }
+        //房间
+        $room_start = I('room_start', '', 'trim');
+        if (!empty($room_start)) {
+            $where['room'][] = array('egt', intval($room_start));
+        }else{
+            $where['room'][] = array('egt', 1);
+        }
+        $room_end = I('room_end', '', 'trim');
+        if (!empty($room_end)) {
+            $where['room'][] = array('elt', intval($room_end));
+        }else{
+            $where['room'][] = array('elt', 99999);
+        }
+        //楼层
+        $floor_start = I('floor_start', '', 'trim');
+        if (!empty($floor_start)) {
+            $where['floor'][] = array('egt', intval($floor_start));
+        }else{
+            $where['floor'][] = array('egt', -2);
+        }
+        $floor_end = I('floor_end', '', 'trim');
+        if (!empty($floor_end)) {
+            $where['floor'][] = array('elt', intval($floor_end));
+        }else{
+            $where['floor'][] = array('elt', 999);
+        }
+
+        //面积
+        $area_start = I('area_start', '', 'trim');
+        if (!empty($area_start)) {
+            $where['area'][] = array('egt', intval($area_start));
+        }else{
+            $where['area'][] = array('egt', 1);
+        }
+        $area_end = I('area_end', '', 'trim');
+        if (!empty($area_end)) {
+            $where['area'][] = array('elt', intval($area_end));
+        }else{
+            $where['area'][] = array('elt', 99999);
+        }
+
+        //价格
+        $price_start = I('price_start', '', 'trim');
+        if (!empty($price_start)) {
+            $where['price'][] = array('egt', intval($price_start));
+        }else{
+            $where['price'][] = array('egt', 1);
+        }
+        $price_end = I('price_end', '', 'trim');
+        if (!empty($price_end)) {
+            $where['price'][] = array('elt', intval($price_end));
+        }else{
+            $where['price'][] = array('elt', 999999999);
+        }
+
+        //户型
+        $hx_ids = I('hx_ids', '', 'trim');
+        if (!empty($hx_ids)) {
+            $where['hx'] = array('in', explode(',', $hx_ids));
+        }
+
+        $rooms = D("Roomview")->getRoomList($where, "cast(buildcode as SIGNED) ASC, cast(unit as SIGNED) ASC, cast(floor as SIGNED) DESC, cast(room as SIGNED) ASC");
+
+        //获取相关信息
+        if (!empty($rooms)) {
+            foreach ($rooms as $key => $room) {
+                //楼栋信息
+                $bld_id = $room['bld_id'];
+                $build = D("Build")->getBuildById($bld_id);
+
+                //判断时间
+                if (date('d', $room['xftime']) == date('d')) {
+                    $time = date('H:i', $room['xftime']);
+                } elseif (!empty($room['xftime'])) {
+                    $time = date('Y-m-d H:i', $room['xftime']);
+                } else {
+                    $time = '';
+                }
+                $data = array(
+                    'room_id' 		=> $room['id'],
+                    'room_name' 	=> $build['buildname'].$room['unit'].'单元',
+                    'room_floor' 	=> $room['floor'].'F',
+                    'room_number' 	=> $room['room'],
+                    'room_hx' 		=> $room['hx'],
+                    'room_area' 	=> $room['area'],
+                    'room_total' 	=> $room['total'],
+                    'room_is_xf' 	=> $room['is_xf'],
+                    'xftime' 		=> $time
+                );
+                $rooms[$key] = array_merge($room, $data);
+            }
+        }
+        $this->assign('rooms', $rooms);
+
+        //获取内容
+        $room_list = $this->fetch();
+
+        $this->success($room_list);
+    }
+
+
+
     /**
      * 房间列表
      *
      * @create 2016-9-6
      * @author zlw
      */
-    public function room()
+   /* public function room()
     {
         $search_where = array();
 
@@ -616,7 +778,7 @@ class IndexController extends Controller
         $room_list = $this->fetch();
 
         $this->success($room_list, U('index/index'));
-    }
+    }*/
 
 
 
@@ -676,7 +838,66 @@ class IndexController extends Controller
         $this->assign("cou",$this->getSc());
         $this->display();
     }
+    /*
+         * 电子开盘客户端备选房源(收藏列表)
+         * 2018-3-20
+         * qzb*/
+    public function collectedroom()
+    {
+        $this->is_login();
+        $pid = session('pid');
+        $cid = session("dz_uid");
+        $model=M();
+        $res=$model->table("xk_room r")->field("b.buildname bname,r.unit,r.floor,r.room,r.area,r.total,r.hx,h.hxmx,c.id,c.px,r.id rid")->
+        join("xk_cst2rooms c ON r.id=c.room_id")->
+        join("LEFT JOIN xk_hxset h ON h.hx=r.hx")->
+        join("xk_build b ON b.id=r.bld_id")->
+        where("c.proj_id=$pid AND c.cst_id=$cid AND c.eventId=0")->order("c.px asc")->select();
+        $this->assign("res",$res);
+        $this->display();
+    }
+    //取消收藏
+    public function delete_collected(){
+        if (!IS_AJAX) {
+            $this->error('请求错误，请确认后重试！', U('index/index'));
+        }
+        $id=I("post.id");
+        $pid = session('pid');
+        $uid = session("dz_uid");
+        $px=M()->table("xk_cst2rooms")->where("id=$id")->find();
+        $pd=M()->table("xk_cst2rooms")->where("id=$id")->delete();
+        if($pd){
+            M()->execute("update xk_cst2rooms set px=(px-1) WHERE cst_id=$uid AND proj_id=$pid AND px>{$px['px']}");
+        }
+        echo $pd?"true":"false";exit;
+    }
 
+    //调整排序
+    public function update_px(){
+        if (!IS_AJAX) {
+            $this->error('请求错误，请确认后重试！', U('index/index'));
+        }
+        $cid=I("post.cid");
+        $apx=I("post.apx");
+        $pd=I("post.pd");
+        $pid = session('pid');
+        $uid=session("dz_uid");
+        if($pd=="sx"){//升序
+            $p=M()->table("xk_cst2rooms")->where("cst_id=$uid AND proj_id=$pid AND px=($apx-1) AND eventId=0")->save(['px'=>$apx]);
+            if($p){
+                M()->table("xk_cst2rooms")->where("id=$cid")->save(['px'=>($apx-1)]);
+            }else{
+                echo 'false';exit;
+            }
+        }else{//降序
+            $p=M()->table("xk_cst2rooms")->where("cst_id=$uid AND proj_id=$pid AND px=($apx+1) AND eventId=0")->save(['px'=>$apx]);
+            if($p){
+                M()->table("xk_cst2rooms")->where("id=$cid")->save(['px'=>($apx+1)]);
+            }else{
+                echo 'false';exit;
+            }
+        }
+    }
 
     /**
      * 微信认购
@@ -684,7 +905,7 @@ class IndexController extends Controller
      * @create 2017-04-25
      * @author jxw
      */
-    public function wxrg()
+   /* public function wxrg()
     {
         //分析
         $search_info = I('info', '', 'trim');
@@ -846,7 +1067,7 @@ class IndexController extends Controller
         $this->assign('scgs', count($collection_room_ids));
         $this->set_seo_title($project_info['name']);
         $this->display();
-    }
+    }*/
 
 
     /**
@@ -855,7 +1076,7 @@ class IndexController extends Controller
      * @create 2017-04-26
      * @author jxw
      */
-    public function wxrg_add()
+   /* public function wxrg_add()
     {
         if (!IS_AJAX) {
             $this->error('请求错误，请确认后重试！');
@@ -913,7 +1134,7 @@ class IndexController extends Controller
         $sxrooms[0]=$is_success;
         $sxrooms[1]=$bxrooms;
         $this->success($sxrooms);
-    }
+    }*/
 
 
     /**
@@ -922,63 +1143,12 @@ class IndexController extends Controller
      * @create 2017-04-26
      * @author jxw
      */
-    public function wxrg_add_log($room_id,$cst_id, $cst_name)
+   /* public function wxrg_add_log($room_id,$cst_id, $cst_name)
     {
         D("WxrgLog")->wxrglog($room_id, $cst_id, $cst_name,1);
-    }
+    }*/
 
-    //备选房源(收藏列表)
-    public function collectedroom()
-    {
-        $id = I('id', 0, 'trim');
-        $cid = session("user_id");
-        $model=M();
-        $res=$model->table("xk_room r")->field("b.buildname bname,r.unit,r.floor,r.room,r.area,r.total,r.hx,h.hxmx,c.id,c.px,r.id rid")->
-            join("xk_cst2rooms c ON r.id=c.room_id")->
-            join("LEFT JOIN xk_hxset h ON h.hx=r.hx")->
-            join("xk_build b ON b.id=r.bld_id")->
-            where("c.proj_id=$id AND c.cst_id=$cid")->order("c.px asc")->select();
-        $this->assign("res",$res);
-        $this->assign("id",$id);
-        $this->set_seo_title("备选房源");
-        $this->display(":index/collectedroom");
-    }
 
-    //取消收藏
-    public function delete_collected(){
-        $id=I("post.id");
-        $px=M()->table("xk_cst2rooms")->where("id=$id")->select();
-        $pd=M()->table("xk_cst2rooms")->where("id=$id")->delete();
-        if($pd){
-            M()->execute("update xk_cst2rooms set px=(px-1) WHERE cst_id={$px[0]['cst_id']} AND proj_id={$px[0]['proj_id']} AND px>{$px[0]['px']}");
-        }
-        echo $pd?"true":"false";exit;
-    }
 
-    //调整排序
-    public function update_px(){
-        $cid=I("post.cid");
-        $apx=I("post.apx");
-        $pd=I("post.pd");
-        $pid=I("post.pid");
-        $uid=session("user_id");
-        if(!$uid){
-            $uid=cookie('user_id');
-        }
-        if($pd=="sx"){//升序
-            $p=M()->table("xk_cst2rooms")->where("cst_id=$uid AND proj_id=$pid AND px=($apx-1)")->save(['px'=>$apx]);
-            if($p){
-                M()->table("xk_cst2rooms")->where("id=$cid")->save(['px'=>($apx-1)]);
-            }else{
-                echo 'false';exit;
-            }
-        }else{//降序
-            $p=M()->table("xk_cst2rooms")->where("cst_id=$uid AND proj_id=$pid AND px=($apx+1)")->save(['px'=>$apx]);
-            if($p){
-                M()->table("xk_cst2rooms")->where("id=$cid")->save(['px'=>($apx+1)]);
-            }else{
-                echo 'false';exit;
-            }
-        }
-    }
+
 }

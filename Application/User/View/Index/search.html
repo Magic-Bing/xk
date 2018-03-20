@@ -174,7 +174,7 @@
 				<div class="clearfix saler-search-form">
 					<div class="fl wm65 saler-search-form-input">
 						<div class="saler-search-form-input-box">
-							<input class="border-sizing saler-search-form-input-box-input js-saler-search-form-input-box-input" type="text" value="" placeholder="搜索户型、楼层、房号" >
+							<input class="border-sizing saler-search-form-input-box-input js-saler-search-form-input-box-input-c" type="text" value="" placeholder="搜索户型、楼层、房号" >
 						</div>
 					</div>
 					
@@ -298,13 +298,105 @@
 
 <block name="footer_js">
 <script>
+    function get_search_room_list_dz($url,$type) {
+        var $input_str = $(".js-saler-search-form-input-box-input-c").val();
+        if ($type=="ptss")
+        {
+            if ($input_str == '' || $input_str.length<2) {
+                $(".saler-search-filter-table-tr").remove();
+                return false;
+            }
+        }
+        else
+        {
+            //$(".js-saler-search-form-input-box-input").val("");
+        }
+        var $is_xf = $(".saler-search-filter-sale-dz:checked").val();
+
+        var $build_ids = [];
+        var $build_list = $(".saler-search-form-choose-option-build.saler-search-form-choose-option-a-select");
+        for (var $i = 0; $i < $build_list.length; $i ++) {
+            $build_ids.push($($build_list[$i]).attr("data-id"));
+        }
+        var $project_id = $(".saler-search-project-id").attr("data-id");
+        var bid = $(".saler-search-project-id").attr("data-bid");
+        var $floor_start = $(".saler-search-form-choose-option-floor-start").val();
+        var $floor_end = $(".saler-search-form-choose-option-floor-end").val();
+
+        var $area_start = $(".saler-search-form-choose-option-area-start").val();
+        var $area_end = $(".saler-search-form-choose-option-area-end").val();
+
+        var $room_start = $(".saler-search-form-choose-option-room-start").val();
+        var $room_end = $(".saler-search-form-choose-option-room-end").val();
+
+        var $price_start = $(".saler-search-form-choose-option-price-start").val();
+        var $price_end = $(".saler-search-form-choose-option-price-end").val();
+
+        var $hx_ids = [];
+        var $hx_list = $(".saler-search-form-choose-option-hx.saler-search-form-choose-option-a-select");
+        for (var $i = 0; $i < $hx_list.length; $i ++) {
+            $hx_ids.push($($hx_list[$i]).attr("data-id"));
+        }
+        if ($type=="dtj1")
+        {
+            if ($build_ids=="" && $floor_start=="" && $floor_end=="" && $area_start=="" && $area_end==""&& $price_start=="" &&$price_end=="" &&$hx_ids=="") {
+                window.location.reload();
+                return false;
+            };
+        }
+        $.ajax({
+            url: $url || search_url.dz_room,
+            data: {
+                type:$type,
+                info: $input_str,
+                project_id: $project_id,
+                is_xf: $is_xf,
+                bid: bid,
+                build_ids: $build_ids.join(','),
+                floor_start: $floor_start,
+                floor_end: $floor_end,
+                area_start: $area_start,
+                area_end: $area_end,
+                room_start: $room_start,
+                room_end: $room_end,
+                price_start: $price_start,
+                price_end: $price_end,
+                hx_ids: $hx_ids.join(','),
+            },
+            type: 'POST',
+            dataType: 'JSON',
+            success: function (data, status) {
+                if (data['status'] != 1) {
+                    layer_alert(data['info']);
+                    return false;
+                }
+
+                var $rooms = data.info;
+
+                $(".saler-search-filter-table-tr").remove();
+                $(".saler-search-filter-table-tr-title").after($rooms.trim());
+            },
+            error: function (data, status, e) {
+                layer_alert('提交连接失败！');
+            }
+        });
+    }
 $(function() {
-    //搜索 - 销售情况切换
-    $(".saler-search-filter-sale-dz").change(function() {
-        get_search_room_list_dz(search_url.dz_room,"dtj");
+    //搜索 - 查询
+    $(".js-saler-search-form-input-box-input-c").bind('input propertychange', function() {
+        get_search_room_list_dz("<{:U('search_room')}>","ptss");
         return false;
     });
-
+    //搜索 - 销售情况切换
+    $(".saler-search-filter-sale-dz").change(function() {
+        get_search_room_list_dz("<{:U('search_room')}>","dtj");
+        return false;
+    });
+//清空搜索框
+    $(".rs").on("click",function () {
+        $(".saler-search-form-choose-option input").val('');
+        $(".saler-search-form-choose-option a").removeClass('saler-search-form-choose-option-a-select');
+    });
     //搜索 - 确认
     $(".js-saler-search-form-choose-option-footer-btn-dz").click(function() {
         $("#shadow").hide();
@@ -313,18 +405,15 @@ $(function() {
                 $(this).hide();
             });
         $(".js-saler-search-form-choose-btn").removeClass("saler-search-form-choose-btn-click");
-        get_search_room_list_dz(search_url.dz_room,"dtj1");
-
+        get_search_room_list_dz("<{:U('search_room')}>","dtj1");
         return false;
     });
     //搜索 - 查看房间详情
     $(document).on('click', '.js-saler-search-filter-table-tr-dz', function() {
         var $room_id = $(this).attr("data-id");
-        var $url = saler_url.room_dz_index + '?id=' + $room_id+"&p=<{$pid}>&b=<{$bid}>";
-        window.location.href = $url;
+        window.location.href = '<{:U("room_detail")}>?id=' + $room_id;
     });
-    $(".js-saler-search-form-input-box-input").focus();
-       //$(".saler-search-form-input-box").find(".js-saler-search-form-input-box-input").trigger("click").focus()
+    $(".js-saler-search-form-input-box-input-c").focus();
 });
 
 </script>

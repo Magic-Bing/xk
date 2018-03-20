@@ -35,11 +35,10 @@ $(function () {
         var id=$(this).attr("cid");
         var apx=$(this).attr("apx");
         var pid=Number($("#xmid").text());
-        //var xh=$(this).parent("p").prev("div").text();
         var allul= $(".speedbuy-content").find(".bxf-ul");
         var len=allul.length;
         allul.css("border-color",'#cecfd1');
-        if(Number(apx)==1){
+        if(Number(apx)===1){
             return false;
         }
         $.ajax({

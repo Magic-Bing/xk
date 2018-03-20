@@ -145,7 +145,7 @@ class RoomModel extends Model
         return $this->field($field.",cr.id crid")
             ->where($where1)
             ->join('LEFT JOIN (select djcount,room_id from xk_roomattribute a left join xk_room b on a.room_id=b.id where djcount>0 and b.is_xf=0 order by djcount desc limit 10 ) as __ROOMATTRIBUTE__ ON __ROOMATTRIBUTE__.room_id = __ROOM__.id')
-            ->join("LEFT JOIN (select * from xk_cst2rooms where cst_id =$md) cr ON xk_room.id=cr.room_id ")
+            ->join("LEFT JOIN (select * from xk_cst2rooms where cst_id =$md AND eventId=0) cr ON xk_room.id=cr.room_id ")
             ->order($orderBy)
             ->select();
     }

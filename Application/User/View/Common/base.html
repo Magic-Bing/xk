@@ -2,7 +2,7 @@
 <html>
 
 	<head>
-		<title><block name="seo_title"><{$seo_title|default='云销控'}></block></title>
+		<title><block name="seo_title"><{:session('pname')}></block></title>
 		<meta name="keywords" content="<block name='seo_keywords'><{$seo_keywords|default='云销控'}></block>"/>
 		<meta name="description" content="<block name='seo_description'><{$seo_description|default='云销控'}></block>"/>
 		<meta charset="utf-8">

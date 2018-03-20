@@ -3,9 +3,35 @@
 	<link href="__PUBLIC__/sales/css/saler.css" type="text/css" rel="stylesheet"/>
 	<link rel="stylesheet" href="/Public/common/css/font-awesome-4.7.0/css/font-awesome.css">
 	<style>
-                .saler-project-room-border{
-                    border-bottom:0px;
-                }
+		.saler-project-room-info-td1>span{
+			width: 66px;
+		}
+		.saler-project-room-info-td1{
+			width: 10%;
+		}
+		.saler-project-room-attribute-td1{
+			width: 10%;
+		}
+		.saler-project-room-attribute-td1>span{
+			width: 66px;
+
+		}
+		.saler-project-room-border {
+			background-color: #ffffff;
+			box-sizing: border-box;
+			-moz-box-shadow: none;
+			-webkit-box-shadow: none;
+			box-shadow: none;
+			font-family: 'Arial Negreta', 'Arial Normal', 'Arial';
+			font-style: normal;
+			color: #515151;
+			text-align: left;
+			font-size: 13px;
+			border-style: none;
+			border-top: 1px solid #dad7d7;
+			padding: 9px 5px;
+		}
+
 		.weui-tabbar{
 			display: -webkit-box;
 			display: -webkit-flex;
@@ -104,32 +130,34 @@
                             </div>
 
 			</div>
+			<div class="saler-project-room-border saler-project-room-name">
+				<div class="saler-project-room-name-box" style="font-size:15px;padding: 8px 5px">
+					<{$build.buildname}>-<{$room.unit}>单元-<{$room.floor}>层-<{$room.room}>
+				</div>
+				<if condition="empty($crid)">
+					<div class="add-bx" style="position: absolute;right: 10px;top:52px;color: #21b384;text-align: center;cursor: pointer;font-size: 13px">
+							<span>
+								<i class="fa fa-heart-o" style="font-size: 20px"></i>
+							</span>
+						<p>加入备选</p>
+					</div>
+					<else/>
+					<div class="delete-bx"  style="position: absolute;right: 10px;top:52px;color: #21b384;text-align: center;cursor: pointer;font-size: 13px">
+							<span>
+								<i class="fa fa-heart" style="font-size: 20px"></i>
+							</span>
+						<p>已备选</p>
+					</div>
+				</if>
+
+			</div>
 		</div>
 		
-		<div id="iscroller-wrapper" class="saler-project-view-content-wrapper saler-project-room-wrapper iscroller-style">
+		<div id="iscroller-wrapper" class="iscroller-style">
 			<div id="iscroller-scroller" class="saler-project-room-box iscroller-scroller-style">
-				<div class="saler-project-room">
-					<div class="saler-project-room-border saler-project-room-name">
-						<div class="saler-project-room-name-box" style="font-size:15px;padding: 8px 5px">
-							<{$build.buildname}>-<{$room.unit}>单元-<{$room.floor}>层-<{$room.room}>
-						</div>
-						<if condition="empty($crid)">
-							<div class="add-bx" style="position: absolute;right: 10px;top:0;color: #21b384;text-align: center;cursor: pointer">
-							<span>
-								<i class="fa fa-heart-o"></i>
-							</span>
-								<p>加入备选</p>
-							</div>
-							<else/>
-							<div class="delete-bx"  style="position: absolute;right: 10px;top:0;color: #21b384;text-align: center;cursor: pointer">
-							<span>
-								<i class="fa fa-heart"></i>
-							</span>
-								<p>已备选</p>
-							</div>
-						</if>
 
-					</div>
+				<div class="saler-project-room">
+
 					
 					<div class="saler-project-room-info">
 						<table>
@@ -228,6 +256,58 @@
 								</td>
 							</tr>
 							<tr>
+								<td class="saler-project-room-info-td1">
+									<span class="saler-project-room-info-title">
+										一次性
+									</span>
+								</td>
+								<td class="saler-project-room-info-td2">
+									<span class="saler-project-room-info-content">
+										<if condition="($room['ycx_price'] neq '0.00') AND !empty($room['ycx_price'])">
+										<{:number_format($room['ycx_price'], 2)}>
+										</if>
+									</span>
+								</td>
+								<td class="saler-project-room-info-td3">
+									<span class="saler-project-room-info-title">
+										分期
+									</span>
+								</td>
+								<td class="saler-project-room-info-td4">
+									<span class="saler-project-room-info-content">
+										<if condition="($room['fq_price'] neq '0.00') AND !empty($room['fq_price'])">
+										<{:number_format($room['fq_price'], 2)}>
+										</if>
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="saler-project-room-info-td1">
+									<span class="saler-project-room-info-title">
+										公积金
+									</span>
+								</td>
+								<td class="saler-project-room-info-td2">
+									<span class="saler-project-room-info-content">
+										<if condition="($room['gjj_price'] neq '0.00') AND !empty($room['gjj_price'])">
+										<{:number_format($room['gjj_price'], 2)}>
+										</if>
+									</span>
+								</td>
+								<td class="saler-project-room-info-td3">
+									<span class="saler-project-room-info-title">
+										按揭
+									</span>
+								</td>
+								<td class="saler-project-room-info-td4">
+									<span class="saler-project-room-info-content">
+										<if condition="($room['aj_price'] neq '0.00') AND !empty($room['aj_price'])">
+										<{:number_format($room['aj_price'], 2)}>
+										</if>
+									</span>
+								</td>
+							</tr>
+							<tr>
 								<td class="saler-project-room-info-td5">
 									<span class="saler-project-room-info-title">
 										选房时间
@@ -245,6 +325,7 @@
 							</tr>
 						</table>
 					</div>
+
 				</div>
 				
 				<div class="saler-project-room-attribute">
@@ -257,19 +338,19 @@
 										第①意向
 									</span>
 								</td>
-								<td class="saler-project-room-attribute-td2">
+								<td >
 									<span class="saler-project-room-info-content">
 										<{$first_count|default='0'|intval}>次
 									</span>
 								</td>
 							</tr>
 							<tr>
-								<td class="saler-project-room-attribute-td1">
+								<td class="saler-project-room-attribute-td1" >
 									<span class="saler-project-room-info-title">
 										备选
 									</span>
 								</td>
-								<td class="saler-project-room-attribute-td2">
+								<td  style="width: 35px">
 									<span class="saler-project-room-info-content">
 										<{$room_attribute.sccount|default='0'|intval}>次
 									</span>
@@ -281,7 +362,7 @@
 										对比
 									</span>
 								</td>
-								<td class="saler-project-room-attribute-td2">
+								<td >
 									<span class="saler-project-room-info-content">
 										<{$room_attribute.sscount|default='0'}>次
 									</span>
@@ -293,7 +374,7 @@
 										关注
 									</span>
 								</td>
-								<td class="saler-project-room-attribute-td2">
+								<td >
 									<span class="saler-project-room-info-content">
 										<{$room_attribute.djcount|default='0'|intval}>次
 									</span>
@@ -305,7 +386,7 @@
 										热力指数
 									</span>
 								</td>
-								<td class="saler-project-room-attribute-td2">
+								<td >
 									<span class="saler-project-room-info-content saler-project-room-info-content-star">
 										<for start="0" end="$hot_num" >★</for><for start="$hot_num" end="5" >☆</for>
 									</span>
@@ -315,7 +396,10 @@
 						
 					</div>
 				</div>
-			
+				<div>
+					<img src="<{$hxinfo.imgurl}>" width="100%" alt="户型图" title="户型图">
+				</div>
+
 			</div>
 		</div>
 	</div>
@@ -341,9 +425,41 @@
 	</div>
 </block>
 <block name="footer_js">
+	<link href="__COMMON__/js/jquery/iscroll/iscroll.css" type="text/css" rel="stylesheet" />
+	<script src="__PUBLIC__/common/js/jquery/iscroll/iscroll.js"></script>
 	<script src="/Public/common/js/mobile/layer.js"></script>
 <script>
+    var iscroller_room;
+    function loaded() {
+        setTimeout(function() {
+            iscroller_room = new iScroll("iscroller-wrapper", {
+                bounce: true,
+                checkDOMChanges: true,
+                onBeforeScrollStart: function (e) {
+                    var target = e.target;
+                    while (target.nodeType !== 1) {
+                        target = target.parentNode;
+                    }
+
+                    if (target.tagName !== 'SELECT'
+                        && target.tagName !== 'INPUT'
+                        && target.tagName !== 'TEXTAREA'
+                    ) {
+                        e.preventDefault();
+                    }
+                }
+            });
+
+        }, 100);
+    }
+    document.addEventListener('touchmove', function (e) {
+        e.preventDefault();
+    }, false);
+    document.addEventListener('DOMContentLoaded', function () {
+        setTimeout(loaded, 200);
+    }, false);
 	$(function () {
+
 		$(document).on("click",".add-bx",function () {
 			$.post("<{:U('add_bx')}>",{id:'<{$room_id}>'},function (data) {
 			    if(data.status===0){
