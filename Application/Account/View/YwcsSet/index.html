@@ -65,7 +65,7 @@
         <div>
             <div style="height:35px;line-height: 35px;border-bottom: 1px solid #e5e5e5;">
                 <span style="font-size: 14px;font-weight: 700;">批次分期级参数</span>
-                <form action="<{:U('/Account/YwcsSet/index')}>" method="get" id="form-b">
+                <form action="<{:U('/Account/YwcsSet/index')}>" method="post" id="form-b">
                     
                 <label style=" float: right;margin-top: -35px;">
                     批次
@@ -230,8 +230,8 @@
                     var cs_setid1=0;
                     var cs_id1=0;
                     if (input_checkbox.length != 3){
-                        layer_alert("请勾选3个快速选房显示信息");
-                        return false;
+                        //layer_alert("请勾选3个快速选房显示信息");
+                        //return false;
                     }
                     for(var i=0;i<input_checkbox.length;i++){
                         if (strinfo=="")

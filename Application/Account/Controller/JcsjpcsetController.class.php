@@ -70,8 +70,10 @@ class JcsjpcsetController extends BaseController {
             $project_list = array();
         }
         $this->assign('projectlist', $project_list);
-
-            $kppc=$Model->query("SELECT a.*,case when is_yx=1 then '开启' else '关闭' end as zt,a.plan  FROM xk_kppc a where " . $where . "  order by is_yx desc,a.id asc" );
+        $pc=$this->get_user_batch_ids();
+        $pc=array_merge($pc);
+        $str=implode(",",$pc);
+            $kppc=$Model->query("SELECT a.*,case when is_yx=1 then '开启' else '关闭' end as zt,a.plan  FROM xk_kppc a where " . $where . " AND a.id in ($str)  order by is_yx desc,a.id asc" );
             
             $bldlist=$Model->query("SELECT a.*  FROM xk_build a where " . $where . "  order by a.proj_id asc,a.pc_id asc,a.id asc" );
             

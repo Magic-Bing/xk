@@ -33,7 +33,12 @@ class YaoHresultController extends BaseController {
         }else{
             $search_project_id = session("selected_project");
         }
-        $search_batch_id = I('batch_id', 0, 'intval');
+        if(isset($_POST['batch_id'])){
+            $search_batch_id = I('batch_id', 0, 'intval');
+            session("selected_batch",$search_batch_id);
+        }else{
+            $search_batch_id = (int)session("selected_batch");
+        }
         $search_word = I('word', '', 'trim');
         $search_status = I('status', 0, 'intval');
 
@@ -162,16 +167,27 @@ class YaoHresultController extends BaseController {
         }
 
         $ids = I("ids",0,'intval');
+        $yaohset_id = I("yaohset_id",0,'intval');
 
         if(empty($ids))
             $this->error("记录不存在，请确认后重试！");
 
-        $yaohset = D('YaoHresult');
+        $YaoHresult = D('YaoHresult');
         $data['is_yx']=0;
         $where = [
             'where'=>['id'=>['in',$ids]]
         ];
-        $yaohset->save($data,$where);
+        
+        $data1['status']=1;
+        try {
+            $YaoHresult->startTrans();
+            $YaoHresult->save($data,$where);
+            D("YaoHset")->editOneById($yaohset_id,$data1);
+            $YaoHresult->commit();
+        }catch (\Exception $e) {
+            $YaoHresult->rollback();
+            $this->error("系统错误，请稍后重试！");
+        }
 
         $this->success('作废成功');
     }

@@ -75,7 +75,8 @@ $(function() {
                     $room_checked.prop("checked", true);  
                 } else {
                     $room_checked.removeAttr("checked"); 
-                }
+                } 
+		
 		var $room_checked_num = $(".saler-project-view-content-rooms-room-select:checked").length;
 		$(".saler-project-view-content-selected-num").text($room_checked_num);
 	});
@@ -150,7 +151,7 @@ $(function() {
 			type: $type,
 			hx: $hx,
 			info: $info,
-		};
+		}
 		get_hot_sale($data, saler_url.hot_sale);
 		
 		return false;

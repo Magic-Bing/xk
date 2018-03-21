@@ -14,6 +14,10 @@ class BaseController extends CommonBaseController {
 
     public function _initialize() {
         parent::_initialize();
+        /*$user_agent = $_SERVER['HTTP_USER_AGENT'];
+        print_r($user_agent);
+        exit;*/
+        
         if (!$this->is_mobile())
         {
             //$userid=$this->is_login();
@@ -25,7 +29,13 @@ class BaseController extends CommonBaseController {
         }
         else
         {
-             redirect(U('saler/index/index'), 0);
+            //redirect(U('saler/index/index'), 0);
+            
+            if (!$this->is_login_acc()) {
+               redirect(U('login/index'), 0);
+            } else {
+               
+            }
         }
     }
 

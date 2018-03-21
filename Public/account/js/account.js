@@ -177,15 +177,15 @@ $(function() {
     	var vo=$.trim($(this).text());
     	var tr=$(this).parents("tr");
     	var pay=$.trim(tr.attr('data-pay'));
-    	var tm=$.trim(tr.find("td").eq(7).text());
+    	var tm=$.trim(tr.find("td").eq(8).text());
     	var bl=$.trim(tr.attr('data-bl'));
     	var je=$.trim(tr.attr('data-je'));
     	var id=$(this).attr("data-id");
-    	var price=tr.find("td").eq(8).text();
+    	var price=tr.find("td").eq(9).text();
     	// console.log(pay);
         price=Number(price.replace(/,/g,''));
         layer.open({
-			title:['修改信息','text-align:center;margin-left:50px'],
+			title:['修改交易信息','text-align:center;margin-left:50px'],
             type: 1,
             skin: 'layui-layer-rim', //加上边框
             // area: ['350px', 'auto'], //宽高
@@ -195,7 +195,7 @@ $(function() {
 			'<option '+(vo==='认购'?"selected":"")+'>认购</option>' +
 			'<option '+(vo==='签约'?"selected":"")+'>签约</option>' +
 			'</select></label>' +
-            '<label style="float: left;margin-left: 27px;margin-top: 10px;width: 90%;'+(vo==='选房'?"display: none":"")+'" id="label-1">付款方式：<select  name="pay" id="pay"   style="width: 70%">' +
+            '<label style="float: left;margin-left: 27px;margin-top: 10px;width: 90%;'+((vo==='选房' && pay==='')?"display: none":"")+'" id="label-1">付款方式：<select  name="pay" id="pay"   style="width: 70%">' +
             '<option value="" '+(vo===''?"selected":"")+'>请选择付款方式</option>' +
             '<option '+(pay==='一次性'?"selected":"")+'>一次性</option>' +
             '<option '+(pay==='公积金'?"selected":"")+'>公积金</option>' +
@@ -206,7 +206,7 @@ $(function() {
             '<input type="number" name="proportion" id="proportion"  placeholder="输入比例" style="width: 70%" value="'+bl+'">' +
             '<br/>贷款金额：<input type="number" name="money" id="money"  placeholder="输入金额" style="width: 70%;margin-top: 15px;margin-bottom: 0" value="'+je+'">' +
             '<input type="hidden" value="'+price+'"></label>' +
-            '<label style="float: left;margin-left: 27px;margin-top: 10px;width: 90%;"><span style="float: left">选购时间：</span><input style="width: 70%" value="'+tm+'" type="text"  id="zt_time" placeholder="请选择时间" class="col-xs-8 col-sm-8 js-choose-activity-add-start-time" onfocus="WdatePicker({dateFmt:\'yyyy-MM-dd HH:mm:ss\',skin:\'twoer\'})"></label>'+
+            '<label style="float: left;margin-left: 27px;margin-top: 10px;width: 90%;"><span style="float: left">交易时间：</span><input style="width: 70%" value="'+tm+'" type="text"  id="zt_time" placeholder="请选择时间" class="col-xs-8 col-sm-8 js-choose-activity-add-start-time" onfocus="WdatePicker({dateFmt:\'yyyy-MM-dd HH:mm:ss\',skin:\'twoer\'})"></label>'+
 			'',
 			btn:['取消','修改'],
 			btn2:function () {
@@ -273,6 +273,7 @@ $(function() {
             $("#label-2").hide();
         }
     });
+    
     //打印
     $(document).on("click",".print-log",function (){
         var pid=$(this).attr("data-pid");
@@ -280,7 +281,7 @@ $(function() {
         var pvid=$(this).attr("data-pvid");
 
         var tr=$(this).parents("tr");
-        var vo=$.trim(tr.find("td").eq(5).text());
+        var vo=$.trim(tr.find("td").eq(6).text());
         $.post(xsgl_url.get_print,{pid:pid,bid:bid},function (data) {
             // console.log(data.length);
             if(data.length === 0){
@@ -289,13 +290,15 @@ $(function() {
             }
             var id=tr.attr("data-id");
             if(data.length === 1 && vo !== '选房' ){
-                window.open(xsgl_url.show_print+"?name="+data[0]['html_url']+"&id="+id);
+                window.location.reload();
+                window.open(xsgl_url.show_print+"?name="+data[0]['html_url']+"&id="+id+"&zt="+vo);
             }else{
-                var str='<label style="float: left;margin-left: 27px;margin-top: 10px;width: 90%;">选择模版：<select name="print" id="print"  style="width: 70%">';
+                var str='<label style="float: left;margin-left: 27px;margin-top: 10px;width: 90%;font-weight: 700;">打印模版：<select name="print" id="print"  style="width: 70%;font-weight: 700;">';
                 if(data.length === 1 && pvid === ''){
                     str+='';
                 }else if(data.length === 1 && pvid !== ''){
-                    window.open(xsgl_url.show_print+"?name="+data[0]['html_url']+"&id="+id);
+                    window.location.reload();
+                    window.open(xsgl_url.show_print+"?name="+data[0]['html_url']+"&id="+id+"&zt="+vo);
                     return false;
                 }else{
                     str+='<option value="">请选择一个模板</option>';
@@ -305,14 +308,15 @@ $(function() {
                 }
                 str+='</select></label>';
                 var pay=$.trim(tr.attr('data-pay'));
-                var tm=$.trim(tr.find("td").eq(7).text());
+                var tm=$.trim(tr.find("td").eq(8).text());
+                var dqtm=getFormatDate();
                 var bl=$.trim(tr.attr('data-bl'));
                 var je=$.trim(tr.attr('data-je'));
-                var price=tr.find("td").eq(8).text();
+                var price=tr.find("td").eq(9).text();
                 // console.log(pay);
                 price=Number(price.replace(/,/g,''));
                 layer.open({
-                    title:['打印信息','text-align:center;margin-left:50px'],
+                    title:['打印认购书','text-align:center;margin-left:50px;font-weight: 700;'],
                     type: 1,
                     skin: 'layui-layer-rim', //加上边框
                     // area: ['350px', 'auto'], //宽高
@@ -333,7 +337,7 @@ $(function() {
                     '<input type="number" name="proportion" id="proportion"  placeholder="输入比例" style="width: 70%" value="'+bl+'">' +
                     '<br/>贷款金额：<input type="number" name="money" id="money"  placeholder="输入金额" style="width: 70%;margin-top: 15px;margin-bottom: 0" value="'+je+'">' +
                     '<input type="hidden" value="'+price+'"></label>' +
-                    '<label style="float: left;margin-left: 27px;margin-top: 10px;width: 90%;"><span style="float: left">选购时间：</span><input value="'+(vo==='选房' && pvid ==='' ?"":tm)+'" type="text"  id="zt_time" placeholder="请选择时间" class="col-xs-8 col-sm-8 js-choose-activity-add-start-time" onfocus="WdatePicker({dateFmt:\'yyyy-MM-dd HH:mm:ss\',skin:\'twoer\'})" style="width: 70%"></label>'+
+                    '<label style="float: left;margin-left: 27px;margin-top: 10px;width: 90%;"><span style="float: left">交易时间：</span><input value="'+(vo==='选房' && pvid ==='' ? dqtm :tm)+'" type="text"  id="zt_time" placeholder="请选择时间" class="col-xs-8 col-sm-8 js-choose-activity-add-start-time" onfocus="WdatePicker({dateFmt:\'yyyy-MM-dd HH:mm:ss\',skin:\'twoer\'})" style="width: 70%"></label>'+
                     str+
                     '',
                     btn:['取消','打印'],
@@ -370,8 +374,8 @@ $(function() {
                                     money=0;
                                 }else{
                                     if(money === ''){
-                                        layer_alert("付款金额不能为空！");
-                                        return false;
+                                        //layer_alert("付款金额不能为空！");
+                                        //return false;
                                     }
                                 }
                             }else{
@@ -380,8 +384,8 @@ $(function() {
                                     money=0;
                                 }else{
                                     if(money === '' && $.trim(pay)!==''){
-                                        layer_alert("付款金额不能为空！");
-                                        return false;
+                                        //layer_alert("付款金额不能为空！");
+                                        //return false;
                                     }
                                 }
                             }
@@ -396,7 +400,7 @@ $(function() {
                             success:function (data) {
                                 if(data ==='true'){
                                     window.location.reload();
-                                    window.open(xsgl_url.show_print+"?name="+print+"&id="+id);
+                                    window.open(xsgl_url.show_print+"?name="+print+"&id="+id+"&zt="+vo);
                                 }else{
                                     layer.msg("数据变更失败，请刷新后重试！");
                                 }
@@ -2499,4 +2503,15 @@ $(function() {
 
 		return false;
 	});
+        
+        function getFormatDate(){    
+            var nowDate = new Date();     
+            var year = nowDate.getFullYear();    
+            var month = nowDate.getMonth() + 1 < 10 ? "0" + (nowDate.getMonth() + 1) : nowDate.getMonth() + 1;    
+            var date = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate.getDate();    
+            var hour = nowDate.getHours()< 10 ? "0" + nowDate.getHours() : nowDate.getHours();    
+            var minute = nowDate.getMinutes()< 10 ? "0" + nowDate.getMinutes() : nowDate.getMinutes();    
+            var second = nowDate.getSeconds()< 10 ? "0" + nowDate.getSeconds() : nowDate.getSeconds();    
+            return year + "-" + month + "-" + date+" "+hour+":"+minute+":"+second;    
+        }  
 });

@@ -317,11 +317,12 @@
 <block name="page_js">
 
     <script>
-
+        var bid='<{$selected_batch}>';
         $(function () {
             <!--代币获取弹窗-->
             $("#project-not-sign").val('<{$selected_project}>');
             $("#project-not-sign").trigger('change');
+
             //设置内容框的高度
             var w = window.innerHeight;//获取浏览器可视窗口高度
 //            console.log(w);

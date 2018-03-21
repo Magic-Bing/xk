@@ -13,6 +13,10 @@
 		#sample-table-2_length>form:not(:first-child)>label>select{
 			width: 70px;
 		}
+                .yzf{
+                    color: red;
+                    font-weight: 700;
+                }
 	</style>
 </block>
 
@@ -193,17 +197,17 @@
 									<eq name="list_vo['is_yx']" value="1">
 										<span >正常</span>
 									<else/>
-										<span >已作废</span>
+										<span class="yzf">已作废</span>
 									</eq>
 								</td>
 								<td style="text-align: center;">
-                                                                    <!--<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+                                                                    <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
                                                                         <if condition="$list_vo['is_yx'] eq 1">
-                                                                            <button data-id="<{$list_vo.id}>" class="js-yaohresult-circle-btn" title="作废" style="border-style: none;background-color: #ffb752;padding: 3px 7px">
+                                                                            <button data-id="<{$list_vo.id}>" y-id="<{$list_vo.yaohset_id}>" class="js-yaohresult-circle-btn" title="作废" style="border-style: none;background-color: #ffb752;padding: 3px 7px">
                                                                                 <i class="icon-ban-circle bigger-120" style="color: #FFF"> </i>
                                                                             </button>
                                                                         </if>
-                                                                    </div>-->
+                                                                    </div>
 								</td>
 							</tr>
 						</volist>
@@ -331,12 +335,13 @@ $(document).on('click','button[data-selector=check]',function () {
     $(".js-yaohresult-circle-btn").on('click', function() {
     	var $ids = [];
         $ids.push($(this).attr("data-id"));
-
+        var $yaohset_id=$(this).attr("y-id")
         var callBack = function() {
             var $url = '<{:U("zf")}>';
 
             var $data = {
                 ids: $ids,
+                yaohset_id:$yaohset_id,
             };
 
             ajax_post_callback($url, $data, function(data, status) {

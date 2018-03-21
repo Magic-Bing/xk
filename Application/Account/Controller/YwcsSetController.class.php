@@ -35,7 +35,12 @@ class YwcsSetController extends BaseController {
             $search_project_id = session("selected_project");
         }
         //批次ID
-        $search_batch_id = I('batch_id',0, 'intval');
+        if(isset($_POST['batch_id'])){
+            $search_batch_id = I('batch_id', 0, 'intval');
+            session("selected_batch",$search_batch_id);
+        }else{
+            $search_batch_id = (int)session("selected_batch");
+        }
         
         //用户的项目  
         $user_project_ids = $this->get_user_project_ids();

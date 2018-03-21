@@ -34,7 +34,12 @@ class WeixBuysetController extends BaseController {
         }else{
             $search_project_id = session("selected_project");
         }
-        $search_batch_id = I('batch_id', 0, 'intval');
+        if(isset($_POST['batch_id'])){
+            $search_batch_id = I('batch_id', 0, 'intval');
+            session("selected_batch",$search_batch_id);
+        }else{
+            $search_batch_id =(int)session("selected_batch");
+        }
         $search_word = I('word', '', 'trim');
         $this->assign('bid', $search_batch_id);
 
@@ -480,6 +485,8 @@ class WeixBuysetController extends BaseController {
 //            $this->error('没有选中活动');
         $selected_project=session("selected_project");
         $this->assign('selected_project', $selected_project);
+        $selected_batch=session("selected_batch");
+        $this->assign('selected_batch', $selected_batch?$selected_batch:0);
         //用户的项目和项目批次
         $user_project_ids = $this->get_user_project_ids();
 
@@ -524,6 +531,7 @@ class WeixBuysetController extends BaseController {
     public  function get_hd(){
         $pid=I("post.pid");
         $bid=I("post.bid");
+        session('selected_batch',$bid);
         $hd=M()->table("xk_event_order_house")->field("id,name")->where("project_id=$pid AND batch_id=$bid")->select();
         echo json_encode($hd);exit;
     }

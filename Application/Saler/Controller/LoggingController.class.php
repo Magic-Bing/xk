@@ -95,7 +95,7 @@ class LoggingController extends Controller
                     $this->success( U('DataStatistics/dz_index',array('p' =>$pd[0]['proj_id'],'b' =>$pd[0]['pc_id'] )));
                 }
             }else{//多个跳往选择页面
-                $this->success(U('index/dz_index'));
+                $this->success(U('index/index'));
             }
         }else{
             $this->error('该账号没有数据权限，无法查看！', U('logging/index'));

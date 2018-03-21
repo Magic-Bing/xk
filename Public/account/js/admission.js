@@ -65,6 +65,12 @@ $(function () {
             }
             // alert(0);
             $("#batch-one").html(str);
+            if(Number(brid)!==0){
+                $("#batch-one").val(brid);
+            }
+        }
+        if(Number(brid)!==0){
+            $("#batch-one").trigger('change');
         }
         // $.post(admission.user_list,{pid:id,num:row,zt:zt},function (data) {
         //     $("#user_list").html(data);

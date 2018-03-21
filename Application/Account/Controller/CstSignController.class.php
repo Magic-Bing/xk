@@ -31,6 +31,8 @@ class CstSignController extends BaseController
         $zt=I("zt",0,"intval");
         $selected_project=session("selected_project");
         $this->assign('selected_project', $selected_project?$selected_project:0);
+        $selected_batch=session("selected_batch");
+        $this->assign('selected_batch', $selected_batch?$selected_batch:0);
         //当前用户的项目
         $user_project_ids = $this->get_user_project_ids();
         //获取项目列表
@@ -67,6 +69,7 @@ class CstSignController extends BaseController
         $pid=I("pid",0,"intval");
         session("selected_project",$pid);
         $bid=I("bid",0,"intval");
+        session("selected_batch",$bid);
         $search=I("search",'',"trim");
         $page=I("page",0,"intval");
         $zt=I("zt",0,"intval");

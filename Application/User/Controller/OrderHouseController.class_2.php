@@ -1,4 +1,429 @@
+//源程序前30页
 <?php
+namespace Account\Controller;
+use Common\Controller\BaseController as CommonBaseController;                                                                                                
+/**
+ * 基础控制器
+ *
+ * @create 2016-12-22
+ * @author zlw
+ */
+class BaseController extends CommonBaseController 
+{
+    /**
+     * 系统构造函数
+     *
+     * @create 2016-12-22
+     * @author zlw
+     */
+    public function _initialize() 
+	{
+        parent::_initialize();
+		
+		//网站名称
+		$this->set_website();
+		
+		//验证登录
+		$this->check_login();
+		
+		//用户信息
+		$this->set_user_info();
+		//获取指定的模块
+        $this->get_choose_fun();
+		
+		//未读竞价记录
+		//$this->log_noread_count();
+    }
+
+
+    public function error_page()
+    {
+        $this->error('没有权限进入该页面！','/index/index');
+    }
+    /**
+     * 空方法
+     *
+     * @create 2016-12-23
+     * @author zlw
+     */
+    public function _empty() 
+	{
+        $this->error('方法不存在！');
+    }
+	
+	/**
+	 * 判断是否已经登录
+	 *
+     * @create 2016-12-23
+	 * @author zlw
+	 */
+    protected function check_login() 
+	{
+		if (!session('?ACCOUNT_ID')) {
+                    //$this->error('你还没有登录，正在跳转到登录页面', U('login/index'));
+            redirect(U('../login/index'),0);
+		}else{
+		  $id=session('ACCOUNT_ID');
+		  $pd=M()->table("xk_user")->where("id=$id")->find();
+		  if(!$pd){
+              session('ACCOUNT_ID', null);
+              redirect(U('../login/index'),0);
+          }
+        }
+    }	
+	
+	/**
+	 * 设置网站名称
+	 *
+     * @create 2016-12-23
+	 * @author zlw
+	 */
+    protected function set_website($website = '') 
+	{
+		if (empty($website)) {
+			$website = '云销控管理系统';
+		}
+		$this->assign('website', $website);
+    }	
+	
+    /**
+     * 设置用户信息
+     *
+     * @create 2016-12-23
+     * @author zlw
+    */
+    protected function set_user_info($user_info = '') 
+    {
+            if (empty($user_info)) {
+                    $user_id = $this->get_user_id();
+
+                    $where['id'] = $user_id;
+                    $where[]="9933=9933";
+                    $user = D("User")->getOne($where);
+                    if (empty($user)) {
+                            $this->set_logout();
+
+                            $this->error('用户不存在，请稍后重试！', U('login/index'));
+                    }
+                    $user_info = $user;
+            }
+            $this->assign('user_info', $user_info);
+    }	
+
+    /**
+     * 是否登录
+     *
+     * @create 2016-12-23
+     * @author zlw
+     */
+    protected function is_login() 
+	{
+        if (session('?ACCOUNT_ID')) {
+            return $this->get_user_id();
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 获取登录ID
+     *
+     * @create 2016-12-23
+     * @author zlw
+     */
+    protected function get_user_id() 
+    {
+        return session('ACCOUNT_ID');
+    }
+    
+     /**
+     * 获取登录用户类型
+     *
+     * @create 2016-12-23
+     * @author zlw
+     */
+    protected function get_user_type() 
+    {
+        return session('ACCOUNT_TYPE');
+    }
+    
+
+	/**
+	 * 设置退出
+	 *
+     * @create 2016-12-23
+	 * @author zlw
+	 */
+    protected function set_logout() 
+	{
+		session('ACCOUNT_ID', null);
+                session('ACCOUNT_TYPE', null);
+	}
+
+	/**
+	 * 未读取的竞价记录
+	 *
+     * @create 2016-12-30
+	 * @author zlw
+	 */
+    protected function log_noread_count() 
+	{
+		//用户的项目和项目批次
+		$user_project_ids = $this->get_user_project_ids();
+		$user_batch_ids = $this->get_user_batch_ids();
+		
+		if (!empty($user_project_ids) && !empty($user_project_ids)) {
+			$log_noread_count = D('ChooselogView')->getNoreadLogCount($user_project_ids, $user_batch_ids);
+		} else {
+			$log_noread_count = 0;
+		}
+		
+		$this->assign('log_noread_count', $log_noread_count);
+	}
+	/*=====================获取用户有权限查看的模块======================*/
+    protected  function get_choose_fun(){
+        //当前用户ID
+        $model=M();
+        $user_id = $this->get_user_id();
+        $pd=$model->table("xk_user")->field("is_all")->where("id=$user_id")->find();
+        if((int)$pd['is_all'] ===1) {
+            $fun = $model->table("xk_fun")->where("is_fun=1")->order("px ASC")->select();
+            $this->assign("fun", $fun);
+        }else{
+            $fun=$model->table("xk_station2user su")->field("f.*")->join("xk_fun_station fs on fs.station_id=su.station_id")->join("xk_fun f on f.id=fs.fun_id")->where("su.userid=$user_id and f.is_fun=1")->order("f.px ASC")->select();
+
+            $this->assign("fun", $fun);
+        }
+    }
+	/*#----------- 设置左侧导航信息 ---------------#*/
+
+	/**
+	 * 设置组名称
+	 *
+     * @create 2016-12-27
+	 * @author zlw
+	 */
+    protected function set_group_name($name = '') 
+	{
+		$this->assign('group_name', $name);
+	}
+
+	/**
+	 * 设置组方法
+	 *
+     * @create 2016-12-27
+	 * @author zlw
+	 */
+    protected function set_group_action($action = '', $group = '') 
+	{
+		$group_action_list = array();
+		if (!is_array($action)) {
+			$group_action_list[] = $action;
+		} else {
+			$group_action_list = $action;
+		}
+		
+		if (!empty($group)) {
+			$group_action[$group] = $group_action_list;
+		} else {
+			$group_action = $group_action_list;
+		}
+		
+		$this->assign('group_action', $group_action);
+	}
+        
+        
+	/**
+	 * 设置当前方法
+	 *
+     * @create 2016-12-27
+	 * @author zlw
+	 */
+    protected function set_now_action($now_action = '') 
+	{
+		$this->assign('now_action', $now_action);
+	}
+
+	/**
+	 * 设置方法
+	 *
+     * @create 2016-12-27
+	 * @author zlw
+	 */
+    protected function set_current_action($action = '', $group = '') 
+	{
+		$this->set_group_action($action, $group);
+		$this->set_now_action($action);
+	}
+	
+	/*#----------- 用户项目信息 ---------------#*/
+	
+	/**
+	 * 获取用户的项目
+	 *
+     * @create 2016-12-26
+	 * @author zlw
+	 */
+//    protected function get_user_project()
+//	{
+//		//当前用户ID
+//		$user_id = $this->get_user_id();
+//		$is_all=M("user")->field("is_all")->where("id=$user_id")->find();
+////		echo json_encode($is_all);exit;
+//		//当前用户的项目
+//		$StationrelevanceView = D("StationrelevanceView");
+//		if($is_all['is_all']!=1){
+//            $user_project_where['station2user_user_id'] = $user_id;
+//        }
+//		$user_project_where['Project.status'] = 1;
+//		$user_project_list = $StationrelevanceView->getList($user_project_where);
+//		//用户的相关项目和批次
+////        echo json_encode($user_project_list);exit;
+//		$user_project_ids = array();
+//		$user_batch_ids = array();
+//		if (!empty($user_project_list)) {
+//			foreach ($user_project_list as $user_project) {
+//				$user_project_ids[$user_project['project_id']] = $user_project['project_id'];
+//				$user_batch_ids[$user_project['batch_id']] = $user_project['batch_id'];
+//			}
+//		} else {
+//			$user_project_ids = array('-99999');
+//			$user_batch_ids = array('-99999');
+//		}
+//		$user_projects = array(
+//			'user_project_ids' => $user_project_ids,
+//			'user_batch_ids' => $user_batch_ids,
+//			'user_project_list' => $user_project_list,
+//		);
+////		echo json_encode($user_projects);exit;
+//		return $user_projects;
+//	}
+    protected function get_user_project()
+    {
+        //当前用户ID
+        $user_id = $this->get_user_id();
+        $model=M();
+        $is_all=$model->table("xk_user")->field("is_all")->where("id=$user_id")->find();
+        $user_project_ids = [];
+        $user_batch_ids = [];
+        if((int)$is_all['is_all']===1) {
+            $pids = $model->table("xk_project")->field("id")->select();
+            for ($i = 0; $i < count($pids); $i++) {
+                $user_project_ids[$pids[$i]['id']] = $pids[$i]['id'];
+            }
+            $kids = $model->table("xk_kppc")->field("id")->select();
+            for ($i = 0; $i < count($kids); $i++) {
+                $user_batch_ids[$kids[$i]['id']] = $kids[$i]['id'];
+            }
+        }else{
+            $res=$model->table("xk_station2user su")->field("sp.proj_id pid,k.id kid")->
+                join("xk_station2proj sp ON sp.station_id=su.station_id")->
+                join("xk_kppc k ON k.proj_id=sp.proj_id")->where("su.userid=$user_id")->select();
+            foreach ($res as $user_project) {
+				$user_project_ids[$user_project['pid']] = $user_project['pid'];
+				$user_batch_ids[$user_project['kid']] = $user_project['kid'];
+			}
+
+        }
+        if(!$user_project_ids){
+            $user_project_ids = array('-99999');
+            $user_batch_ids = array('-99999');
+        }
+        $user_projects = array(
+            'user_project_ids' => $user_project_ids,
+            'user_batch_ids' => $user_batch_ids,
+        );
+//		echo json_encode($user_projects);exit;
+        return $user_projects;
+    }
+	
+        /**
+	 * 获取用户的公司权限列表
+	 *
+        * @create 2016-12-26
+	 * @author zlw
+	 */
+        protected function get_user_company() 
+	{	
+                $user_id = $this->get_user_id();
+                $where['id'] = $user_id;
+                $where[]="9933=9933";
+                $user = D("User")->getOne($where);
+                $Model = new \Think\Model();
+                unset($where);
+                //超级管理员获取全部的公司
+                if ($user['is_all']==1)
+                {
+                    $companys=$Model->query("SELECT b.name as compname,b.id FROM xk_company b  order by b.id" );
+                }
+                else
+                {
+                    $companys=$Model->query("SELECT b.name as compname,b.id FROM xk_user a left join xk_company b on a.cp_id=b.id  where a.id=" . $user_id . " and 888=888 order by b.id" );
+                }
+                return $companys;
+	}	
+      
+        
+	/**
+	 * 获取用户的项目ID列表
+	 *
+     * @create 2016-12-26
+	 * @author zlw
+	 */
+    protected function get_user_project_ids() 
+	{	
+		$user_project_list = $this->get_user_project();
+		return $user_project_list['user_project_ids'];
+	}	
+	
+	/**
+	 * 获取用户的项目批次ID列表
+	 *
+     * @create 2016-12-26
+	 * @author zlw
+	 */
+    protected function get_user_batch_ids() 
+	{	
+		$user_project_list = $this->get_user_project();
+		return $user_project_list['user_batch_ids'];
+	}	
+	
+	/**
+	 * 获取用户的项目列表
+	 *
+     * @create 2016-12-26
+	 * @author zlw
+	 */
+    protected function get_user_project_list() 
+	{	
+		$user_project_list = $this->get_user_project();
+		return $user_project_list['user_project_list'];
+	}	
+	
+	//获取ip
+    function getIP() {
+        if (getenv('HTTP_CLIENT_IP')) {
+            $ip = getenv('HTTP_CLIENT_IP');
+        }
+        elseif (getenv('HTTP_X_FORWARDED_FOR')) {
+            $ip = getenv('HTTP_X_FORWARDED_FOR');
+        }
+        elseif (getenv('HTTP_X_FORWARDED')) {
+            $ip = getenv('HTTP_X_FORWARDED');
+        }
+        elseif (getenv('HTTP_FORWARDED_FOR')) {
+            $ip = getenv('HTTP_FORWARDED_FOR');
+        }
+        elseif (getenv('HTTP_FORWARDED')) {
+            $ip = getenv('HTTP_FORWARDED');
+        }
+        else {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+        return $ip;
+    }
+
+}
 
 namespace Account\Controller;
 
@@ -38,6 +463,10 @@ class ChooseUserController extends BaseController {
      * @author zlw
      */
     public function index() {
+//        if(!IS_POST){
+//            $this->error("错误的操作方法！");
+//        }
+//        echo json_encode($_POST);exit;
         //项目ID
         if(isset($_POST['project_id'])){
             $search_project_id = I('project_id', 0, 'intval');
@@ -45,15 +474,10 @@ class ChooseUserController extends BaseController {
         }else{
             $search_project_id = session("selected_project");
         }
-        if(isset($_POST['batch_id'])){
-            $search_batch_id = I('batch_id', 0, 'intval');
-            session("selected_batch",$search_batch_id);
-        }else{
-            $search_batch_id = (int)session("selected_batch");
-        }
 
         $zt = I('zt', 0, 'intval');
         $status = I('status', '', 'trim');
+        $search_batch_id = I('batch_id', 0, 'intval');
         $search_word = I('word', '', 'trim');
         $search_uid = I('uid', 0, 'intval');
         $this->assign('bid', $search_batch_id);
@@ -101,6 +525,7 @@ class ChooseUserController extends BaseController {
 
         //用户的项目批次
         $user_batch_ids = $this->get_user_batch_ids();
+
         //批次
         if (!empty($user_batch_ids)) {
             $user_batch_where['id'] = array('in', $user_batch_ids);
@@ -264,6 +689,7 @@ class ChooseUserController extends BaseController {
             $customer_phone = I('customer_phone', '', 'trim');
             $cardno = I('cardno', '', 'trim');
             $cyjno = I('cyjno', '', 'trim');
+            $row_number = I('row_number', 0, 'intval');
             $money = I('money', 0, 'trim');
             $ys_time = I('ys_time', 0, 'intval');
             /* $area = I('area', 0, 'trim');
@@ -277,7 +703,8 @@ class ChooseUserController extends BaseController {
             $remark = I('remark', '', 'trim');
             $status = I('status', '', 'trim');
 
-            if ($project_id == 0 || empty($customer_name) || empty($customer_phone)) {
+            if ($project_id == 0 || empty($customer_name) || empty($customer_phone) || empty($cyjno)
+            ) {
                 $this->error("信息不能为空，请确认后重试！");
             }
 
@@ -290,23 +717,11 @@ class ChooseUserController extends BaseController {
             if (!in_array($project_id, $user_project_ids)) {
                 $this->error("项目错误，请选择正确的项目！");
             }
-            $p=strencode($customer_phone);
-            $p1="like_p='$p'";
-            if($cyjno){
-                $cn1="OR cyjno='$cyjno";
-            }else{
-                $cn1='';
-            }
-            $Choose = D('Choose');
-            $pd = $Choose->where("project_id=$project_id AND batch_id=$batch_id AND ($p1  $cn1)")->find();
-            if ($pd) {
-                if($pd['like_p'] == $p){
-                    $this->error("电话已存在，请修改后再提交！");
-                }
-                if($pd['cyjno'] == $cyjno){
-                    $this->error("诚意单号已存在，请修改后再提交！");
-                }
 
+            $Choose = D('Choose');
+            $pd = $Choose->where("project_id=$project_id AND batch_id=$batch_id AND (customer_phone=$customer_phone OR cardno='$cardno' OR cyjno='$cyjno')")->find();
+            if ($pd) {
+                $this->error("电话或者身份证或者诚意金编号已存在，请修改后再提交！");
             }
             $data['name'] = $name;
             $data['project_id'] = $project_id;
@@ -317,6 +732,7 @@ class ChooseUserController extends BaseController {
             $data['like_p'] = strencode($customer_phone);
             $data['like_c'] = strencode($cardno);
             $data['cyjno'] = $cyjno;
+            $data['row_number'] = $row_number;
             $data['money'] = $money;
             $data['ys_time'] = $ys_time;
             /* $data['area'] = $area;		
@@ -418,6 +834,7 @@ class ChooseUserController extends BaseController {
             $customer_phone = I('customer_phone', '', 'trim');
             $cardno = I('cardno', '', 'trim');
             $cyjno = I('cyjno', '', 'trim');
+            $row_number = I('row_number', 0, 'intval');
             $money = I('money', 0, 'trim');
             $ys_time = I('ys_time', 0, 'intval');
             /* $area = I('area', 0, 'trim');
@@ -431,7 +848,8 @@ class ChooseUserController extends BaseController {
             $remark = I('remark', '', 'trim');
             $status = I('status', '', 'trim');
 
-            if ($id == 0 || $project_id == 0 || empty($customer_name) || empty($customer_phone)) {
+            if ($id == 0 || $project_id == 0 || empty($customer_name) || empty($customer_phone) || empty($cyjno)
+            ) {
                 $this->error("信息不能为空，请确认后重试！");
             }
 
@@ -444,29 +862,11 @@ class ChooseUserController extends BaseController {
             if (!in_array($project_id, $user_project_ids)) {
                 $this->error("项目错误，请选择正确的项目！");
             }
-            $cd=strencode($cardno);
-            $c2="AND like_c='$cd'";
-            $p=strencode($customer_phone);
-            $p1="like_p='$p'";
-            $p2="AND like_p='$p'";
-            if($cyjno){
-                $cn1="OR cyjno='$cyjno'";
-                $cn2="AND cyjno='$cyjno'";
-            }else{
-                $cn1='';
-                $cn2='';
-            }
-            $Choose = D('Choose');
-            $pd = $Choose->where("project_id=$project_id AND batch_id=$batch_id AND id<>$id AND ($p1  $cn1)")->find();
-//            echo json_encode($pd);exit;
-            if ($pd) {
-                if($pd['like_p'] == $p){
-                    $this->error("电话已存在，请修改后再提交！");
-                }
-                if($pd['cyjno'] == $cyjno){
-                    $this->error("诚意单号已存在，请修改后再提交！");
-                }
 
+            $Choose = D('Choose');
+            $pd = $Choose->where("project_id=$project_id AND batch_id=$batch_id AND id<>$id AND (customer_phone=$customer_phone OR cardno='$cardno' OR cyjno='$cyjno')")->find();
+            if ($pd) {
+                $this->error("电话或者身份证或者诚意金编号已存在，请修改后再提交！");
             }
             
             $where['id'] = $id;
@@ -479,6 +879,7 @@ class ChooseUserController extends BaseController {
             $data['like_p'] = strencode($customer_phone);
             $data['like_c'] = strencode($cardno);
             $data['cyjno'] = $cyjno;
+            $data['row_number'] = $row_number;
             $data['money'] = $money;
             $data['ys_time'] = $ys_time;
             /* $data['area'] = $area;		
@@ -491,7 +892,7 @@ class ChooseUserController extends BaseController {
             //$data['password'] = $password;		
             $data['remark'] = $remark;
             //$data['status'] = $status;
-            $pds = $Choose->where("id=$id $p2 $c2 $cn2")->find();
+            $pds = $Choose->where("id=$id AND customer_phone='$customer_phone' AND cardno='$cardno' AND cyjno='$cyjno'")->find();
             $zy = $Choose->field("project_id,batch_id,customer_phone choose_phone,cardno choose_card,cyjno choose_cyjno")->where("id=$id")->find();
             $event = M()->table("xk_event_order_house")
                     ->where("states=1 and project_id={$zy['project_id']} and batch_id={$zy['batch_id']} and unix_timestamp(now())<= end_time and unix_timestamp(now())>=start_time")
@@ -935,7 +1336,7 @@ class ChooseUserController extends BaseController {
 
         //定义默认数据
         //获取数据库同一批次的数据
-        $sql_arr = M()->table("xk_choose")->field("customer_name A,customer_phone B,cardno C,cyjno D,money E,ywy F,ywyphone G,room H,ys_time I")->where("project_id=$project_id AND batch_id=$batch_id")->select();
+        $sql_arr = M()->table("xk_choose")->field("customer_name A,customer_phone B,cardno C,cyjno D,money E,row_number F,ywy G,ywyphone H,room I,ys_time J")->where("project_id=$project_id AND batch_id=$batch_id")->select();
         for($i=0;$i<count($sql_arr);$i++){
             $sql_arr[$i]['b']=rsa_decode($sql_arr[$i]['b'],getChoosekey());
             $sql_arr[$i]['c']=rsa_decode($sql_arr[$i]['c'],getChoosekey());
@@ -944,21 +1345,13 @@ class ChooseUserController extends BaseController {
         foreach ($excels as $key => $value) {
             $excels[$key] = array_change_key_case($excels[$key], CASE_UPPER);
         }
+
 //        echo json_encode($excels);exit;
+
         $key_arr = [];
         for ($k = 0; $k < count($excels); $k++) {
             for ($i = 0; $i < $k; $i++) {
-                if ((string) $excels[$k]['B'] === (string) $excels[$i]['B']  ) {
-                    $key_arr[] = $k;
-                    $key_arr[] = $i;
-                }
-                if (empty((string) $excels[$k]['B'])) {
-                    $key_arr[] = $k;
-                }
-                if (empty((string) $excels[$i]['B'])) {
-                    $key_arr[] = $i;
-                }
-                if ( (string) $excels[$k]['D'] === (string) $excels[$i]['D'] && !empty((string)$excels[$k]['D']) && !empty((string)$excels[$i]['D']) ) {
+                if ((string) $excels[$k]['B'] === (string) $excels[$i]['B'] || (string) $excels[$k]['C'] === (string) $excels[$i]['C'] || (string) $excels[$k]['D'] === (string) $excels[$i]['D']) {
                     $key_arr[] = $k;
                     $key_arr[] = $i;
                 }
@@ -1031,20 +1424,22 @@ class ChooseUserController extends BaseController {
             $PHPExcel->getActiveSheet()->setCellValue('C2', '身份证号码');
             $PHPExcel->getActiveSheet()->setCellValue('D2', "诚意金编号");
             $PHPExcel->getActiveSheet()->setCellValue('E2', '诚意金金额');
-            $PHPExcel->getActiveSheet()->setCellValue('F2', '置业顾问');
-            $PHPExcel->getActiveSheet()->setCellValue('G2', '置业顾问电话');
-            $PHPExcel->getActiveSheet()->setCellValue('H2', '意向房间');
-            $PHPExcel->getActiveSheet()->setCellValue('I2', '选房延迟时间');
+            $PHPExcel->getActiveSheet()->setCellValue('F2', '排号顺序');
+            $PHPExcel->getActiveSheet()->setCellValue('G2', '置业顾问');
+            $PHPExcel->getActiveSheet()->setCellValue('H2', '置业顾问电话');
+            $PHPExcel->getActiveSheet()->setCellValue('I2', '意向房间');
+            $PHPExcel->getActiveSheet()->setCellValue('J2', '选房延迟时间');
             for ($i = 0; $i < count($repeat_arr); $i++) {
                 $PHPExcel->getActiveSheet()->setCellValueExplicit("A" . ($i + 3), $repeat_arr[$i]['A'], \PHPExcel_Cell_DataType::TYPE_STRING);
                 $PHPExcel->getActiveSheet()->setCellValueExplicit("B" . ($i + 3), $repeat_arr[$i]['B'], \PHPExcel_Cell_DataType::TYPE_STRING);
                 $PHPExcel->getActiveSheet()->setCellValueExplicit("C" . ($i + 3), $repeat_arr[$i]['C'], \PHPExcel_Cell_DataType::TYPE_STRING);
                 $PHPExcel->getActiveSheet()->setCellValueExplicit("D" . ($i + 3), $repeat_arr[$i]['D'], \PHPExcel_Cell_DataType::TYPE_STRING);
                 $PHPExcel->getActiveSheet()->setCellValueExplicit("E" . ($i + 3), $repeat_arr[$i]['E'], \PHPExcel_Cell_DataType::TYPE_STRING);
-                $PHPExcel->getActiveSheet()->setCellValue("F" . ($i + 3), $repeat_arr[$i]['F']);
+                $PHPExcel->getActiveSheet()->setCellValueExplicit("F" . ($i + 3), $repeat_arr[$i]['F'], \PHPExcel_Cell_DataType::TYPE_STRING);
                 $PHPExcel->getActiveSheet()->setCellValue("G" . ($i + 3), $repeat_arr[$i]['G']);
                 $PHPExcel->getActiveSheet()->setCellValue("H" . ($i + 3), $repeat_arr[$i]['H']);
                 $PHPExcel->getActiveSheet()->setCellValue("I" . ($i + 3), $repeat_arr[$i]['I']);
+                $PHPExcel->getActiveSheet()->setCellValue("J" . ($i + 3), $repeat_arr[$i]['J']);
             }
 
             $objWriter = \PHPExcel_IOFactory::createWriter($PHPExcel, 'Excel5');
@@ -1075,10 +1470,11 @@ class ChooseUserController extends BaseController {
                 'like_c' => strencode($excel['C']),
                 'cyjno' => (string) $excel['D'],
                 'money' => $excel['E'],
-                'ywy' => (string) $excel['F'],
-                'ywyphone' => (string) $excel['G'],
-                'room' => $excel['H'],
-                'ys_time' => (int) $excel['I'],
+                'row_number' => $excel['F'],
+                'ywy' => (string) $excel['G'],
+                'ywyphone' => (string) $excel['H'],
+                'room' => $excel['I'],
+                'ys_time' => (int) $excel['J'],
                 'remark' => '', //备注
                 'add_time' => time(),
                 'add_ip' => get_client_ip(0, true),
@@ -1147,6 +1543,7 @@ class ChooseUserController extends BaseController {
                 array('身份证号码', '_bold' => true, '_wd' => 30),
                 array('诚意金编号', '_bold' => true, '_wd' => 15),
                 array('诚意金金额', '_bold' => true, '_wd' => 15),
+                array('排号顺序', '_bold' => true, '_wd' => 15),
                 array('置业顾问', '_wd' => 15),
                 array('置业顾问电话', '_wd' => 20),
                 array('意向房间', '_wd' => 20),
@@ -1560,5 +1957,259 @@ class ChooseUserController extends BaseController {
             exit;
         }
     }
+    public function index(){
+        //项目ID
+        if(isset($_POST['project_id'])){
+            $search_project_id = I('project_id', 0, 'intval');
+            session("selected_project",$search_project_id);
+        }else{
+            $search_project_id = session("selected_project");
+        }
+        $search_batch_id = I('batch_id', 0, 'intval');
+        $search_word = I('word', '', 'trim');
+        $this->assign('bid', $search_batch_id);
 
-}
+        //设置当前搜索
+        $search = array(
+            'search_project_id' => $search_project_id,
+            'search_batch_id' => $search_batch_id,
+            'search_word' => $search_word,
+        );
+        $this->assign($search);
+
+        //项目
+        $Project = D('Common/Project');
+
+        //获取当前项目
+        $project_info = $Project->getProjectById($search_project_id);
+        $this->assign('project', $project_info);
+
+        //用户的项目和项目批次
+        $user_project_ids = $this->get_user_project_ids();
+        $user_batch_ids = $this->get_user_batch_ids();
+
+        if ($search_project_id != 0) {
+            if (!in_array($search_project_id, $user_project_ids)) {
+                $this->error("你没有权限访问该项目的信息！");
+            }
+        }
+
+        //获取项目列表
+        $project_where = array();
+        //$project_where['status'] = 1;
+        if (!empty($user_project_ids)) {
+            $project_where['id'] = array('in', $user_project_ids);
+        } else {
+            $project_where['id'] = '-99999';
+        }
+        $project_old_list = D('Common/ProjectView')->getList($project_where, 'company_id DESC, id DESC', '50');
+        if (!empty($project_old_list)) {
+            foreach ($project_old_list as $project_list_key => $project_list_value) {
+                $project_list[$project_list_value['id']] = $project_list_value;
+            }
+        } else {
+            $project_list = array();
+        }
+        $this->assign('project_list', $project_list);
+
+        //批次
+        if (!empty($user_batch_ids)) {
+            $user_batch_where['id'] = array('in', $user_batch_ids);
+        } else {
+            $user_batch_where['id'] = '-99999';
+        }
+        $user_batch_where['proj_id'] = $search_project_id;
+        $batch_list = D('Batch')->getList($user_batch_where, '*');
+        $this->assign('batch_list', $batch_list);
+
+        $eventOrderHouseModel = D('Common/EventOrderHouse');
+
+        //条件
+        $where = array();
+        if (!empty($search_project_id)) {
+            $where['project_id'][] = $search_project_id;
+        }
+
+        //项目条件
+        if (!empty($user_project_ids)) {
+            $where['project_id'][] = array('in', $user_project_ids);
+        } else {
+            $where['project_id'][] = '-99999';
+        }
+
+       if (!empty($search_batch_id)) {
+            $where['batch_id'][] = $search_batch_id;
+        }else{
+            //批次条件
+            if (!empty($user_batch_ids)) {
+                $where['batch_id'] = array('in', $user_batch_ids);
+            } else {
+                $where['batch_id'] = '-99999';
+            }
+        }
+
+        //搜索查询
+        if (!empty($search_word)) {
+            $like['name'] = array('like', '%' . $search_word . '%');
+            /*$like['rdd_project_name'] = array('like', '%' . $search_word . '%');*/
+            $where['_complex'] = $like;
+        }
+
+        //总数
+        $choose_activity_count = $eventOrderHouseModel->where($where)->count();
+
+        //分页
+        $Page = $this->bootstrapPage($choose_activity_count, 15);
+        $page_show = $Page->show();
+        $total_pages = $Page->totalPages;
+
+        //取范围
+        $limit = $Page->firstRow . ',' . $Page->listRows;
+
+        $choose_activity_list = $eventOrderHouseModel->getList(
+            $where, '*', 'start_time DESC, id DESC', $limit
+        );
+
+        foreach ($choose_activity_list as &$choose_activity) {
+
+            $choose_activity['project_name'] = $project_list[$choose_activity['project_id']]['name'];
+
+        }
+
+        $p = I('p', '1', 'intval');
+        $this->assign('p', $p);
+        $this->assign('total_pages', $total_pages);
+        $this->assign('count', $choose_activity_count);
+        $this->assign('page_show', $page_show);
+
+        $this->assign('choose_activity_list', $choose_activity_list);
+        
+        $http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
+        $this->assign('http_type', $http_type);
+        $this->set_seo_title("微信认购设置");
+        $this->display();
+    }
+
+    public function display_add(){
+        //项目ID
+        $project_id = session("selected_project");
+        $this->assign('project_id', $project_id);
+
+        //用户的项目和项目批次
+        $user_project_ids = $this->get_user_project_ids();
+        $user_batch_ids = $this->get_user_batch_ids();
+
+        //获取项目列表
+        $project_where = array();
+        if (!empty($user_project_ids)) {
+            $project_where['id'] = array('in', $user_project_ids);
+        } else {
+            $project_where['id'] = '-99999';
+        }
+        $project_old_list = D('Common/ProjectView')->getList($project_where, 'company_id DESC, id DESC', '50');
+        if (!empty($project_old_list)) {
+            foreach ($project_old_list as $project_list_key => $project_list_value) {
+                $project_list[$project_list_value['id']] = $project_list_value;
+            }
+        } else {
+            $project_list = array();
+        }
+        $this->assign('project_list', $project_list);
+
+        //批次
+        $user_batch_where = array();
+        if (!empty($user_batch_ids)) {
+            $user_batch_where['id'] = array('in', $user_batch_ids);
+        } else {
+            $user_batch_where['id'] = '-99999';
+        }
+        $batch_list = D('Batch')->getList($user_batch_where, '*');
+        $this->assign('batch_list', $batch_list);
+
+        if (!empty($batch_list)) {
+            foreach ($batch_list as $batch_list_key => $batch_list_value) {
+                $project_batch_list[$batch_list_value['proj_id']][] = array(
+                    'n' => urlencode($batch_list_value['name']),
+                    'v' => $batch_list_value['id'],
+                );
+            }
+        } else {
+            $project_batch_list = array();
+        }
+
+        $project_new_list = array();
+        if (!empty($project_old_list)) {
+            foreach ($project_old_list as $project_old_list_key => $project_old_list_value) {
+                $project_new_list[] = array(
+                    'n' => urlencode($project_old_list_value['company_name'] . '--' . $project_old_list_value['name']),
+                    'v' => $project_old_list_value['id'],
+                    's' => isset($project_batch_list[$project_old_list_value['id']]) ? $project_batch_list[$project_old_list_value['id']] : ''
+                );
+            }
+        }
+        $project_json = urldecode(json_encode($project_new_list));
+        $this->assign('project_json', $project_json);
+
+        $this->set_seo_title('微信认购设置');
+
+        $this->display('add');
+    }
+    
+    public function add()
+    {
+        if (!IS_AJAX){
+            $this->error("提交错误，请稍后重试！");
+        }
+        $upload = new \Think\Upload();// 实例化上传类
+        $upload->maxSize   =     3145728 ;// 设置附件上传大小
+        $upload->exts      =     array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
+        $upload->saveName = array('uniqid','');
+        $upload->savePath  =      '../Uploads/img/wxlogin/'; // 设置附件上传目录    // 上传单个文件
+        $upload->autoSub  = true;
+        $upload->subName  = array('date','Ymd');
+        $info   =   $upload->uploadOne($_FILES['login_img']);
+        if(!$info) {// 上传错误提示错误信息
+            $this->error($upload->getError());
+        }
+        $obj = array();
+        $path= "/Uploads/img/wxlogin/".date("Ymd",time())."/".$info['savename'];
+        $obj['loginimg']=$path;
+        $notEmpty = array('name'=>'没有填写名称','project_id'=>'没有选择项目','batch_id'=>'没有选择批次','start_time'=>'没有选择开始时间','end_time'=>'没有选择结束时间');
+        foreach (array_keys($notEmpty) as $item) {
+            $value = I("post.{$item}");
+
+            if (empty($value)){
+                $this->error($notEmpty[$item]);
+            }
+
+            $obj[$item] = $value;
+        }
+
+        $fields = array('desc','mark','maxcount');
+        foreach ($fields as $item) {
+            $obj[$item] = I("post.{$item}");
+        }
+        $obj['is_short_message']=I("short","","trim")?1:0;
+        $obj['states']=I("states","","trim")?1:0;
+        $obj['isysdl']=I("isysdl","","trim")?1:0;
+        $obj['is_show_discount']=I("is_show_discount","","trim")?1:0;
+        $obj['is_aqyz']=I("is_aqyz","","trim")?1:0;
+        $project = D("project")->field('cp_id,name')->where(array('id'=>$obj['project_id']))->find();
+
+        if (empty($project['cp_id'])){
+            $this->error('提交错误，请稍后重试！');
+        }
+
+        $obj['company_id'] = $project['cp_id'];
+        $obj['rdd_company_name'] = $project['cp_id'];
+
+        $obj['start_time'] = strtotime($obj['start_time']);
+        $obj['end_time'] = strtotime($obj['end_time']);
+        $obj['log_time'] = time();
+        $eventOrderHouseModel = D('EventOrderHouse');
+        $result = $eventOrderHouseModel->add($obj);
+
+        if ($result){
+            if(!empty($obj['states']))
+                D('EventOrderHouse')->initializeByIdToRedis($result,1);
+            $this->success('添加成功');}}}

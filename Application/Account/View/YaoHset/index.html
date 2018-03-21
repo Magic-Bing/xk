@@ -137,6 +137,9 @@
                             <th class="hidden-480">
                                 每组抽取人数
                             </th>
+                            <th class="hidden-480">
+                                方式
+                            </th>
                             <th class="hidden-760" style="width:220px">
                                 显示信息
                             </th>
@@ -176,7 +179,9 @@
                             <td class="hidden-480" style="text-align: center;">
                             <{$list_vo.mzgs}>
                             </td> 
-                            
+                            <td class="hidden-480" style="text-align: center;">
+                                <eq name="list_vo['fs']" value="1">随机<else/>顺序</eq>
+                            </td> 
                             <td class="hidden-760">
                             <{$list_vo.showcontent}>
                             </td> 

@@ -88,7 +88,7 @@
 						}
                         $("#a_pc").focus();
 						if(a!==undefined){
-                            $("#a_pc").find("option").eq(1).prop("selected",true).trigger("change",[2])
+                            $("#a_pc").val(a).trigger("change",[2])
 						}
                     }
 				});
@@ -158,7 +158,7 @@
                     $("#dcsj").show();
         });
         $("#a_pro").val("<{$selected_project}>");
-        $("#a_pro").trigger("change",[1]);
+        $("#a_pro").trigger("change",['<{$selected_batch}>']);
 		$(document).on("click",".label-xlg",function () {
 		    if($("#a_hd").val()==""){
 		        layer_alert("请先选择相应的活动！");

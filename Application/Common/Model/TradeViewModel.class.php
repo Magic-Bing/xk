@@ -26,6 +26,7 @@ class TradeViewModel extends BaseViewModel {
             'status' => 'status',
             'isyx' => 'isyx',
             'code' => 'code',
+             'cjtotal' => 'cjtotal',
             'tradetime' => 'trade_time',
             'pay' => 'pay',
             'proportion' => 'proportion',

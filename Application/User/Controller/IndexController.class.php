@@ -17,6 +17,10 @@ class IndexController extends Controller
 
 	public function login()
     {
+        if(session("dz_uid")){
+            $this->redirect('index/index');
+            exit;
+        }
         $info=I('info','','trim');
         $arr=explode("b",$info);
         if(count($arr)!==2){
@@ -267,6 +271,7 @@ class IndexController extends Controller
         $this->assign("projinfo",$projinfo);
         $this->assign("cou",$this->getSc());
         $this->display();
+
     }
 
 

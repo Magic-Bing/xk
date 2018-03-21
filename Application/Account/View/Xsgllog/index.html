@@ -11,6 +11,18 @@
 	#sample-table-2_length>form:not(:first-child)>label>select{
 		width: 70px;
 	}
+        .layui-layer-btn .layui-layer-btn0{
+            border: 1px solid #dedede;
+            background-color: #f1f1f1;
+            color: #333;
+        }
+        .layui-layer-btn .layui-layer-btn1{
+                border-color: #4898d5;
+                background-color: #2e8ded;
+                color: #fff;
+        }
+        
+        
 	</style>
 </block>
 
@@ -27,7 +39,7 @@
 						<form action="<{:U('/Account/Xsgllog/index')}>" method="post" id="form-p">
 						<label>
 							项目 
-							<select name="project_id" class="trade-project-id js-trade-project-id" style="width: auto;">
+							<select name="project_id" class="trade-project-id js-trade-project-id" style="width: auto;" id="jl_pid">
 								<if condition="!empty($search_project_id)">
 									<option value="">全部</option>
 									<foreach name="project_list" item="project_list_vo">
@@ -55,7 +67,7 @@
 						<form action="<{:U('/Account/Xsgllog/index')}>" method="post" id="form-b">
 						<label>							
 							批次 
-							<select name="batch_id" class="trade-batch-id js-trade-batch-id" >
+							<select name="batch_id" class="trade-batch-id js-trade-batch-id" id="jl_pc">
 							<if condition="count($batch_list) neq 1">
 								<option value="0">全部</option>
 							</if>
@@ -73,22 +85,31 @@
 								</foreach> 
 							</select> 
 						</label>
-
-						<label>
-							状态
-							<select name="pd" class="trade-zt-id js-trade-zt-id" >
-
-
-								<if condition="$pd eq 1">
-									<option value="0">激活</option>
-									<option value="1" selected>关闭</option>
-									<else/>
-									<option value="0">激活</option>
-									<option value="1" >关闭</option>
-								</if>>
+                                                <label>
+							交易状态
+							<select name="status" class="trade-zt-id js-trade-zt-id"  id="status">
+                                                            <foreach name="status_list" item="status_list_vo">
+                                                                <if condition="$status_list_vo eq  $status">
+                                                                    <option value="<{$status_list_vo}>" selected><{$status_list_vo}></option>
+                                                                <else/>
+                                                                    <option value="<{$status_list_vo}>" ><{$status_list_vo}></option>
+                                                                </if>
+                                                            </foreach>
 							</select>
 						</label>
-						<div class="nav-search" id="sample-table-2_filter" style="top:0;">
+						<!--<label>
+							状态
+							<select name="pd" class="trade-zt-id js-trade-zt-id" >
+								<if condition="$pd eq 1">
+                                                                    <option value="0">激活</option>
+                                                                    <option value="1" selected>关闭</option>
+								<else/>
+                                                                    <option value="0">激活</option>
+                                                                    <option value="1" >关闭</option>
+								</if>
+							</select>
+						</label>-->
+						<div class="nav-search" id="sample-table-2_filter" style="top:0px;">
 							<label class="input-icon">
 								<input type="text" name="word" value="<{$search_word|default=''}>" class="nav-search-input js-choose-jy-word" id="zt_cx" placeholder="房间、客户、手机">
 								<i class="icon-search nav-search-icon" style="cursor: pointer;left:6px;" id="likeUsers"></i>
@@ -111,6 +132,7 @@
 								<!--<span class="lbl"></span>-->
 							<!--</label>-->
 						<!--</th>-->
+                                                <th>序号</th>
 						<th class="hidden-480">项目</th>
                                                 <th class="hidden-480">房间</th>
 						<th>客户名称</th>
@@ -122,12 +144,11 @@
 						<th>交易信息</th>
 						<th>付款方式</th>
 						<th class="hidden-480">
-							<i class="icon-time bigger-110 hidden-480"></i>
-							交易时间
+                                                    <i class="icon-time bigger-110 hidden-480"></i>
+                                                    交易时间
 						</th>
 						<th>
-							<i class="icon-jpy bigger-110 hidden-480"></i>
-							售价(元)
+						成交价(元)
 						</th>
 						<th>置业顾问</th>
 						<th>操作</th>
@@ -137,7 +158,6 @@
 				<tbody>
 				<if condition="count($tradelist) gt 0 ">
 
-
 					<volist name="tradelist" id="list_vo" key="list_key">
 						<tr class="choose-user-item choose-user-item-<{$choose_vo.id|default='0'}>" data-id="<{$list_vo.id}>" data-pay="	<{$list_vo.pay|default=''}>" data-je="<{$list_vo['money']}>" data-bl="<{$list_vo['proportion']}>">
 							<!--<td class="center hidden-480">-->
@@ -146,6 +166,7 @@
 									<!--<span class="lbl"></span>-->
 								<!--</label>-->
 							<!--</td>-->
+                                                        <td class="center"><{:($p-1)*$page_show+$list_key}></td>
 							<td class="hidden-480">
 								<span>
 									<{$list_vo.project_name|default=''}>
@@ -172,29 +193,30 @@
 							</td>
 							<td>
                                                             <{$list_vo.pay}>
-                                                            <notempty name="list_vo.proportion">
+                                                            <if condition="$list_vo.pay neq '一次性' and $list_vo.proportion gt 0">
 								(<{$list_vo.proportion}>%)
-                                                            </notempty>
+                                                            </if>
 							</td>
-                            <td class="hidden-480">
+                                                        <td class="hidden-480">
 								<if condition="!empty($list_vo['trade_time'])">
 									<{$list_vo.trade_time|date="Y-m-d H:i:s",###}>
 								</if>
 							</td>
-							<td style="text-align:right;"><{:number_format($list_vo['total'], 2)}></td>
+							<td style="text-align:right;"><{:number_format($list_vo['cjtotal'], 2)}></td>
 							<td>
 								<{$list_vo.ywy|default=''}>
 							</td>
 							<td class="center">
 								<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-									<span class="print-log" data-pvid="<{$list_vo.pvid}>" data-bid="<{$list_vo.pcid}>" data-pid="<{$list_vo.xmid}>" style="color: #fff;background-color: #2db5ee;padding: 3px 2px 4px 5px;cursor: pointer;margin-right: 3px">
-										打印
-									</span>
+									
 									<if condition="$list_vo['isyx'] eq 1">
-									<button data-id="<{$list_vo.id}>" class="js-choose-user-circle-btn" title="作废" style="border-style: none;background-color: #ffb752;padding: 3px 6px">
-										<i class="icon-ban-circle bigger-120" style="color: #FFF"> </i>
-									</button>
-										<else/>
+                                                                            <span class="print-log" data-pvid="<{$list_vo.pvid}>" data-bid="<{$list_vo.pcid}>" data-pid="<{$list_vo.xmid}>" style="color: #fff;background-color: #2db5ee;padding: 3px 2px 4px 5px;cursor: pointer;margin-right: 3px">
+										打印
+                                                                            </span>
+                                                                            <button data-id="<{$list_vo.id}>" class="js-choose-user-circle-btn" title="作废" style="border-style: none;background-color: #ffb752;padding: 3px 6px">
+                                                                                    <i class="icon-ban-circle bigger-120" style="color: #FFF"> </i>
+                                                                            </button>
+									<else/>
 										<button style="border-style: none;color: #FFF;background-color: grey;font-weight: bold" disabled>已关闭</button>
 									</if>
 								</div>
@@ -208,7 +230,15 @@
 						<td colspan="13" class="center">暂时没有数据...</td>
 					</tr>
 				</if>
-
+                                <tr>
+                                        <td> </td>
+                                        <td colspan="11">
+                                                <button class="btn btn-xs btn-primary" style="float: right" id="dc_sj">
+                                                        <i class="icon-cloud-download bigger-110"></i>
+                                                        <span class="bigger-110 no-text-shadow">导出数据</span>
+                                                </button>
+                                        </td>
+                                </tr>
 				</tbody>
 
 			</table>
@@ -216,7 +246,7 @@
 			<div class="row">
 				<div class="col-sm-6">
 					<div class="dataTables_info" id="sample-table-2_info">
-						第 <{$p|default=1}> / <{$total_pages|default=1}> 页，共 <{$count|default=1}> 条
+                                            第 <{$p|default=1}> / <{$total_pages|default=1}> 页，共<span><{$count|default=1}></span>条
 					</div>
 				</div>
 				<div class="col-sm-6">
@@ -229,40 +259,6 @@
 
 	</div><!-- /span -->
 
-</div>
-
-	
-<div class="js-choose-user-excel-export-tpl" style="display:none;">
-	<div class="choose-user-excel-export-tpl">
-		<div class="choose-user-excel-export-tpl-title">
-			你确认要导出该项目模板吗？
-		</div>
-		<div class="choose-user-excel-export-tpl-btns center">
-			<button class="btn btn-sm btn-success js-choose-user-excel-export-tpl-btn">
-				<i class="icon-cloud-download bigger-110"></i>
-				导出模板
-			</button>
-		</div>
-	</div>
-</div>
-
-<div class="js-choose-user-excel-import-tpl" style="display:none;">
-	<form method="post" id="choose-user-excel-import-tpl-form" class="choose-user-excel-import-tpl-form" name="import-form" action="<{:U('import')}>" enctype="multipart/form-data" >
-		<div class="choose-user-excel-import-tpl">
-			<div class="choose-user-excel-import-tpl-title">
-				提交客户信息文件
-			</div>
-			<div class="choose-user-excel-import-tpl-input">
-				<input type="file" class="choose-excel-import-tpl-file upload" name="excel" value="" />
-			</div>
-			<div class="choose-user-excel-import-tpl-btns center">
-				<button class="btn btn-sm btn-purple js-choose-user-excel-import-tpl-btn">
-					<i class="icon-cloud-upload align-top bigger-110"></i>
-					导入数据
-				</button>
-			</div>
-		</div>
-	</form>
 </div>
 
 </block>
@@ -319,6 +315,22 @@
 			return 'left';
 		}
 	});
+        
+        //导出记录数据
+	$("#dc_sj").on("click",function () {
+		var num=Number($("#sample-table-2_info span").text());
+		if(num>0){
+                    var word = $("#zt_cx").val();
+                    var pid=$("#jl_pid").val();
+                    var bid=$("#jl_pc").val();
+                    var status=$("#status").val();
+                    window.location.href="http://"+window.location.host+"/Account/Xsgllog/dc_sj.html?project_id="+pid+"&word="+word+"&batch_id="+bid+"&status="+status;
+		}else{
+			layer_alert("没有数据，不能导出！");
+			return false;
+		}
+
+        });
 
 </script>
 </block>

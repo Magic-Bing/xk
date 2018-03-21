@@ -22,21 +22,20 @@ class RoomController extends BaseController
 	 * @author zlw
 	 */
     public function index() 
-	{
-
-//        $base = A('Account/Base');
-               // $user_where['userid'] = $this->get_user_id();
+    {
+        //$base = A('Account/Base');
+        // $user_where['userid'] = $this->get_user_id();
         $search_project_id=I("pid",0,"intval");
         $search_batch_id=I("bid",0,"intval");
         $this->assign('search_project_id', $search_project_id);
         $uid=$this->get_user_id();
-		//项目列表
-			$Project = D('Common/Project');
-			$where11['status'] = 1;
-			$where11['id'] = $search_project_id;
-			$where11[] = '999=999';
-			$project_list = $Project->getProjectList($where11, 'id DESC');
-		$this->assign('project', $project_list);
+        //项目列表
+        $Project = D('Common/Project');
+        $where11['status'] = 1;
+        $where11['id'] = $search_project_id;
+        $where11[] = '999=999';
+        $project_list = $Project->getProjectList($where11, 'id DESC');
+        $this->assign('project', $project_list);
         //当前用户的项目
         $user_project_ids = $this->get_user_project_ids();
         if (!in_array($search_project_id, $user_project_ids)) {
@@ -59,7 +58,7 @@ class RoomController extends BaseController
         }
 
         //付款方式权限
-        $pay_auth=M()->table("xk_pzcsvalue")->field("id")->where("project_id =$search_project_id AND batch_id=$search_batch_id AND pzcs_id=7 AND cs_value=-1")->find();
+        $pay_auth=M()->table("xk_pzcsvalue")->field("id")->where("project_id =$search_project_id AND batch_id=$search_batch_id AND pzcs_id=6 AND cs_value=-1")->find();
         //诚意金编号权限
         $num_auth=M()->table("xk_pzcsvalue")->field("id")->where("project_id =$search_project_id AND batch_id=$search_batch_id AND pzcs_id=9 AND cs_value=-1")->find();
 //        $info_auth=explode(";",$info_auth);
@@ -290,9 +289,10 @@ class RoomController extends BaseController
 		}
 		
 		$cstname = I('cstname', '', 'trim');
-        $cstid = I('cstid', '', 'trim');
-        $pay = I('pay', '', 'trim');
+                $cstid = I('cstid', '', 'trim');
+                $pay = I('pay', '', 'trim');
 
+        
 		//当前房间
 		$room = D("Room")->getRoomById($id);
 		if (empty($room)) {
@@ -320,6 +320,27 @@ class RoomController extends BaseController
                         'is_qxxf' => 0,
 		);
                 
+                if ($pay=='')
+                {
+                    $cjtotal=$room['total'];
+                }
+                else if($pay=='一次性')
+                {
+                    $cjtotal=$room['ycx_price'];
+                }
+                else if($pay=='分期')
+                {
+                    $cjtotal=$room['fq_price'];
+                }
+                else if($pay=='按揭')
+                {
+                    $cjtotal=$room['aj_price'];
+                }
+                else if($pay=='公积金')
+                {
+                    $cjtotal=$room['gjj_price'];
+                }
+                
 		if ($is_havexf==0)
                 {
                     $user_id = $this->get_user_id_acc();
@@ -342,6 +363,7 @@ class RoomController extends BaseController
                         ,'createdbyid'=> $user_id
                         ,'createdby'=> $user['name']
                         ,'pay'=> $pay
+                        ,'cjtotal'=> $cjtotal
                     );
                     D("Trade")->add($obj);
                     //房间操作日志表

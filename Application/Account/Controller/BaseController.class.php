@@ -385,11 +385,25 @@ class BaseController extends CommonBaseController
      * @create 2016-12-26
 	 * @author zlw
 	 */
-    protected function get_user_batch_ids() 
-	{	
-		$user_project_list = $this->get_user_project();
-		return $user_project_list['user_batch_ids'];
-	}	
+    protected function get_user_batch_ids()
+    {	$uid=$this->get_user_id();
+        $is_all=M()->table("xk_user")->field("is_all")->where("id=$uid")->find();
+        $arr=[];
+        if((int)$is_all['is_all']===1) {
+            $kids = M()->table("xk_kppc")->field("id")->select();
+            for ($i = 0; $i < count($kids); $i++) {
+                $arr[$kids[$i]['id']] = $kids[$i]['id'];
+            }
+        }else{
+            $res=M()->table("xk_station2user su")->field('sp.pc_id')->join("xk_station2pc sp ON su.station_id=sp.station_id")->where('su.userid='.$uid)->select();
+            for($i=0;$c=count($res),$i<$c;$i++){
+                $arr[$res[$i]['pc_id']]=$res[$i]['pc_id'];
+            }
+        }
+
+        return $arr;
+	}
+
 	
 	/**
 	 * 获取用户的项目列表

@@ -16,7 +16,7 @@ class SelectRoomController extends BaseController
         parent::_initialize();
 
         //分类名称
-        $this->assign('classify_name', '电子开盘');
+        $this->assign('classify_name', '入场选房');
         //设置当前方法
         $this->set_current_action('select_room', 'room');
     }

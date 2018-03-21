@@ -63,11 +63,22 @@ $(function () {
             }
             // alert(0);
             $("#batch-one").html(str);
+            if(Number(bid)!==0){
+                $("#batch-one").val(bid);
+            }
         }
-        $.post(sign.user_list,{pid:id,num:row,zt:zt},function (data) {
-            $("#user_list").html(data);
-            user_ajax();
-        });
+        if(Number(bid)!==0){
+            $.post(sign.user_list,{pid:id,bid:bid,num:row,zt:zt},function (data) {
+                $("#user_list").html(data);
+                user_ajax();
+            });
+        }else{
+            $.post(sign.user_list,{pid:id,num:row,zt:zt},function (data) {
+                $("#user_list").html(data);
+                user_ajax();
+            });
+        }
+
     });
 
 

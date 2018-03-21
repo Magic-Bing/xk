@@ -19,7 +19,7 @@ class XsglledController extends BaseController {
         parent::_initialize();
 
         //分类名称
-        $this->assign('classify_name', '电子开盘');
+        $this->assign('classify_name', '入场选房');
         //设置当前方法
         $this->set_current_action('xsgl_led', 'xsgl');
     }
@@ -33,8 +33,13 @@ class XsglledController extends BaseController {
         }else{
             $search_project_id = session("selected_project");
         }
+        if(isset($_POST['batch_id'])){
+            $search_batch_id = I('batch_id', 0, 'intval');
+            session("selected_batch",$search_batch_id);
+        }else{
+            $search_batch_id = (int)session("selected_batch");
+        }
 		$search_word = I('word', '', 'trim');
-        $search_batch_id = I('batch_id',0, 'intval');
 		//设置当前搜索
 		$search = array(
 			'search_project_id' => $search_project_id,

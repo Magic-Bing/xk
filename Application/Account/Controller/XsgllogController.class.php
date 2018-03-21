@@ -55,6 +55,7 @@ class XsgllogController extends BaseController {
         $data['source']=$res[0]['source'];
         $data['status']=$zt;
         $data['isyx']=$res[0]['isyx'];
+        $data['cjtotal']=$res[0]['cjtotal'];
         $data['tradetime']=$tm;
         $data['code']=$res[0]['code'];
         $data['ywy']=$res[0]['ywy'];
@@ -77,6 +78,8 @@ class XsgllogController extends BaseController {
     public function show_print(){
         $name=I('name','');
         $id=I('id',0,'intval');
+        $zt=I('zt','','trim');
+        if($zt==='选房')M()->table("xk_trade")->where('id='.$id)->save(['status'=>'认购']);
         if(empty($name)){
             $this->error("模板名称为空！");
         }
@@ -109,15 +112,22 @@ class XsgllogController extends BaseController {
         }else{
             $search_project_id = session("selected_project");
         }
+        if(isset($_POST['batch_id'])){
+            $search_batch_id = I('batch_id', 0, 'intval');
+            session("selected_batch",$search_batch_id);
+        }else{
+            $search_batch_id = (int)session("selected_batch");
+        }
 		$search_word = I('word', '', 'trim');
 		$pd = I('pd', '', 'trim');
-        $search_batch_id = I('batch_id', 0, 'intval');
+                $status = I('status', '选房', 'trim');
+
 		//设置当前搜索
 		$search = array(
-			'search_project_id' => $search_project_id,
-			'search_word' => $search_word,
-			'pd' => $pd,
-			'search_batch_id' => $search_batch_id,
+                    'search_project_id' => $search_project_id,
+                    'search_word' => $search_word,
+                    'pd' => $pd,
+                    'search_batch_id' => $search_batch_id,
 		);
 		$this->assign($search);
 
@@ -203,13 +213,20 @@ class XsgllogController extends BaseController {
         } else {
             $where['isyx'] = 1;
         }
-		
+        //交易状态条件
+        if (!empty($status) && $status <>"全部") {
+            $where['status'] = $status;
+        }
+        $this->assign('status', $status);
+        $status_list=array("选房","认购","合同","全部");
+	$this->assign('status_list', $status_list);
+        
 		//搜索查询
 		if (!empty($search_word)) {
 			$like_where['customer_name']  = array('like', '%'.$search_word.'%');
 			$like_where['customer_phone']  = array('like', '%'.$search_word.'%');
 			$like_where['roomlist.room']  = array('like', '%'.$search_word.'%');
-            $like_where['trade.ywy']  = array('like', '%'.$search_word.'%');
+                        $like_where['trade.ywy']  = array('like', '%'.$search_word.'%');
 			$like_where['_logic'] = 'or';
 			$where['_complex'] = $like_where;
 		}
@@ -239,7 +256,6 @@ class XsgllogController extends BaseController {
 		$this->assign('page_show', $page_show);
 		
 		$this->assign('tradelist', $list);
-		
 		$this->set_seo_title("交易管理");
                 $this->display();
 	}	
@@ -782,6 +798,155 @@ class XsgllogController extends BaseController {
         $filename = $project['name'].'-'.$batch['name'];
 
         D('Excel', 'Logic')->export($filename, $headArr);
+    }
+    
+    
+    
+    /**
+     * 数据导出
+     *
+     * @create 2017-09-30
+     * @author qzb
+     */
+    public function dc_sj(){
+        $search_project_id = I('project_id', '0', 'intval');
+        $search_batch_id = I('batch_id', '0', 'intval');
+        $search_word = I('word', '', 'trim');
+        $search_status = I('status', '', 'trim');
+
+        //用户的项目和项目批次
+        $user_project_ids = $this->get_user_project_ids();
+        $user_batch_ids = $this->get_user_batch_ids();
+
+        
+        $TradeView = D('Common/TradeView');
+
+        //查询条件
+        $where = array();
+        //项目条件
+        if (!empty($search_project_id)) {
+            $where['project_id'][] = $search_project_id;
+        }
+        if (!empty($user_project_ids)) {
+            $where['project_id'][] = array('in', $user_project_ids);
+        } else {
+            $where['project_id'][] = '-99999';
+        }
+        
+        //批次条件
+        if (!empty($search_batch_id)) {
+            $where['batch_id'][] = $search_batch_id;
+        }
+        if (!empty($user_batch_ids)) {
+            $where['batch_id'][] = array('in', $user_batch_ids);
+        } else {
+            $where['batch_id'][] = '-99999';
+        }
+
+        //搜索查询
+        if (!empty($search_word)) {
+                $like_where['customer_name']  = array('like', '%'.$search_word.'%');
+                $like_where['customer_phone']  = array('like', '%'.$search_word.'%');
+                $like_where['roomlist.room']  = array('like', '%'.$search_word.'%');
+                $like_where['trade.ywy']  = array('like', '%'.$search_word.'%');
+                $like_where['_logic'] = 'or';
+                $where['_complex'] = $like_where;
+        }
+
+         if (!empty($search_status) && $search_status <>"全部") {
+            $where['status'] = $search_status;
+        }
+        
+        $list = $TradeView->getList(
+			$where, 
+			"*", 
+			"batch_name ASC, id DESC "
+		);
+
+        
+        import("Org.Util.PHPExcel");
+        import("Org.Util.PHPExcel.Writer.Excel5");
+        import("Org.Util.PHPExcel.IOFactory.php");
+
+        //创建PHPExcel对象，注意，不能少了\
+        $objPHPExcel = new \PHPExcel();
+        $filename = '交易记录-'.time().".xls";
+        $objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(20);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(30);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(20);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(22);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth(15);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('H')->setWidth(15);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(20);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('J')->setWidth(15);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('K')->setWidth(15);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('L')->setWidth(15);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('M')->setWidth(20);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('N')->setWidth(16);
+        $objPHPExcel->getActiveSheet()->getStyle("A")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $objPHPExcel->getActiveSheet()->getStyle("B")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $objPHPExcel->getActiveSheet()->getStyle("C")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $objPHPExcel->getActiveSheet()->getStyle("D")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $objPHPExcel->getActiveSheet()->getStyle("E")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $objPHPExcel->getActiveSheet()->getStyle("F")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $objPHPExcel->getActiveSheet()->getStyle("G")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $objPHPExcel->getActiveSheet()->getStyle("H")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $objPHPExcel->getActiveSheet()->getStyle("I")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $objPHPExcel->getActiveSheet()->getStyle("J")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $objPHPExcel->getActiveSheet()->getStyle("K")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $objPHPExcel->getActiveSheet()->getStyle("L")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $objPHPExcel->getActiveSheet()->getStyle("M")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $objPHPExcel->getActiveSheet()->getStyle("N")->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $objPHPExcel->getActiveSheet()->getStyle()->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $objPHPExcel->getActiveSheet()->setCellValue('A1', '序号');
+        $objPHPExcel->getActiveSheet()->setCellValue('B1', '项目');
+        $objPHPExcel->getActiveSheet()->setCellValue('C1', '批次');
+        $objPHPExcel->getActiveSheet()->setCellValue('D1', '房间');
+        $objPHPExcel->getActiveSheet()->setCellValue('E1', '姓名');
+        $objPHPExcel->getActiveSheet()->setCellValue('F1', '手机');
+        $objPHPExcel->getActiveSheet()->setCellValue('G1', '来源');
+        $objPHPExcel->getActiveSheet()->setCellValue('H1', '交易状态');
+        $objPHPExcel->getActiveSheet()->setCellValue('I1', '成交价');
+        $objPHPExcel->getActiveSheet()->setCellValue('J1', '付款方式');
+        $objPHPExcel->getActiveSheet()->setCellValue('K1', '贷款比例');
+        $objPHPExcel->getActiveSheet()->setCellValue('L1', '贷款金额');
+        $objPHPExcel->getActiveSheet()->setCellValue('M1', '交易时间');
+        $objPHPExcel->getActiveSheet()->setCellValue('N1', '置业顾问');
+
+
+        for ($k =0; $k < count($list); $k++) {
+            $objPHPExcel->getActiveSheet()->setCellValue('A'.($k+2),$k+1);
+            $objPHPExcel->getActiveSheet()->setCellValue('B'.($k+2),$list[$k]['project_name']);
+            $objPHPExcel->getActiveSheet()->setCellValue('C'.($k+2),$list[$k]['batch_name']);
+            $objPHPExcel->getActiveSheet()->setCellValue('D'.($k+2),$list[$k]['bld_name']."-".$list[$k]['unit']."单元-".$list[$k]['floor']."层-".$list[$k]['room']);
+            $objPHPExcel->getActiveSheet()->setCellValue('E'.($k+2),$list[$k]['cst_name']);
+            $objPHPExcel->getActiveSheet()->setCellValueExplicit('F'.($k+2),rsa_decode($list[$k]['cst_phone'],getChoosekey()),\PHPExcel_Cell_DataType::TYPE_STRING);
+            $objPHPExcel->getActiveSheet()->setCellValue('G'.($k+2),$list[$k]['source']);
+            $objPHPExcel->getActiveSheet()->setCellValue('H'.($k+2),$list[$k]['status']);
+            $objPHPExcel->getActiveSheet()->setCellValueExplicit('I'.($k+2),$list[$k]['cjtotal'],\PHPExcel_Cell_DataType::TYPE_STRING);
+            $objPHPExcel->getActiveSheet()->setCellValue('J'.($k+2),$list[$k]['pay']);
+            $objPHPExcel->getActiveSheet()->setCellValueExplicit('K'.($k+2),$list[$k]['proportion'],\PHPExcel_Cell_DataType::TYPE_STRING);
+            $objPHPExcel->getActiveSheet()->setCellValueExplicit('L'.($k+2),$list[$k]['money'],\PHPExcel_Cell_DataType::TYPE_STRING);
+            $objPHPExcel->getActiveSheet()->setCellValue('M'.($k+2),date('Y-m-d H:i:s',$list[$k]['trade_time']));
+            $objPHPExcel->getActiveSheet()->setCellValue('N'.($k+2),$list[$k]['ywy']);
+        }
+
+        $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+//        $objWriter->save($filename);
+// 输出Excel表格到浏览器下载
+        header('Content-Type: application/vnd.ms-excel');
+        header("Content-Disposition: attachment;filename=$filename");
+        header('Cache-Control: max-age=0');
+// If you're serving to IE 9, then the following may be needed
+        header('Cache-Control: max-age=1');
+// If you're serving to IE over SSL, then the following may be needed
+        header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+        header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); // always modified
+        header('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+        header('Pragma: public'); // HTTP/1.0
+        $objWriter->save('php://output');
+        exit;
+
     }
 
 }
