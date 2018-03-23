@@ -216,6 +216,7 @@
                     }else{
                         if(data.info === 'auto_one'){
                             var qd=$(".card-"+CardNo);
+                            qd.attr('data-name',Name);
                             qd.trigger("click");
                         }else if(data.info === 'not_auto'){
                             num=1;
