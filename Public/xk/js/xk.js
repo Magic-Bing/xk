@@ -417,7 +417,7 @@ $(function () {
     $(document).on('input propertychange',".search-input-kh", function () {
         // alert();
         var $input_str = $(this).val();
-        if ($input_str == '') {
+        if ($input_str === '') {
             $("#cstid1").val("");
             $("#vip1").val("");
             $("#cstname1").val("");
@@ -429,14 +429,19 @@ $(function () {
          return false;
          }*/
         var $stype = 0;
-        if ($(this).attr("id") == "cstname1") {
+        if ($(this).attr("id") === "cstname1") {
             $stype = 1;
         }
-        if ($(this).attr("id") == "phone1") {
+        if ($(this).attr("id") === "phone1") {
             $stype = 2;
         }
-        if ($(this).attr("id") == "cardno1") {
+        if ($(this).attr("id") === "cardno1") {
             $stype = 3;
+        }
+        if($stype===3){
+            if($input_str.length!==15 && $input_str.length!==18){
+                return false;
+            }
         }
         var $project_id = $(".marketing-control-select-project-id").find("option:selected").val();
         var $room_id = $("#roominfo1").attr("data_id");
@@ -446,22 +451,16 @@ $(function () {
                 info: $input_str,
                 stype: $stype,
                 project_id: $project_id,
-                room_id: $room_id,
+                room_id: $room_id
             },
             type: 'POST',
             dataType: 'JSON',
-            success: function (data, status) {
-                if (typeof(data.status) == 'undefined') {
-                    layer_alert_two('请求失败，请重试！');
-                    return false;
-                }
-                if (data.status === false) {
+            success: function (data) {
+                if (data.status === 0) {
                     layer_alert_two(data.info);
                     return false;
                 }
-                //var $is_havecst=data.info[0];
-
-                var $csts = data.info[1];
+                var $csts = data.info;
                 if ($csts.length > 0) {
                     // console.log(JSON.stringify($csts));
                      if ($csts.length === 1) {
@@ -471,17 +470,31 @@ $(function () {
                         $("#phone1").val($csts[0].customer_phone);
                         $("#cardno1").val($csts[0].cardno);
                      }else{
-                         var str="";
+                         var str="<table id='cs_id' style='width: 100%;'><tr>" +
+                             "<th style='width: 15%;text-align: center'>姓名</th>" +
+                             "<th style='width: 40%;text-align: center'>身份证</th>" +
+                             "<th style='width: 30%;text-align: center'>电话</th>" +
+                             "<th style='width: 15%;text-align: center'>诚意单号</th>" +
+                             "</tr>";
                          for(var i=0;i<$csts.length;i++){
-                             str+="<label style='display: block;white-space: nowrap;margin-top: 5px;overflow: hidden;text-overflow: ellipsis;text-align: left' title='"+$csts[i].customer_name+"("+$csts[i].cardno+")'><input type='radio' name='card'  value='"+i+"'>&nbsp;"+$csts[i].customer_name+"("+$csts[i].cardno+")</label>";
+                             str+="<tr style='cursor: pointer'>" +
+                                 "<td style='width: 15%;text-align: left'>" +
+                                 "<label ><input type='radio' name='card'  value='"+i+"'>"+$csts[i].customer_name+"</label>" +
+                                 "</td>" +
+                                 "<td style='width: 40%;text-align: center'>" +
+                                 "<p title='"+$csts[i].cardno+"' style='width: 200px;white-space: nowrap;overflow: hidden;" +
+                                 "text-overflow: ellipsis;text-align: left'>"+$csts[i].cardno+"</p></td>" +
+                                 "<td style='width: 30%;text-align: center'>"+$csts[i].customer_phone+"</td>" +
+                                 "<td style='width: 15%;text-align: center'>"+$csts[i].cyjno+"</td>" +
+                                 "</tr>";
                          }
-                         // str+="</div>";
+                         str+= "</table>";
                          layer.confirm(str, {
                              btn: ['取消', '确认'], //按钮
                              skin: 'layui-layer-qz',
                              shade: [0.5, 'black'],
                              title:'请选择客户',
-                             area:'315px',
+                             area:'500px',
                              shadeClose:true
                          }, function (index) {
                              layer.close(index);
@@ -550,7 +563,10 @@ $(function () {
         return false;
 
     });
-
+    //多个客户时单选框tr选中事件
+    $(document).on("click","#cs_id tr",function () {
+        $(this).find('td').eq(0).find('input').prop("checked",true);
+    });
 
     //显示更多楼栋修改后取消使用
     /*$("body").on("click","#show_ld",function () {
@@ -918,8 +934,10 @@ $(function () {
                     //用户权限控制
                     if (Number($.trim($("#usertype").val())) === 1) {
                         $(".marketing-control-content-room-cancel").show();
+                        $("#print_xp").show();
                     }else{
                         $(".marketing-control-content-room-cancel").hide();
+                        $("#print_xp").hide();
                     }
                     $(".marketing-control-content-room-confirm").hide();
                     $(".marketing-control-content-room-confirm-btn").attr("disabled", true);
@@ -963,6 +981,7 @@ $(function () {
                     $($text_pre + 'is-sf').val('0');
                     $(".marketing-control-content-room-confirm").show();
                     $(".marketing-control-content-room-cancel").hide();
+                    $("#print_xp").hide();
                     $(".marketing-control-content-room-confirm-btn").attr("disabled", false);
 
                     $('#cstname1').val("").attr("readonly", false);
@@ -1103,6 +1122,24 @@ $(function () {
     // 	alert();
     //    hidefqz();
     // });
+    //打印小票手动
+    $("#print_xp").click(function () {
+        var $room_id = $(".marketing-control-room-info-id").val();
+        var $cstname = $("#cstname1").val();
+        $.ajax({
+            url: room_url.print,
+            data: {
+                id: $room_id,
+                cstname: $cstname
+            },
+            type: 'POST',
+            dataType: 'JSON',
+            success: function (data) {
+                layer_alert(data.info);
+            }
+        })
+    });
+
     //确认选房
     $(".marketing-control-content-room-confirm-btn").click(function () {
         // hidefqz();
@@ -1211,6 +1248,7 @@ $(function () {
                     $($text_pre + 'is-sf').val('1');
 
                     $(".marketing-control-content-room-cancel").show();
+                    $("#print_xp").show();
                     $(".marketing-control-content-room-confirm").hide();
 
                     $('#cstname1').attr("readonly", "readonly");

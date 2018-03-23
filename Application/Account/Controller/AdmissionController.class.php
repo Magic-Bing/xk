@@ -186,7 +186,7 @@ class AdmissionController extends BaseController
                                 M()->table('xk_choose')->where("id={$auto_arr[$k]['id']}")->save(['is_admission'=>1,'admission_time' => time()]);
                                 M()->table("xk_choose2user_log")->add($data);
                                 $print_arr=M()->table("xk_choose c")->field("c.customer_name,c.customer_phone,r.no")->join("xk_yaohresult r ON r.cstid=c.id")->where("c.id=".$auto_arr[$k]['id'])->find();
-//                              $this->cloudPrint($data);//打印小票
+//                              $this->cloudPrint($print_arr);//打印小票
                                 M()->commit();
                             }catch (\Think\Exception $e) {
                                 M()->rollback();

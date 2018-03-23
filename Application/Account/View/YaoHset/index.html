@@ -212,25 +212,40 @@
                                 <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
                                     <eq name="list_vo['is_yx']" value="1">
                                     <eq name="list_vo['status']" value="1">
-                                        <a href="<{:U('display_yaoh', 'id='.$list_vo['id'])}>" target="_blank" class="yaohbtn" style="color:#FFF" title="点击打开摇号页面">
+                                        <eq name="list_vo['fs']" value="1">
+                                            <a href="<{:U('display_yaoh', 'id='.$list_vo['id'])}>" target="_blank" class="yaohbtn" style="color:#FFF" title="点击打开摇号页面">
+                                                <else/>
+                                                <a href="<{:U('order_yaoh', 'id='.$list_vo['id'])}>" target="_blank" class="yaohbtn" style="color:#FFF" title="点击打开摇号页面">
+                                        </eq>
                                             继续摇号
                                         </a>
                                     <else/>
                                          <eq name="list_vo['status']" value="0">
-                                            <a href="<{:U('display_yaoh', 'id='.$list_vo['id'])}>" target="_blank" class="yaohbtn" style="color:#FFF" title="点击打开摇号页面">
+                                             <eq name="list_vo['fs']" value="1">
+                                                 <a href="<{:U('display_yaoh', 'id='.$list_vo['id'])}>" target="_blank" class="yaohbtn" style="color:#FFF" title="点击打开摇号页面">
+                                                 <else/>
+                                                 <a href="<{:U('order_yaoh', 'id='.$list_vo['id'])}>" target="_blank" class="yaohbtn" style="color:#FFF" title="点击打开摇号页面">
+                                             </eq>
+
                                                 开始摇号
                                             </a>
                                          <else/>
-                                            <!--<a href="/Account/YaoHresult/index.html?project_id=<{$list_vo['project_id']}>&batch_id=<{$list_vo['batch_id']}>" class="yaohbtn" title="点击查看摇号结果">
-                                                查看记录
-                                            </a>-->
-                                            <a href="<{:U('history_yaoh',array('id'=>$list_vo['id'], 'zcid'=>1)) }>" target="_blank" class="yaohbtn" style="color:#FFF" title="点击查看摇号结果" >
+                                             <eq name="list_vo['fs']" value="1">
+                                                 <a href="<{:U('history_yaoh',array('id'=>$list_vo['id'], 'zcid'=>1)) }>" target="_blank" class="yaohbtn" style="color:#FFF" title="点击查看摇号结果" >
+                                                     <else/>
+                                                     <a href="<{:U('history_oder',array('id'=>$list_vo['id'], 'zcid'=>1)) }>" target="_blank" class="yaohbtn" style="color:#FFF" title="点击查看摇号结果" >
+                                             </eq>
+
                                                 查看记录
                                             </a>
                                          </eq>
                                     </eq>
                                     <else/>
-                                        <a href="<{:U('history_yaoh',array('id'=>$list_vo['id'], 'zcid'=>1)) }>" target="_blank" class="yaohbtn" style="color:#FFF" title="点击查看摇号结果">
+                                        <eq name="list_vo['fs']" value="1">
+                                            <a href="<{:U('history_yaoh',array('id'=>$list_vo['id'], 'zcid'=>1)) }>" target="_blank" class="yaohbtn" style="color:#FFF" title="点击查看摇号结果" >
+                                                <else/>
+                                                <a href="<{:U('history_oder',array('id'=>$list_vo['id'], 'zcid'=>1)) }>" target="_blank" class="yaohbtn" style="color:#FFF" title="点击查看摇号结果" >
+                                        </eq>
                                             查看记录
                                         </a>
                                     </eq>

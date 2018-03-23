@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><{$seo_title}></title>
+        <meta name="keywords" content="云销控-选房摇号">
+        <meta name="description" content="云销控-选房摇号">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link href="/Public/account/assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="/Public/common/css/base.css" type="text/css" rel="stylesheet">
+
+        <script src="/Public/common/js/jquery/jquery-1.11.3.min.js"></script>
+        <script src="/Public/common/js/jquery/jquery-ui-1.12.0.custom/jquery-ui.js"></script>
+        <script src="/Public/account/assets/js/bootstrap.min.js"></script>
+        <script src="/Public/common/js/jquery/jquery.mousewheel.js"></script>
+        <link href="/Public/common/js/jquery/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet">
+        <script src="/Public/common/js/jquery/perfect-scrollbar/perfect-scrollbar.js"></script>
+        <script src="/Public/common/js/layer/layer.js"></script>
+        <script src="/Public/common/js/pc/functions.js"></script>
+        <script src="/Public/common/js/functions.js"></script>
+
+        <style>
+            body{
+                /*background:url(/Public/account/img/yaohbk.jpg);
+                background-repeat: no-repeat;  
+                background-size: cover;
+                background-attachment:fixed;*/
+            }
+            .yaohbackground{
+                position: absolute;width:90%;height:90%;left:5%;top:5%; 
+                Color:#000;
+            }
+            .content{
+                float:left;width:calc(83% - 1px);height:100%;margin-left: 2%;
+                background: #fffefe9e;
+               
+            }
+            .start, .stop, .end  {
+                padding: 5px 25px;
+                text-align: center;
+                font-size: 25px;
+                border-radius: 10px;
+                margin: auto;
+                color: #ffffff;
+                cursor: pointer;
+            }
+            .start {
+                background: #fb3b3b;
+            }
+            .stop {
+                background: #610907b3;
+            }
+            .end {
+                background: #ccc;
+            }
+            .nextgroup  {
+                padding: 3px 10px;
+                text-align: center;
+                font-size: 25px;
+                border-radius: 0px;
+                margin: auto;
+                color: #fb3b3b;
+                cursor: pointer;
+            }
+            #morezc li{
+                margin-left: 5%;
+                width:90%;
+                border-bottom:1px solid #dff0d8;
+                cursor: pointer;
+            }
+            .rcno{
+                padding: 5px;
+                background: #791311;
+                color: #FFF;
+            }
+            .spanshow{
+                line-height: 30px;
+                width: 80%;
+                margin-left: 10%;
+                background: #FFF;
+                margin-top: 7.5px;
+            }
+            .cstli div{
+                overflow:hidden;
+                white-space:nowrap;
+                text-overflow:ellipsis;
+            }
+            marquee{
+                height: calc(100% - 59px);
+            }
+            .col-sm-20{
+                 width: 20%;
+                 height: 100%;
+                min-width: 200px;
+                float: left;
+             }
+            .col-sm-20>div{
+                height: 100%;
+            }
+            .xh{
+                width: 20px;
+                height: 20px;
+                text-align: center;
+                line-height: 20px;
+                background:#fb7617;
+                color: #fff;
+                float: left;
+            }
+            .group-user{
+                width: 100%;
+                height: calc(100% - 20px );
+                float: left;
+            }
+            .group-table{
+                width: 100%;
+                color: #791311;
+            }
+            #close-group{
+               width: 20px;
+                height: 20px;
+                float: right;
+                border-radius: 10px;
+                border: 1px solid #009688;
+                line-height: 20px;
+                text-align: center;
+                color: #009688;
+                cursor: pointer;
+            }
+            .group-title{
+                width: 100%;
+                margin-top: 10px;
+                color: #791311;
+            }
+            .group-title th{
+                width: 33%!important;
+                text-align: center;
+            }
+            .group-table tr>td:first-child{
+                width: 25%!important;
+               text-align: center;
+            }
+            .group-table tr>td:nth-child(2){
+                width: 50%!important;
+                text-align: center!important;
+            }
+            .group-table tr>td:nth-child(3){
+                width: 25%!important;
+                text-align: center!important;
+            }
+            .close-add{
+                display: none;
+            }
+            #cz-div{
+                display: none;
+            }
+        </style>
+    </head>
+    <body style="width:100%;height:100%">
+        <img id="bjimg" src="/Public/account/img/yaohbk.jpg" original="/Public/account/img/yaohbk.jpg" style="width:100%;height:100%;" >
+        <div  class="yaohbackground">
+            <div style="float:left;width:15%;height:100%;background: #fffefe9e;">
+                <div style="position: relative;top: 0;height: 59px;line-height: 59px;font-size: 20px;border-bottom: 1px solid red;text-align: center">待摇号</div>
+                <marquee direction="up" scrollamount="10"  width="100%"   >
+                <div style="position: relative;text-align: center;color: #770a07;">
+                    <table style="width: 90%;margin-left: 5%" id="user_list">
+                    <foreach name="cstlist" item="vo" key="k">
+                      <tr>
+                          <td style="width: 50%;text-align: left"><{$vo.customer_name}></td>
+                          <td style="width: 50%;text-align: right"><{$vo.cyjno}></td>
+                      </tr>
+                    </foreach>
+                    </table>
+                </div>
+              </marquee>
+            </div>
+            <div class="content">
+                <div id="grouptitle" data_id="<{$yaohset['id']}>" style="width:100%;height:59px;line-height:59px;border-bottom:1px solid #fb3b3b;">
+                    <div style="position: absolute;float:left;width:120px;text-align: center;font-size: 20px;">开盘摇号
+                    </div>
+                    <div  id="groupno" class="" style="float:left;width: calc(100%);text-align: center;font-size: 25px;">
+                        <if condition="$isend eq 0">第 <php>$dqgroup=$yaohset['dqmaxgroup'];$dqgroup++;</php> <{$dqgroup}> 组</if>   
+                    </div>
+                    <if condition="$yaohset['dqmaxgroup'] gt 0">
+                    <div style="position: absolute;right: 20px;width:120px;text-align: center;font-size: 15px;">
+                        <php>$i=0;</php>
+                        <select id="morezc" class="col-xs-10 col-sm-5 " name="showcontent" style="background: rgba(0, 0, 0, 0);color: rgba(0, 0, 0, .3);">
+                        <option value="0" >查看历史组次</option>
+                            <for start="$i" end="$yaohset['dqmaxgroup']">
+                                <php>$zch = $i + 1;</php>
+                                <option value="<{$zch}>" >第 <{$zch}> 组</option>          
+                            </for>
+                        </select>
+                    </div>
+                    </if>  
+                </div>
+                <div  style="width:100%;height:calc(100% - 120px)">
+                    <div style="width:90%;height:2%;"></div>
+                    <div style="width:90%;height:96%;margin-left: 5%;font-weight: 700;white-space: nowrap;overflow: hidden" id="div-group">
+                        <if condition="$isend eq 0">
+                                <div class="col-sm-20" data-group="1" id="cz-div">
+                                    <div class="thumbnail">
+                                        <div class="xh">1</div>
+                                        <div class="close-add">×</div>
+                                        <div class="group-user">
+                                            <table class="group-title">
+                                                 <tr>
+                                                     <th>入场序号</th>
+                                                     <th>姓名</th>
+                                                     <th>诚意单号</th>
+                                                 </tr>
+                                            </table>
+                                               <table class="group-table">
+
+                                               </table>
+                                        </div>
+                                    </div>
+                                </div>
+                        <else />
+                        <div style="position: absolute;top: 46%;left: 50%;font-size: 25px;">
+                            摇号已结束
+                        </div>
+                        
+                        </if>
+                    </div>
+                </div>
+              
+                <div style="width:100%;height:59px;border-top:1px solid #fb3b3b;">
+                    <if condition="$isend eq 0">
+                    <div style="width:100%;margin-top: 5px;">
+                        <div style="float:left;margin-left: 10%;">
+                            <div class="start"  id="add-group" onclick="start()">增加</div>
+                        </div>
+                        <div style="float:right;margin-right: 5%;">
+                            <a href="/Account/YaoHset/order_yaoh/id/<{$yaohset['id']}>"><div class="nextgroup" id="nextgroup">下一组 ></div></a>
+                        </div>
+                        <div style="float:right;margin-right: 5%;">
+                            <a href="#"><div class="start" >确定 </div></a>
+                        </div>
+                    </div>
+                    </if>
+                </div>
+                
+            </div>
+            
+        </div>
+        <script  type="text/javascript">
+            var num='<{$yaohset["mzgs"]}>';
+             $(document).ready(function() { 
+                $("#bjimg").css("height",$(window).height());
+             });
+             $(window).resize(function () {         
+               $("#bjimg").css("height",$(document).height());
+            });
+             $("#add-group").trigger("click");
+            function start() {
+                var tb=$("#user_list");
+                var len=tb.find('tr').length;
+                if(len===0){
+                    layer_alert("已经没有客户了,请点击确定！");
+                }
+                var cz=$("#cz-div");
+                var g_num=cz.attr("data-group");
+                var g_tab=cz.find(".group-user").find(".group-table");
+                var n=num*(g_num-1);
+                for(var i=(num-1);i>=0;i--){
+                    tb.find("tr").eq(i).prepend("<td>第"+(n+i+1)+"位</td>").prependTo(g_tab);
+                }
+                var len2=tb.find('tr').length;
+                $(".close-add").css("display","none").attr("id",'');
+                cz.find(".close-add").attr("id","close-group").css("display","block");
+                cz.attr("id",'');
+                if(len2===0){
+                    $(".col-sm-20:first").find(".close-add").attr("id","close-group").css("display","block");
+                    return false;
+                }
+                var str='<div class="col-sm-20" id="cz-div" data-group="'+(Number(g_num)+1)+'">' +
+                             '<div class="thumbnail">' +
+                                '<div class="xh">'+(Number(g_num)+1)+'</div>' +
+                                '<div class="close-add">×</div>' +
+                                '<div class="group-user">' +
+                                    '<table class="group-title">' +
+                                        '<tr>' +
+                                            '<th>入场序号</th>' +
+                                            '<th>姓名</th>' +
+                                            '<th>诚意单号</th>' +
+                                        ' </tr>' +
+                                    '</table>' +
+                                    '<table class="group-table">' +
+                                    '</table>' +
+                                 '</div>' +
+                            '</div>' +
+                        '</div>';
+                $(str).prependTo("#div-group");
+            }
+            $(document).on("click","#close-group",function () {
+                var tb=$("#user_list");
+                var g_tab=$(this).nextAll(".group-user").find(".group-table");
+                for(var i=(num-1);i>=0;i--){
+                    g_tab.find("tr").eq(i).find('td').eq(0).remove();
+                    g_tab.find("tr").eq(i).prependTo(tb);
+                }
+                var d=$(this).parent("div").parent("div");
+                var v=d.attr("data-group");
+                d.remove();
+                var cz=$("#cz-div");
+                var vo=cz.attr("data-group");
+                if(Number(vo)> Number(v)){
+                    cz.attr("data-group",(Number(vo)-1));
+                    var vo1= $.trim(cz.find(".xh").html());
+                    cz.find(".xh").html((Number(vo1)-1));
+                }else{
+                    var str='<div class="col-sm-20" id="cz-div" data-group="'+v+'">' +
+                        '<div class="thumbnail">' +
+                        '<div class="xh">'+v+'</div>' +
+                        '<div class="close-add">×</div>' +
+                        '<div class="group-user">' +
+                        '<table class="group-title">' +
+                        '<tr>' +
+                        '<th>入场序号</th>' +
+                        '<th>姓名</th>' +
+                        '<th>诚意单号</th>' +
+                        ' </tr>' +
+                        '</table>' +
+                        '<table class="group-table">' +
+                        '</table>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>';
+                        $(str).prependTo("#div-group");
+                        $(".col-sm-20").eq((Number(v)-1)).find(".close-add").attr("id","close-group").css("display","block");
+                }
+
+            });
+            $(document).on("change","#morezc",function () {
+                var zcid=$("#morezc").val();
+                if(zcid>0)
+                {
+                    window.location.href="http://"+window.location.host+"/Account/YaoHset/history_order/id/" + $("#grouptitle").attr("data_id") + "/zcid/"+ zcid
+                }
+            });
+        </script>
+    </body>
+</html>

@@ -368,7 +368,11 @@ class RoomController extends BaseController
                     D("Trade")->add($obj);
                     //房间操作日志表
                     D("RoomLog")->choose($room['id'], $user_id, $user['name'],$cstid);
-                     
+                     //打印小票
+                    $res=M()->table("xk_room r")->field("p.name pname,b.buildname bname,r.unit,r.floor,r.room")->join("xk_project p ON r.proj_id=p.id")->join("xk_build b ON b.id=r.bld_id")->where('r.id='.$room['id'])->find();
+                    $res['cname']=$cstname;
+                    $res['tm']=time();
+                    $this->cloudPrint($res);
                     $roominfo->commit();
                     
                     //if ($check_has_edit === false) {
@@ -409,7 +413,7 @@ class RoomController extends BaseController
 		} else {
 			$user_name = '';
 		}
-		
+
         D("RoomLog")->choose($room_id, $user_id, $user_name,$cstid);
     }
 	
@@ -611,19 +615,15 @@ class RoomController extends BaseController
 		
 		//条件
 		$search_info = I('info','', 'trim');
-                $type = I('stype', '', 'trim');
-                $project_id = I('project_id', '', 'trim');
-                $room_id = I('room_id', '', 'trim');
-                $where['id'] = $room_id;
-                $where[] = "1=1";
-                $room = D("Roomview")->getOne($where);
-                $batch_id=$room['pc_id'];
-		if (empty($search_info)) {
-                    //$this->error('搜索条件为空，请确认后重试！', U('room/index'));
-		}
+        $type = I('stype', '', 'trim');
+        $project_id = I('project_id', '', 'trim');
+        $room_id = I('room_id', '', 'trim');
+        $where['id'] = $room_id;
+        $where[] = "1=1";
+        $room = D("Roomview")->getOne($where);
+        $batch_id=$room['pc_id'];
 		$this->assign('search_info', $search_info);
 		unset($where);
-		
                 if ($type==0)
                 {
                     $where['cyjno'] = $search_info;
@@ -635,14 +635,19 @@ class RoomController extends BaseController
                     $where['like_p'] = strencode($search_info);
                 }else if ($type==3)
                 {
-                    $where['like_c'] = strencode($search_info);
+                    $like_where['like_c'] = array('like', '%' . strencode($search_info) . '%');
+                    $ike_where['_logic'] = 'or';
+                    $where['_complex'] = $like_where;
                 }
+                $pd=M()->table("xk_pzcsvalue")->where('project_id='.$project_id.' and batch_id='.$batch_id.' and pzcs_id=12 and cs_value=-1')->find();
+
                 $where['project_id'] = $project_id;
                 $where['batch_id'] = $batch_id;
+                $where["rm1.id"] = array('exp', 'is null');
 		$ChooseView = D('Common/ChooseView');
 		$csts = $ChooseView->getList($where, "*");
 		if(count($csts) >0){
-		    if(count($csts) ==1){
+		    if(count($csts) ===1){
                 $csts[0]['customer_phone']=rsa_decode($csts[0]['customer_phone'],getChoosekey());
                 $csts[0]['cardno']=rsa_decode($csts[0]['cardno'],getChoosekey());
             }else{
@@ -652,20 +657,15 @@ class RoomController extends BaseController
                 }
             }
         }
-                $data=array();
-                if ( !empty($csts[0]['room_id'])&&$csts[0]['room_id']>0)
-                {
-                    $data[0]=1;
-                }
-                else
-                {
-                     $data[0]=0;
-                }
-                $data[1]=$csts;
+        if(!$pd){
+		    if( $csts[0]['is_admission']==0){
+                $this->error("入场后才能进行选房！");
+            }
+        }
 		
 		//获取相关信息
 
-		$this->success($data, U('room/index'));
+		$this->success($csts, U('room/index'));
 	}
         
         public function get_gfrooms()
@@ -682,6 +682,99 @@ class RoomController extends BaseController
                 $rooms=$Model->query("SELECT a.*, FROM_UNIXTIME(a.xftime,'%Y-%m-%d  %H:%i') as xftime1  FROM xk_roomlist a WHERE a.proj_id=" .$projid." and a.is_xf=1 AND FROM_UNIXTIME(a.xftime,'%Y-%m-%d')='".$dqtime ."' and 666=666 ORDER BY a.xftime desc,a.bld_id,a.unit,a.floor desc,a.no,a.id ASC " );
            // }
             $this->success($rooms);
-        } 
-	
+        }
+    /**
+     * 打印选房小票
+     *
+     * @create 2018-03-22
+     * @author qzb
+     */
+    public function print_xp(){
+        if (!IS_AJAX) {
+            $this->error('请求错误，请确认后重试！', U('room/index'));
+        }
+        $id = I('id', 0, 'intval');
+        $cstname = I('cstname', '', 'trim');
+        $res=M()->table("xk_room r")->field("p.name pname,b.buildname bname,r.unit,r.floor,r.room,t.tradetime tm")->join("xk_project p ON r.proj_id=p.id")->join("xk_build b ON b.id=r.bld_id")->join("xk_trade t ON t.room_id=r.id")->where('r.id='.$id)->find();
+        if(!$res){
+            $this->error("数据异常，请重试！");
+        }
+        $res['cname']=$cstname;
+        $res['tm']=time();
+        $this->cloudPrint($res);
+        $this->success("打印中，请稍后...");
+    }
+    function liansuo_post($url,$data){ // 模拟提交数据函数
+        $curl = curl_init(); // 启动一个CURL会话
+        curl_setopt($curl, CURLOPT_URL, $url); // 要访问的地址
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0); // 对认证证书来源的检测
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 1); // 从证书中检查SSL加密算法是否存在
+        curl_setopt($curl, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']); // 模拟用户使用的浏览
+        curl_setopt($curl, CURLOPT_HTTPHEADER, array('Expect:')); //解决数据包大不能提交
+        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1); // 使用自动跳转
+        curl_setopt($curl, CURLOPT_AUTOREFERER, 1); // 自动设置Referer
+        curl_setopt($curl, CURLOPT_POST, 1); // 发送一个常规的Post请求
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data); // Post提交的数据包
+        curl_setopt($curl, CURLOPT_COOKIEFILE, $GLOBALS['cookie_file']); // 读取上面所储存的Cookie信息
+        curl_setopt($curl, CURLOPT_TIMEOUT, 30); // 设置超时限制防止死循
+        curl_setopt($curl, CURLOPT_HEADER, 0); // 显示返回的Header区域内容
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1); // 获取的信息以文件流的形式返回
+
+        $tmpInfo = curl_exec($curl); // 执行操作
+        if (curl_errno($curl)) {
+            echo 'Errno'.curl_error($curl);
+        }
+        curl_close($curl); // 关键CURL会话
+        return $tmpInfo; // 返回数据
+    }
+
+    function generateSign($params, $apiKey, $msign)
+    {
+        //所有请求参数按照字母先后顺序排
+        ksort($params);
+        //定义字符串开始所包括的字符串
+        $stringToBeSigned = $apiKey;
+        //把所有参数名和参数值串在一起
+        foreach ($params as $k => $v)
+        {
+            $stringToBeSigned .= urldecode($k.$v);
+        }
+        unset($k, $v);
+        //定义字符串结尾所包括的字符串
+        $stringToBeSigned .= $msign;
+        //使用MD5进行加密，再转化成大写
+        return strtoupper(md5($stringToBeSigned));
+    }
+
+//打印示例
+    function cloudPrint($data)
+    {
+        $machine_code = '4004506696';//打印机终端号
+        $mKey= '4br5spxrcpr2';//打印机秘钥
+        $no=$data['panme'].'-'.$data['bname'].'-'.$data['unit'].'单元-'.$data['floor'].'层-'.$data['room'];
+        //打印内容
+        $msg="";
+        $msg .='@@2·   【选房小票】\n\n';
+        $msg .="房间:{$no}\n";
+        $msg .="客户:{$data['cname']}\n";
+        $msg .="选房时间:{$data['tm']}\n";
+        $partner= '4472';
+        $apiKey= '2ea43a0eb8644e2b4f1e1ee67f945cc80c412fcc';
+        $ti = time();
+        $params = array(
+            'partner'=>$partner,
+            'machine_code'=>$machine_code,
+            'time'=>$ti
+        );
+        $sign = $this->generateSign($params,$apiKey,$mKey);
+        $params['sign'] = $sign;
+        $params['content'] = $msg;
+        $url = 'http://open.10ss.net:8888';//打印接口端点
+        $p = '';
+        foreach ($params as $k => $v) {
+            $p .= $k.'='.$v.'&';
+        }
+        $data = rtrim($p, '&');
+        $isprint=$this->liansuo_post($url,$data);
+    }
 }

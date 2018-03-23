@@ -279,7 +279,6 @@ $(function() {
         var pid=$(this).attr("data-pid");
         var bid=$(this).attr("data-bid");
         var pvid=$(this).attr("data-pvid");
-
         var tr=$(this).parents("tr");
         var vo=$.trim(tr.find("td").eq(6).text());
         $.post(xsgl_url.get_print,{pid:pid,bid:bid},function (data) {

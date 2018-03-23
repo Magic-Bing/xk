@@ -2,7 +2,6 @@
 
 <block name="breadcrumb_active">
 	<li><{$classify_name|default=''}></li>
-
 	<style>
 	form{display: inline}
 	#sample-table-2_length label{
@@ -27,6 +26,26 @@
 </block>
 
 <block name="page_content">
+	<OBJECT ID="CVR_IDCard"  name="CVR_IDCard" CLASSID="CLSID:10946843-7507-44FE-ACE8-2B3483D179B7" width="0" height="0"></OBJECT>
+	<script type="text/javascript">
+
+        var iPort = CVR_IDCard.InitCommExt();
+        if (0 == iPort)
+        {
+            layer.alert("连接身份证读卡设备失败!");
+        }
+        var bRet = CVR_IDCard.BeginReadCard();
+        if (!bRet)
+        {
+            layer.alert("启动读卡失败");
+        }
+	</script>
+	<script language="Javascript" event="OnReadCardInfo()" for="CVR_IDCard">
+        var CardNo = CVR_IDCard.CardNo();
+//        var Name = CVR_IDCard.Name();
+        $("#zt_cx").val(CardNo);
+        $("#form-b").submit();
+	</script>
 <div class="row">
 	<div class="col-xs-12">
 		<div class="table-header">

@@ -224,7 +224,8 @@ class XsgllogController extends BaseController {
 		//搜索查询
 		if (!empty($search_word)) {
 			$like_where['customer_name']  = array('like', '%'.$search_word.'%');
-			$like_where['customer_phone']  = array('like', '%'.$search_word.'%');
+			$like_where['like_p']  = array('like', '%'.strencode($search_word).'%');
+			$like_where['like_c']  = array('like', '%'.strencode($search_word).'%');
 			$like_where['roomlist.room']  = array('like', '%'.$search_word.'%');
                         $like_where['trade.ywy']  = array('like', '%'.$search_word.'%');
 			$like_where['_logic'] = 'or';
@@ -248,16 +249,14 @@ class XsgllogController extends BaseController {
 			'batch_name ASC, id DESC', 
 			$limit
 		);
-		
 		$p = I('p', '1', 'intval');
 		$this->assign('p', $p);
 		$this->assign('total_pages', $total_pages);
 		$this->assign('count', $count);
 		$this->assign('page_show', $page_show);
-		
 		$this->assign('tradelist', $list);
 		$this->set_seo_title("交易管理");
-                $this->display();
+        $this->display();
 	}	
 	
 	

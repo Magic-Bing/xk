@@ -237,18 +237,16 @@
             
             //停止
             function stop() {
-                $('#btntxt').addClass("end").removeClass("start").html('已摇号');
-                
+                $('#btntxt').addClass("end").removeClass("start").html('已摇号').attr("onclick","");
                 var $url = '<{:U("getYaohcst")}>';
                 var id=$("#grouptitle").attr("data_id");
                 var $data = {
                     id: id,
                 };
                 ajax_post_callback($url, $data, function(data, status) {
-                    if (data['status'] != 1) {
-                        //layer(data['info']);
-                    } else { 
-                      console.log(data.info[1]);
+                    if (data['status'] !== 1) {
+                        layer(data['info']);
+                    } else {
                         csts=data.info[1];
                         endYh();
                     }

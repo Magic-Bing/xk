@@ -42,6 +42,7 @@ class ChooseViewModel extends BaseViewModel
             'ywyphone' 		=> 'ywyphone',
             'like_c' 		=> 'like_c',
             'like_p' 		=> 'like_p',
+            'is_admission' 		=> 'is_admission',
 			'_type' => 'LEFT'
 		),
 		'Project' => array(

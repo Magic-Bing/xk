@@ -25,7 +25,102 @@ class YaoHsetController extends BaseController {
         //设置当前方法
         $this->set_current_action('yaoh_set', 'yaoh');
     }
+    /*
+     * 顺序摇号
+     * 2018-3-23
+     * qzb*/
+    public function order_yaoh(){
+        $id = I('id', 0, 'intval');
+        if(empty($id))
+        {
+            $this->error("系统错误，请稍后重试！");
+        }
+        $yaohset=D("YaoHset")->getOneById("$id");
 
+        if(empty($yaohset) || $yaohset['is_yx']==0)
+        {
+            $this->error("系统错误，请稍后重试！");
+        }
+        //用户的项目和项目批次权限
+        $user_project_ids = $this->get_user_project_ids();
+        $user_batch_ids = $this->get_user_batch_ids();
+        if ($yaohset['project_id'] != 0) {
+            if (!in_array($yaohset['project_id'], $user_project_ids)) {
+                $this->error("你没有权限访问该项目的信息！");
+            }
+        }
+        if ($yaohset['batch_id'] != 0) {
+            if (!in_array($yaohset['batch_id'], $user_batch_ids)) {
+                $this->error("你没有权限访问该批次的信息！");
+            }
+        }
+        $pd=M()->table("xk_pzcsvalue")->where("project_id={$yaohset['project_id']} and batch_id={$yaohset['batch_id']} and pzcs_id=10 and cs_value=-1 ")->find();
+        if($pd){
+            $cstlist=D("ChooseUser")->join(" left join (select * from xk_yaohresult where is_yx=1) s on xk_choose.id=s.cstid")->field('xk_choose.id,xk_choose.customer_name,xk_choose.customer_phone,xk_choose.cardno,xk_choose.cyjno')->where(" xk_choose.project_id={$yaohset['project_id']} and xk_choose.batch_id={$yaohset['batch_id']} and xk_choose.status=1 and s.id is null")->order("xk_choose.cyjno")->select();
+        }else{
+            $cstlist=D("ChooseUser")->join(" left join (select * from xk_yaohresult where is_yx=1) s on xk_choose.id=s.cstid")->field('xk_choose.id,xk_choose.customer_name,xk_choose.customer_phone,xk_choose.cardno,xk_choose.cyjno')->where(" xk_choose.project_id={$yaohset['project_id']} and xk_choose.batch_id={$yaohset['batch_id']} and xk_choose.is_sign=1 and xk_choose.status=1 and s.id is null")->order("xk_choose.cyjno")->select();
+        }
+
+        foreach( $cstlist as $k =>$onecst){
+            $cstlist[$k]['customer_phone']=rsa_decode($onecst['customer_phone'],  getChoosekey());
+            $cstlist[$k]['cardno']=rsa_decode($onecst['cardno'],  getChoosekey());
+        }
+
+        $this->assign('cstlist',$cstlist);
+        if (count($cstlist)<$yaohset['mzgs'])
+        {
+            $yaohset['mzgs']=count($cstlist);
+        }
+        if(empty($cstlist))
+        {
+            $this->assign('isend', 1);
+        }
+        else
+        {
+            $this->assign('isend', 0);
+        }
+        //控制显示内容
+      /*  $tmparray =explode("手机",$yaohset['showcontent']);
+        if(count($tmparray)>1)
+        {
+            $showcontent['hasphone']=1;
+        }
+        else{
+            $showcontent['hasphone']=-1;
+        }
+        $tmparray =explode("编号",$yaohset['showcontent']);
+        if(count($tmparray)>1)
+        {
+            $showcontent['hascyjno']=1;
+        }
+        else{
+            $showcontent['hascyjno']=-1;
+        }
+        $tmparray =explode("身份证",$yaohset['showcontent']);
+        if(count($tmparray)>1)
+        {
+            $showcontent['hascard']=1;
+        }
+        else{
+            $showcontent['hascard']=-1;
+        }
+        $this->assign('showcontent', $showcontent);*/
+
+        //项目
+        $Project = D('Common/Project');
+        //获取当前项目
+        $project_info = $Project->getProjectById($yaohset['project_id']);
+        $this->assign('project', $project_info);
+
+        //获取当前批次
+        $kppc_info = D("Kppc")->find($yaohset['batch_id']);
+        $this->assign('Kppc', $kppc_info);
+
+        $this->assign('yaohset', $yaohset);
+
+        $this->set_seo_title("选房摇号");
+        $this->display();
+    }
     public function index(){
         //项目ID
         if(isset($_POST['project_id'])){
@@ -179,7 +274,7 @@ class YaoHsetController extends BaseController {
         $this->set_seo_title("摇号准备");
         $this->display();
     }
-    
+    //随机摇号
     public function display_yaoh(){
         //项目ID
         $id = I('id', 0, 'intval');
@@ -674,7 +769,10 @@ class YaoHsetController extends BaseController {
             $this->error("系统错误，请稍后重试！");
         }
         $count = count($list);
-        $rand_list=range(0, $count-1);
+        if($count>1){
+            $rand_list=range(0, $count-1);
+        }
+
         
         $rcount=$yaohset['mzgs'];
         $zdg=$yaohset['dqmaxgroup']+1;
@@ -691,6 +789,8 @@ class YaoHsetController extends BaseController {
         }
         //查询预设的分组
         $cc=$rcount;
+
+
         if($rcount === count($ys_yh)){
             $new_rand_list=$ys_yh;
         }else{
@@ -722,9 +822,14 @@ class YaoHsetController extends BaseController {
                     }
                 }
             }else{
-                for($i=0;$i<$cc;$i++){
-                    $new_rand_list[$i]=$list[$rand_list[$i]];
+                if($cc>1){
+                    for($i=0;$i<$cc;$i++){
+                        $new_rand_list[$i]=$list[$rand_list[$i]];
+                    }
+                }else{
+                    $new_rand_list[0]=$list[0];
                 }
+
             }
 
         }
