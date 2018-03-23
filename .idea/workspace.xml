@@ -2,23 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d93e351b-3e78-4fb4-bd62-b1a84d311097" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Account/View/YaoHset/order_yaoh.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/CstSignController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/CstSignController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/XsgllogController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/XsgllogController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/YaoHsetController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/YaoHsetController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Xsgllog/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/Xsgllog/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/YaoHset/history_yaoh.html" afterPath="$PROJECT_DIR$/Application/Account/View/YaoHset/history_yaoh.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/YaoHset/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/YaoHset/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/YaoHset/yaoh.html" afterPath="$PROJECT_DIR$/Application/Account/View/YaoHset/yaoh.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Common/Model/ChooseViewModel.class.php" afterPath="$PROJECT_DIR$/Application/Common/Model/ChooseViewModel.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/RoomController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/RoomController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/Common/base.html" afterPath="$PROJECT_DIR$/Application/Home/View/Common/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/Room/index.html" afterPath="$PROJECT_DIR$/Application/Home/View/Room/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Public/account/assets/css/bootstrap.min.css" afterPath="$PROJECT_DIR$/Public/account/assets/css/bootstrap.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Public/account/js/account.js" afterPath="$PROJECT_DIR$/Public/account/js/account.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Public/xk/js/xk.js" afterPath="$PROJECT_DIR$/Public/xk/js/xk.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/CstSign/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/CstSign/index.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -111,10 +96,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CstSignController.class.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CstSignController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Account/Controller/CstSignController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="633">
+            <state relative-caret-position="495">
               <caret line="149" column="80" lean-forward="false" selection-start-line="149" selection-start-column="71" selection-end-line="149" selection-end-column="80" />
               <folding>
                 <element signature="e#473#1653#0#PHP" expanded="false" />
@@ -128,11 +113,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Application/Account/View/CstSign/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="673">
-              <caret line="144" column="55" lean-forward="true" selection-start-line="144" selection-start-column="55" selection-end-line="144" selection-end-column="55" />
+            <state relative-caret-position="466">
+              <caret line="138" column="43" lean-forward="true" selection-start-line="136" selection-start-column="21" selection-end-line="138" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sign.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Public/account/js/sign.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="414">
+              <caret line="228" column="37" lean-forward="true" selection-start-line="228" selection-start-column="37" selection-end-line="228" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -246,7 +241,6 @@
         <option value="$PROJECT_DIR$/Application/Account/Controller/JcsjpcsetController.class.php" />
         <option value="$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php" />
         <option value="$PROJECT_DIR$/Application/Account/Controller/CstSignController.class.php" />
-        <option value="$PROJECT_DIR$/Application/Account/View/CstSign/index.html" />
         <option value="$PROJECT_DIR$/Public/account/js/account.js" />
         <option value="$PROJECT_DIR$/Application/Account/Controller/XsgllogController.class.php" />
         <option value="$PROJECT_DIR$/Application/Account/View/Xsgllog/index.html" />
@@ -261,6 +255,7 @@
         <option value="$PROJECT_DIR$/Public/account/assets/css/bootstrap.min.css" />
         <option value="$PROJECT_DIR$/Application/Account/Controller/YaoHsetController.class.php" />
         <option value="$PROJECT_DIR$/Application/Account/View/YaoHset/order_yaoh.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/CstSign/index.html" />
       </list>
     </option>
   </component>
@@ -575,7 +570,7 @@
       <workItem from="1521507728732" duration="24028000" />
       <workItem from="1521594462439" duration="20706000" />
       <workItem from="1521680648001" duration="22521000" />
-      <workItem from="1521767279580" duration="21379000" />
+      <workItem from="1521767279580" duration="22365000" />
     </task>
     <task id="LOCAL-00001" summary="入场审核导出修改">
       <created>1520477627031</created>
@@ -654,11 +649,18 @@
       <option name="project" value="LOCAL" />
       <updated>1521626434894</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="增加电子开盘客户端.3-20改完，优化其他部分东西">
+      <created>1521797278150</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1521797278150</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="774719000" />
+    <option name="totallyTimeSpent" value="775705000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1924" height="1056" extended-state="0" />
@@ -923,13 +925,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Public/account/js/sign.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="713">
-          <caret line="67" column="13" lean-forward="false" selection-start-line="65" selection-start-column="11" selection-end-line="67" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuyset/AnalyticalRoomHot.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="86">
@@ -1050,6 +1045,45 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="303">
           <caret line="275" column="4" lean-forward="true" selection-start-line="275" selection-start-column="4" selection-end-line="275" selection-end-column="4" />
+          <folding>
+            <element signature="e#318#1336#0" expanded="false" />
+            <element signature="e#1444#1712#0" expanded="false" />
+            <element signature="e#1980#4213#0" expanded="false" />
+            <element signature="e#4402#4892#0" expanded="false" />
+            <element signature="e#5572#5967#0" expanded="false" />
+            <element signature="e#6033#9728#0" expanded="false" />
+            <element signature="e#9799#10047#0" expanded="false" />
+            <element signature="e#10132#10329#0" expanded="false" />
+            <element signature="e#18005#18350#0" expanded="false" />
+            <element signature="e#18428#18783#0" expanded="false" />
+            <element signature="e#18854#19828#0" expanded="false" />
+            <element signature="e#19875#20155#0" expanded="false" />
+            <marker date="1521690818671" expanded="true" signature="6660:6717" ph="..." />
+            <marker date="1521690818671" expanded="true" signature="6757:6767" ph="..." />
+            <marker date="1521690818671" expanded="true" signature="6996:7054" ph="..." />
+            <marker date="1521690818671" expanded="true" signature="7160:7170" ph="..." />
+            <marker date="1521690818671" expanded="true" signature="7587:7645" ph="..." />
+            <marker date="1521690818671" expanded="true" signature="7812:7822" ph="..." />
+            <marker date="1521690818671" expanded="true" signature="7938:7982" ph="..." />
+            <marker date="1521690818671" expanded="true" signature="8094:8152" ph="..." />
+            <marker date="1521690818671" expanded="true" signature="8167:8178" ph="..." />
+            <marker date="1521690818671" expanded="true" signature="8206:8216" ph="..." />
+            <marker date="1521690818671" expanded="true" signature="11147:11222" ph="..." />
+            <marker date="1521690818671" expanded="true" signature="11269:11297" ph="..." />
+            <marker date="1521690818671" expanded="true" signature="12660:12717" ph="..." />
+            <marker date="1521690818671" expanded="true" signature="12758:12768" ph="..." />
+            <marker date="1521690818671" expanded="true" signature="13102:13160" ph="..." />
+            <marker date="1521690818671" expanded="true" signature="13265:13275" ph="..." />
+            <marker date="1521690818671" expanded="true" signature="13747:13805" ph="..." />
+            <marker date="1521690818671" expanded="true" signature="13980:13990" ph="..." />
+            <marker date="1521690818671" expanded="true" signature="14114:14158" ph="..." />
+            <marker date="1521690818671" expanded="true" signature="14286:14344" ph="..." />
+            <marker date="1521690818671" expanded="true" signature="14359:14370" ph="..." />
+            <marker date="1521690818671" expanded="true" signature="14625:14635" ph="..." />
+            <marker date="1521690818671" expanded="true" signature="21085:21095" ph="..." />
+            <marker date="1521690818671" expanded="true" signature="21554:21675" ph="..." />
+            <marker date="1521690818671" expanded="true" signature="21985:22110" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1077,6 +1111,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="48" column="17" lean-forward="true" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="17" />
+          <folding>
+            <element signature="e#12136#13608#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1104,6 +1141,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="805">
           <caret line="35" column="25" lean-forward="false" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1291,17 +1329,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/CstSign/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="673">
-          <caret line="144" column="55" lean-forward="true" selection-start-line="144" selection-start-column="55" selection-end-line="144" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Account/Controller/CstSignController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="633">
+        <state relative-caret-position="495">
           <caret line="149" column="80" lean-forward="false" selection-start-line="149" selection-start-column="71" selection-end-line="149" selection-end-column="80" />
           <folding>
             <element signature="e#473#1653#0#PHP" expanded="false" />
@@ -1311,6 +1341,22 @@
             <element signature="e#15141#15609#0#PHP" expanded="false" />
             <element signature="e#15622#16689#0#PHP" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Public/account/js/sign.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="228" column="37" lean-forward="true" selection-start-line="228" selection-start-column="37" selection-end-line="228" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/CstSign/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="466">
+          <caret line="138" column="43" lean-forward="true" selection-start-line="136" selection-start-column="21" selection-end-line="138" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>
