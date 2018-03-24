@@ -293,7 +293,7 @@ class ChooseUserController extends BaseController {
             $p=strencode($customer_phone);
             $p1="like_p='$p'";
             if($cyjno){
-                $cn1="OR cyjno='$cyjno";
+                $cn1="OR cyjno='$cyjno'";
             }else{
                 $cn1='';
             }
@@ -313,9 +313,11 @@ class ChooseUserController extends BaseController {
             $data['batch_id'] = $batch_id;
             $data['customer_name'] = $customer_name;
             $data['customer_phone'] = rsa_encode($customer_phone, getChoosekey());
-            $data['cardno'] = rsa_encode($cardno, getChoosekey());
+            if(!empty($cardno)){
+                $data['cardno'] = rsa_encode($cardno, getChoosekey());
+                $data['like_c'] = strencode($cardno);
+            }
             $data['like_p'] = strencode($customer_phone);
-            $data['like_c'] = strencode($cardno);
             $data['cyjno'] = $cyjno;
             $data['money'] = $money;
             $data['ys_time'] = $ys_time;

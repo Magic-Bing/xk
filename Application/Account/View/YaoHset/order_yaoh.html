@@ -161,18 +161,21 @@
         <div  class="yaohbackground">
             <div style="float:left;width:15%;height:100%;background: #fffefe9e;">
                 <div style="position: relative;top: 0;height: 59px;line-height: 59px;font-size: 20px;border-bottom: 1px solid red;text-align: center">待摇号</div>
-                <marquee direction="up" scrollamount="10"  width="100%"   >
-                <div style="position: relative;text-align: center;color: #770a07;">
-                    <table style="width: 90%;margin-left: 5%" id="user_list">
-                    <foreach name="cstlist" item="vo" key="k">
-                      <tr>
-                          <td style="width: 50%;text-align: left"><{$vo.customer_name}></td>
-                          <td style="width: 50%;text-align: right"><{$vo.cyjno}></td>
-                      </tr>
-                    </foreach>
-                    </table>
-                </div>
-              </marquee>
+                <if condition="$isend eq 0">
+                    <marquee direction="up" scrollamount="10"  width="100%"   >
+                    <div style="position: relative;text-align: center;color: #770a07;">
+                        <table style="width: 90%;margin-left: 5%" id="user_list">
+                        <foreach name="cstlist" item="vo" key="k">
+                          <tr>
+                              <td style="width: 50%;text-align: left" data-id="<{$vo.id}>"><{$vo.customer_name}></td>
+                              <td style="width: 50%;text-align: right"><{$vo.cyjno}></td>
+                          </tr>
+                        </foreach>
+                        </table>
+                    </div>
+
+                  </marquee>
+                </if>
             </div>
             <div class="content">
                 <div id="grouptitle" data_id="<{$yaohset['id']}>" style="width:100%;height:59px;line-height:59px;border-bottom:1px solid #fb3b3b;">
@@ -184,7 +187,7 @@
                     <if condition="$yaohset['dqmaxgroup'] gt 0">
                     <div style="position: absolute;right: 20px;width:120px;text-align: center;font-size: 15px;">
                         <php>$i=0;</php>
-                        <select id="morezc" class="col-xs-10 col-sm-5 " name="showcontent" style="background: rgba(0, 0, 0, 0);color: rgba(0, 0, 0, .3);">
+                        <select id="morezc"  name="showcontent" style="background: rgba(0, 0, 0, 0);color: rgba(0, 0, 0, .3);width: 100%">
                         <option value="0" >查看历史组次</option>
                             <for start="$i" end="$yaohset['dqmaxgroup']">
                                 <php>$zch = $i + 1;</php>
@@ -196,7 +199,7 @@
                 </div>
                 <div  style="width:100%;height:calc(100% - 120px)">
                     <div style="width:90%;height:2%;"></div>
-                    <div style="width:90%;height:96%;margin-left: 5%;font-weight: 700;white-space: nowrap;overflow: hidden" id="div-group">
+                    <div style="min-width:1000px;width:90%;height:96%;margin-left: 5%;font-weight: 700;white-space: nowrap;overflow: hidden" id="div-group">
                         <if condition="$isend eq 0">
                                 <div class="col-sm-20" data-group="1" id="cz-div">
                                     <div class="thumbnail">
@@ -217,7 +220,7 @@
                                     </div>
                                 </div>
                         <else />
-                        <div style="position: absolute;top: 46%;left: 50%;font-size: 25px;">
+                        <div style="position: absolute;top: 50%;left: 50%;font-size: 25px;">
                             摇号已结束
                         </div>
                         
@@ -228,14 +231,14 @@
                 <div style="width:100%;height:59px;border-top:1px solid #fb3b3b;">
                     <if condition="$isend eq 0">
                     <div style="width:100%;margin-top: 5px;">
-                        <div style="float:left;margin-left: 10%;">
+                        <div style="position:absolute;left: 45%;">
                             <div class="start"  id="add-group" onclick="start()">增加</div>
                         </div>
-                        <div style="float:right;margin-right: 5%;">
-                            <a href="/Account/YaoHset/order_yaoh/id/<{$yaohset['id']}>"><div class="nextgroup" id="nextgroup">下一组 ></div></a>
+                        <div style="position:absolute;right: 5%;">
+                            <div class="nextgroup" id="nextgroup" style="display: none" onclick="window.location.reload()">下一组 ></div>
                         </div>
-                        <div style="float:right;margin-right: 5%;">
-                            <a href="#"><div class="start" >确定 </div></a>
+                        <div style="position:absolute;left:65%;">
+                            <div class="start" id="submit-yh">确定 </div>
                         </div>
                     </div>
                     </if>
@@ -246,13 +249,24 @@
         </div>
         <script  type="text/javascript">
             var num='<{$yaohset["mzgs"]}>';
-             $(document).ready(function() { 
+            var qsz='<{$yaohset["dqmaxno"]}>';
+            var ysz=qsz;
+            var yid='<{$yaohset["id"]}>';
+            function compare(property){
+                return function(a,b){
+                    var value1 = a[property];
+                    var value2 = b[property];
+                    return value1 - value2;
+                }
+            };
+             $(document).ready(function() {
                 $("#bjimg").css("height",$(window).height());
              });
              $(window).resize(function () {         
                $("#bjimg").css("height",$(document).height());
             });
              $("#add-group").trigger("click");
+             //摇号
             function start() {
                 var tb=$("#user_list");
                 var len=tb.find('tr').length;
@@ -262,9 +276,15 @@
                 var cz=$("#cz-div");
                 var g_num=cz.attr("data-group");
                 var g_tab=cz.find(".group-user").find(".group-table");
-                var n=num*(g_num-1);
+                if(g_num !== '1'){
+                    var t=$("#close-group").next(".group-user").find('.group-table').find("tr:last").find("td:first").text();//获取当前摇到好多位
+                    qsz=t.replace(/[^0-9]/ig,"");//取出字符串中的数字
+                }
+                var n=Number(qsz);
+                var num1=0;
                 for(var i=(num-1);i>=0;i--){
-                    tb.find("tr").eq(i).prepend("<td>第"+(n+i+1)+"位</td>").prependTo(g_tab);
+                    num1=n+i+1;
+                    tb.find("tr").eq(i).prepend("<td>第"+num1+"位</td>").prependTo(g_tab);
                 }
                 var len2=tb.find('tr').length;
                 $(".close-add").css("display","none").attr("id",'');
@@ -293,6 +313,7 @@
                         '</div>';
                 $(str).prependTo("#div-group");
             }
+            //删除摇号
             $(document).on("click","#close-group",function () {
                 var tb=$("#user_list");
                 var g_tab=$(this).nextAll(".group-user").find(".group-table");
@@ -305,12 +326,9 @@
                 d.remove();
                 var cz=$("#cz-div");
                 var vo=cz.attr("data-group");
-                if(Number(vo)> Number(v)){
-                    cz.attr("data-group",(Number(vo)-1));
-                    var vo1= $.trim(cz.find(".xh").html());
-                    cz.find(".xh").html((Number(vo1)-1));
-                }else{
-                    var str='<div class="col-sm-20" id="cz-div" data-group="'+v+'">' +
+                var  str='';
+                if(vo === undefined){
+                     str='<div class="col-sm-20" id="cz-div" data-group="'+v+'">' +
                         '<div class="thumbnail">' +
                         '<div class="xh">'+v+'</div>' +
                         '<div class="close-add">×</div>' +
@@ -327,10 +345,73 @@
                         '</div>' +
                         '</div>' +
                         '</div>';
-                        $(str).prependTo("#div-group");
-                        $(".col-sm-20").eq((Number(v)-1)).find(".close-add").attr("id","close-group").css("display","block");
+                    $(str).prependTo("#div-group");
+                    $(".col-sm-20").eq(1).find(".close-add").attr("id","close-group").css("display","block");
+                }else{
+                        cz.attr("data-group",(Number(vo)-1));
+                        var vo1= $.trim(cz.find(".xh").html());
+                        cz.find(".xh").html((Number(vo1)-1));
+                        if(Number(v) !== 1){//判断是否是第一小组，是第一小组就不需要新增div
+                            if(cz.length===0){//判断操作的div是否存在
+                                str='<div class="col-sm-20" id="cz-div" data-group="'+v+'">' +
+                                    '<div class="thumbnail">' +
+                                    '<div class="xh">'+v+'</div>' +
+                                    '<div class="close-add">×</div>' +
+                                    '<div class="group-user">' +
+                                    '<table class="group-title">' +
+                                    '<tr>' +
+                                    '<th>入场序号</th>' +
+                                    '<th>姓名</th>' +
+                                    '<th>诚意单号</th>' +
+                                    ' </tr>' +
+                                    '</table>' +
+                                    '<table class="group-table">' +
+                                    '</table>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</div>';
+                                $(str).prependTo("#div-group");
+                            }
+                            $(".col-sm-20").eq(1).find(".close-add").attr("id","close-group").css("display","block");
+                        }else{
+                            qsz=ysz;
+                        }
                 }
 
+
+            });
+            //提交摇号
+            $(document).on("click","#submit-yh",function () {
+                var tr=$(".group-table").find("tr");
+                var len=tr.length;
+                var data=[];
+                for(var i=0;i<len;i++){
+                    var arr=[];
+                    var n=tr.eq(i).find("td").eq(0).text();
+                    n=Number(n.replace(/[^0-9]/ig,""));//取出字符串中的数字
+                    arr[0]=n;
+                    arr[1]=tr.eq(i).find("td").eq(1).attr("data-id");
+                    data[i]=arr;
+                }
+                data.sort(compare(0));//数组排序，按照字段px排序
+                $.ajax({
+                    type:"post",
+                    url:"<{:U('add_yh')}>",
+                    data:{id:yid,data:data},
+                    dataType:'JSON',
+                    success:function (data) {
+                        console.log(data);
+                       if(data.status===1){
+                           $("#nextgroup").show();
+                           $("#add-group").remove();
+                           $("#submit-yh").css("background-color","#e7e7e7").off("click");
+                           $("#close-group").remove();
+                           layer_alert(data.info[0]);
+                       }else{
+                           layer_alert(data.info);
+                       }
+                    }
+                });
             });
             $(document).on("change","#morezc",function () {
                 var zcid=$("#morezc").val();

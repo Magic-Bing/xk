@@ -41,6 +41,9 @@ class YaoHsetController extends BaseController {
         {
             $this->error("系统错误，请稍后重试！");
         }
+        if($yaohset['fs']!=0){
+            $this->error("非法操作！","/Account/index");
+        }
         //用户的项目和项目批次权限
         $user_project_ids = $this->get_user_project_ids();
         $user_batch_ids = $this->get_user_batch_ids();
@@ -54,12 +57,12 @@ class YaoHsetController extends BaseController {
                 $this->error("你没有权限访问该批次的信息！");
             }
         }
-        $pd=M()->table("xk_pzcsvalue")->where("project_id={$yaohset['project_id']} and batch_id={$yaohset['batch_id']} and pzcs_id=10 and cs_value=-1 ")->find();
-        if($pd){
+        /*$pd=M()->table("xk_pzcsvalue")->where("project_id={$yaohset['project_id']} and batch_id={$yaohset['batch_id']} and pzcs_id=10 and cs_value=-1 ")->find();
+        if($pd){*/
             $cstlist=D("ChooseUser")->join(" left join (select * from xk_yaohresult where is_yx=1) s on xk_choose.id=s.cstid")->field('xk_choose.id,xk_choose.customer_name,xk_choose.customer_phone,xk_choose.cardno,xk_choose.cyjno')->where(" xk_choose.project_id={$yaohset['project_id']} and xk_choose.batch_id={$yaohset['batch_id']} and xk_choose.status=1 and s.id is null")->order("xk_choose.cyjno")->select();
-        }else{
+      /*  }else{
             $cstlist=D("ChooseUser")->join(" left join (select * from xk_yaohresult where is_yx=1) s on xk_choose.id=s.cstid")->field('xk_choose.id,xk_choose.customer_name,xk_choose.customer_phone,xk_choose.cardno,xk_choose.cyjno')->where(" xk_choose.project_id={$yaohset['project_id']} and xk_choose.batch_id={$yaohset['batch_id']} and xk_choose.is_sign=1 and xk_choose.status=1 and s.id is null")->order("xk_choose.cyjno")->select();
-        }
+        }*/
 
         foreach( $cstlist as $k =>$onecst){
             $cstlist[$k]['customer_phone']=rsa_decode($onecst['customer_phone'],  getChoosekey());
@@ -119,6 +122,122 @@ class YaoHsetController extends BaseController {
         $this->assign('yaohset', $yaohset);
 
         $this->set_seo_title("选房摇号");
+        $this->display();
+    }
+    /*
+     * 保存摇号进数据库
+     * 2018-3-24
+     * qzb*/
+    public function add_yh(){
+        if (!IS_AJAX){
+            $this->error("错误的操作方式！");
+        }
+        $id=I("id",0,"intval");
+        $data=I("data/a",'');
+        $c=count($data);
+        $dqmaxno=$data[$c-1][0];
+        if(empty($id))
+        {
+            $this->error("系统错误，请刷新重试！");
+        }
+        $yaohset=D("YaoHset")->getOneById("$id");
+        if(empty($yaohset) || $yaohset['is_yx']==0)
+        {
+            $this->error("摇号未生效！");
+        }
+        //用户的项目和项目批次权限
+        $user_project_ids = $this->get_user_project_ids();
+        $user_batch_ids = $this->get_user_batch_ids();
+        if ($yaohset['project_id'] != 0) {
+            if (!in_array($yaohset['project_id'], $user_project_ids)) {
+                $this->error("你没有权限访问该项目的信息！");
+            }
+        }
+        if ($yaohset['batch_id'] != 0) {
+            if (!in_array($yaohset['batch_id'], $user_batch_ids)) {
+                $this->error("你没有权限访问该批次的信息！");
+            }
+        }
+
+        $user=D('User')->find(session('ACCOUNT_ID'));
+        foreach( $data as $k =>$onecst){
+            $data[$k]['cstid']=$onecst[1];
+            $data[$k]['group']=$yaohset['dqmaxgroup']+1;
+            $data[$k]['no']=$onecst[0];
+            $data[$k]['pxingroup']=$k+1;
+            $data[$k]['yaohset_id']=$yaohset['id'];
+            $data[$k]['project_id']=$yaohset['project_id'];
+            $data[$k]['batch_id']=$yaohset['batch_id'];
+            $data[$k]['createdtime']=time();
+            $data[$k]['createdby']=$user['name'];
+            $data[$k]['createdbyid']=$user['id'];
+        }
+
+        $YaoHresult=D("YaoHresult");
+        $YaoHresult->startTrans();
+        try {
+            $YaoHresult->addAll($data);
+            $count=D("ChooseUser")->join(" left join (select * from xk_yaohresult where is_yx=1) s on xk_choose.id=s.cstid")->field('xk_choose.id,xk_choose.customer_name,xk_choose.customer_phone,xk_choose.cardno,xk_choose.cyjno')->where(" xk_choose.project_id={$yaohset['project_id']} and xk_choose.batch_id={$yaohset['batch_id']} and xk_choose.status=1 and s.id is null")->count();
+            if($count==0){
+                $status=-1;
+            }else{
+                $status=1;
+            }
+            $data1['dqmaxgroup']=$yaohset['dqmaxgroup']+1;
+            $data1['dqmaxno']=$dqmaxno;
+            $data1['status']=$status;
+            D("YaoHset")->editOneById($yaohset['id'],$data1);
+            $YaoHresult->commit();
+            $this->success(["成功",$count]);
+        }catch (\Exception $e) {
+            $YaoHresult->rollback();
+            $this->error("系统错误，请刷新后重试！");
+        }
+    }
+    /*
+     * 顺序摇号历史记录页面
+     * 2018-3-24
+     * qzb*/
+    public function history_order(){
+        $id = I('id', 0, 'intval');
+        $zcid = I('zcid', 0, 'intval');
+        if(empty($id) || empty($zcid))
+        {
+            $this->error("系统错误，请稍后重试！");
+        }
+        $yaohset=D("YaoHset")->getOneById("$id");
+
+        if(empty($yaohset))
+        {
+            $this->error("系统错误，请稍后重试！");
+        }
+        if($yaohset['fs']!=0){
+            $this->error("非法操作！","/Account/index");
+        }
+        //用户的项目和项目批次权限
+        $user_project_ids = $this->get_user_project_ids();
+        $user_batch_ids = $this->get_user_batch_ids();
+        if ($yaohset['project_id'] != 0) {
+            if (!in_array($yaohset['project_id'], $user_project_ids)) {
+                $this->error("你没有权限访问该项目的信息！");
+            }
+        }
+        if ($yaohset['batch_id'] != 0) {
+            if (!in_array($yaohset['batch_id'], $user_batch_ids)) {
+                $this->error("你没有权限访问该批次的信息！");
+            }
+        }
+        $yaohresult = D('Common/YaoHresult');
+        $where['group']=$zcid;
+        $where['yaohset_id']=$id;
+        //摇号结果数据
+        $cstlist = $yaohresult->getList(
+            $where, '*', 'id asc'
+        );
+        $this->assign('cstlist',$cstlist);
+        $this->assign('yaohset', $yaohset);
+        $this->assign('zcid', $zcid);
+        $this->set_seo_title("查看摇号历史记录");
         $this->display();
     }
     public function index(){
@@ -288,7 +407,9 @@ class YaoHsetController extends BaseController {
         {
             $this->error("系统错误，请稍后重试！");
         }
-        
+        if($yaohset['fs']!=1){
+            $this->error("非法操作！","/Account/index");
+        }
         //用户的项目和项目批次权限
         $user_project_ids = $this->get_user_project_ids();
         $user_batch_ids = $this->get_user_batch_ids();
@@ -311,13 +432,6 @@ class YaoHsetController extends BaseController {
         }else{
             $cstlist=D("ChooseUser")->join(" left join (select * from xk_yaohresult where is_yx=1) s on xk_choose.id=s.cstid")->field('xk_choose.id,xk_choose.customer_name,xk_choose.customer_phone,xk_choose.cardno,xk_choose.cyjno')->where(" xk_choose.project_id={$yaohset['project_id']} and xk_choose.batch_id={$yaohset['batch_id']} and xk_choose.is_sign=1 and xk_choose.status=1 and s.id is null")->select();
         }
-
-        foreach( $cstlist as $k =>$onecst){
-            $cstlist[$k]['customer_phone']=rsa_decode($onecst['customer_phone'],  getChoosekey());
-            $cstlist[$k]['cardno']=rsa_decode($onecst['cardno'],  getChoosekey());
-        }
-        $this->assign('cstlist',json_encode($cstlist));
-        
         if(empty($cstlist))
         {
             $this->assign('isend', 1);
@@ -749,17 +863,16 @@ class YaoHsetController extends BaseController {
         $fs=$yaohset['fs'];
         $pd=M()->table("xk_pzcsvalue")->where("project_id={$yaohset['project_id']} and batch_id={$yaohset['batch_id']} and pzcs_id=10 and cs_value=-1 ")->find();
         $order=" xk_choose.id";
-        if(fs==0)
+        if($fs==0)
         {
             $order=" CAST(xk_choose.cyjno AS SIGNED)";
         }
-        
         if($pd){
             $list=D("ChooseUser")->join(" left join (select * from xk_yaohresult where is_yx=1) s on xk_choose.id=s.cstid")->join("LEFT JOIN  xk_yaohuser y ON y.cst_id=xk_choose.id")->field('xk_choose.id,xk_choose.customer_name,xk_choose.customer_phone,xk_choose.cardno,xk_choose.cyjno')->where(" xk_choose.project_id={$yaohset['project_id']} and xk_choose.batch_id={$yaohset['batch_id']} and xk_choose.status=1 and s.id is null and y.id is null")->order($order)->select();
         }else{
             $list=D("ChooseUser")->join(" left join (select * from xk_yaohresult where is_yx=1) s on xk_choose.id=s.cstid")->join("LEFT JOIN  xk_yaohuser y ON y.cst_id=xk_choose.id")->field('xk_choose.id,xk_choose.customer_name,xk_choose.customer_phone,xk_choose.cardno,xk_choose.cyjno')->where(" xk_choose.project_id={$yaohset['project_id']} and xk_choose.batch_id={$yaohset['batch_id']} and xk_choose.status=1 and xk_choose.is_sign=1 and s.id is null and y.id is null")->order($order)->select();
         }
-        if(fs==0)
+        if($fs==0)
         {
            $list= array_slice($list,0,$yaohset['mzgs']);
         }
