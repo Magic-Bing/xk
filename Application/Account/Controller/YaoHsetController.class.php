@@ -234,7 +234,9 @@ class YaoHsetController extends BaseController {
         $cstlist = $yaohresult->getList(
             $where, '*', 'id asc'
         );
+        $div_count=ceil(count($cstlist)/$yaohset['mzgs']);
         $this->assign('cstlist',$cstlist);
+        $this->assign('div_count',$div_count);
         $this->assign('yaohset', $yaohset);
         $this->assign('zcid', $zcid);
         $this->set_seo_title("查看摇号历史记录");
