@@ -550,6 +550,7 @@
                         }else{
                             $("#form-b input[name='p']").val(tx);
                         }
+                        $(this).find("a").removeAttr("href");
                         $("#form-b").submit();
                     }
                 });

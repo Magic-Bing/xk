@@ -124,7 +124,16 @@ class IndexController extends BaseController {
         $this -> assign('userinfo', $userinfo[0]);
         $this -> assign('pc', $pc);
         $this -> assign('hd', $hd);
-        $this -> display("index/dz_index");
+        $len=count($pd);
+            if($len === 1){//等于1的时候，直接跳往首页
+                if($pd[0]['pid']){
+                    redirect( U('DataStatistics/index',array('info' => set_search_ids(array('p' => $pd[0]['proj_id'])))));
+                }else{
+                    redirect( U('DataStatistics/dz_index',array('p' =>$pd[0]['proj_id'],'b' =>$pd[0]['pc_id'] )));
+                }
+            }else{
+                $this -> display("index/dz_index");
+            }
     }
 
 	/**

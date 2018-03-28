@@ -177,6 +177,14 @@
             z-index: 1000;
             display: none
         }
+        #shadow-div1{
+            position: absolute;
+            background-color: rgba(0,0,0,0.5);
+            width: 100%;
+            height: 100%;
+            z-index: 999;
+            display: none
+        }
         .qzxf-input-title-mx{
             padding: 5px 0;
             width: 18%;
@@ -302,6 +310,7 @@
     <!--END-->
     <!--遮罩层，通用-->
     <div  id="shadow-div"></div>
+    <div  id="shadow-div1"></div>
     <div></div>
     <!--END-->
     <!--显示房间其他参数的弹出层-->
@@ -320,40 +329,40 @@
                 <li class="fl wm32 all-price" style="padding:5px 0" ><input id="all-price" class="border-sizing marketing-control-content-room-box-input" type="text" readonly value="" ></li>
                 <li class="fl qzxf-input-title-mx yh-price">优惠后总价</li>
                 <li class="fl wm32 yh-price" style="padding:5px 0" ><input id="yh-price" class="border-sizing marketing-control-content-room-box-input" type="text" readonly value="" ></li>
+                <li class="fl qzxf-input-title-mx ycx-dj" >一次性付款单价</li>
+                <li class="fl wm32 ycx-dj" style="padding:5px 0">
+                    <input id="ycx-dj" readonly class="border-sizing marketing-control-content-room-box-input"  type="text"  >
+                </li>
                 <li class="fl qzxf-input-title-mx ycx-price" >一次性付款总价</li>
                 <li class="fl wm32 ycx-price" style="padding:5px 0">
-                    <input id="ycx-price" class="border-sizing marketing-control-content-room-box-input"  type="text"  >
+                    <input id="ycx-price" readonly class="border-sizing marketing-control-content-room-box-input"  type="text"  >
+                </li>
+                <li class="fl qzxf-input-title-mx fq-dj" >分期付款单价</li>
+                <li class="fl wm32 fq-dj" style="padding:5px 0">
+                    <input id="fq-dj" readonly class="border-sizing marketing-control-content-room-box-input"  type="text"  >
                 </li>
                 <li class="fl qzxf-input-title-mx fq-price" >分期付款总价</li>
                 <li class="fl wm32 fq-price" style="padding:5px 0">
-                    <input id="fq-price" class="border-sizing marketing-control-content-room-box-input"  type="text"  >
+                    <input id="fq-price" readonly class="border-sizing marketing-control-content-room-box-input"  type="text"  >
+                </li>
+                 <li class="fl qzxf-input-title-mx aj-dj">按揭付款单价</li>
+                <li class="fl wm32 aj-dj" style="padding:5px 0">
+                    <input id="aj-dj"  readonly class="border-sizing marketing-control-content-room-box-input"  type="text"  />
                 </li>
                 <li class="fl qzxf-input-title-mx aj-price">按揭付款总价</li>
                 <li class="fl wm32 aj-price" style="padding:5px 0">
-                    <input id="aj-price"  class="border-sizing marketing-control-content-room-box-input"  type="text"  />
+                    <input id="aj-price"  readonly class="border-sizing marketing-control-content-room-box-input"  type="text"  />
+                </li>
+                <li class="fl qzxf-input-title-mx gjj-dj">公积金付款单价</li>
+                <li class="fl wm32 gjj-dj" style="padding:5px 0">
+                    <input id="gjj-dj" readonly  class="border-sizing marketing-control-content-room-box-input"  type="text"  />
                 </li>
                 <li class="fl qzxf-input-title-mx gjj-price">公积金付款总价</li>
                 <li class="fl wm32 gjj-price" style="padding:5px 0">
-                    <input id="gjj-price"  class="border-sizing marketing-control-content-room-box-input"  type="text"  />
+                    <input id="gjj-price" readonly  class="border-sizing marketing-control-content-room-box-input"  type="text"  />
                 </li>
+               
             </ul>
-            <!--<ul style="width:50%;float: left" >-->
-                <!--<li class="fl qzxf-input-title-mx tnmj" >套内面积</li>-->
-                <!--<li class="fl wm65 tnmj" style="padding:5px 0">-->
-                    <!--<input   class="search-input-kh" type="text" id="tnmj"  style="border:0;width: 80%;;padding: 2px 5px 3px 5px"/>-->
-                <!--</li>-->
-                <!--<li class="fl qzxf-input-title-mx tn-price">标准套内总价</li>-->
-                <!--<li class="fl wm65 tn-price" style="padding:5px 0"><input id="tn-price"  class="search-input-kh" type="text"-->
-                                                                 <!--style="border:0;width: 80%;;padding: 2px 5px 3px 5px"/></li>-->
-                <!--<li class="fl qzxf-input-title-mx yh-price">优惠后总价</li>-->
-                <!--<li class="fl wm65 yh-price" style="padding:5px 0"><input id="yh-price"  class="search-input-kh" type="text"-->
-                                                                 <!--style="border:0;width: 80%;;padding: 2px 5px 3px 5px"/></li>-->
-                <!--<li class="fl qzxf-input-title-mx fq-price">分期付款总价</li>-->
-                <!--<li class="fl wm65 fq-price" style="padding:5px 0"><input id="fq-price" class="search-input-kh" type="text"-->
-                                                                 <!--style="border:0;width: 80%;;padding: 2px 5px 3px 5px"/></li>-->
-                <!--<li class="fl qzxf-input-title-mx gjj-price">公积金付款总价</li>-->
-                <!--<li class="fl wm65 gjj-price" style="padding:5px 0"><input id="gjj-price" class="search-input-kh" type="text" style="border:0;width: 80%;;padding: 2px 5px 3px 5px"/></li>-->
-            <!--</ul>-->
         </div>
     <!--END-->
     <div class="pwd_edit_div" >
@@ -399,7 +408,7 @@
                 <li class="fl qzxf-input-title"><label for="select-pay">付款方式</label></li>
                 <li class="fl wm65" style="padding:5px 0;">
                     <if condition="!empty($pay_auth)">
-                        <input class="border-sizing marketing-control-content-room-box-input" type="text" disabled  style="width: 138px;padding: 2px 5px">
+                        <input id="select-pay" class="border-sizing marketing-control-content-room-box-input" type="text" disabled  style="width: 138px;padding: 2px 5px">
                         <else/>
                         <select name="" id="select-pay" class="border-sizing marketing-control-content-room-box-input marketing-control-room-info-pay" style="width: 138px;padding: 2px 5px">
                             <option value="">请选择付款方式</option>
@@ -672,7 +681,7 @@
                                                                                                             <{$room_item.room|default=1}>
                                                                                                             <span id="spanid_<{$room_item.id|default=1}>"
                                                                                                                   style="dispaly:none"
-                                                                                                                  infolist="<{$room_item.hx}>|<{$room_item.is_xf}>|<{$room_item.area}>|<{$room_item.tnarea}>|<{$room_item.price}>|<{$room_item.tnprice}>|<{$room_item.total}>|<{$room_item.cstname}>|<{$room_item.xftime1}>|<{$room_item.cyjno}>|<{:rsa_decode($room_item['phone'],getChoosekey())}>|<{:rsa_decode($room_item['cardno'],getChoosekey())}>|<{$room_item.unit}>|<{$room_item.floor}>|<{$room_item.room}>|<{$room_item.ycx_price}>|<{$room_item.fq_price}>|<{$room_item.aj_price}>|<{$room_item.gjj_price}>|<{$room_item.discount}>|<{$room_item.pay}>"></span>
+                                                                                                                  infolist="<{$room_item.hx}>|<{$room_item.is_xf}>|<{$room_item.area}>|<{$room_item.tnarea}>|<{$room_item.price}>|<{$room_item.tnprice}>|<{$room_item.total}>|<{$room_item.cstname}>|<{$room_item.xftime1}>|<{$room_item.cyjno}>|<{:rsa_decode($room_item['phone'],getChoosekey())}>|<{:rsa_decode($room_item['cardno'],getChoosekey())}>|<{$room_item.unit}>|<{$room_item.floor}>|<{$room_item.room}>|<{$room_item.ycx_price}>|<{$room_item.fq_price}>|<{$room_item.aj_price}>|<{$room_item.gjj_price}>|<{$room_item.discount}>|<{$room_item.pay}>|<{$room_item.ycx_dj}>|<{$room_item.fq_dj}>|<{$room_item.aj_dj}>|<{$room_item.gjj_dj}>"></span>
                                                                                                         </td>
                                                                                                         <else/>
                                                                                                         <td no="<{$room_item.no|default=1}>"
@@ -682,7 +691,7 @@
                                                                                                             <{$room_item.room|default=1}>
                                                                                                             <span id="spanid_<{$room_item.id|default=1}>"
                                                                                                                   style="dispaly:none"
-                                                                                                                  infolist="<{$room_item.hx}>|<{$room_item.is_xf}>|<{$room_item.area}>|<{$room_item.tnarea}>|<{$room_item.price}>|<{$room_item.tnprice}>|<{$room_item.total}>|<{$room_item.unit}>|<{$room_item.floor}>|<{$room_item.room}>|<{$room_item.ycx_price}>|<{$room_item.fq_price}>|<{$room_item.aj_price}>|<{$room_item.gjj_price}>|<{$room_item.discount}>"></span>
+                                                                                                                  infolist="<{$room_item.hx}>|<{$room_item.is_xf}>|<{$room_item.area}>|<{$room_item.tnarea}>|<{$room_item.price}>|<{$room_item.tnprice}>|<{$room_item.total}>|<{$room_item.unit}>|<{$room_item.floor}>|<{$room_item.room}>|<{$room_item.ycx_price}>|<{$room_item.fq_price}>|<{$room_item.aj_price}>|<{$room_item.gjj_price}>|<{$room_item.discount}>|<{$room_item.ycx_dj}>|<{$room_item.fq_dj}>|<{$room_item.aj_dj}>|<{$room_item.gjj_dj}>"></span>
                                                                                                         </td>
                                                                                                     </if>
                                                                                                 </if>

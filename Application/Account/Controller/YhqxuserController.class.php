@@ -195,9 +195,9 @@ class YhqxuserController extends BaseController {
             {
                 $this->error('手机号码重复，请修改！');
             }
-            if (empty($pwd)||$pwd==0)
+            if (empty($pwd)||$pwd=='')
             {
-               $pwd='888888';//默认值
+               $pwd='123456';//默认值
             }
             $data['cp_id']=$cp_id;
             $data['name']=$name;

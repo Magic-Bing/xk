@@ -915,25 +915,19 @@ $(function () {
     $("#print_xp").click(function () {
         var $room_id = $(".marketing-control-room-info-id").val();
         var $cstname = $("#cstname1").val();
-        var $cyjno = $("#vip1").val();
-        var $cardno = $("#cardno1").val();
-        var $phone = $("#phone1").val();
         $.ajax({
             url: room_url.print,
             data: {
                 id: $room_id,
-                cstname: $cstname,
-                cyjno: $cyjno,
-                cardno: $cardno,
-                phone: $phone
+                cstname: $cstname
             },
             type: 'POST',
             dataType: 'JSON',
             success: function (data) {
-                layer.msg(data.info);
+                layer_alert(data.info);
             }
         })
-		});
+    });
 
     //确认选房
     $(".marketing-control-content-room-confirm-btn").click(function () {

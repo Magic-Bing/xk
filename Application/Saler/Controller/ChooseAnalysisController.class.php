@@ -38,7 +38,7 @@ class ChooseAnalysisController extends Base1Controller
         if($pd_user){
             $p="";
         }else{
-            $p=" AND c.ywy='{$userinfo['name']}'";
+             $p=" AND c.ywyphone='{$userinfo['mobile']}'";
         }
         $user_xf="";
         if(empty($status)){
@@ -129,7 +129,7 @@ class ChooseAnalysisController extends Base1Controller
         if($pd_user){
             $p="";
         }else{
-            $p=" AND c.ywy='{$userinfo['name']}'";
+            $p=" AND c.ywyphone='{$userinfo['mobile']}'";
         }
         $user_xf="";
         if(empty($status)){

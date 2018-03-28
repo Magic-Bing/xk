@@ -225,7 +225,8 @@
                                                             </notempty>
                                                     </td>
                                                     <td class="hidden-480">
-                                                            <{$ledlist_vo.bldnamelist}>
+                                                        <{$ledlist_vo.bldnamelist}>
+                                                        <if condition="$ledlist_vo['px'] neq 0">(<{$ledlist_vo.px}>)</if>
                                                     </td>
                                                     <!--<td class="hidden-480">
                                                             <{$ledlist_vo.roomcount}>
@@ -248,7 +249,11 @@
                                                                 </if>
                                                               
                                                                <a class="cfbuild" href="javascript:;" data_id="<{$ledlist_vo.id|default='0'}>" batchid="<{$ledlist_vo.batch_id|default='0'}>"  projectid="<{$ledlist_vo.project_id|default='0'}>" bldids="<{$ledlist_vo.bldidlist}>"><span>拆分</span></a>
-                                                               <a class="ledshow" href="/Account/Xsglled/led/bldids/<{$ledlist_vo.bldidlist}>/pid/<{$ledlist_vo.project_id|default='0'}>"  target="_blank" ><span>LED显示</span></a>
+                                                               <if condition="$ledlist_vo['px'] eq 0">
+                                                                <a class="ledshow" href="/Account/Xsglled/led/bldids/<{$ledlist_vo.bldidlist}>/pid/<{$ledlist_vo.project_id|default='0'}>/px/<{$ledlist_vo.px|default='0'}>"  target="_blank" ><span>LED显示</span></a>
+                                                               <else /> 
+                                                                <a class="ledshow" href="/Account/Xsglled/led1/bldids/<{$ledlist_vo.bldidlist}>/pid/<{$ledlist_vo.project_id|default='0'}>/px/<{$ledlist_vo.px|default='0'}>"  target="_blank" ><span>LED显示</span></a>
+                                                               </if>
                                                             </if>
                                                         </div>
                                                         
@@ -308,6 +313,7 @@ jQuery(function($) {
             }else{
                 $("#form-b input[name='p']").val(tx);
             }
+            $(this).find("a").removeAttr("href");
             $("#form-b").submit();
         }
     });

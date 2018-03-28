@@ -27,23 +27,23 @@
         <if condition="$count gt 0">
             <foreach name="res" item="vo" key="k">
                 <tr class="user-tr" data-yp="<{$vo.ywyphone}>" money="<{$vo.money}>" data-id="<{$vo.id}>"  data-is-admission="<{$vo.is_admission}>" >
-                    <td class="center"><{$pages*$page_num+$k+1}></td>
-                    <td><{$vo.customer_name}></td>
-                    <td><{:rsa_decode($vo['customer_phone'],getChoosekey())}></td>
-                    <td><{:rsa_decode($vo['cardno'],getChoosekey())}></td>
-                    <td><{$vo.cyjno}></td>
-                    <td><{$vo.ywy}></td>
+                    <td class="center" style="vertical-align: middle"><{$pages*$page_num+$k+1}></td>
+                    <td style="vertical-align: middle"><{$vo.customer_name}></td>
+                    <td style="vertical-align: middle"><{:rsa_decode($vo['customer_phone'],getChoosekey())}></td>
+                    <td style="vertical-align: middle"><div style="width: 145px;word-break: break-all"><{:rsa_decode($vo['cardno'],getChoosekey())}></div></td>
+                    <td class="center" style="vertical-align: middle"><{$vo.cyjno}></td>
+                    <td style="vertical-align: middle"><{$vo.ywy}></td>
                     <if condition="$pd_num eq 1">
-                        <td>第<{$vo.group}>组</td>
-                        <td><{$vo.no}></td>
-                        <td><{:date('Y-m-d h:i:s',$vo['createdtime'])}></td>
+                        <td style="vertical-align: middle">第<{$vo.group}>组</td>
+                        <td class="center" style="vertical-align: middle"><{$vo.no}></td>
+                        <td style="vertical-align: middle"><{:date('Y-m-d h:i:s',$vo['createdtime'])}></td>
                         <elseif condition="$pd_num eq 3" />
-                        <td><{:date('Y-m-d h:i:s',$vo['sign_time'])}></td>
+                        <td style="vertical-align: middle"><{:date('Y-m-d h:i:s',$vo['sign_time'])}></td>
                     </if>
-                    <td class="center">
+                    <td class="center" style="vertical-align: middle">
                         <if condition="$vo.is_admission eq 0">
                             <empty name="vo.zid">
-                                <span class="sign-check card-<{:rsa_decode($vo['cardno'],getChoosekey())}>" data-id="<{$vo.id}>" data-name="<{$vo.customer_name}>"  title="入场">✔</span>
+                                <span class="sign-check card-<{$vo['id']}>" data-id="<{$vo.id}>" data-name="<{$vo.customer_name}>"  title="入场">✔</span>
                                 <else/>
                                 <span class="sign-check" data-id="<{$vo.id}>" data-name="<{$vo.customer_name}>"  title="入场">✔</span>
                             </empty>

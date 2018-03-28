@@ -670,6 +670,7 @@ to {margin-left:40%;}
 {
     position: absolute;color: white;margin-left: 5%;top: 2px;font-size: 20px;font-weight: bold;display:none;
     animation: showxfcg 0.3s;
+	animation-fill-mode:forwards; /*运行后停留在最后的地方*/
     -moz-animation: showxfcg 0.3s;	/* Firefox */
     -webkit-animation: showxfcg 0.3s;	/* Safari 和 Chrome */
     -o-animation: showxfcg 0.3s;	/* Opera */

@@ -31,7 +31,7 @@
             }
             .content{
                 float:left;width:calc(83% - 1px);height:100%;margin-left: 2%;
-                background: #fffefe9e;
+                background: rgba(255, 254, 254, 0.62);
                
             }
             .start, .stop, .end  {
@@ -105,7 +105,7 @@
     <body style="width:100%;height:100%">
         <img id="bjimg" src="/Public/account/img/yaohbk.jpg" original="/Public/account/img/yaohbk.jpg" style="width:100%;height:100%;" >
         <div  class="yaohbackground">
-            <div style="float:left;width:15%;height:100%;background: #fffefe9e;">
+            <div style="float:left;width:15%;height:100%;background: rgba(255, 254, 254, 0.62);">
                 <div style="position: relative;top: 50%;transform: translate(0%, -50%);text-align: center;font-size: 25px;    color: #770a07;">
                     <div><{$project['name']}></div>
                     <div style="font-size: 20px"><{$Kppc['name']}></div>     
@@ -274,7 +274,7 @@
                     } else { 
                         console.log(data.info[1]);
                         csts=data.info[1];
-                        endYh();
+                        endYh(); 
                     }
                 });
                 
@@ -287,7 +287,7 @@
                 if($wxdli && $wxdli.length>0)
                 {
                     for(var i=0;i<$wxdli.length;i++)
-                    {
+                    { 
                         $wxdli.eq(i).removeClass("wxd").addClass("yxd");
                         if(i< $maxlength)
                         {

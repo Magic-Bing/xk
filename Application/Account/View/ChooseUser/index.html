@@ -90,7 +90,7 @@
 				<div id="error" data-zt="0">只显示置业顾问异常
 					<div></div>
 				</div>
-				<else/>
+			<else/>
 				<div id="error" data-zt="1">只显示置业顾问异常
 					<div >
 						<div style="background-color: #FFF"></div>
@@ -131,7 +131,7 @@
 							</select> 
 						</label>
 						</form>
-						<form action="<{:U('/Account/ChooseUser/index')}>" method="post" id="form-b" >
+						<form action="<{:U('/Account/ChooseUser/index')}>" method="post" id="form-b" name="form-b" >
 						<label>							
 							批次 
 							<select name="batch_id" class="choose-user-batch-id js-choose-user-batch-id" >
@@ -573,7 +573,7 @@
         });
 	    //查看异常数据
 	    $("#error").on('click',function () {
-			var pd=$(this).attr('data-zt');
+		var pd=$(this).attr('data-zt');
 //            var $project_id = $(".js-choose-user-project-id").val();
 //            var $batch_id = $(".js-choose-user-batch-id").val();
 //            var word=$(".js-choose-user-word").val();
@@ -613,21 +613,27 @@
 	});
 		//分页跳转
 		$(".pagination li").on("click",function () {
-			var tx=$(this).attr("data-tx");
-			if(tx !==undefined){
-			    if(tx ==="上一页"){
-                    $("#form-b input[name='p']").val(Number(c_num)-1);
-				}else if(tx ==="下一页"){
-                    $("#form-b input[name='p']").val(Number(c_num)+1);
-				}else if(tx ==="首页"){
-                    $("#form-b input[name='p']").val(1);
-                } else if(tx ==="尾页"){
-                    $("#form-b input[name='p']").val("<{$total_pages|default=1}>");
-                }else{
-                    $("#form-b input[name='p']").val(tx);
-				}
-                $("#form-b").submit();
-			}
+                    
+                    var tx=$(this).attr("data-tx");
+                    if(tx !==undefined){
+                        if(tx ==="上一页"){
+                            $("#form-b input[name='p']").val(Number(c_num)-1);
+                        }else if(tx ==="下一页"){
+                            $("#form-b input[name='p']").val(Number(c_num)+1);
+                        }else if(tx ==="首页"){
+                            $("#form-b input[name='p']").val(1);
+                        } else if(tx ==="尾页"){
+                            $("#form-b input[name='p']").val("<{$total_pages|default=1}>");
+                        }else{
+                            $("#form-b input[name='p']").val(tx);
+                        }
+                        
+                        $(this).find("a").removeAttr("href");
+                        $("#form-b").submit();
+                        
+                        //function doSubmit(){$("#form-b").submit();}
+                        //setTimeout(doSubmit,0)
+                    }
         });
 
         //设置每页显示条数

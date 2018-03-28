@@ -89,6 +89,35 @@ class XsgllogController extends BaseController {
         //用户信息视图
         $TradeView = D('Common/TradeView');
         $res = $TradeView->where("Trade.id=$id")->find();
+        $res['customer_phone']=rsa_decode($res['customer_phone'],getChoosekey());
+        
+        if( !empty($res['cardno']) && $res['cardno']!="")
+        {
+            $cardno=rsa_decode($res['cardno'],getChoosekey());
+
+            //$cardnocount=strlen($cardno) - strlen(str_replace(";","",$cardno));
+            $arr=  explode(";", $cardno);
+            $arr1=$arr;
+            $count=count($arr);
+            if($count>2)
+            {
+                unset($arr1[2]);
+                unset($arr1[3]);
+                unset($arr1[4]);
+                $res['cardno']=  implode(";",$arr1);
+   
+                unset($arr[0]);
+                unset($arr[1]);
+      
+                $res['cardno2']= implode(";",$arr);
+            }
+            else
+            {
+                $res['cardno']=$cardno;
+                $res['cardno2']="";
+            }
+        }
+        
         $this->assign($res);
 //        echo json_encode($res);exit;
         $arr=explode(".",$name);
@@ -106,13 +135,13 @@ class XsgllogController extends BaseController {
     public function index()
 	{
 		//项目ID
-        if(isset($_POST['project_id'])){
+        if(isset($_GET['project_id'])){
             $search_project_id = I('project_id', 0, 'intval');
             session("selected_project",$search_project_id);
         }else{
             $search_project_id = session("selected_project");
         }
-        if(isset($_POST['batch_id'])){
+        if(isset($_GET['batch_id'])){
             $search_batch_id = I('batch_id', 0, 'intval');
             session("selected_batch",$search_batch_id);
         }else{
@@ -121,6 +150,7 @@ class XsgllogController extends BaseController {
 		$search_word = I('word', '', 'trim');
 		$pd = I('pd', '', 'trim');
                 $status = I('status', '选房', 'trim');
+                $is_cs = I('cssj', '0', 'intval');
 
 		//设置当前搜索
 		$search = array(
@@ -207,7 +237,7 @@ class XsgllogController extends BaseController {
 			$where['batch_id'] = '-99999';
 		}
 
-		//是否激活条件
+	//是否激活条件
         if (!empty($pd)) {
             $where['isyx'] = 0;
         } else {
@@ -217,7 +247,13 @@ class XsgllogController extends BaseController {
         if (!empty($status) && $status <>"全部") {
             $where['status'] = $status;
         }
+        //是否只查看超时数据
+        if (!empty($is_cs) && $is_cs ==1) {
+            $where[] = " TIMESTAMPDIFF(MINUTE, FROM_UNIXTIME( tradetime,'%Y-%m-%d  %H:%i:%s'),now() ) >20 ";
+        }
+        
         $this->assign('status', $status);
+        $this->assign('is_cs', $is_cs);
         $status_list=array("选房","认购","合同","全部");
 	$this->assign('status_list', $status_list);
         

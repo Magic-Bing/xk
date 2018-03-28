@@ -43,6 +43,7 @@ class ChooseViewModel extends BaseViewModel
             'like_c' 		=> 'like_c',
             'like_p' 		=> 'like_p',
             'is_admission' 		=> 'is_admission',
+            'is_sign' 		=> 'is_sign',
 			'_type' => 'LEFT'
 		),
 		'Project' => array(
@@ -89,6 +90,12 @@ class ChooseViewModel extends BaseViewModel
             '_as' => 'us',
             'us.id' => 'us_id',
             '_on' 	=> 'us.mobile = Choose.ywyphone and us.cp_id=Project.cp_id',
+            '_type' => 'LEFT'
+        ),
+        'yaohresult' => array(
+            '_as' => 'y',
+            'y.id' => 'yid',
+            '_on' 	=> 'y.cstid = Choose.id',
             '_type' => 'LEFT'
         ),
 

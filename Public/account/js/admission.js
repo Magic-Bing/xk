@@ -6,7 +6,7 @@ var num=1;
 function user_ajax() {
     var tr=$("#sample-table-choose .user-tr");
     if(tr.length === 1){
-        tr.trigger('click');
+        //tr.trigger('click');
     }
     // console.log(tr.length);
 }
@@ -219,9 +219,13 @@ $(function () {
         if(pd === 0){
             $("#button-sign").show().attr("data-id",id).attr("data-name",$.trim(td.eq(1).text()));
             $("#sign-reset").hide();
+            $("#admission-button button").css("margin-left","65px");
+            $("#print-pj").hide();
         }else{
             $("#sign-reset").show().attr("data-id",id).attr("data-name",$.trim(td.eq(1).text()));
             $("#button-sign").hide();
+            $("#admission-button button").css("margin-left","18px");
+            $("#print-pj").show();
         }
     });
 
@@ -233,12 +237,15 @@ $(function () {
         $.post(admission.admission,{id:id,zt:1,name:name},function (data) {
             if(data === "true"){
                 speckText("入场成功！");
-                layer_msg("入场成功！");
+                // layer_msg("入场成功！");
+                layer.msg('<span style="font-size:20px">入场成功！</span>', {skin: 'layui-layer-setmybg'});
                 $("#batch-one").trigger("change");
                 $("#sign-reset").show().attr('data-id',$("#button-sign").attr('data-id')).attr('data-name',$("#button-sign").attr('data-name'));
                 $("#button-sign").hide();
                 $("#shadow").hide();
                 $("#admission").hide();
+                $("#admission-button button").css("margin-left","18px");
+                $("#print-pj").show();
                 // setTimeout(function () {
                 //     window.location.reload();
                 // },1000)
@@ -260,6 +267,8 @@ $(function () {
                 $("#button-sign").show().attr('data-id',$("#sign-reset").attr('data-id')).attr('data-name',$("#sign-reset").attr('data-name'));
                 $("#shadow").hide();
                 $("#admission").hide();
+                $("#admission-button button").css("margin-left","65px");
+                $("#print-pj").hide();
                 // setTimeout(function () {
                 //     window.location.reload();
                 // },1000)

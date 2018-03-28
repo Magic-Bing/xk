@@ -91,13 +91,24 @@ class CstSignController extends BaseController
         }else{
             $z='';
         }
-        $count=M()->table("xk_choose c")->where("1 = 1 $z $p $b $s")->count();
+        if ($bid !== 0 and $pid !== 0)
+        {
+            //是否打印小票
+            $pzcs=M("pzcsvalue")->where("pzcs_id = 13  and project_id={$pid} and batch_id={$bid}")->find();
+            $this->assign('is_print', $pzcs['cs_value']);
+        }
+        
+        $count=M()->table("xk_choose c")->where("1 = 1 and status=1 $z $p $b $s")->count();
+        $slinfo=M("choose c")->field('count(1) as zgs,sum(case when is_sign=1 then 1 else 0 end) as yqd,sum(case when is_sign=1 then 0 else 1 end) as wqd')->where("1 = 1 and status=1 $p $b $s")->select();
         $all_page=ceil($count/$page_num);
-        $res=M()->table("xk_choose c")->field("c.*,p.id zid")->join('LEFT JOIN xk_pzcsvalue p ON p.project_id=c.project_id AND p.batch_id=c.batch_id AND p.pzcs_id=2 AND p.cs_value=-1')->where("1 = 1 $z $p $b $s")->limit($page*$page_num,$page_num)->select();
+        $res=M()->table("xk_choose c")->field("c.*,p.id zid")->join('LEFT JOIN xk_pzcsvalue p ON p.project_id=c.project_id AND p.batch_id=c.batch_id AND p.pzcs_id=2 AND p.cs_value=-1')
+                ->order("c.cyjno,c.id")
+                ->where("1 = 1 and status=1 $z $p $b $s")->limit($page*$page_num,$page_num)->select();
         $this->assign('page_num', $page_num);
         $this->assign('page', $page+1);
         $this->assign('pages', $page);
         $this->assign('count', $count);
+        $this->assign('slinfo', $slinfo[0]);
         $this->assign('all_page', $all_page);
         $this->assign('res', $res);
         echo $this->fetch();
@@ -161,8 +172,20 @@ class CstSignController extends BaseController
                             try{
                                 M()->table('xk_choose')->where("id={$auto_arr[$k]['id']}")->save(['is_sign'=>1,'sign_time' => time()]);
                                 M()->table("xk_choose2user_log")->add($data);
-                                $print_arr=M()->table("xk_choose")->field("customer_name,customer_phone")->where("id=".$auto_arr[$k]['id'])->find();
-//                              $this->cloudPrint($print_arr);//打印小票
+                                
+                                //是否打印小票
+                                $pzcs=M("pzcsvalue")->where("pzcs_id = 13  and project_id={$auto_arr[$k]['project_id']} and batch_id={$auto_arr[$k]['batch_id']}")->find();
+                                if(empty($pzcs) || $pzcs['cs_value']==1)
+                                {
+                                    $userinfo=M("user")->where("id={$data['user_id']}")->find();
+                                    if(!empty($userinfo['machine_code']))
+                                    {
+                                        $print_arr=M()->table("xk_choose")->field("customer_name,customer_phone,cardno,cyjno")->where("id=".$auto_arr[$k]['id'])->find();
+                                        $printer[0]=$userinfo['machine_code'];
+                                        $printer[1]=$userinfo['mkey'];
+                                        $this->cloudPrint($print_arr,$printer);//打印小票
+                                    }
+                                }
                                 M()->commit();
                             }catch (\Think\Exception $e) {
                                 M()->rollback();
@@ -174,7 +197,7 @@ class CstSignController extends BaseController
                     }
                 }else{
                     if(empty($res[0]['is_sign'])){
-                        $this->success("auto_one");
+                        echo json_encode(['status'=>3,'id'=>$res[0]['id']]);exit;
                     }else{
                         $name=M()->table("xk_choose2user_log")->where("choose_id={$res[0]['id']} AND log_type='签到'")->order("id desc")->find();
                         $this->success($name);
@@ -206,7 +229,7 @@ class CstSignController extends BaseController
             $this->error("非法操作",U("index/index"));
         }
         date_default_timezone_set('prg');
-        M()->startTrans();//开启事务
+        
         $id=I("id",0,'intval');
         $zt=I("zt",1,'intval');
         $name=I("name",'','trim');
@@ -215,17 +238,36 @@ class CstSignController extends BaseController
         }else{
             $data['log_type']='签到';
         }
+        $choose=M("choose")->where("id={$id}")->find();
+        if(empty($choose))
+        {
+            echo "数据异常，请确认后重试";exit;
+        }
         $data['choose_id']=$id;
         $data['user_id']=$this->get_user_id();
         $data['log_time']=time();
         $data['log_ip']=$this->getIP();
         $data['cst_name']=$name;
+        M()->startTrans();//开启事务
         try{
             M()->table('xk_choose')->where("id=$id")->save(['is_sign'=>$zt,'sign_time' => time()]);
             M()->table("xk_choose2user_log")->add($data);
             if($zt!==0){
-                $print_arr=M()->table("xk_choose")->field("customer_name,customer_phone")->where("id=".$id)->find();
-//            $this->cloudPrint($print_arr);//打印小票
+                //是否打印小票
+                $pzcs=M("pzcsvalue")->where("pzcs_id = 13  and project_id={$choose['project_id']} and batch_id={$choose['batch_id']}")->find();
+                if(empty($pzcs) || $pzcs['cs_value']==1)
+                {
+                    $userinfo=M("user")->where("id={$data['user_id']}")->find();
+                    if(!empty($userinfo['machine_code']))
+                    {
+                        $print_arr=M()->table("xk_choose")->field("customer_name,customer_phone,cardno,cyjno")->where("id=".$id)->find();
+                        $printer[0]=$userinfo['machine_code'];
+                        $printer[1]=$userinfo['mkey'];
+                        //$printer[0]='4004510553';
+                        //$printer[1]='pjy6mr67fjtx';
+                        $this->cloudPrint($print_arr,$printer);//打印小票
+                    }
+                }
             }
             M()->commit();
             echo 'true';
@@ -234,7 +276,37 @@ class CstSignController extends BaseController
             echo $e->getMessage();exit;
         }
     }
-
+ 
+    public  function print_pj(){
+        if(!IS_AJAX){
+            $this->error("非法操作",U("index/index"));
+        }
+        $id=I("id",0,'intval');
+        $choose=M("choose")->where("id={$id}")->find();
+        if(empty($choose))
+        {
+            echo "数据异常，请确认后重试";exit;
+        }
+        //是否打印小票
+        $pzcs=M("pzcsvalue")->where("pzcs_id = 13  and project_id={$choose['project_id']} and batch_id={$choose['batch_id']}")->find();
+        if(empty($pzcs) || $pzcs['cs_value']==1)
+        {
+            $uid=$this->get_user_id();
+            $userinfo=M("user")->where("id={$uid}")->find();
+            if(!empty($userinfo['machine_code']))
+            {
+                $print_arr=M()->table("xk_choose")->field("customer_name,customer_phone,cardno,cyjno")->where("id=".$id)->find();
+                $printer[0]=$userinfo['machine_code'];
+                $printer[1]=$userinfo['mkey'];
+                $this->cloudPrint($print_arr,$printer);//打印小票
+            }
+        }
+        echo 'true';
+    }
+    
+    
+    
+    
     //导出EXCEL
     public function check_excel(){
         $user_project_ids = $this->get_user_project_ids();
@@ -372,22 +444,37 @@ class CstSignController extends BaseController
     }
 
 //打印示例
-    function cloudPrint($data)
+    function cloudPrint($data,$printer)
     {
-        $data['tm']=date("Y-m-d h:i:s",time());
-        $machine_code = '4004506696';//打印机终端号
-        $mKey= '4br5spxrcpr2';//打印机秘钥
+        $data['tm']=date("Y-m-d H:i:s",time());
+        $machine_code = $printer[0];//打印机终端号
+        $mKey= $printer[1];//打印机秘钥
         //打印内容
         $msg="";
         $data['customer_phone']=rsa_decode($data['customer_phone'],getChoosekey());
-        $msg .='@@2·   【签到小票】\n\n';
-        $msg .="客户:{$data['customer_name']}\n";
-        $msg .="手机:{$data['customer_phone']}\n";
+        $data['cardno']=rsa_decode($data['cardno'],getChoosekey());
+        $nolist=$pieces = explode(";", $data['cardno']);
+        
+        $msg .='@@2      【天誉珑城--选房单】\n\n';
+        $msg .="@@2选房顺序号:{$data['cyjno']}\n";
+        $msg .="@@2客户姓名:{$data['customer_name']}\n";
+        foreach($nolist as $k => $v)
+        {
+            if($k==0)
+            {
+                $msg .="身份证号:{$v}\n";
+            }else
+            {
+                 $msg .="         {$v}\n";
+            }
+        }
+
+        $msg .="意向房源(置业顾问填):\n";
+        $msg .="@@2 6栋     单元        号房\n\n\n\n";
         $msg .="签到时间:{$data['tm']}\n";
 
-
-        $partner= '4472';
-        $apiKey= '2ea43a0eb8644e2b4f1e1ee67f945cc80c412fcc';
+        $partner= C("PANTNER_ID");
+        $apiKey= C("PANTNER_KEY");
         $ti = time();
         $params = array(
             'partner'=>$partner,

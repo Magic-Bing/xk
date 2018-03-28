@@ -128,6 +128,8 @@
             letter-spacing: 2px;
             padding: 5px 0;
             background-color: #fff;
+            float:left;
+            margin-left: 65px;
         }
         #admission-content{
             width: 100%;
@@ -205,20 +207,18 @@
                 if(data.status === 0){
                     speckText(data.info);
                     layer.alert(data.info,{
-                        title:'温馨提示'
+                        title:'温馨提示',
+                        skin: 'layui-layer-bcz'
                     });
-                }else{
+                }else if(data.status === 1){
                     if(typeof data.info === 'object'){
                         speckText(data.info.cst_name+"已经入场过了。");
                         layer.alert(data.info.cst_name+"已经入场过了。",{
-                            title:'温馨提示'
+                            title:'温馨提示',
+                            skin: 'layui-layer-yqd'
                         });
                     }else{
-                        if(data.info === 'auto_one'){
-                            var qd=$(".card-"+CardNo);
-                            qd.attr('data-name',Name);
-                            qd.trigger("click");
-                        }else if(data.info === 'not_auto'){
+                        if(data.info === 'not_auto'){
                             num=1;
                             $("#search-one").val(CardNo);
                             var row=$('#new_rows').val();
@@ -229,9 +229,13 @@
                         }else{
                             $("#batch-one").trigger("change");
                             speckText(data.info);
-                            layer.msg(data.info);
+                            layer.msg('<span style="font-size:20px">'+data.info+'</span>', {skin: 'layui-layer-setmybg'});
                         }
                     }
+                }else{
+                    var qd=$(".card-"+data.id);
+                    qd.attr('data-name',Name);
+                    qd.trigger("click");
                 }
             },'json');
         </script>
@@ -258,9 +262,10 @@
             </div>
         </div>
         <div id="admission-button">
-            <button id="off-alert">取消</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button id="button-sign">通过&打印</button>
+            <button id="off-alert">关闭</button>
+            <button id="button-sign">通过</button>
             <button id="sign-reset">取消入场</button>
+            <button id="print-pj" style="display: none"><i class="icon-print"></i> 打印票据</button>
         </div>
     </div>
     <div class="col-sm-12 js-height" style="border: 1px solid #e8eef6;height: auto!important;">

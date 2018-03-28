@@ -2,6 +2,7 @@
  * Created by Administrator on 2018/1/22 0022.
  */
 var num=1;
+var is_print=-1;
 function user_ajax() {
     var tr=$("#sample-table-choose .user-tr");
     if(tr.length === 1){
@@ -43,7 +44,8 @@ $(function () {
     // console.log(zt);
     //选择项目
     $("#project-not-sign").on('change',function () {
-        var id=$(this).val();
+       var id=$(this).val();
+        
         num=1;
         var row=$('#new_rows').val();
         $("#search-one").val('');
@@ -70,11 +72,19 @@ $(function () {
         if(Number(bid)!==0){
             $.post(sign.user_list,{pid:id,bid:bid,num:row,zt:zt},function (data) {
                 $("#user_list").html(data);
+                
+                $("#zgs").text($("#h_zgs").val());
+                $("#yqd").text($("#h_yqd").val());
+                $("#wqd").text($("#h_wqd").val());
                 user_ajax();
             });
         }else{
             $.post(sign.user_list,{pid:id,num:row,zt:zt},function (data) {
                 $("#user_list").html(data);
+                
+                $("#zgs").text($("#h_zgs").val());
+                $("#yqd").text($("#h_yqd").val());
+                $("#wqd").text($("#h_wqd").val());
                 user_ajax();
             });
         }
@@ -91,6 +101,10 @@ $(function () {
         $("#search-one").val('');
         $.post(sign.user_list,{pid:pid,bid:bid,num:row,zt:zt},function (data) {
             $("#user_list").html(data);
+            
+             $("#zgs").text($("#h_zgs").val());
+                $("#yqd").text($("#h_yqd").val());
+                $("#wqd").text($("#h_wqd").val());
             user_ajax();
         });
     });
@@ -105,6 +119,9 @@ $(function () {
         if(event.keyCode === 13){
             $.post(sign.user_list,{pid:pid,bid:bid,search:search,num:row,zt:zt},function (data) {
                 $("#user_list").html(data);
+                 $("#zgs").text($("#h_zgs").val());
+                $("#yqd").text($("#h_yqd").val());
+                $("#wqd").text($("#h_wqd").val());
                 user_ajax();
             });
         }
@@ -137,6 +154,9 @@ $(function () {
         if(event.keyCode === 13){
             $.post(sign.user_list,{pid:pid,bid:bid,search:search,page:(num-1),num:row,zt:zt},function (data) {
                 $("#user_list").html(data);
+                 $("#zgs").text($("#h_zgs").val());
+                $("#yqd").text($("#h_yqd").val());
+                $("#wqd").text($("#h_wqd").val());
                 user_ajax();
             });
         }
@@ -167,6 +187,9 @@ $(function () {
         if(event.keyCode === 13){
             $.post(sign.user_list,{pid:pid,bid:bid,search:search,page:(num-1),num:row,zt:zt},function (data) {
                 $("#user_list").html(data);
+                 $("#zgs").text($("#h_zgs").val());
+                $("#yqd").text($("#h_yqd").val());
+                $("#wqd").text($("#h_wqd").val());
                 user_ajax();
             });
         }
@@ -183,6 +206,9 @@ $(function () {
         console.log(num);
         $.post(sign.user_list,{pid:pid,bid:bid,search:search,page:(num-1),num:row,zt:zt},function (data) {
             $("#user_list").html(data);
+             $("#zgs").text($("#h_zgs").val());
+                $("#yqd").text($("#h_yqd").val());
+                $("#wqd").text($("#h_wqd").val());
             user_ajax();
         });
     });
@@ -209,28 +235,44 @@ $(function () {
         $("#money").val($(this).attr('money'));
         $("#ywy").val($.trim(td.eq(5).text()));
         $("#yphone").val($(this).attr('data-yp'));
+        is_print=$("#is_print").val();
         if(pd === 0){
             $("#button-sign").show().attr("data-id",id).attr("data-name",$.trim(td.eq(1).text()));
             $("#sign-reset").hide();
+            
+            $("#print-pj").hide();
         }else{
             $("#sign-reset").show().attr("data-id",id).attr("data-name",$.trim(td.eq(1).text()));
             $("#button-sign").hide();
+            if (is_print==1)
+            {
+                $("#print-pj").show();
+            }
         }
     });
     //签到
     $(document).on("click",'.sign-check,#button-sign',function () {
+        is_print=$("#is_print").val();
         var id=$(this).attr('data-id');
         var name=$(this).attr('data-name');
         $.post(sign.sign,{id:id,zt:1,name:name},function (data) {
             if(data === "true"){
                 speckText("签到成功！");
-                layer_msg("签到成功！");
+                // layer_msg("签到成功！");
+                layer.msg('<span style="font-size:20px">签到成功！</span>', {skin: 'layui-layer-setmybg'});
                 $("#batch-one").trigger("change");
                 $("#sign-reset").show().attr('data-id',$("#button-sign").attr('data-id')).attr('data-name',$("#button-sign").attr('data-name'));
                 $("#button-sign").hide();
+                if (is_print==1)
+                {
+                    $("#print-pj").show();
+                }
                 // setTimeout(function () {
                 //     window.location.reload();
                 // },1000)
+                $("#wqd").text($("#wqd").text() -1);
+                $("#yqd").text($("#yqd").text() +1);
+                
             }else{
                 layer_alert('异常错误，请刷新重试');
             }
@@ -246,9 +288,13 @@ $(function () {
                 $("#batch-one").trigger("change");
                 $("#sign-reset").hide();
                 $("#button-sign").show().attr('data-id',$("#sign-reset").attr('data-id')).attr('data-name',$("#sign-reset").attr('data-name'));
+                $("#print-pj").hide();
                 // setTimeout(function () {
                 //     window.location.reload();
                 // },1000)
+                
+                $("#wqd").text($("#wqd").text() +1);
+                $("#yqd").text($("#yqd").text() -1);
             }else{
                 layer_alert('异常错误，请刷新重试');//data就是异常信息
             }
@@ -260,5 +306,19 @@ $(function () {
         var bid=$('#batch-one').val();
         window.location.href=sign.check_excel+"?pid="+pid+"&bid="+bid+"&search="+search+"&zt="+zt;
     });
+    
+     //打印小票手动
+    $("#print-pj").click(function (){
+        var id=$("#sign-reset").attr('data-id');
+        $.post(sign.print,{id:id},function (data) {
+            if(data === "true"){
+                layer.msg("打印中，请稍后...");
+            }else{
+                layer_alert('异常错误，请刷新重试');//data就是异常信息
+            }
+        });
+    });
+    
+
     /*====================END=====================*/
 });

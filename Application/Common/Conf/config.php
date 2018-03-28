@@ -94,5 +94,7 @@ return array(
     'ALI_TPCODE_DL' => 'SMS_115750019', // ali短信模板代码
     'ALI_TPCODE_CG' => 'SMS_102185002', // ali短信模板代码
     'WEIXIN_TITLE'  => '微信开盘数据统计',
-	'SIGN_PAGE_NUM'  => '10'
+    'SIGN_PAGE_NUM' => '10',
+    'PANTNER_ID'    => '4472',
+    'PANTNER_KEY'    => '2ea43a0eb8644e2b4f1e1ee67f945cc80c412fcc'
 );

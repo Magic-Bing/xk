@@ -284,6 +284,7 @@ jQuery(function($) {
             }else{
                 $("#form-b input[name='p']").val(tx);
             }
+            $(this).find("a").removeAttr("href");
             $("#form-b").submit();
         }
     });
@@ -349,8 +350,7 @@ $(document).on('click','button[data-selector=check]',function () {
                     layer_alert(data['info']);
                     return false;
                 } else {
-                    layer_alert('作废成功！');
-
+                    //layer_alert('作废成功！');
                     setTimeout(function() {
                         window.location.reload();
                     }, 200);

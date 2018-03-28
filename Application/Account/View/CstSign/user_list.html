@@ -19,16 +19,16 @@
         <if condition="$count gt 0">
             <foreach name="res" item="vo" key="k">
                 <tr class="user-tr" data-yp="<{$vo.ywyphone}>" money="<{$vo.money}>" data-id="<{$vo.id}>"  data-is-sign="<{$vo.is_sign}>" data-bid="<{$vo.batch_id}>" data-pid="<{$vo.project_id}>">
-                    <td class="center"><{$pages*$page_num+$k+1}></td>
-                    <td><{$vo.customer_name}></td>
-                    <td><{:rsa_decode($vo['customer_phone'],getChoosekey())}></td>
-                    <td><{:rsa_decode($vo['cardno'],getChoosekey())}></td>
-                    <td><{$vo.cyjno}></td>
-                    <td><{$vo.ywy}></td>
-                    <td class="center">
+                    <td class="center" style="vertical-align: middle"><{$pages*$page_num+$k+1}></td>
+                    <td style="vertical-align: middle"><{$vo.customer_name}></td>
+                    <td style="vertical-align: middle"><{:rsa_decode($vo['customer_phone'],getChoosekey())}></td>
+                    <td style="vertical-align: middle"><div style="width: 145px;word-break: break-all;margin: 0;padding: 0"><{:rsa_decode($vo['cardno'],getChoosekey())}></div></td>
+                    <td style="vertical-align: middle"><{$vo.cyjno}></td>
+                    <td style="vertical-align: middle"><{$vo.ywy}></td>
+                    <td class="center" style="vertical-align: middle">
                         <if condition="$vo.is_sign eq 0">
                             <empty name="vo.zid">
-                                <span class="sign-check card-<{:rsa_decode($vo['cardno'],getChoosekey())}>" data-id="<{$vo.id}>"  data-name="<{$vo.customer_name}>"  title="签到">✔</span>
+                                <span class="sign-check card-<{$vo['id']}>" data-id="<{$vo.id}>"  data-name="<{$vo.customer_name}>"  title="签到">✔</span>
                                 <else/>
                                 <span class="sign-check" data-id="<{$vo.id}>" data-name="<{$vo.customer_name}>"  title="签到">✔</span>
                             </empty>
@@ -57,7 +57,10 @@
     </tbody>
 
 </table>
-
+<input type="hidden" id="is_print"  name="is_print" value="<{$is_print}>">
+<input type="hidden" id="h_zgs"  name="h_zgs" value="<{$slinfo['zgs']|default=0}>">
+<input type="hidden" id="h_yqd"  name="h_yqd" value="<{$slinfo['yqd']|default=0}>">
+<input type="hidden" id="h_wqd"  name="h_wqd" value="<{$slinfo['wqd']|default=0}>">
 <div class="row">
     <div class="col-sm-6">
         <div class="dataTables_info" id="sample-table-2_info">

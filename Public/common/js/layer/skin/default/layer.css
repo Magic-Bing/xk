@@ -603,7 +603,13 @@ html #layuicss-skinlayercss {
     color: #fff;
     border: none
 }
-
+/*新增样式-消失弹出框-qzb*/
+.layui-layer-setmybg{
+    min-width: 180px;
+    border: 1px solid #D3D4D3;
+    box-shadow: none
+}
+.layui-layer-setmybg .layui-layer-content{background-color:  #5fb878; color: #fff;}
 .layui-layer-hui .layui-layer-content {
     padding: 12px 25px;
     text-align: center
@@ -743,7 +749,57 @@ html #layuicss-skinlayercss {
 .layui-layer-lan .layui-layer-btn .layui-layer-btn1 {
     background: #C9C5C5
 }
+/*已签到的样式*/
+.layui-layer-yqd[type=dialog] {
+    min-width: 280px
+}
 
+.layui-layer-yqd .layui-layer-title {
+    background: #ffbc17;
+    color: #fff;
+    border: none
+}
+
+.layui-layer-yqd .layui-layer-btn {
+    padding: 10px;
+    text-align: right;
+    border-top: 1px solid #E9E7E7
+}
+
+.layui-layer-yqd .layui-layer-btn a {
+    background: #ffbc17;
+    border: none
+}
+
+.layui-layer-yqd .layui-layer-btn .layui-layer-btn1 {
+    background: #C9C5C5
+}
+/*客户不存在的样式*/
+/*已签到的样式*/
+.layui-layer-bcz[type=dialog] {
+    min-width: 280px
+}
+
+.layui-layer-bcz .layui-layer-title {
+    background: #ff6058;
+    color: #fff;
+    border: none
+}
+
+.layui-layer-bcz .layui-layer-btn {
+    padding: 10px;
+    text-align: right;
+    border-top: 1px solid #E9E7E7
+}
+
+.layui-layer-bcz .layui-layer-btn a {
+    background: #ff6058;
+    border: none
+}
+
+.layui-layer-bcz .layui-layer-btn .layui-layer-btn1 {
+    background: #C9C5C5
+}
 .layui-layer-molv .layui-layer-title {
     background: #009f95;
     color: #fff;

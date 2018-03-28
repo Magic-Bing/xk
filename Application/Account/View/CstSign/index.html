@@ -1,6 +1,9 @@
 <extend name="Common/base"/>
 <block name="breadcrumb">
     <style>
+        /*td{*/
+            /*vertical-align: middle;*/
+        /*}*/
         .two-dh {
             display: inline-block;
             background-color: #fff;
@@ -78,21 +81,37 @@
         .tr-selected td{
             background-color: rgba(0,0,0,0)!important;
         }
+        
+        #print-pj {
+            border-style: none;
+            color: #fff;
+            background-color: #428bca;
+            font-weight: bold;
+            padding: 5px 10px;
+            margin-top: 10px;
+            float: right;
+        }
+        .two-dh span{
+            font-size: 11px;
+            font-weight: 400;
+            position: absolute;
+            margin-top: -10px;
+        }
     </style>
 
     <form action="index" method="post">
         <input type="hidden" name="zt" value="0">
-        <button  class="two-dh <if condition='$zt eq 0'>a-selected</if>">未签到</button>
-
+        <button  class="two-dh <if condition='$zt eq 0'>a-selected</if>">未签到<span id="wqd"></span></button>
+        
     </form>
     <form action="index" method="post">
         <input type="hidden" name="zt" value="1">
-    <button class="two-dh th  <if condition='$zt eq 1'>a-selected</if>">已签到</button>
+    <button class="two-dh th  <if condition='$zt eq 1'>a-selected</if>">已签到<span id="yqd"></span></button>
 
     </form>
     <form action="index" method="post">
         <input type="hidden" name="zt" value="2">
-    <button class="two-dh th  <if condition='$zt eq 2'>a-selected</if>">全部</button>
+    <button class="two-dh th  <if condition='$zt eq 2'>a-selected</if>">全部<span id="zgs"></span></button>
 
     </form>
 </block>
@@ -122,37 +141,40 @@
            if(data.status === 0){
                speckText(data.info);
                 layer.alert(data.info,{
-                    title:'温馨提示'
+                    title:'温馨提示',
+                    skin: 'layui-layer-bcz'
                 });
-           }else{
+           }else if(data.status === 1){
                if(typeof data.info === 'object'){
-//                 alert(1);
                    speckText(data.info.cst_name+"已经签到过了。");
                    layer.alert(data.info.cst_name+"已经签到过了。",{
-                       title:'温馨提示'
+                       title:'温馨提示',
+                       skin: 'layui-layer-yqd'
                    });
                }else{
 //                   alert(2);
-                   if(data.info === 'auto_one'){
-                       var qd=$(".card-"+CardNo);
-                       qd.attr("data-name",Name);
-                       qd.trigger("click");
-                   }else if(data.info === 'not_auto'){
+                    if(data.info === 'not_auto'){
 //                       alert(4);
                         num=1;
                        $("#search-one").val(CardNo);
                         var row=$('#new_rows').val();
                         $.post(sign.user_list,{pid:pid,bid:bid,search:CardNo,num:row,zt:zt},function (data) {
                             $("#user_list").html(data);
+                            $("#zgs").text($("#h_zgs").val());
+                            $("#yqd").text($("#h_yqd").val());
+                            $("#wqd").text($("#h_wqd").val());
                             user_ajax();
                         });
                    }else{
-//                       alert(3);
                        $("#batch-one").trigger("change");
                        speckText(data.info);
-                       layer.msg(data.info);
+                       layer.msg('<span style="font-size:20px">'+data.info+'</span>', {skin: 'layui-layer-setmybg'});
                    }
                }
+           }else{
+               var qd=$(".card-"+data.id);
+               qd.attr('data-name',Name);
+               qd.trigger("click");
            }
         },'json');
     </script>
@@ -272,16 +294,7 @@
                     </label>
                 </td>
             </tr>
-            <tr>
-                <th>诚意金金额</th>
-            </tr>
-            <tr>
-                <td>
-                    <label>
-                        <input type="text" id="money" readonly>
-                    </label>
-                </td>
-            </tr>
+           
             <tr>
                 <th>置业顾问</th>
             </tr>
@@ -306,6 +319,7 @@
                 <td class="center" style="display: inline-block;width: 100%">
                         <button id="button-sign" style="display: none">✔ &nbsp;签到</button>
                         <button id="sign-reset" style="display: none"><i class="icon-undo"></i> &nbsp;取消</button>
+                        <button id="print-pj"  style="display: none"><i class="icon-print"></i> &nbsp;打印票据</button>
                 </td>
             </tr>
         </table>
@@ -336,8 +350,9 @@
 //                console.log(w);
                 $(".js-height").css("min-height", (parseInt(w) - 130) + 'px');
 //                $(".dataTables_wrapper").css("min-height", (parseInt(w) - 193) + 'px');
-            }
+            } 
 
         });
+        
     </script>
 </block>

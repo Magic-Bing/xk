@@ -198,7 +198,7 @@ class AdmissionController extends BaseController
                     }
                 }else{
                     if(empty($res[0]['is_admission'])){
-                        $this->success("auto_one");
+                        echo json_encode(['status'=>3,'id'=>$res[0]['id']]);exit;
                     }else{
                         $name=M()->table("xk_choose2user_log")->where("choose_id={$res[0]['id']} AND log_type='入场'")->order("id desc")->find();
                         $this->success($name);

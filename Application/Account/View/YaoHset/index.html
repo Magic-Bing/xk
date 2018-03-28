@@ -227,7 +227,7 @@
                                              <eq name="list_vo['fs']" value="1">
                                                  <a href="<{:U('history_yaoh',array('id'=>$list_vo['id'], 'zcid'=>1)) }>" target="_blank" class="yaohbtn" style="color:#FFF" title="点击查看摇号结果" >
                                                      <else/>
-                                                     <a href="<{:U('history_oder',array('id'=>$list_vo['id'], 'zcid'=>1)) }>" target="_blank" class="yaohbtn" style="color:#FFF" title="点击查看摇号结果" >
+                                                     <a href="<{:U('history_order',array('id'=>$list_vo['id'], 'zcid'=>1)) }>" target="_blank" class="yaohbtn" style="color:#FFF" title="点击查看摇号结果" >
                                              </eq>
 
                                                 查看记录
@@ -330,6 +330,7 @@
                     } else {
                         $("#form-b input[name='p']").val(tx);
                     }
+                    $(this).find("a").removeAttr("href");
                     $("#form-b").submit();
                 }
             });

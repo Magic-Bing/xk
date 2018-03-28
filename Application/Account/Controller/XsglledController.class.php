@@ -124,7 +124,7 @@ class XsglledController extends BaseController {
                         ." left join xk_kppc b on a.batch_id=b.id "
                         .$where2
                         ." union all "
-                        ." select 0 as id,b.proj_id as project_id,b.id as batch_id,'' as bldidlist,'' as bldnamelist,p.name as pname,b.name as bname from xk_kppc b "
+                        ." select 0 as id,b.proj_id as project_id,b.id as batch_id,'' as bldidlist,'' as bldnamelist,0 as px,p.name as pname,b.name as bname from xk_kppc b "
                         . " left join xk_project p on b.proj_id=p.id "
                         ." left join xk_xsledset a on a.batch_id=b.id "
                         .$where2 ." and a.batch_id is null "
@@ -143,12 +143,12 @@ class XsglledController extends BaseController {
                         ." left join xk_kppc b on a.batch_id=b.id "
                         .$where2
                         ." union all "
-                        ." select 0 as id,b.proj_id as project_id,b.id as batch_id,'' as bldidlist,'' as bldnamelist,p.name as pname,b.name as bname from xk_kppc b "
+                        ." select 0 as id,b.proj_id as project_id,b.id as batch_id,'' as bldidlist,'' as bldnamelist,0 as px,p.name as pname,b.name as bname from xk_kppc b "
                         . " left join xk_project p on b.proj_id=p.id "
                         ." left join xk_xsledset a on a.batch_id=b.id "
                         .$where2 ." and a.batch_id is null "
-                        ." order by project_id desc,batch_id desc "
-                        . "limit ".$limit
+                        ." order by project_id desc,batch_id desc,px "
+                        . " limit ".$limit
                 );
                 
                 //更新列表中的值
@@ -339,6 +339,84 @@ class XsglledController extends BaseController {
                 $build_new_list[$build['id']] = $build;
         }
         $this->assign('builds', $build_new_list);
+        
+        $this->set_seo_title("LED大屏显示");
+        $this->display();
+    }
+    
+    public function led1()
+    {
+        $userid=$this->get_user_id();
+        $bids=I('bldids', '', 'trim');
+        $project_id=I('pid', 0, 'intval');
+        $px=I('px', 0, 'intval');
+        $projinfo=M()->query("select * from xk_project where id=". $project_id );
+        $where =" where 1=1 ";
+        $where.= " and bld_id in($bids)";
+        if(!empty($px))
+        {
+            if($px==1)
+            {
+                $where.= " and unit =1 and CONVERT(right(room,2),SIGNED) <3";
+            }
+            else if($px==2)
+            {
+                $where.= " and unit =1 and CONVERT(right(room,2),SIGNED) >2 and CONVERT(right(room,2),SIGNED) <5";
+            }
+            else if($px==3)
+            {
+                $where.= " and ( (unit =1 and CONVERT(right(room,2),SIGNED) =5) or   (unit =2 and CONVERT(right(room,2),SIGNED) =1) ) ";
+            }
+            else if($px==4)
+            {
+                $where.= " and unit =2 and CONVERT(right(room,2),SIGNED) >1 and CONVERT(right(room,2),SIGNED) <4";
+            }
+            else if($px==5)
+            {
+                $where.= " and unit =2 and CONVERT(right(room,2),SIGNED) >3";
+            }
+        }
+        
+        $group_room_build = M()->query("SELECT bld_id,buildname,buildcode FROM xk_roomlist " . $where . "  GROUP BY bld_id ORDER BY bld_id,id asc");
+        $group_room_unit = M()->query("SELECT `bld_id`,`unit` FROM `xk_roomlist` ". $where . "  GROUP BY bld_id, unit ORDER BY bld_id,id asc");
+        $group_room_floor = M()->query("SELECT `bld_id`,`unit`,`floor` FROM `xk_roomlist` ". $where . "  GROUP BY bld_id, floor ORDER BY bld_id,cast(floor as SIGNED),id DESC");
+        $group_room_nolist = M()->query("SELECT `bld_id`,`unit`,`no` FROM `xk_roomlist` ". $where . "  GROUP BY bld_id, unit, no ORDER BY  bld_id,cast(unit as SIGNED),cast(no as SIGNED),id asc");
+        $group_room_no = M()->query("SELECT * FROM `xk_roomlist` ". $where . "  ORDER BY bld_id,cast(unit as SIGNED),cast(floor as SIGNED),cast(no as SIGNED),id ASC");
+        $ysroom = M()->query("SELECT count(1) as yscount,sum(total) as cjtotal FROM `xk_roomlist` ". $where . " AND is_xf=1 ORDER BY bld_id,cast(unit as SIGNED),cast(floor as SIGNED),cast(no as SIGNED),id ASC");
+               
+        $this->assign('rooms', $group_room_no);
+        $this->assign('nolist', $group_room_nolist);
+        $this->assign('floors', $group_room_floor);
+        $this->assign('units', $group_room_unit);
+        $this->assign('ii', 0);
+        $this->assign('projinfo',$projinfo);
+        $this->assign('projid',$project_id);
+        $this->assign('bldid',0);
+        $this->assign('roomcount', count($group_room_no));
+        $this->assign('yscount', $ysroom[0]['yscount']);
+        $this->assign('wscount', count($group_room_no)-$ysroom[0]['yscount']);
+        $this->assign('cjtotal', round($ysroom[0]['cjtotal']/10000,2));
+        $this->assign('xsqhl', round($ysroom[0]['yscount']/count($group_room_no)*100,0));
+        
+        unset($where);
+        //获取相关楼栋
+        $build_ids = array();
+        foreach ($group_room_build as $group_room_build_k => $group_room_build_v) {
+                $build_ids[] = $group_room_build_v['bld_id'];
+        }
+        if (!empty($build_ids)) {
+			$Build = D('Common/Build');
+			$where['id'] = array('in', $build_ids);
+			$build_list = $Build->getBuildList($where, 'cast(buildname as SIGNED), id asc');
+        } else {
+			$build_list = array();
+        }
+        $build_new_list = array();
+        foreach ($build_list as $key => $build) {
+                $build_new_list[$build['id']] = $build;
+        }
+        $this->assign('builds', $build_new_list);
+        $this->assign('px', $px);
         
         $this->set_seo_title("LED大屏显示");
         $this->display();

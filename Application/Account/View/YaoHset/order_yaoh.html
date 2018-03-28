@@ -33,8 +33,11 @@
             }
             .content{
                 float:left;width:calc(83% - 1px);height:100%;margin-left: 2%;
-                background: #fffefe9e;
+                background: rgba(255, 254, 254, 0.62);
                
+            }
+            .thumbnail{
+                background-color:rgba(255, 255, 255, 0.6);
             }
             .start, .stop, .end  {
                 padding: 5px 25px;
@@ -89,6 +92,10 @@
             marquee{
                 height: calc(100% - 59px);
             }
+            #user-div{
+                height: calc(100% - 59px);
+                overflow: hidden;
+            }
             .col-sm-20{
                  width: 20%;
                  height: 100%;
@@ -105,6 +112,7 @@
                 line-height: 20px;
                 background:#fb7617;
                 color: #fff;
+                font-size:11px;
                 float: left;
             }
             .group-user{
@@ -115,6 +123,7 @@
             .group-table{
                 width: 100%;
                 color: #791311;
+                line-height: 22px;
             }
             #close-group{
                width: 20px;
@@ -122,7 +131,7 @@
                 float: right;
                 border-radius: 10px;
                 border: 1px solid #009688;
-                line-height: 20px;
+                line-height: 17px;
                 text-align: center;
                 color: #009688;
                 cursor: pointer;
@@ -130,22 +139,28 @@
             .group-title{
                 width: 100%;
                 margin-top: 10px;
-                color: #791311;
+                color: #fff;
+                background: rgba(143, 19, 17, 0.45);
+                font-size: 15px;
             }
             .group-title th{
                 width: 33%!important;
                 text-align: center;
             }
             .group-table tr>td:first-child{
-                width: 25%!important;
+                width: 33%!important;
                text-align: center;
             }
             .group-table tr>td:nth-child(2){
-                width: 50%!important;
+                width: 33%!important;
+                max-width: 60px;
                 text-align: center!important;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
             .group-table tr>td:nth-child(3){
-                width: 25%!important;
+                width: 33%!important;
                 text-align: center!important;
             }
             .close-add{
@@ -159,22 +174,22 @@
     <body style="width:100%;height:100%">
         <img id="bjimg" src="/Public/account/img/yaohbk.jpg" original="/Public/account/img/yaohbk.jpg" style="width:100%;height:100%;" >
         <div  class="yaohbackground">
-            <div style="float:left;width:15%;height:100%;background: #fffefe9e;">
+            <div style="float:left;width:15%;height:100%;background: rgba(255, 254, 254, 0.62);">
                 <div style="position: relative;top: 0;height: 59px;line-height: 59px;font-size: 20px;border-bottom: 1px solid red;text-align: center">待摇号</div>
                 <if condition="$isend eq 0">
-                    <marquee direction="up" scrollamount="10"  width="100%"   >
-                    <div style="position: relative;text-align: center;color: #770a07;">
+                    <!--<marquee direction="up" scrollamount="10"  width="100%"   >-->
+                    <div style="position: relative;text-align: center;color: #770a07;" id="user-div">
                         <table style="width: 90%;margin-left: 5%" id="user_list">
                         <foreach name="cstlist" item="vo" key="k">
                           <tr>
-                              <td style="width: 50%;text-align: left" data-id="<{$vo.id}>"><{$vo.customer_name}></td>
-                              <td style="width: 50%;text-align: right"><{$vo.cyjno}></td>
+                              <td style="width: 70%;text-align: left;max-width: 90px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis" data-id="<{$vo.id}>"><{$vo.customer_name}></td>
+                              <td style="width: 30%;text-align: right"><{$vo.cyjno}></td>
                           </tr>
                         </foreach>
                         </table>
                     </div>
 
-                  </marquee>
+                  <!--</marquee>-->
                 </if>
             </div>
             <div class="content">
@@ -199,7 +214,7 @@
                 </div>
                 <div  style="width:100%;height:calc(100% - 120px)">
                     <div style="width:90%;height:2%;"></div>
-                    <div style="min-width:1000px;width:90%;height:96%;margin-left: 5%;font-weight: 700;white-space: nowrap;overflow: hidden" id="div-group">
+                    <div style="min-width:1000px;width:90%;height:96%;margin-left: 5%;white-space: nowrap;overflow: hidden" id="div-group">
                         <if condition="$isend eq 0">
                                 <div class="col-sm-20" data-group="1" id="cz-div">
                                     <div class="thumbnail">
@@ -406,7 +421,7 @@
                            $("#add-group").remove();
                            $("#submit-yh").css("background-color","#e7e7e7").off("click");
                            $("#close-group").remove();
-                           layer_alert(data.info[0]);
+                           layer.msg(data.info[0]);
                        }else{
                            layer_alert(data.info);
                        }
