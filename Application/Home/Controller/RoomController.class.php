@@ -851,7 +851,7 @@ class RoomController extends BaseController
         
         $msg .='@@2        【天誉珑城】\n';
         $msg .='@@2         房源确认单\n\n';
-        $msg .="@@2选房顺序号:{$data['cyjno']}\n";
+        $msg .="@@2选房顺序号: 《 {$data['cyjno']} 》 \n";
         $msg .="@@2客户姓名:{$data['customer_name']}\n";
        
         foreach($nolist as $k => $v)
@@ -868,7 +868,7 @@ class RoomController extends BaseController
         $msg .= "@@2认购房间:{$no}\n";
         //$msg .= "@@2 {$no}\n";
         $msg .= "操作员:{$data['czy']}\n\n\n\n";
-        $msg .= "说明:请在20分钟内到指定区域打印认购书，否则我司有权将此房屋另售他人，不再另行通知!";
+        $msg .= "说明:请在30分钟内到指定区域打印认购书，否则我司有权将此房屋另售他人，不再另行通知!";
   
         $partner= C("PANTNER_ID");
         $apiKey= C("PANTNER_KEY");

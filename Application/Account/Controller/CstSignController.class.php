@@ -84,7 +84,7 @@ class CstSignController extends BaseController
             $b="AND c.batch_id =$bid";
         }
         if($search !== ''){
-            $s="AND (c.customer_name like '%$search%' OR c.like_p like '%".strencode($search)."%' OR c.like_c like '%".strencode($search)."%' )";
+            $s="AND (c.cyjno like '%$search%' OR c.customer_name like '%$search%' OR c.like_p like '%".strencode($search)."%' OR c.like_c like '%".strencode($search)."%' )";
         }
         if($zt<2){
             $z="AND c.is_sign=$zt";
@@ -98,11 +98,17 @@ class CstSignController extends BaseController
             $this->assign('is_print', $pzcs['cs_value']);
         }
         
+        $orderby="CAST(c.cyjno AS SIGNED),c.id";
+        if ($zt==1)
+        {
+            $orderby="c.sign_time desc,CAST(c.cyjno AS SIGNED),c.id";
+        }
+        
         $count=M()->table("xk_choose c")->where("1 = 1 and status=1 $z $p $b $s")->count();
         $slinfo=M("choose c")->field('count(1) as zgs,sum(case when is_sign=1 then 1 else 0 end) as yqd,sum(case when is_sign=1 then 0 else 1 end) as wqd')->where("1 = 1 and status=1 $p $b $s")->select();
         $all_page=ceil($count/$page_num);
         $res=M()->table("xk_choose c")->field("c.*,p.id zid")->join('LEFT JOIN xk_pzcsvalue p ON p.project_id=c.project_id AND p.batch_id=c.batch_id AND p.pzcs_id=2 AND p.cs_value=-1')
-                ->order("c.cyjno,c.id")
+                ->order($orderby)
                 ->where("1 = 1 and status=1 $z $p $b $s")->limit($page*$page_num,$page_num)->select();
         $this->assign('page_num', $page_num);
         $this->assign('page', $page+1);
@@ -156,7 +162,7 @@ class CstSignController extends BaseController
                         }
                     }
                     if($auto_cst === 1){
-                        $this->success("auto_one");
+                        echo json_encode(['status'=>3,'id'=>$auto_arr[0]['id']]);exit;
                     }elseif($auto_cst === 0){
                         $name=M()->table("xk_choose2user_log")->where("choose_id={$res[0]['id']} AND log_type='签到'")->order("id desc")->find();
                         $this->success($name);
@@ -235,8 +241,13 @@ class CstSignController extends BaseController
         $name=I("name",'','trim');
         if($zt===0){
             $data['log_type']='取消签到';
+            $data1['is_sign']=0;
+            $data1['sign_time']=0;
         }else{
             $data['log_type']='签到';
+            $data1['is_sign']=1;
+            $data1['sign_time']=time();
+           
         }
         $choose=M("choose")->where("id={$id}")->find();
         if(empty($choose))
@@ -250,7 +261,7 @@ class CstSignController extends BaseController
         $data['cst_name']=$name;
         M()->startTrans();//开启事务
         try{
-            M()->table('xk_choose')->where("id=$id")->save(['is_sign'=>$zt,'sign_time' => time()]);
+            M()->table('xk_choose')->where("id=$id")->save($data1);
             M()->table("xk_choose2user_log")->add($data);
             if($zt!==0){
                 //是否打印小票
@@ -456,7 +467,7 @@ class CstSignController extends BaseController
         $nolist=$pieces = explode(";", $data['cardno']);
         
         $msg .='@@2      【天誉珑城--选房单】\n\n';
-        $msg .="@@2选房顺序号:{$data['cyjno']}\n";
+        $msg .="@@2选房顺序号: 《 {$data['cyjno']} 》 \n";
         $msg .="@@2客户姓名:{$data['customer_name']}\n";
         foreach($nolist as $k => $v)
         {
@@ -468,9 +479,10 @@ class CstSignController extends BaseController
                  $msg .="         {$v}\n";
             }
         }
-
         $msg .="意向房源(置业顾问填):\n";
-        $msg .="@@2 6栋     单元        号房\n\n\n\n";
+        $msg .="@@2 6栋     单元        号房\n";
+        $msg .="@@2 6栋     单元        号房\n";
+        $msg .="@@2 6栋     单元        号房\n\n\n";
         $msg .="签到时间:{$data['tm']}\n";
 
         $partner= C("PANTNER_ID");

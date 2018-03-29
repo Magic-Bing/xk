@@ -59,7 +59,7 @@ class YaoHsetController extends BaseController {
         }
         /*$pd=M()->table("xk_pzcsvalue")->where("project_id={$yaohset['project_id']} and batch_id={$yaohset['batch_id']} and pzcs_id=10 and cs_value=-1 ")->find();
         if($pd){*/
-            $cstlist=D("ChooseUser")->join(" left join (select * from xk_yaohresult where is_yx=1) s on xk_choose.id=s.cstid")->field('xk_choose.id,xk_choose.customer_name,xk_choose.customer_phone,xk_choose.cardno,xk_choose.cyjno')->where(" xk_choose.project_id={$yaohset['project_id']} and xk_choose.batch_id={$yaohset['batch_id']} and xk_choose.status=1 and s.id is null")->order("xk_choose.cyjno")->select();
+            $cstlist=D("ChooseUser")->join(" left join (select * from xk_yaohresult where is_yx=1) s on xk_choose.id=s.cstid")->field('xk_choose.id,xk_choose.customer_name,xk_choose.customer_phone,xk_choose.cardno,xk_choose.cyjno')->where(" xk_choose.project_id={$yaohset['project_id']} and xk_choose.batch_id={$yaohset['batch_id']} and xk_choose.status=1 and s.id is null")->order("CAST(xk_choose.cyjno AS SIGNED), xk_choose.id")->select();
       /*  }else{
             $cstlist=D("ChooseUser")->join(" left join (select * from xk_yaohresult where is_yx=1) s on xk_choose.id=s.cstid")->field('xk_choose.id,xk_choose.customer_name,xk_choose.customer_phone,xk_choose.cardno,xk_choose.cyjno')->where(" xk_choose.project_id={$yaohset['project_id']} and xk_choose.batch_id={$yaohset['batch_id']} and xk_choose.is_sign=1 and xk_choose.status=1 and s.id is null")->order("xk_choose.cyjno")->select();
         }*/

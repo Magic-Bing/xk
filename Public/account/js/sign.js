@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/1/22 0022.
  */
 var num=1;
-var is_print=-1;
+var is_print=1;
 function user_ajax() {
     var tr=$("#sample-table-choose .user-tr");
     if(tr.length === 1){
@@ -126,7 +126,21 @@ $(function () {
             });
         }
     });
-
+//搜索框
+    $(".search-btn").on("click",function () {
+        var search=$("#search-one").val();
+        var pid=$('#project-not-sign').val();
+        var bid=$('#batch-one').val();
+        num=1;
+        var row=$('#new_rows').val();
+        $.post(sign.user_list,{pid:pid,bid:bid,search:search,num:row,zt:zt},function (data) {
+            $("#user_list").html(data);
+            $("#zgs").text($("#h_zgs").val());
+            $("#yqd").text($("#h_yqd").val());
+            $("#wqd").text($("#h_wqd").val());
+            user_ajax();
+        });
+    });
     //自定义跳转页数和显示条数
     $(document).on("keyup",'#new_rows',function () {
         var search=$("#search-one").val();
@@ -232,9 +246,13 @@ $(function () {
         $("#uphone").val($.trim(td.eq(2).text()));
         $("#card").val($.trim(td.eq(3).text()));
         $("#cyjno").val($.trim(td.eq(4).text()));
-        $("#money").val($(this).attr('money'));
+        //$("#money").val($(this).attr('money'));
         $("#ywy").val($.trim(td.eq(5).text()));
         $("#yphone").val($(this).attr('data-yp'));
+        if($(this).attr('data_signtime')!="1970-01-01 08:00:00")
+            $("#sign_time").val($(this).attr('data_signtime'));
+        else
+             $("#sign_time").val("");
         is_print=$("#is_print").val();
         if(pd === 0){
             $("#button-sign").show().attr("data-id",id).attr("data-name",$.trim(td.eq(1).text()));
@@ -244,9 +262,13 @@ $(function () {
         }else{
             $("#sign-reset").show().attr("data-id",id).attr("data-name",$.trim(td.eq(1).text()));
             $("#button-sign").hide();
-            if (is_print==1)
+            if (is_print==1 || is_print=="")
             {
                 $("#print-pj").show();
+            }
+            else
+            {
+                $("#print-pj").hide();
             }
         }
     });
@@ -263,9 +285,13 @@ $(function () {
                 $("#batch-one").trigger("change");
                 $("#sign-reset").show().attr('data-id',$("#button-sign").attr('data-id')).attr('data-name',$("#button-sign").attr('data-name'));
                 $("#button-sign").hide();
-                if (is_print==1)
+                if (is_print==1 || is_print=="")
                 {
                     $("#print-pj").show();
+                }
+                else
+                {
+                    $("#print-pj").hide();
                 }
                 // setTimeout(function () {
                 //     window.location.reload();
@@ -273,6 +299,14 @@ $(function () {
                 $("#wqd").text($("#wqd").text() -1);
                 $("#yqd").text($("#yqd").text() +1);
                 
+                var oDate = new Date(); //实例一个时间对象；
+                $year=oDate.getFullYear();   //获取系统的年；
+                $month=oDate.getMonth()+1;   //获取系统月份，由于月份是从0开始计算，所以要加1
+                $date=oDate.getDate(); // 获取系统日，
+                $xs1=oDate.getHours(); //获取系统时，
+                $f1=oDate.getMinutes(); //分
+                $m1=oDate.getSeconds(); //秒
+                $("#sign_time").val(""+$year +"-"+$month+"-"+$date+" "+ $xs1 + ":"+$f1+":"+$m1); 
             }else{
                 layer_alert('异常错误，请刷新重试');
             }
@@ -295,6 +329,7 @@ $(function () {
                 
                 $("#wqd").text($("#wqd").text() +1);
                 $("#yqd").text($("#yqd").text() -1);
+                $("#sign_time").val("");
             }else{
                 layer_alert('异常错误，请刷新重试');//data就是异常信息
             }

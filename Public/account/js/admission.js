@@ -115,7 +115,24 @@ $(function () {
             });
         }
     });
-
+		//搜索框
+    $(".search-btn").on("click",function () {
+        var search=$("#search-one").val();
+        var pid=$('#project-not-sign').val();
+        var bid=$('#batch-one').val();
+        num=1;
+        var row=$('#new_rows').val();
+            if(Number(bid) === 0){
+                $(this).val('');
+                $(this).blur();
+                layer_alert("请先选择项目和批次！");
+                return false;
+            }
+            $.post(admission.user_list,{pid:pid,bid:bid,search:search,num:row,zt:zt},function (data) {
+                $("#user_list").html(data);
+                user_ajax();
+            });
+    });
     //自定义跳转页数和显示条数
     $(document).on("keyup",'#new_rows',function () {
         var search=$("#search-one").val();
@@ -224,8 +241,8 @@ $(function () {
         }else{
             $("#sign-reset").show().attr("data-id",id).attr("data-name",$.trim(td.eq(1).text()));
             $("#button-sign").hide();
-            $("#admission-button button").css("margin-left","18px");
-            $("#print-pj").show();
+            //$("#admission-button button").css("margin-left","18px");
+            //$("#print-pj").show();
         }
     });
 
@@ -244,8 +261,9 @@ $(function () {
                 $("#button-sign").hide();
                 $("#shadow").hide();
                 $("#admission").hide();
-                $("#admission-button button").css("margin-left","18px");
-                $("#print-pj").show();
+                //$("#admission-button button").css("margin-left","18px");
+                //$("#print-pj").show();
+                
                 // setTimeout(function () {
                 //     window.location.reload();
                 // },1000)

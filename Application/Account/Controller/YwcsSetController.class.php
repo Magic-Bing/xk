@@ -39,7 +39,7 @@ class YwcsSetController extends BaseController {
             $search_batch_id = I('batch_id', 0, 'intval');
             session("selected_batch",$search_batch_id);
         }else{
-            $search_batch_id = (int)session("selected_batch");
+            //$search_batch_id = (int)session("selected_batch");
         }
         
         //用户的项目  
@@ -88,7 +88,7 @@ class YwcsSetController extends BaseController {
          $kpmsinfo=D("pzcs a")->field("a.*,b.id as bid,b.name as bname,b.proj_id as pid,cs.cs_value,cs.id as cs_id")
                 ->join("inner join xk_kppc b on 1=1")
                 ->join("left join (select * from xk_pzcsvalue cs where cs.batch_id=$search_batch_id and cs.project_id=$search_project_id ) cs on cs.pzcs_id=a.id")
-                ->where("a.yw_type='批次' and   b.id=$search_batch_id and b.proj_id=$search_project_id and a.group_id=0 ")
+                ->where("a.yw_type='批次' and   b.id=$search_batch_id and b.proj_id=$search_project_id and a.group_id=0 and 666=666")
                 ->order("a.group_id,a.px")->select();
         //电子开盘参数
         $dzkp_cslist=D("pzcs a")->field("a.*,b.id as bid,b.name as bname,b.proj_id as pid,cs.cs_value,cs.id as cs_id")
@@ -111,7 +111,6 @@ class YwcsSetController extends BaseController {
              $kpmsinfo[0]['showdzkp']="block";
              $kpmsinfo[0]['showwxkp']="none";
          }
-        
         $this->assign('kpmsinfo', $kpmsinfo[0]); 
         $this->assign('dzkplist', $dzkp_cslist);
         $this->assign('wxkplist', $wxkp_cslist);

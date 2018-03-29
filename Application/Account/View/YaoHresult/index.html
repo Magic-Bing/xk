@@ -17,6 +17,9 @@
                     color: red;
                     font-weight: 700;
                 }
+                #sample-table-choose td{
+                    vertical-align: middle;
+                }
 	</style>
 </block>
 
@@ -172,8 +175,8 @@
 								<td class="hidden-480">
                                                                     <{:rsa_decode($list_vo['customer_phone'],getChoosekey())}>
 								</td>
-								<td>
-                                                                     <{:rsa_decode($list_vo['cardno'],getChoosekey())}>
+								<td class="hidden-480" >
+                                                                    <div style="width:145px;word-wrap: break-word;"><{:rsa_decode($list_vo['cardno'],getChoosekey())}></div>
 								</td>
                                                                 <td>
                                                                     第<span style="font-weight: 700;color:red;"><{$list_vo.group}></span>组

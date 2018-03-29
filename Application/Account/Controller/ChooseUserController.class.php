@@ -117,25 +117,25 @@ class ChooseUserController extends BaseController {
         //条件
         $choose_where = array();
         if (!empty($search_project_id)) {
-            $choose_where['project_id'][] = $search_project_id;
+            $choose_where['choose.project_id'][] = $search_project_id;
         } else {
             //项目条件
             if (!empty($user_project_ids)) {
-                $choose_where['project_id'][] = array('in', $user_project_ids);
+                $choose_where['choose.project_id'][] = array('in', $user_project_ids);
             } else {
-                $choose_where['project_id'][] = '-99999';
+                $choose_where['choose.project_id'][] = '-99999';
             }
         }
 
 
         if (!empty($search_batch_id)) {
-            $choose_where['batch_id'][] = $search_batch_id;
+            $choose_where['choose.batch_id'][] = $search_batch_id;
         } else {
             //批次条件
             if (!empty($user_batch_ids)) {
-                $choose_where['batch_id'] = array('in', $user_batch_ids);
+                $choose_where['choose.batch_id'] = array('in', $user_batch_ids);
             } else {
-                $choose_where['batch_id'] = '-99999';
+                $choose_where['choose.batch_id'] = '-99999';
             }
         }
 
@@ -152,7 +152,7 @@ class ChooseUserController extends BaseController {
 
         if ($status !== "") {
 //            echo $status;exit;
-            $choose_where['status'] = (int) $status;
+            $choose_where['choose.status'] = (int) $status;
         }
         if (!empty($search_uid)) {
             if ($search_uid === 1) {
@@ -183,9 +183,20 @@ class ChooseUserController extends BaseController {
 
         //取范围
         $limit = $Page->firstRow . ',' . $Page->listRows;
-        $choose_list = $ChooseView->getList(
-                $choose_where, '*', 'project_id desc,batch_id desc,status desc ,id ASC', $limit
-        );
+        /*$choose_list = $ChooseView->getList(
+                $choose_where, '*', 'project_id desc,batch_id desc,status desc ,CONVERT(Choose.cyjno,SIGNED),id ASC', $limit
+        );*/
+        $choose_list = M("choose choose") 
+                ->join(" left join xk_Project Project ON Choose.project_id = Project.id ")
+                ->join(" left join xk_kppc Kppc ON Choose.batch_id = Kppc.id  ")
+                ->join(" left join xk_roomlist rm1 ON rm1.cstid = Choose.id ")
+                ->join(" left join xk_roomlist rm2 ON rm2.id = Choose.room ")
+                ->join(" LEFT JOIN xk_user us ON us.mobile = Choose.ywyphone and us.cp_id=Project.cp_id ")
+                ->join(" LEFT JOIN xk_yaohresult y ON y.cstid = Choose.id ")
+                
+                ->field(" Choose.id AS id,Choose.project_id AS project_id,Choose.batch_id AS batch_id,Choose.customer_name AS customer_name,Choose.customer_phone AS customer_phone,Choose.cardno AS cardno,Choose.cyjno AS cyjno,Choose.row_number AS row_number,Choose.money AS money,Choose.area AS area,Choose.price AS price,Choose.house_type AS house_type,Choose.floor AS floor,Choose.room AS room,Choose.password AS password,Choose.status AS status,Choose.add_time AS add_time,Choose.add_ip AS add_ip,Choose.ywy AS ywy,Choose.ywyphone AS ywyphone,Choose.like_c AS like_c,Choose.like_p AS like_p,Choose.is_admission AS is_admission,Choose.is_sign AS is_sign,Project.id AS project_id,Project.name AS project_name,Project.cp_id AS project_cp_id,Project.address AS project_address,Project.mobile AS project_mobile,Project.projfzr AS project_projfzr,Project.createdate AS project_createdate,Project.status AS project_status,Kppc.id AS batch_id,Kppc.proj_id AS batch_project_id,Kppc.name AS batch_name,Kppc.kptime AS batch_open_time,Kppc.roomscount AS batch_rooms_count,rm1.id AS room_id,rm1.buildname AS buildname,rm1.unit AS unit,rm1.floor AS floor,rm1.room AS rm,rm2.buildname AS buildname_one,rm2.unit AS unit_one,rm2.floor AS floor_one,rm2.room AS rm_one,us.id AS us_id,y.id AS yid ")
+                -> where($choose_where) -> order("choose.project_id desc,choose.batch_id desc,choose.status desc ,CONVERT(choose.cyjno,SIGNED),choose.id ASC")
+                ->limit($limit)->select();
         $p = I('p', '1', 'intval');
         $this->assign('p', $p);
         $this->assign('total_pages', $total_pages);
@@ -929,6 +940,8 @@ class ChooseUserController extends BaseController {
         ) {
             $this->error("导入失败，你不能导入数据到该项目！");
         }
+        //判断是电子开盘还是微信开盘，$pd_type不为空的时候为电子开盘，为空是微信开盘
+        $pd_type=M()->table("xk_paczvalue")->where('project_id='.$project_id.' and batch_id='.$batch_id.' and pzcs_id=1 and cs_value=1')->find();
         unset($excels[1]);
         unset($excels[2]);
         $b_excel = array_merge($excels);
@@ -950,9 +963,24 @@ class ChooseUserController extends BaseController {
         $key_arr = [];
         for ($k = 0; $k < count($excels); $k++) {
             for ($i = 0; $i < $k; $i++) {
-                if ((string) $excels[$k]['B'] === (string) $excels[$i]['B']  ) {
-                    $key_arr[] = $k;
-                    $key_arr[] = $i;
+                if(empty($pd_type)){//微信开盘
+                    if ((string) $excels[$k]['B'] === (string) $excels[$i]['B']  ) {//判断手机号是否重复，针对微信开盘
+                        $key_arr[] = $k;
+                        $key_arr[] = $i;
+                    }
+                }else{//电子
+                    if (empty((string) $excels[$k]['C'])) {
+                        $key_arr[] = $k;
+                    }
+                    if (empty((string) $excels[$i]['C'])) {
+                        $key_arr[] = $i;
+                    }
+                    if ($this->is_id_card((string) $excels[$k]['C'])) {
+                        $key_arr[] = $k;
+                    }
+                    if ($this->is_id_card((string) $excels[$i]['C'])) {
+                        $key_arr[] = $i;
+                    }
                 }
                 if (empty((string) $excels[$k]['B'])) {
                     $key_arr[] = $k;

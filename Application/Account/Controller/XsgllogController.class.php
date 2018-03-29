@@ -89,7 +89,7 @@ class XsgllogController extends BaseController {
         //用户信息视图
         $TradeView = D('Common/TradeView');
         $res = $TradeView->where("Trade.id=$id")->find();
-        $res['customer_phone']=rsa_decode($res['customer_phone'],getChoosekey());
+        $res['cst_phone']=rsa_decode($res['cst_phone'],getChoosekey());
         
         if( !empty($res['cardno']) && $res['cardno']!="")
         {
@@ -117,7 +117,6 @@ class XsgllogController extends BaseController {
                 $res['cardno2']="";
             }
         }
-        
         $this->assign($res);
 //        echo json_encode($res);exit;
         $arr=explode(".",$name);
@@ -249,7 +248,7 @@ class XsgllogController extends BaseController {
         }
         //是否只查看超时数据
         if (!empty($is_cs) && $is_cs ==1) {
-            $where[] = " TIMESTAMPDIFF(MINUTE, FROM_UNIXTIME( tradetime,'%Y-%m-%d  %H:%i:%s'),now() ) >20 ";
+            $where[] = " TIMESTAMPDIFF(MINUTE, FROM_UNIXTIME( tradetime,'%Y-%m-%d  %H:%i:%s'),now() ) >30 ";
         }
         
         $this->assign('status', $status);
