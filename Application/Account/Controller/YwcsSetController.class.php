@@ -39,7 +39,7 @@ class YwcsSetController extends BaseController {
             $search_batch_id = I('batch_id', 0, 'intval');
             session("selected_batch",$search_batch_id);
         }else{
-            //$search_batch_id = (int)session("selected_batch");
+            $search_batch_id = (int)session("selected_batch");
         }
         
         //用户的项目  
