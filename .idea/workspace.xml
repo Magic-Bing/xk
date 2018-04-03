@@ -3,11 +3,26 @@
   <component name="ChangeListManager">
     <list default="true" id="d93e351b-3e78-4fb4-bd62-b1a84d311097" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/ChooseUserController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/ChooseUserController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/CstSignController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/CstSignController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/HxsetController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/HxsetController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/LoginController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/LoginController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/PrintingController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/PrintingController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/WeixBuyledController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/WeixBuyledController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/WeixBuylogController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/WeixBuylogController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/WeixBuysetController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/WeixBuysetController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/XsglledController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/XsglledController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/XsgllogController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/XsgllogController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/YaoHresultController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/YaoHresultController.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/YaoHsetController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/YaoHsetController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/YaoHuserController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/YaoHuserController.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/Controller/YwcsSetController.class.php" afterPath="$PROJECT_DIR$/Application/Account/Controller/YwcsSetController.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/Common/base.html" afterPath="$PROJECT_DIR$/Application/Account/View/Common/base.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/YaoHset/add.html" afterPath="$PROJECT_DIR$/Application/Account/View/YaoHset/add.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/YaoHset/order_yaoh.html" afterPath="$PROJECT_DIR$/Application/Account/View/YaoHset/order_yaoh.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Account/View/YwcsSet/index.html" afterPath="$PROJECT_DIR$/Application/Account/View/YwcsSet/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Common/Model/ChooseViewModel.class.php" afterPath="$PROJECT_DIR$/Application/Common/Model/ChooseViewModel.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/Login/index.html" afterPath="$PROJECT_DIR$/Application/Home/View/Login/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Public/account/js/account.js" afterPath="$PROJECT_DIR$/Public/account/js/account.js" />
     </list>
@@ -30,21 +45,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Application/Account/View/YwcsSet/index.html">
+      <file leaf-file-name="YwcsSetController.class.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Application/Account/Controller/YwcsSetController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="574">
+              <caret line="114" column="0" lean-forward="false" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="YwcsSetController.class.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Application/Account/Controller/YwcsSetController.class.php">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Account/View/YwcsSet/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="42" column="9" lean-forward="true" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
+            <state relative-caret-position="255">
+              <caret line="126" column="26" lean-forward="true" selection-start-line="120" selection-start-column="17" selection-end-line="126" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -62,12 +77,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>console</find>
-      <find>morezc</find>
-      <find>shadow-div</find>
-      <find>div-qzxfdhk</find>
-      <find>aj-price-one</find>
-      <find>disabled</find>
       <find>select-pay</find>
       <find>print_xp</find>
       <find>tb</find>
@@ -92,6 +101,12 @@
       <find>sign-reset</find>
       <find>speckText</find>
       <find>js-choose-user-excel-import-tpl-btn</find>
+      <find>$choose_activity_list</find>
+      <find>selected_project</find>
+      <find>session(&quot;selected_batch&quot;,null);</find>
+      <find>session(&quot;selected_batch&quot;,');</find>
+      <find>session(&quot;selected_batch&quot;,'');</find>
+      <find>lidiv</find>
     </findStrings>
     <replaceStrings>
       <replace>&lt;</replace>
@@ -122,8 +137,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Application/User/View/Common/base.html" />
-        <option value="$PROJECT_DIR$/Application/User/View/Index/collectedroom.html" />
         <option value="$PROJECT_DIR$/Application/Saler/View/Project/dz_index.html" />
         <option value="$PROJECT_DIR$/Application/Saler/View/Search/dz_index.html" />
         <option value="$PROJECT_DIR$/Application/User/View/Index/room_detail.html" />
@@ -135,7 +148,6 @@
         <option value="$PROJECT_DIR$/Application/Account/View/Jcsjroom/room.html" />
         <option value="$PROJECT_DIR$/Application/Account/Controller/YaoHuserController.class.php" />
         <option value="$PROJECT_DIR$/Application/Account/Controller/YaoHresultController.class.php" />
-        <option value="$PROJECT_DIR$/Application/Account/View/YwcsSet/index.html" />
         <option value="$PROJECT_DIR$/Application/Account/View/WeixBuyset/AnalyticalRoomHot.html" />
         <option value="$PROJECT_DIR$/Application/Account/Controller/WeixBuysetController.class.php" />
         <option value="$PROJECT_DIR$/Application/Account/Controller/HxsetController.class.php" />
@@ -152,26 +164,29 @@
         <option value="$PROJECT_DIR$/Application/Common/Conf/config.php" />
         <option value="$PROJECT_DIR$/Application/Home/View/Room/index.html" />
         <option value="$PROJECT_DIR$/Public/xk/js/xk.js" />
-        <option value="$PROJECT_DIR$/Application/Account/View/YaoHset/history_order.html" />
         <option value="$PROJECT_DIR$/Application/Home/Controller/RoomController.class.php" />
         <option value="$PROJECT_DIR$/Public/common/js/layer/skin/default/layer.css" />
         <option value="$PROJECT_DIR$/Application/Account/View/CstSign/user_list.html" />
         <option value="$PROJECT_DIR$/Application/Account/View/Admission/user_list.html" />
         <option value="$PROJECT_DIR$/Public/account/js/sign.js" />
-        <option value="$PROJECT_DIR$/Application/Account/View/Admission/index.html" />
         <option value="$PROJECT_DIR$/Public/account/js/admission.js" />
-        <option value="$PROJECT_DIR$/Application/Account/View/YaoHset/order_yaoh.html" />
         <option value="$PROJECT_DIR$/Application/Common/Model/ChooseViewModel.class.php" />
-        <option value="$PROJECT_DIR$/Application/Account/View/CstSign/index.html" />
-        <option value="$PROJECT_DIR$/Application/Account/Controller/CstSignController.class.php" />
-        <option value="$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php" />
         <option value="$PROJECT_DIR$/Application/Account/View/Common/666.html" />
         <option value="$PROJECT_DIR$/Application/Home/View/Login/index.html" />
         <option value="$PROJECT_DIR$/Application/Account/View/Common/base.html" />
         <option value="$PROJECT_DIR$/Public/account/js/account.js" />
-        <option value="$PROJECT_DIR$/Application/Account/Controller/ChooseUserController.class.php" />
         <option value="$PROJECT_DIR$/Application/Account/Controller/YaoHsetController.class.php" />
         <option value="$PROJECT_DIR$/Application/Account/View/YaoHset/add.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/YaoHset/order_yaoh.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/YaoHset/history_order.html" />
+        <option value="$PROJECT_DIR$/Application/Account/Controller/SelectRoomController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Account/View/SelectRoom/index.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/CstSign/index.html" />
+        <option value="$PROJECT_DIR$/Application/Account/View/Admission/index.html" />
+        <option value="$PROJECT_DIR$/Application/Account/Controller/CstSignController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Account/Controller/ChooseUserController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Account/View/YwcsSet/index.html" />
         <option value="$PROJECT_DIR$/Application/Account/Controller/YwcsSetController.class.php" />
       </list>
     </option>
@@ -208,7 +223,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -218,20 +232,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yun_xk" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Public" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -339,12 +339,13 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.file-colors" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="D:/Reimbursement" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
   </component>
@@ -509,7 +510,10 @@
       <workItem from="1522223248368" duration="5320000" />
       <workItem from="1522286912514" duration="8440000" />
       <workItem from="1522307520893" duration="6829000" />
-      <workItem from="1522372730119" duration="10943000" />
+      <workItem from="1522372730119" duration="12678000" />
+      <workItem from="1522400712181" duration="73000" />
+      <workItem from="1522630993859" duration="13258000" />
+      <workItem from="1522717360797" duration="5673000" />
     </task>
     <task id="LOCAL-00001" summary="入场审核导出修改">
       <created>1520477627031</created>
@@ -637,19 +641,27 @@
       <option name="project" value="LOCAL" />
       <updated>1522314580343</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="客户导入分电子和微信校验，优化部分">
+      <created>1522395667472</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1522395667472</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="874797000" />
+    <option name="totallyTimeSpent" value="895536000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1924" height="1056" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2360515" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19152361" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329718" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1335837" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329718" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3167028" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -663,7 +675,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329718" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329718" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -739,7 +750,8 @@
     <MESSAGE value="上传数据库文件" />
     <MESSAGE value="签到.入场，摇号，以及部分样式优化" />
     <MESSAGE value="优化" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化" />
+    <MESSAGE value="客户导入分电子和微信校验，优化部分" />
+    <option name="LAST_COMMIT_MESSAGE" value="客户导入分电子和微信校验，优化部分" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -748,41 +760,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuyset/AnalyticalRoomHot.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="86">
-          <caret line="88" column="43" lean-forward="false" selection-start-line="88" selection-start-column="43" selection-end-line="88" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/WeixBuysetController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="688">
-          <caret line="533" column="31" lean-forward="false" selection-start-line="533" selection-start-column="31" selection-end-line="533" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/HxsetController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="56" column="62" lean-forward="false" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/YhqxprojController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="18" column="35" lean-forward="false" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/Yhqxproj/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13317">
-          <caret line="579" column="47" lean-forward="false" selection-start-line="579" selection-start-column="34" selection-end-line="579" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Account/Controller/BaseController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6992">
@@ -895,24 +872,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/View/Room/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7866">
-          <caret line="342" column="21" lean-forward="false" selection-start-line="342" selection-start-column="21" selection-end-line="342" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Home/Controller/RoomController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="10672">
           <caret line="697" column="53" lean-forward="false" selection-start-line="697" selection-start-column="53" selection-end-line="697" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/YaoHset/history_order.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4025">
-          <caret line="175" column="69" lean-forward="false" selection-start-line="175" selection-start-column="69" selection-end-line="175" selection-end-column="69" />
         </state>
       </provider>
     </entry>
@@ -951,20 +914,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/Admission/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7084">
-          <caret line="308" column="34" lean-forward="false" selection-start-line="308" selection-start-column="34" selection-end-line="308" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/YaoHset/order_yaoh.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
-          <caret line="425" column="88" lean-forward="false" selection-start-line="425" selection-start-column="88" selection-end-line="425" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Common/Model/ChooseViewModel.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="542">
@@ -972,36 +921,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/CstSignController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="164" column="69" lean-forward="false" selection-start-line="164" selection-start-column="69" selection-end-line="164" selection-end-column="69" />
-          <folding>
-            <element signature="e#473#1653#0#PHP" expanded="false" />
-            <marker date="1522308586813" expanded="false" signature="1702:3100" ph="..." />
-            <marker date="1522308586813" expanded="true" signature="20244:20888" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="666">
-          <caret line="178" column="67" lean-forward="true" selection-start-line="178" selection-start-column="67" selection-end-line="178" selection-end-column="67" />
-          <folding>
-            <element signature="e#416#1634#0#PHP" expanded="false" />
-            <element signature="e#11268#19014#0#PHP" expanded="false" />
-            <marker date="1522308586891" expanded="true" signature="10131:10178" ph="..." />
-            <marker date="1522308586891" expanded="true" signature="10669:11133" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Common/Conf/config.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
           <caret line="46" column="17" lean-forward="false" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1017,9 +940,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="690">
           <caret line="51" column="40" lean-forward="false" selection-start-line="51" selection-start-column="40" selection-end-line="51" selection-end-column="40" />
-          <folding>
-            <marker date="1517882011459" expanded="true" signature="4112:4229" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1027,7 +947,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
           <caret line="76" column="18" lean-forward="false" selection-start-line="76" selection-start-column="18" selection-end-line="76" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1035,7 +954,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1173">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1043,7 +961,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="795">
           <caret line="358" column="52" lean-forward="true" selection-start-line="358" selection-start-column="52" selection-end-line="358" selection-end-column="52" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1051,20 +968,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
           <caret line="128" column="0" lean-forward="false" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
-          <folding>
-            <marker date="1522230319562" expanded="true" signature="9727:9741" ph="..." />
-            <marker date="1522230319562" expanded="true" signature="11913:11929" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/CstSign/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="169" column="32" lean-forward="false" selection-start-line="169" selection-start-column="23" selection-end-line="169" selection-end-column="32" />
-          <folding>
-            <marker date="1522289588531" expanded="true" signature="5438:5452" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1072,63 +975,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="633">
           <caret line="1074" column="50" lean-forward="true" selection-start-line="1074" selection-start-column="15" selection-end-line="1074" selection-end-column="50" />
-          <folding>
-            <element signature="e#43114#43625#0" expanded="false" />
-            <element signature="e#43704#44731#0" expanded="false" />
-            <element signature="e#44806#47900#0" expanded="false" />
-            <element signature="e#47976#51250#0" expanded="false" />
-            <element signature="e#51392#51558#0" expanded="false" />
-            <element signature="e#51632#51772#0" expanded="false" />
-            <element signature="e#51851#54158#0" expanded="false" />
-            <element signature="e#54238#56744#0" expanded="false" />
-            <element signature="e#56821#57312#0" expanded="false" />
-            <element signature="e#57395#58292#0" expanded="false" />
-            <element signature="e#58442#58650#0" expanded="false" />
-            <element signature="e#58739#59065#0" expanded="false" />
-            <element signature="e#59146#61069#0" expanded="false" />
-            <element signature="e#60405#60566#0" expanded="false" />
-            <element signature="e#60673#61045#0" expanded="false" />
-            <element signature="e#61209#61397#0" expanded="false" />
-            <element signature="e#61476#61772#0" expanded="false" />
-            <element signature="e#61847#62333#0" expanded="false" />
-            <element signature="e#62403#62892#0" expanded="false" />
-            <element signature="e#62960#63440#0" expanded="false" />
-            <element signature="e#63518#64395#0" expanded="false" />
-            <element signature="e#64811#65114#0" expanded="false" />
-            <element signature="e#65195#67141#0" expanded="false" />
-            <element signature="e#67275#67422#0" expanded="false" />
-            <element signature="e#67486#71377#0" expanded="false" />
-            <element signature="e#71438#76505#0" expanded="false" />
-            <element signature="e#76591#77297#0" expanded="false" />
-            <element signature="e#77387#78551#0" expanded="false" />
-            <element signature="e#78636#80711#0" expanded="false" />
-            <element signature="e#80795#82690#0" expanded="false" />
-            <marker date="1522391451171" expanded="true" signature="6660:6717" ph="..." />
-            <marker date="1522391451171" expanded="true" signature="6757:6767" ph="..." />
-            <marker date="1522391451171" expanded="true" signature="6996:7054" ph="..." />
-            <marker date="1522391451171" expanded="true" signature="7160:7170" ph="..." />
-            <marker date="1522391451171" expanded="true" signature="7587:7645" ph="..." />
-            <marker date="1522391451171" expanded="true" signature="7812:7822" ph="..." />
-            <marker date="1522391451171" expanded="true" signature="7938:7982" ph="..." />
-            <marker date="1522391451171" expanded="true" signature="8094:8152" ph="..." />
-            <marker date="1522391451171" expanded="true" signature="8167:8178" ph="..." />
-            <marker date="1522391451171" expanded="true" signature="8206:8216" ph="..." />
-            <marker date="1522391451171" expanded="true" signature="11147:11222" ph="..." />
-            <marker date="1522391451171" expanded="true" signature="11269:11297" ph="..." />
-            <marker date="1522391451171" expanded="true" signature="12660:12717" ph="..." />
-            <marker date="1522391451171" expanded="true" signature="12758:12768" ph="..." />
-            <marker date="1522391451171" expanded="true" signature="13102:13160" ph="..." />
-            <marker date="1522391451171" expanded="true" signature="13265:13275" ph="..." />
-            <marker date="1522391451171" expanded="true" signature="13747:13805" ph="..." />
-            <marker date="1522391451171" expanded="true" signature="13980:13990" ph="..." />
-            <marker date="1522391451171" expanded="true" signature="14114:14158" ph="..." />
-            <marker date="1522391451171" expanded="true" signature="14286:14344" ph="..." />
-            <marker date="1522391451171" expanded="true" signature="14359:14370" ph="..." />
-            <marker date="1522391451171" expanded="true" signature="14625:14635" ph="..." />
-            <marker date="1522391451171" expanded="true" signature="21085:21095" ph="..." />
-            <marker date="1522391451171" expanded="true" signature="21554:21675" ph="..." />
-            <marker date="1522391451171" expanded="true" signature="21985:22110" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1136,7 +982,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-5865">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1144,7 +989,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
           <caret line="37" column="25" lean-forward="true" selection-start-line="29" selection-start-column="16" selection-end-line="37" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1152,7 +996,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
           <caret line="29" column="75" lean-forward="false" selection-start-line="29" selection-start-column="75" selection-end-line="29" selection-end-column="75" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1160,43 +1003,96 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="587" column="4" lean-forward="false" selection-start-line="587" selection-start-column="4" selection-end-line="588" selection-end-column="49" />
-          <folding>
-            <element signature="e#487#4185#0#PHP" expanded="false" />
-            <element signature="e#4243#6836#0#PHP" expanded="false" />
-            <element signature="e#6896#8361#0#PHP" expanded="false" />
-            <element signature="e#8366#13892#0#PHP" expanded="false" />
-            <element signature="e#13908#17787#0#PHP" expanded="false" />
-            <element signature="e#17798#20591#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/ChooseUserController.class.php">
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/YaoHset/order_yaoh.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="507">
-          <caret line="52" column="9" lean-forward="true" selection-start-line="47" selection-start-column="7" selection-end-line="52" selection-end-column="9" />
+        <state relative-caret-position="3519">
+          <caret line="153" column="34" lean-forward="false" selection-start-line="152" selection-start-column="14" selection-end-line="153" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/YaoHset/history_order.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4485">
+          <caret line="195" column="105" lean-forward="false" selection-start-line="195" selection-start-column="105" selection-end-line="195" selection-end-column="105" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/WeixBuyled/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="119" column="58" lean-forward="false" selection-start-line="119" selection-start-column="38" selection-end-line="119" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/WeixBuyledController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="715">
+          <caret line="175" column="55" lean-forward="true" selection-start-line="175" selection-start-column="55" selection-end-line="175" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/SelectRoomController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="82" column="79" lean-forward="false" selection-start-line="82" selection-start-column="79" selection-end-line="82" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/SelectRoom/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-920">
+          <caret line="143" column="87" lean-forward="false" selection-start-line="143" selection-start-column="87" selection-end-line="143" selection-end-column="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/CstSignController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4623">
+          <caret line="206" column="26" lean-forward="false" selection-start-line="206" selection-start-column="26" selection-end-line="206" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="212" column="14" lean-forward="false" selection-start-line="212" selection-start-column="14" selection-end-line="212" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/CstSign/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1058">
+          <caret line="173" column="12" lean-forward="false" selection-start-line="173" selection-start-column="12" selection-end-line="173" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/Admission/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="234" column="17" lean-forward="false" selection-start-line="234" selection-start-column="17" selection-end-line="234" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/View/Room/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="683" column="204" lean-forward="false" selection-start-line="683" selection-start-column="204" selection-end-line="683" selection-end-column="204" />
           <folding>
-            <element signature="e#8584#10131#0#PHP" expanded="false" />
-            <element signature="e#10215#16850#0#PHP" expanded="false" />
-            <element signature="e#16934#26287#0#PHP" expanded="false" />
-            <element signature="e#26371#28339#0#PHP" expanded="false" />
-            <element signature="e#28425#29512#0#PHP" expanded="false" />
-            <element signature="e#29534#29948#0#PHP" expanded="false" />
-            <element signature="e#29954#30356#0#PHP" expanded="false" />
-            <element signature="e#30435#32184#0#PHP" expanded="false" />
-            <element signature="e#32273#33975#0#PHP" expanded="false" />
-            <element signature="e#34027#34418#0#PHP" expanded="false" />
-            <element signature="e#34505#46963#0#PHP" expanded="false" />
-            <element signature="e#47049#49171#0#PHP" expanded="false" />
-            <element signature="e#49308#58976#0#PHP" expanded="false" />
-            <element signature="e#59050#59994#0#PHP" expanded="false" />
-            <element signature="e#60068#67151#0#PHP" expanded="false" />
-            <element signature="e#67170#70585#0#PHP" expanded="false" />
+            <marker date="1522131464954" expanded="true" signature="7782:7798" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Account/View/YwcsSet/index.html">
+    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/AdmissionController.class.php.bak">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1204,10 +1100,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/Controller/ChooseUserController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="41" column="40" lean-forward="false" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Account/View/YwcsSet/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="126" column="26" lean-forward="true" selection-start-line="120" selection-start-column="17" selection-end-line="126" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Account/Controller/YwcsSetController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="42" column="9" lean-forward="true" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
+        <state relative-caret-position="574">
+          <caret line="114" column="0" lean-forward="false" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
           <folding />
         </state>
       </provider>

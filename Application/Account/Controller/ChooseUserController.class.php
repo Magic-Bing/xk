@@ -42,6 +42,7 @@ class ChooseUserController extends BaseController {
         if(isset($_POST['project_id'])){
             $search_project_id = I('project_id', 0, 'intval');
             session("selected_project",$search_project_id);
+            session("selected_batch",null);
         }else{
             $search_project_id = session("selected_project");
         }
@@ -286,10 +287,12 @@ class ChooseUserController extends BaseController {
             $ywyphone = I('ywyphone', '', 'trim');
             //$password = I('password', '', 'trim');
             $remark = I('remark', '', 'trim');
-//            $status = I('status', '', 'trim');
+            $status = I('status', '', 'trim');
+
             if ($project_id == 0 || empty($customer_name) || empty($customer_phone)) {
                 $this->error("信息不能为空，请确认后重试！");
             }
+
             //if (!is_phone_number($customer_phone)) {
             if (empty($customer_phone)) {
                 $this->error("客户手机号码错误，请确认后重试！");
@@ -299,16 +302,6 @@ class ChooseUserController extends BaseController {
             if (!in_array($project_id, $user_project_ids)) {
                 $this->error("项目错误，请选择正确的项目！");
             }
-            $pd_type=M()->table("xk_pzcsvalue")->where('project_id='.$project_id.' and batch_id='.$batch_id.' and pzcs_id=1 and cs_value=1')->find();
-            if($pd_type){
-                if (empty($cardno)) {
-                    $this->error("身份证号码不能为空！");
-                }
-                if (!$this->is_id_card($cardno)) {
-                    $this->error("请输入正确的身份证号码！");
-                }
-            }
-
             $p=strencode($customer_phone);
             $p1="like_p='$p'";
             if($cyjno){
@@ -319,16 +312,13 @@ class ChooseUserController extends BaseController {
             $Choose = D('Choose');
             $pd = $Choose->where("project_id=$project_id AND batch_id=$batch_id AND ($p1  $cn1)")->find();
             if ($pd) {
-                if(empty($pd_type)){
-                    if($pd['like_p'] == $p){
-                        $this->error("电话已存在，请修改后再提交！");
-                    }
+                if($pd['like_p'] == $p){
+                    $this->error("电话已存在，请修改后再提交！");
                 }
-                if(!empty($cyjno)){
-                    if($pd['cyjno'] == $cyjno){
-                        $this->error("诚意单号已存在，请修改后再提交！");
-                    }
+                if($pd['cyjno'] == $cyjno){
+                    $this->error("诚意单号已存在，请修改后再提交！");
                 }
+
             }
             $data['name'] = $name;
             $data['project_id'] = $project_id;
@@ -468,15 +458,6 @@ class ChooseUserController extends BaseController {
             if (!in_array($project_id, $user_project_ids)) {
                 $this->error("项目错误，请选择正确的项目！");
             }
-            $pd_type=M()->table("xk_pzcsvalue")->where('project_id='.$project_id.' and batch_id='.$batch_id.' and pzcs_id=1 and cs_value=1')->find();
-            if($pd_type){
-                if (empty($cardno)) {
-                    $this->error("身份证号码不能为空！");
-                }
-                if (!$this->is_id_card($cardno)) {
-                    $this->error("请输入正确的身份证号码！");
-                }
-            }
             $cd=strencode($cardno);
             $c2="AND like_c='$cd'";
             $p=strencode($customer_phone);
@@ -493,16 +474,13 @@ class ChooseUserController extends BaseController {
             $pd = $Choose->where("project_id=$project_id AND batch_id=$batch_id AND id<>$id AND ($p1  $cn1)")->find();
 //            echo json_encode($pd);exit;
             if ($pd) {
-                if(empty($pd_type)){
-                    if($pd['like_p'] == $p){
-                        $this->error("电话已存在，请修改后再提交！");
-                    }
+                if($pd['like_p'] == $p){
+                    $this->error("电话已存在，请修改后再提交！");
                 }
-                if(!empty($cyjno)){
-                    if($pd['cyjno'] == $cyjno){
-                        $this->error("诚意单号已存在，请修改后再提交！");
-                    }
+                if($pd['cyjno'] == $cyjno){
+                    $this->error("诚意单号已存在，请修改后再提交！");
                 }
+
             }
             
             $where['id'] = $id;
@@ -963,8 +941,6 @@ class ChooseUserController extends BaseController {
         ) {
             $this->error("导入失败，你不能导入数据到该项目！");
         }
-        //判断是电子开盘还是微信开盘，$pd_type不为空的时候为电子开盘，为空是微信开盘
-        $pd_type=M()->table("xk_pzcsvalue")->where('project_id='.$project_id.' and batch_id='.$batch_id.' and pzcs_id=1 and cs_value=1')->find();
         unset($excels[1]);
         unset($excels[2]);
         $b_excel = array_merge($excels);
@@ -986,24 +962,9 @@ class ChooseUserController extends BaseController {
         $key_arr = [];
         for ($k = 0; $k < count($excels); $k++) {
             for ($i = 0; $i < $k; $i++) {
-                if(empty($pd_type)){//微信开盘
-                    if ((string) $excels[$k]['B'] === (string) $excels[$i]['B']  ) {//判断手机号是否重复，针对微信开盘
-                        $key_arr[] = $k;
-                        $key_arr[] = $i;
-                    }
-                }else{//电子
-                    if (empty((string) $excels[$k]['C'])) {
-                        $key_arr[] = $k;
-                    }
-                    if (empty((string) $excels[$i]['C'])) {
-                        $key_arr[] = $i;
-                    }
-                    if (!$this->is_id_card((string) $excels[$k]['C'])) {
-                        $key_arr[] = $k;
-                    }
-                    if (!$this->is_id_card((string) $excels[$i]['C'])) {
-                        $key_arr[] = $i;
-                    }
+                if ((string) $excels[$k]['B'] === (string) $excels[$i]['B']  ) {
+                    $key_arr[] = $k;
+                    $key_arr[] = $i;
                 }
                 if (empty((string) $excels[$k]['B'])) {
                     $key_arr[] = $k;

@@ -148,7 +148,7 @@ class AdmissionController extends BaseController
         }
         $pd=M()->table("xk_pzcsvalue")->where("project_id=$pid AND batch_id=$bid AND pzcs_id=11")->find();
         if(empty($pd) || $pd['cs_value']==1){
-            $res=M()->table("xk_choose c")->field("c.*,p.id zid")->join("xk_yaohresult r ON r.cstid=c.id AND r.is_yx=1")->join('LEFT JOIN xk_pzcsvalue p ON p.project_id=c.project_id AND p.batch_id=c.batch_id AND p.pzcs_id=4 AND p.cs_value=-1')->where("1=1 $p $b $s")->select();
+            $res=M()->table("xk_choose c")->field("c.*,p.id zid")->join("xk_yaohresult r ON r.cstid=c.id")->join('LEFT JOIN xk_pzcsvalue p ON p.project_id=c.project_id AND p.batch_id=c.batch_id AND p.pzcs_id=4 AND p.cs_value=-1')->where("1=1 $p $b $s")->select();
         }elseif ($pd['cs_value']==2){
             $res=M()->table("xk_choose c")->field("c.*,p.id zid")->join('LEFT JOIN xk_pzcsvalue p ON p.project_id=c.project_id AND p.batch_id=c.batch_id AND p.pzcs_id=4 AND p.cs_value=-1')->where("1 = 1  $p $b $s")->select();
         }else{
@@ -169,7 +169,7 @@ class AdmissionController extends BaseController
                         }
                     }
                     if($auto_cst === 1){
-                        echo json_encode(['status'=>3,'id'=>$auto_arr[0]['id']]);exit;
+                        $this->success("auto_one");
                     }elseif($auto_cst === 0){
                         $name=M()->table("xk_choose2user_log")->where("choose_id={$res[0]['id']} AND log_type='入场'")->order("id desc")->find();
                         $this->success($name);

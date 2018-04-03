@@ -162,7 +162,7 @@ class CstSignController extends BaseController
                         }
                     }
                     if($auto_cst === 1){
-                        echo json_encode(['status'=>3,'id'=>$auto_arr[0]['id']]);exit;
+                        $this->success("auto_one");
                     }elseif($auto_cst === 0){
                         $name=M()->table("xk_choose2user_log")->where("choose_id={$res[0]['id']} AND log_type='签到'")->order("id desc")->find();
                         $this->success($name);

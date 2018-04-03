@@ -31,6 +31,7 @@ class YwcsSetController extends BaseController {
         if(isset($_POST['project_id'])){
             $search_project_id = I('project_id', 0, 'intval');
             session("selected_project",$search_project_id);
+            session("selected_batch",null);
         }else{
             $search_project_id = session("selected_project");
         }
@@ -39,7 +40,7 @@ class YwcsSetController extends BaseController {
             $search_batch_id = I('batch_id', 0, 'intval');
             session("selected_batch",$search_batch_id);
         }else{
-            $search_batch_id = (int)session("selected_batch");
+            //$search_batch_id = (int)session("selected_batch");
         }
         
         //用户的项目  
@@ -111,6 +112,7 @@ class YwcsSetController extends BaseController {
              $kpmsinfo[0]['showdzkp']="block";
              $kpmsinfo[0]['showwxkp']="none";
          }
+
         $this->assign('kpmsinfo', $kpmsinfo[0]); 
         $this->assign('dzkplist', $dzkp_cslist);
         $this->assign('wxkplist', $wxkp_cslist);

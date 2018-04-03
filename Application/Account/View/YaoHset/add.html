@@ -26,16 +26,9 @@
 				data-first-value='0'
 			>
 				<foreach name="project_list" item="project_list_vo">
-					<if condition="$project_id eq $project_list_vo['id']">
-						<option value="<{$project_list_vo['id']}>" selected>
-							<{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
-						</option>
-						<else />
-						<option value="<{$project_list_vo['id']}>">
-							<{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
-						</option>
-					</if>
-
+                                    <option value="<{$project_list_vo['id']}>">
+                                            <{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
+                                    </option>
 				</foreach> 
 			</select>
 		</div>

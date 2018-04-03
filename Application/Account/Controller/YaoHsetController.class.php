@@ -247,6 +247,7 @@ class YaoHsetController extends BaseController {
         if(isset($_POST['project_id'])){
             $search_project_id = I('project_id', 0, 'intval');
             session("selected_project",$search_project_id);
+            session("selected_batch",null);
         }else{
             $search_project_id = session("selected_project");
         }
@@ -585,10 +586,8 @@ class YaoHsetController extends BaseController {
     
     public function display_add(){
         //项目ID
-        $project_id = session("selected_project");
+        $project_id = I('project_id', 0, 'intval');
         $this->assign('project_id', $project_id);
-//        $project_id = I('project_id', 0, 'intval');
-//        $this->assign('project_id', $project_id);
 
         //用户的项目和项目批次
         $user_project_ids = $this->get_user_project_ids();

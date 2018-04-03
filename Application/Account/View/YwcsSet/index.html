@@ -118,6 +118,13 @@
                 </div>
                 <div class="cstypediv dzkp" style="display: <{$kpmsinfo['showdzkp']}>">
                     <div  class ="cstypetitle">◆ 电子开盘参数</div>
+                    <for start="1" end="6">
+                        <if condition="$i eq 1">
+                        <div class="title-two">
+
+                        </div>
+                        </if>
+                    </for>
                     <foreach name="dzkplist" item="list_vo" key="k">
                         <div class="lidiv" data_setid="<{$list_vo['id']}>" data_id="<{$list_vo['cs_id']|default=0}>">
                             <div class="content">

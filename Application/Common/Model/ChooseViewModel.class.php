@@ -95,7 +95,7 @@ class ChooseViewModel extends BaseViewModel
         'yaohresult' => array(
             '_as' => 'y',
             'y.id' => 'yid',
-            '_on' 	=> 'y.cstid = Choose.id and y.is_yx=1',
+            '_on' 	=> 'y.cstid = Choose.id',
             '_type' => 'LEFT'
         ),
 

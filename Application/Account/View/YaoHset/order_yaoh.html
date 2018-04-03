@@ -399,10 +399,6 @@
             $(document).on("click","#submit-yh",function () {
                 var tr=$(".group-table").find("tr");
                 var len=tr.length;
-                if(len === 0){
-                    layer_alert("没有客户不能提交！");
-                    return false;
-                }
                 var data=[];
                 for(var i=0;i<len;i++){
                     var arr=[];
@@ -423,7 +419,7 @@
                        if(data.status===1){
                            $("#nextgroup").show();
                            $("#add-group").remove();
-                           $("#submit-yh").css("background-color","#e7e7e7").attr("id",'');
+                           $("#submit-yh").css("background-color","#e7e7e7").off("click");
                            $("#close-group").remove();
                            layer.msg(data.info[0]);
                        }else{

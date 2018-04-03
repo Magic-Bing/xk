@@ -46,6 +46,7 @@ class HxsetController extends BaseController
         if(isset($_POST['project_id'])){
             $search_project_id = I('project_id', 0, 'intval');
             session("selected_project",$search_project_id);
+            session("selected_batch",null);
         }else{
             $search_project_id = session("selected_project");
         }
