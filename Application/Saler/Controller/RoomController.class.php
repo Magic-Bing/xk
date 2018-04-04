@@ -281,7 +281,7 @@ class RoomController extends Base1Controller
                 }
             }
             
-            M()->table("xk_room")->where("id=$rid")->save(["is_xf" => 1, 'xftime' => time()]);
+            M()->table("xk_room")->where("id=$rid")->save(["status" => '销控',"is_xf" => 1, 'xftime' => time()]);
             $data['room_id'] = $rid;
             $data['cztype'] = '销控';
             $data['cztime'] = time();
@@ -326,7 +326,7 @@ class RoomController extends Base1Controller
                 }
             }
             
-            M()->table("xk_room")->where("id=$rid")->save(["is_xf" => 0, "cstid" => 0]);
+            M()->table("xk_room")->where("id=$rid")->save(["status" => '待售',"is_xf" => 0, "xftime" => '', "cstname" => '',"cstid" => 0,"is_qxxf"=>1,"qxxftime"=>time()]);
             $data['room_id'] = $rid;
             $data['cztype'] = '取消销控';
             $data['cztime'] = time();
@@ -370,14 +370,34 @@ class RoomController extends Base1Controller
                     }
                 }
             }
-            
-            M()->table("xk_room")->where("id=$rid")->save(["is_xf" => 0, "cstid" => 0]);
-            $data['room_id'] = $rid;
-            $data['cztype'] = '取消选房';
-            $data['cztime'] = time();
-            $data['czuser'] = $uid;
-            $data['czusername'] = $user['name'];
-            M()->table("xk_roomczlog")->add($data);
+            //获取交易状态
+            $trade=M()->table("xk_trade")->where("room_id = {$rid} and isyx=1")->find();
+            //事物操作保证数据一致性
+            M()->startTrans();
+            try{
+                M()->table("xk_room")->where("id=$rid")->save(["status" => '待售',"is_xf" => 0, "xftime" => '', "cstname" => '',"cstid" => 0,"is_qxxf"=>1,"qxxftime"=>time()]);
+                if($trade){
+                    if($trade['status']=='认购' || $trade['status']=='合同')
+                    {
+                        M()->table("xk_trade")->where("id={$trade['id']} and isyx=1")->save(["isyx" => 0,"closereason" => '取消选房']);
+                    }
+                    else
+                    {
+                         D("Trade")->where("id={$trade['id']}")->delete();
+                    }
+                }
+                $data['room_id'] = $rid;
+                $data['cztype'] = '取消选房';
+                $data['cztime'] = time();
+                $data['czuser'] = $uid;
+                $data['czusername'] = $user['name'];
+                M()->table("xk_roomczlog")->add($data);
+                M()->commit();
+            }catch (\Exception $e){
+                M()->rollback();
+                echo "取消选房失败，请重试！";
+                exit;
+            }
         }
         echo "true";
         exit;

@@ -206,13 +206,34 @@
         .display-none{
             display: none;
         }
+        #cs_id tr{
+            border-bottom:1px solid #c9e2f9;
+            padding:5px 0;
+        }
+        #cs_id tr td{
+            vertical-align: middle;
+        }
+        #loading{
+            width:88px;
+            height:33px;
+            position: absolute;
+            margin-left: 434px;
+            background: #FFF;
+            border-radius: 5px;
+            display:none;
+        }
+        #loading img{
+                margin-left: 36px;
+                margin-top: 7px;
+                width: 20px;
+        }
     </style>
 </block>
 <block name="header_js_add">
     <script src="__COMMON__/js/jquery/masonry-docs.min.js"></script>
     <OBJECT ID="CVR_IDCard"  name="CVR_IDCard" CLASSID="CLSID:10946843-7507-44FE-ACE8-2B3483D179B7" width="0" height="0" style="position: fixed"></OBJECT>
     <script type="text/javascript">
-
+        var is_dqcard=true;
         var iPort = CVR_IDCard.InitCommExt();
         if (0 == iPort)
         {
@@ -226,8 +247,14 @@
     </script>
     <script language="Javascript" event="OnReadCardInfo()" for="CVR_IDCard">
         var zt=$("#sign-zt").text();
+        
         var CardNo = CVR_IDCard.CardNo();
-        $("#cardno1").val(CardNo).trigger("input").focus();
+
+        if($('#div-qzxfdhk').css('display')=="block" && is_dqcard)
+        {
+            $("#cardno1").val(CardNo).trigger("input").focus();
+        }
+        
     </script>
     <script type="text/javascript">
         $(function () {
@@ -475,6 +502,7 @@
                 <div class="tac marketing-control-content-room-confirm" style="display:none;margin-bottom: 2px;margin-right: 8px" >
                 <a href="javascript:void(0);" class="marketing-control-content-room-option-btn marketing-control-content-room-confirm-btn" >确认选房</a>
                 </div>
+                <div id="loading" ><img src='/Uploads/img/load.gif' /></div>
         </div>
         </div>
         <input type="hidden" id="usertype" value="<{$reset}>">
@@ -569,8 +597,8 @@
                         </div>
                         
                         <div  class="fr wm20" style="height:45px;margin-right: 10px;margin-top: 5px;line-height: 50px;text-align: center;min-width: 295px">
-                            <div class="wm25 fl" style="background-color: #f39900;color:#FFF;height: 45px;line-height: 45px;" title="当前项目累计已售"><span style="font-weight: bold;font-size: 20px" id="yg_count"><{$yg_count}></span>套</div>
-                            <div class="wm25 fl" style="background-color: #a764a7;color:#FFF;height: 45px;line-height: 45px;" title="当前账号累计已售"><span style="font-weight: bold;font-size: 20px" id="user_count" ><{$user_count}></span>套</div>
+                            <div class="wm25 fl" style="background-color: #f39900;color:#FFF;height: 45px;line-height: 45px;" title="当前项目累计已售"><span style="font-weight: bold;font-size: 20px" id="yg_count"><{$yg_count|default=0}></span>套</div>
+                            <div class="wm25 fl" style="background-color: #a764a7;color:#FFF;height: 45px;line-height: 45px;" title="当前账号累计已售"><span style="font-weight: bold;font-size: 20px" id="user_count" ><{$user_count|default=0}></span>套</div>
                             <div class="wm50 fl" style="background-color: #2cb9dd;height: 45px;cursor: pointer;min-width: 146px" id="room_user" on="1">
                                 <div class="wm35 fl" style="height: 40px;line-height: 40px;margin-left: 5px;margin-top: 2px;">
                                     <i class="icon-user" style="font-size: 28px;border: 1px solid white;border-radius: 50%;width: 35px;height: 35px;line-height: 35px;margin-top: 3px;display: inline-block;color:#FFF"></i>

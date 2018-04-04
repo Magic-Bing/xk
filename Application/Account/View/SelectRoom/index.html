@@ -141,17 +141,18 @@
                 <table id="sample-table-choose" class="table table-striped table-bordered table-hover dataTable">
                         <thead>
                                 <tr>
-                                        <th class="center hidden-480">
+                                        <th class="center hidden-480" style="width: 5%">
                                                 <label>
                                                         <input type="checkbox" class="ace">
                                                         <span class="lbl"></span>
                                                 </label>
                                         </th>
-                                        <th class="center hidden-480">序号</th>
+                                        <th class="center hidden-480" style="width: 5%">序号</th>
                                         <th class="hidden-480">项目</th>
                                         <th class="hidden-480">批次</th>
-                                        <!--<th class="hidden-480">房间数量</th>-->
-                                        <th class="hidden-480">操作</th>
+                                        <th class="hidden-480">包含楼栋</th>
+                                        <th class="hidden-480">房间数量</th>
+																				<th class="hidden-480">操作</th>
                                 </tr>
                         </thead>
 
@@ -174,7 +175,8 @@
                                                     <td class="hidden-480">
                                                             <{$vo.name}>
                                                     </td>
-
+		<td class="center"><{$vo.bname}></td>
+                                                    <td class="center"><{$vo.room_count}></td>
                                                     <td style="text-align: left;width:150px" class="center">
                                                         <div class="qpxs">
                                                             <a class="ledshow" href="/Home/Room/index/bid/<{$vo.id}>/pid/<{$vo.proj_id}>"  target="_blank" ><span>快速选房</span></a>

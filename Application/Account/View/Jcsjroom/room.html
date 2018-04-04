@@ -383,11 +383,12 @@ margin-top:100px;
                         <td align="right"><{:number_format($roomlist_vo['tnprice'],2)}></td>
 						<td align="right"><{:number_format($roomlist_vo['total'],2)}></td> 
 						<td align="right"><{:number_format($roomlist_vo['discount'],2)}></td>
-						<if condition="$roomlist_vo['is_xf'] eq 0">
+						<!--<if condition="$roomlist_vo['is_xf'] eq 0">
 						<td align="center">待售</td>	
 						<else/>
 						<td align="center">已售</td>	
-						</if>
+						</if>-->
+                                                <td align="center"><{$roomlist_vo['status']}></td>
                         <td align="center">
                         	<a href="<{:U('jcsjroom/edit', array('id' => $roomlist_vo['id']))}>" >
                                                             <span class="" style="padding: 3px 3px;background-color: #6fb3e0;color: #FFF;" title="修改">

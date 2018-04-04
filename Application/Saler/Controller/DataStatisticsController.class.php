@@ -252,8 +252,8 @@ class DataStatisticsController extends Base1Controller
         $pd_user=M()->table("xk_station2user su")->join("xk_fun_station fs ON fs.station_id=su.station_id")->where("userid=$uid AND fs.fun_id=102")->find();
         if($pd_user){
             $res=$Model->query("select count(1) cou,round(sum(total)/10000,2) mon,concat(a.ywy,'(',a.ywyphone,')' ) as czusername FROM xk_choose a inner join xk_room b on a.id=b.cstid where b.is_xf=1 and a.project_id=$pid AND a.batch_id=$bid group by a.ywy order by count(1) desc");
-            $xc=$Model->query("SELECT MAX(rl.id) id,czusername,count(1) all_count,SUM(r.total) price from xk_roomlist r INNER JOIN xk_roomczlog rl ON r.id=rl.room_id where r.proj_id=$pid AND r.pc_id=$bid AND r.is_xf=1 GROUP BY rl.czusername");
-            $xk=$Model->query("SELECT MAX(rl.id) id,czusername,count(1) all_count,SUM(r.total) price from xk_roomlist r INNER JOIN xk_roomczlog rl ON r.id=rl.room_id where r.proj_id=$pid AND r.pc_id=$bid AND r.is_xf=1 AND rl.cstid =0 GROUP BY rl.room_id");
+            $xc=$Model->query("SELECT MAX(rl.id) id,czusername,count(1) all_count,SUM(r.total) price from xk_roomlist r INNER JOIN (select a.* from  xk_roomczlog a join (select max(id) as mid from xk_roomczlog  where cztype in('选房','销控') group by room_id) b on a.id=b.mid) rl ON r.id=rl.room_id where r.proj_id=$pid AND r.pc_id=$bid AND r.is_xf=1 GROUP BY rl.czusername");
+            $xk=$Model->query("SELECT MAX(rl.id) id,czusername,count(1) all_count,SUM(r.total) price from xk_roomlist r INNER JOIN (select a.* from  xk_roomczlog a join (select max(id) as mid from xk_roomczlog  where cztype in('选房','销控') group by room_id) b on a.id=b.mid) rl ON r.id=rl.room_id where r.proj_id=$pid AND r.pc_id=$bid AND r.is_xf=1 AND rl.cstid =0 GROUP BY rl.room_id");
 //            echo json_encode($xk);exit;
             $this->assign("ct",$cs_count);
             $this->assign("res",$res);

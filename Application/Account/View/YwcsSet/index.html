@@ -44,8 +44,14 @@
          }
          .lidiv{
              width:94%;
+             margin-left: 5%;
+             margin-bottom: 10px;
+         }
+         .title-two{
              margin-left: 3%;
              margin-bottom: 10px;
+             color: #428bca;
+             font-weight: bold;
          }
          .lidiv span,.kpms span{
              font-weight: 700; padding:0 15px 0 0;
@@ -118,42 +124,40 @@
                 </div>
                 <div class="cstypediv dzkp" style="display: <{$kpmsinfo['showdzkp']}>">
                     <div  class ="cstypetitle">◆ 电子开盘参数</div>
-                    <for start="1" end="6">
-                        <if condition="$i eq 1">
-                        <div class="title-two">
-
-                        </div>
-                        </if>
-                    </for>
-                    <foreach name="dzkplist" item="list_vo" key="k">
-                        <div class="lidiv" data_setid="<{$list_vo['id']}>" data_id="<{$list_vo['cs_id']|default=0}>">
-                            <div class="content">
-                                <span><{$list_vo['cs_name']}>:</span>
-                                <php>$tags = explode(';',$list_vo['options']);</php>
-                                <volist name="tags" id="vo" key="vo_k">
-                                    <if condition="$list_vo['cs_type'] eq 'radio'">
-                                        <php>$ops = explode(',',$vo);if(empty($list_vo['cs_value'])){$list_vo['cs_value']=1;}</php>
-                                        <label><input type="<{$list_vo['cs_type']}>"  name="name<{$list_vo['id']}>" value="<{$ops[1]}>" <if condition="$ops[1] eq $list_vo['cs_value']"> checked='checked' </if> > <{$ops[0]}></label> 
-                                    <else />
-                                        <if condition="empty($list_vo['cs_value'])">
-                                            <if condition="$vo_k lt 4">
-                                                <label style="margin-left: 10px;"><input name="name<{$list_vo['id']}>" type="<{$list_vo['cs_type']}>" class="showinfo" value="<{$vo}>" checked='checked' > <{$vo}></label> 
-                                            <else/>
-                                                <label style="margin-left: 10px;"><input name="name<{$list_vo['id']}>" type="<{$list_vo['cs_type']}>" class="showinfo" value="<{$vo}>" > <{$vo}></label> 
+                    <foreach name="type_count" item="val" key="s">
+                        <div class="title-two"><{$val.type_name}></div>
+                        <foreach name="dzkplist" item="list_vo" key="k">
+                            <if condition="$list_vo['group_type'] eq $type_count[$s]['group_type']">
+                                <div class="lidiv" data_setid="<{$list_vo['id']}>" data_id="<{$list_vo['cs_id']|default=0}>">
+                                    <div class="content">
+                                        <span><{$list_vo['cs_name']}>:</span>
+                                        <php>$tags = explode(';',$list_vo['options']);</php>
+                                        <volist name="tags" id="vo" key="vo_k">
+                                            <if condition="$list_vo['cs_type'] eq 'radio'">
+                                                <php>$ops = explode(',',$vo);if(empty($list_vo['cs_value'])){$list_vo['cs_value']=1;}</php>
+                                                <label><input type="<{$list_vo['cs_type']}>"  name="name<{$list_vo['id']}>" value="<{$ops[1]}>" <if condition="$ops[1] eq $list_vo['cs_value']"> checked='checked' </if> > <{$ops[0]}></label>
+                                                <else />
+                                                <if condition="empty($list_vo['cs_value'])">
+                                                    <if condition="$vo_k lt 4">
+                                                        <label style="margin-left: 10px;"><input name="name<{$list_vo['id']}>" type="<{$list_vo['cs_type']}>" class="showinfo" value="<{$vo}>" checked='checked' > <{$vo}></label>
+                                                        <else/>
+                                                        <label style="margin-left: 10px;"><input name="name<{$list_vo['id']}>" type="<{$list_vo['cs_type']}>" class="showinfo" value="<{$vo}>" > <{$vo}></label>
+                                                    </if>
+                                                    <else/>
+                                                    <php>$yyinfo = explode(';',$list_vo['cs_value']);</php>
+                                                    <if condition="in_array($vo,$yyinfo)">
+                                                        <label style="margin-left: 10px;"><input name="name<{$list_vo['id']}>" type="<{$list_vo['cs_type']}>" class="showinfo" value="<{$vo}>" checked='checked' > <{$vo}></label>
+                                                        <else/>
+                                                        <label style="margin-left: 10px;"><input name="name<{$list_vo['id']}>" type="<{$list_vo['cs_type']}>" class="showinfo" value="<{$vo}>" > <{$vo}></label>
+                                                    </if>
+                                                </if>
                                             </if>
-                                        <else/>
-                                            <php>$yyinfo = explode(';',$list_vo['cs_value']);</php>
-                                            <if condition="in_array($vo,$yyinfo)">
-                                                <label style="margin-left: 10px;"><input name="name<{$list_vo['id']}>" type="<{$list_vo['cs_type']}>" class="showinfo" value="<{$vo}>" checked='checked' > <{$vo}></label> 
-                                            <else/>
-                                                <label style="margin-left: 10px;"><input name="name<{$list_vo['id']}>" type="<{$list_vo['cs_type']}>" class="showinfo" value="<{$vo}>" > <{$vo}></label> 
-                                            </if>
-                                        </if>
-                                    </if>                     
-                                </volist>
-                            </div>
-                            <div class="remark"><label><{$list_vo['remark']}><label></div>
-                        </div>
+                                        </volist>
+                                    </div>
+                                    <div class="remark"><label><{$list_vo['remark']}><label></div>
+                                </div>
+                            </if>
+                        </foreach>
                     </foreach>
                 </div>
                 

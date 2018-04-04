@@ -43,6 +43,9 @@
             float: right;
             margin: 1px;
         }
+        .jyzt label{
+            cursor: pointer;
+        }
 	</style>
 </block>
 
@@ -136,7 +139,7 @@
 								</foreach> 
 							</select> 
 						</label>
-                                                <label>
+                                                <label class="jyzt">
 							交易状态
 							<select name="status" class="trade-zt-id js-trade-zt-id"  id="status">
                                                             <foreach name="status_list" item="status_list_vo">
@@ -147,6 +150,13 @@
                                                                 </if>
                                                             </foreach>
 							</select>
+                                                        <!--<foreach name="status_list" item="status_list_vo" key="status_key">
+                                                            <if condition="$status_list_vo eq  $status">
+                                                            <label for="status_<{$status_key}>"><input type="radio" value="<{$status_list_vo}>" name="status" id="status_<{$status_key}>" checked>&nbsp;<{$status_list_vo}></label>
+                                                            <else/>
+                                                            <label for="status_<{$status_key}>"><input type="radio" value="<{$status_list_vo}>" name="status" id="status_<{$status_key}>">&nbsp;<{$status_list_vo}></label>
+                                                            </if>
+                                                        </foreach>-->
 						</label>
 						<!--<label>
 							状态

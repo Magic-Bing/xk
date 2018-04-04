@@ -65,16 +65,23 @@ class RoomController extends BaseController
         $this->assign('pay_auth', $pay_auth['id']);
         $this->assign('num_auth', $num_auth['id']);
 
-        //一共出售，
-        $yg_count = M()->table("xk_roomList")->where("proj_id=$search_project_id AND is_xf=1 and is_dq=1")->count();
-        $this->assign("yg_count", $yg_count);
         //当前用户出售
         $user_id = $this->get_user_id_acc();
-        $user_count = M()->table("xk_roomList r")->field("r.id")->
+        /*$user_count = M()->table("xk_roomList r")->field("r.id")->
         join("xk_roomczlog l ON l.room_id=r.id")->
         where("r.proj_id=$search_project_id AND r.is_xf=1 AND is_dq=1 AND l.czuser=$user_id AND l.cztype='选房'")->group("l.room_id")->select();
-
-        $this->assign("user_count", count($user_count));
+        */
+        $user_count = M()->table("xk_room r")->field("count(1) zc,sum(case when l.room_id is not null then 1 else 0 end) uc")->
+        join("LEFT JOIN (select room_id from xk_roomczlog a join (select max(id) as mid from xk_roomczlog  where cztype='选房' group by room_id) b on a.id=b.mid where czuser=$user_id ) l ON l.room_id=r.id")->
+        where("r.proj_id=$search_project_id AND r.is_xf=1 ")->select();
+        
+        //一共出售，
+        /*$yg_count = M()->table("xk_roomList")->where("proj_id=$search_project_id AND is_xf=1 and is_dq=1")->count();*/
+        
+        $this->assign("yg_count", $user_count[0]['zc']);
+       
+        $this->assign("user_count",  $user_count[0]['uc']);
+        
         //房间信息
         $Roomview = D('Common/Roomview');
         $where['proj_id'] = $search_project_id;
@@ -178,6 +185,9 @@ class RoomController extends BaseController
         }
         $this->assign('rooms', $room_list);
 
+        
+       
+        
         //seo设置
         $this->set_seo_title('快速选房');
         $this->set_seo_keywords('快速选房');
@@ -335,6 +345,7 @@ class RoomController extends BaseController
             }
         }
         $data = array(
+            'status' => '选房',
             'is_xf' => 1,
             'xftime' => time(),
             'cstid' => $cstid,
@@ -359,13 +370,9 @@ class RoomController extends BaseController
             $user = D("User")->getOneById($user_id);
             $roominfo = D('Room');
             
-            //事物操作保证数据一致性
-            $roominfo->startTrans();
-            //房间表
-            $check_has_edit = $roominfo->editRoomById($data, $id);
-            //交易表
+             //交易表
             $obj = array(
-                'yw_id' => $room['id']
+              'yw_id' => $room['id']
             , 'room_id' => $room['id']
             , 'cst_id' => $cstid
             , 'source' => '快速选房'
@@ -373,15 +380,28 @@ class RoomController extends BaseController
             , 'isyx' => 1
             , 'tradetime' => time()
             , 'ywy' => ''
+            , 'xfuserid' => $user_id
+            , 'xfuser' => $user['name']
             , 'createdbyid' => $user_id
             , 'createdby' => $user['name']
             , 'pay' => $pay
             , 'cjtotal' => $cjtotal
+            ,'ip' =>get_client_ip(0, true)        
             );
-            D("Trade")->add($obj);
-            //房间操作日志表
-            D("RoomLog")->choose($room['id'], $user_id, $user['name'], $cstid);
             
+            //事物操作保证数据一致性
+            $roominfo->startTrans();
+            try{
+            //房间表
+                $check_has_edit = $roominfo->editRoomById($data, $id);
+                D("Trade")->add($obj);
+                //房间操作日志表
+                D("RoomLog")->choose($room['id'], $user_id, $user['name'], $cstid);
+                $roominfo->commit();
+            }catch (\Exception $e){
+                $roominfo->rollback();
+                $this->error('选房失败，请稍候重试！');
+            }
             $res = M()->table("xk_room r")->field("p.name pname,b.buildname bname,r.unit,r.floor,r.room,p.id as project_id,b.pc_id as batch_id")->join("xk_project p ON r.proj_id=p.id")->join("xk_build b ON b.id=r.bld_id")->where('r.id=' . $room['id'])->find();
             //是否打印小票
             $pzcs=M("pzcsvalue")->where("pzcs_id = 14  and project_id={$res['project_id']} and batch_id={$res['batch_id']}")->find();
@@ -404,19 +424,14 @@ class RoomController extends BaseController
                     $this->cloudPrint($res,$printer);
                 }
             }
-            
-            $roominfo->commit();
-
-            //if ($check_has_edit === false) {
-            //        $this->error('选房失败，请确认后重试！', U('room/index'));
-            //}
         }
 
+        //获取当天选房的最新记录
         $dqtime = date('Y-m-d');
         $rooms = $Model->query("SELECT a.*, FROM_UNIXTIME(a.xftime,'%Y-%m-%d  %H:%i') AS xftime1  FROM xk_roomlist a WHERE a.proj_id=" . $project_id . " AND ((a.is_xf=1 AND FROM_UNIXTIME(a.xftime,'%Y-%m-%d')='" . $dqtime . "') OR a.is_qxxf=1 ) AND 666=666 ORDER BY a.xftime DESC,a.bld_id,a.unit,a.floor DESC,a.no,a.id ASC ");
         $user_id = $this->get_user_id_acc();
         $user_count = M()->table("xk_room r")->field("count(1) zc,sum(case when l.room_id is not null then 1 else 0 end) uc")->
-        join("LEFT JOIN (select room_id from xk_roomczlog where czuser=$user_id AND cztype='选房' group by room_id) l ON l.room_id=r.id")->
+        join("LEFT JOIN (select room_id from xk_roomczlog a join (select max(id) as mid from xk_roomczlog  where cztype='选房' group by room_id) b on a.id=b.mid where czuser=$user_id ) l ON l.room_id=r.id")->
         where("r.proj_id=$project_id AND r.is_xf=1 ")->select();
         $data = array();
         $data[0] = $is_havexf;
@@ -424,8 +439,6 @@ class RoomController extends BaseController
         $data[2] = $user_count;
         $data[3] = date("Y-m-d H:i", time());
         $data[4] = $is_xfzg;
-        //日志
-        //$this->choose_room_log($cstid);
         $this->success($data);
     }
 
@@ -462,17 +475,22 @@ class RoomController extends BaseController
         if (!IS_AJAX) {
             $this->error('请求错误，请确认后重试！', U('room/index'));
         }
-        $uid = $this->get_user_id();
-        //取消选房权限
-        $all_auth = M()->table("xk_user")->where("id=$uid")->find();
-        if ($all_auth['is_all'] != 1) {
-            $reset = M()->table("xk_station2user s")->join('xk_fun_station f ON f.station_id=s.station_id')->where("s.userid=$uid AND f.fun_id=34")->find();
-            if (!$reset) {
-                $this->error('你没有权限取消房间，请刷新后重试！', U('room/index'));
-            }
-        }
         //获取ID
         $id = I('id', 0, 'intval');
+        $is_first = I('is_first', 0, 'intval');
+        $uid = $this->get_user_id();
+        if(empty($is_first) || $is_first==0)
+        {
+            //取消选房权限
+            $all_auth = M()->table("xk_user")->where("id=$uid")->find();
+            if ($all_auth['is_all'] != 1) {
+                $reset = M()->table("xk_station2user s")->join('xk_fun_station f ON f.station_id=s.station_id')->where("s.userid=$uid AND f.fun_id=34")->find();
+                if (!$reset) {
+                    $this->error('你没有权限取消房间，请刷新后重试！', U('room/index'));
+                }
+            }
+        }
+        
         if (empty($id) || $id == 0) {
             $this->error('房间ID不能为空，请确认后重试！', U('room/index'));
         }
@@ -489,6 +507,7 @@ class RoomController extends BaseController
         }
 
         $data = array(
+            'status' => '待售',
             'is_xf' => 0,
             'xftime' => '',
             'cstname' => '',
@@ -505,24 +524,33 @@ class RoomController extends BaseController
         } else {
             $a = 2;
         }
+        //获取交易状态
+        $trade=M()->table("xk_trade")->where("room_id = {$room['id']} and isyx=1")->find();
         $roominfo = D('Room');
         //事物操作保证数据一致性
         $roominfo->startTrans();
-        //房间表
-        $check_has_edit = $roominfo->editRoomById($data, $id);
-        //删除交易表
-        D("Trade")->where("room_id=" . $room['id'])->delete();
-        //房间操作日志表
-        D("RoomLog")->notChoose($room['id'], $user_id, $user['name']);
-
-        $roominfo->commit();
-
-        //if ($check_has_edit === false) {
-        //	$this->error('取消选房失败，请稍候重试！', U('room/index'));
-        //}
-        //日志
-        //$this->not_choose_room_log();
-        $this->success($a);
+        try{
+            //房间表
+            $check_has_edit = $roominfo->editRoomById($data, $id);
+            //删除交易记录
+            if($trade){
+                if($trade['status']=='认购' || $trade['status']=='签约')
+                {
+                    M()->table("xk_trade")->where("id={$trade['id']} and isyx=1")->save(["isyx" => 0,'closereason'=>'取消选房']);
+                }
+                else
+                {
+                     D("Trade")->where("id={$trade['id']}")->delete();
+                }
+            }
+            //房间操作日志表
+            D("RoomLog")->notChoose($room['id'], $user_id, $user['name']);
+            $roominfo->commit();
+            $this->success($a);
+        }catch (\Exception $e){
+             $roominfo->rollback();
+             $this->error('取消选房失败，请稍候重试！');
+        }
     }
 
     /**
@@ -662,9 +690,9 @@ class RoomController extends BaseController
         $this->assign('search_info', $search_info);
         unset($where);
         if ($type == 0) {
-            $where['cyjno'] = $search_info;
+            $where['choose.cyjno'] = $search_info;
         } else if ($type == 1) {
-            $where['customer_name'] = $search_info;
+            $where['choose.customer_name'] = $search_info;
         } else if ($type == 2) {
             $where['like_p'] = strencode($search_info);
         } else if ($type == 3) {
@@ -673,11 +701,23 @@ class RoomController extends BaseController
             $where['_complex'] = $like_where;
         }
         $pd = M()->table("xk_pzcsvalue")->field("cs_value")->where('project_id=' . $project_id . ' and batch_id=' . $batch_id . ' and pzcs_id=12')->find();
-        $where['project_id'] = $project_id;
-        $where['batch_id'] = $batch_id;
+        $where['choose.project_id'] = $project_id;
+        $where['choose.batch_id'] = $batch_id;
+        $where['choose.status'] = 1;
 //                $where["rm1.id"] = array('exp', 'is null');
-        $ChooseView = D('Common/ChooseView');
-        $csts = $ChooseView->getList($where, "*");
+        /*$ChooseView = D('Common/ChooseView');
+        $csts = $ChooseView->getList($where, "*","id");*/
+        $csts =  M("choose choose")
+                ->join(" left join xk_Project Project ON Choose.project_id = Project.id ")
+                ->join(" left join xk_kppc Kppc ON Choose.batch_id = Kppc.id  ")
+                ->join(" left join xk_roomlist rm1 ON rm1.cstid = Choose.id ")
+                ->join(" left join xk_roomlist rm2 ON rm2.id = Choose.room ")
+                ->join(" LEFT JOIN xk_user us ON us.mobile = Choose.ywyphone and us.cp_id=Project.cp_id ")
+                ->join(" LEFT JOIN xk_yaohresult y ON y.cstid = Choose.id and y.is_yx=1 ")
+                ->field("Choose.id AS id,Choose.project_id AS project_id,Choose.batch_id AS batch_id,Choose.customer_name AS customer_name,Choose.customer_phone AS customer_phone,Choose.cardno AS cardno,Choose.cyjno AS cyjno,Choose.row_number AS row_number,Choose.money AS money,Choose.area AS area,Choose.price AS price,Choose.house_type AS house_type,Choose.floor AS floor,Choose.room AS room,Choose.password AS password,Choose.status AS status,Choose.add_time AS add_time,Choose.add_ip AS add_ip,Choose.ywy AS ywy,Choose.ywyphone AS ywyphone,Choose.like_c AS like_c,Choose.like_p AS like_p,Choose.is_admission AS is_admission,Choose.is_sign AS is_sign,Project.id AS project_id,Project.name AS project_name,Project.cp_id AS project_cp_id,Project.address AS project_address,Project.mobile AS project_mobile,Project.projfzr AS project_projfzr,Project.createdate AS project_createdate,Project.status AS project_status,Kppc.id AS batch_id,Kppc.proj_id AS batch_project_id,Kppc.name AS batch_name,Kppc.kptime AS batch_open_time,Kppc.roomscount AS batch_rooms_count,rm1.id AS room_id,rm1.buildname AS buildname,rm1.unit AS unit,rm1.floor AS floor,rm1.room AS rm,rm2.buildname AS buildname_one,rm2.unit AS unit_one,rm2.floor AS floor_one,rm2.room AS rm_one,us.id AS us_id,y.id AS yid ")
+                ->where($where)
+                ->order("CONVERT(Choose.cyjno,SIGNED) ASC,Choose.id ASC")->select();
+        
         if (count($csts) > 0) {
             if (count($csts) === 1) {
                 if ($pd['cs_value'] == 3) {
@@ -868,7 +908,7 @@ class RoomController extends BaseController
         $msg .= "@@2认购房间:{$no}\n";
         //$msg .= "@@2 {$no}\n";
         $msg .= "操作员:{$data['czy']}\n\n\n\n";
-        $msg .= "说明:请在30分钟内到指定区域打印认购书，否则我司有权将此房屋另售他人，不再另行通知!";
+        $msg .= "说明:请在15分钟内到指定区域打印认购书，否则我司有权将此房屋另售他人，不再另行通知!";
   
         $partner= C("PANTNER_ID");
         $apiKey= C("PANTNER_KEY");

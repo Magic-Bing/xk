@@ -90,7 +90,7 @@ class AdmissionController extends BaseController
         $pd=M()->table("xk_pzcsvalue")->where("project_id=$pid AND batch_id=$bid AND pzcs_id=11")->find();
         if(empty($pd) || $pd['cs_value']==1){
             $pd_num=1;
-            $count=M()->table("xk_choose c")->join("xk_yaohresult y ON y.cstid=c.id")->where("1 = 1 $z $p $b $s")->count();
+            $count=M()->table("xk_choose c")->join("xk_yaohresult y ON y.cstid=c.id")->where("y.is_yx = 1 $z $p $b $s")->count();
             $res=M()->table("xk_choose c")->field("c.*,y.`group`,y.no,y.createdtime,p.id pid")->
             join("xk_yaohresult y ON y.cstid=c.id")->
             join('LEFT JOIN xk_pzcsvalue p ON p.project_id=c.project_id AND p.batch_id=c.batch_id AND p.pzcs_id=4 AND p.cs_value=-1')->
@@ -185,8 +185,19 @@ class AdmissionController extends BaseController
                             try{
                                 M()->table('xk_choose')->where("id={$auto_arr[$k]['id']}")->save(['is_admission'=>1,'admission_time' => time()]);
                                 M()->table("xk_choose2user_log")->add($data);
-                                $print_arr=M()->table("xk_choose c")->field("c.customer_name,c.customer_phone,r.no")->join("xk_yaohresult r ON r.cstid=c.id")->where("c.id=".$auto_arr[$k]['id'])->find();
-//                              $this->cloudPrint($print_arr);//打印小票
+                                //是否打印小票
+                                $pzcs=M("pzcsvalue")->where("pzcs_id = 15  and project_id={$auto_arr[$k]['project_id']} and batch_id={$auto_arr[$k]['batch_id']}")->find();
+                                if(empty($pzcs) || $pzcs['cs_value']==1)
+                                {
+                                    $userinfo=M("user")->where("id={$data['user_id']}")->find();
+                                    if(!empty($userinfo['machine_code']))
+                                    {
+                                        $print_arr=M()->table("xk_choose")->field("customer_name,customer_phone,cardno,cyjno")->where("id=".$auto_arr[$k]['id'])->find();
+                                        $printer[0]=$userinfo['machine_code'];
+                                        $printer[1]=$userinfo['mkey'];
+                                        $this->cloudPrint($print_arr,$printer);//打印小票
+                                    }
+                                }
                                 M()->commit();
                             }catch (\Think\Exception $e) {
                                 M()->rollback();
@@ -244,6 +255,7 @@ class AdmissionController extends BaseController
             $data1['is_admission']=1;
             $data1['admission_time']=time();
         }
+        $choose=M("choose")->where("id={$id}")->find();
         $data['choose_id']=$id;
         $data['user_id']=$this->get_user_id();
         $data['log_time']=time();
@@ -254,8 +266,21 @@ class AdmissionController extends BaseController
             M()->table('xk_yaohresult')->where("cstid=$id")->save(['status'=>$zt]);
             M()->table("xk_choose2user_log")->add($data);
             if($zt!==0){
-              $print_arr=M()->table("xk_choose c")->field("c.customer_name,c.customer_phone,r.no")->join("xk_yaohresult r ON r.cstid=c.id")->where("c.id=".$id)->find();
-//            $this->cloudPrint($print_arr);//打印小票
+                //是否打印小票
+                $pzcs=M("pzcsvalue")->where("pzcs_id = 15  and project_id={$choose['project_id']} and batch_id={$choose['batch_id']}")->find();
+                if(empty($pzcs) || $pzcs['cs_value']==1)
+                {
+                    $userinfo=M("user")->where("id={$data['user_id']}")->find();
+                    if(!empty($userinfo['machine_code']))
+                    {
+                        $print_arr=M()->table("xk_choose")->field("customer_name,customer_phone,cardno,cyjno")->where("id=".$id)->find();
+                        $printer[0]=$userinfo['machine_code'];
+                        $printer[1]=$userinfo['mkey'];
+                        //$printer[0]='4004510553';
+                        //$printer[1]='pjy6mr67fjtx';
+                        $this->cloudPrint($print_arr,$printer);//打印小票
+                    }
+                }
             }
             M()->commit();
             echo 'true';

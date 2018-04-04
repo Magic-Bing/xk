@@ -78,7 +78,11 @@ class SelectRoomController extends BaseController
         $total_pages = $Page->totalPages;
         //取范围
         $limit = $Page->firstRow . ',' . $Page->listRows;
-        $res=M()->table("xk_kppc k")->field("k.*,p.name pname")->join("xk_project p ON p.id=k.proj_id")->where($where2)->limit($limit)->select();
+        $res=M()->table("xk_kppc k")->field("k.*,p.name pname,b.bname,count(r.id) room_count")->
+        join("xk_project p ON p.id=k.proj_id")->
+        join("LEFT JOIN (SELECT proj_id,pc_id,group_concat(buildname separator  ';') bname FROM xk_build GROUP BY proj_id,pc_id) b ON b.proj_id=k.proj_id and b.pc_id=k.id")->
+        join("LEFT JOIN xk_roomlist r ON r.proj_id=k.proj_id and r.pc_id=k.id")->
+        where($where2)->group("k.id")->limit($limit)->select();
         $p = I('p', '1', 'intval');
         $this->assign('p', $p);
         $this->assign('res', $res);

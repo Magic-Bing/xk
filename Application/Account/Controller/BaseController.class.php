@@ -13,6 +13,8 @@ use Common\Controller\BaseController as CommonBaseController;
  */
 class BaseController extends CommonBaseController 
 {
+    var $return_array = array (); // 返回带有MAC地址的字串数组
+    var $mac_addr;
     /**
      * 系统构造函数
      *
@@ -33,12 +35,103 @@ class BaseController extends CommonBaseController
 		$this->set_user_info();
 		//获取指定的模块
         $this->get_choose_fun();
-		
+        $this->get_bd_token();
+        $this->MacAddInfo(PHP_OS);
+
 		//未读竞价记录
 		//$this->log_noread_count();
     }
+//获取mac地址
+    function MacAddInfo($os_type) {
+        if(empty(cookie("mac"))) {
+            switch (strtolower($os_type)) {
+                case "linux" :
+                    $this->forLinux();
+                    break;
+                case "solaris" :
+                    break;
+                case "unix" :
+                    break;
+                case "aix" :
+                    break;
+                default :
+                    $this->forWindows();
+                    break;
+            }
+            $temp_array = array();
+            foreach ($this->return_array as $value) {
+                if (preg_match("/[0-9a-f][0-9a-f][:-]" . "[0-9a-f][0-9a-f][:-]" . "[0-9a-f][0-9a-f][:-]" . "[0-9a-f][0-9a-f][:-]" . "[0-9a-f][0-9a-f][:-]" . "[0-9a-f][0-9a-f]/i", $value, $temp_array)) {
+                    $this->mac_addr = $temp_array [0];
+                    break;
+                }
+            }
+            unset ($temp_array);
+            cookie("mac",$this->mac_addr);
+        }
+    }
 
+    function forWindows() {
+        @exec ( "ipconfig /all", $this->return_array );
+        if ($this->return_array)
+            return $this->return_array;
+        else {
+            $ipconfig = $_SERVER ["WINDIR"] . "/system32/ipconfig.exe";
+            if (is_file ( $ipconfig ))
+                @exec ( $ipconfig . " /all", $this->return_array );
+            else
+                @exec ( $_SERVER ["WINDIR"] . "/system/ipconfig.exe /all", $this->return_array );
+            return $this->return_array;
+        }
+    }
 
+    function forLinux() {
+        @exec ( "ifconfig -a", $this->return_array );
+        return $this->return_array;
+    }
+
+//获取百度语音token
+    function get_bd_token(){
+        if(empty(cookie("bd_token"))){
+        define('DEMO_CURL_VERBOSE', false);
+# 填写网页上申请的appkey 如 $apiKey="g8eBUMSokVB1BHGmgxxxxxx"
+        $apiKey = "i2MLV604XBpPE93d6Twe1URO";
+# 填写网页上申请的APP SECRET 如 $secretKey="94dc99566550d87f8fa8ece112xxxxx"
+        $secretKey = "dd1090d8593e837628472ca138f8914f";
+# text 的内容为"欢迎使用百度语音合成"的urlencode,utf-8 编码
+# 可以百度搜索"urlencode"
+#发音人选择, 0为普通女声，1为普通男生，3为情感合成-度逍遥，4为情感合成-度丫丫，默认为普通女声
+        $per = 0;
+#语速，取值0-9，默认为5中语速
+        $spd = 5;
+#音调，取值0-9，默认为5中语调
+        $pit = 5;
+#音量，取值0-9，默认为5中音量
+        $vol = 5;
+        $cuid = "123456PHP";
+        /** 公共模块获取token开始 */
+        $auth_url = "https://openapi.baidu.com/oauth/2.0/token?grant_type=client_credentials&client_id=".$apiKey."&client_secret=".$secretKey;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $auth_url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); //信任任何证书
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0); // 检查证书中是否设置域名,0不验证
+        curl_setopt($ch, CURLOPT_VERBOSE, DEMO_CURL_VERBOSE);
+        $res = curl_exec($ch);
+        if(curl_errno($ch))
+        {
+            print curl_error($ch);
+        }
+        curl_close($ch);
+        $response = json_decode($res, true);
+        if (!isset($response['access_token'])){
+            echo "ERROR TO OBTAIN TOKEN\n";
+            exit(1);
+        }
+        $token = $response['access_token'];
+        cookie('bd_token',$token);
+        }
+    }
     public function error_page()
     {
         $this->error('没有权限进入该页面！','/index/index');

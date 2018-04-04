@@ -112,8 +112,10 @@ class YwcsSetController extends BaseController {
              $kpmsinfo[0]['showdzkp']="block";
              $kpmsinfo[0]['showwxkp']="none";
          }
-
+        //查询分类总数
+        $type_count=M()->table("xk_pzcs")->field('group_type,type_name')->group("group_type")->select();
         $this->assign('kpmsinfo', $kpmsinfo[0]); 
+        $this->assign('type_count', $type_count);
         $this->assign('dzkplist', $dzkp_cslist);
         $this->assign('wxkplist', $wxkp_cslist);
         //$this->assign('cstype', array(1=>'电子开盘',2=>'微信开盘')); 

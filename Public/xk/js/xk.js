@@ -429,47 +429,52 @@ $(function () {
                         $("#cardno1").val($csts[0].cardno);
                      }else{
                          var str="<table id='cs_id' style='width: 100%;'><tr>" +
-                             "<th style='width: 12%;text-align: center'>姓名</th>" +
-                             "<th style='width: 25%;text-align: center'>身份证</th>" +
-                             "<th style='width: 15%;text-align: center'>电话</th>" +
-                             "<th style='width: 24%;text-align: center'>诚意单号</th>" +
-                             "<th style='width: 24%;text-align: center'>选房资格</th>" +
+                             "<th style='width: 17%;text-align: center'>姓名</th>" +
+                             "<th style='width: 35%;text-align: center'>身份证</th>" +
+                             "<th style='width: 14%;text-align: center'>电话</th>" +
+                             "<th style='width: 18%;text-align: center'>诚意单号</th>" +
+                             "<th style='width: 18%;text-align: center'>选房资格</th>" +
                              "</tr>";
                          for(var i=0;i<$csts.length;i++){
                              var zg="";
                              var sr="";
                              if($csts[i].pd == 1){
-                                 sr="<p style='white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 75px'><label >" +
-                                     "<input type='radio' name='card' disabled  value='"+i+"'>" + $csts[i].customer_name+"</label></p>";
-                                 zg="<td style='width: 24%;text-align: center'>未摇号</td>";
+                                sr="<div style='float:left;width:25px'>" 
+                                         +"<input type='radio' name='card' disabled  value='"+i+"'></div><div style='float:left;width:50px'>" + $csts[i].customer_name
+                                     +"</div>";
+                                zg="<td style='text-align: center'>未摇号</td>";
                              }else if($csts[i].pd == 2){
-                                 sr="<p style='white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 75px'><label >" +
-                                     "<input type='radio' name='card'  disabled value='"+i+"'>" + $csts[i].customer_name+"</label></p>";
-                                 zg="<td style='width: 24%;text-align: center'>无排号</td>";
+                                sr="<div style='float:left;width:25px'>" 
+                                         +"<input type='radio' name='card' disabled  value='"+i+"'></div><div style='float:left;width:50px'>" + $csts[i].customer_name
+                                     +"</div>";
+                                zg="<td style='text-align: center'>无排号</td>";
                              }else if($csts[i].pd == 3){
-                                 sr="<p style='white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 75px'><label >" +
-                                     "<input type='radio' name='card' disabled  value='"+i+"'>" + $csts[i].customer_name+"</label></p>";
-                                 zg="<td style='width: 24%;text-align: center'>未签到</td>";
+                                sr="<div style='float:left;width:25px'>" 
+                                         +"<input type='radio' name='card' disabled  value='"+i+"'></div><div style='float:left;width:50px'>" + $csts[i].customer_name
+                                     +"</div>";
+                                zg="<td style='text-align: center'>未签到</td>";
                              }
                              else if($csts[i].pd == 4){
-                                 sr="<p style='white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 75px'><label >" +
-                                     "<input type='radio' name='card' disabled  value='"+i+"'>" + $csts[i].customer_name+"</label></p>";
-                                 zg="<td style='width: 24%;text-align: center'>未入场</td>";
+                                 sr="<div style='float:left;width:25px'>" 
+                                         +"<input type='radio' name='card' disabled  value='"+i+"'></div><div style='float:left;width:50px'>" + $csts[i].customer_name
+                                     +"</div>";
+                                 zg="<td style='text-align: center'>未入场</td>";
                              }else{
-                                 sr="<p style='white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 75px'><label >" +
-                                     "<input type='radio' name='card'   value='"+i+"'>" + $csts[i].customer_name+"</label></p>";
-                                 zg="<td style='width: 24%;text-align: center'>有</td>";
+                                 sr="<div style='float:left;width:25px'>" 
+                                         +"<input type='radio' name='card'   value='"+i+"'></div><div style='float:left;width:50px'>" + $csts[i].customer_name
+                                     +"</div>";
+                                 zg="<td style='text-align: center'>有</td>";
                              }
                              str+="<tr style='cursor: pointer'>" +
-                                 "<td style='width: 12%;text-align: left'>" +sr+
+                                 "<td style='text-align: left'>" +sr+
                                  "</td>" +
-                                 "<td style='width: 25%;text-align: center'>" +
-                                 "<p title='"+$csts[i].cardno+"' style='width: 180px;white-space: nowrap;overflow: hidden;" +
+                                 "<td style='text-align: center'>" +
+                                 "<p title='"+$csts[i].cardno+"' style='width: 165px;" +
                                  "text-overflow: ellipsis;text-align: left;'>"+$csts[i].cardno+"</p></td>" +
-                                 "<td style='width: 15%;text-align: center'>" +
-                                 "<p title='"+$csts[i].customer_phone+"' style='width: 125px;white-space: nowrap;overflow: hidden;" +
+                                 "<td style='text-align: center'>" +
+                                 "<p title='"+$csts[i].customer_phone+"' style='width: 100px;" +
                                  "text-overflow: ellipsis;text-align: left;'>"+$csts[i].customer_phone+"</p></td>" +
-                                 "<td style='width: 24%;text-align: center'>"+$csts[i].cyjno+"</td>" +zg+
+                                 "<td style='text-align: center'>"+$csts[i].cyjno+"</td>" +zg+
                                  "</tr>";
                          }
                          str+= "</table>";
@@ -619,6 +624,7 @@ $(function () {
         // console.log(room_str);
         // console.log(room_arr);
         if (Number(room_arr[1]) === 0) {
+            is_dqcard=true;
             $("#tb").hide();
             $(".marketing-control-room-info-" + 'zt').val("待售");
             $("#select-pay").val("");
@@ -637,7 +643,11 @@ $(function () {
             }
             if(Number(room_arr[3])!==0){
                 $(".tnmj").show();
-                $("#tnmj").val(room_arr[2]);
+                $("#tnmj").val(room_arr[3]);
+            }
+            else
+            {
+                 $(".tnmj").show();
             }
             if(Number(room_arr[4])!==0){
                 $(".jz-price").show();
@@ -695,6 +705,7 @@ $(function () {
                 $(".gjj-price-one input").val($.formatMoney(room_arr[13],2));
             }
         } else {
+            is_dqcard=false;
             $("#tb").show();
             $(".marketing-control-room-info-" + 'zt');
             $("#pdz1").hide();
@@ -802,6 +813,7 @@ $(function () {
                 $($text_pre + 'hx').val(($room['hxmx'] ? $room['hx'] + "(" + $room['hxmx'] + ")" : $room['hx']));
                 $($text_pre + 'total').val($.formatMoney($room['total'], 2));
                 if ($room['is_xf'] == 1) {
+                    is_dqcard=false;
                     if($("#select-pay").prop("disabled")){
                         $(".out-price").show();
                     }else{
@@ -838,7 +850,8 @@ $(function () {
                         $("#print_xp").show();
                     }else{
                         $(".marketing-control-content-room-cancel").hide();
-                        $("#print_xp").hide();
+                        //$("#print_xp").hide();
+                        $("#print_xp").show();
                     }
                     $(".marketing-control-content-room-confirm").hide();
                     $(".marketing-control-content-room-confirm-btn").attr("disabled", true);
@@ -855,7 +868,7 @@ $(function () {
                     $("#ystitle").show();
                 }
                 else {
-
+                    is_dqcard=true;
                     $("#roominfo1").val($room['buildname'] + "-" + $room['unit'] + "单元-" + $room['floor'] + "层-" + $room['room']);
                     $("#div_xfinfo").hide();
                     $("#pdz").show();
@@ -946,6 +959,7 @@ $(function () {
         var pay = $("#select-pay").val();
         var $is_sf = $(".marketing-control-room-info-is-sf").val();
         if ($is_sf == '1') {
+            is_dqcard=false;
             layer_alert_two('该房间已经选择过，请选择其他房间！');
             return false;
         }
@@ -972,6 +986,7 @@ $(function () {
             layer_alert_two('客户信息错误！');
             return false;
         }
+        $("#loading").show();
         $.ajax({
             url: room_url.choose_room,
             data: {
@@ -984,9 +999,11 @@ $(function () {
             dataType: 'JSON',
             success: function (data) {
                 if (data.status === 0) {
+                    $("#loading").hide();
                     layer_alert_two(data.info);
                     return false;
                 }
+                $("#loading").hide();
                 var $is_havexf = Number(data.info[0]);
                 var is_xfzg = Number(data.info[4]);
                 $("#div_xfinfo").show();
@@ -1018,6 +1035,7 @@ $(function () {
                     $('#vip1').attr("readonly", "readonly");
                     $('#phone1').attr("readonly", "readonly");
                     $('#cardno1').attr("readonly", "readonly");
+                    is_dqcard=false;
                     //$(".marketing-control-content-rooms-box-room-"+$room_id).click();
                 }
                 else {
@@ -1025,8 +1043,10 @@ $(function () {
                     $("#ystitle").show();
                     $("#xftitle").hide();
                     if($is_havexf === 1){
+                        is_dqcard=false;
                         layer_alert_two('此房间已经售出，请选择其他房间！');
                     }else{
+                        is_dqcard=true;
                         if(is_xfzg===1){
                             layer_alert_two('未摇号不能进行选房！');
                         }else if(is_xfzg===2){
@@ -1066,6 +1086,7 @@ $(function () {
                 }
             },
             error: function (data, status, e) {
+                $("#loading").hide();
                 layer_alert_two('提交连接失败！');
             }
         });
@@ -1076,6 +1097,11 @@ $(function () {
 
     //取消选房
     $(".marketing-control-content-room-cancel-btn").click(function () {
+        var $is_first=0;
+        if($("#xfcgys").css('display')=="block")
+        {
+            $is_first=1;
+        }
         $("#xfcgys").hide();
         var $room_id = $(".marketing-control-room-info-id").val();
         var $cstname = $("#cstname1").val();
@@ -1083,6 +1109,7 @@ $(function () {
         var $is_sf = $(".marketing-control-room-info-is-sf").val();
 
         if ($is_sf == '0') {
+            is_dqcard=true;
             layer_alert_two('该房间已经取消，请选择其他房间！');
             return false;
         }
@@ -1091,37 +1118,47 @@ $(function () {
             layer_alert_two('房间信息不存在！');
             return false;
         }
+        
         //确认函数
         var $confirm = function () {
+            $("#loading").show();
             $.ajax({
                 url: room_url.not_choose_room,
                 data: {
                     id: $room_id,
+                    is_first: $is_first,
                 },
                 type: 'POST',
                 dataType: 'JSON',
                 success: function (data, status) {
                     if (typeof(data.status) === 'undefined') {
+                        $("#loading").hide();
                         layer_alert_two('请求失败，请重试！');
                         return false;
                     }
                     if (data.status === 0) {
+                        $("#loading").hide();
                         layer_alert_two(data.info);
                         return false;
                     }
-
+                    $("#loading").hide();
                     hidefqz();
                     if (data.info == 1) {
-                        $("#yg_count").text(Number($("#yg_count").text()) - 1);
-                        $("#user_count").text(Number($("#user_count").text()) - 1);
+                        if ( Number($("#yg_count").text())>0)
+                            $("#yg_count").text(Number($("#yg_count").text()) - 1);
+                        if ( Number($("#user_count").text())>0)
+                            $("#user_count").text(Number($("#user_count").text()) - 1);
+                        
                     } else {
-                        $("#yg_count").text(Number($("#yg_count").text()) - 1);
+                        if ( Number($("#yg_count").text())>0)
+                            $("#yg_count").text(Number($("#yg_count").text()) - 1);
                     }
-
+                    is_dqcard=true;
                     layer_msg('取消选房成功');
                     $(".marketing-control-content-rooms-box-room-" + $room_id).removeClass("marketing-control-content-rooms-box-room-selected");
                 },
                 error: function (data, status, e) {
+                    $("#loading").hide();
                     layer_alert_two('提交连接失败！');
                 }
             });

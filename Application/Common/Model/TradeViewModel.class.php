@@ -31,8 +31,12 @@ class TradeViewModel extends BaseViewModel {
             'pay' => 'pay',
             'proportion' => 'proportion',
             'money' => 'money',
+            'xfuserid' => 'xfuserid',
+            'xfuser' => 'xfuser',
             'createdbyid' => 'createdbyid',
             'createdby' => 'createdby',
+            'ip'=> 'tread_addip',
+            'closereason'=> 'closereason',
             '_type' => 'LEFT'
         ),
         'Roomlist' => array(
@@ -50,7 +54,9 @@ class TradeViewModel extends BaseViewModel {
             'hx' => 'hx',
             'area' => 'area',
             'total' => 'total',
+            'price' => 'price',
             'is_xf' => 'is_xf',
+            'status' => 'roomstatus',
             '_on' => 'Trade.room_id = Roomlist.id',
             '_type' => 'LEFT'
         ),

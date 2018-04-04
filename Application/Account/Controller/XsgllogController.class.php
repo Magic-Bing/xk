@@ -35,20 +35,60 @@ class XsgllogController extends BaseController {
      */
     public function update_off(){
         $id=I("id",0,"intval");
-        $pd=M()->table("xk_trade")->where("id=$id")->save(["isyx"=>0]);
-        echo $pd?"true":"false";
+        $res=M()->table("xk_trade")->where("id=$id")->find();
+        if($res &&  $res['room_id'])
+        {
+            $user_id = $this->get_user_id();
+            $user = D("User")->getOneById($user_id);
+            $tm=time();
+            $data = array(
+                'status' => '待售',
+                'is_xf' => 0,
+                'xftime' => '',
+                'cstname' => '',
+                'cstid' => 0,
+                'is_qxxf' => 1,
+                'qxxftime' => $tm,
+            );
+            
+            $data1['room_id'] 	= $res['room_id'];
+            $data1['cztype'] 	= '交易作废';
+            $data1['czuser'] 	= $user_id;
+            $data1['czusername'] = $user['name'];
+            $data1['cztime'] 	= $tm;
+            
+            M()->startTrans();
+            try{
+                M()->table("xk_trade")->where("id=$id")->save(["isyx" => 0,'closereason'=>'交易作废']);
+                M()->table("xk_room")->where("id={$res['room_id']}")->save($data);
+		M()->table("xk_roomczlog")->add($data1);
+                M()->commit();
+            }catch (\Exception $e){
+                M()->rollback();
+                echo "false";
+            }
+        }
+        else
+        {
+            echo "false";
+        }
     }
 
     //修改状态
     public function update_zt(){
         $id=I("id",0,"intval");
-        $zt=I("zt",0,"trim");
+        $zt=I("zt","","trim");
         $pay=I("pay",'',"trim");
         $proportion=I("proportion",0,"trim");
         $money=I("money",0,"trim");
         $tm=strtotime(I("tm",0,"trim"));
         $res=M()->table("xk_trade")->where("id=$id")->select();
-        M()->table("xk_trade")->where("id=$id")->save(['isyx'=>0]);
+        if(empty($res))
+        {
+             echo "false";exit;
+        }
+        $user_id = $this->get_user_id();
+        $user = D("User")->getOneById($user_id);
         $data['yw_id']=$res[0]['yw_id'];
         $data['room_id']=$res[0]['room_id'];
         $data['cst_id']=$res[0]['cst_id'];
@@ -59,14 +99,28 @@ class XsgllogController extends BaseController {
         $data['tradetime']=$tm;
         $data['code']=$res[0]['code'];
         $data['ywy']=$res[0]['ywy'];
-        $data['createdbyid']=$res[0]['createdbyid'];
-        $data['createdby']=$res[0]['createdby'];
+        $data['xfuserid']=$res[0]['xfuserid'];
+        $data['xfuser']=$res[0]['xfuser'];
+        $data['createdbyid']=$user_id;
+        $data['createdby']=$user['name'];
         $data['old_id']=$id;
         $data['proportion']=$proportion;
         $data['pay']=$pay;
         $data['money']=$money;
-        $res=M()->table("xk_trade")->add($data);
-        echo $res?"true":"false";
+        $data['ip']=get_client_ip(0, true);
+        M()->startTrans();
+        try{
+            M()->table("xk_trade")->add($data);
+            M()->table("xk_trade")->where("id=$id")->save(['isyx'=>0,'closereason'=>'转'.$zt]);
+            M()->table("xk_room")->where("id={$res[0]['room_id']}")->save(['status'=>$zt]);
+            M()->commit();
+            echo "true";
+        }
+        catch (\Exception $e){
+            M()->rollback();
+            echo "false";
+        }
+        //echo $res?"true":"false";
     }
     //2018-2-5获取打印模板
     public function get_print(){
@@ -79,16 +133,59 @@ class XsgllogController extends BaseController {
         $name=I('name','');
         $id=I('id',0,'intval');
         $zt=I('zt','','trim');
-        if($zt==='选房')M()->table("xk_trade")->where('id='.$id)->save(['status'=>'认购']);
+        
         if(empty($name)){
             $this->error("模板名称为空！");
         }
         if(empty($id)){
             $this->error("不存在的记录！");
         }
+        
         //用户信息视图
         $TradeView = D('Common/TradeView');
         $res = $TradeView->where("Trade.id=$id")->find();
+        if(empty($res))
+        {
+             echo "false";exit;
+        }
+        //改变交易信息
+        if($zt==='选房')
+        {
+            $user_id = $this->get_user_id();
+            $user = D("User")->getOneById($user_id);
+
+            $data['yw_id']=$res['yw_id'];
+            $data['room_id']=$res['room_id'];
+            $data['cst_id']=$res['cst_id'];
+            $data['source']=$res['source'];
+            $data['status']="认购";
+            $data['isyx']=$res['isyx'];
+            $data['cjtotal']=$res['cjtotal'];
+            $data['tradetime']=time();
+            $data['code']=$res['code'];
+            $data['ywy']=$res['ywy'];
+            $data['xfuserid']=$res['xfuserid'];
+            $data['xfuser']=$res['xfuser'];
+            $data['createdbyid']=$user_id;
+            $data['createdby']=$user['name'];
+            $data['old_id']=$id;
+            $data['proportion']=$res['proportion'];
+            $data['pay']=$res['pay'];
+            $data['money']=$res['money'];
+            $data['ip']=get_client_ip(0, true);
+            M()->startTrans();
+            try{
+                M()->table("xk_trade")->add($data);
+                M()->table("xk_trade")->where('id='.$id)->save(['isyx'=>0,'closereason'=>'打印自动转认购']);
+                M()->table("xk_room")->where("id={$res['room_id']}")->save(['status'=>"认购"]);
+                M()->commit();
+            }
+            catch (\Exception $e){
+                M()->rollback();
+            }
+        }
+        
+        
         $res['cst_phone']=rsa_decode($res['cst_phone'],getChoosekey());
         
         if( !empty($res['cardno']) && $res['cardno']!="")
@@ -125,12 +222,6 @@ class XsgllogController extends BaseController {
     }
     /*=========================================end============================================*/
 
-    /**
-	 * 竞价选房
-	 *
-     * @create 2016-12-26
-	 * @author zlw
-	 */
     public function index()
 	{
 		//项目ID
