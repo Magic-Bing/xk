@@ -57,13 +57,13 @@ class YaoHresultModel extends Model
 	 */
 	public function getList(
 		$where, 
-		$field = '*', 
+		$field = 'xk_yaohresult.*,pc.*,ch.*,r.id rid',
 		$orderBy = 'id DESC',
 		$limit = ''
 	) {
 		return $this->field($field)
                         ->join("INNER JOIN (select a.id as bid,a.proj_id ,a.name as batch_name,b.name as project_name from xk_kppc a left join xk_project b on a.proj_id=b.id where is_yx =1) pc ON xk_yaohresult.batch_id=pc.bid  and xk_yaohresult.project_id=pc.proj_id")
-                        ->join("INNER JOIN (select id as cid,customer_name,customer_phone,cardno,cyjno,like_p,like_c from xk_choose) ch ON xk_yaohresult.cstid=ch.cid")
+                        ->join("INNER JOIN (select id as cid,customer_name,customer_phone,cardno,cyjno,like_p,like_c from xk_choose) ch ON xk_yaohresult.cstid=ch.cid") ->join("LEFT JOIN xk_roomlist r ON xk_yaohresult.cstid=r.cstid")
 			->where($where)
 			->order($orderBy)
 			->limit($limit)

@@ -210,13 +210,42 @@ class DataStatisticsController extends Base1Controller
         $saled_hx['percent'] 	 = round(($hx['sold_price'] / $hx['tatol_price']) * 100,2);
         $this->assign('saled_hx', $saled_hx);
 
+        //查询是否开启摇号
+        $isyhao=M()->table("xk_yaohset")->where("project_id=$pid AND batch_id=$bid and is_yx=1")->find();
+        $this->assign('isyhao', $isyhao['id']);
         //客户签到和选房情况
         //先查询权限情况
         $pd_user=M()->table("xk_station2user su")->join("xk_fun_station fs ON fs.station_id=su.station_id")->where("userid=$uid AND fs.fun_id=101")->find();
         if($pd_user){//当$pd_user不为空的时候查看所有客户
-            $user_xf=M()->table("xk_choose c")->field("count(1) zrs,SUM(CASE WHEN c.is_sign=0 THEN 1 ELSE 0 END) no_sign,SUM(CASE WHEN c.is_sign=1 THEN 1 ELSE 0 END) yes_sign,SUM(CASE WHEN c.is_sign=1 AND r.id IS NOT NULL THEN 1 ELSE 0 END) sign_selected,SUM(CASE WHEN c.is_sign=1 AND r.id IS NULL THEN 1 ELSE 0 END) sign_select")->join('LEFT JOIN xk_room r ON r.cstid=c.id')->where("c.project_id=$pid AND c.batch_id=$bid AND c.status=1")->find();
+            $user_xf=M()->table("xk_choose c")
+                    ->field("count(1) zrs,SUM(CASE WHEN c.is_sign=0 THEN 1 ELSE 0 END) no_sign,"
+                            . "SUM(CASE WHEN c.is_sign=1 THEN 1 ELSE 0 END) yes_sign,"
+                            . "SUM(CASE WHEN c.is_sign=1 AND r.id IS NOT NULL THEN 1 ELSE 0 END) sign_selected,"
+                            . "SUM(CASE WHEN c.is_sign=1 AND r.id IS NULL THEN 1 ELSE 0 END) sign_select,"
+                            . "SUM(CASE WHEN c.is_admission=1 THEN 1 ELSE 0 END) admission,"
+                            . "SUM(CASE WHEN h.id is not null THEN 1 ELSE 0 END) yyaoh,"
+                            . "SUM(CASE WHEN r.status in('认购','签约') THEN 1 ELSE 0 END) yrg,"
+                            . "SUM(CASE WHEN TIMESTAMPDIFF(MINUTE, FROM_UNIXTIME( t.tradetime,'%Y-%m-%d  %H:%i:%s'),now() ) >30  THEN 1 ELSE 0 END) cswrg"
+                            )  
+                    ->join('LEFT JOIN xk_room r ON r.cstid=c.id')
+                    ->join('LEFT JOIN (select * from xk_yaohresult where is_yx=1) h ON h.cstid=c.id')
+                    ->join('LEFT JOIN (select * from xk_trade where isyx=1) t ON t.room_id=r.id')
+                    ->where("c.project_id=$pid AND c.batch_id=$bid AND c.status=1")->find();
         }else{
-            $user_xf=M()->table("xk_choose c")->field("count(1) zrs,SUM(CASE WHEN c.is_sign=0 THEN 1 ELSE 0 END) no_sign,SUM(CASE WHEN c.is_sign=1 THEN 1 ELSE 0 END) yes_sign,SUM(CASE WHEN c.is_sign=1 AND r.id IS NOT NULL THEN 1 ELSE 0 END) sign_selected,SUM(CASE WHEN c.is_sign=1 AND r.id IS NULL THEN 1 ELSE 0 END) sign_select")->join('LEFT JOIN xk_room r ON r.cstid=c.id')->where("c.project_id=$pid AND c.batch_id=$bid AND c.ywyphone='{$userinfo['mobile']}' AND c.status=1")->find();
+            $user_xf=M()->table("xk_choose c")
+                    ->field("count(1) zrs,SUM(CASE WHEN c.is_sign=0 THEN 1 ELSE 0 END) no_sign,"
+                            . "SUM(CASE WHEN c.is_sign=1 THEN 1 ELSE 0 END) yes_sign"
+                            . ",SUM(CASE WHEN c.is_sign=1 AND r.id IS NOT NULL THEN 1 ELSE 0 END) sign_selected,"
+                            . "SUM(CASE WHEN c.is_sign=1 AND r.id IS NULL THEN 1 ELSE 0 END) sign_select,"
+                            . "SUM(CASE WHEN c.is_admission=1 THEN 1 ELSE 0 END) admission,"
+                            . "SUM(CASE WHEN h.id is not null THEN 1 ELSE 0 END) yyaoh,"
+                            . "SUM(CASE WHEN r.status in('认购','签约') THEN 1 ELSE 0 END) yrg,"
+                            . "SUM(CASE WHEN TIMESTAMPDIFF(MINUTE, FROM_UNIXTIME( t.tradetime,'%Y-%m-%d  %H:%i:%s'),now() ) >30  THEN 1 ELSE 0 END) cswrg"
+                            )
+                    ->join('LEFT JOIN xk_room r ON r.cstid=c.id')
+                    ->join('LEFT JOIN (select * from xk_yaohresult where is_yx=1) h ON h.cstid=c.id')
+                    ->join('LEFT JOIN (select * from xk_trade where isyx=1) t ON t.room_id=r.id')
+                    ->where("c.project_id=$pid AND c.batch_id=$bid AND c.ywyphone='{$userinfo['mobile']}' AND c.status=1")->find();
         }
         $this->assign('user_xf', $user_xf);
         unset( $field, $orderBy);
@@ -226,8 +255,7 @@ class DataStatisticsController extends Base1Controller
                 count(case when is_xf = 1 then 1 end ) as saled_total,
                 round(sum(case when is_xf = 1 then total else 0 end )/10000,2) as saled_price,
                 count(case when is_xf = 0 then 1 end ) as nosaled_total,
-                round(sum(case when is_xf = 0 then total else 0 end )/10000,2) as nosaled_price
-		';
+                round(sum(case when is_xf = 0 then total else 0 end )/10000,2) as nosaled_price';
         $groupBy = 'hx';
         $orderBy = 'count(case when is_xf = 1 then 1 end ) desc,sum(case when is_xf = 1 then total else 0 end ) desc ,count(case when is_xf = 1 then 1 end )/ count(1) desc,hx ASC';
         $hx_list = M()->table("xk_roomlist")->field($field)->where($where)->order($orderBy)->group($groupBy)->select();
@@ -251,10 +279,10 @@ class DataStatisticsController extends Base1Controller
         //置业顾问排名
         $pd_user=M()->table("xk_station2user su")->join("xk_fun_station fs ON fs.station_id=su.station_id")->where("userid=$uid AND fs.fun_id=102")->find();
         if($pd_user){
-            $res=$Model->query("select count(1) cou,round(sum(total)/10000,2) mon,concat(a.ywy,'(',a.ywyphone,')' ) as czusername FROM xk_choose a inner join xk_room b on a.id=b.cstid where b.is_xf=1 and a.project_id=$pid AND a.batch_id=$bid group by a.ywy order by count(1) desc");
+            $res=$Model->query("select count(1) cou,round(sum(total)/10000,2) mon,concat(a.ywy,'(',a.ywyphone,')' ) as czusername FROM xk_choose a inner join xk_room b on a.id=b.cstid where b.is_xf=1 and a.project_id=$pid AND a.batch_id=$bid group by a.ywy order by count(1) desc,sum(total)desc");
             $xc=$Model->query("SELECT MAX(rl.id) id,czusername,count(1) all_count,SUM(r.total) price from xk_roomlist r INNER JOIN (select a.* from  xk_roomczlog a join (select max(id) as mid from xk_roomczlog  where cztype in('选房','销控') group by room_id) b on a.id=b.mid) rl ON r.id=rl.room_id where r.proj_id=$pid AND r.pc_id=$bid AND r.is_xf=1 GROUP BY rl.czusername");
             $xk=$Model->query("SELECT MAX(rl.id) id,czusername,count(1) all_count,SUM(r.total) price from xk_roomlist r INNER JOIN (select a.* from  xk_roomczlog a join (select max(id) as mid from xk_roomczlog  where cztype in('选房','销控') group by room_id) b on a.id=b.mid) rl ON r.id=rl.room_id where r.proj_id=$pid AND r.pc_id=$bid AND r.is_xf=1 AND rl.cstid =0 GROUP BY rl.room_id");
-//            echo json_encode($xk);exit;
+            //echo json_encode($xk);exit;
             $this->assign("ct",$cs_count);
             $this->assign("res",$res);
             $this->assign("xc",$xc);

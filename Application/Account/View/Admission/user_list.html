@@ -19,7 +19,9 @@
             <elseif condition="$pd_num eq 3" />
             <th>签到时间</th>
         </if>
-
+        <if condition="$zt egt 1">
+            <th>入场时间</th>
+        </if>
         <th>操作</th>
     </tr>
     </thead>
@@ -39,6 +41,13 @@
                         <td style="vertical-align: middle"><{:date('Y-m-d h:i:s',$vo['createdtime'])}></td>
                         <elseif condition="$pd_num eq 3" />
                         <td style="vertical-align: middle"><{:date('Y-m-d h:i:s',$vo['sign_time'])}></td>
+                    </if>
+                    <if condition="$zt egt 1">
+                        <td style="vertical-align: middle">
+                            <if condition="!empty($vo['admission_time'])">
+                                <{:date('Y-m-d h:i:s',$vo['admission_time'])}>
+                            </if>
+                        </td>
                     </if>
                     <td class="center" style="vertical-align: middle">
                         <if condition="$vo.is_admission eq 0">
@@ -72,7 +81,10 @@
     </tbody>
 
 </table>
-
+<input type="hidden" id="h_zgs"  name="h_zgs" value="<{$slinfo['zgs']|default=0}>">
+<input type="hidden" id="h_yrc"  name="h_yrc" value="<{$slinfo['yrc']|default=0}>">
+<input type="hidden" id="h_wrc"  name="h_wrc" value="<{$slinfo['wrc']|default=0}>">
+<input type="hidden" id="ms"  name="ms" value="<{$pd_num}>">
 <div class="row">
     <div class="col-sm-6">
         <div class="dataTables_info" id="sample-table-2_info">

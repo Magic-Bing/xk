@@ -95,22 +95,37 @@ class AdmissionController extends BaseController
             join("xk_yaohresult y ON y.cstid=c.id")->
             join('LEFT JOIN xk_pzcsvalue p ON p.project_id=c.project_id AND p.batch_id=c.batch_id AND p.pzcs_id=4 AND p.cs_value=-1')->
             where("y.is_yx = 1 $z $p $b $s")->order("y.no ASC")->limit($page*$page_num,$page_num)->select();
+            $slinfo=M("choose c")->
+            field('count(1) zgs,sum(case when c.is_admission=1 then 1 else 0 end) yrc,sum(case when c.is_admission=1 then 0 else 1 end) wrc')->
+            join("xk_yaohresult y ON y.cstid=c.id")->
+            join('LEFT JOIN xk_pzcsvalue p ON p.project_id=c.project_id AND p.batch_id=c.batch_id AND p.pzcs_id=4 AND p.cs_value=-1')->
+            where("y.is_yx = 1  $p $b $s")->find();
         }elseif ($pd['cs_value']==2){
             $pd_num=2;
             $count=M()->table("xk_choose c")->where("1 = 1 $z $p $b $s")->count();
             $res=M()->table("xk_choose c")->field("c.*,p.id pid")->
             join('LEFT JOIN xk_pzcsvalue p ON p.project_id=c.project_id AND p.batch_id=c.batch_id AND p.pzcs_id=4 AND p.cs_value=-1')->
             where("1=1 $z $p $b $s")->order("c.cyjno ASC")->limit($page*$page_num,$page_num)->select();
+            $slinfo=M()->table("xk_choose c")->
+            field('count(1) zgs,sum(case when c.is_admission=1 then 1 else 0 end) yrc,sum(case when c.is_admission=1 then 0 else 1 end) wrc')->
+            join('LEFT JOIN xk_pzcsvalue p ON p.project_id=c.project_id AND p.batch_id=c.batch_id AND p.pzcs_id=4 AND p.cs_value=-1')->
+            where("1=1  $p $b $s")->find();
         }else{
             $pd_num=3;
             $count=M()->table("xk_choose c")->where("c.is_sign=1 $z $p $b $s")->count();
             $res=M()->table("xk_choose c")->field("c.*,p.id pid")->
             join('LEFT JOIN xk_pzcsvalue p ON p.project_id=c.project_id AND p.batch_id=c.batch_id AND p.pzcs_id=4 AND p.cs_value=-1')->
             where("c.is_sign=1 $z $p $b $s")->order("c.sign_time ASC")->limit($page*$page_num,$page_num)->select();
+            $slinfo=M()->table("xk_choose c")->
+            field('count(1) zgs,sum(case when c.is_admission=1 then 1 else 0 end) yrc,sum(case when c.is_admission=1 then 0 else 1 end) wrc')->
+            join('LEFT JOIN xk_pzcsvalue p ON p.project_id=c.project_id AND p.batch_id=c.batch_id AND p.pzcs_id=4 AND p.cs_value=-1')->
+            where("c.is_sign=1  $p $b $s")->find();
         }
         $all_page=ceil($count/$page_num);
         $this->assign('pd_num', $pd_num);
         $this->assign('page_num', $page_num);
+        $this->assign('slinfo', $slinfo);
+        $this->assign('zt', $zt);
 //        echo $all_page;exit;
         $this->assign('page', $page+1);
         $this->assign('pages', $page);

@@ -91,6 +91,9 @@ $(function () {
         $("#search-one").val('');
         $.post(admission.user_list,{pid:pid,bid:bid,num:row,zt:zt},function (data) {
             $("#user_list").html(data);
+            $("#zgs").text($("#h_zgs").val());
+            $("#yrc").text($("#h_yrc").val());
+            $("#wrc").text($("#h_wrc").val());
             user_ajax();
         });
     });
@@ -111,6 +114,9 @@ $(function () {
             }
             $.post(admission.user_list,{pid:pid,bid:bid,search:search,num:row,zt:zt},function (data) {
                 $("#user_list").html(data);
+                $("#zgs").text($("#h_zgs").val());
+                $("#yrc").text($("#h_yrc").val());
+                $("#wrc").text($("#h_wrc").val());
                 user_ajax();
             });
         }
@@ -130,6 +136,9 @@ $(function () {
             }
             $.post(admission.user_list,{pid:pid,bid:bid,search:search,num:row,zt:zt},function (data) {
                 $("#user_list").html(data);
+                $("#zgs").text($("#h_zgs").val());
+                $("#yrc").text($("#h_yrc").val());
+                $("#wrc").text($("#h_wrc").val());
                 user_ajax();
             });
     });
@@ -160,6 +169,9 @@ $(function () {
         if(event.keyCode === 13){
             $.post(admission.user_list,{pid:pid,bid:bid,search:search,page:(num-1),num:row,zt:zt},function (data) {
                 $("#user_list").html(data);
+                $("#zgs").text($("#h_zgs").val());
+                $("#yrc").text($("#h_yrc").val());
+                $("#wrc").text($("#h_wrc").val());
                 user_ajax();
             });
         }
@@ -190,6 +202,9 @@ $(function () {
         if(event.keyCode === 13){
             $.post(admission.user_list,{pid:pid,bid:bid,search:search,page:(num-1),num:row,zt:zt},function (data) {
                 $("#user_list").html(data);
+                $("#zgs").text($("#h_zgs").val());
+                $("#yrc").text($("#h_yrc").val());
+                $("#wrc").text($("#h_wrc").val());
                 user_ajax();
             });
         }
@@ -206,6 +221,9 @@ $(function () {
         console.log(num);
         $.post(admission.user_list,{pid:pid,bid:bid,search:search,page:(num-1),num:row,zt:zt},function (data) {
             $("#user_list").html(data);
+            $("#zgs").text($("#h_zgs").val());
+            $("#yrc").text($("#h_yrc").val());
+            $("#wrc").text($("#h_wrc").val());
             user_ajax();
         });
     });
@@ -227,12 +245,21 @@ $(function () {
         var td=$(this).find('td');
         var pd=Number($(this).attr("data-is-admission"));
         var id=Number($(this).attr("data-id"));
-        $("#admission-txt h1").text($.trim(td.eq(1).text()));
+        $("#admission-txt h2").text($.trim(td.eq(1).text()));
         $("#admission-txt p span:first").text($.trim(td.eq(2).text()));
         $("#admission-txt p span").eq(1).text($.trim(td.eq(4).text()));
         $("#admission-txt p").eq(1).text($.trim(td.eq(3).text()));
-        $("#admission-group p").eq(0).find('span').text($.trim(td.eq(6).text()));
-        $("#admission-group p").eq(1).find('span').text($.trim(td.eq(7).text()));
+        var ms=$("#ms").val();
+        if(Number(ms) ===1){
+            $("#admission-group p").eq(0).find('span').text($.trim(td.eq(6).text()));
+            $("#admission-group p").eq(1).find('span').text($.trim(td.eq(7).text()));
+        }else if(Number(ms) ===3){
+            $("#admission-group p").eq(1).find('span').text($.trim(td.eq(0).text()));
+            $("#admission-group p").css("margin-top",'107px');
+        } else{
+            $("#admission-group p").text('');
+        }
+
         if(pd === 0){
             $("#button-sign").show().attr("data-id",id).attr("data-name",$.trim(td.eq(1).text()));
             $("#sign-reset").hide();

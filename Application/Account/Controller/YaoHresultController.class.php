@@ -123,7 +123,7 @@ class YaoHresultController extends BaseController {
         }
         //状态条件
         if (!empty($search_status)) {
-            $where['status'][] = $search_status;
+            $where['xk_yaohresult.`status`'][] = $search_status;
         }
         //搜索查询
         if (!empty($search_word)) {
@@ -147,7 +147,7 @@ class YaoHresultController extends BaseController {
         $limit = $Page->firstRow . ',' . $Page->listRows;
 
         $list = $yaohresult->getList(
-            $where, '*', 'id asc', $limit
+            $where,'xk_yaohresult.*,pc.*,ch.*,r.id rid' , 'xk_yaohresult.id asc', $limit
         );
         $p = I('p', '1', 'intval');
         $this->assign('p', $p);

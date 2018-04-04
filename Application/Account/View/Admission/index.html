@@ -167,18 +167,24 @@
            color: #999999;
             margin-top: 0;
         }
+        .two-dh span{
+            font-size: 11px;
+            font-weight: 400;
+            position: absolute;
+            margin-top: -10px;
+        }
     </style>
     <form action="index" method="post">
         <input type="hidden" name="zt" value="0">
-        <button  class="two-dh <if condition='$zt eq 0'>a-selected</if>">未入场</button>
+        <button  class="two-dh <if condition='$zt eq 0'>a-selected</if>">未入场<span id="wrc"></span></button>
     </form>
     <form action="index" method="post">
         <input type="hidden" name="zt" value="1">
-    <button class="two-dh th  <if condition='$zt eq 1'>a-selected</if>">已入场</button>
+        <button class="two-dh th  <if condition='$zt eq 1'>a-selected</if>">已入场<span id="yrc"></span></button>
     </form>
     <form action="index" method="post">
         <input type="hidden" name="zt" value="2">
-    <button class="two-dh th  <if condition='$zt eq 2'>a-selected</if>">全部</button>
+        <button class="two-dh th  <if condition='$zt eq 2'>a-selected</if>">全部<span id="zgs"></span></button>
     </form>
 </block>
 <block name="page_content">
@@ -224,6 +230,9 @@
                             var row=$('#new_rows').val();
                             $.post(admission.user_list,{pid:pid,bid:bid,search:CardNo,num:row,zt:zt},function (data) {
                                 $("#user_list").html(data);
+                                $("#zgs").text($("#h_zgs").val());
+                                $("#yrc").text($("#h_yrc").val());
+                                $("#wrc").text($("#h_wrc").val());
                                 user_ajax();
                             });
                         }else{
@@ -252,7 +261,9 @@
                 <i class="icon-user" style="font-size: 90px;border: 5px solid rgba(32,140,238,0.88);color: #208cee;border-radius: 50%;width: 80%;height: 100px;line-height: 100px;margin-top: 50px;margin-left: 10%"></i>
             </div>
             <div id="admission-txt">
-                    <h1></h1>
+                <br>
+                <br>
+                    <h2></h2>
                     <p><span></span> &nbsp;&nbsp;&nbsp;&nbsp; <span></span></p>
                     <p></p>
             </div>

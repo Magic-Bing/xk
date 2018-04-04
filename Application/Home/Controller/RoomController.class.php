@@ -71,9 +71,9 @@ class RoomController extends BaseController
         join("xk_roomczlog l ON l.room_id=r.id")->
         where("r.proj_id=$search_project_id AND r.is_xf=1 AND is_dq=1 AND l.czuser=$user_id AND l.cztype='选房'")->group("l.room_id")->select();
         */
-        $user_count = M()->table("xk_room r")->field("count(1) zc,sum(case when l.room_id is not null then 1 else 0 end) uc")->
-        join("LEFT JOIN (select room_id from xk_roomczlog a join (select max(id) as mid from xk_roomczlog  where cztype='选房' group by room_id) b on a.id=b.mid where czuser=$user_id ) l ON l.room_id=r.id")->
-        where("r.proj_id=$search_project_id AND r.is_xf=1 ")->select();
+        $user_count = M()->table("xk_roomlist r")->field("count(1) zc,sum(case when t.id is not null then 1 else 0 end) uc")->
+        join("LEFT JOIN xk_trade t ON t.room_id=r.id AND t.status='认购'")->
+        where("r.proj_id=$search_project_id AND r.pc_id=$search_batch_id AND r.is_xf=1 ")->select();
         
         //一共出售，
         /*$yg_count = M()->table("xk_roomList")->where("proj_id=$search_project_id AND is_xf=1 and is_dq=1")->count();*/
@@ -185,9 +185,6 @@ class RoomController extends BaseController
         }
         $this->assign('rooms', $room_list);
 
-        
-       
-        
         //seo设置
         $this->set_seo_title('快速选房');
         $this->set_seo_keywords('快速选房');

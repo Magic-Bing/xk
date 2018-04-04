@@ -435,6 +435,12 @@ class YaoHsetController extends BaseController {
         }else{
             $cstlist=D("ChooseUser")->join(" left join (select * from xk_yaohresult where is_yx=1) s on xk_choose.id=s.cstid")->field('xk_choose.id,xk_choose.customer_name,xk_choose.customer_phone,xk_choose.cardno,xk_choose.cyjno')->where(" xk_choose.project_id={$yaohset['project_id']} and xk_choose.batch_id={$yaohset['batch_id']} and xk_choose.is_sign=1 and xk_choose.status=1 and s.id is null")->select();
         }
+        foreach( $cstlist as $k =>$onecst){
+            $cstlist[$k]['customer_phone']=rsa_decode($onecst['customer_phone'],  getChoosekey());
+            $cstlist[$k]['cardno']=rsa_decode($onecst['cardno'],  getChoosekey());
+        }
+        $this->assign('cstlist',json_encode($cstlist));
+
         if(empty($cstlist))
         {
             $this->assign('isend', 1);
@@ -586,7 +592,7 @@ class YaoHsetController extends BaseController {
     
     public function display_add(){
         //项目ID
-        $project_id = I('project_id', 0, 'intval');
+        $project_id = session("selected_project");
         $this->assign('project_id', $project_id);
 
         //用户的项目和项目批次

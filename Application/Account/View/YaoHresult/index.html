@@ -97,6 +97,7 @@
 									<input type="text" name="word" value="<{$search_word|default=''}>" id="jl_ss"  class="nav-search-input" placeholder="客户名称、VIP编号、手机、证件号码">
 									<i class="icon-search nav-search-icon" style="cursor: pointer;left:6px;" id="likeUsers"></i>
 								</label>
+								<button  style="border-style: none;border: 1px solid #c4d9e9;color: #1f74bd;height: 26px;border-radius: 2px;background-color: #fff">查询</button>
 							</div>
 							<input type="hidden" name="project_id" value="<{$search_project_id}>">
 							<input type="hidden" name="p" value="<{$p|default=1}>">
@@ -205,7 +206,7 @@
 								</td>
 								<td style="text-align: center;">
                                                                     <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-                                                                        <if condition="$list_vo['is_yx'] eq 1">
+                                                                        <if condition="($list_vo['is_yx'] eq 1) and ($list_vo['status'] neq 1) and empty($list_vo['rid'])">
                                                                             <button data-id="<{$list_vo.id}>" y-id="<{$list_vo.yaohset_id}>" class="js-yaohresult-circle-btn" title="作废" style="border-style: none;background-color: #ffb752;padding: 3px 7px">
                                                                                 <i class="icon-ban-circle bigger-120" style="color: #FFF"> </i>
                                                                             </button>

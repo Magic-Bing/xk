@@ -117,6 +117,7 @@ class CstSignController extends BaseController
         $this->assign('slinfo', $slinfo[0]);
         $this->assign('all_page', $all_page);
         $this->assign('res', $res);
+
         echo $this->fetch();
     }
 

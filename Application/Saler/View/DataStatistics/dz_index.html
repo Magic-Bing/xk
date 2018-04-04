@@ -256,6 +256,48 @@
 									<th></th>
 									<td class="login-xf"><span><{$user_xf.sign_selected|default='0'}>人</span></td>
 								</tr>
+                                                                <tr>
+									<td colspan="3" style="height: 5px;background-color: #fff"></td>
+								</tr>
+                                                                 <tr>
+									<td colspan="3" style="height: 1px;background-color: #dddddd"></td>
+								</tr>
+                                                                <tr>
+									<td colspan="3" style="height: 5px;background-color: #fff"></td>
+								</tr>
+                                                                <tr >
+									<td style="padding-top: 5px" class="login-yyaoh">已摇号</td>
+									<th></th>
+									<td style="padding-top: 5px" class="login-admission">已入场</td>
+								</tr>
+								<tr>
+                                                                        
+									<td class="login-not-xf">
+                                                                            <span>
+                                                                                <if condition="$isyhao gt 0">
+                                                                                    <{$user_xf.yyaoh|default='0'}>人
+                                                                                <else />
+                                                                                    /
+                                                                                </if>
+                                                                            </span>
+                                                                        </td>
+									<th></th>
+									<td class="login-xf"><span><{$user_xf.admission|default='0'}>人</span></td>
+								</tr>
+                                                                
+                                                                <tr>
+									<td colspan="3" style="height: 5px;background-color: #fff"></td>
+								</tr>
+                                                                <tr >
+									<td style="padding-top: 5px" class="login-yrg">已打印认购书</td>
+									<th></th>
+									<td style="padding-top: 5px" class="login-cswrg">超时未打印</td>
+								</tr>
+								<tr>
+									<td class="login-not-xf"><span><{$user_xf.yrg|default='0'}>人</span></td>
+									<th></th>
+									<td class="login-xf"><span><{$user_xf.cswrg|default='0'}>人</span></td>
+								</tr>
 							</table>
 						</div>
 
