@@ -93,8 +93,9 @@ class YhqxuserController extends BaseController {
      public function add(){
         $Model = new \Think\Model(); 
         $companys = $this->get_user_company();
-        
+         $gs=session("selected_company");
         $this->assign('companys', $companys);
+        $this->assign('gs', $gs);
          $this->set_seo_title("用户资料设置");
         $this->display();
     }

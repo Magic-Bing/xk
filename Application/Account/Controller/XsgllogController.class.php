@@ -351,10 +351,11 @@ class XsgllogController extends BaseController {
 		//搜索查询
 		if (!empty($search_word)) {
 			$like_where['customer_name']  = array('like', '%'.$search_word.'%');
+			$like_where['choose.cyjno']  = array('like', '%'.$search_word.'%');
 			$like_where['like_p']  = array('like', '%'.strencode($search_word).'%');
 			$like_where['like_c']  = array('like', '%'.strencode($search_word).'%');
 			$like_where['roomlist.room']  = array('like', '%'.$search_word.'%');
-                        $like_where['trade.ywy']  = array('like', '%'.$search_word.'%');
+            $like_where['trade.ywy']  = array('like', '%'.$search_word.'%');
 			$like_where['_logic'] = 'or';
 			$where['_complex'] = $like_where;
 		}

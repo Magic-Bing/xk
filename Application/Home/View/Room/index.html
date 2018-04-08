@@ -706,7 +706,13 @@
                                                                                                             roominfo="<{$room_item.buildname}>-<{$room_item.unit}>单元-<{$room_item.floor}>层-<{$room_item.room}>"
                                                                                                             class="marketing-control-content-rooms-box-room-num js-marketing-control-content-rooms-box-room-num marketing-control-content-rooms-box-room-<{$room_item.id}> marketing-control-content-rooms-box-room-selected"
                                                                                                             data-room-id="<{$room_item.id|default=1}>" room="<{$room_item.room}>">
-                                                                                                            <{$room_item.room|default=1}>
+                                                                                                            <if condition="$room_item['sts'] eq '认购'">
+                                                                                                                <span style="padding-left:9px "><{$room_item.room|default=1}></span>
+                                                                                                                <div style="color: #00be67;line-height: normal;float: right;margin-top: -3px">✔</div>
+                                                                                                                <else/>
+                                                                                                                <{$room_item.room|default=1}>
+                                                                                                            </if>
+
                                                                                                             <span id="spanid_<{$room_item.id|default=1}>"
                                                                                                                   style="dispaly:none"
                                                                                                                   infolist="<{$room_item.hx}>|<{$room_item.is_xf}>|<{$room_item.area}>|<{$room_item.tnarea}>|<{$room_item.price}>|<{$room_item.tnprice}>|<{$room_item.total}>|<{$room_item.cstname}>|<{$room_item.xftime1}>|<{$room_item.cyjno}>|<{:rsa_decode($room_item['phone'],getChoosekey())}>|<{:rsa_decode($room_item['cardno'],getChoosekey())}>|<{$room_item.unit}>|<{$room_item.floor}>|<{$room_item.room}>|<{$room_item.ycx_price}>|<{$room_item.fq_price}>|<{$room_item.aj_price}>|<{$room_item.gjj_price}>|<{$room_item.discount}>|<{$room_item.pay}>|<{$room_item.ycx_dj}>|<{$room_item.fq_dj}>|<{$room_item.aj_dj}>|<{$room_item.gjj_dj}>"></span>

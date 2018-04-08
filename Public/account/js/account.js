@@ -190,11 +190,11 @@ $(function() {
             skin: 'layui-layer-rim', //加上边框
             // area: ['350px', 'auto'], //宽高
             content:'' +
-			'<label style="float: left;margin-left: 27px;margin-top: 10px;width: 90%">选购状态：<select name="zt" id="zt" style="width: 70%">' +
-			'<option '+(vo==='选房'?"selected":"")+'>选房</option>' +
-			'<option '+(vo==='认购'?"selected":"")+'>认购</option>' +
-			'<option '+(vo==='签约'?"selected":"")+'>签约</option>' +
-			'</select></label>' +
+			'<label style="float: left;margin-left: 27px;margin-top: 10px;width: 90%">选购状态：' +
+			'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="radio" class="c-radio" name="zt"  value="选房" '+(vo==='选房'?"checked":"")+'>选房</label>' +
+			'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="radio" class="c-radio" name="zt"  value="认购" '+(vo==='认购'?"checked":"")+'>认购</label>' +
+			'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="radio" class="c-radio" name="zt"  value="签约" '+(vo==='签约'?"checked":"")+'>签约</label>' +
+			'</label>' +
             '<label style="float: left;margin-left: 27px;margin-top: 10px;width: 90%;'+((vo==='选房' && pay==='')?"display: none":"")+'" id="label-1">付款方式：<select  name="pay" id="pay"   style="width: 70%">' +
             '<option value="" '+(vo===''?"selected":"")+'>请选择付款方式</option>' +
             '<option '+(pay==='一次性'?"selected":"")+'>一次性</option>' +
@@ -210,11 +210,13 @@ $(function() {
 			'',
 			btn:['取消','修改'],
 			btn2:function () {
-				var zt=$("#zt").val();//状态
+				var zt=$("input[type='radio'][name='zt']:checked").val();//状态
 				var zt_time=$("#zt_time").val();//修改时间
 				var pay=$("#pay").val();//付款方式
 				var proportion=$("#proportion").val();
 				var money=$("#money").val();
+				console.log(zt);
+				return false;
 				if($.trim(zt_time)===''){
 					layer_alert("时间不能为空！");
 					return false;
@@ -251,9 +253,9 @@ $(function() {
             }
         });
 	});
-    //弹出框，里面选房状态的下拉事件
-    $(document).on("change",'#zt',function () {
-        var vo=$(this).val();
+    //弹出框，里面选房状态的点击事件
+    $(document).on("click",'.c-radio',function () {
+        var vo=$(".c-radio:checked").val();
         // console.log(vo);
         if(vo !== '选房'){
             $("#label-1").show();
@@ -320,11 +322,11 @@ $(function() {
                     skin: 'layui-layer-rim', //加上边框
                     // area: ['350px', 'auto'], //宽高
                     content:'' +
-                    '<label style="float: left;margin-left: 27px;margin-top: 10px;width: 90%">选购状态：<select name="zt" id="zt"  style="width: 70%">' +
-                    '<option '+(vo==='选房' && pvid !=='' ?"selected":"")+'>选房</option>' +
-                    '<option '+(vo==='认购' || pvid ===''?"selected":"")+'>认购</option>' +
-                    '<option '+(vo==='签约'?"selected":"")+'>签约</option>' +
-                    '</select></label>' +
+                    '<label style="float: left;margin-left: 27px;margin-top: 10px;width: 90%">选购状态：' +
+                    '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="radio" class="c-radio" name="zt"  value="选房" '+(vo==='选房' && pvid !=='' ?"checked":"")+'>选房</label>' +
+                    '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="radio" class="c-radio" name="zt"  value="认购" '+(vo==='认购' || pvid ===''?"checked":"")+'>认购</label>' +
+                    '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="radio" class="c-radio" name="zt"  value="签约" '+(vo==='签约'?"checked":"")+'>签约</label>' +
+                    '</label>' +
                     '<label style="float: left;margin-left: 27px;margin-top: 10px;width: 90%;'+(vo==='选房' && pvid !==''?"display: none":"")+'" id="label-1">付款方式：<select  name="pay" id="pay"  style="width: 70%">' +
                     '<option value=""'+(vo===''?"selected":"")+'>请选择付款方式</option>' +
                     '<option '+(pay==='一次性'?"selected":"")+'>一次性</option>' +
@@ -347,7 +349,7 @@ $(function() {
                             layer_alert("请选择一个模版！");
                             return false;
                         }
-                        var zt=$("#zt").val();//状态
+                        var zt=$("input[type='radio'][name='zt']:checked").val();//状态
                         var zt_time=$("#zt_time").val();//修改时间
                         var pay=$("#pay").val();//付款方式
                         var proportion=$("#proportion").val();

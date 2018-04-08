@@ -91,7 +91,8 @@ class RoomController extends BaseController
         $group_room_unit = $Roomview->getRoomListGroupBy('bld_id, unit', 'bld_id, unit', 'cast(unit as SIGNED), id DESC', $where);
         $group_room_floor = $Roomview->getRoomListGroupBy('bld_id, unit, floor', 'bld_id, unit, floor', 'id DESC', $where);
         //$group_room_no = $Room->getRoomListGroupBy('id, bld_id, unit, floor, no, is_xf', 'bld_id, unit, floor, no', 'id DESC', $where);
-        $group_room_no = $Roomview->getRoomList($where, 'bld_id,cast(unit as SIGNED) ASC,cast(floor as SIGNED) ASC ,cast(no as SIGNED) ASC', '*, FROM_UNIXTIME(xftime,"%Y-%m-%d  %H:%i") as xftime1 ');
+        $group_room_no = $Roomview->getRoomList($where, 'bld_id,cast(unit as SIGNED) ASC,cast(floor as SIGNED) ASC ,cast(no as SIGNED) ASC', 'xk_roomlist.*, FROM_UNIXTIME(xk_roomlist.xftime,"%Y-%m-%d  %H:%i") as xftime1 ,xk_trade.pay,xk_trade.status sts');
+//        echo json_encode($group_room_no);exit;
 
         //数据格式化
         foreach ($group_room_unit as $group_room_unit_key => $group_room_unit_value) {

@@ -827,10 +827,11 @@ $(function () {
                             $(".aj-price-one").show();
                         }else if($room['pay'] === '公积金'){
                             $(".gjj-price-one").show();
+                        }else{
+                            $(".out-price").show();
                         }
                     }
                     $("#roominfo1").val($room['buildname'] + "-" + $room['unit'] + "单元-" + $room['floor'] + "层-" + $room['room']);
-
                     // hidefqz();
                     $("#pdz").hide();
                     $("#pdz1").hide();
@@ -842,6 +843,12 @@ $(function () {
                     $($text_pre + 'zt').addClass("input_ys");
                     $($text_pre + 'is-sf').val('1');
                     $("#div_xfinfo").show();
+                    console.log($room['sts']);
+                    if($room['sts'] === '认购'){
+                        $("#ystitle").find("div").html("已认购")
+                    }else{
+                        $("#ystitle").find("div").html("已&nbsp;售")
+                    }
                     $("#ystitle").show();
                     $(".marketing-control-content-room-info-option").css("height", "106px");
                     //用户权限控制

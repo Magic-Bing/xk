@@ -25,10 +25,17 @@
 				data-first-title="请选择项目"
 				data-first-value='0'
 			>
-				<foreach name="companys" item="company_list_vo">		 
-                                    <option value="<{$company_list_vo['id']}>">
-                                            <{$company_list_vo['compname']}>
-                                    </option>
+				<foreach name="companys" item="company_list_vo">
+					<if condition="$company_list_vo['id'] eq $gs">
+						<option value="<{$company_list_vo['id']}>" selected>
+							<{$company_list_vo['compname']}>
+						</option>
+						<else/>
+						<option value="<{$company_list_vo['id']}>">
+							<{$company_list_vo['compname']}>
+						</option>
+					</if>
+
 				</foreach> 
 			</select>
 		</div>

@@ -390,12 +390,14 @@ margin-top:100px;
 						</if>-->
                                                 <td align="center"><{$roomlist_vo['status']}></td>
                         <td align="center">
-                        	<a href="<{:U('jcsjroom/edit', array('id' => $roomlist_vo['id']))}>" >
+
+
+                            <if condition="$roomlist_vo['is_xf'] eq 0">
+                                <a href="<{:U('jcsjroom/edit', array('id' => $roomlist_vo['id']))}>" >
                                                             <span class="" style="padding: 3px 3px;background-color: #6fb3e0;color: #FFF;" title="修改">
 								<i class="icon-edit bigger-120"></i>
                                                             </span>
-							</a>
-                            <if condition="$roomlist_vo['is_xf'] eq 0">
+                                </a>
 							<a href="javascript:void(0);" class="a_tb_bg js-del-room" roomid="<{$roomlist_vo['id']}>" title="删除">
                                                             <span class="white">
 								<i class="icon-trash bigger-120"></i> 
