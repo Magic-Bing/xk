@@ -136,6 +136,8 @@
                                             <if condition="$list_vo['cs_type'] eq 'radio'">
                                                 <php>$ops = explode(',',$vo);if(empty($list_vo['cs_value'])){$list_vo['cs_value']=1;}</php>
                                                 <label><input type="<{$list_vo['cs_type']}>"  name="name<{$list_vo['id']}>" value="<{$ops[1]}>" <if condition="$ops[1] eq $list_vo['cs_value']"> checked='checked' </if> > <{$ops[0]}></label>
+                                                <elseif condition="$list_vo['cs_type'] eq 'number'" />
+                                                <label style="margin-left: 10px;"><input id="cs_time" name="name<{$list_vo['id']}>" type="<{$list_vo['cs_type']}>" value="<{$list_vo['cs_value']|default='0'}>"  > </label>
                                                 <else />
                                                 <if condition="empty($list_vo['cs_value'])">
                                                     <if condition="$vo_k lt 4">
@@ -213,7 +215,7 @@
             });
             
             $(".kpmsradio").click(function(){
-                $xzms=$('#csinfo input[name="namems"]:checked ').val()
+                $xzms=$('#csinfo input[name="namems"]:checked ').val();
                 if($xzms==-1){ $(".dzkp").hide();$(".wxkp").show();}
                 else{$(".dzkp").show();$(".wxkp").hide();}
             });
@@ -221,9 +223,9 @@
             $("#update-mk").on("click",function () {
                 var input_checked=$("#csinfo input:radio:checked");
                 var input_checkbox=$("#csinfo input:checkbox:checked");
+                var input_num=$("#csinfo input[type='number']");
                 var pid=$(this).attr("pid");
                 var bid=$(this).attr("bid");
-                               
                 if(input_checked.length===0){
                      layer_alert("参数未配置完!");
                      return false;
@@ -232,11 +234,13 @@
                     arr[0]=pid;
                     arr[1]=bid;
                     arr[2]=[];
-                    for(var i=0;i<input_checked.length;i++){
+                    var checked_len=input_checked.length;
+                    for(var i=0;i<checked_len;i++){
                         var cs_setid=input_checked.eq(i).parent().parent().parent().attr("data_setid");
                         var cs_id=input_checked.eq(i).parent().parent().parent().attr("data_id");
                         arr[2][i]={"cs_value":input_checked.eq(i).val(),"pzcs_id":cs_setid,"id":cs_id,};
                     }
+                    arr[2][checked_len]={"cs_value":input_num.eq(0).val(),"pzcs_id":input_num.eq(0).parent().parent().parent().attr("data_setid"),"id":input_num.eq(0).parent().parent().parent().attr("data_id")};
                     var strinfo="";
                     var cs_setid1=0;
                     var cs_id1=0;
@@ -256,8 +260,7 @@
                         cs_setid1=input_checkbox.eq(i).parent().parent().parent().attr("data_setid");
                         cs_id1=input_checkbox.eq(i).parent().parent().parent().attr("data_id");
                     }
-                    arr[2][input_checked.length]={"cs_value":strinfo,"pzcs_id":cs_setid1,"id":cs_id1};
-                    
+                    arr[2][checked_len+1]={"cs_value":strinfo,"pzcs_id":cs_setid1,"id":cs_id1};
                     $.post("<{:U('YwcsSet/updateCsset')}>",{cslist:arr},function (data) {
                         if (data.status === 0) {
                                     layer_alert(data);

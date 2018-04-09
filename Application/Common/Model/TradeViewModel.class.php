@@ -53,6 +53,7 @@ class TradeViewModel extends BaseViewModel {
             'room' => 'room',
             'hx' => 'hx',
             'area' => 'area',
+            'tnarea' => 'tnarea',
             'total' => 'total',
             'price' => 'price',
             'is_xf' => 'is_xf',
