@@ -40,10 +40,11 @@ class RoomviewModel extends Model
 	 */
 	public function getRoomList(
 		array $where = array(), 
-		$orderBy = 'id DESC',
+		$orderBy = 'xk_roomlist.id DESC',
 		$field = '*'
 	) {
 		return $this->field($field)
+                ->join("LEFT JOIN xk_trade ON xk_trade.room_id=xk_roomlist.id AND xk_trade.isyx=1")
 				->where($where)
 				->order($orderBy)
 				->select();
@@ -100,7 +101,7 @@ class RoomviewModel extends Model
 		$where = array(
 			'xk_roomlist.id' => $id
 		);
-		return $this->field("xk_roomlist.*,xk_hxset.hxmx,xk_trade.pay")->join("LEFT JOIN xk_hxset ON xk_hxset.hx=xk_roomlist.hx")->join("LEFT JOIN xk_trade ON xk_trade.room_id=xk_roomlist.id")->where($where)->find();
+		return $this->field("xk_roomlist.*,xk_hxset.hxmx,xk_trade.pay,xk_trade.status sts")->join("LEFT JOIN xk_hxset ON xk_hxset.hx=xk_roomlist.hx")->join("LEFT JOIN xk_trade ON xk_trade.room_id=xk_roomlist.id AND xk_trade.isyx=1")->where($where)->find();
 	}
 	
 } 
