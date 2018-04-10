@@ -215,6 +215,12 @@ class DataStatisticsController extends Base1Controller
         $this->assign('isyhao', $isyhao['id']);
         //客户签到和选房情况
         //先查询权限情况
+        $cs_res=M()->table("xk_pzcsvalue")->field("cs_value")->where('pzcs_id=16 and project_id='.$pid.' and batch_id='.$bid)->find();//查询超时时间
+        if($cs_res){
+            $cs_time=(int)$cs_res['cs_value'];
+        }else{
+            $cs_time=30;
+        }
         $pd_user=M()->table("xk_station2user su")->join("xk_fun_station fs ON fs.station_id=su.station_id")->where("userid=$uid AND fs.fun_id=101")->find();
         if($pd_user){//当$pd_user不为空的时候查看所有客户
             $user_xf=M()->table("xk_choose c")
@@ -225,7 +231,7 @@ class DataStatisticsController extends Base1Controller
                             . "SUM(CASE WHEN c.is_admission=1 THEN 1 ELSE 0 END) admission,"
                             . "SUM(CASE WHEN h.id is not null THEN 1 ELSE 0 END) yyaoh,"
                             . "SUM(CASE WHEN r.status in('认购','签约') THEN 1 ELSE 0 END) yrg,"
-                            . "SUM(CASE WHEN TIMESTAMPDIFF(MINUTE, FROM_UNIXTIME( t.tradetime,'%Y-%m-%d  %H:%i:%s'),now() ) >30  THEN 1 ELSE 0 END) cswrg"
+                            . "SUM(CASE WHEN TIMESTAMPDIFF(MINUTE, FROM_UNIXTIME( t.tradetime,'%Y-%m-%d  %H:%i:%s'),now() ) >".$cs_time."  THEN 1 ELSE 0 END) cswrg"
                             )  
                     ->join('LEFT JOIN xk_room r ON r.cstid=c.id')
                     ->join('LEFT JOIN (select * from xk_yaohresult where is_yx=1) h ON h.cstid=c.id')
@@ -240,7 +246,7 @@ class DataStatisticsController extends Base1Controller
                             . "SUM(CASE WHEN c.is_admission=1 THEN 1 ELSE 0 END) admission,"
                             . "SUM(CASE WHEN h.id is not null THEN 1 ELSE 0 END) yyaoh,"
                             . "SUM(CASE WHEN r.status in('认购','签约') THEN 1 ELSE 0 END) yrg,"
-                            . "SUM(CASE WHEN TIMESTAMPDIFF(MINUTE, FROM_UNIXTIME( t.tradetime,'%Y-%m-%d  %H:%i:%s'),now() ) >30  THEN 1 ELSE 0 END) cswrg"
+                            . "SUM(CASE WHEN TIMESTAMPDIFF(MINUTE, FROM_UNIXTIME( t.tradetime,'%Y-%m-%d  %H:%i:%s'),now() ) >".$cs_time."  THEN 1 ELSE 0 END) cswrg"
                             )
                     ->join('LEFT JOIN xk_room r ON r.cstid=c.id')
                     ->join('LEFT JOIN (select * from xk_yaohresult where is_yx=1) h ON h.cstid=c.id')

@@ -137,7 +137,7 @@
                                                 <php>$ops = explode(',',$vo);if(empty($list_vo['cs_value'])){$list_vo['cs_value']=1;}</php>
                                                 <label><input type="<{$list_vo['cs_type']}>"  name="name<{$list_vo['id']}>" value="<{$ops[1]}>" <if condition="$ops[1] eq $list_vo['cs_value']"> checked='checked' </if> > <{$ops[0]}></label>
                                                 <elseif condition="$list_vo['cs_type'] eq 'number'" />
-                                                <label style="margin-left: 10px;"><input id="cs_time" name="name<{$list_vo['id']}>" type="<{$list_vo['cs_type']}>" value="<{$list_vo['cs_value']|default='0'}>"  > </label>
+                                                <label style="margin-left: 10px;"><input id="cs_time" name="name<{$list_vo['id']}>" type="<{$list_vo['cs_type']}>" value="<{$list_vo['cs_value']|default='30'}>"  > </label>
                                                 <else />
                                                 <if condition="empty($list_vo['cs_value'])">
                                                     <if condition="$vo_k lt 4">

@@ -163,22 +163,56 @@ class ChooseAnalysisController extends Base1Controller
                 where("c.project_id=$pid AND c.batch_id=$bid AND c.status=1 AND c.is_sign=1 AND r.id IS NULL $p $s")->
                 order("case when c.is_sign=0 then 0 else 1 end ,case when rid is null then 0 else 1 end ,c.cyjno,c.id")->
                 select();
-            } else{
+            }elseif($status===5){
                 $user_xf=M()->table("xk_choose c")->
                 field("c.id,r.id rid,c.customer_name,c.customer_phone,c.is_sign")->
                 join('xk_room r ON r.cstid=c.id')->
                 where("c.project_id=$pid AND c.batch_id=$bid AND c.is_sign=1 AND c.status=1 $p $s")->
                 order("c.cyjno,c.id")->
                 select();
+            }elseif($status===6){
+                $user_xf=M()->table("xk_choose c")->
+                field("c.id,r.id rid,c.customer_name,c.customer_phone")->
+                join('LEFT JOIN xk_room r ON r.cstid=c.id')->
+                join('xk_yaohresult y ON y.cstid=c.id and y.is_yx=1')->
+                where("c.project_id=$pid AND c.batch_id=$bid  AND c.status=1 $p $s")->
+                order("c.cyjno,c.id")->
+                select();
+            }elseif($status===7){
+                $user_xf=M()->table("xk_choose c")->
+                field("c.id,r.id rid,c.customer_name,c.customer_phone")->
+                join('LEFT JOIN xk_room r ON r.cstid=c.id')->
+                where("c.project_id=$pid AND c.batch_id=$bid AND c.is_admission=1  AND c.status=1 $p $s")->
+                order("c.cyjno,c.id")->
+                select();
+            }elseif($status===8){
+                $user_xf=M()->table("xk_choose c")->
+                field("c.id,r.id rid,c.customer_name,c.customer_phone")->
+                join('xk_room r ON r.cstid=c.id')->
+                where("c.project_id=$pid AND c.batch_id=$bid  AND c.status=1 and r.status in('认购','签约') $p $s")->
+                order("c.cyjno,c.id")->
+                select();
+            } elseif($status===9){
+                $cs_res=M()->table("xk_pzcsvalue")->field("cs_value")->where('pzcs_id=16 and project_id='.$pid.' and batch_id='.$bid)->find();//查询超时时间
+                if($cs_res){
+                    $cs_time=(int)$cs_res['cs_value'];
+                }else{
+                    $cs_time=30;
+                }
+                $user_xf=M()->table("xk_choose c")->
+                field("c.id,r.id rid,c.customer_name,c.customer_phone")->
+                join('xk_room r ON r.cstid=c.id')->
+                join('xk_trade  t ON t.room_id=r.id and t.isyx=1')->
+                where("c.project_id=$pid AND c.batch_id=$bid  AND c.status=1 AND TIMESTAMPDIFF(MINUTE, FROM_UNIXTIME( t.tradetime,'%Y-%m-%d  %H:%i:%s'),now() ) >$cs_time $p $s")->
+                order("c.cyjno,c.id")->
+                select();
             }
         }
-        $tylelist=array( 1 => '全部客户',2 => '未签到',3 => '已签到',4 => '已签到未选',5 => '已签到已选');
+        $tylelist=array( 1 => '全部客户',2 => '未签到',3 => '已签到',4 => '已签到未选',5 => '已签到已选',6 => '已摇号',7 => '已入场',8 => '已认购',9 => '超时未认购');
         $this->assign("tylelist",$tylelist);
         $this->assign("status",$status);
         $this->assign("user_xf",$user_xf);
         $this->assign('projinfo', $projinfo);
-
-
         if(IS_AJAX){
             echo $this->fetch("ChooseAnalysis/dz_user_list");
         }else{

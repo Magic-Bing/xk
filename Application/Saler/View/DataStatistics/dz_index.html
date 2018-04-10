@@ -272,7 +272,7 @@
 								</tr>
 								<tr>
                                                                         
-									<td class="login-not-xf">
+									<td class="login-yyaoh">
                                                                             <span>
                                                                                 <if condition="$isyhao gt 0">
                                                                                     <{$user_xf.yyaoh|default='0'}>人
@@ -282,21 +282,21 @@
                                                                             </span>
                                                                         </td>
 									<th></th>
-									<td class="login-xf"><span><{$user_xf.admission|default='0'}>人</span></td>
+									<td class="login-admission"><span><{$user_xf.admission|default='0'}>人</span></td>
 								</tr>
                                                                 
                                                                 <tr>
 									<td colspan="3" style="height: 5px;background-color: #fff"></td>
 								</tr>
                                                                 <tr >
-									<td style="padding-top: 5px" class="login-yrg">已打印认购书</td>
+									<td style="padding-top: 5px" class="login-yrg">已认购</td>
 									<th></th>
-									<td style="padding-top: 5px" class="login-cswrg">超时未打印</td>
+									<td style="padding-top: 5px" class="login-cswrg">超时未认购</td>
 								</tr>
 								<tr>
-									<td class="login-not-xf"><span><{$user_xf.yrg|default='0'}>人</span></td>
+									<td class="login-yrg"><span><{$user_xf.yrg|default='0'}>人</span></td>
 									<th></th>
-									<td class="login-xf"><span><{$user_xf.cswrg|default='0'}>人</span></td>
+									<td class="login-cswrg"><span><{$user_xf.cswrg|default='0'}>人</span></td>
 								</tr>
 							</table>
 						</div>
@@ -551,7 +551,7 @@
         //圆形统计
         $('.rate-state').circliful();
         
-	$(".all-user").on("click",function () {
+		$(".all-user").on("click",function () {
             window.location.href="<{:U('/Saler/ChooseAnalysis/dz_index/p/'.$pid.'/b/'.$bid.'/status/1')}>";
         });
         $(".login").on("click",function () {
@@ -565,6 +565,18 @@
         });
         $(".login-xf").on("click",function () {
             window.location.href="<{:U('/Saler/ChooseAnalysis/dz_index/p/'.$pid.'/b/'.$bid.'/status/5')}>";
+        });
+        $(".login-yyaoh").on("click",function () {
+            window.location.href="<{:U('/Saler/ChooseAnalysis/dz_index/p/'.$pid.'/b/'.$bid.'/status/6')}>";
+        });
+        $(".login-admission").on("click",function () {
+            window.location.href="<{:U('/Saler/ChooseAnalysis/dz_index/p/'.$pid.'/b/'.$bid.'/status/7')}>";
+        });
+        $(".login-yrg").on("click",function () {
+            window.location.href="<{:U('/Saler/ChooseAnalysis/dz_index/p/'.$pid.'/b/'.$bid.'/status/8')}>";
+        });
+        $(".login-cswrg").on("click",function () {
+            window.location.href="<{:U('/Saler/ChooseAnalysis/dz_index/p/'.$pid.'/b/'.$bid.'/status/9')}>";
         });
     });
 </script>

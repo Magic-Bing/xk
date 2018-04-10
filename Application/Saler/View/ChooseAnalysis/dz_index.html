@@ -120,7 +120,18 @@
 			<table class="fl wm100" style="color: #333;text-align: center;font-weight: bold;margin-top: 5px;">
 				<tr style="border-top: 1px solid #ececec;font-size:13px;height: 30px;">
 					<td class="wm40">客户</td>
-                                        <td class="wm25">签到状态</td>
+					<if condition="$status eq 6">
+						<td class="wm25">摇号状态</td>
+						<elseif condition="$status eq 7"/>
+						<td class="wm25">入场状态</td>
+						<elseif condition="$status eq 8"/>
+						<td class="wm25">认购状态</td>
+						<elseif condition="$status eq 9"/>
+						<td class="wm25">认购状态</td>
+						<else/>
+						<td class="wm25">签到状态</td>
+					</if>
+
 					<td class="wm20">选房状态</td>
 					<td class="wm15"></td>
 				</tr>
@@ -151,7 +162,19 @@
                                                                                             <p  style="color:#000;"><{$vo.customer_name}></p>
                                                                                             <p><{:rsa_decode($vo['customer_phone'],getChoosekey())}></p>
 											</td>
-											<td class="wm25"><if condition="$vo.is_sign eq 1"><span class="xf-status ydl">已签到</span><else/><span class="xf-status wdl">未签到</span></if></td>
+											<td class="wm25">
+												<if condition="$status eq 6">
+													<span class="xf-status ydl">已摇号</span>
+													<elseif condition="$status eq 7"/>
+													<span class="xf-status ydl">已入场</span>
+													<elseif condition="$status eq 8"/>
+													<span class="xf-status ydl">已认购</span>
+													<elseif condition="$status eq 9"/>
+													<span class="xf-status wdl">超时未认购</span>
+													<else/>
+													<if condition="$vo.is_sign eq 1 "><span class="xf-status ydl">已签到</span><else/><span class="xf-status wdl">未签到</span></if>
+												</if>
+											</td>
                                                                                         <td class="wm20"><if condition="$vo.rid neq null"><span class="xf-status yxf">已选房</span><else/><span class="xf-status wxf">未选房</span></if></td>
 											<td class="wm15"><a href="tel:<{:rsa_decode($vo['customer_phone'],getChoosekey())}>" class="call-phone" data-num="<{:rsa_decode($vo['customer_phone'],getChoosekey())}>"><i class="fa fa-phone"></i></a></td>
 										</tr>

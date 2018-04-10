@@ -345,7 +345,7 @@ class XsgllogController extends BaseController {
             if($cs_res){
                 $cs_time=(int)$cs_res['cs_value'];
             }else{
-                $cs_time=0;
+                $cs_time=30;
             }
             $where[] = " TIMESTAMPDIFF(MINUTE, FROM_UNIXTIME( tradetime,'%Y-%m-%d  %H:%i:%s'),now() ) > ".$cs_time;
         }
