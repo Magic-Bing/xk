@@ -1,0 +1,3 @@
+[22-Mar-2018 07:54:27 UTC] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; Services_JSON has a deprecated constructor in C:\WWW_hnhl\Public\kindeditor\php\JSON.php on line 115
+[22-Mar-2018 07:54:27 UTC] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; Services_JSON_Error has a deprecated constructor in C:\WWW_hnhl\Public\kindeditor\php\JSON.php on line 781
+[22-Mar-2018 07:54:27 UTC] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; Services_JSON_Error has a deprecated constructor in C:\WWW_hnhl\Public\kindeditor\php\JSON.php on line 795

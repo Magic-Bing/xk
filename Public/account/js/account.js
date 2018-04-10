@@ -143,11 +143,19 @@ $(function() {
         // var project_id=$(".js-trade-project-id").val();
         // window.location.href="http://"+window.location.host+"/Account/Xsgllog/index/project_id/"+project_id;
 	});
-    $(document).on("change",".js-trade-zt-id,.js-trade-batch-id",function () {
+    //批次切换
+    $(document).on("change",".js-trade-batch-id",function () {
         
         $("#form-b").submit();
 		// group_select();
 		// return false;
+    });
+    //选房状态切换
+    $(document).on("click",".js-trade-zt-id",function () {
+
+        $("#form-b").submit();
+        // group_select();
+        // return false;
     });
 
     //搜索框的回车时间
@@ -215,8 +223,6 @@ $(function() {
 				var pay=$("#pay").val();//付款方式
 				var proportion=$("#proportion").val();
 				var money=$("#money").val();
-				console.log(zt);
-				return false;
 				if($.trim(zt_time)===''){
 					layer_alert("时间不能为空！");
 					return false;

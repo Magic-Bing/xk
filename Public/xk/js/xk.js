@@ -1125,7 +1125,11 @@ $(function () {
             layer_alert_two('房间信息不存在！');
             return false;
         }
-        
+        var yrg=$(".marketing-control-content-rooms-box-room-" + $room_id).find('div');
+        var str_ts='，取消选房，请确认！';
+        if(yrg.length>0){
+            str_ts='，已认购，取消选房会同时删除认购信息，请确认！';
+        }
         //确认函数
         var $confirm = function () {
             $("#loading").show();
@@ -1162,6 +1166,7 @@ $(function () {
                     }
                     is_dqcard=true;
                     layer_msg('取消选房成功');
+                    $(".marketing-control-content-rooms-box-room-" + $room_id).find('div').remove();
                     $(".marketing-control-content-rooms-box-room-" + $room_id).removeClass("marketing-control-content-rooms-box-room-selected");
                 },
                 error: function (data, status, e) {
@@ -1171,7 +1176,7 @@ $(function () {
             });
         }
 
-        layer.confirm($room_name + '，取消选房，请确认！', {
+        layer.confirm($room_name + str_ts, {
             btn: ['取消', '确认'], //按钮
             skin: 'layui-layer-qz',
             shade: [0.5, 'black'],

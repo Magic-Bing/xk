@@ -1,0 +1,254 @@
+<extend name="Common/base" />
+
+<block name="breadcrumb_active">
+	<li><{$classify_name|default=''}></li>
+	<li class="active"><{$seo_title|default=''}></li>
+</block>
+
+<block name="page_content">
+	<div class="table-header" style="margin-bottom: 20px">
+		新增摇号
+	</div>
+<form class="form-horizontal js-yaohset-select-box" role="form" enctype="multipart/form-data" id="yaohset-add-from">
+
+	<div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-project-id"> 
+			<i class="icon-asterisk pink"></i> 
+			项目名称 
+		</label>
+		
+		<div class="col-sm-9">
+			<select class="col-xs-10 col-sm-5 col-xs-10 col-sm-5   js-yaohset-select-project-id"
+				name="project_id" required="required"
+				id="form-field-project-id"
+				data-placeholder="请选择项目"
+				data-first-title="请选择项目"
+				data-first-value='0'
+			>
+				<foreach name="project_list" item="project_list_vo">
+          <if condition="$project_id eq $project_list_vo['id']">
+						<option value="<{$project_list_vo['id']}>" selected>
+							<{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
+						</option>
+						<else />
+						<option value="<{$project_list_vo['id']}>">
+							<{$project_list_vo['company_name']}> -- <{$project_list_vo['name']}>
+						</option>
+					</if>
+                          
+				</foreach> 
+			</select>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-batch-id"> 
+                    <i class="icon-asterisk pink"></i>	
+                    项目批次 
+		</label>
+		
+		<div class="col-sm-9">
+			<select class="col-xs-10 col-sm-5 js-yaohset-select-batch-id"
+				name="batch_id" required="required"
+				id="form-field-batch-id"
+				data-placeholder="请选择项目批次"
+				data-first-title="请选择项目批次"
+			>
+			</select>
+		</div>
+	</div>
+
+	<div class="space-4"></div>
+        
+        <div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-name"> 
+			<i class="icon-asterisk pink"></i> 
+			摇号名称 
+		</label>
+		
+		<div class="col-sm-9">
+			<input type="text" name="name" required id="form-field-mzgs"  class="col-xs-10 col-sm-5 " value="">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-mzgs"> 
+			<i class="icon-asterisk pink"></i> 
+			每组抽取人数 
+		</label>
+		
+		<div class="col-sm-9">
+			<input type="number" name="mzgs" required id="form-field-mzgs"  class="col-xs-10 col-sm-5 " value="5">
+			<span class="help-inline col-xs-12 col-sm-7 ">
+				<span class="middle">填写每组摇号的抽取人数</span>
+			</span>
+		</div>
+	</div>
+        
+        <div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-showcontent"> 
+                    <i class="icon-asterisk pink"></i>	
+                    大屏显示内容 
+		</label>
+		
+		<div class="col-sm-9">
+			<select class="col-xs-10 col-sm-5 " name="showcontent">
+                             <option value="" ></option>
+                            <foreach name="item['allgz']" item="onegz">
+                                <option value="<{$onegz}>" ><{$onegz}></option>          
+                            </foreach>
+			</select>
+		</div>
+	</div>
+        
+        
+	<div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-remark"> 
+			备注
+		</label>
+		
+		<div class="col-sm-9">
+			<div class="col-xs-10 col-sm-5 no-padding">
+				<textarea class="form-control" rows="6" name="remark" id="form-field-remark" placeholder="其他说明"></textarea>
+			</div>
+		</div>
+	</div>
+	 <div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-fs">
+			<i class="icon-asterisk pink"></i> 
+			随机摇号 
+		</label>
+		
+		<div class="col-sm-9">
+			<label>
+				<input name="fs" id="form-field-fs" class="ace ace-switch ace-switch-4 " type="checkbox" checked="checked">
+				<span class="lbl"></span>
+			</label>
+		</div>
+	</div>
+        <div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-states">
+			<i class="icon-asterisk pink"></i> 
+			是否开启 
+		</label>
+		
+		<div class="col-sm-9">
+			<label>
+				<input name="is_yx" id="form-field-is_yx" class="ace ace-switch ace-switch-4 " type="checkbox" checked="checked">
+				<span class="lbl"></span>
+			</label>
+		</div>
+	</div>
+	<div class="space-4"></div>
+
+	<div class="alert alert-info">
+		<button type="button" class="close" data-dismiss="alert">
+			<i class="icon-remove"></i>
+		</button>
+
+		<strong>注意：</strong>
+
+		“<i class="icon-asterisk pink"></i>”为必填选项，请注意填写。
+		<br>
+	</div>
+
+	<input type="hidden" name="id" value="<{$id}>" style="display:none;">
+	<div class="clearfix form-actions">
+		<div class="col-md-offset-3 col-md-9">
+			<button class="btn btn-info js-yaohset-add-save-btn"  data-loading-text="正在提交..." >
+				<i class="icon-ok bigger-110"></i>
+				提交
+			</button>
+
+			&nbsp; &nbsp; &nbsp;
+			<button class="btn" type="reset">
+				<i class="icon-undo bigger-110"></i>
+				重置
+			</button>
+		</div>
+	</div>
+	
+</form>
+</block>
+
+<block name="page_plugin_styles">
+<link rel="stylesheet" href="__ASSETS__/css/jquery-ui-1.10.3.custom.min.css" />
+<link rel="stylesheet" href="__ASSETS__/css/chosen.css" />
+</block>
+
+<block name="plugin_js">
+<script src="__ASSETS__/js/chosen.jquery.min.js"></script>
+<script src="__ASSETS__/js/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="__JS__/My97DatePicker/WdatePicker.js"></script>
+</block>
+
+<block name="page_js">
+<script src="__JS__/jquery/jquery.cxSelect-1.4.1/jquery.cxselect.min.js"></script>
+<script type="text/javascript">	
+$(function() {	
+	//多级联动
+	var $project_json = '<{$project_json}>';
+	var $project_json = $.parseJSON($project_json);
+	$('.js-yaohset-select-box').cxSelect({
+		data: $project_json,                
+		selects: ['js-yaohset-select-project-id', 'js-yaohset-select-batch-id'],
+		jsonName: 'n',         
+		jsonValue: 'v',
+		jsonSub: 's',
+		emptyStyle: 'display'
+	});
+});
+</script>
+
+<script type="text/javascript">	
+$(function() {	
+	$(".js-yaohset-select-project-id").chosen({
+		no_results_text: "没有找到",
+		allow_single_de: true	
+	}).change(function() {
+		setTimeout(function() {
+			$(".js-yaohset-select-batch-id").trigger("chosen:updated");
+		}, 500);
+	}); 
+	
+	/*$(".js-choose-order_house-select-batch-id").chosen({
+		no_results_text: "没有找到",
+		allow_single_de: true	
+	}); */
+});
+
+
+
+
+ //编辑提交微信认购设置数据
+    $("#yaohset-add-from").submit(function () {
+        var url = '<{:U("add")}>';
+        var data=new FormData($("#yaohset-add-from")[0]);
+        $.ajax({
+            type:"post",
+            url:url,
+            data:data,
+            dataType:"json",
+            contentType: false, // 注意这里应设为false
+            processData: false,
+            success:function (data) {
+                // console.log(data);
+                // return false;
+                if (data.status != 1) {
+                    gritter_alert(data.info);
+                    return false;
+                } else {
+                    gritter_alert_success(data.info);
+                    setTimeout(function() {
+                        window.location.href = order_house.index;
+                    }, 500);
+                }
+            }
+        });
+        return false;
+
+    });
+</script>
+</block>
+
+<block name="footer_add_js"></block>

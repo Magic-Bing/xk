@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><{$seo_title}></title>
+        <meta name="keywords" content="LED销控表">
+        <meta name="description" content="LED销控表">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link href="/Public/common/css/base.css" type="text/css" rel="stylesheet">
+        <link href="/Public/xk/css/xk.css" type="text/css" rel="stylesheet">
+        <link href="/Public/xk/css/led1.css" type="text/css" rel="stylesheet">
+        
+         <!--<link href="/Public/xk/css/cj/style.css" type="text/css" rel="stylesheet">
+         <link href="/Public/xk/css/cj/jquery.running.css" type="text/css" rel="stylesheet">-->
+
+        <script src="/Public/common/js/jquery/jquery-1.11.3.min.js"></script>
+        <script src="/Public/common/js/jquery/jquery-ui-1.12.0.custom/jquery-ui.js"></script>
+        <script src="/Public/common/js/jquery/jquery.mousewheel.js"></script>
+        <link href="/Public/common/js/jquery/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet">
+        <script src="/Public/common/js/jquery/perfect-scrollbar/perfect-scrollbar.js"></script>
+        <script src="/Public/common/js/layer/layer.js"></script>
+        <script src="/Public/common/js/pc/functions.js"></script>
+        <script src="/Public/common/js/functions.js"></script>
+        
+        <!--<script src="/Public/xk/js/cj/blower-loading.js"></script>
+        <script src="/Public/xk/js/cj/jquery.running.js"></script>-->
+        <script src="/Public/xk/js/cj/jquery.classyloader.min.js"></script>
+       
+
+        <script type="text/javascript">
+
+            var room_url = {
+                room_index: '/room/index.html',
+                room_info: '/room/room_info.html',
+                choose_room: '/room/choose_room.html',
+                not_choose_room: '/room/not_choose_room.html',
+                search_room: '/room/search_room.html',
+                search_room_name: '/room/search_room_name.html',
+                search_cst: '/room/search_cst.html',
+                get_oneroom: '/room/get_oneroom.html',
+            }
+        </script>
+        <style>
+            video{
+                position: fixed;
+                left: 50%;
+                top: 50%;
+                bottom: 0;
+                min-width: 100%;
+                min-height: 100%;
+                height: auto;
+                width: auto;
+                transform: translateX(-50%) translateY(-50%);
+                /*加滤镜*/
+                /*-webkit-filter: grayscale(100%);*/
+                /*filter:grayscale(100%);*/
+            }
+            source{
+                min-width: 100%;
+                min-height: 100%;
+                height: auto;
+                width: auto;
+            }
+
+            .xsqhl span{
+                margin-left: 15px;
+                color:#FFF;
+            }
+            .td_floor1 {
+                padding: 0 12px;
+                width:45px;
+                font-size: 90%;
+                border: 1px solid #fff;
+                color: #FFF;
+                text-align: center;
+                font-weight: bold;
+            }
+
+            .td_room{
+                padding: 0;
+            }
+            .djs-ul li{
+                height: 45px;line-height: 45px;margin: -5px 0 0 -10px;color: #FFF;
+            }
+            /*#divtable{*/
+            /*position: absolute;*/
+            /*top: 50%;*/
+            /*left: 50%;*/
+            /*transform: translateX(-67%) translateY(-50%);*/
+            /*}*/
+            .divnull {
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                width: 100%;
+                background-color: #3e97eb;
+                font-size: 12px;
+                line-height:normal;
+                color:#3e97eb;
+                height: 100%;
+            }
+            
+            .divwxf {
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                width: 100%;
+                /*background-color: #fff;*/
+                font-size: 12px;
+                line-height:normal;
+                height: 100%;
+                font-weight: blod;
+            }
+            .divyxf {
+                /*下面三句是让内容垂直居中 */
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                width: 100%;
+                line-height: normal;
+                background-color: #ff0000;
+                font-size: 12px;
+                height: 100%;
+            }
+
+            .mt-number-animate .mt-number-animate-dot{
+                width: 14px;/*设置分割符宽度*/
+                line-height: 40px; float: left;
+                text-align: center;
+            }
+            .mt-number-animate .mt-number-animate-dom{
+                width: 12px;/*设置单个数字宽度*/
+                text-align: center; float: left; position: relative; top: 0;
+            }
+            .mt-number-animate .mt-number-animate-dom .mt-number-animate-span{ width: 100%; float: left;font-family: 'FZYaoti' !important;}
+
+            /*修改的样式*/
+            body{
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: #3e97eb;
+                overflow: hidden;
+            }
+            #roomdiv{
+                width: calc(100% - 1px);
+                height: calc(100% - 2px);
+                position: relative;
+                text-align: center;
+                padding: 2px 1px;
+            }
+            #divtable{
+                position: relative;
+                width:100%;
+                height:100%;
+            }
+            #divtable>table{
+                border-collapse:separate;
+                /*border-spacing:12px 0;*/
+                height:calc(100% - 20px);
+                width:100% ;
+            }
+            #divtable>table>tbody>tr>td>table{
+                height: 100%;
+                width: 100%;
+            }
+
+            /*#divtable>table>table>table{*/
+            /*height: 100%;*/
+            /*width: 100%;*/
+            /*}*/
+
+            table td{
+                vertical-align:middle;
+                text-align: center;
+            }
+            .w_tab>tbody>tr>td{
+                vertical-align:top;
+            }
+            #divtable>table>tbody>tr>td>table>tbody>tr>td>table{
+                height: 100%;
+                border-collapse: collapse;
+                border-spacing:2px;
+                width: 100%;
+            }
+            #td_one{
+                width: auto;
+            }
+            .w_tab table{
+                width: 100%;
+                height: 100%;
+            }
+            .yssl{
+                background-color: red;
+                color: #fff;
+                padding: 0px 10px;
+                float: left;
+            }
+            .wssl{
+                background-color: #fff;
+                color: #000;
+                padding: 0px 10px;
+                float: left;
+            }
+            #ts{
+                    width: 100px;
+                    position: fixed;
+                    margin-top:2px;
+                    right: 15px;
+                    font-size: 12px;
+            }
+            .table_title{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                background-color: #fff;
+                font-size: 90%;
+                line-height: normal;
+                height: 100%;
+            }
+            .table_title div{
+                flex: 1;
+                font-size: 90%;
+                font-weight: 400;
+                height: 100%;
+                border-right: 1px solid #3e97eb;
+                font-weight: bold;
+            }
+            .table_title div:first-child{
+                font-weight: bold;
+                flex: 0.8;
+            }
+            .td_room .td_div div{
+                font-size: 90%;
+                font-weight: 700;
+                height: 100%;
+                border-right: 1px solid #3e97eb;
+                flex: 1;
+                font-size: 13px;
+            }
+            /*.td_room div .roomtitle{
+                font-weight: bold;
+                color: #2180da;
+                flex: 0.8;
+            }*/
+            .td_room div .roomtitle{
+                font-weight: bold;
+                color: #FFF;
+                background: #3e97eb;
+                height:calc(100% - 2px);
+                width:calc(100% - 2px);
+                flex: 0.8;
+                border: 1px solid #FFF;
+            }
+            
+            //.w_tab table tr:nth-child(odd) {background:#ffffff;}
+            //.w_tab table tr:nth-child(even) {background:#e4e4e4;}
+            
+            .w_tab table tr:nth-child(odd) {background:#ffffff;}
+            .w_tab table tr:nth-child(even) {background:#ffffff;}
+   
+            /* .w_tab table td:nth-child(even){color:#C00;}*/
+           
+        </style>
+    </head>
+    <body style="background: #3e97eb; ">
+            <div  id="roomdiv">
+                <div id="divtable">
+                    <!--<div style="width:100%;text-align: center;color: #FFF;font-size: 20px;"><{$projinfo['0']['name']}></div>-->
+                    <div id="ts"><div class="yssl">已售</div> <div  class="wssl">未售</div></div>
+                    <table id="roomstable">
+                        <tr>
+                            <volist name="builds" id="builds_vo" key="builds_k">
+                                <td id="td_one">
+                                    <table>
+                                        <tr>
+                                            <volist name="units" id="units_vo" key="units_k">  
+                                                <if condition="$units_vo['bld_id'] eq $builds_vo['id']">
+                                                    <td style="padding-right:0">
+                                                        <table  class="w_tab">
+                                                            <tr>
+                                                                <td style="height: 20px">
+                                                                    <div style="width: calc(100% - 5px);margin-left: 1px;height:auto;text-align:center;border:1px solid #fff;color:#FFF;font-weight:bold;">
+                                                                    <{$builds_vo['buildname']}><{$units_vo.unit|default=1}>单元
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="">
+                                                                    <table  style="border-collapse: separate;border-spacing:1px;">
+                                                                        <if condition="$px neq 3">
+                                                                        <tr style="width:100%;">
+                                                                            <td class="td_room">
+                                                                                <div class="table_title">
+                                                                                    <div >房号</div><div>面积</div><div>表单价</div><div>表总价</div><div>一次性单价</div><div>一次性总价</div><div>按揭单价</div><div >按揭总价</div>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td class="td_room">
+                                                                                <div class="table_title">
+                                                                                    <div >房号</div><div>面积</div><div>表单价</div><div>表总价</div><div>一次性单价</div><div>一次性总价</div><div>按揭单价</div><div >按揭总价</div>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <else />
+                                                                            <td class="td_room">
+                                                                                   <div class="table_title">
+                                                                                       <div >房号</div><div>面积</div><div>表单价</div><div>表总价</div><div>一次性单价</div><div>一次性总价</div><div>按揭单价</div><div >按揭总价</div>
+                                                                                   </div>
+                                                                           </td>
+                                                                        </if>
+                                                                        <php>$nn=0</php>
+                                                                        <volist name="floors" id="floors_vo" key="floors_k"> 
+                                                                            <if condition="$floors_vo['bld_id'] eq $builds_vo['id']">
+                                                                                <tr style="width:100%;">
+                                                                                    <!--<td class="td_floor1">
+                                                                                        <{$floors_vo.floor|default=1}>F
+                                                                                    </td>-->
+                                                                                    <foreach name="nolist" item="nolist_vo">
+                                                                                        <if condition="$nolist_vo['bld_id'] eq $builds_vo['id']">
+                                                                                            <if condition="$nolist_vo['unit'] eq $units_vo['unit']">
+                                                                                                <td class="td_room">
+                                                                                                    <php>$ii=0;</php>
+                                                                                                    <for start="$ii" end="count($rooms)">
+                                                                                                        <if condition="$rooms[$i]['bld_id'] eq $builds_vo['id']">
+                                                                                                            <if condition="$rooms[$i]['unit'] eq $units_vo['unit']">
+                                                                                                                <if condition="$rooms[$i]['floor'] eq $floors_vo['floor']">
+                                                                                                                    <if condition="$rooms[$i]['no'] eq $nolist_vo['no']">
+                                                                                                                        <if condition="$rooms[$i]['is_xf'] eq 1">
+                                                                                                                            <div id="roomid_<{$rooms[$i]['id']}>" roomid="<{$rooms[$i]['id']}>" total="<{$rooms[$i]['total']}>" class="divyxf td_div">
+                                                                                                                                <div class="roomtitle"><{$rooms[$i].room}></div>
+                                                                                                                                <div><{$rooms[$i][area]}></div>
+                                                                                                                                <div><{:number_format($rooms[$i]['price'],0,'.','')}></div>
+                                                                                                                                <div><{:number_format($rooms[$i]['total'],0,'.',',')}></div>
+                                                                                                                                <div><{:number_format($rooms[$i]['ycx_dj'],0,'.','')}></div>
+                                                                                                                                <div><{:number_format($rooms[$i]['ycx_price'],0,'.',',')}></div>
+                                                                                                                                <div><{:number_format($rooms[$i]['aj_dj'],0,'.','')}></div>
+                                                                                                                                <div><{:number_format($rooms[$i]['aj_price'],0,'.',',')}></div>
+                                                                                                                            </div>
+                                                                                                                       <else />
+                                                                                                                            <div id="roomid_<{$rooms[$i]['id']}>" roomid="<{$rooms[$i]['id']}>" total="<{$rooms[$i]['total']}>" class="divwxf td_div" >
+                                                                                                                                <div class="roomtitle"><{$rooms[$i].room}></div>
+                                                                                                                                <div><{$rooms[$i][area]}></div>
+                                                                                                                                <div><{:number_format($rooms[$i]['price'],0,'.','')}></div>
+                                                                                                                                <div><{:number_format($rooms[$i]['total'],0,'.',',')}></div>
+                                                                                                                                <div><{:number_format($rooms[$i]['ycx_dj'],0,'.','')}></div>
+                                                                                                                                <div><{:number_format($rooms[$i]['ycx_price'],0,'.',',')}></div>
+                                                                                                                                <div><{:number_format($rooms[$i]['aj_dj'],0,'.','')}></div>
+                                                                                                                                <div><{:number_format($rooms[$i]['aj_price'],0,'.',',')}></div>
+                                                                                                                            </div>
+                                                                                                                        </if>
+                                                                                                                        <php>$ii++;break;</php>
+                                                                                                                    </if>
+                                                                                                                <else />
+                                                                                                                    <if condition="$floors_vo['floor'] lt 3 && $rooms[$i]['room'] eq 305">
+                                                                                                                        <div  class="divnull td_div">
+                                                                                                                            NULL
+                                                                                                                        </div>
+                                                                                                                    </if>
+                                                                                                                    <if condition="$floors_vo['floor'] eq 33 && $rooms[$i]['room'] eq 305">
+                                                                                                                        <div  class="divnull td_div">
+                                                                                                                            NULL
+                                                                                                                        </div>
+                                                                                                                    </if>
+                                                                                                                </if>
+                                                                                                            </if>
+                                                                                                        </if>
+                                                                                                    </for>
+                                                                                                </td>
+                                                                                            </if>
+                                                                                        </if>
+                                                                                    </foreach>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </if>
+                                                                            <php>$nn++;</php>
+                                                                        </volist>
+                                                                        <if condition="$nn lt 33">
+                                                                            <tr style="width:100%;"> 
+                                                                                <td class="td_room">
+                                                                                    <div  class="divnull td_div">
+                                                                                        NULL
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td class="td_room">
+                                                                                     <div  class="divnull td_div">
+                                                                                        NULL
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </if>
+                                                                    </table>
+                                                                </td>
+                                                            </tr >
+                                                        </table>
+                                                    </td>
+                                                </if>
+                                            </volist>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </volist>
+                        </tr>
+                    </table>
+                    <p style="position: fixed;width:100%;bottom: 0;text-align: center; color: #FFF;   font-size: 14px;font-family:'Microsoft YaHei';font-weight: bold;">Powered  by  云销控</p>
+                </div>
+            </div>
+        <script type="text/javascript">
+
+            var bldid = "<{$bldid}>";
+            var projid = "<{$projid}>";
+            function launchFullscreen(element) {
+//                console.log(element);
+                if(element.requestFullscreen) {
+                    element.requestFullscreen();
+                } else if(element.mozRequestFullScreen) {
+                    element.mozRequestFullScreen();
+                } else if(element.webkitRequestFullscreen) {
+                    element.webkitRequestFullscreen();
+                } else if(element.msRequestFullscreen) {
+                    element.msRequestFullscreen();
+                }
+            }
+            $(document).ready(function() {
+                var tab=$(".w_tab table");
+               if(tab.length<=2){//判断楼栋数量是否小于等于2
+                  if(tab.find("tr:first").find("td").length<12  &&  tab.find("tr:first").find("td").find(".table_title").find("div").length<6){//判断楼栋一层所有的房间个数，如果小于12，限制宽度，避免拉长很难看
+                      $("#roomstable").css("width","80%").css({left:'50%',position:'absolute',transform:'translate(-50%,0)'})
+                  }
+               }
+               
+               
+               
+               
+               
+//                var t_height=1000;
+                var tr_num=0;//最大的tr数量
+                for(var i=0;i<tab.length;i++){
+                    var tr=tab.eq(i).find("tr");
+                    if(i===0){
+                        tr_num=tr.length;
+                    }else{
+                        if(tr.length>tr_num){
+                            tr_num=tr.length;
+                        }
+                    }
+//                    var t_h=parseInt(tab.eq(i).find('tr').eq(0).find("td").eq(0).css('height'));
+//                    if(t_h<t_height){
+//                        t_height=t_h;
+//                    }
+                }
+                if(tr_num>20){//判断楼栋楼层最大值是否小于大于20，大于20时用最大值填充小于最大值的楼栋，小于20时，用30来填充，避免td拉的特别长很难看
+                    for(var k=0;k<tab.length;k++){
+                        var tr2=tab.eq(k).find("tr");
+                        if(tr2.length<tr_num){
+                            for(var s=0;s<(tr_num-tr2.length);s++){
+                                tab.eq(k).find("tbody").append("<tr><td colspan='12' style='color: #3e97eb'>空</td></tr>")
+                            }
+                        }
+                    }
+                }else{
+                    for(var k=0;k<tab.length;k++){
+                        var tr2=tab.eq(k).find("tr");
+                            for(var s=0;s<(30-tr2.length);s++){
+                                tab.eq(k).find("tbody").append("<tr><td colspan='12' style='color: #3e97eb'>空</td></tr>")
+                            }
+                    }
+                }
+
+                layer.confirm('是否全屏显示？', {
+                    title:'温馨提示',
+                    btn: ['确认','取消'] //按钮
+                }, function(index){
+                    layer.close(index);
+                    launchFullscreen(document.documentElement);
+                }, function(){
+                });
+                setInterval("shownewrooms()", 3000); //定时刷最新房间信息
+            });
+            
+            //测试用
+            /*$("#divtable").click(function () {
+                    shownewrooms();
+            });*/
+            
+            //获取最新数据
+            function shownewrooms()
+            {
+
+                var $data = {
+                    projid: projid
+                };
+                var orderedRooms;
+                //ajax_post_callback('/account/WeixBuyled/getAllOrderedRooms', $data, function (data, status) {
+                ajax_post_callback('/account/Xsglled/get_gfrooms', $data, function (data, status) {
+                    orderedRooms = data.info[1];
+                    renderRoom(orderedRooms);
+                });
+            }
+            
+            function renderRoom(rooms)
+            {
+                //刷新房间状态
+                for(var i = rooms.length-1; i >= 0; i--){
+                    var $id=rooms[i].id;
+                    if($id===0)
+                    {
+                        continue;
+                    }
+                    if (rooms[i].is_xf>0)
+                    {
+                          $("#roomid_" + $id).removeClass("divwxf").addClass("divyxf");
+                    }
+                    else
+                    {
+                         $("#roomid_" + $id).addClass("divwxf").removeClass("divyxf");
+                    }
+                    
+                }
+            }
+            
+            function fmoney(s, n)  
+            {  
+               n = n > 0 && n <= 20 ? n : 2;  
+               s = parseFloat((s + "").replace(/[^\d\.-]/g, "")).toFixed(n) + "";//更改这里n数也可确定要保留的小数位  
+               var l = s.split(".")[0].split("").reverse(),  
+               r = s.split(".")[1];  
+               t = "";  
+               for(i = 0; i < l.length; i++ )  
+               {  
+                  t += l[i] + ((i + 1) % 3 == 0 && (i + 1) != l.length ? "," : "");  
+               }  
+               return t.split("").reverse().join("") + "." + r.substring(0,2);//保留2位小数  如果要改动 把substring 最后一位数改动就可  
+            }
+            
+            $(window).resize(function () {
+               var gd=$(".td_div").find(".roomtitle").eq(0).height();
+               $(".divnull").eq(0).parent().css("height",gd);
+               $(".divnull").eq(1).parent().css("height",gd);
+               var tdlist=$("#roomstable").find(".td_div");
+               tdlist.css("line-height",gd+"px");
+               
+               /*for(var i=0;i<tdlist.length;i++){
+                   tdlist.eq(i).css("line-height", tdlist.eq(i).height());
+               }*/
+               // $(".divnull").css("line-height", $(".divnull").height());
+               
+            });
+
+        </script>
+    </body>
+</html>

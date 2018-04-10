@@ -122,7 +122,7 @@ class YaoHresultController extends BaseController {
             }
         }
         //状态条件
-        if (!empty($search_status)) {
+        if ($search_status != -1) {
             $where['xk_yaohresult.`status`'][] = $search_status;
         }
         //搜索查询

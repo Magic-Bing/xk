@@ -1,0 +1,368 @@
+<extend name="Common/base"/>
+<block name="breadcrumb">
+    <style>
+        /*td{*/
+            /*vertical-align: middle;*/
+        /*}*/
+        .two-dh {
+            display: inline-block;
+            background-color: #fff;
+            color: #585858;
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            letter-spacing: 2px;
+            border-radius: 5px;
+            margin-left: calc((100% - 300px) / 4);
+            /*border-style: none;*/
+            border:1px solid #ccc;
+        }
+
+        .a-selected {
+            background-color: #ec5858;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        #user-info label {
+            width: 100%;
+        }
+
+        #user-info input {
+            width: 100%;
+        }
+
+        #user-info tr:nth-child(odd) {
+            display: inline-block;
+            margin-top: 10px;
+        }
+        #user-info th{
+
+        }
+        #button-sign {
+            border-style: none;
+            color: #fff;
+            background-color: rgb(135, 184, 127);
+            font-weight: bold;
+            padding: 5px 15px;
+            margin-top: 10px;
+        }
+        #sign-reset{
+            border-style: none;
+            color: #fff;
+            background-color: rgb(255, 177, 56);
+            font-weight: bold;
+            padding: 5px 15px;
+            margin-top: 10px;
+        }
+        .sign-check{
+            display: inline-block;
+            font-size: 16px;
+            background-color: rgb(135, 184, 127);
+            color: #FFF;
+            padding: 0 5px;
+            cursor: pointer;
+        }
+        .sign-cancel{
+            display: inline-block;
+            font-size: 16px;
+            background-color: rgb(255, 177, 56);
+            color: #FFF;
+            padding: 0 5px;
+            cursor: pointer;
+        }
+        form{
+            display: inline;
+        }
+        .tr-selected{
+            background-color: #abbac3;
+        }
+        .tr-selected td{
+            background-color: rgba(0,0,0,0)!important;
+        }
+        
+        #print-pj {
+            border-style: none;
+            color: #fff;
+            background-color: #428bca;
+            font-weight: bold;
+            padding: 5px 10px;
+            margin-top: 10px;
+            margin-left: 40px;
+        }
+        .two-dh span{
+            font-size: 11px;
+            font-weight: 400;
+            position: absolute;
+            margin-top: -10px;
+        }
+    </style>
+
+    <form action="index" method="post">
+        <input type="hidden" name="zt" value="0">
+        <button  class="two-dh <if condition='$zt eq 0'>a-selected</if>">未签到<span id="wqd"></span></button>
+        
+    </form>
+    <form action="index" method="post">
+        <input type="hidden" name="zt" value="1">
+    <button class="two-dh th  <if condition='$zt eq 1'>a-selected</if>">已签到<span id="yqd"></span></button>
+
+    </form>
+    <form action="index" method="post">
+        <input type="hidden" name="zt" value="2">
+    <button class="two-dh th  <if condition='$zt eq 2'>a-selected</if>">全部<span id="zgs"></span></button>
+
+    </form>
+</block>
+<block name="page_content">
+    <if condition='$zt eq 0'>
+        <OBJECT ID="CVR_IDCard"  name="CVR_IDCard" CLASSID="CLSID:10946843-7507-44FE-ACE8-2B3483D179B7" width="0" height="0"></OBJECT>
+    <script type="text/javascript">
+
+        var iPort = CVR_IDCard.InitCommExt();
+        if (0 == iPort)
+        {
+            layer.alert("连接身份证读卡设备失败!");
+        }
+        var bRet = CVR_IDCard.BeginReadCard();
+        if (!bRet)
+        {
+            layer.alert("启动读卡失败");
+        }
+    </script>
+    <script language="Javascript" event="OnReadCardInfo()" for="CVR_IDCard">
+        var zt=$("#sign-zt").text();
+        var CardNo = CVR_IDCard.CardNo();
+        var Name = CVR_IDCard.Name();
+        var pid=$('#project-not-sign').val();
+        var bid=$('#batch-one').val();
+        $.post(sign.auto_sign,{pid:pid,bid:bid,card:CardNo,name:Name},function (data) {
+           if(data.status === 0){
+               speckText(data.info);
+                layer.alert(data.info,{
+                    title:'温馨提示',
+                    skin: 'layui-layer-bcz'
+                });
+           }else if(data.status === 1){
+               if(typeof data.info === 'object'){
+                   speckText(data.info.cst_name+"已经签到过了。");
+                   layer.alert(data.info.cst_name+"已经签到过了。",{
+                       title:'温馨提示',
+                       skin: 'layui-layer-yqd'
+                   });
+               }else{
+//                   alert(2);
+                    if(data.info === 'not_auto'){
+//                       alert(4);
+                        num=1;
+                       $("#search-one").val(CardNo);
+                        var row=$('#new_rows').val();
+                        $.post(sign.user_list,{pid:pid,bid:bid,search:CardNo,num:row,zt:zt},function (data) {
+                            $("#user_list").html(data);
+                            $("#zgs").text($("#h_zgs").val());
+                            $("#yqd").text($("#h_yqd").val());
+                            $("#wqd").text($("#h_wqd").val());
+                            user_ajax();
+                        });
+                   }else{
+                       $("#batch-one").trigger("change");
+                       speckText(data.info);
+                       layer.msg('<span style="font-size:20px">'+data.info+'</span>', {skin: 'layui-layer-setmybg'});
+                   }
+               }
+           }else{
+               var qd=$(".card-"+data.id);
+               qd.attr('data-name',Name);
+               qd.trigger("click");
+           }
+        },'json');
+    </script>
+
+    </if>
+    <span id="sign-zt" style="display: none"><{$zt}></span>
+    <div class="col-sm-8 js-height" style="border: 1px solid #e8eef6;height: auto!important;">
+        <div class="table-header" style="margin-top: 10px"  >
+            客户列表
+        </div>
+        <div class="table-responsive dataTables_wrapper">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="sample-table-2_length" class="dataTables_length">
+                            <label>
+                                项目
+                                <select name="project_id" class="choose-user-project-id" id="project-not-sign"
+                                        style="width: auto;">
+                                        <option value="0">全部</option>
+                                    <foreach name="project_list" item="vo" key="k">
+                                        <option value="<{$vo.id}>"><{$vo.company_name}>--<{$vo.name}></option>
+                                    </foreach>
+                                </select>
+                            </label>
+                            <label>
+                                批次
+                                <select name="batch_id" class="choose-user-batch-id" id="batch-one"
+                                                  style="width: 70px;">
+                                    <option value="">全部</option>
+                                </select>
+                                <select name="hidden" id="hidden-select" style="display: none">
+                                    <foreach name="batch_list" item="vo" key="k">
+                                        <option value="<{$vo.id}>" pid="<{$vo.proj_id}>" ><{$vo.name}></option>
+                                    </foreach>
+                                </select>
+                            </label>
+                            <div class="nav-search" id="sample-table-2_filter" style="top:0;">
+                                <label class="input-icon">
+                                    <input type="text" name="word" value="" class="nav-search-input" id="search-one"
+                                           placeholder="姓名、手机、身份证">
+                                    <i class="icon-search nav-search-icon" style="cursor: pointer;left:6px;"
+                                       id="likeUsers"></i>
+                                </label>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12" id="user_list">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4 js-height" style="border: 1px solid #e8eef6;height: auto!important;">
+        <div class="table-header" style="margin-top: 10px">
+            客户签到详情
+        </div>
+        <table class="col-sm-12" id="user-info">
+            <tr>
+                <th>项目名称</th>
+            </tr>
+            <tr>
+                <td>
+                    <label>
+                        <input type="text" id="pname" readonly>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th>项目批次</th>
+            </tr>
+            <tr>
+                <td>
+                    <label>
+                        <input type="text" id="bname" readonly>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th>客户姓名</th>
+            </tr>
+            <tr>
+                <td>
+                    <label>
+                        <input type="text" id="uname" readonly>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th>客户手机</th>
+            </tr>
+            <tr>
+                <td>
+                    <label>
+                        <input type="text" id="uphone" readonly>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th>身份证号码</th>
+            </tr>
+            <tr>
+                <td>
+                    <label>
+                        <input type="text" id="card" readonly>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th>诚意单号</th>
+            </tr>
+            <tr>
+                <td>
+                    <label>
+                        <input type="text" id="cyjno" readonly>
+                    </label>
+                </td>
+            </tr>
+           
+            <tr>
+                <th>置业顾问</th>
+            </tr>
+            <tr>
+                <td>
+                    <label>
+                        <input type="text" id="ywy" readonly>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th>置业顾问电话</th>
+            </tr>
+            <tr>
+                <td>
+                    <label>
+                        <input type="text" id="yphone" readonly>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th>签到时间</th>
+            </tr>
+            <tr>
+                <td>
+                    <label>
+                        <input type="text" id="sign_time" readonly>
+                    </label>
+                </td>
+            </tr>
+            <tr class="col-sm-12">
+                <td class="center" style="display: inline-block;width: 100%">
+                        <button id="button-sign" style="display: none">✔ &nbsp;签到</button>
+                        <button id="sign-reset" style="display: none"><i class="icon-undo"></i> &nbsp;取消</button>
+                        <button id="print-pj"  style="display: none"><i class="icon-print"></i> &nbsp;打印票据</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</block>
+<block name="plugin_js">
+    <script src="/Public/account/js/sign.js"></script>
+</block>
+
+<block name="page_js">
+
+    <script>
+        var bid='<{$selected_batch}>';
+        $(function () {
+            <!--代币获取弹窗-->
+            $("#project-not-sign").val('<{$selected_project}>');
+            $("#project-not-sign").trigger('change');
+
+            //设置内容框的高度
+            var w = window.innerHeight;//获取浏览器可视窗口高度
+//            console.log(w);
+            $(".js-height").css("min-height", (parseInt(w) - 130) + 'px');
+//            $(".dataTables_wrapper").css("min-height", (parseInt(w) - 193) + 'px');
+            window.onresize = function ()//此方法设置内容框大小，随浏览器大小变化高度
+            {
+                //你改变DIV大小的代码
+                var w = window.innerHeight;
+//                console.log(w);
+                $(".js-height").css("min-height", (parseInt(w) - 130) + 'px');
+//                $(".dataTables_wrapper").css("min-height", (parseInt(w) - 193) + 'px');
+            } 
+
+        });
+        
+    </script>
+</block>

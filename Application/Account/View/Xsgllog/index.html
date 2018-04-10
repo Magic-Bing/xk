@@ -139,37 +139,16 @@
 								</foreach> 
 							</select> 
 						</label>
-                                                <label class="jyzt">
+                                                <label class="jyzt" style="vertical-align: inherit">
 							交易状态
-							<select name="status" class="trade-zt-id js-trade-zt-id"  id="status">
-                                                            <foreach name="status_list" item="status_list_vo">
-                                                                <if condition="$status_list_vo eq  $status">
-                                                                    <option value="<{$status_list_vo}>" selected><{$status_list_vo}></option>
-                                                                <else/>
-                                                                    <option value="<{$status_list_vo}>" ><{$status_list_vo}></option>
-                                                                </if>
-                                                            </foreach>
-							</select>
-                                                        <!--<foreach name="status_list" item="status_list_vo" key="status_key">
-                                                            <if condition="$status_list_vo eq  $status">
-                                                            <label for="status_<{$status_key}>"><input type="radio" value="<{$status_list_vo}>" name="status" id="status_<{$status_key}>" checked>&nbsp;<{$status_list_vo}></label>
-                                                            <else/>
-                                                            <label for="status_<{$status_key}>"><input type="radio" value="<{$status_list_vo}>" name="status" id="status_<{$status_key}>">&nbsp;<{$status_list_vo}></label>
-                                                            </if>
-                                                        </foreach>-->
+									<foreach name="status_list" item="status_list_vo">
+										<if condition="$status_list_vo eq  $status">
+											<label><input class="js-trade-zt-id" type="radio" name="status" value="<{$status_list_vo}>" checked><{$status_list_vo}></label>
+										<else/>
+											<label><input class="js-trade-zt-id" type="radio" name="status" value="<{$status_list_vo}>" ><{$status_list_vo}></label>
+										</if>
+									</foreach>
 						</label>
-						<!--<label>
-							状态
-							<select name="pd" class="trade-zt-id js-trade-zt-id" >
-								<if condition="$pd eq 1">
-                                                                    <option value="0">激活</option>
-                                                                    <option value="1" selected>关闭</option>
-								<else/>
-                                                                    <option value="0">激活</option>
-                                                                    <option value="1" >关闭</option>
-								</if>
-							</select>
-						</label>-->
 						<div class="nav-search" id="sample-table-2_filter" style="top:0px;">
 							<label class="input-icon">
 								<input type="text" name="word" value="<{$search_word|default=''}>" class="nav-search-input js-choose-jy-word" id="zt_cx" placeholder="身份证、诚意单号、房号、客户、手机" style="width: 256px">
@@ -300,6 +279,10 @@
                                                         <i class="icon-cloud-download bigger-110"></i>
                                                         <span class="bigger-110 no-text-shadow">导出数据</span>
                                                 </button>
+												<button class="btn btn-xs btn-primary" style="float: right;margin-right: 10px" id="dc_all">
+													<i class="icon-cloud-download bigger-110"></i>
+													<span class="bigger-110 no-text-shadow">导出所有数据</span>
+												</button>
                                         </td>
                                 </tr>
 				</tbody>
@@ -380,13 +363,17 @@
 		}
 	});
         
-        //导出记录数据
+        //导出数据，记录数据
 	$("#dc_sj").on("click",function () {
+        var bid=$("#jl_pc").val();
+        if(Number(bid) === 0){
+            layer_alert("请先选择项目和批次！");
+            return false;
+        }
 		var num=Number($("#sample-table-2_info span").text());
 		if(num>0){
                     var word = $("#zt_cx").val();
                     var pid=$("#jl_pid").val();
-                    var bid=$("#jl_pc").val();
                     var status=$("#status").val();
                     window.location.href="http://"+window.location.host+"/Account/Xsgllog/dc_sj.html?project_id="+pid+"&word="+word+"&batch_id="+bid+"&status="+status;
 		}else{
@@ -395,9 +382,32 @@
 		}
 
         });
-        
+
+    //导出所有数据，记录数据+销控数据
+    $("#dc_all").on("click",function () {
+        var bid=$("#jl_pc").val();
+        if(Number(bid) === 0){
+            layer_alert("请先选择项目和批次！");
+            return false;
+        }
+        var num=Number($("#sample-table-2_info span").text());
+        if(num>0){
+            var pid=$("#jl_pid").val();
+            var bid=$("#jl_pc").val();
+            window.location.href="http://"+window.location.host+"/Account/Xsgllog/dc_all.html?project_id="+pid+"&batch_id="+bid;
+        }else{
+            layer_alert("没有数据，不能导出！");
+            return false;
+        }
+
+    });
         //查看超时数据
 	$("#error").on('click',function () {
+        var bid=$("#jl_pc").val();
+	   if(Number(bid) === 0){
+           layer_alert("请先选择项目和批次！");
+           return false;
+	   }
             var cssj=$(this).attr('data-zt');
             var pd=0;
             if(Number(cssj)===0){
